@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { RouterModule, Router } from '@angular/router'
 import { LoginComponent } from './auth/login/login.component';
 import { AuthModule } from './auth/auth.module';
-import { NotFoundComponent } from './not-found/not-found.component'
+import { NotFoundComponent } from './not-found/not-found.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 var routes = [
@@ -20,12 +21,13 @@ var routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {useHash: true}),
     AuthModule
   ],
   providers: [],
