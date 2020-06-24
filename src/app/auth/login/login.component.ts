@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { LoginUser } from '../data-models/Login'
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +12,26 @@ import { LoginUser } from '../data-models/Login'
 export class LoginComponent implements OnInit, AfterViewInit {
 
 
+
+  // Form logic
+
   loginForm: FormGroup;
 
-  constructor() { }
+  constructor( private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.loginForm = new FormGroup(
-      {
-        email: new FormControl(),
-        password: new FormControl()
-      }
-    )
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(10)]]      
+    })
+
+    // this.loginForm = new FormGroup(
+    //   {
+    //     email: new FormControl(),
+    //     password: new FormControl()
+    //   }
+    // )
+    this.testData();
   }
 
   save() {
@@ -30,8 +40,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log("Saved Working" + JSON.stringify(this.loginForm.value));
   }
 
+  testData(){
+    // We can use setValue to set all the values in the form
+    this.loginForm.patchValue({
+      email: 'shubhamsinha2050@gmail.com',
+    });
+  }
 
 
+  // Google button logic
+  
   declare const gapi: any;
   public auth2: any;
   public googleInit() {

@@ -22,11 +22,21 @@
 
 
     <br><br><br>
-    or <button>Forgot Password</button>
+    or <button routerLink="/auth/passwordreset">Forgot Password</button>
 
 </form>
 <br><br><br><br>
 Don't have an account<button routerLink="/auth/register">Register</button>
 
+<br><br><br><br>
+<pre>
+Password Touched:   {{loginForm.get('password').touched}} <br>
+Email Touched:      {{loginForm.get('email').touched}} <br>
+Password Dirty:   {{loginForm.get('password').dirty}} <br>
+Email Dirty:      {{loginForm.get('email').dirty}} <br>
+
+Form valid:         {{loginForm.valid}} <br>
+Form value:         {{loginForm.value | json}}
+</pre>
 
 <br><br><br>
