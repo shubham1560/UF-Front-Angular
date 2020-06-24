@@ -1,10 +1,12 @@
+<br><br><br><br>
 <form novalidate (ngSubmit)="save()" [formGroup]="loginForm">
     Login to Your Account!
 
     <br><br>
-    Continue with Google
+    <br><br>    
 
-    <br>
+    <button id="googleBtn">Continue with Google</button>
+    <br><br>
     <label for="exampleInputEmail1">Email</label>
     <input type="email" class="form-control" formControlName='email' id="email" aria-describedby="emailHelp"
         placeholder="Enter email">
@@ -16,6 +18,7 @@
         [disabled]='!loginForm.valid'>
         Login
     </button>
+    
 
 
     <br><br><br>
