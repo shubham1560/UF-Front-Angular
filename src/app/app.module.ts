@@ -32,7 +32,7 @@ var routes = [
     AppRoutingModule,
     RouterModule.forRoot(routes, {useHash: true}),
     AuthModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
