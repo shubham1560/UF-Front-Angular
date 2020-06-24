@@ -10,7 +10,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
-import { AuthComponent } from './register/auth/auth.component';
 
 
 var routes = [
@@ -26,7 +25,6 @@ var routes = [
     AppComponent,
     NotFoundComponent,
     FooterComponent,
-    AuthComponent,
   ],
   imports: [
     BrowserModule,
