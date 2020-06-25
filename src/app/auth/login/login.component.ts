@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   save() {
     console.log(this.loginForm)
-    console.log(this.loginForm);
     console.log("Saved Working" + JSON.stringify(this.loginForm.value));
   }
 
