@@ -9,6 +9,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
+import { LoggerService } from './services/logger.service';
 
 
 var routes = [
@@ -32,7 +33,7 @@ var routes = [
     AuthModule,
     BrowserAnimationsModule, 
   ],
-  providers: [],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
