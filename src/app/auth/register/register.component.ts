@@ -1,5 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+
+function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
+  const p1 = c.get('password');
+  const p2 = c.get('confirm_password');
+
+  if(p1.pristine || p2.pristine){
+    return null;
+  }
+
+  if(p1.value === p2.value){
+    return null;
+  }
+  return {'match': true};
+}
 
 @Component({
   selector: 'app-register',
@@ -8,15 +22,26 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
+  registrationForm: FormGroup;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.registerForm = this.fb.group({
+    this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', ],
+      passwordGroup: this.fb.group({
+        password: ['', [Validators.required]],
+        confirm_password: ['', [Validators.required]]
+      }, {validators: passwordMatch}),
+      first_name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]]
     })
+
+    console.log(this.registrationForm);
+  }
+
+  save(){
+    console.log("Registered the user");
   }
 
 }

@@ -1,5 +1,42 @@
 <p>register works!</p>
 
+<form (ngSubmit)="save()" [formGroup]='registrationForm'>
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="Enter email">
+    <br>
+    <span *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">Please Enter a valid email address</span>
+    <br>
+
+    <label for="exampleInputEmail1">First Name</label>
+    <input type="email" formControlName='first_name' id="first_name" aria-describedby="emailHelp" placeholder="Enter First Name">
+    <br>
+
+    <label for="exampleInputEmail1">Last Name</label>
+    <input type="email" formControlName='last_name' id="last_name" aria-describedby="emailHelp" placeholder="Enter Last Name">
+    <br>
 
 
-Regitering the user, and then sending an email link for activation Already have an account<button routerLink="/auth/login">Login</button>
+    <div formGroupName="passwordGroup">
+        <label for="password">Password</label>
+        <input type="password" formControlName='password' id="password" placeholder="Password">
+        <br>
+
+        <label for="confirm_password">Confirm Password</label>
+        <input type="password" formControlName='confirm_password' id="confirm_password" placeholder="Confirm Password">
+        <br>
+        <span *ngIf='registrationForm.get("passwordGroup").errors'>Password doesn't match</span>
+
+    </div>
+    <button type="submit" [title]="registrationForm.valid?'Register': 'data is ambiguous'"
+        [disabled]='!registrationForm.valid'>
+        Register
+    </button>
+
+
+</form>
+
+<br>
+{{registrationForm.value | json}}
+<br>
+Registering the user, and then sending an email link for activation Already have an account<button
+    routerLink="/auth/login">Login</button>
