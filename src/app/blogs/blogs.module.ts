@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { ArticleDetailComponent } from './article-detail/article-detail.component';
 import { CommentsComponent } from './comments/comments.component';
-import { BlogsComponent } from './blogs/blogs.component';
+import { BlogsComponent } from '../blogs/blogs.component';
 
 
 
