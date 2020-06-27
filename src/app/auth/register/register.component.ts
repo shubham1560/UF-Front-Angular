@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators'
 
-
 function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
   const p1 = c.get('password');
   const p2 = c.get('confirm_password');

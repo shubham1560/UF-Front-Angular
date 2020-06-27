@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
-function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
+function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
   const p1 = c.get('password');
   const p2 = c.get('confirm_password');
 
-  if(p1.pristine || p2.pristine){
-    return null
+  if (p1.pristine || p2.pristine) {
+    return null;
   }
 
-  if(p1.value === p2.value){
-    return null
+  if (p1.value === p2.value) {
+    return null;
   }
 
-  return {'match': true}
+  return { 'match': true }
 }
 
 @Component({
@@ -31,15 +31,22 @@ export class PasswordresetFormComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(
-      params =>{
+      params => {
         console.log(params);
       }
     )
 
     this.passwordResetForm = this.fb.group({
-      "password": ['', [Validators.required, Validators.minLength(10)]],
-      "confirm_password": ['', [Validators.required, Validators.minLength(10)]]
-    }, {validators: passwordMatch})
+      passwordGroup: this.fb.group({
+        password: ['', [Validators.required, Validators.minLength(10)]],
+        confirm_password: ['', [Validators.required, Validators.minLength(10)]]
+      }, { validators: passwordMatch }),
+    })
+  }
+
+  save(){
+    console.log(this);
+    console.log("Password has been reset");
   }
 
 }
