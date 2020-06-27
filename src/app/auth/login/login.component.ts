@@ -1,7 +1,11 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { LoginUser } from '../data-models/Login'
+import { LoginUser, TokenObj } from '../data-models/Login'
 import {MatDialogModule} from '@angular/material/dialog';
+import { AuthService } from 'src/app/services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
+
+declare const gapi: any;
 
 @Component({
   selector: 'app-login',
@@ -15,7 +19,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
 
-  constructor( private fb: FormBuilder) { }
+  constructor( private fb: FormBuilder,
+               private authService: AuthService,
+               private cookieService: CookieService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -32,7 +38,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.testData();
   }
 
-  save() {
+  login() {
     console.log(this.loginForm)
     console.log("Saved Working" + JSON.stringify(this.loginForm.value));
   }
@@ -46,8 +52,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 
   // Google button logic
-  
-  declare const gapi: any;
   public auth2: any;
   public googleInit() {
     gapi.load('auth2', () => {
@@ -63,10 +67,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
 
-        let profile = googleUser.getBasicProfile();
-        console.log(googleUser)
-        //YOUR CODE HERE
-
+        this.authService.login_user_google(googleUser.wc.access_token).subscribe(
+          (result: TokenObj)=> { 
+            this.cookieService.set("token", result.token);
+            console.log(this.cookieService);
+          },
+          error => {
+            console.log(error);
+          }
+        )
 
       }, (error) => {
         alert(JSON.stringify(error, undefined, 2));
