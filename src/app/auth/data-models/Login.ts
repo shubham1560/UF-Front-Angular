@@ -4,3 +4,8 @@ export class LoginUser{
         public password: string
     ){}   
 }
+
+export interface TokenObj{
+    token: string,
+    username: string
+}
