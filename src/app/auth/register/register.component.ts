@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators'
+
 
 function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
   const p1 = c.get('password');
@@ -38,6 +40,12 @@ export class RegisterComponent implements OnInit {
     })
 
     console.log(this.registrationForm);
+
+    this.registrationForm.get('email').valueChanges.pipe(
+      debounceTime(1000)
+    ).subscribe(
+      value => console.log(value),
+    )
   }
 
   save(){

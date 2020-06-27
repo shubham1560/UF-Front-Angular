@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { LoggerService } from './services/logger.service';
+import { BlogsModule } from './blogs/blogs.module';
 
 
 var routes = [
@@ -32,6 +33,7 @@ var routes = [
     RouterModule.forRoot(routes, {useHash: true}),
     AuthModule,
     BrowserAnimationsModule, 
+    BlogsModule,
   ],
   providers: [LoggerService],
   bootstrap: [AppComponent]
