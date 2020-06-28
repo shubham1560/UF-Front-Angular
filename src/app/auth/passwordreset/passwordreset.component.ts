@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class PasswordresetComponent implements OnInit {
 
   mailsent: boolean;
+  message: string;
 
   resetForm: FormGroup;
 
@@ -25,7 +26,17 @@ export class PasswordresetComponent implements OnInit {
 
   save() { 
     this.mailsent = true;
-    this.authService.sendAccountResetMail(this.resetForm.value["email"]);
+    this.authService.sendResetPassowordLink(this.resetForm.value["email"]).subscribe(
+      response => {
+        console.log(response);
+        this.message = "Mail has been sent";
+      },
+      error => {
+        console.log(error);
+        this.message = "Mail couldn't be sent as the user doesn't exist";
+        
+      }
+    ) ;
     // console.log(this.resetForm)
     // console.log(JSON.stringify(this.resetForm.value))
   }
