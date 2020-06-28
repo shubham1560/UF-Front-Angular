@@ -32,14 +32,25 @@ export class AuthService {
 
   }
 
+  // This method authenticates the backend for existing root users and get back the token for further requests
+  login_root(username, password){
+    const body = JSON.stringify({"username": username, "password": password});
+    const url = `${this.base_auth_url}get_token/`;
+    return this.httpService.post(url, body, {headers: this.getUnauthenticatedHeader()});
+
+  }
+
   // This method authenticates the backend for the google user and gets back the token for further request with authentication
   // This method takes the access token as parameter to get the token
   login_google(token: string) {
     const body = JSON.stringify({"access_token": token});
     const url = `${this.base_auth_url}create_user_google/`;
+    console.log(url)
     return this.httpService.post(url, body, {headers: this.getUnauthenticatedHeader()});
   }
 
+
+  // For use to know if the user is logged in or nor, to manipulate logic
   isLoggedIn(): boolean{
     if(this.cookieService.get('token')){
       return true;

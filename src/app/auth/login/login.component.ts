@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TokenObj } from '../data-models/Login'
 import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from 'ngx-cookie-service'
+import { PasswordresetFormComponent } from '../passwordreset-form/passwordreset-form.component';
 
 declare const gapi: any;
 
@@ -32,9 +33,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.testData();
   }
 
-  save() {
+  login() {
     console.log(this.loginForm)
     console.log("Saved Working" + JSON.stringify(this.loginForm.value));
+    console.log(this.loginForm.value["email"]);
+    this.authService.login_root(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   testData() {
@@ -73,7 +83,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           }
         )
         //YOUR CODE HERE
-        console.log(this.authService.isLoggedIn()? "user is logged in": "not logged in");
+        console.log(this.authService.isLoggedIn() ? "user is logged in" : "not logged in");
 
 
       }, (error) => {

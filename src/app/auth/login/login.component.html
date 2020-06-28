@@ -1,11 +1,13 @@
 <br><br><br><br>
-<form novalidate (ngSubmit)="save()" [formGroup]="loginForm">
-    Login to Your Account!
+
+Login to Your Account!
+
+<button id="googleBtn">Continue with Google</button>
+<form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
 
     <br><br>
     <br><br>
 
-    <button id="googleBtn">Continue with Google</button>
     <br><br>
     <label for="exampleInputEmail1">Email</label>
     <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="Enter email">
