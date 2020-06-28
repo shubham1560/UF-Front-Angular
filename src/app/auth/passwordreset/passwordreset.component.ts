@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-passwordreset',
@@ -12,7 +13,8 @@ export class PasswordresetComponent implements OnInit {
 
   resetForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.mailsent = false;
@@ -23,8 +25,9 @@ export class PasswordresetComponent implements OnInit {
 
   save() { 
     this.mailsent = true;
-    console.log(this.resetForm)
-    console.log(JSON.stringify(this.resetForm.value))
+    this.authService.sendAccountResetMail(this.resetForm.value["email"]);
+    // console.log(this.resetForm)
+    // console.log(JSON.stringify(this.resetForm.value))
   }
 
 }

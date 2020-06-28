@@ -64,5 +64,16 @@ export class AuthService {
     return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
   }
 
+  sendAccountResetMail(email: string){
+    console.log(email);
+  }
+
+  resetPassword(token: string, password: string){
+    const url = `${this.base_auth_url}reset_password/${token}`
+    const body = JSON.stringify({'password': password});
+    console.log(token, password);
+    return this.httpService.post(url, body, {headers: this.getUnauthenticatedHeader()});
+  }
+
 
 }

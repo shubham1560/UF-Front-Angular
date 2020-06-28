@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
   const p1 = c.get('password');
@@ -25,14 +26,16 @@ function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
 export class PasswordresetFormComponent implements OnInit {
 
   passwordResetForm: FormGroup;
+  token: string;
 
   constructor(private route: ActivatedRoute,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        console.log(params);
+        this.token = params.get('token');
       }
     )
 
@@ -44,9 +47,15 @@ export class PasswordresetFormComponent implements OnInit {
     })
   }
 
-  save(){
-    console.log(this);
-    console.log("Password has been reset");
+  resetPassword(){
+    this.authService.resetPassword(this.token, this.passwordResetForm.get('passwordGroup.password').value).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
