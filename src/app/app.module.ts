@@ -11,7 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { LoggerService } from './services/logger.service';
 import { BlogsModule } from './blogs/blogs.module';
-
+import { AuthService } from './services/auth.service';
+import { DataService } from './services/data.service';
 
 var routes = [
   { path: "", component: NotFoundComponent },
@@ -36,7 +37,7 @@ var routes = [
     BlogsModule,
     HttpClientModule,
   ],
-  providers: [LoggerService],
+  providers: [LoggerService, AuthService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

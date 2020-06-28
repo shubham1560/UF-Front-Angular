@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { LoginUser } from '../data-models/Login'
-import {MatDialogModule} from '@angular/material/dialog';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { TokenObj } from '../data-models/Login'
+import { AuthService } from 'src/app/services/auth.service';
+import { CookieService } from 'ngx-cookie-service'
 
 declare const gapi: any;
 
@@ -18,20 +19,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
 
-  constructor( private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+    private authService: AuthService,
+    private cookieService: CookieService,
+  ) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(10)]]      
+      password: ['', [Validators.required, Validators.minLength(10)]]
     })
-
-    // this.loginForm = new FormGroup(
-    //   {
-    //     email: new FormControl(),
-    //     password: new FormControl()
-    //   }
-    // )
     this.testData();
   }
 
@@ -40,16 +37,16 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log("Saved Working" + JSON.stringify(this.loginForm.value));
   }
 
-  testData(){
+  testData() {
     // We can use setValue to set all the values in the form
     this.loginForm.patchValue({
-      email: 'shubhamsinha2050@gmail.com',
+      email: '',
     });
   }
 
 
   // Google button logic
-  
+
   public auth2: any;
   public googleInit() {
     gapi.load('auth2', () => {
@@ -65,9 +62,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
 
-        let profile = googleUser.getBasicProfile();
-        console.log(googleUser)
+        var access_token = googleUser.getAuthResponse().access_token;
+        this.authService.login_google(access_token).subscribe(
+          (response: TokenObj) => {
+            this.cookieService.set('token', response.token);
+            console.log(response);
+          },
+          error => {
+            console.log(error)
+          }
+        )
         //YOUR CODE HERE
+        console.log(this.authService.isLoggedIn()? "user is logged in": "not logged in");
 
 
       }, (error) => {
