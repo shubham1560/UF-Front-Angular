@@ -58,4 +58,11 @@ export class AuthService {
     return false;
   }
 
+
+  activate_account(token: string){
+    const url = `${this.base_auth_url}activate_account/${token}`;
+    return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
+  }
+
+
 }

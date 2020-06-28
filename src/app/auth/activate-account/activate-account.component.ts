@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-activate-account',
@@ -8,13 +9,27 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ActivateAccountComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) {
+  token: string;
+  message: string;
+  constructor(private route: ActivatedRoute,
+              private httpService: AuthService) {
   }
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        console.log(params.get('token'));
+        this.token = params.get('token');
+      }
+    )
+    this.httpService.activate_account(this.token).subscribe(
+      response =>{
+        this.message = "Your account has been activated, Please log in now";
+        console.log(response);
+      },
+      error => {
+        this.message = 'There seems to be an error in the url';
+        console.log(error);
+        
       }
     )
   }
