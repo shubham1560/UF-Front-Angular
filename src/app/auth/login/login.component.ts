@@ -17,7 +17,7 @@ declare const gapi: any;
 export class LoginComponent implements OnInit, AfterViewInit {
 
   // Form logic
-
+  hide: boolean = true;
   loginForm: FormGroup;
 
   constructor(private fb: FormBuilder,

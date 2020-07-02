@@ -1,29 +1,55 @@
-<div >
-    <div >
-        <h1>Sign in to Urban Frauds</h1>
+<div class="login-form">
+    <div class="logo-space"></div>
+    <div class="login-form-header">LOGO OF THE APPLICATION</div>
+    <div class="login-form-body">
+        <div>
+            <button id="googleBtn" mat-button class="googlelogin g-signin2">
+                <img src="https://img.icons8.com/material/30/000000/google-logo--v1.png"/>
+                <!-- <div>Sign in with Google</div> -->
+            </button>
+        </div>
+
+        <div class="or">--OR--</div>
+
         <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-            <div>
-                <label for="exampleInputEmail1">Email</label> 
-                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="something@example.com">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" formControlName='password' id="password" placeholder="••••••••••••">
-            </div>
-            <button routerLink="/auth/passwordreset">Forgot Password</button>
-            <div>
-                <button id="login--button" mat-button type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
-                    Login<div></div>
+            <mat-form-field appearance="outline" class="input-block">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
+                <mat-error>Please enter the mail maan</mat-error>
+                <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="input-block">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>password input please</mat-error>
+            </mat-form-field>
+            <div style="padding: 5px; height:40px">
+                <button class="forget-password" mat-button color="primary" routerLink="/auth/passwordreset">Forgot
+                    Password</button>
+                <button class="login-button" mat-button color="primary" type="submit"
+                    [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
+
+                    login
+                    <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
+
                 </button>
             </div>
         </form>
-        <div >
-            Don't have an account? <button routerLink="/auth/register">Register</button>
-        </div>
+    </div>
+    <br>
+    <div class="login-form-footer">
+        New to Application? <button mat-button color="primary" routerLink="/auth/register">Create an account</button>
     </div>
 </div>
 
-<div class="wrapper">
+<br><br><br><br>
+<!-- <div class="wrapper" style="display: none;">
     <div class="box">
         <h1>Login to Your Account!</h1>
         <div class="button-wrapper">
@@ -34,8 +60,9 @@
         <div class="or">- OR -</div>
         <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
             <div class="input-box">
-                <label for="exampleInputEmail1">Email</label> 
-                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="something@example.com">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp"
+                    placeholder="something@example.com">
             </div>
             <div class="input-box">
                 <label for="password">Password</label>
@@ -43,7 +70,8 @@
             </div>
             <button routerLink="/auth/passwordreset" class="forgot">Forgot Password</button>
             <div class="button-wrapper" style="margin-top: 50px;">
-                <button id="login-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
+                <button id="login-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'"
+                    [disabled]='!loginForm.valid'>
                     Login<div></div>
                 </button>
             </div>
@@ -52,7 +80,7 @@
             Don't have an account? <button routerLink="/auth/register">Register</button>
         </div>
     </div>
-</div>
+</div> -->
 
 <!-- <pre>
 Password Touched:   {{loginForm.get('password').touched}} <br>
@@ -63,4 +91,3 @@ Email Dirty:      {{loginForm.get('email').dirty}} <br>
 Form valid:         {{loginForm.valid}} <br>
 Form value:         {{loginForm.value | json}}
 </pre> -->
-
