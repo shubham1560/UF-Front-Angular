@@ -1,33 +1,35 @@
-<br><br><br><br>
+<div class="wrapper">
+    <div class="box">
+        <h1>Login to Your Account!</h1>
+        <div class="button-wrapper">
+            <button id="googleBtn">
+                <div>Continue with Google</div>
+            </button>
+        </div>
+        <div class="or">- OR -</div>
+        <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+            <div class="input-box">
+                <label for="exampleInputEmail1">Email</label> 
+                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="something@example.com">
+            </div>
+            <div class="input-box">
+                <label for="password">Password</label>
+                <input type="password" formControlName='password' id="password" placeholder="••••••••••••">
+            </div>
+            <button routerLink="/auth/passwordreset" class="forgot">Forgot Password</button>
+            <div class="button-wrapper" style="margin-top: 50px;">
+                <button id="login-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
+                    Login<div></div>
+                </button>
+            </div>
+        </form>
+        <div class="register-box">
+            Don't have an account? <button routerLink="/auth/register">Register</button>
+        </div>
+    </div>
+</div>
 
-Login to Your Account!
-
-<button id="googleBtn">Continue with Google</button>
-<form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-
-    <br><br>
-    <br><br>
-
-    <br><br>
-    <label for="exampleInputEmail1">Email</label>
-    <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="Enter email">
-    <br>
-    <label for="password">Password</label>
-    <input type="password" formControlName='password' id="password" placeholder="Password">
-    <br><br>
-    <button type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
-        Login
-    </button>
-
-
-
-    <br><br><br> or <button routerLink="/auth/passwordreset">Forgot Password</button>
-
-</form>
-<br><br><br><br> Don't have an account<button routerLink="/auth/register">Register</button>
-
-<br><br><br><br>
-<pre>
+<!-- <pre>
 Password Touched:   {{loginForm.get('password').touched}} <br>
 Email Touched:      {{loginForm.get('email').touched}} <br>
 Password Dirty:   {{loginForm.get('password').dirty}} <br>
@@ -35,6 +37,4 @@ Email Dirty:      {{loginForm.get('email').dirty}} <br>
 
 Form valid:         {{loginForm.valid}} <br>
 Form value:         {{loginForm.value | json}}
-</pre>
-
-<br><br><br>
+</pre> -->
