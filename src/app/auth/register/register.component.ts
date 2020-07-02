@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
-function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
-  const p1 = c.get('password');
-  const p2 = c.get('confirm_password');
+// function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
+//   const p1 = c.get('password');
+//   const p2 = c.get('confirm_password');
 
-  if(p1.pristine || p2.pristine){
-    return null;
-  }
+//   if(p1.pristine || p2.pristine){
+//     return null;
+//   }
 
-  if(p1.value === p2.value){
-    return null;
-  }
-  return {'match': true};
-}
+//   if(p1.value === p2.value){
+//     return null;
+//   }
+//   return {'match': true};
+// }
 
 @Component({
   selector: 'app-register',
@@ -24,18 +24,19 @@ function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
 export class RegisterComponent implements OnInit {
 
   registrationForm: FormGroup;
+  hide: boolean = true;
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      passwordGroup: this.fb.group({
-        password: ['', [Validators.required]],
-        confirm_password: ['', [Validators.required]]
-      }, {validators: passwordMatch}),
-      first_name: ['', [Validators.required]],
-      last_name: ['', [Validators.required]]
+      password: ['', [Validators.required, Validators.minLength(10)]],
+      // passwordGroup: this.fb.group({
+      //   password: ['', [Validators.required]],
+      //   confirm_password: ['', [Validators.required]]
+      // }, {validators: passwordMatch}),
+      full_name: ['', [Validators.required]],
     })
 
     console.log(this.registrationForm);

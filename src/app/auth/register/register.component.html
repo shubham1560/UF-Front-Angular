@@ -1,43 +1,47 @@
-<form (ngSubmit)="save()" [formGroup]='registrationForm'>
-    <label for="exampleInputEmail1">Email</label>
-    <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="Enter email">
-    <br>
-    <span *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">Please Enter a valid
-        email address</span>
-    <br>
-    
-    <label for="exampleInputEmail1">First Name</label>
-    <input type="email" formControlName='first_name' id="first_name" aria-describedby="emailHelp"
-        placeholder="Enter First Name">
-    <br>
+<div class="registration-form">
+    <div class="logo-space"></div>
+    <div class="registration-form-header">Create an account</div>
+    <form (ngSubmit)="save()" [formGroup]='registrationForm' class="registration-form-body">
 
-    <label for="exampleInputEmail1">Last Name</label>
-    <input type="email" formControlName='last_name' id="last_name" aria-describedby="emailHelp"
-        placeholder="Enter Last Name">
-    <br>
-
-
-    <div formGroupName="passwordGroup">
-        <label for="password">Password</label>
-        <input type="password" formControlName='password' id="password" placeholder="Password">
+        <mat-form-field appearance="outline" class="input-block">
+            <mat-label>Full Name</mat-label>
+            <input matInput type="email" id="email" formControlName="full_name" placeholder="Enter Email">
+            <mat-error>Please enter name</mat-error>
+            <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline" class="input-block">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
+            <mat-error>Please enter a valid email address</mat-error>
+            <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
+        </mat-form-field>
         <br>
 
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" formControlName='confirm_password' id="confirm_password" placeholder="Confirm Password">
+        <mat-form-field appearance="outline" class="input-block">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error>Password too short(minimum allowed length is 10)</mat-error>
+        </mat-form-field>
         <br>
-        <span *ngIf='registrationForm.get("passwordGroup").errors'>Password doesn't match</span>
+        <div style="height: 40px; padding: 5px">
+            <button style="float: right;" mat-button type="submit" [title]="registrationForm.valid?'Register': 'data is ambiguous'"
+                [disabled]='!registrationForm.valid'>
 
+                Register
+                <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
+            </button>
+        </div>
+
+    </form>
+    <br>
+    <div class="registration-form-footer">
+        Already have an account? <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign in</a>
     </div>
-    <button type="submit" [title]="registrationForm.valid?'Register': 'data is ambiguous'"
-        [disabled]='!registrationForm.valid'>
-        Register
-    </button>
+</div>
 
-
-</form>
-
-<br>
-{{registrationForm.value | json}}
-<br>
-Registering the user, and then sending an email link for activation Already have an account<button
-    routerLink="/auth/login">Login</button>
+<br><br><br><br><br>
