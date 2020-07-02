@@ -1,10 +1,14 @@
+<div class="wrapper-login">
 <div class="login-form">
     <div class="logo-space"></div>
     <div class="login-form-header">LOGO OF THE APPLICATION</div>
     <div class="login-form-body">
         <div>
-            <button id="googleBtn" mat-button class="googlelogin g-signin2">
-                <img src="https://img.icons8.com/material/30/000000/google-logo--v1.png"/>
+            <button id="googleBtn" mat-button class="googlelogin">
+                <div style="padding-top: 3px;"><img src="https://img.icons8.com/material/30/000000/google-logo--v1.png" />
+                </div>
+                Sign in with google
+
                 <!-- <div>Sign in with Google</div> -->
             </button>
         </div>
@@ -15,9 +19,8 @@
             <mat-form-field appearance="outline" class="input-block">
                 <mat-label>Email</mat-label>
                 <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
-                <mat-error>Please enter the mail maan</mat-error>
                 <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
-                <!-- <mat-hint></mat-hint> -->
+                <mat-error>Please enter the mail maan</mat-error>
             </mat-form-field>
             <br>
             <mat-form-field appearance="outline" class="input-block">
@@ -44,8 +47,10 @@
     </div>
     <br>
     <div class="login-form-footer">
-        New to Urbanfrauds? <a style="text-decoration: none;" color="primary" routerLink="/auth/register">Create an account</a>
+        New to Urbanfrauds? <a style="text-decoration: none;" color="primary" routerLink="/auth/register">Create an
+            account</a>
     </div>
+</div>
 </div>
 
 <br><br><br><br>

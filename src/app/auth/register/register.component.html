@@ -1,46 +1,50 @@
-<div class="registration-form">
-    <div class="logo-space"></div>
-    <div class="registration-form-header">Create an account</div>
-    <form (ngSubmit)="save()" [formGroup]='registrationForm' class="registration-form-body">
+<div class="wrapper-registration">
+    <div class="registration-form">
+        <div class="logo-space"></div>
+        <div class="registration-form-header">CREATE AN ACCOUNT</div>
+        <form (ngSubmit)="save()" [formGroup]='registrationForm' class="registration-form-body">
 
-        <mat-form-field appearance="outline" class="input-block">
-            <mat-label>Full Name</mat-label>
-            <input matInput type="email" id="email" formControlName="full_name" placeholder="Enter Email">
-            <mat-error>Please enter name</mat-error>
-            <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="outline" class="input-block">
-            <mat-label>Email</mat-label>
-            <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
-            <mat-error>Please enter a valid email address</mat-error>
-            <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
-        </mat-form-field>
-        <br>
+            <mat-form-field appearance="outline" class="input-block">
+                <mat-label>Full Name</mat-label>
+                <input matInput type="email" id="email" formControlName="full_name" placeholder="Enter Email">
+                <mat-error>Please enter name</mat-error>
+                <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="input-block">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
+                <mat-error>Please enter a valid email address</mat-error>
+                <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
+            </mat-form-field>
+            <br>
 
-        <mat-form-field appearance="outline" class="input-block">
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-                [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error>Password too short(minimum allowed length is 10)</mat-error>
-        </mat-form-field>
-        <br>
-        <div style="height: 40px; padding: 5px">
-            <button style="float: right;" mat-button type="submit" [title]="registrationForm.valid?'Register': 'data is ambiguous'"
-                [disabled]='!registrationForm.valid'>
+            <mat-form-field appearance="outline" class="input-block">
+                <mat-label>Password</mat-label>
+                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                    [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-error>Password too short(minimum allowed length is 10)</mat-error>
+            </mat-form-field>
+            <br>
+            <div style="height: 40px; padding: 5px">
+                <button style="float: right;" mat-button type="submit"
+                    [title]="registrationForm.valid?'Register': 'data is ambiguous'"
+                    [disabled]='!registrationForm.valid'>
 
-                Register
-                <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
-            </button>
+                    Register
+                    <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
+                </button>
+            </div>
+
+        </form>
+        <br>
+        <div class="registration-form-footer">
+            Already have an account? <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign
+                in</a>
         </div>
-
-    </form>
-    <br>
-    <div class="registration-form-footer">
-        Already have an account? <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign in</a>
     </div>
 </div>
 
