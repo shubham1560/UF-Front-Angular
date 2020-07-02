@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       (googleUser) => {
 
         var access_token = googleUser.getAuthResponse().access_token;
+        console.log(access_token);
         this.authService.login_google(access_token).subscribe(
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);

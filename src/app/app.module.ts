@@ -8,7 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MaterialModule } from './shared/material.module';
 import { LoggerService } from './services/logger.service';
 import { BlogsModule } from './blogs/blogs.module';
 import { AuthService } from './services/auth.service';
@@ -29,13 +29,14 @@ var routes = [
   ],
   imports: [
     BrowserModule,
-    MatToolbarModule,
+    MaterialModule,
     AppRoutingModule,
     RouterModule.forRoot(routes, { useHash: true }),
     AuthModule,
     BrowserAnimationsModule,
     BlogsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [LoggerService, AuthService, DataService],
   bootstrap: [AppComponent]

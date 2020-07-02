@@ -1,3 +1,28 @@
+<div >
+    <div >
+        <h1>Sign in to Urban Frauds</h1>
+        <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+            <div>
+                <label for="exampleInputEmail1">Email</label> 
+                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp" placeholder="something@example.com">
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" formControlName='password' id="password" placeholder="••••••••••••">
+            </div>
+            <button routerLink="/auth/passwordreset">Forgot Password</button>
+            <div>
+                <button id="login--button" mat-button type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
+                    Login<div></div>
+                </button>
+            </div>
+        </form>
+        <div >
+            Don't have an account? <button routerLink="/auth/register">Register</button>
+        </div>
+    </div>
+</div>
+
 <div class="wrapper">
     <div class="box">
         <h1>Login to Your Account!</h1>
@@ -38,3 +63,4 @@ Email Dirty:      {{loginForm.get('email').dirty}} <br>
 Form valid:         {{loginForm.valid}} <br>
 Form value:         {{loginForm.value | json}}
 </pre> -->
+

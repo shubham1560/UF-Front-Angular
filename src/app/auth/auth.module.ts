@@ -10,6 +10,9 @@ import { PasswordresetFormComponent } from './passwordreset-form/passwordreset-f
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/data.service';
 import { LoggerService } from '../services/logger.service';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MaterialModule } from '../shared/material.module';
+
 
 
 @NgModule({
@@ -24,6 +27,8 @@ import { LoggerService } from '../services/logger.service';
     CommonModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    MatFormFieldModule,
+    MaterialModule,
   ],
   providers: [LoggerService, AuthService, DataService],
 })
