@@ -1,28 +1,27 @@
-<div class="wrapper-login">
-    <div class="login-form">
-        <div class="logo-space"></div>
-        <div class="login-form-header">LOGO OF THE APPLICATION</div>
-        <div class="login-form-body">
+<div class="uf-auth-wrapper">
+    <div class="uf-auth-form">
+        <div class="uf-auth-logo-space"></div>
+        <div class="uf-auth-form-header">LOGO OF THE APPLICATION</div>
+        <div class="uf-auth-form-body">
             <div>
-                <button id="googleBtn" mat-button class="googlelogin">
-                    <div style="padding-top: 5px; float: left;"><img
-                            src="https://img.icons8.com/material/30/000000/google-logo--v1.png" />
+                <button id="googleBtn" mat-button class="uf-googlelogin">
+                    <div style="padding-top: 5px; float: left;">
+                        <img height="25px" src="https://img.icons8.com/officexs/40/000000/google-logo.png"/>
                     </div>
                     Sign in with google
                 </button>
             </div>
 
-            <div class="or">--OR--</div>
+            <!-- <div class="uf-auth-or">--OR--</div> -->
 
             <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-                <mat-form-field appearance="outline" class="input-block">
+                <mat-form-field appearance="outline" class="uf-auth-input-block">
                     <mat-label>Email</mat-label>
                     <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
                     <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
                     <mat-error>Please enter the mail maan</mat-error>
                 </mat-form-field>
-                <br>
-                <mat-form-field appearance="outline" class="input-block">
+                <mat-form-field appearance="outline" class="uf-auth-input-block">
                     <mat-label>Password</mat-label>
                     <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
                     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
@@ -31,10 +30,10 @@
                     </button>
                     <mat-error>password input please</mat-error>
                 </mat-form-field>
-                <div style="padding: 5px; height:40px">
-                    <button class="forget-password" mat-button color="primary" routerLink="/auth/passwordreset">Forgot
+                <div class="uf-auth-buttons-div">
+                    <button class="uf-auth-left-button" mat-button color="primary" routerLink="/auth/passwordreset">Forgot
                         Password</button>
-                    <button class="login-button" mat-button color="primary" type="submit"
+                    <button class="uf-auth-right-button" mat-button color="primary" type="submit"
                         [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
 
                         login
@@ -45,7 +44,7 @@
             </form>
         </div>
         <br>
-        <div class="login-form-footer">
+        <div class="uf-auth-form-footer">
             New to Urbanfrauds? <a style="text-decoration: none;" color="primary" routerLink="/auth/register">Create an
                 account</a>
         </div>
@@ -74,7 +73,7 @@
             </div>
             <button routerLink="/auth/passwordreset" class="forgot">Forgot Password</button>
             <div class="button-wrapper" style="margin-top: 50px;">
-                <button id="login-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'"
+                <button id="uf-auth-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'"
                     [disabled]='!loginForm.valid'>
                     Login<div></div>
                 </button>

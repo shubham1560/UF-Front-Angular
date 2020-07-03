@@ -1,18 +1,18 @@
-<div class="wrapper-registration">
-    <div class="registration-form">
-        <div class="logo-space"></div>
-        <div class="registration-form-header">ACCOUNT ACTIVATION</div>
-        <div class="registration-form-body">
-            <mat-icon matSuffix class="icon" [ngStyle]="{'color':activated ? 'green' : 'indianred'}">{{icon}}</mat-icon>
-            <br>
-            {{message}}
+<div class="uf-auth-wrapper">
+    <div class="uf-auth-form">
+        <div class="uf-auth-logo-space"></div>
+        <div class="uf-auth-form-header">ACCOUNT ACTIVATION</div>
+        <div class="uf-auth-form-body">
+            <div class="uf-auth-info-block">
+                <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color':activated ? 'green' : 'indianred'}">{{icon}}
+                </mat-icon>
+                <br>
+                {{message}}
+            </div>
         </div>
         <br>
-        <div class="registration-form-footer">
-             <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign in</a>
+        <div class="uf-auth-form-footer">
+            <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign in</a>
         </div>
     </div>
 </div>
-
-
-
