@@ -9,8 +9,9 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class PasswordresetComponent implements OnInit {
 
-  mailsent: boolean;
+  mailsent: boolean = false;
   message: string;
+  disableButton = false;
 
   resetForm: FormGroup;
 
@@ -18,30 +19,26 @@ export class PasswordresetComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
-
-    this.authService.removeFooter();
-
-    this.mailsent = false;
     this.resetForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
     })
   }
 
   save() { 
-    this.mailsent = true;
+    this.disableButton = true
     this.authService.sendResetPassowordLink(this.resetForm.value["email"]).subscribe(
       response => {
         console.log(response);
         this.message = "Mail has been sent";
+        this.mailsent = true;
       },
       error => {
         console.log(error);
+        this.mailsent = false;
         this.message = "Mail couldn't be sent as the user doesn't exist";
         
       }
     ) ;
-    // console.log(this.resetForm)
-    // console.log(JSON.stringify(this.resetForm.value))
   }
 
 }

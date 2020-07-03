@@ -16,11 +16,6 @@ export class AuthService {
               private cookieService: CookieService
             ) { }
 
-  
-  removeFooter(){
-    document.getElementById("footer").remove();
-  }
-  
 
   getUnauthenticatedHeader() {
     return new HttpHeaders({

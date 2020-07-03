@@ -27,13 +27,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.authService.removeFooter();
-
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(10)]]
     })
-    this.testData();
+    // this.testData();
   }
 
   login() {
@@ -50,12 +48,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     )
   }
 
-  testData() {
-    // We can use setValue to set all the values in the form
-    this.loginForm.patchValue({
-      email: '',
-    });
-  }
+  // testData() {
+  //   // We can use setValue to set all the values in the form
+  //   this.loginForm.patchValue({
+  //     email: '',
+  //   });
+  // }
 
 
   // Google button logic

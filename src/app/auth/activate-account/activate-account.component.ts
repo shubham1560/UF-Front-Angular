@@ -19,7 +19,6 @@ export class ActivateAccountComponent implements OnInit {
 
   ngOnInit() {
 
-    this.authService.removeFooter();
     
     this.route.paramMap.subscribe(
       params => {
