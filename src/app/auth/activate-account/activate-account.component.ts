@@ -27,7 +27,7 @@ export class ActivateAccountComponent implements OnInit {
     )
     this.authService.activate_account(this.token).subscribe(
       response =>{
-        this.message = "Your account has been activated, you can log in now";
+        this.message = "Your account has been activated, you can Sign in now";
         this.activated = true;
         this.icon = "verified_user";
         console.log(response);

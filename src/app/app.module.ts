@@ -12,10 +12,11 @@ import { MaterialModule } from './shared/material.module';
 import { LoggerService } from './services/logger.service';
 import { BlogsModule } from './blogs/blogs.module';
 import { AuthService } from './services/auth.service';
-import { DataService } from './services/data.service';
+import { DataService } from './services/knowledge.service';
+import { ArticleListComponent } from './blogs/article-list/article-list.component';
 
 var routes = [
-  { path: "", component: NotFoundComponent },
+  { path: "", component: ArticleListComponent },
   { path: "**", component: NotFoundComponent },
 
 ]

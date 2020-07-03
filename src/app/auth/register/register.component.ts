@@ -29,6 +29,7 @@ export class RegisterComponent implements OnInit {
   user: {};
   disableButton:boolean = false
   registrationDone: boolean = false;
+  errorMessage: string ;
   constructor(private fb: FormBuilder,
     private authService: AuthService) { }
 
@@ -69,7 +70,9 @@ export class RegisterComponent implements OnInit {
         console.log(response);
       }, 
       error => {
-        console.log(error);
+        // console.log(error.error["message"]);
+        this.errorMessage = error.error["message"];
+        
         this.disableButton = false;
       }
     )

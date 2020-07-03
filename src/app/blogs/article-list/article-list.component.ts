@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/knowledge.service';
+
 
 @Component({
   selector: 'app-article-list',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private knowledgeService: DataService) { }
 
   ngOnInit() {
+    this.knowledgeService.getAllArticles().subscribe(
+      response => {
+        console.log(response);
+      }, error =>{
+        console.log(error);
+      }
+    )
   }
 
 }

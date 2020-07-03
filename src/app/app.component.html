@@ -2,7 +2,10 @@
 
     <span>Logo and name</span>
     <span class="fillspace"></span>
-    <button mat-button routerLink="/auth/login" class="sign-in">Sign in</button>
+
+    <span *ngIf="">
+        <button mat-button routerLink="/auth/login" class="sign-in">Sign in</button>
+    </span>
 </mat-toolbar>
 
 <router-outlet>

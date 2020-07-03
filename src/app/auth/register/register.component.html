@@ -46,6 +46,11 @@
             Activation link has has been sent the email: {{user["email"]}}, please check the inbox
         </div>
         <br>
+        <div *ngIf="errorMessage" class="registration-form-footer error">
+            {{errorMessage}}
+        </div>
+        <br>
+
         <div class="registration-form-footer">
             Already have an account? <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign
                 in</a>

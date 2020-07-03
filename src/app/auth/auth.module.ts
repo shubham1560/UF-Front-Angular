@@ -8,7 +8,7 @@ import { PasswordresetComponent } from './passwordreset/passwordreset.component'
 import { ActivateAccountComponent } from './activate-account/activate-account.component';
 import { PasswordresetFormComponent } from './passwordreset-form/passwordreset-form.component';
 import { AuthService } from '../services/auth.service';
-import { DataService } from '../services/data.service';
+import { DataService } from '../services/knowledge.service';
 import { LoggerService } from '../services/logger.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MaterialModule } from '../shared/material.module';
