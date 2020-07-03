@@ -18,8 +18,6 @@ export class ActivateAccountComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    
     this.route.paramMap.subscribe(
       params => {
         this.token = params.get('token');
