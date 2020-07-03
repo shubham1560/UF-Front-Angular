@@ -25,9 +25,14 @@ function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
 })
 export class PasswordresetFormComponent implements OnInit {
 
+  icon: string;
   passwordResetForm: FormGroup;
   token: string;
-
+  hide: boolean = true;
+  hide1: boolean = true;
+  message: string;
+  attempt:boolean = false;
+  reset: boolean;
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
               private authService: AuthService) { }
@@ -49,12 +54,19 @@ export class PasswordresetFormComponent implements OnInit {
   }
 
   resetPassword(){
+    this.attempt = true;
     this.authService.resetPassword(this.token, this.passwordResetForm.get('passwordGroup.password').value).subscribe(
       response => {
         console.log(response);
+        this.icon = "verified_user";
+        this.message = "the password has been changed for the user";
+        this.reset = true;
       },
       error => {
         console.log(error);
+        this.icon = "report_problem"
+        this.message = "the url is invalid"
+        this.reset = false;
       }
     )
   }
