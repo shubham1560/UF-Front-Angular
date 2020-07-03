@@ -26,7 +26,9 @@ export class ArticleListComponent implements OnInit {
         this.data["error"] = error;
       }
     )
+    
 
+    //At the end to get the data from the component, any time the data changes, the realtime data can be seen
     this.dataLogger.logData("articlelist", this.data);
   }
 }
