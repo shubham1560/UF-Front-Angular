@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
+
+    this.authService.removeFooter();
+
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(10)]]

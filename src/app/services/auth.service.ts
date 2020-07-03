@@ -16,6 +16,11 @@ export class AuthService {
               private cookieService: CookieService
             ) { }
 
+  
+  removeFooter(){
+    document.getElementById("footer").remove();
+  }
+  
 
   getUnauthenticatedHeader() {
     return new HttpHeaders({
@@ -49,6 +54,18 @@ export class AuthService {
     return this.httpService.post(url, body, {headers: this.getUnauthenticatedHeader()});
   }
 
+  register_root_user(user: {}){
+    const registration_body = {
+      "username": user["email"],
+      "password": user["password"],
+      "first_name": user["first_name"],
+      "last_name": user["last_name"],
+    }
+
+    const body = JSON.stringify(registration_body);
+    const url = `${this.base_auth_url}create_user_sys/`;
+    return this.httpService.post(url, body, {headers: this.getUnauthenticatedHeader()});
+  }
 
   // For use to know if the user is logged in or nor, to manipulate logic
   isLoggedIn(): boolean{

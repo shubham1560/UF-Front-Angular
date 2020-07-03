@@ -18,6 +18,9 @@ export class PasswordresetComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
+
+    this.authService.removeFooter();
+
     this.mailsent = false;
     this.resetForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],

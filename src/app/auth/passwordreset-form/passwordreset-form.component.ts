@@ -33,6 +33,9 @@ export class PasswordresetFormComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit() {
+
+    this.authService.removeFooter();
+    
     this.route.paramMap.subscribe(
       params => {
         this.token = params.get('token');

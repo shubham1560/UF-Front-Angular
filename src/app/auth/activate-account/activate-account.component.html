@@ -1,4 +1,18 @@
+<div class="wrapper-registration">
+    <div class="registration-form">
+        <div class="logo-space"></div>
+        <div class="registration-form-header">ACCOUNT ACTIVATION</div>
+        <div class="registration-form-body">
+            <mat-icon matSuffix class="icon" [ngStyle]="{'color':activated ? 'green' : 'indianred'}">{{icon}}</mat-icon>
+            <br>
+            {{message}}
+        </div>
+        <br>
+        <div class="registration-form-footer">
+             <a style="text-decoration: none;" color="primary" routerLink="/auth/login">Sign in</a>
+        </div>
+    </div>
+</div>
 
 
-{{message}}
 
