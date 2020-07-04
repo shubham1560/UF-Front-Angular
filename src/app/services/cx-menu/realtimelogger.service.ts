@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CxMenuService {
+export class LoggerService {
 
   loggerEnable: boolean = true;
 
@@ -14,10 +14,14 @@ export class CxMenuService {
   logData(id: string, data: {}) {
     if (this.loggerEnable) {
       var a = document.getElementById(id);
-      a["data"] = data;
+      a["this"] = data;
       a.addEventListener("click", function (event) {
         if (event.altKey){
-          console.log(a["data"]);
+          console.log(a["this"]);
+          // console.log(a);
+        }
+        if (event.shiftKey){
+          console.log({"data":a["this"]["data"]});
         }
       })
     }

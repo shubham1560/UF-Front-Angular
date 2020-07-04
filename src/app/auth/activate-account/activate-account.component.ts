@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-activate-account',
@@ -9,35 +10,43 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ActivateAccountComponent implements OnInit {
 
-  activated: boolean;
-  token: string;
-  message: string;
-  icon: string;
+  data = {}
+  // activated: boolean;
+  // token: string;
+  // message: string;
+  // icon: string;
+
   constructor(private route: ActivatedRoute,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private loggerService: LoggerService) {
   }
 
   ngOnInit() {
+    var a = this.data;
+
     this.route.paramMap.subscribe(
       params => {
-        this.token = params.get('token');
+        this.data["token"] = params.get('token');
       }
     )
-    this.authService.activate_account(this.token).subscribe(
+    this.authService.activate_account(this.data["token"]).subscribe(
       response =>{
-        this.message = "Your account has been activated, you can Sign in now";
-        this.activated = true;
-        this.icon = "verified_user";
-        console.log(response);
+        this.data["message"] = "Your account has been activated, you can Sign in now";
+        this.data["activated"] = true;
+        this.data["icon"] = "verified_user";
+        this.data["response"] = response;
+        // console.log(response);
       },
       error => {
-        this.message = 'There seems to be an error in the url';
-        this.activated = false;
-        this.icon = "report_problem";
+        this.data["message"] = 'There seems to be an error in the url';
+        this.data["activated"] = false;
+        this.data["icon"] = "report_problem";
+        this.data["error"] = error;
         console.log(error);
         
       }
     )
+    this.loggerService.logData("activateaccount", this)
   }
 
 }

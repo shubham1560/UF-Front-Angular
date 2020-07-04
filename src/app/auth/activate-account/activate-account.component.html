@@ -1,13 +1,13 @@
-<div class="uf-auth-wrapper">
+<div class="uf-auth-wrapper" id="activateaccount">
     <div class="uf-auth-form">
         <div class="uf-auth-logo-space"></div>
         <div class="uf-auth-form-header">ACCOUNT ACTIVATION</div>
         <div class="uf-auth-form-body">
             <div class="uf-auth-info-block">
-                <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color':activated ? 'green' : 'indianred'}">{{icon}}
+                <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color':data['activated'] ? 'green' : 'indianred'}">{{data["icon"]}}
                 </mat-icon>
                 <br>
-                {{message}}
+                {{data["message"]}}
             </div>
         </div>
         <br>

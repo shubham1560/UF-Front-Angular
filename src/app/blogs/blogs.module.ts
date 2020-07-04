@@ -7,6 +7,9 @@ import { BlogsComponent } from '../blogs/blogs.component';
 import { ArticleNewComponent } from './article-new/article-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlogsRoutingModule } from './blogs-routing.module';
+import { LoggerService } from '../services/cx-menu/realtimelogger.service';
+import { AuthService } from '../services/auth.service';
+import { DataService } from '../services/knowledge.service';
 
 
 
@@ -16,6 +19,7 @@ import { BlogsRoutingModule } from './blogs-routing.module';
     CommonModule,
     ReactiveFormsModule,
     BlogsRoutingModule,
-  ]
+  ],
+  providers: [LoggerService, AuthService, DataService],
 })
 export class BlogsModule { }

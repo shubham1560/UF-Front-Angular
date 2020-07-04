@@ -9,7 +9,7 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
 import { PasswordresetFormComponent } from './passwordreset-form/passwordreset-form.component';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/knowledge.service';
-import { LoggerService } from '../services/logger.service';
+import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MaterialModule } from '../shared/material.module';
 

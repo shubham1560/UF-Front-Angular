@@ -4,6 +4,7 @@ import { TokenObj } from '../data-models/Login'
 import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from 'ngx-cookie-service'
 import { PasswordresetFormComponent } from '../passwordreset-form/passwordreset-form.component';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 declare const gapi: any;
 
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private cookieService: CookieService,
+    private loggerService: LoggerService,
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       password: ['', [Validators.required, Validators.minLength(10)]]
     })
     // this.testData();
+
+    this.loggerService.logData("auth-login", this);
   }
 
   login() {

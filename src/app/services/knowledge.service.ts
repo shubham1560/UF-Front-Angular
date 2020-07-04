@@ -35,6 +35,10 @@ export class DataService {
     return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
   }
 
+  getRelatedComments(id:string){
+    const url = `${this.base_knowledge_url}articles/${id}/comments/`;
+    return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
+  }
 
 
 }

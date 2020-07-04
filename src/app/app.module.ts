@@ -9,15 +9,17 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
-import { LoggerService } from './services/logger.service';
 import { BlogsModule } from './blogs/blogs.module';
 import { AuthService } from './services/auth.service';
 import { DataService } from './services/knowledge.service';
 import { ArticleListComponent } from './blogs/article-list/article-list.component';
+import { BlogsComponent } from './blogs/blogs.component';
+import { LoggerService } from './services/cx-menu/realtimelogger.service';
 
 var routes = [
   { path: "", component: ArticleListComponent },
   { path: "**", component: NotFoundComponent },
+  {path: "blogs", component: BlogsComponent}
 
 ]
 

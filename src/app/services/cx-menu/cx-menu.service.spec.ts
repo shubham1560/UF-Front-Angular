@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CxMenuService } from './cx-menu.service';
+import { LoggerService } from './realtimelogger.service';
 
 describe('CxMenuService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: CxMenuService = TestBed.get(CxMenuService);
+    const service: LoggerService = TestBed.get(LoggerService);
     expect(service).toBeTruthy();
   });
 });
