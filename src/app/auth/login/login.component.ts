@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // Form logic
   hide: boolean = true;
   loginForm: FormGroup;
-
+  signingIn:boolean = false;
+  signInFailure:boolean = false;
+  response;
+  error;
+  errorMessage;
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private cookieService: CookieService,
@@ -39,15 +43,22 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    console.log(this.loginForm)
-    console.log("Saved Working" + JSON.stringify(this.loginForm.value));
-    console.log(this.loginForm.value["email"]);
+    this.signingIn = true;
     this.authService.login_root(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe(
       response => {
-        console.log(response);
+        this.response = response;
+        this.signingIn = false;
       },
       error => {
-        console.log(error);
+        this.errorMessage = error.error;
+        if(error.status == 400){
+          this.errorMessage = "Incorrect Login Credentials";
+        }else{
+          this.errorMessage = "Please try to login again after a couple of minutes";
+        }
+        this.error = error;
+        this.signInFailure = true;
+        this.signingIn = false;
       }
     )
   }
@@ -82,7 +93,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.authService.login_google(access_token).subscribe(
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);
-            console.log(response);
           },
           error => {
             console.log(error)

@@ -62,6 +62,10 @@ export class AuthService {
     return this.httpService.post(url, body, {headers: this.getUnauthenticatedHeader()});
   }
 
+  token_valid(token){
+    const url = `${this.base_auth_url}token_valid/${token}/`;
+    return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
+  }
   // For use to know if the user is logged in or nor, to manipulate logic
   isLoggedIn(): boolean{
     if(this.cookieService.get('token')){

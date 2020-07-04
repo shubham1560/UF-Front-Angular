@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
   const p1 = c.get('password');
@@ -28,20 +29,36 @@ export class PasswordresetFormComponent implements OnInit {
   icon: string;
   passwordResetForm: FormGroup;
   token: string;
-  hide: boolean = true;
-  hide1: boolean = true;
   message: string;
   attempt:boolean = false;
   reset: boolean;
+  response;
+  error;
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private loggerService: LoggerService
+              ) { }
 
   ngOnInit() {
 
     this.route.paramMap.subscribe(
       params => {
-        this.token = params.get('token');
+        this.token = params.get('token'); 
+      }
+      
+    )
+    this.authService.token_valid(this.token).subscribe(
+      response =>{
+        console.log(response);   
+        this.response = response;
+      },error => {
+        console.log(error);
+        this.error = error;
+        this.attempt=true;
+        this.reset = false;
+        this.icon = "report_problem"
+        this.message = "the url is invalid"
       }
     )
 
@@ -51,6 +68,8 @@ export class PasswordresetFormComponent implements OnInit {
         confirm_password: ['', [Validators.required, Validators.minLength(10)]]
       }, { validators: passwordMatch }),
     })
+
+    this.loggerService.logData("auth-passwordresetform", this);
   }
 
   resetPassword(){

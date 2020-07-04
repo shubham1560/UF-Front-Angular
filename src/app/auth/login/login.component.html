@@ -19,7 +19,7 @@
                     <mat-label>Email</mat-label>
                     <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
                     <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
-                    <mat-error>Please enter the mail maan</mat-error>
+                    <mat-error>Please enter a valid email address</mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="uf-auth-input-block">
                     <mat-label>Password</mat-label>
@@ -28,23 +28,28 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error>password input please</mat-error>
+                    <mat-error>Password(minimum length is 10)</mat-error>
                 </mat-form-field>
                 <div class="uf-auth-buttons-div">
                     <button class="uf-auth-left-button" mat-button color="primary" routerLink="/auth/passwordreset">Forgot
                         Password</button>
                     <button class="uf-auth-right-button" mat-button color="primary" type="submit"
-                        [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid'>
+                        [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid || signingIn'>
 
-                        login
+                        <span *ngIf="!signingIn">Login</span>
+                        <span *ngIf="signingIn" >Logging...</span>
                         <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
 
                     </button>
                 </div>
+                <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar>
             </form>
         </div>
+        <div class="uf-auth-form-footer error" *ngIf="signInFailure">
+            {{errorMessage}}
+        </div>
         <br>
-        <div class="uf-auth-form-footer">
+        <div class="uf-auth-form-footer ">
             New to Urbanfrauds? <a style="text-decoration: none;" color="primary" routerLink="/auth/register">Create an
                 account</a>
         </div>

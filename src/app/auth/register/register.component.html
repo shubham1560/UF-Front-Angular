@@ -32,12 +32,13 @@
                     <button class="uf-auth-right-button" mat-button type="submit"
                         [title]="registrationForm.valid?'Register': 'data is ambiguous'"
                         [disabled]='!registrationForm.valid || disableButton'>
-
-                        Register
+                        <span *ngIf="!disableButton">Register</span>
+                        <span *ngIf="disableButton"> Registering......</span>
+                        
                         <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
                     </button>
                 </div>
-
+                <mat-progress-bar *ngIf="disableButton" color="primary" mode="indeterminate"></mat-progress-bar>
             </form>
         </div>
         <div *ngIf="registrationDone" class="uf-auth-form-body">
