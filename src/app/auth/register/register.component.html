@@ -1,4 +1,4 @@
-<div class="uf-auth-wrapper">
+<div class="uf-auth-wrapper" id="auth-register">
     <div class="uf-auth-form">
         <div class="uf-auth-logo-space"></div>
         <div class="uf-auth-form-header">CREATE AN ACCOUNT</div>
@@ -40,7 +40,7 @@
                 </div>
                 <mat-progress-bar *ngIf="disableButton" color="primary" mode="indeterminate"></mat-progress-bar>
             </form>
-        </div>
+        </div> 
         <div *ngIf="registrationDone" class="uf-auth-form-body">
             Activation link has has been sent the email: {{user["email"]}}, please check the inbox
         </div>
