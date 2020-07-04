@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from './services/auth.service';
 
@@ -7,16 +7,17 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'uf-front';
-  showFiller = false;
-
-  
 
   constructor(private route: ActivatedRoute,
-              private authService: AuthService) {
-              }
+    private authService: AuthService) {
+  }
+  loadFooter: boolean = true;
 
-  
+  ngOnInit() {
+    var urlArray = window.document.URL.split("/");
+    this.loadFooter = !urlArray.includes("auth");
+  }
 
 }
