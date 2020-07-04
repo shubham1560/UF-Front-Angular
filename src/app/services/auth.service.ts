@@ -8,8 +8,10 @@ import { CookieService } from 'ngx-cookie-service';
 
 export class AuthService {
 
-  base_url = "http://127.0.0.1:8000/";
+  //base_url = "http://127.0.0.1:8000/";
   //base_url = "https://uf-preprod.herokuapp.com/";
+  base_url="https://database1560.herokuapp.com/";
+
   base_auth_url = `${this.base_url}authorization/`
 
   constructor(private httpService: HttpClient,

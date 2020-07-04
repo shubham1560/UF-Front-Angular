@@ -7,8 +7,10 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class DataService {
 
-  base_url = "http://127.0.0.1:8000/";
-
+  //base_url = "http://127.0.0.1:8000/"; //local
+  //base_url = "https://uf-preprod.herokuapp.com/";  //preprod
+  base_url = "https://database1560.herokuapp.com/"  //dev
+  // base_url = ""
   base_knowledge_url = `${this.base_url}knowledge/`
 
   constructor(private httpService: HttpClient,
