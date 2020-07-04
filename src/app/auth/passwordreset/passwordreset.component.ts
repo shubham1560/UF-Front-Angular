@@ -15,12 +15,13 @@ export class PasswordresetComponent implements OnInit {
   message: string;
   disableButton = false;
   sendingLink: boolean = false;
-
+  response;
+  error;
   resetForm: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private loggerService: LoggerService) { }
+    private authService: AuthService,
+    private loggerService: LoggerService) { }
 
   ngOnInit() {
     this.resetForm = this.fb.group({
@@ -30,27 +31,35 @@ export class PasswordresetComponent implements OnInit {
     this.loggerService.logData("auth-passwordreset", this);
   }
 
-  save() { 
+  save() {
     this.sendingLink = true;
     this.disableButton = true
     this.authService.sendResetPassowordLink(this.resetForm.value["email"]).subscribe(
       response => {
-        console.log(response);
-        this.message = "Mail has been sent to: "+this.resetForm.value["email"] +". Please check your inbox for the link";
+        this.response = response;
+        this.message = "Paswword reset link has been sent to this email id: " + this.resetForm.value["email"] + ". Please check your inbox for the link";
         this.sendingLink = false;
         this.errorOccured = false;
         this.mailsent = true;
       },
       error => {
-        console.log(error);
+        this.error = error;
         this.mailsent = false;
         this.disableButton = false;
         this.sendingLink = false;
         this.errorOccured = true;
-        this.message = "Mail couldn't be sent as the user with this email id doesn't exist";
+        if (!error.error["user_exist"]) {
+          this.message = "User with this email id doesn't exist";
+        }
+        if (error.error["user_exist"] && !error.error["is_active"]){
+          this.message = "The user has not activated his account yet, please activate your account";
+        }
+        if(error.error["user_exist"] && !error.error["token_exist"]){
+          this.message = "This is a server error, and since it has occured now, it shall be solved within a day";
+        }
         
       }
-    ) ;
+    );
   }
 
 }

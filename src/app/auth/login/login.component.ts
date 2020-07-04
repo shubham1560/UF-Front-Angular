@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
         if(error.status == 400){
           this.errorMessage = "Incorrect Login Credentials";
         }else{
-          this.errorMessage = "Please try to login again after a couple of minutes";
+          this.errorMessage = "We are sorry that you forgot your credentials, please wait for a couple of minutes to try again, ";
         }
         this.error = error;
         this.signInFailure = true;

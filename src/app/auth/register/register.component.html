@@ -34,15 +34,21 @@
                         [disabled]='!registrationForm.valid || disableButton'>
                         <span *ngIf="!disableButton">Register</span>
                         <span *ngIf="disableButton"> Registering......</span>
-                        
+
                         <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
                     </button>
                 </div>
                 <mat-progress-bar *ngIf="disableButton" color="primary" mode="indeterminate"></mat-progress-bar>
             </form>
-        </div> 
+        </div>
         <div *ngIf="registrationDone" class="uf-auth-form-body">
-            Activation link has has been sent the email: {{user["email"]}}, please check the inbox
+            <div class="uf-auth-info-block">
+                <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color': 'green'}">
+                    verified_user
+                </mat-icon>
+                <br>
+                Activation link has has been sent the email: {{user["email"]}}, please check the inbox
+            </div>
         </div>
         <div *ngIf="errorMessage" class="uf-auth-form-footer error">
             {{errorMessage}}

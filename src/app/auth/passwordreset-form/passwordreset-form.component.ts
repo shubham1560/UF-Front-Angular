@@ -30,35 +30,39 @@ export class PasswordresetFormComponent implements OnInit {
   passwordResetForm: FormGroup;
   token: string;
   message: string;
-  attempt:boolean = false;
+  attempt: boolean = false;
   reset: boolean;
   response;
   error;
   constructor(private route: ActivatedRoute,
-              private fb: FormBuilder,
-              private authService: AuthService,
-              private loggerService: LoggerService
-              ) { }
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private loggerService: LoggerService
+  ) { }
 
   ngOnInit() {
 
     this.route.paramMap.subscribe(
       params => {
-        this.token = params.get('token'); 
+        this.token = params.get('token');
       }
-      
+
     )
     this.authService.token_valid(this.token).subscribe(
-      response =>{
-        console.log(response);   
+      response => {
+        console.log(response);
         this.response = response;
-      },error => {
+      }, error => {
         console.log(error);
         this.error = error;
-        this.attempt=true;
+        this.attempt = true;
         this.reset = false;
         this.icon = "report_problem"
-        this.message = "the url is invalid"
+        if (!this.error.error["is_active"]) {
+          this.message = "The user with this link has not yet activated their account. Please activate your account first";
+        } else {
+          this.message = "the url is invalid";
+        }
       }
     )
 
@@ -72,7 +76,7 @@ export class PasswordresetFormComponent implements OnInit {
     this.loggerService.logData("auth-passwordresetform", this);
   }
 
-  resetPassword(){
+  resetPassword() {
     this.attempt = true;
     this.authService.resetPassword(this.token, this.passwordResetForm.get('passwordGroup.password').value).subscribe(
       response => {
