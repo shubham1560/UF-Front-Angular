@@ -98,8 +98,10 @@ export class RegisterComponent implements OnInit {
         // console.log(error.error["message"]);
         if (error.error["ue"]==true){
           this.errorMessage = error.error["message"];
+        }else{
+          this.errorMessage = "The email address is invalid";
         }
-        this.errorMessage = "The email address is invalid"
+        
         // this.errorMessage = error.error;
         this.error = error;
         this.disableButton = false;
