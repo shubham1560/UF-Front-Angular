@@ -58,7 +58,10 @@ export class PasswordresetFormComponent implements OnInit {
         this.attempt = true;
         this.reset = false;
         this.icon = "report_problem"
-        if (!this.error.error["is_active"]) {
+        if(!this.error.error["user_exist"]){
+          this.message="This url is not valid for any user";
+        }
+        else if (!this.error.error["is_active"]) {
           this.message = "The user with this link has not yet activated their account. Please activate your account first";
         } else {
           this.message = "the url is invalid";

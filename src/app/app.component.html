@@ -1,18 +1,18 @@
 <mat-toolbar color="primary" style="height: 48px;">
 
-    <span>Logo and name</span>
+    <span>Logo</span>
     <span class="fillspace"></span>
 
-    <span >
-        <button mat-button routerLink="/auth/" class="sign-in">Sign in</button>
+    <span class="sign-in">
+        <button mat-button routerLink="/auth/" routerLinkActive="active">Sign in</button>
     </span>
 </mat-toolbar>
+<!-- <div [@slideInAnimation]="o.isActivated? o.activatedRoute: ''"> -->
+<div>
+    <router-outlet #o="outlet">
 
-<router-outlet>
-
-
-</router-outlet>
-
+    </router-outlet>
+</div>
 
 <app-footer>
 </app-footer>
