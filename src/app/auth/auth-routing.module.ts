@@ -8,34 +8,28 @@ import { PasswordresetFormComponent } from './passwordreset-form/passwordreset-f
 
 
 const routes: Routes = [
-    { 
-        path: "auth", 
-        // component: LoginComponent,
-        children: [
-            {
-                path: "",
-                component: LoginComponent
-            },
-            { 
-                path: "register",
-                component: RegisterComponent 
-            },
-            { 
-                path: "passwordreset", 
-                component: PasswordresetComponent 
-            },
-            { 
-                path: "activate/:token", 
-                component: ActivateAccountComponent 
-            },
-            { 
-                path: "passwordresetform/:token",
-                component: PasswordresetFormComponent 
-            },
-        ] 
+
+    {
+        path: "",
+        component: LoginComponent
     },
-    
-];
+    {
+        path: "register",
+        component: RegisterComponent
+    },
+    {
+        path: "passwordreset",
+        component: PasswordresetComponent
+    },
+    {
+        path: "activate/:token",
+        component: ActivateAccountComponent
+    },
+    {
+        path: "passwordresetform/:token",
+        component: PasswordresetFormComponent
+    },
+]
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

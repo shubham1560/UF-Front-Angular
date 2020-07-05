@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RouterModule, Router } from '@angular/router'
-import { AuthModule } from './auth/auth.module';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,8 +17,13 @@ import { LoggerService } from './services/cx-menu/realtimelogger.service';
 
 var routes = [
   { path: "", component: ArticleListComponent },
+  {
+    path: "auth",
+    loadChildren: () => 
+      import('././auth/auth.module').then(m => m.AuthModule)
+  },
   { path: "**", component: NotFoundComponent },
-  {path: "blogs", component: BlogsComponent}
+  { path: "blogs", component: BlogsComponent }
 
 ]
 
@@ -35,7 +39,6 @@ var routes = [
     MaterialModule,
     AppRoutingModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    AuthModule,
     BrowserAnimationsModule,
     BlogsModule,
     HttpClientModule,
