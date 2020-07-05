@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule, Router } from '@angular/router'
+import { RouterModule, Router, PreloadAllModules } from '@angular/router'
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,17 +15,17 @@ import { ArticleListComponent } from './blogs/article-list/article-list.componen
 import { BlogsComponent } from './blogs/blogs.component';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';
 
-var routes = [
-  { path: "", component: ArticleListComponent },
-  {
-    path: "auth",
-    loadChildren: () => 
-      import('././auth/auth.module').then(m => m.AuthModule)
-  },
-  { path: "**", component: NotFoundComponent },
-  { path: "blogs", component: BlogsComponent }
+// var routes = [
+//   { path: "", component: ArticleListComponent },
+//   {
+//     path: "auth",
+//     loadChildren: () => 
+//       import('././auth/auth.module').then(m => m.AuthModule)
+//   },
+//   { path: "**", component: NotFoundComponent },
+//   { path: "blogs", component: BlogsComponent }
 
-]
+// ]
 
 
 @NgModule({
@@ -38,7 +38,7 @@ var routes = [
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    // RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules }),
     BrowserAnimationsModule,
     BlogsModule,
     HttpClientModule,
