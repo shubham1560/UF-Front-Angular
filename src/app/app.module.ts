@@ -14,6 +14,7 @@ import { DataService } from './services/knowledge.service';
 import { ArticleListComponent } from './blogs/article-list/article-list.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';
+import { LandingModule } from './landing/landing.module';
 
 // var routes = [
 //   { path: "", component: ArticleListComponent },
@@ -39,6 +40,7 @@ import { LoggerService } from './services/cx-menu/realtimelogger.service';
     MaterialModule,
     AppRoutingModule,
     // RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    LandingModule,
     BrowserAnimationsModule,
     BlogsModule,
     HttpClientModule,

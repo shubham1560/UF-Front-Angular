@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { ArticleListComponent } from './blogs/article-list/article-list.component';
+// import { ArticleListComponent } from './blogs/article-list/article-list.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { BlogsComponent } from './blogs/blogs.component';
+import { LandingComponent } from './landing/landing.component';
 
 
 const routes: Routes = [
-  { path: "", component: ArticleListComponent },
+  { path: "", component: LandingComponent },
   {
     path: "auth",
     loadChildren: () =>
