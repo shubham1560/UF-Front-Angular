@@ -1,9 +1,16 @@
 <div id="uf-all-articles">
     test
-    <li *ngFor="let data of result">
-        {{data.id}}
+    <li *ngFor="let article of result">
+        <div>
+            {{article.id}} <br>
+            Handle: {{article.getAuthor.id}}
+        </div>
+        
+        <div><img height="100" width="150" [src]="article.featured_image_thumbnail"></div>
     </li>
+
+    <br><br><br>
+    <button (click)="getNextPage()">Yolo</button>
     <!-- {{result}} -->
     <!-- {{result['data']}} -->
-
 </div>

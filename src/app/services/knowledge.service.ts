@@ -42,7 +42,13 @@ export class DataService {
 
   getRelatedComments(id:string){
     const url = `${this.base_knowledge_url}articles/${id}/comments/`;
-    this.called_url = url
+    this.called_url = url;
+    return this.httpService.get(url, {headers: this.getAuthenticationHeader()});
+  }
+
+  getPaginatedArticles(start: number, end: number){
+    const url = `${this.base_knowledge_url}articles/${start}/${end}/`;
+    this.called_url = url;
     return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
   }
 
