@@ -13,6 +13,8 @@ export class DataService {
   // base_url = ""
   base_knowledge_url = `${this.base_url}knowledge/`
 
+  called_url:string;
+
   constructor(private httpService: HttpClient,
               private cookieService: CookieService
           ) { }
@@ -34,11 +36,13 @@ export class DataService {
 
   getAllArticles(){
     const url = `${this.base_knowledge_url}articles/`;
+    this.called_url = url
     return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
   }
 
   getRelatedComments(id:string){
     const url = `${this.base_knowledge_url}articles/${id}/comments/`;
+    this.called_url = url
     return this.httpService.get(url, {headers: this.getUnauthenticatedHeader()});
   }
 
