@@ -9,34 +9,38 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 })
 export class AllArticlesComponent implements OnInit {
 
-  result:Int32Array[];
+  result: Int32Array[];
   error;
-  newResult:[];
-  totalArticles:number;
-  numRecords:number=10;
-  start:number=0;
-  end:number=this.start+this.numRecords;
+  newResult: [];
+  totalArticles: number;
+  numRecords: number = 10;
+  start: number = 0;
+  end: number = this.start + this.numRecords;
+  endReached = false;
 
   constructor(
     private knowledgeService: DataService,
     private logger: LoggerService,
   ) { }
 
-  getNextPage(start=this.start, end=this.end): [] {
-    console.log(start, end);
-    this.knowledgeService.getPaginatedArticles(start, end).subscribe(
-      response =>{
-        this.result = this.result.concat(response["data"]);
-        // console.log(this.result);
-        this.start+=this.numRecords;
-        this.end+= this.numRecords;
-        // return this.result;
-      },
-      error =>{
-        this.error = error;
-        
-      }
-    )
+  getNextPage(start = this.start, end = this.end): [] {
+    // console.log(start, end);
+    if (this.start <= this.totalArticles) {
+      this.knowledgeService.getPaginatedArticles(start, end).subscribe(
+        response => {
+          this.result = this.result.concat(response["data"]);
+          this.start += this.numRecords;
+          this.end += this.numRecords;
+        },
+        error => {
+          this.error = error;
+
+        }
+      )
+    }
+    if(this.start <= this.totalArticles && this.end >= this.totalArticles){
+      this.endReached = true;
+    }
     return []
   }
 
@@ -44,18 +48,19 @@ export class AllArticlesComponent implements OnInit {
     this.knowledgeService.getPaginatedArticles(this.start, this.end).subscribe(
       response => {
         this.totalArticles = response["total_articles"];
-        this.start+=this.numRecords;
-        this.end+=this.numRecords;
+        // this.totalArticles = 30;
+        this.start += this.numRecords;
+        this.end += this.numRecords;
         this.result = response["data"];
       },
       err => {
         this.error = err;
       }
     )
-    
-    
+
+
     this.logger.logData('uf-all-articles', this);
   }
-  
+
 
 }

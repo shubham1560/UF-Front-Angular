@@ -10,7 +10,8 @@
     </li>
 
     <br><br><br>
-    <button (click)="getNextPage()">Yolo</button>
+    <button (click)="getNextPage()" *ngIf="!endReached">Yolo</button>
+    <div *ngIf="endReached">You have seen all the articles</div>
     <!-- {{result}} -->
     <!-- {{result['data']}} -->
 </div>
