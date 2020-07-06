@@ -1,6 +1,9 @@
 <div id="uf-all-articles">
     test
-    {{result}}
+    <li *ngFor="let data of result">
+        {{data.id}}
+    </li>
+    <!-- {{result}} -->
     <!-- {{result['data']}} -->
 
 </div>
