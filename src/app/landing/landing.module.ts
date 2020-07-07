@@ -8,7 +8,7 @@ import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/knowledge.service';
 import { FooterComponent } from '../shared/footer/footer.component';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
     CommonModule,
     LandingRoutingModule,
     MaterialModule,
+    FlexLayoutModule,
   ],
   exports:[LandingComponent, AllArticlesComponent, FooterComponent ],
   providers:[LoggerService, AuthService, DataService],

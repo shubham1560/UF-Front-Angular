@@ -15,6 +15,8 @@ import { ArticleListComponent } from './blogs/article-list/article-list.componen
 import { BlogsComponent } from './blogs/blogs.component';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';
 import { LandingModule } from './landing/landing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 // var routes = [
 //   { path: "", component: ArticleListComponent },
@@ -35,6 +37,7 @@ import { LandingModule } from './landing/landing.module';
     NotFoundComponent,
   ],
   imports: [
+    FlexLayoutModule,
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
