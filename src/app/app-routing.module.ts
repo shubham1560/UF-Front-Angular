@@ -7,6 +7,7 @@ import { LandingComponent } from './landing/landing.component';
 
 
 const routes: Routes = [
+  { path: "welcome", redirectTo: "" },
   { path: "", component: LandingComponent },
   {
     path: "auth",
@@ -19,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,  { useHash: true, preloadingStrategy: PreloadAllModules })],
+  imports: [RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

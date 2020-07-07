@@ -33,7 +33,6 @@ import { LandingModule } from './landing/landing.module';
   declarations: [
     AppComponent,
     NotFoundComponent,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,
