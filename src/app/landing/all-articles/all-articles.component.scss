@@ -10,3 +10,31 @@
     border: 1px solid black;
 }
 
+.uf-heading-wrapper{
+    display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+    // line-height: 1em;
+    // max-height: 2em;
+    // overflow: hidden;
+    // margin-left: 10px;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+}
+
+.uf-paragraph-wrapper{
+    display: -webkit-box;
+   -webkit-line-clamp: 3;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   color: rgb(60, 57, 61)
+    // line-height: 1em;
+    // max-height: 4em;
+    // overflow: hidden;
+    // margin-left: 10px;
+    // text-overflow: ellipsis;
+    // white-space: nowrap;
+}
