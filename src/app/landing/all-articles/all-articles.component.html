@@ -1,17 +1,29 @@
 <div id="uf-all-articles">
     test
-    <li *ngFor="let article of result">
-        <div>
-            {{article.id}} <br>
-            Handle: {{article.getAuthor.id}}
+    <div *ngFor="let article of result">
+        <div gdAreas="header header | side content  | footer footer" gdGap="16px" gdRows="auto auto auto">
+            <div gdArea="header" class="border">
+                {{article.id}}
+            </div>
+            <div gdArea="side"  class="border">
+                <!-- Image -->
+                <img height="100" width="100" [src]="article.featured_image_thumbnail">
+            </div>
+            <div gdArea="content"  class="border">
+                Description
+            </div>
+            <!-- <div gdArea="author" class="border">
+                {{article.getAuthor.id}}
+            </div> -->
+            <div gdArea="footer"  class="border">
+                category and knowledgebase
+            </div>
         </div>
-        
-        <div><img height="100" width="150" [src]="article.featured_image_thumbnail"></div>
-    </li>
-
-    <br><br><br>
-    <button (click)="getNextPage()" *ngIf="!endReached">Yolo</button>
-    <div *ngIf="endReached">You have seen all the articles</div>
-    <!-- {{result}} -->
-    <!-- {{result['data']}} -->
+    </div>
+    <!-- {{article.id}} <br> -->
+    <!-- Handle: {{article.getAuthor.id}} -->
 </div>
+
+<button (click)="getNextPage()" *ngIf="!endReached">Yolo</button>
+<div *ngIf="endReached">You have seen all the articles</div>
+<!-- {{result['data']}} -->
