@@ -78,6 +78,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 }
 
+.uf-landing-wrapper{
+    margin: 0 0 0 0;;
+}
+
+@media (min-width: 480px) {
+    .uf-landing-wrapper{
+        margin: 10px 20px 0 20px;
+    }
+ }
+
+ @media (min-width: 768px) {
+    .uf-landing-wrapper{
+        margin: 10px 80px 0px 80px;
+    }
+ }
 
 
-
+ @media (min-width: 1024px) {
+    .uf-landing-wrapper{
+        margin: 10px 160px 0px 160px;
+    }
+ }

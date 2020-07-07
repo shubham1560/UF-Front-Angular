@@ -1,6 +1,6 @@
-<div id="uf-all-articles">
+<div id="uf-all-articles" class="">
     <div *ngFor="let article of result">
-        <mat-card>
+        <mat-card style="box-shadow: none; padding: none; padding-bottom: 40px;">
             <mat-card-header>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->
                 <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}}</mat-card-title>
@@ -8,12 +8,16 @@
             </mat-card-header>
             <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
                 style="flex-direction:row !important;">
-                <div fxFlex="100%">
+                <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}" style="height:auto;min-height: 100px; width: 150px; background-size: 100% 100%;"></div>
+                <div fxFlex="80%">
+                    
+                        
                     <mat-card-content>
 
                         <p>
-                            <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
-                                style="float: left; padding-right: 10px;">
+                            <!-- <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
+                                style="float: left; padding-right: 10px;"> -->
+
 
                             Description
                             The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
@@ -27,7 +31,7 @@
                 </div>
             </div>
             <mat-card-content>
-                <p>
+                <p style="float: right;">
                     Greater is the threat
                 </p>
             </mat-card-content>
@@ -36,8 +40,9 @@
             <!-- <button mat-button>SHARE</button> -->
             <!-- </mat-card-actions> -->
         </mat-card>
-        <br>
     </div>
+    <br>
+
 </div>
 
 <button (click)="getNextPage()" *ngIf="!endReached">More</button>
