@@ -16,6 +16,9 @@
    -webkit-box-orient: vertical;
    overflow: hidden;
    text-overflow: ellipsis;
+
+   font-weight: normal !important;
+
     // line-height: 1em;
     // max-height: 2em;
     // overflow: hidden;
@@ -26,11 +29,13 @@
 
 .uf-paragraph-wrapper{
     display: -webkit-box;
-   -webkit-line-clamp: 3;
+   -webkit-line-clamp: 2;
    -webkit-box-orient: vertical;
    overflow: hidden;
    text-overflow: ellipsis;
-   color: rgb(60, 57, 61)
+   color: rgb(60, 57, 61);
+//    color: gray;
+   font-weight: lighter;
     // line-height: 1em;
     // max-height: 4em;
     // overflow: hidden;

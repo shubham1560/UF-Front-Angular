@@ -1,13 +1,14 @@
-<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="getNextPage()">
+<div >
 
-<div id="uf-all-articles" class="">
+<div id="uf-all-articles" class="" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="getNextPage()">
     <div *ngFor="let article of result">
-        <mat-card style=" padding: none; padding-bottom: 40px;">
+        <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
             <!-- <mat-card-header> -->
             <!-- <div mat-card-avatar class="example-header-image"></div> -->
             <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}}</mat-card-title> -->
             <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
             <!-- </mat-card-header> -->
+            
             <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
                 style="flex-direction:row !important;height: 100px;">
                 <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}"
@@ -22,7 +23,7 @@
                         <!-- </mat-card-title> -->
                         <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
                         <!-- </mat-card-header> -->
-                        <h4 class="uf-heading-wrapper">{{article.id}}</h4>
+                        <h3 class="uf-heading-wrapper">{{article.id}}</h3>
 
                         <p class="uf-paragraph-wrapper">
                             <!-- <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
@@ -57,8 +58,10 @@
             <!-- <button mat-button>SHARE</button> -->
             <!-- </mat-card-actions> -->
         </mat-card>
-        <br><br>
+        <br>
     </div>
+    <div *ngIf="isLoading"> Loading....</div>
+    
     <br>
 
 </div>
