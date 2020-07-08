@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" style="height: 48px;">
+<mat-toolbar color="primary" style="height: 48px;" id="header">
 
     <span routerLink="/welcome/">Logo</span>
     <span class="fillspace"></span>
@@ -7,8 +7,22 @@
         <button mat-button routerLink="/auth/" routerLinkActive="active">Sign in</button>
     </span>
 
+    <!-- <img [src]="image" alt=""> -->
+
+
     <span class="sign-in" *ngIf="isLoggedIn">
-        <button mat-button routerLinkActive="active" (click)="logout()">Logout</button>
+
+        <!-- <button mat-button routerLinkActive="active" (click)="logout()">Logout</button> -->
+    <div [ngStyle]="{background: 'url('+image+')'}" style="height: 30px;width: 30px;border-radius: 10px;background-size: 100% 100%;" [matMenuTriggerFor]="beforeMenu"></div>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <div mat-menu-item>Hi, <b> {{user.first_name}}</b></div>
+        <button mat-menu-item> My Profile</button>
+        <button mat-menu-item (click)="logout()">
+            Sign out
+            <mat-icon matSuffix style="margin: 0px 2px;">login</mat-icon>
+        </button>
+    </mat-menu>        
+
     </span>
 
 </mat-toolbar>

@@ -29,6 +29,12 @@ export class AuthService {
   return this.getUnauthenticatedHeader()    
   }
 
+  getLoggedInUserDetail(){
+    this.header = this.getHeader();
+    this.url = `${this.base_auth_url}token_get_user`;
+    return this.httpService.get(this.url, {headers: this.header});
+  }
+
   getUnauthenticatedHeader() {
     return new HttpHeaders({
       'Content-Type': 'application/json',
