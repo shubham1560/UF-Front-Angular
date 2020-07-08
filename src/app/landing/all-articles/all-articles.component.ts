@@ -15,6 +15,7 @@ export class AllArticlesComponent implements OnInit {
   totalArticles: number;
   numRecords: number = 5;
   start: number = 0;
+  ghostEl:number = 5
   end: number = this.start + this.numRecords;
   endReached = false;
   isLoading = true;
