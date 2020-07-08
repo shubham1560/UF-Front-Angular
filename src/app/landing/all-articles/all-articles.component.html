@@ -61,9 +61,9 @@
             </mat-card>
             <br>
         </div>
-        <div *ngIf="isLoading">
-        <!-- <div> -->
-            <mat-card *ngFor="let dummy of ' '.repeat(numRecords).split(''), let x = index" style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
+        <div *ngIf="isLoading" *ngFor="let dummy of ' '.repeat(numRecords).split(''), let x = index">
+        <!-- <div *ngFor="let dummy of ' '.repeat(numRecords).split(''), let x = index"> -->
+            <mat-card  style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
                 <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
                     style="flex-direction:row !important;height: 100px;">
                     <div class="uf-resp-image-div-ghost" style="background-size: 100% 100%;"></div>
@@ -86,6 +86,7 @@
                     </div>
                 </mat-card-content>
             </mat-card>
+            <br>
 
         </div>
 

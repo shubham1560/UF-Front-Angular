@@ -17,7 +17,7 @@ export class AllArticlesComponent implements OnInit {
   start: number = 0;
   end: number = this.start + this.numRecords;
   endReached = false;
-  isLoading = false;
+  isLoading = true;
   constructor(
     private knowledgeService: DataService,
     private logger: LoggerService,
@@ -56,6 +56,7 @@ export class AllArticlesComponent implements OnInit {
         this.start += this.numRecords;
         this.end += this.numRecords;
         this.result = response["data"];
+        this.isLoading = false;
       },
       err => {
         this.error = err;
