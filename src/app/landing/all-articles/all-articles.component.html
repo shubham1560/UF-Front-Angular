@@ -1,70 +1,97 @@
-<div >
+<div>
 
-<div id="uf-all-articles" class="" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="getNextPage()">
-    <div *ngFor="let article of result">
-        <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
-            <!-- <mat-card-header> -->
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}}</mat-card-title> -->
-            <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
-            <!-- </mat-card-header> -->
-            
-            <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
-                style="flex-direction:row !important;height: 100px;">
-                <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}"
-                    class="uf-resp-image-div" style="background-size: 100% 100%;"></div>
-                <div fxFlex="80%">
+    <div id="uf-all-articles" class="" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+        (scrolled)="getNextPage()">
+        <div *ngFor="let article of result">
+            <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
+                <!-- <mat-card-header> -->
+                <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}}</mat-card-title> -->
+                <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
+                <!-- </mat-card-header> -->
+
+                <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+                    style="flex-direction:row !important;height: 100px;">
+                    <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}" class="uf-resp-image-div"
+                        style="background-size: 100% 100%;"></div>
+                    <div fxFlex="80%">
 
 
-                    <mat-card-content style="padding-left: 10px;">
-                        <!-- <mat-card-header> -->
-                        <!-- <div mat-card-avatar class="example-header-image"></div> -->
-                        <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}} -->
-                        <!-- </mat-card-title> -->
-                        <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
-                        <!-- </mat-card-header> -->
-                        <h3 class="uf-heading-wrapper">{{article.id}}</h3>
+                        <mat-card-content style="padding-left: 10px;">
+                            <!-- <mat-card-header> -->
+                            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                            <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}} -->
+                            <!-- </mat-card-title> -->
+                            <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
+                            <!-- </mat-card-header> -->
+                            <h3 class="uf-heading-wrapper">{{article.id}}</h3>
 
-                        <p class="uf-paragraph-wrapper">
-                            <!-- <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
+                            <p class="uf-paragraph-wrapper">
+                                <!-- <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
                                 style="float: left; padding-right: 10px;"> -->
 
 
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                        </p>
-                    </mat-card-content>
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                            </p>
+                        </mat-card-content>
 
+                    </div>
                 </div>
-            </div>
-            <mat-card-content>
-                <p style="float: right;">
-                    <b>{{article.getAuthor.first_name}}</b> 
-                    <!-- bookmark yes/no -->
-                </p>
-            </mat-card-content>
-            <!-- <mat-card-actions> -->
-            <!-- <button mat-button>LIKE</button> -->
-            <!-- <button mat-button>SHARE</button> -->
-            <!-- </mat-card-actions> -->
-        </mat-card>
-        <br>
-    </div>
-    <div *ngIf="isLoading"> Loading....</div>
-    
-    <br>
+                <mat-card-content>
+                    <p style="float: right;">
+                        <b>{{article.getAuthor.first_name}}</b>
+                        <!-- bookmark yes/no -->
+                    </p>
+                </mat-card-content>
+                <!-- <mat-card-actions> -->
+                <!-- <button mat-button>LIKE</button> -->
+                <!-- <button mat-button>SHARE</button> -->
+                <!-- </mat-card-actions> -->
+            </mat-card>
+            <br>
+        </div>
+        <div *ngIf="isLoading">
+        <!-- <div> -->
+            <mat-card *ngFor="let dummy of ' '.repeat(numRecords).split(''), let x = index" style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
+                <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+                    style="flex-direction:row !important;height: 100px;">
+                    <div class="uf-resp-image-div-ghost" style="background-size: 100% 100%;"></div>
+                    <div fxFlex="80%">
 
-</div>
+
+                        <mat-card-content style="padding-left: 10px;">
+                            <h3 class="uf-heading-wrapper-ghost"></h3>
+
+                            <p class="uf-paragraph-wrapper-ghost">
+                                <!-- <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
+                                style="float: left; padding-right: 10px;"> -->
+                            </p>
+                        </mat-card-content>
+
+                    </div>
+                </div>
+                <mat-card-content>
+                    <div style="float: right;" class="footer-card-ghost">
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+
+        <br>
+
+    </div>
 
 </div>
 
