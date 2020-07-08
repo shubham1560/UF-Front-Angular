@@ -1,3 +1,5 @@
+<div infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="getNextPage()">
+
 <div id="uf-all-articles" class="">
     <div *ngFor="let article of result">
         <mat-card style=" padding: none; padding-bottom: 40px;">
@@ -61,5 +63,7 @@
 
 </div>
 
-<button (click)="getNextPage()" *ngIf="!endReached">More</button>
-<div *ngIf="endReached">You have seen all the articles</div>
+</div>
+
+<!-- <button (click)="getNextPage()" *ngIf="!endReached">More</button> -->
+<div style="text-align: center;" *ngIf="endReached">You have seen all the articles</div>

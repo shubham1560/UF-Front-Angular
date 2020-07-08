@@ -9,6 +9,7 @@ import { AuthService } from '../services/auth.service';
 import { DataService } from '../services/knowledge.service';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LandingRoutingModule,
     MaterialModule,
     FlexLayoutModule,
+    InfiniteScrollModule,
   ],
   exports:[LandingComponent, AllArticlesComponent, FooterComponent ],
   providers:[LoggerService, AuthService, DataService],

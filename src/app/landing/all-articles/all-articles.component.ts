@@ -25,6 +25,7 @@ export class AllArticlesComponent implements OnInit {
 
   getNextPage(start = this.start, end = this.end): [] {
     // console.log(start, end);
+    console.log("called");
     if (this.start <= this.totalArticles) {
       this.knowledgeService.getPaginatedArticles(start, end).subscribe(
         response => {
