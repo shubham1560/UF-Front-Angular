@@ -3,9 +3,14 @@
     <span routerLink="/welcome/">Logo</span>
     <span class="fillspace"></span>
 
-    <span class="sign-in">
+    <span class="sign-in" *ngIf="!isLoggedIn">
         <button mat-button routerLink="/auth/" routerLinkActive="active">Sign in</button>
     </span>
+
+    <span class="sign-in" *ngIf="isLoggedIn">
+        <button mat-button routerLinkActive="active" (click)="logout()">Logout</button>
+    </span>
+
 </mat-toolbar>
 <!-- <div [@slideInAnimation]="o.isActivated? o.activatedRoute: ''"> -->
 <div>

@@ -13,11 +13,19 @@ import { slideInAnimation } from './app.animation';
 export class AppComponent implements OnInit {
   title = 'uf-front';
 
+  isLoggedIn: boolean;
+
   constructor(private route: ActivatedRoute,
     private authService: AuthService,) { }
 
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+  }
+
+  logout(){
+    this.authService.logoutUser();
+    window.window.location.href = "welcome";
   }
 
 }

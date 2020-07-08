@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CookieService } from 'ngx-cookie-service'
 import { PasswordresetFormComponent } from '../passwordreset-form/passwordreset-form.component';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { Router } from '@angular/router';
 
 declare const gapi: any;
 
@@ -20,47 +21,57 @@ export class LoginComponent implements OnInit, AfterViewInit {
   // Form logic
   hide: boolean = true;
   loginForm: FormGroup;
-  signingIn:boolean = false;
-  signInFailure:boolean = false;
+  signingIn: boolean = false;
+  signInFailure: boolean = false;
   response;
   error;
   errorMessage;
+  isLoggedIn : boolean;
+
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private cookieService: CookieService,
     private loggerService: LoggerService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isLoggedIn();
+    if (!this.isLoggedIn) {
 
-    this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(10)]]
-    })
-    // this.testData();
-
+      this.loginForm = this.fb.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(10)]]
+      })
+      // this.testData();
+    }
     this.loggerService.logData("auth-login", this);
   }
 
   login() {
-    this.signingIn = true;
-    this.authService.login_root(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe(
-      response => {
-        this.response = response;
-        this.signingIn = false;
-      },
-      error => {
-        this.errorMessage = error.error;
-        if(error.status == 400){
-          this.errorMessage = "Incorrect Login Credentials";
-        }else{
-          this.errorMessage = "We are sorry that you forgot your credentials, please wait for a couple of minutes to try again, ";
+    if (!this.isLoggedIn) {
+      this.signingIn = true;
+      this.authService.login_root(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe(
+        (response: TokenObj) => {
+          this.response = response;
+          this.signingIn = false;
+          this.cookieService.set('token', response.token);
+          // this.router.navigate(['/welcome']);
+          window.location.href = "welcome"
+        },
+        error => {
+          this.errorMessage = error.error;
+          if (error.status == 400) {
+            this.errorMessage = "Incorrect Login Credentials";
+          } else {
+            this.errorMessage = "We are sorry that you forgot your credentials, please wait for a couple of minutes to try again, ";
+          }
+          this.error = error;
+          this.signInFailure = true;
+          this.signingIn = false;
         }
-        this.error = error;
-        this.signInFailure = true;
-        this.signingIn = false;
-      }
-    )
+      )
+    }
   }
 
   // testData() {
@@ -93,6 +104,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
         this.authService.login_google(access_token).subscribe(
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);
+            // this.router.navigate(['/welcome']);
+            window.location.href = "welcome"
           },
           error => {
             console.log(error)

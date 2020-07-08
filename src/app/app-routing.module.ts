@@ -4,6 +4,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { LandingComponent } from './landing/landing.component';
+import { AuthGuard } from './auth/guard/auth.guard';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: "", component: LandingComponent },
   {
     path: "auth",
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('././auth/auth.module').then(m => m.AuthModule)
   },
