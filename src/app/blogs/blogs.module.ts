@@ -8,8 +8,8 @@ import { ArticleNewComponent } from './article-new/article-new.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BlogsRoutingModule } from './blogs-routing.module';
 import { LoggerService } from '../services/cx-menu/realtimelogger.service';
-import { AuthService } from '../services/auth.service';
-import { DataService } from '../services/knowledge.service';
+import { AuthService } from '../services/authservice/auth.service';
+import { DataService } from '../services/knowledgeservice/knowledge.service';
 
 
 

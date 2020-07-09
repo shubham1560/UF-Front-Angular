@@ -24,7 +24,9 @@ const routes: Routes = [
       import("./userprofile/userprofile.module").then(up => up.UserprofileModule)
   },
   { path: "**", component: NotFoundComponent },
-  { path: "blogs", component: BlogsComponent }
+  { 
+    path: "blogs", component: BlogsComponent 
+  }
 
 ];
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

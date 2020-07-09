@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {

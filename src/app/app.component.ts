@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/authservice/auth.service';
 import { Observable } from 'rxjs';
 import { slideInAnimation } from './app.animation';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';

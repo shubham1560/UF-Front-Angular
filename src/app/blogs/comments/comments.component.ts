@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from 'src/app/services/knowledge.service';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({

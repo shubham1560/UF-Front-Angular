@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from './auth.service';
-import { UrlconfigService } from './urlconfig.service';
+import { AuthService } from '../authservice/auth.service';
+import { UrlconfigService } from '../urlconfig.service';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({

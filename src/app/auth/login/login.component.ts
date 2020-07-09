@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TokenObj } from '../data-models/Login'
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 import { CookieService } from 'ngx-cookie-service'
 import { PasswordresetFormComponent } from '../passwordreset-form/passwordreset-form.component';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';

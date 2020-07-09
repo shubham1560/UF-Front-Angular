@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
