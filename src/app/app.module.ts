@@ -16,6 +16,8 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';
 import { LandingModule } from './landing/landing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeaderComponent} from './shared/header/header.component'
+import { UrlconfigService } from "./services/urlconfig.service"
 
 
 // var routes = [
@@ -35,6 +37,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     NotFoundComponent,
+    HeaderComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -47,8 +50,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BlogsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    
   ],
-  providers: [LoggerService, AuthService, DataService],
+  providers: [LoggerService, AuthService, DataService, UrlconfigService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

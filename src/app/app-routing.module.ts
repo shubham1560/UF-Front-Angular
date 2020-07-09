@@ -18,6 +18,7 @@ const routes: Routes = [
   },
   {
     path: "user_profile",
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       import("./userprofile/userprofile.module").then(up => up.UserprofileModule)
   },

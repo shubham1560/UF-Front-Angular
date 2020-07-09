@@ -2,45 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from './auth.service';
+import { UrlconfigService } from './urlconfig.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  base_url = "http://127.0.0.1:8000/"; //local
-  //base_url = "https://uf-preprod.herokuapp.com/";  //preprod
-  // base_url = "https://database1560.herokuapp.com/"  //dev
-  // base_url = ""
+  base_url = this.urlService.getUrl()
+
   base_knowledge_url = `${this.base_url}knowledge/`
 
   called_url: string;
 
   constructor(private httpService: HttpClient,
-    private cookieService: CookieService,
-    private authSerivce: AuthService,
+    private urlService: UrlconfigService,
   ) { }
 
   getHeader() {
-    if (this.authSerivce.isLoggedIn()) {
-      return this.getAuthenticationHeader();
-    }
-    return this.getUnauthenticatedHeader()
-  }
-
-
-  getUnauthenticatedHeader() {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  }
-
-  getAuthenticationHeader() {
-    const token = this.cookieService.get('token');
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Token ${token}`,
-    })
+    return this.urlService.getHeader();
   }
 
   getAllArticles() {
