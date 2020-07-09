@@ -86,6 +86,7 @@ export class AuthService {
 
   logoutUser() {
     this.cookieService.delete('token');
+    window.window.location.href = "welcome";
   }
 
   activate_account(token: string) {

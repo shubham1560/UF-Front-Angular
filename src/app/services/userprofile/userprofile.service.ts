@@ -16,12 +16,17 @@ export class UserprofileService {
 
   header= this.urlService.getHeader()
   url: string;
-
+  body: any ={};
 
   getUserData(){
     this.url = `${this.base_userprofile_url}get_user_data/`
     return this.httService.get(this.url, {headers: this.header});
   }
 
+  deleteUser(){
+    this.url = `${this.base_userprofile_url}get_user_data/`
+    this.body = {"delete": "true"};
+    return this.httService.post(this.url, this.body,  {headers: this.header})
+  }
 
 }

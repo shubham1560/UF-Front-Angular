@@ -5,6 +5,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { LandingComponent } from './landing/landing.component';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { ProfileGuard } from './userprofile/guard/profile.guard'
 
 
 const routes: Routes = [
@@ -18,7 +19,7 @@ const routes: Routes = [
   },
   {
     path: "user_profile",
-    // canActivate: [AuthGuard],
+    canActivate: [ProfileGuard],
     loadChildren: () =>
       import("./userprofile/userprofile.module").then(up => up.UserprofileModule)
   },

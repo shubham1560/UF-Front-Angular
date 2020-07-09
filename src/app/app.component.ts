@@ -14,9 +14,7 @@ import { LoggerService } from './services/cx-menu/realtimelogger.service';
 export class AppComponent implements OnInit {
   title = 'uf-front';
   
-  constructor(private route: ActivatedRoute,
-    private authService: AuthService,
-    private loggerService: LoggerService) { }
+  constructor() { }
 
 
   ngOnInit() {

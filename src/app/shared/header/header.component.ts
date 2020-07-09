@@ -33,7 +33,6 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.authService.logoutUser();
-    window.window.location.href = "welcome";
   }
 
 
