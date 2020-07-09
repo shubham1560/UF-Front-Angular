@@ -36,14 +36,14 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteUser(){
-    this.profile.deleteUser().subscribe(
-      response =>{
-        this.response = response;
-        this.authService.logoutUser();
-      },
-      error=>{
-        this.error = error;
-      }
-    )
+    // this.profile.deleteUser().subscribe(
+    //   response =>{
+    //     this.response = response;
+    //     this.authService.logoutUser();
+    //   },
+    //   error=>{
+    //     this.error = error;
+    //   }
+    // )
   }
 }

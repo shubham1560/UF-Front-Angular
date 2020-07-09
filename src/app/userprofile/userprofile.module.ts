@@ -4,6 +4,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserprofileRoutingModule } from './userprofile-routing.module';
 import { UserprofileService } from '../services/userprofile/userprofile.service';
 import { MaterialModule } from '../shared/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 
@@ -13,6 +14,7 @@ import { MaterialModule } from '../shared/material.module';
     CommonModule,
     UserprofileRoutingModule,
     MaterialModule,
+    FlexLayoutModule,
   ],
   providers: [UserprofileService ,],
 })

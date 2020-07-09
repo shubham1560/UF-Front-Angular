@@ -10,10 +10,11 @@ import { DataService } from '../services/knowledge.service';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { FeaturedComponent } from './featured/featured.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, AllArticlesComponent, FooterComponent],
+  declarations: [LandingComponent, AllArticlesComponent, FooterComponent, FeaturedComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
