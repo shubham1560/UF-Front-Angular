@@ -1,5 +1,10 @@
 <div id="bookmarkedArticles">
+
+    <mat-paginator [length]="23" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+
     <div *ngFor="let article of bookmarkedArticles">
+
         <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
 
             <div>Branch:</div>
