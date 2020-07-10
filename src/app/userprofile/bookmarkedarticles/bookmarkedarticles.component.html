@@ -1,12 +1,45 @@
 <div id="bookmarkedArticles">
+    <div *ngFor="let article of bookmarkedArticles">
+        <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
 
-    <p>These are the articles you bookmarked</p>
-    <pre>
+            <div>Branch:</div>
 
-        {{this.response.bookmarked_articles}}
+            <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+                style="flex-direction:row !important;height: 100px;">
+                <!-- <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}" class="uf-resp-image-div"
+                style="background-size: 100% 100%;"></div> -->
+                <div fxFlex="80%">
 
-    </pre>
-    
+
+                    <mat-card-content style="padding-left: 10px;">
+                        <h5 class="uf-heading-wrapper">{{article.article}}</h5>
+
+                        <p class="uf-paragraph-wrapper">
+                            Description
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            Description
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            Description
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                            Description
+                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                            Japan.
+                        </p>
+                    </mat-card-content>
+
+                </div>
+            </div>
+            <mat-card-content style="padding-top: 5px;">
+                <span style="float: left;">Root:</span>
+                <span style="float: right;">
+                    <b>{{article.get_article.author.first_name}}</b>
+                    <!-- bookmark yes/no -->
+                </span>
+            </mat-card-content>
+        </mat-card>
+        <br>
+    </div>
 </div>
-
-
