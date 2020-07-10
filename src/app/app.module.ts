@@ -44,7 +44,6 @@ import { UrlconfigService } from "./services/urlconfig.service"
     BrowserAnimationsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    
   ],
   providers: [LoggerService, AuthService, DataService, UrlconfigService],
   bootstrap: [AppComponent]

@@ -22,12 +22,16 @@ const routes: Routes = [
     loadChildren: () =>
       import("./userprofile/userprofile.module").then(up => up.UserprofileModule)
   },
-  { path: "**", component: NotFoundComponent },
   { 
-    path: "blogs", 
+    path: "blog", 
     loadChildren: () =>
       import("./blogs/blogs.module").then(bm=>bm.BlogsModule) 
-  }
+  },
+  { 
+    path: "**", 
+    component: NotFoundComponent 
+  },
+  
 
 ];
 
