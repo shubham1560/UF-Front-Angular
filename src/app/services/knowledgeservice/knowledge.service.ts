@@ -41,5 +41,8 @@ export class DataService {
     return this.httpService.get(url, { headers: this.getHeader() });
   }
 
+  getKnowledgeUrl(){
+    return `${this.base_knowledge_url}`;
+  }
 
 }

@@ -1,28 +1,35 @@
-<div class="container " style="margin-top: 20px;">
-    <div class="row ">
-        <div class="col-md-4 " style="padding:20px">
+<div class="container uf-border" id="uf_user_profile" style="margin-top: 20px;">
+    <div class="row uf-border">
+        <div class="col-md-4 uf-border" style="padding:20px">
             <div 
             [ngStyle]="{background: 'url('+image+')'}"
-            style="width: 200px; height: 200px; margin:auto;; border-radius:100px; background-size: 100% 100%;"
-            class="border">
+            style="width: 150px; height: 150px; margin:auto;; border-radius:100px; background-size: 100% 100%;"
+            class="uf-border">
             </div>
-            <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;" class="">
+            <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;" class="uf-border">
                 <button mat-raised-button>Upload Picture</button>
             </div>
         </div>
-        <div class="col-md-8 " style="padding: 20px;">
+        <div class="col-md-8 uf-border" style="padding: 20px;">
             <h3>{{name}}</h3>
         </div>
-        <div class="col-md-12 ">
+        <div class="col-md-12 uf-border">
             <br>
             <mat-tab-group animationDuration="0ms">
-                <mat-tab label="Useful Articles">You found these articles useful</mat-tab>
-                <mat-tab label="Bookmarked">You bookmarked these articles</mat-tab>
+                <!-- <mat-tab label="Useful Articles">You found these articles useful</mat-tab> -->
+                <mat-tab label="Bookmarked">
+                    <!-- You bookmarked these articles -->
+                    <app-bookmarkedarticles></app-bookmarkedarticles>
+                </mat-tab>
                 <!-- <mat-tab label="Third"></mat-tab> -->
             </mat-tab-group>
             <br><br><br>
         </div>
-        <div class="col-md-12" style="height: 40px">
+
+
+
+
+        <div class="col-md-12 uf-border" style="height: 40px">
             <div style="float: right;">
                 <button mat-raised-button color="warn" (click)="deleteUser()">Delete account</button>
             </div>
