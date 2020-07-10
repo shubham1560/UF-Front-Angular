@@ -3,16 +3,11 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RouterModule, Router, PreloadAllModules } from '@angular/router'
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material.module';
-import { BlogsModule } from './blogs/blogs.module';
 import { AuthService } from './services/authservice/auth.service';
 import { DataService } from './services/knowledgeservice/knowledge.service';
-import { ArticleListComponent } from './blogs/article-list/article-list.component';
-import { BlogsComponent } from './blogs/blogs.component';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';
 import { LandingModule } from './landing/landing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -47,7 +42,6 @@ import { UrlconfigService } from "./services/urlconfig.service"
     // RouterModule.forRoot(routes, { useHash: true, preloadingStrategy: PreloadAllModules }),
     LandingModule,
     BrowserAnimationsModule,
-    BlogsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     

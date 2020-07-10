@@ -5,9 +5,18 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { BlogsComponent } from './blogs.component';
 
 const routes: Routes = [
-    {path: 'blog/new', component: ArticleNewComponent},
-    {path: 'blog/list', component: ArticleListComponent},
-    {path: 'blog/selected', component: BlogsComponent},
+    {
+        path: '', 
+        component: ArticleListComponent
+    },
+    {
+        path: 'new',
+        component: ArticleNewComponent
+    },
+    {
+        path: 'blog/:article', 
+        component: BlogsComponent
+    },
 ];
 
 @NgModule({

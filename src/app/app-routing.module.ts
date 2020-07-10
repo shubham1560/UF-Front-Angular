@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 // import { ArticleListComponent } from './blogs/article-list/article-list.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { BlogsComponent } from './blogs/blogs.component';
 import { LandingComponent } from './landing/landing.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { ProfileGuard } from './userprofile/guard/profile.guard'
@@ -25,7 +24,9 @@ const routes: Routes = [
   },
   { path: "**", component: NotFoundComponent },
   { 
-    path: "blogs", component: BlogsComponent 
+    path: "blogs", 
+    loadChildren: () =>
+      import("./blogs/blogs.module").then(bm=>bm.BlogsModule) 
   }
 
 ];
