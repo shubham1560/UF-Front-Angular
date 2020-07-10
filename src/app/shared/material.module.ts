@@ -6,6 +6,7 @@ import { MatButtonModule, MatInputModule, MatFormFieldModule,MatIconModule, MatS
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -19,8 +20,10 @@ import {MatMenuModule} from '@angular/material/menu';
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    MatTabsModule,
   ],
   exports:[
+    MatTabsModule,
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,

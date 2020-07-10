@@ -18,14 +18,18 @@ export class ProfileComponent implements OnInit {
     private route: Router,
   ) { }
   
+  image :string;
   response:any = {};
   error: any = {};
+  name: string;
 
   ngOnInit(): void {
     this.profile.getUserData().subscribe(
       result =>{
         this.response = result;
         console.log(result);
+        this.image = this.response.user.profile_pic;
+        this.name = this.response.user.first_name + " " + this.response.user.last_name;
       }, 
       error =>{
         this.error = error;
