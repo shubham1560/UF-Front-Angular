@@ -10,7 +10,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule } from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -28,8 +28,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatPaginatorModule,
     MatTableModule,
     MatDialogModule,
+    MatSnackBarModule,
   ],
   exports:[
+    MatSnackBarModule,
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,

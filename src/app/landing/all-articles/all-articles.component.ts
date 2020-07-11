@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-all-articles',
@@ -24,24 +26,36 @@ export class AllArticlesComponent implements OnInit {
     private knowledgeService: DataService,
     private logger: LoggerService,
     private authService: AuthService,
+    private _snackBar: MatSnackBar
   ) { }
 
   addBokmark(article_id) {
+    
     if (this.authService.isLoggedIn()) {
-      console.log(article_id);
+      var message = "Hola";
+      var action = "";
       this.knowledgeService.addBookmarkArticle(article_id).subscribe(
-        result => {
-          console.log(result);
+        (result:any) => {
+          // console.log(result);
           for (var i = 0; i < this.result.length; i++) {
             if (this.result[i].id == article_id) {
               this.result[i].bookmarked = !this.result[i].bookmarked!;
             }
           }
+          if(result.bookmarked){
+            message = "Bookmark Added"
+          }else{
+            message= "Bookmark Removed"
+          }
+          this._snackBar.open(message, action, {
+            duration: 1000,
+          });
           // this.result = []
         }, error => {
-          console.log(error);
+          // console.log(error);
         }
       )
+      
     }
     else{
       console.log("Please Log in first");
@@ -50,7 +64,7 @@ export class AllArticlesComponent implements OnInit {
   }
 
   getNextPage(start = this.start, end = this.end): [] {
-    console.log(start, end);
+    // console.log(start, end);
     // console.log("called");
     this.isLoading = true;
     if (this.start <= this.totalArticles) {
@@ -91,11 +105,6 @@ export class AllArticlesComponent implements OnInit {
 
 
     this.logger.logData('uf-all-articles', this);
-  }
-
-  identify(index, item) {
-    console.log(index)
-    return index;
   }
 
 }
