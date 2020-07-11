@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -14,20 +15,19 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profile: UserprofileService,
     private loggerService: LoggerService,
-    private authService: AuthService,
-    private route: Router,
   ) { }
   
   image :string;
   response:any = {};
   error: any = {};
   name: string;
+  isLoading: boolean = true;
 
   ngOnInit(): void {
     this.profile.getUserData().subscribe(
       result =>{
         this.response = result;
-        console.log(result);
+        this.isLoading = false;
         this.image = this.response.user.profile_pic;
         this.name = this.response.user.first_name + " " + this.response.user.last_name;
       }, 
@@ -51,3 +51,5 @@ export class ProfileComponent implements OnInit {
     // )
   }
 }
+
+

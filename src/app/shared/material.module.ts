@@ -8,7 +8,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule, MatCellDef, MatRowDef} from '@angular/material/table';
+import {MatTableModule } from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -26,8 +27,10 @@ import {MatTableModule, MatCellDef, MatRowDef} from '@angular/material/table';
     MatTabsModule,
     MatPaginatorModule,
     MatTableModule,
+    MatDialogModule,
   ],
   exports:[
+    MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
     MatTabsModule,

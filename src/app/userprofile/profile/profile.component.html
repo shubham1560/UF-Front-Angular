@@ -1,14 +1,51 @@
-<div class="container uf-border" id="uf_user_profile" style="margin-top: 20px;">
+
+<div class="container uf-border" *ngIf="isLoading" id="uf_user_profile_ghost" style="margin-top: 20px;">
+    <div class="row uf-border">
+        <div class="col-md-4 uf-border" style="padding:20px">
+            <div 
+            style="width: 150px; height: 150px; margin:auto;; border-radius:100px; background-size: 100% 100%; background-color: lightgray;"
+            class="uf-border ghost">
+            </div>
+            <!-- <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;" class="uf-border">
+                <button mat-raised-button class="ghost">Upload Picture</button>
+            </div> -->
+        </div>
+        <div class="col-md-8 uf-border" style="padding: 20px;">
+            <h3 class="ghost" style="width: 300px; height: 1.5em">{{name}}</h3>
+        </div>
+        <div class="col-md-12 uf-border">
+            <br>
+            <mat-tab-group animationDuration="0ms">
+                <!-- <mat-tab label="Useful Articles">You found these articles useful</mat-tab> -->
+                <mat-tab label="Bookmarked" class="ghost">
+                    <app-bookmarkedarticles></app-bookmarkedarticles>
+                </mat-tab>
+            </mat-tab-group>
+            <br><br><br>
+        </div>
+        <div class="col-md-12 uf-border" style="height: 40px">
+            <div style="float: right;">
+                <button mat-raised-button color="warn"  class="ghost" (click)="deleteUser()">Delete account</button>
+            </div>
+            
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="container uf-border" *ngIf="!isLoading" id="uf_user_profile" style="margin-top: 20px;">
     <div class="row uf-border">
         <div class="col-md-4 uf-border" style="padding:20px">
             <div 
             [ngStyle]="{background: 'url('+image+')'}"
             style="width: 150px; height: 150px; margin:auto;; border-radius:100px; background-size: 100% 100%;"
-            class="uf-border">
+            class="border">
             </div>
-            <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;" class="uf-border">
+            <!-- <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;" class="uf-border">
                 <button mat-raised-button>Upload Picture</button>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-8 uf-border" style="padding: 20px;">
             <h3>{{name}}</h3>
@@ -18,68 +55,17 @@
             <mat-tab-group animationDuration="0ms">
                 <!-- <mat-tab label="Useful Articles">You found these articles useful</mat-tab> -->
                 <mat-tab label="Bookmarked">
-                    <!-- You bookmarked these articles -->
                     <app-bookmarkedarticles></app-bookmarkedarticles>
                 </mat-tab>
-                <!-- <mat-tab label="Third"></mat-tab> -->
             </mat-tab-group>
             <br><br><br>
         </div>
-
-
-
-
         <div class="col-md-12 uf-border" style="height: 40px">
             <div style="float: right;">
                 <button mat-raised-button color="warn" (click)="deleteUser()">Delete account</button>
             </div>
             
         </div>
-        <!-- <div class="col-md-12 "> -->
-            <!-- preferences -->
-        <!-- </div> -->
     </div>
 
 </div>
-
-
-<!-- 
-
-<div class="uf-profile-wrapper" id="uf_user_profile">
-
-    <div class="uf-profile-body">
-        <div class="uf-profile-image">
-
-            <div class="uf-image-div">Image Div</div>
-            <div class="uf-upload-button">
-                <button mat-raised-button color="" (click)="deleteUser()">upload</button>
-            </div>
-
-        </div>
-        <div class="uf-profile-editable">
-            Editable Form
-        </div>
-
-    </div>
-
-    <div class="uf-profile-about">
-        <div class="uf-profile-about-body">
-            About
-        </div>
-    </div>
-    <div class="uf-profile-preferences">
-        Preferences
-    </div>
-
-
-</div>
-
-
-<hr><hr>
-
-<div class="flex-container">
-    <div class="flex-item">
-        
-    </div>
-
-</div> -->
