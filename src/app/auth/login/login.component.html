@@ -15,7 +15,7 @@
                     <div style="padding-top: 5px; float: left;">
                         <img height="25px" src="https://img.icons8.com/officexs/40/000000/google-logo.png"/>
                     </div>
-                    Sign in with google
+                        Continue with google
                 </button>
             </div>
 
@@ -41,7 +41,7 @@
                     <button class="uf-auth-left-button" mat-button color="primary" routerLink="/auth/passwordreset">Forgot
                         Password</button>
                     <button class="uf-auth-right-button" mat-button color="primary" type="submit"
-                        [title]="loginForm.valid?'login': 'data is ambiguous'" [disabled]='!loginForm.valid || signingIn'>
+                        [title]="loginForm.valid?'login': 'Please enter a valid email and password'" [disabled]='!loginForm.valid || signingIn'>
 
                         <span *ngIf="!signingIn">Login</span>
                         <span *ngIf="signingIn" >Logging...</span>

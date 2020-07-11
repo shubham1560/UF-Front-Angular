@@ -30,7 +30,7 @@
                 <br>
                 <div class="uf-auth-buttons-div">
                     <button class="uf-auth-right-button" mat-button type="submit"
-                        [title]="registrationForm.valid?'Register': 'data is ambiguous'"
+                        [title]="registrationForm.valid?'Register': 'Please enter valid details to continue'"
                         [disabled]='!registrationForm.valid || disableButton'>
                         <span *ngIf="!disableButton">Register</span>
                         <span *ngIf="disableButton"> Registering......</span>
