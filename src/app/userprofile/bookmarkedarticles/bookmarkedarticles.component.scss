@@ -8,6 +8,11 @@ table {
     
 }
 
+table {
+    width: 100%;
+  }
+  
+
 // .border{
     // border: 1px solid black;
 // }
@@ -47,8 +52,9 @@ table {
     border-radius: 5px;
 }
 
-.uf-heading-wrapper{
-    height: 1em;
+.uf-heading-wrapper-ghost{
+    height: 2em;
+    background-color: lightgray;
 }
 
 .ghost{

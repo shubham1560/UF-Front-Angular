@@ -8,6 +8,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule, MatCellDef, MatRowDef} from '@angular/material/table';
+
 
 @NgModule({
   declarations: [],
@@ -23,8 +25,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     MatMenuModule,
     MatTabsModule,
     MatPaginatorModule,
+    MatTableModule,
   ],
   exports:[
+    MatTableModule,
     MatPaginatorModule,
     MatTabsModule,
     MatToolbarModule,

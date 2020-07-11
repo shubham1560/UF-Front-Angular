@@ -6,6 +6,7 @@ import { UserprofileService } from '../services/userprofile/userprofile.service'
 import { MaterialModule } from '../shared/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BookmarkedarticlesComponent } from './bookmarkedarticles/bookmarkedarticles.component';
+import {MatTableModule, MatCellDef, MatRowDef} from '@angular/material/table';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { BookmarkedarticlesComponent } from './bookmarkedarticles/bookmarkedarti
     UserprofileRoutingModule,
     MaterialModule,
     FlexLayoutModule,
+    MatTableModule,
   ],
   providers: [UserprofileService ,],
 })

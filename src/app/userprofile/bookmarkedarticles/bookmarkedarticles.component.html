@@ -1,50 +1,137 @@
-<div id="bookmarkedArticles">
+<div class="mat-elevation-z8">
+    <mat-form-field style="display: inline;">
+        <mat-label>Filter the title</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+    <mat-paginator style="display: inline;" [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
 
-    <mat-paginator [length]="23" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
-    </mat-paginator>
+    <table mat-table [dataSource]="dataSource">
 
-    <div *ngFor="let article of bookmarkedArticles">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let article" style="border: none; padding: 10px;">
+                <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
 
-        <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
+                    <div>Branch:</div>
 
-            <div>Branch:</div>
-
-            <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
-                style="flex-direction:row !important;height: 100px;">
-                <!-- <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}" class="uf-resp-image-div"
-                style="background-size: 100% 100%;"></div> -->
-                <div fxFlex="80%">
+                    <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+                        style="flex-direction:row !important;height: 100px;">
+                        <div fxFlex="80%">
 
 
-                    <mat-card-content style="padding-left: 10px;">
-                        <h5 class="uf-heading-wrapper">{{article.article}}</h5>
+                            <mat-card-content style="padding-left: 10px;">
+                                <p class="uf-heading-wrapper">{{article.article}}</p>
 
-                        <p class="uf-paragraph-wrapper">
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                            Description
-                            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                            Japan.
-                        </p>
+                                <p class="uf-paragraph-wrapper">
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from
+                                    Japan.
+                                    Description
+                                    The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog
+                                    from
+                                    Japan.
+                                </p>
+                            </mat-card-content>
+
+                        </div>
+                    </div>
+                    <mat-card-content style="padding-top: 5px;">
+                        <span style="float: left;">Root:</span>
+                        <span style="float: right;">
+                            <b>{{article.get_article.author.first_name}}</b>
+                            <!-- bookmark yes/no -->
+                        </span>
                     </mat-card-content>
-
-                </div>
-            </div>
-            <mat-card-content style="padding-top: 5px;">
-                <span style="float: left;">Root:</span>
-                <span style="float: right;">
-                    <b>{{article.get_article.author.first_name}}</b>
-                    <!-- bookmark yes/no -->
-                </span>
-            </mat-card-content>
-        </mat-card>
-        <br>
-    </div>
+                </mat-card>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
 </div>
+
+
+<div *ngIf="isLoading">
+
+    <mat-card *ngFor="let dummy of ' '.repeat(ghostEl).split(''), let x = index"
+        style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px; margin-bottom: 20px;">
+        <mat-card-header class="ghost" style="height: 1em; margin-bottom: 3px;width: 60%">
+            <!-- <div mat-card-avatar class="example-header-image"></div> -->
+            <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}}</mat-card-title> -->
+            <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
+        </mat-card-header>
+
+        <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+            style="flex-direction:row !important;height: 100px;">
+            <!-- <div class="uf-resp-image-div ghost" style="background-size: 100% 100%;"></div> -->
+            <div fxFlex="80%">
+
+
+                <mat-card-content style="padding-left: 10px;">
+                    <p class="uf-heading-wrapper-ghost"></p>
+
+                    <p class="uf-paragraph-wrapper-ghost">
+                        <!-- <img class="img" height="100" width="100" [src]="article.featured_image_thumbnail"
+                        style="float: left; padding-right: 10px;"> -->
+                    </p>
+                </mat-card-content>
+
+            </div>
+        </div>
+        <mat-card-content style="padding-top: 5px;">
+            <span style="float: left;" class="footer-card ghost"></span>
+            <span style="float: right;" class="footer-card ghost">
+            </span>
+        </mat-card-content>
+    </mat-card>
+
+
+
+</div>
+
+<!-- 
+<div *ngFor="let article of bookmarkedArticles">
+
+    <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
+
+        <div>Branch:</div>
+
+        <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+            style="flex-direction:row !important;height: 100px;">
+            <div [ngStyle]="{background: 'url('+article.featured_image_thumbnail+')'}" class="uf-resp-image-div"
+                style="background-size: 100% 100%;"></div>
+            <div fxFlex="80%">
+
+
+                <mat-card-content style="padding-left: 10px;">
+                    <h5 class="uf-heading-wrapper">{{article.article}}</h5>
+
+                    <p class="uf-paragraph-wrapper">
+                        Description
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                        Japan.
+                        Description
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                        Japan.
+                        Description
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                        Japan.
+                        Description
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                        Japan.
+                    </p>
+                </mat-card-content>
+
+            </div>
+        </div>
+        <mat-card-content style="padding-top: 5px;">
+            <span style="float: left;">Root:</span>
+            <span style="float: right;">
+                <b>{{article.get_article.author.first_name}}</b>
+                bookmark yes/no
+            </span>
+        </mat-card-content>
+    </mat-card>
+    <br>
+</div> -->
