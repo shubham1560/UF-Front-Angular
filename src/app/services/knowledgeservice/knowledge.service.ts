@@ -45,4 +45,10 @@ export class DataService {
     return `${this.base_knowledge_url}`;
   }
 
+  addBookmarkArticle(article_id: string){
+    this.called_url = `${this.base_knowledge_url}bookmark_this_article/`;
+    const body = {"article_id": article_id};
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
 }

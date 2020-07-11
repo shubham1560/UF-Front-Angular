@@ -5,7 +5,13 @@
             <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
                 <!-- <mat-card-header> -->
                         
-                        <div>Branch:</div>
+                        <span>Branch:</span>
+                        <span style="float: right; cursor: pointer;">
+                            <mat-icon matSuffix (click)="addBokmark(article.id)" *ngIf="article.bookmarked">bookmark</mat-icon>
+                            <mat-icon matSuffix (click)="addBokmark(article.id)" *ngIf="!article.bookmarked">bookmark_border</mat-icon>
+                            <!-- bookmark {{article.bookmarked}}  -->
+                            <!-- <button mat-button (click)="addBokmark(article.id)">Bo</button> -->
+                        </span>
                 <!-- <div mat-card-avatar class="example-header-image"></div> -->
                 <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.id}}</mat-card-title> -->
                 <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
@@ -53,8 +59,8 @@
                     <span style="float: left;">Root:</span>
                     <span style="float: right;">
                         <b>{{article.getAuthor.first_name}}</b>
-                        <!-- bookmark yes/no -->
                     </span>
+                    
                 </mat-card-content>
                 <!-- <mat-card-actions> -->
                 <!-- <button mat-button>LIKE</button> -->

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 @Component({
   selector: 'app-all-articles',
@@ -9,20 +10,44 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 })
 export class AllArticlesComponent implements OnInit {
 
-  result: Int32Array[];
+  result: any;
   error;
   newResult: [];
   totalArticles: number;
   numRecords: number = 5;
   start: number = 0;
-  ghostEl:number = 5
+  ghostEl: number = 5
   end: number = this.start + this.numRecords;
   endReached = false;
   isLoading = true;
   constructor(
     private knowledgeService: DataService,
     private logger: LoggerService,
+    private authService: AuthService,
   ) { }
+
+  addBokmark(article_id) {
+    if (this.authService.isLoggedIn()) {
+      console.log(article_id);
+      this.knowledgeService.addBookmarkArticle(article_id).subscribe(
+        result => {
+          console.log(result);
+          for (var i = 0; i < this.result.length; i++) {
+            if (this.result[i].id == article_id) {
+              this.result[i].bookmarked = !this.result[i].bookmarked!;
+            }
+          }
+          // this.result = []
+        }, error => {
+          console.log(error);
+        }
+      )
+    }
+    else{
+      console.log("Please Log in first");
+      
+    }
+  }
 
   getNextPage(start = this.start, end = this.end): [] {
     console.log(start, end);
@@ -42,7 +67,7 @@ export class AllArticlesComponent implements OnInit {
         }
       )
     }
-    if(this.start <= this.totalArticles && this.end >= this.totalArticles || this.start>this.totalArticles){
+    if (this.start <= this.totalArticles && this.end >= this.totalArticles || this.start > this.totalArticles) {
       this.endReached = true;
       this.isLoading = false;
     }
@@ -68,5 +93,9 @@ export class AllArticlesComponent implements OnInit {
     this.logger.logData('uf-all-articles', this);
   }
 
+  identify(index, item) {
+    console.log(index)
+    return index;
+  }
 
 }
