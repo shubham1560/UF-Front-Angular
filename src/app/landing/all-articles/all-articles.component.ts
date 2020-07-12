@@ -3,7 +3,8 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { HeaderComponent } from 'src/app/shared/header/header.component';
+import { LoginpromptComponent} from '../../shared/loginprompt/loginprompt.component'
 
 @Component({
   selector: 'app-all-articles',
@@ -48,7 +49,7 @@ export class AllArticlesComponent implements OnInit {
             message= "Bookmark Removed"
           }
           this._snackBar.open(message, action, {
-            duration: 1000,
+            duration: 5000,
           });
           // this.result = []
         }, error => {
@@ -58,6 +59,9 @@ export class AllArticlesComponent implements OnInit {
       
     }
     else{
+      this._snackBar.openFromComponent(LoginpromptComponent, {
+        duration: 5000,
+      });
       console.log("Please Log in first");
       
     }
