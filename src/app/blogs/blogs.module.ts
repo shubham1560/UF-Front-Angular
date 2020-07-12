@@ -10,11 +10,12 @@ import { BlogsRoutingModule } from './blogs-routing.module';
 import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import { AuthService } from '../services/authservice/auth.service';
 import { DataService } from '../services/knowledgeservice/knowledge.service';
+import { SeecommentsComponent } from './seecomments/seecomments.component';
 
 
 
 @NgModule({
-  declarations: [ArticleListComponent, ArticleDetailComponent, CommentsComponent, BlogsComponent, ArticleNewComponent],
+  declarations: [ArticleListComponent, ArticleDetailComponent, CommentsComponent, BlogsComponent, ArticleNewComponent, SeecommentsComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
