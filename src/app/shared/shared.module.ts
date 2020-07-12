@@ -6,6 +6,7 @@ import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import { HeaderComponent } from './header/header.component';
 import {MaterialModule} from './material.module';
 import { LoginpromptComponent } from './loginprompt/loginprompt.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -13,6 +14,12 @@ import { LoginpromptComponent } from './loginprompt/loginprompt.component'
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [LoggerService, AuthService, DataService]
 })

@@ -12,6 +12,7 @@ import { DataService } from '../services/knowledgeservice/knowledge.service';
 import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MaterialModule } from '../shared/material.module';
+import { LoginpromptComponent } from './loginprompt/loginprompt.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { MaterialModule } from '../shared/material.module';
     PasswordresetComponent,
     ActivateAccountComponent,
     PasswordresetFormComponent,
+    LoginpromptComponent,
  ],
   imports: [
     CommonModule,

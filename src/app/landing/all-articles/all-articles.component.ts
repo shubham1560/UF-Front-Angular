@@ -4,8 +4,11 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
-import { LoginpromptComponent} from '../../shared/loginprompt/loginprompt.component'
-
+// import { LoginpromptComponent } from '../../shared/loginprompt/loginprompt.component'
+import { MatDialog } from '@angular/material/dialog';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { LoginComponent } from 'src/app/auth/login/login.component';
+import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.component'
 @Component({
   selector: 'app-all-articles',
   templateUrl: './all-articles.component.html',
@@ -27,26 +30,27 @@ export class AllArticlesComponent implements OnInit {
     private knowledgeService: DataService,
     private logger: LoggerService,
     private authService: AuthService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   addBokmark(article_id) {
-    
+
     if (this.authService.isLoggedIn()) {
       var message = "Hola";
       var action = "";
       this.knowledgeService.addBookmarkArticle(article_id).subscribe(
-        (result:any) => {
+        (result: any) => {
           // console.log(result);
           for (var i = 0; i < this.result.length; i++) {
             if (this.result[i].id == article_id) {
               this.result[i].bookmarked = !this.result[i].bookmarked!;
             }
           }
-          if(result.bookmarked){
+          if (result.bookmarked) {
             message = "Bookmark Added"
-          }else{
-            message= "Bookmark Removed"
+          } else {
+            message = "Bookmark Removed"
           }
           this._snackBar.open(message, action, {
             duration: 5000,
@@ -56,14 +60,19 @@ export class AllArticlesComponent implements OnInit {
           // console.log(error);
         }
       )
-      
+
     }
-    else{
-      this._snackBar.openFromComponent(LoginpromptComponent, {
-        duration: 5000,
+    else {
+      const dialogRef = this.dialog.open(LoginpromptComponent);
+
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(`Dialog result: ${result}`);
       });
+      // this._snackBar.openFromComponent(LoginpromptComponent, {
+      //   duration: 5000,
+      // });
       console.log("Please Log in first");
-      
+
     }
   }
 

@@ -13,6 +13,8 @@ import { LandingModule } from './landing/landing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent} from './shared/header/header.component'
 import { UrlconfigService } from "./services/urlconfig.service"
+import { FormsModule } from '@angular/forms'  
+import { ReactiveFormsModule} from '@angular/forms' 
 
 
 
@@ -45,6 +47,8 @@ import { UrlconfigService } from "./services/urlconfig.service"
     BrowserAnimationsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [LoggerService, AuthService, DataService, UrlconfigService],
   bootstrap: [AppComponent]
