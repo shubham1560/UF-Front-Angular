@@ -1,3 +1,7 @@
-<p>article-detail works!</p>
-
-Detail of the Article will be here
+<div id="uf-article-detail">
+    <pre>
+        {{article.data | json}}
+    </pre>
+    <h2>{{article.data.title}}</h2>
+    <div [innerHTML]="article.data.article_body"></div>
+</div>

@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from '../authservice/auth.service';
+import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from '../urlconfig.service';
 
 @Injectable({
@@ -49,6 +47,11 @@ export class DataService {
     this.called_url = `${this.base_knowledge_url}bookmark_this_article/`;
     const body = {"article_id": article_id};
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  getArticleById(article_id: string){
+    this.called_url = `${this.base_knowledge_url}articles/${article_id}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
 }
