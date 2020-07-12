@@ -1,19 +1,58 @@
 <div id="uf-article-detail">
-    <!-- <pre>
+    <div *ngIf="!isLoading">
+        <!-- <pre>
         {{article.data | json}}
     </pre> -->
-    <h2>{{article.data?.title}}</h2>
-    <div class="uf-article-image">
-        <img [src]="article.data?.featured_image" width="100%" height="100%">
+        <p class="uf-article-title">{{article.data?.title}}</p>
+        <div class="uf-article-image">
+            <img [src]="article.data?.featured_image" width="100%" height="100%">
+
+        </div>
+        <div class="uf-article-body" [innerHTML]="article.data?.article_body"></div>
+        <br><br>
+        <div class="uf-author-details">
+            Author Details Section
+
+        </div>
+        <br><br><br>
+        <!-- <pre> -->
+        <!-- {{article.data?.getAuthor | json}} -->
+        <!-- </pre> -->
+    </div>
+
+    <div *ngIf="isLoading" id="ghost">
+        <p class="uf-article-title ghost-heading ghost">
+            !
+        </p>
+
+        <div class="uf-article-image ">
+            <div class="ghost ghost-image">
+
+            </div>
+        </div>
+
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost ghost-body-trail"></p>
+        <div style="height: 40px;"></div>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost"></p>
+        <p class="uf-article-body ghost-body ghost ghost-body-trail"></p>
+        <br>
+
+        <div class="uf-author-details ghost">
+
+        </div>
+        <br><br>
+
 
     </div>
-    <div [innerHTML]="article.data?.article_body"></div>
-    <br><br>
-    <div class="uf-author-details">
-    Author Details Section
-    
-    </div>
-    <pre>
-        {{article.data?.getAuthor | json}}
-    </pre>
 </div>

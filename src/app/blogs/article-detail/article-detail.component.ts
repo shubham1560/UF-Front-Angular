@@ -18,6 +18,7 @@ export class ArticleDetailComponent implements OnInit {
 
   article_id: string;
   article: any ={};
+  isLoading = true;
 
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class ArticleDetailComponent implements OnInit {
         this.knowledge.getArticleById(this.article_id).subscribe(
           result=>{
             this.article = result;
+            this.isLoading = false;
           }, error =>{
             this.article = {};
             console.log(error);

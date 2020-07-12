@@ -1,8 +1,8 @@
 .uf-article-image{
-    width: 500px;
-    height: 400px;
+    width: 100%;
+    height: auto;
     text-align: center;
-    padding: 50px;
+    padding: 30px 10px;
     margin: auto;
 }
 
@@ -13,4 +13,64 @@
     border-radius: 5px;
     text-align: center;
     padding-top: 30px;
+}
+
+.uf-article-title{
+    font-weight: 300px;
+    font-size: 20px;
+}
+
+.uf-article-body{
+    font-weight: 150px;
+}
+
+.ghost-image{
+    height: 200px;
+    width: 100%;
+}
+
+.ghost-heading{
+    width: 100%;
+}
+
+.ghost-body{
+    height: 1em;
+    margin: 5px 0px;
+}
+
+.ghost-body-trail{
+    width: 40%;
+}
+
+
+@media(min-width: 768px){
+    .uf-article-image{
+        width: 60%;
+        height: auto;
+        text-align: center;
+        padding: 50px;
+        margin: auto;
+    }
+    
+    .ghost-heading{
+        width: 60%;
+    }
+
+    .ghost-image{
+        height: 300px;
+    }
+    
+    
+    .uf-article-title{
+        font-weight: 300px;
+        font-size: 26px;
+    }
+    
+
+}
+
+.ghost{
+    background-color: lightgray;
+    color: lightgray; 
+    border: none;
 }
