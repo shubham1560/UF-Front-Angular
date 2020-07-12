@@ -11,15 +11,24 @@ import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import { AuthService } from '../services/authservice/auth.service';
 import { DataService } from '../services/knowledgeservice/knowledge.service';
 import { SeecommentsComponent } from './seecomments/seecomments.component';
+import { MaterialModule } from '../shared/material.module';
 
 
 
 @NgModule({
-  declarations: [ArticleListComponent, ArticleDetailComponent, CommentsComponent, BlogsComponent, ArticleNewComponent, SeecommentsComponent],
+  declarations: [
+    ArticleListComponent,
+    ArticleDetailComponent, 
+    CommentsComponent, 
+    BlogsComponent, 
+    ArticleNewComponent, 
+    SeecommentsComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     BlogsRoutingModule,
+    MaterialModule,
   ],
   providers: [LoggerService, AuthService, DataService],
 })

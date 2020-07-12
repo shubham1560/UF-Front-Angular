@@ -11,10 +11,10 @@ import { DataService } from './services/knowledgeservice/knowledge.service';
 import { LoggerService } from './services/cx-menu/realtimelogger.service';
 import { LandingModule } from './landing/landing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { HeaderComponent} from './shared/header/header.component'
+import { HeaderComponent } from './shared/header/header.component'
 import { UrlconfigService } from "./services/urlconfig.service"
-import { FormsModule } from '@angular/forms'  
-import { ReactiveFormsModule} from '@angular/forms' 
+import { FormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 
 
 
@@ -50,7 +50,7 @@ import { ReactiveFormsModule} from '@angular/forms'
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [LoggerService, AuthService, DataService, UrlconfigService],
+  providers: [LoggerService, AuthService, DataService, UrlconfigService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

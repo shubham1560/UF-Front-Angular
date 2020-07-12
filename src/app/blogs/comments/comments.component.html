@@ -1,15 +1,10 @@
 
+<mat-dialog-content class="mat-typography">
 <div id="article-comment">
 
-    <hr><hr>
-    <!-- <p>comments works!</p> -->
-
-    <div class="uf-comments">
-        See Comments
-    </div>
-
     <pre>
-
+    
+        <!-- {{article_from_modal | json}} -->
 
     {{data["response"] | json}}
 
@@ -18,3 +13,7 @@
     
 
 </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>close</button>
+  </mat-dialog-actions>

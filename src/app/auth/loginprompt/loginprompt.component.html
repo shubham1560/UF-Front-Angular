@@ -1,21 +1,28 @@
+<p align="end" style="margin-top: -20px;margin-right: -1rem;">
+    <mat-icon mat-dialog-close matSuffix>
+        close
+    </mat-icon>
+</p>
 <div class="uf-auth-wrapper" style="max-height: 400px;" id="auth-login">
     <div class="uf-auth-form">
         <!-- <div class="uf-auth-logo-space"></div> -->
-        <div class="uf-auth-form-header" style="padding-top: 0px; padding-bottom:5px ;">Sign in to get personalised experience</div>
+        <div class="uf-auth-form-header" style="padding-top: 0px; padding-bottom:5px ;">Sign in to get personalised
+            experience</div>
 
         <div class="uf-auth-form-body" style="border: none !important" *ngIf="isLoggedIn">
             <p style="text-align: center;">
                 Already Logged in
-            </p> 
+            </p>
         </div>
 
         <div class="uf-auth-form-body" style="border: none !important; padding: none !important;" *ngIf="!isLoggedIn">
             <div>
                 <button id="googleBtn" mat-button class="uf-googlelogin">
                     <div style="padding-top: 5px; float: left;">
-                        <img height="25px" style="vertical-align: baseline;" src="https://img.icons8.com/officexs/40/000000/google-logo.png"/>
+                        <img height="25px" style="vertical-align: baseline;"
+                            src="https://img.icons8.com/officexs/40/000000/google-logo.png" />
                     </div>
-                        Continue with google
+                    Continue with google
                 </button>
             </div>
 
@@ -38,17 +45,19 @@
                     <mat-error>Password(minimum length is 10)</mat-error>
                 </mat-form-field>
                 <div class="uf-auth-buttons-div">
-                    <a class="uf-auth-left-button" style="padding:0px;" href="#/auth/passwordreset" mat-button color="primary">Reset
+                    <a class="uf-auth-left-button" style="padding:0px;" href="#/auth/passwordreset" mat-button
+                        color="primary">Reset
                         Password</a>
                     <button class="uf-auth-right-button" mat-button color="primary" type="submit"
-                        [title]="loginForm.valid?'login': 'Please enter a valid email and password'" [disabled]='!loginForm.valid || signingIn'>
+                        [title]="loginForm.valid?'login': 'Please enter a valid email and password'"
+                        [disabled]='!loginForm.valid || signingIn'>
 
                         <span *ngIf="!signingIn">Login</span>
-                        <span *ngIf="signingIn" >.......</span>
+                        <span *ngIf="signingIn">.......</span>
                         <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
 
                     </button>
-                    
+
                 </div>
                 <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar>
             </form>
@@ -58,8 +67,7 @@
         </div>
         <br>
         <div class="uf-auth-form-footer " style="border: none">
-            No Account? <a style="text-decoration: none;" color="primary" href="#/auth/register" >Create one</a>
+            No Account? <a style="text-decoration: none;" color="primary" href="#/auth/register">Create one</a>
         </div>
     </div>
 </div>
-

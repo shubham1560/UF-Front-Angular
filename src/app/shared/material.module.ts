@@ -9,7 +9,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule } from '@angular/material/table';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
@@ -46,6 +46,14 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule
-  ]
+  ],
+  providers: [{
+    provide: MatDialogRef,
+    useValue: []
+  },
+  {
+    provide: MAT_DIALOG_DATA,
+    useValue: []
+  }],
 })
 export class MaterialModule { }

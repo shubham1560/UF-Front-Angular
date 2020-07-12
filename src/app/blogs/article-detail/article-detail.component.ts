@@ -17,7 +17,7 @@ export class ArticleDetailComponent implements OnInit {
   ) { }
 
   article_id: string;
-    article: any ={};
+  article: any ={};
 
 
   ngOnInit() {

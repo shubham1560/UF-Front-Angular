@@ -2,6 +2,6 @@
     <pre>
         {{article.data | json}}
     </pre>
-    <h2>{{article.data.title}}</h2>
-    <div [innerHTML]="article.data.article_body"></div>
+    <h2>{{article.data?.title}}</h2>
+    <div [innerHTML]="article.data?.article_body"></div>
 </div>
