@@ -1,4 +1,4 @@
-<div class="uf-auth-wrapper" style="max-height: 300px;" id="auth-login">
+<div class="uf-auth-wrapper" style="max-height: 400px;" id="auth-login">
     <div class="uf-auth-form">
         <!-- <div class="uf-auth-logo-space"></div> -->
         <div class="uf-auth-form-header" style="padding-top: 0px; padding-bottom:5px ;">Sign in to get personalised experience</div>
@@ -63,46 +63,3 @@
     </div>
 </div>
 
-<br><br><br><br>
-<!-- <div class="wrapper" style="display: none;">
-    <div class="box">
-        <h1>Login to Your Account!</h1>
-        <div class="button-wrapper">
-            <button id="googleBtn">
-                <div>Continue with Google</div>
-            </button>
-        </div>
-        <div class="or">- OR -</div>
-        <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-            <div class="input-box">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp"
-                    placeholder="something@example.com">
-            </div>
-            <div class="input-box">
-                <label for="password">Password</label>
-                <input type="password" formControlName='password' id="password" placeholder="••••••••••••">
-            </div>
-            <button routerLink="/auth/passwordreset" class="forgot">Forgot Password</button>
-            <div class="button-wrapper" style="margin-top: 50px;">
-                <button id="uf-auth-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'"
-                    [disabled]='!loginForm.valid'>
-                    Login<div></div>
-                </button>
-            </div>
-        </form>
-        <div class="register-box">
-            Don't have an account? <button routerLink="/auth/register">Register</button>
-        </div>
-    </div>
-</div> -->
-
-<!-- <pre>
-Password Touched:   {{loginForm.get('password').touched}} <br>
-Email Touched:      {{loginForm.get('email').touched}} <br>
-Password Dirty:   {{loginForm.get('password').dirty}} <br>
-Email Dirty:      {{loginForm.get('email').dirty}} <br>
-
-Form valid:         {{loginForm.valid}} <br>
-Form value:         {{loginForm.value | json}}
-</pre> -->
