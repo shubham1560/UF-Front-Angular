@@ -1,19 +1,18 @@
-
 <mat-dialog-content class="mat-typography">
-<div id="article-comment">
+    <div id="article-comment">
 
-    <pre>
-    
+        <pre>
+
         <!-- {{article_from_modal | json}} -->
 
     {{data["response"] | json}}
 
     </pre>
-    <!-- Comments will go in here, the id will be fetched from the url using snap or observable -->
-    
+        <!-- Comments will go in here, the id will be fetched from the url using snap or observable -->
 
-</div>
+
+    </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>close</button>
-  </mat-dialog-actions>
+</mat-dialog-actions>

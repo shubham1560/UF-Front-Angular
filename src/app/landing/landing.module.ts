@@ -7,14 +7,13 @@ import { MaterialModule } from '../shared/material.module';
 import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import { AuthService } from '../services/authservice/auth.service';
 import { DataService } from '../services/knowledgeservice/knowledge.service';
-import { FooterComponent } from '../shared/footer/footer.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeaturedComponent } from './featured/featured.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, AllArticlesComponent, FooterComponent, FeaturedComponent],
+  declarations: [LandingComponent, AllArticlesComponent, FeaturedComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
@@ -22,7 +21,7 @@ import { FeaturedComponent } from './featured/featured.component';
     FlexLayoutModule,
     InfiniteScrollModule,
   ],
-  exports:[LandingComponent, AllArticlesComponent, FooterComponent ],
+  exports:[LandingComponent, AllArticlesComponent,],
   providers:[LoggerService, AuthService, DataService],
   bootstrap: [LandingComponent]
 })

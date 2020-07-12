@@ -12,6 +12,7 @@ import { AuthService } from '../services/authservice/auth.service';
 import { DataService } from '../services/knowledgeservice/knowledge.service';
 import { SeecommentsComponent } from './seecomments/seecomments.component';
 import { MaterialModule } from '../shared/material.module';
+import { FooterComponent } from '../shared/footer/footer.component';
 
 
 
@@ -22,7 +23,8 @@ import { MaterialModule } from '../shared/material.module';
     CommentsComponent, 
     BlogsComponent, 
     ArticleNewComponent, 
-    SeecommentsComponent
+    SeecommentsComponent,
+    FooterComponent,
     ],
   imports: [
     CommonModule,

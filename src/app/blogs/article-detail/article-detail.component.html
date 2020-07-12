@@ -1,7 +1,19 @@
 <div id="uf-article-detail">
-    <pre>
+    <!-- <pre>
         {{article.data | json}}
-    </pre>
+    </pre> -->
     <h2>{{article.data?.title}}</h2>
+    <div class="uf-article-image">
+        <img [src]="article.data?.featured_image" width="100%" height="100%">
+
+    </div>
     <div [innerHTML]="article.data?.article_body"></div>
+    <br><br>
+    <div class="uf-author-details">
+    Author Details Section
+    
+    </div>
+    <pre>
+        {{article.data?.getAuthor | json}}
+    </pre>
 </div>
