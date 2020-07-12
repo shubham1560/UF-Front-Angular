@@ -1,7 +1,7 @@
-<div class="uf-auth-wrapper" id="auth-login">
+<div class="uf-auth-wrapper" style="max-height: 300px;" id="auth-login">
     <div class="uf-auth-form">
-        <div class="uf-auth-logo-space"></div>
-        <div class="uf-auth-form-header">LOGO OF THE APPLICATION</div>
+        <!-- <div class="uf-auth-logo-space"></div> -->
+        <div class="uf-auth-form-header" style="padding: 0px">Sign in to get personalised experience</div>
 
         <div class="uf-auth-form-body" style="border: none !important" *ngIf="isLoggedIn">
             <p style="text-align: center;">
@@ -13,7 +13,7 @@
             <div>
                 <button id="googleBtn" mat-button class="uf-googlelogin">
                     <div style="padding-top: 5px; float: left;">
-                        <img height="25px" src="https://img.icons8.com/officexs/40/000000/google-logo.png"/>
+                        <img height="25px" style="vertical-align: baseline;" src="https://img.icons8.com/officexs/40/000000/google-logo.png"/>
                     </div>
                         Continue with google
                 </button>
@@ -53,13 +53,12 @@
                 <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar>
             </form>
         </div>
-        <div class="uf-auth-form-footer error" *ngIf="signInFailure">
+        <div class="uf-auth-form-footer error" style="border: none" *ngIf="signInFailure">
             {{errorMessage}}
         </div>
         <br>
-        <div class="uf-auth-form-footer ">
-            New to Urbanfrauds? <a style="text-decoration: none;" color="primary" href="#/auth/register" >Create an
-                account</a>
+        <div class="uf-auth-form-footer " style="border: none">
+            No Account? <a style="text-decoration: none;" color="primary" href="#/auth/register" >Create one</a>
         </div>
     </div>
 </div>
