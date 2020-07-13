@@ -17,8 +17,11 @@ export class ArticleDetailComponent implements OnInit {
   ) { }
 
   article_id: string;
-  article: any ={};
+  article: any = {};
   isLoading = true;
+  image: string = ""
+  loadOriginalImage: boolean = false;
+  authorImage = "";
 
 
   ngOnInit() {
@@ -26,16 +29,30 @@ export class ArticleDetailComponent implements OnInit {
       params => {
         this.article_id = params.get('article');
         this.knowledge.getArticleById(this.article_id).subscribe(
-          result=>{
-            this.article = result;
+          (result: any) => {
+            this.article = result.data;
             this.isLoading = false;
-          }, error =>{
+            console.log(this.article.getAuthor.header_image);
+            console.log(this.article.getAuthor.google_pic);
+            if (this.article.getAuthor.google_pic){
+              this.authorImage = this.article.getAuthor.google_pic;
+            }
+            else{
+              this.authorImage = this.article.getAuthor.header_image
+            }
+          }, error => {
             this.article = {};
             console.log(error);
           }
         )
       }
     )
+
+    setTimeout(() => {
+      this.loadOriginalImage = true;
+      // console.log("yo maan");
+    }, 6000);
+
 
     this.logger.logData('uf-article-detail', this)
   }

@@ -1,23 +1,26 @@
 <div id="uf-article-detail">
     <div *ngIf="!isLoading">
-        <!-- <pre>
-        {{article.data | json}}
-    </pre> -->
-        <p class="uf-article-title">{{article.data?.title}}</p>
+        <p class="uf-article-title">{{article?.title}}</p>
+
+        
         <div class="uf-article-image">
-            <img [src]="article.data?.featured_image" width="100%" height="100%">
+
+            <img [hidden]="loadOriginalImage" id="featured_image_thumbnail" [src]="article?.featured_image_thumbnail"
+                width="100%" height="100%">
+            <img [hidden]="!loadOriginalImage" id="featured_image" [src]="article?.featured_image" width="100%"
+                height="100%">
 
         </div>
-        <div class="uf-article-body" [innerHTML]="article.data?.article_body"></div>
+        <div class="uf-article-body" [innerHTML]="article?.article_body"></div>
         <br><br>
-        <div class="uf-author-details">
-            Author Details Section
-
+        <div class="author-detail author-about" style="font-weight: 200">
+            <img [src]="authorImage" class="uf-author-image" alt="author image">
+            <p class="author-heading"><b>Author: </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}} <br>
+                {{article.getAuthor?.about}}
+            </p>
+            
         </div>
         <br><br><br>
-        <!-- <pre> -->
-        <!-- {{article.data?.getAuthor | json}} -->
-        <!-- </pre> -->
     </div>
 
     <div *ngIf="isLoading" id="ghost">
