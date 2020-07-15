@@ -44,6 +44,7 @@ export class BookmarkedarticlesComponent implements OnInit {
         this.dataSource.paginator = this.paginator
         console.log(this.dataSource)
         this.isLoading = false;
+        console.log(this)
       }, error => {
         this.error = error;
       }

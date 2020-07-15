@@ -54,4 +54,14 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
+  postUseArticle(article, useful){
+    this.called_url = `${this.base_knowledge_url}knowledge_view/`
+    const body = {"article": article, 'useful': useful, 'viewed': 'true'}
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  ifArticleBookmarkedByUser(article_id){
+    this.called_url = `${this.base_knowledge_url}knowledge_view/${article_id}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

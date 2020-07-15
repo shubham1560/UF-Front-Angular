@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CommentsComponent } from '../comments/comments.component';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-seecomments',
@@ -11,34 +13,39 @@ import { ActivatedRoute } from '@angular/router';
 export class SeecommentsComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
-      private route: ActivatedRoute,
-    ) { }
+    private route: ActivatedRoute,
+    private dataService: DataService,
+  ) { }
 
   article: string;
+  comments: any;
+  responses: number;
 
   ngOnInit(): void {
   }
-  
 
-  openDialog(){
+
+
+  openDialog() {
     this.route.paramMap.subscribe(
-      params =>{
+      params => {
         this.article = params.get('article')
         // this.article = "testing";
+
         const dialogRef = this.dialog.open(CommentsComponent, {
           // width: '250px', 
           // width: '100%',
-          data: {name: this.article}
+          data: { name: this.article }
         });
 
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed');
         });
-    
+
       }
     )
 
-    
+
   }
 
 }

@@ -23,7 +23,6 @@ export class ArticleDetailComponent implements OnInit {
   loadOriginalImage: boolean = false;
   authorImage = "";
 
-
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {

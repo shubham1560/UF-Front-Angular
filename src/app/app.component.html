@@ -1,6 +1,6 @@
 
 <app-header></app-header>
-<!-- <div [@slideInAnimation]="o.isActivated? o.activatedRoute: ''"></div> -->
+<div [@slideInAnimation]="o.isActivated? o.activatedRoute: ''"></div>
 <div>
     <router-outlet #o="outlet" (activate)="onActivate($event)">
         

@@ -13,6 +13,7 @@ import { DataService } from '../services/knowledgeservice/knowledge.service';
 import { SeecommentsComponent } from './seecomments/seecomments.component';
 import { MaterialModule } from '../shared/material.module';
 import { FooterComponent } from '../shared/footer/footer.component';
+import { KbuseComponent } from './kbuse/kbuse.component';
 
 
 
@@ -25,6 +26,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
     ArticleNewComponent, 
     SeecommentsComponent,
     FooterComponent,
+    KbuseComponent,
     ],
   imports: [
     CommonModule,

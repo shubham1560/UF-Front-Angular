@@ -1,0 +1,30 @@
+<div id="uf-kbuse" style="text-align: center;">
+
+    <div *ngIf="!isLoading" class="uf-kbuse">
+        <div *ngIf="!found_useful">
+            Did You find this article useful?
+            <br>
+            <button mat-raised-button color="primary" (click)="markUseful(true)">Yes</button>
+            <button mat-raised-button (click)="markUseful(false)">No</button>
+        </div>
+        <div *ngIf="found_useful" style="color: green">
+            You found this article useful
+        </div>
+        <br>
+        <button mat-button color="primary" (click)="bookmark()" *ngIf="bookmarked">Remove the bookmark</button>
+        <button mat-button color="primary" (click)="bookmark()" *ngIf="!bookmarked">Bookmark this article</button>
+    </div>
+
+    <div class="uf-kbuse" *ngIf="isLoading">
+        <div style="text-align: center;">
+            <div style="margin: auto; height: 30px; width: 280px; background-color: lightgray;">
+            </div>
+            <button mat-raised-button style="color: lightgray; background-color: lightgray;">Ghost</button>
+            <button mat-raised-button style="color: lightgray; background-color: lightgray;">Ghost</button>
+            <br> <br>
+            <div style="margin: auto; height: 30px; width: 240px; background-color: lightgray;">
+
+            </div>
+        </div>
+    </div>
+</div>
