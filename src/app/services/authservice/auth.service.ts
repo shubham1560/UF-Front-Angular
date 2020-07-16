@@ -28,8 +28,16 @@ export class AuthService {
   body: {};
   header:{};
 
+  getToken(){
+    return this.cookieService.get('token');
+  }
+
   getHeader() {
     return this.urlService.getHeader();
+  }
+
+  getFileUploadHeader(){
+    return this.urlService.getFileUploadHeader();
   }
 
   getLoggedInUserDetail() {

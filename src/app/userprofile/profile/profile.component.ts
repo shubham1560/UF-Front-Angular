@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/services/authservice/auth.service';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DeleteusermodalComponent } from 'src/app/userprofile/deleteusermodal/deleteusermodal.component';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -19,23 +20,31 @@ export class ProfileComponent implements OnInit {
     private loggerService: LoggerService,
     private authService: AuthService,
     private dialog: MatDialog,
+    private http: HttpClient,
   ) { }
-  
-  image :string;
-  response:any = {};
+
+  image: string;
+  response: any = {};
   error: any = {};
   name: string;
   isLoading: boolean = true;
+  email: string;
+  about: string;
+  imageUploading: boolean = false;
+  buttonText = "Upload Image";
 
   ngOnInit(): void {
     this.profile.getUserData().subscribe(
-      result =>{
+      result => {
         this.response = result;
+        console.log(result);
         this.isLoading = false;
-        this.image = this.response.user.profile_pic;
+        this.image = this.response.user.header_image ? this.response.user.header_image : this.response.user.profile_pic;
         this.name = this.response.user.first_name + " " + this.response.user.last_name;
-      }, 
-      error =>{
+        this.email = this.response.user.email;
+        this.about = this.response.user.about;
+      },
+      error => {
         this.error = error;
       }
     )
@@ -43,16 +52,27 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  deleteUser(){
+  onImageChange(event) {
+    this.imageUploading = true;
+    this.buttonText = "Uploading...."
+    console.log(event.target.files[0]);
+    const uploadImage = new FormData();
+    uploadImage.append('profile', event.target.files[0], event.target.files[0].name);
+    uploadImage.append('token', this.authService.getToken());
+    console.log("requesting");
+    // this.http.post('http://127.0.0.1:8000/userprofile/edit_user_image/', uploadImage, {headers: this.authService.getFileUploadHeader()}).subscribe(
+    this.http.post('http://127.0.0.1:8000/userprofile/edit_user_image/', uploadImage).subscribe(
+      result => {
+        console.log(result);
+        this.imageUploading=false;
+        this.ngOnInit();
+        this.buttonText = "Upload Image";
+      },
+      error => { console.log(error) }
+    )
+  }
+
+  deleteUser() {
     this.dialog.open(DeleteusermodalComponent);
-  //   this.profile.deleteUser().subscribe(
-  //     response =>{
-  //       this.response = response;
-  //       this.authService.logoutUser();
-  //     },
-  //     error=>{
-  //       this.error = error;
-  //     }
-  //   )
   }
 }
