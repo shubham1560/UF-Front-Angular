@@ -64,4 +64,10 @@ export class DataService {
     this.called_url = `${this.base_knowledge_url}knowledge_view/${article_id}/`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  addFeedback(article_id: string, feedback: string){
+    this.called_url = `${this.base_knowledge_url}articles/${article_id}/feedback/`;
+    const body = {"feedback": feedback};
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

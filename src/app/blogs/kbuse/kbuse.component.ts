@@ -94,10 +94,10 @@ export class KbuseComponent implements OnInit {
         data => {
           this.bookmarked = !this.bookmarked;
           if (this.bookmarked) {
-            var message = "Bookmarked the article"
+            var message = "Added the bookmark to the article!";
           }
           else {
-            var message = "Removed the bookmark"
+            var message = "Removed the bookmark to the article!";
           }
           this.showSnackBar(message);
         }

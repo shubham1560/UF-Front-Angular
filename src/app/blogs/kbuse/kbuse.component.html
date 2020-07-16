@@ -11,10 +11,22 @@
             You found this article useful
         </div>
         <br>
-        <button mat-button color="primary" (click)="bookmark()" *ngIf="bookmarked">Remove the bookmark</button>
-        <button mat-button color="primary" (click)="bookmark()" *ngIf="!bookmarked">Bookmark this article</button>
+        <button mat-button color="accent" (click)="bookmark()" *ngIf="bookmarked">
+            Remove the bookmark
+            <mat-icon matSuffix color="accent">bookmark_border
+            </mat-icon>
+        </button>
+        <button mat-button color="primary" (click)="bookmark()" *ngIf="!bookmarked">
+            Bookmark this article
+            <mat-icon matSuffix color="primary">bookmark
+            </mat-icon>
+        </button>
 
-        <button mat-stroked-button color="primary" (click)="sendFeedback()">Send Feedback</button>
+        <button mat-stroked-button color="primary" (click)="sendFeedback()">
+            Send Feedback
+            <mat-icon matSuffix color="primary">feedback
+            </mat-icon>
+        </button>
     </div>
 
     <div class="uf-kbuse" *ngIf="isLoading">
