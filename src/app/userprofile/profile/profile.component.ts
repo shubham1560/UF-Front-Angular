@@ -3,6 +3,8 @@ import { UserprofileService } from 'src/app/services/userprofile/userprofile.ser
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { DeleteusermodalComponent } from 'src/app/userprofile/deleteusermodal/deleteusermodal.component';
 
 
 @Component({
@@ -15,6 +17,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profile: UserprofileService,
     private loggerService: LoggerService,
+    private authService: AuthService,
+    private dialog: MatDialog,
   ) { }
   
   image :string;
@@ -40,16 +44,15 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteUser(){
-    // this.profile.deleteUser().subscribe(
-    //   response =>{
-    //     this.response = response;
-    //     this.authService.logoutUser();
-    //   },
-    //   error=>{
-    //     this.error = error;
-    //   }
-    // )
+    this.dialog.open(DeleteusermodalComponent);
+  //   this.profile.deleteUser().subscribe(
+  //     response =>{
+  //       this.response = response;
+  //       this.authService.logoutUser();
+  //     },
+  //     error=>{
+  //       this.error = error;
+  //     }
+  //   )
   }
 }
-
-
