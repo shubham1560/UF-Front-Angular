@@ -1,0 +1,29 @@
+<!-- Feedback for: {{article_from_modal.name}} -->
+
+<form (ngSubmit)=save() [formGroup]="feedbackForm">
+
+
+
+    <mat-icon mat-button style="float: right; margin:-20px;" color="warn" mat-dialog-close matSuffix>
+        close
+    </mat-icon>
+    Send Feedback:
+
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Feedback:</mat-label>
+        <textarea rows="10" matInput formControlName="feedback"></textarea>
+    </mat-form-field>
+    <br>
+
+    <div>
+
+        <button style="float: right;" mat-button color="primary" type="submit"
+            [disabled]='!feedbackForm.valid || disableButton '>
+            <mat-icon matSuffix>send</mat-icon>
+        </button>
+
+
+
+    </div>
+</form>
+<mat-progress-bar *ngIf="disableButton" mode="indeterminate"></mat-progress-bar>

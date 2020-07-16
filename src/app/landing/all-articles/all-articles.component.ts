@@ -3,11 +3,7 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HeaderComponent } from 'src/app/shared/header/header.component';
-// import { LoginpromptComponent } from '../../shared/loginprompt/loginprompt.component'
 import { MatDialog } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { LoginComponent } from 'src/app/auth/login/login.component';
 import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.component'
 @Component({
   selector: 'app-all-articles',

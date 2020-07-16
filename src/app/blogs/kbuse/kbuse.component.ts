@@ -5,6 +5,7 @@ import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.compo
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FeedbackComponent } from '../feedback/feedback.component';
 
 @Component({
   selector: 'app-kbuse',
@@ -67,9 +68,7 @@ export class KbuseComponent implements OnInit {
           (data: any) => {
             console.log(data);
             var message = "We are glad that you find the article useful"
-            this._snackBar.open(message, "", {
-              duration: 5000,
-            });
+            this.showSnackBar(message);
           }
         )
       } else {
@@ -77,17 +76,14 @@ export class KbuseComponent implements OnInit {
         this.knowledge.postUseArticle(this.article, 'false').subscribe(
           data => {
             console.log(data);
-            var message = "We will be working on it"
-            this._snackBar.open(message, "", {
-              duration: 5000,
-            });
-
+            this.showSnackBar("we will working on improving the article");
+            this.openDialog();
           }
         )
       }
     }
     else {
-      const dialogRef = this.dialog.open(LoginpromptComponent);
+      this.openLoginPrompt()
     }
   }
 
@@ -97,23 +93,47 @@ export class KbuseComponent implements OnInit {
       this.knowledge.addBookmarkArticle(this.article).subscribe(
         data => {
           this.bookmarked = !this.bookmarked;
-          if (this.bookmarked){
+          if (this.bookmarked) {
             var message = "Bookmarked the article"
-            
           }
-          else{
+          else {
             var message = "Removed the bookmark"
           }
-          this._snackBar.open(message, "", {
-            duration: 5000,
-          });
+          this.showSnackBar(message);
         }
       )
     }
     else {
-      const dialogRef = this.dialog.open(LoginpromptComponent);
+      this.openLoginPrompt()
     }
 
+  }
+
+  sendFeedback() {
+    console.log("open the modal");
+
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(FeedbackComponent, {
+      // width: '250px', 
+      // width: '100%',
+      data: { name: this.article }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  openLoginPrompt() {
+    const dialogRef = this.dialog.open(LoginpromptComponent);
+  }
+
+  showSnackBar(message) {
+    var message = message;
+    this._snackBar.open(message, "", {
+      duration: 5000,
+    });
   }
 
 }

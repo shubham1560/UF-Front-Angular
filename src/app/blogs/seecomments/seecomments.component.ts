@@ -14,7 +14,6 @@ export class SeecommentsComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     private route: ActivatedRoute,
-    private dataService: DataService,
   ) { }
 
   article: string;
@@ -30,7 +29,6 @@ export class SeecommentsComponent implements OnInit {
     this.route.paramMap.subscribe(
       params => {
         this.article = params.get('article')
-        // this.article = "testing";
 
         const dialogRef = this.dialog.open(CommentsComponent, {
           // width: '250px', 

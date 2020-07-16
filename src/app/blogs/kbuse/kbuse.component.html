@@ -5,7 +5,7 @@
             Did You find this article useful?
             <br>
             <button mat-raised-button color="primary" (click)="markUseful(true)">Yes</button>
-            <button mat-raised-button (click)="markUseful(false)">No</button>
+            <button mat-raised-button color="background" (click)="markUseful(false)">No</button>
         </div>
         <div *ngIf="found_useful" style="color: green">
             You found this article useful
@@ -13,6 +13,8 @@
         <br>
         <button mat-button color="primary" (click)="bookmark()" *ngIf="bookmarked">Remove the bookmark</button>
         <button mat-button color="primary" (click)="bookmark()" *ngIf="!bookmarked">Bookmark this article</button>
+
+        <button mat-stroked-button color="primary" (click)="sendFeedback()">Send Feedback</button>
     </div>
 
     <div class="uf-kbuse" *ngIf="isLoading">

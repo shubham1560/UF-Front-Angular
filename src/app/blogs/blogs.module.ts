@@ -14,6 +14,7 @@ import { SeecommentsComponent } from './seecomments/seecomments.component';
 import { MaterialModule } from '../shared/material.module';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { KbuseComponent } from './kbuse/kbuse.component';
+import { FeedbackComponent } from './feedback/feedback.component';
 
 
 
@@ -27,6 +28,7 @@ import { KbuseComponent } from './kbuse/kbuse.component';
     SeecommentsComponent,
     FooterComponent,
     KbuseComponent,
+    FeedbackComponent,
     ],
   imports: [
     CommonModule,
