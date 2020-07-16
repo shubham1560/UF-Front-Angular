@@ -110,8 +110,12 @@ export class KbuseComponent implements OnInit {
   }
 
   sendFeedback() {
-    console.log("open the modal");
-
+    if (this.authService.isLoggedIn()) {
+      console.log("open the modal");
+      this.openDialog();
+    } else {
+      this.openLoginPrompt();
+    }
   }
 
   openDialog() {
