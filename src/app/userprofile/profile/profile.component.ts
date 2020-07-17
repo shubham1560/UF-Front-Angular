@@ -58,23 +58,29 @@ export class ProfileComponent implements OnInit {
   }
 
   onImageChange(event) {
-    this.imageUploading = true;
-    this.buttonText = "Uploading...."
-    const uploadImage = new FormData();
-    uploadImage.append('profile', event.target.files[0], event.target.files[0].name);
-    uploadImage.append('token', this.authService.getToken());
-    const url = `${this.url.base_url}userprofile/edit_user_image/`
-    this.http.post(url, uploadImage).subscribe(
-      result => {
-        this.imageUploading=false;
-        this.ngOnInit();
-        this.buttonText = "Upload Image";
-      },
-      error => { console.log(error) }
-    )
+    if (event.target.files[0]) {
+      this.imageUploading = true;
+      this.buttonText = "Uploading...."
+      const uploadImage = new FormData();
+      uploadImage.append('profile', event.target.files[0], event.target.files[0].name);
+      uploadImage.append('token', this.authService.getToken());
+      const url = `${this.url.base_url}userprofile/edit_user_image/`
+      this.http.post(url, uploadImage).subscribe(
+        result => {
+          this.imageUploading = false;
+          this.ngOnInit();
+          this.buttonText = "Upload Image";
+        },
+        error => { console.log(error) }
+      )
+    }
+    else{
+      console.log("hawabaazi");
+      
+    }
   }
 
-  editUser(){
+  editUser() {
     console.log("Opening edit form");
     const dialogRef = this.dialog.open(UserprofileeditComponent, {
       data: this.response,
