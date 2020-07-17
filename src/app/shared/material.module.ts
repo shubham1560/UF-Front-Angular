@@ -11,6 +11,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule } from '@angular/material/table';
 import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -30,9 +31,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatProgressSpinnerModule,
   ],
   exports:[
     MatSnackBarModule,
+    MatProgressSpinnerModule,
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,

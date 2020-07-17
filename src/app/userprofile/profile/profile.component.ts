@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DeleteusermodalComponent } from 'src/app/userprofile/deleteusermodal/deleteusermodal.component';
 import { HttpClient } from '@angular/common/http';
+import { UrlconfigService } from 'src/app/services/urlconfig.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private dialog: MatDialog,
     private http: HttpClient,
+    private url: UrlconfigService,
   ) { }
 
   image: string;
@@ -55,15 +57,12 @@ export class ProfileComponent implements OnInit {
   onImageChange(event) {
     this.imageUploading = true;
     this.buttonText = "Uploading...."
-    console.log(event.target.files[0]);
     const uploadImage = new FormData();
     uploadImage.append('profile', event.target.files[0], event.target.files[0].name);
     uploadImage.append('token', this.authService.getToken());
-    console.log("requesting");
-    // this.http.post('http://127.0.0.1:8000/userprofile/edit_user_image/', uploadImage, {headers: this.authService.getFileUploadHeader()}).subscribe(
-    this.http.post('http://127.0.0.1:8000/userprofile/edit_user_image/', uploadImage).subscribe(
+    const url = `${this.url.base_url}userprofile/edit_user_image/`
+    this.http.post(url, uploadImage).subscribe(
       result => {
-        console.log(result);
         this.imageUploading=false;
         this.ngOnInit();
         this.buttonText = "Upload Image";
