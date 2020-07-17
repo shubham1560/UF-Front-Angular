@@ -7,6 +7,9 @@ import { MatDialog } from '@angular/material';
 import { DeleteusermodalComponent } from 'src/app/userprofile/deleteusermodal/deleteusermodal.component';
 import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
+import { UserprofileeditComponent } from 'src/app/userprofile/userprofileedit/userprofileedit.component';
+import { FormBuilder } from '@angular/forms';
+
 
 
 @Component({
@@ -69,6 +72,18 @@ export class ProfileComponent implements OnInit {
       },
       error => { console.log(error) }
     )
+  }
+
+  editUser(){
+    console.log("Opening edit form");
+    const dialogRef = this.dialog.open(UserprofileeditComponent, {
+      data: this.response,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ngOnInit();
+    });
   }
 
   deleteUser() {

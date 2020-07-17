@@ -35,4 +35,13 @@ export class UserprofileService {
     this.url = `${this.knowledgeService.getKnowledgeUrl()}bookmarked_articles/`;
       return this.httService.get(this.url, {headers:this.header} )
   }
+
+  editUserData(user_data){
+    this.url = `${this.base_userprofile_url}edit_user_data/`;
+    const body = {"first_name": user_data.first_name ,
+                  "last_name": user_data.last_name,
+                  "about": user_data.about,
+    };
+    return this.httService.post(this.url, body, {headers: this.header});
+  }
 }
