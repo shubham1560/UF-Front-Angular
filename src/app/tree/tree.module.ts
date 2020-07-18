@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TreeRoutingModule } from './tree-routing.module';
 import { RootComponent } from './root/root.component';
-import {NgxGraphModule } from '@swimlane/ngx-graph';
 
 
 @NgModule({
@@ -11,7 +10,6 @@ import {NgxGraphModule } from '@swimlane/ngx-graph';
   imports: [
     CommonModule,
     TreeRoutingModule,
-    NgxGraphModule,
   ]
 })
 export class TreeModule { }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Layout, Edge, Node } from '@swimlane/ngx-graph';
 
 
 @Component({
