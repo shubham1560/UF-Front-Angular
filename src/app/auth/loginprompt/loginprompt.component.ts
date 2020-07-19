@@ -48,19 +48,17 @@ export class LoginpromptComponent implements OnInit {
   ngOnInit() {
 
     this.socialService.authState.subscribe((user) => {
-      console.log(user);
       var access_token = user.authToken;
       this.authService.login_facebook(access_token).subscribe(
         (result:any)=>{
-          // console.log(result);
           this.cookieService.set('token', result.token);
             // this.router.navigate(['/welcome']);
             window.location.href = "welcome";
             this.signingIn = false;
         },
         error=>{
-          console.log(error);
           this.signingIn = false;
+          this.errorMessage = "Problem signing in with your facebook account";
         }
       )
       // this.loggedIn = (user != null);
@@ -90,12 +88,7 @@ export class LoginpromptComponent implements OnInit {
           window.location.href = "welcome"
         },
         error => {
-          this.errorMessage = error.error;
-          if (error.status == 400) {
-            this.errorMessage = "Incorrect Login Credentials";
-          } else {
-            this.errorMessage = "We are sorry that you forgot your credentials, please wait for a couple of minutes to try again, ";
-          }
+          this.errorMessage = error.error.message;
           this.error = error;
           this.signInFailure = true;
           this.signingIn = false;
@@ -131,7 +124,6 @@ export class LoginpromptComponent implements OnInit {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
         var access_token = googleUser.getAuthResponse().access_token;
-        console.log(access_token);
         this.authService.login_google(access_token).subscribe(
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);
@@ -140,12 +132,11 @@ export class LoginpromptComponent implements OnInit {
             this.signingIn = false;
           },
           error => {
-            console.log(error);
             this.signingIn = false;
+            this.errorMessage = "Problem Signing in with your google account"
           }
         )
         //YOUR CODE HERE
-        console.log(this.authService.isLoggedIn() ? "user is logged in" : "not logged in");
 
 
       }, (error) => {

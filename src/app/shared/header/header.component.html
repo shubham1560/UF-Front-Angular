@@ -13,7 +13,7 @@
 
     <span class="sign-in" *ngIf="isLoggedIn">
 
-    <div [ngStyle]="{background: 'url('+image+')'}" style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;" [matMenuTriggerFor]="beforeMenu"></div>
+    <div [ngStyle]="{background: 'url('+image+')'}" style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(255, 255, 255);" [matMenuTriggerFor]="beforeMenu"></div>
     <mat-menu #beforeMenu="matMenu" xPosition="before">
         <div mat-menu-item>Hi, <b> {{user.first_name}}</b></div>
         <button mat-menu-item routerLink="/user_profile"> My Profile</button>

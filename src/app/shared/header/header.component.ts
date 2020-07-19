@@ -8,30 +8,37 @@ import { AuthService } from 'src/app/services/authservice/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: any;
-  user:any ={};
-  error:any;
-  image = "https://urbanfraud-test.s3.amazonaws.com/article/featured_image_thumbs/jonathan-bowers-UZJ5ZpYzaLI-unsplash.jpg"
+  user: any = {};
+  error: any;
+  image = "assets/pf.png";
 
   constructor(
-    private authService : AuthService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
-    if(this.isLoggedIn){
+    if (this.isLoggedIn) {
+      console.log("calling func");
       this.authService.getLoggedInUserDetail().subscribe(
-        (response:any) => {
+        (response: any) => {
           this.user = response.user;
-          
+          console.log(this.user);
+          if (this.user.profile_pic) {
+            this.image = this.user.profile_pic;
+          }
+          if (this.user.profile) {
+            this.image = this.user.profile;
+          }
         },
-        error =>{
+        error => {
           this.error = error;
         }
       )
     }
   }
 
-  logout(){
+  logout() {
     this.authService.logoutUser();
   }
 

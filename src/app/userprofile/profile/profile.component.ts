@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     private url: UrlconfigService,
   ) { }
 
-  image: string;
+  image: string = "assets/pf.png";
   response: any = {};
   error: any = {};
   name: string;
@@ -45,6 +45,9 @@ export class ProfileComponent implements OnInit {
         console.log(result);
         this.isLoading = false;
         this.image = this.response.user.header_image ? this.response.user.header_image : this.response.user.profile_pic;
+        if(!this.image){
+          this.image = "assets/pf.png";
+        }
         this.name = this.response.user.first_name + " " + this.response.user.last_name;
         this.email = this.response.user.email;
         this.about = this.response.user.about;

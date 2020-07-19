@@ -27,7 +27,7 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error>Password too short(minimum allowed length is 10)</mat-error>
+                    <mat-error>Password too short(minimum allowed length is 8)</mat-error>
                 </mat-form-field>
                 <div *ngIf="errorMessage" class="uf-auth-form-footer error" color="warn">
                     {{errorMessage}}
