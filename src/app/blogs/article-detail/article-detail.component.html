@@ -2,7 +2,7 @@
     <div *ngIf="!isLoading">
         <p class="uf-article-title">{{article?.title}}</p>
 
-        
+
         <div class="uf-article-image">
 
             <img [hidden]="loadOriginalImage" id="featured_image_thumbnail" [src]="article?.featured_image_thumbnail"
@@ -15,17 +15,19 @@
         <br><br>
         <div class="author-detail author-about" style="font-weight: 200">
             <img [src]="authorImage" class="uf-author-image" alt="author image">
-            <p class="author-heading"><b>Author: </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}} <br>
+            <p class="author-heading"><b>Author: </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
+                <br>
                 {{article.getAuthor?.about}}
             </p>
-            
+
         </div>
         <br><br><br>
     </div>
 
     <div *ngIf="isLoading" id="ghost">
-        <p class="uf-article-title ghost-heading ghost">
-            !
+    <!-- <div> -->
+        <p class="uf-article-title ghost-heading ghost" style="height:40px">
+            
         </p>
 
         <div class="uf-article-image ">
