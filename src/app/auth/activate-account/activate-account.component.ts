@@ -15,6 +15,7 @@ export class ActivateAccountComponent implements OnInit {
   // token: string;
   // message: string;
   // icon: string;
+  isAuthorised = false;
 
   constructor(private route: ActivatedRoute,
               private authService: AuthService,
@@ -36,6 +37,7 @@ export class ActivateAccountComponent implements OnInit {
         this.data["activated"] = true;
         this.data["icon"] = "verified_user";
         this.data["response"] = response;
+        this.isAuthorised = true;
         // console.log(response);
       },
       error => {
@@ -43,8 +45,7 @@ export class ActivateAccountComponent implements OnInit {
         this.data["activated"] = false;
         this.data["icon"] = "report_problem";
         this.data["error"] = error;
-        console.log(error);
-        
+        this.isAuthorised = true;
       }
     )
     this.loggerService.logData("activateaccount", this)

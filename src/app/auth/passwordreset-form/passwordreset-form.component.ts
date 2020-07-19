@@ -32,8 +32,10 @@ export class PasswordresetFormComponent implements OnInit {
   message: string;
   attempt: boolean = false;
   reset: boolean;
-  response;
+  response: any;
   error;
+  reseting = false;
+  username: string;
   constructor(private route: ActivatedRoute,
     private fb: FormBuilder,
     private authService: AuthService,
@@ -49,8 +51,9 @@ export class PasswordresetFormComponent implements OnInit {
 
     )
     this.authService.token_valid(this.token).subscribe(
-      response => {
+      (response:any) => {
         console.log(response);
+        this.username = response.username;
         this.response = response;
       }, error => {
         console.log(error);
@@ -58,8 +61,8 @@ export class PasswordresetFormComponent implements OnInit {
         this.attempt = true;
         this.reset = false;
         this.icon = "report_problem"
-        if(!this.error.error["user_exist"]){
-          this.message="This url is not valid for any user";
+        if (!this.error.error["user_exist"]) {
+          this.message = "This url is not valid for any user";
         }
         else if (!this.error.error["is_active"]) {
           this.message = "The user with this link has not yet activated their account. Please activate your account first";
@@ -71,28 +74,33 @@ export class PasswordresetFormComponent implements OnInit {
 
     this.passwordResetForm = this.fb.group({
       passwordGroup: this.fb.group({
-        password: ['', [Validators.required, Validators.minLength(10)]],
-        confirm_password: ['', [Validators.required, Validators.minLength(10)]]
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirm_password: ['', [Validators.required, Validators.minLength(8)]]
       }, { validators: passwordMatch }),
     })
 
     this.loggerService.logData("auth-passwordresetform", this);
+    console.log(this);
   }
 
   resetPassword() {
-    this.attempt = true;
+    this.reseting = true;
     this.authService.resetPassword(this.token, this.passwordResetForm.get('passwordGroup.password').value).subscribe(
       response => {
         console.log(response);
         this.icon = "verified_user";
         this.message = "the password has been changed for the user";
         this.reset = true;
+        this.attempt = true;
+        this.reseting = false;
       },
       error => {
         console.log(error);
         this.icon = "report_problem"
         this.message = "the url is invalid"
         this.reset = false;
+        this.attempt = true;
+        this.reseting = false;
       }
     )
   }

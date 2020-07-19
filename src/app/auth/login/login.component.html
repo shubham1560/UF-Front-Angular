@@ -1,3 +1,6 @@
+<mat-progress-bar color="warn" *ngIf="signingIn" mode="indeterminate"></mat-progress-bar>
+
+
 <div class="uf-auth-wrapper" id="auth-login">
     <div class="uf-auth-form">
         <div class="uf-auth-logo-space"></div>
@@ -11,7 +14,7 @@
 
         <div class="uf-auth-form-body" *ngIf="!isLoggedIn">
             <div>
-                <button id="googleBtn" mat-button class="uf-googlelogin">
+                <button id="googleBtn" mat-button class="uf-googlelogin" (click)="signInWithGoogle()">
                     <div style="padding-top: 5px; float: left;">
                         <img height="25px" style="vertical-align: baseline;"
                             src="https://img.icons8.com/officexs/40/000000/google-logo.png" />
@@ -48,8 +51,11 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error>Password(minimum length is 10)</mat-error>
+                    <mat-error>Password(minimum length is 8)</mat-error>
                 </mat-form-field>
+                <div class="uf-auth-form-footer error" *ngIf="signInFailure">
+                    {{errorMessage}}
+                </div>
                 <div class="uf-auth-buttons-div">
                     <button class="uf-auth-left-button" mat-button color="primary"
                         routerLink="/auth/passwordreset">Forgot
@@ -59,17 +65,16 @@
                         [disabled]='!loginForm.valid || signingIn'>
 
                         <span *ngIf="!signingIn">Login</span>
-                        <span *ngIf="signingIn">Logging...</span>
+                        <span *ngIf="signingIn">.....</span>
                         <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
 
                     </button>
                 </div>
-                <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar>
+                <br>
+                <!-- <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar> -->
             </form>
         </div>
-        <div class="uf-auth-form-footer error" *ngIf="signInFailure">
-            {{errorMessage}}
-        </div>
+        
         <br>
         <div class="uf-auth-form-footer ">
             No Account? <a style="text-decoration: none;" color="primary" routerLink="/auth/register"> Create One</a>

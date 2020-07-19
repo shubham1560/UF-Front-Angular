@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   response;
   error;
   errorMessage;
-  isLoggedIn : boolean;
+  isLoggedIn: boolean;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -37,24 +37,28 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ) { }
 
   signInWithFB(): void {
+    this.signingIn = true;
     this.socialService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
 
-  ngOnInit() {
 
+  signInWithGoogle(): void {
+    this.signingIn = true;
+  }
+
+  ngOnInit() {
     this.socialService.authState.subscribe((user) => {
       console.log(user);
       var access_token = user.authToken;
       this.authService.login_facebook(access_token).subscribe(
-        (result:any)=>{
-          // console.log(result);
+        (result: any) => {
           this.cookieService.set('token', result.token);
-            // this.router.navigate(['/welcome']);
-            window.location.href = "welcome"
+          window.location.href = "welcome";
+          this.signingIn = false;
         },
-        error=>{
+        error => {
           console.log(error);
-          
+
         }
       )
       // this.loggedIn = (user != null);
@@ -65,7 +69,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
       this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(10)]]
+        password: ['', [Validators.required, Validators.minLength(8)]]
       })
       // this.testData();
     }
@@ -122,6 +126,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   public attachSignin(element) {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
+        this.signingIn = true;
 
         var access_token = googleUser.getAuthResponse().access_token;
         console.log(access_token);
@@ -130,8 +135,10 @@ export class LoginComponent implements OnInit, AfterViewInit {
             this.cookieService.set('token', response.token);
             // this.router.navigate(['/welcome']);
             window.location.href = "welcome"
+            this.signingIn = false;
           },
           error => {
+            this.signingIn = false;
             console.log(error)
           }
         )

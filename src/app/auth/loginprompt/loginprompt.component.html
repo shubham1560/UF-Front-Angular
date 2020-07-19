@@ -8,6 +8,7 @@
         <!-- <div class="uf-auth-logo-space"></div> -->
         <div class="uf-auth-form-header" style="padding-top: 0px; padding-bottom:5px ;">Sign in to get personalised
             experience</div>
+        <mat-progress-bar mode="indeterminate" color="primary" *ngIf="signingIn"></mat-progress-bar>
 
         <div class="uf-auth-form-body" style="border: none !important" *ngIf="isLoggedIn">
             <p style="text-align: center;">
@@ -17,7 +18,7 @@
 
         <div class="uf-auth-form-body" style="border: none !important; padding: none !important;" *ngIf="!isLoggedIn">
             <div>
-                <button id="googleBtn" mat-button class="uf-googlelogin">
+                <button id="googleBtn" mat-button class="uf-googlelogin" (click)="signInWithGoogle()">
                     <div style="padding-top: 5px; float: left;">
                         <img height="25px" style="vertical-align: baseline;"
                             src="https://img.icons8.com/officexs/40/000000/google-logo.png" />
@@ -29,8 +30,7 @@
             <div>
                 <button (click)="signInWithFB()" mat-button class="uf-googlelogin">
                     <div style="padding-top: 5px; float: left;">
-                        <img height="25px" style="vertical-align: baseline;"
-                            src="assets/fb.png" />
+                        <img height="25px" style="vertical-align: baseline;" src="assets/fb.png" />
                     </div>
                     Continue with Facebook
                 </button>
@@ -51,8 +51,11 @@
                         [attr.aria-pressed]="hide">
                         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>
-                    <mat-error>Password(minimum length is 10)</mat-error>
+                    <mat-error>Password(minimum length is 8)</mat-error>
                 </mat-form-field>
+                <div class="uf-auth-form-footer error" style="border: none" *ngIf="signInFailure">
+                    {{errorMessage}}
+                </div>
                 <div class="uf-auth-buttons-div">
                     <a class="uf-auth-left-button" style="padding:0px;" href="#/auth/passwordreset" mat-button
                         color="primary">Reset
@@ -68,12 +71,10 @@
                     </button>
 
                 </div>
-                <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar>
+                <!-- <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar> -->
             </form>
         </div>
-        <div class="uf-auth-form-footer error" style="border: none" *ngIf="signInFailure">
-            {{errorMessage}}
-        </div>
+        
         <br>
         <div class="uf-auth-form-footer " style="border: none">
             No Account? <a style="text-decoration: none;" color="primary" href="#/auth/register">Create one</a>

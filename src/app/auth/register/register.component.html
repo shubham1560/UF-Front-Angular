@@ -1,3 +1,5 @@
+<mat-progress-bar *ngIf="disableButton" color="warn" mode="indeterminate"></mat-progress-bar>
+
 <div class="uf-auth-wrapper" id="auth-register">
     <div class="uf-auth-form">
         <div class="uf-auth-logo-space"></div>
@@ -27,18 +29,21 @@
                     </button>
                     <mat-error>Password too short(minimum allowed length is 10)</mat-error>
                 </mat-form-field>
-                <br>
+                <div *ngIf="errorMessage" class="uf-auth-form-footer error" color="warn">
+                    {{errorMessage}}
+                </div>
+                
                 <div class="uf-auth-buttons-div">
                     <button class="uf-auth-right-button" mat-button type="submit"
                         [title]="registrationForm.valid?'Register': 'Please enter valid details to continue'"
                         [disabled]='!registrationForm.valid || disableButton'>
                         <span *ngIf="!disableButton">Register</span>
-                        <span *ngIf="disableButton"> Registering......</span>
+                        <span *ngIf="disableButton"> ......</span>
 
-                        <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
+                        <mat-icon *ngIf="!disableButton" matSuffix style="margin: 0px 8px;">login</mat-icon>
                     </button>
                 </div>
-                <mat-progress-bar *ngIf="disableButton" color="primary" mode="indeterminate"></mat-progress-bar>
+                <br>
             </form>
         </div>
         <div *ngIf="registrationDone" class="uf-auth-form-body">
@@ -47,11 +52,8 @@
                     verified_user
                 </mat-icon>
                 <br>
-                Activation link has has been sent the email: {{user["email"]}}, please check the inbox
+                Activation link has has been sent to <b>{{user["email"]}}</b>, please check the inbox
             </div>
-        </div>
-        <div *ngIf="errorMessage" class="uf-auth-form-footer error">
-            {{errorMessage}}
         </div>
         <br>
 

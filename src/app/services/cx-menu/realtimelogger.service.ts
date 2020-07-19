@@ -10,8 +10,9 @@ export class LoggerService {
   constructor() { }
 
 
-  // Press altKey+ left_mouse_click to get the data of the component, give the id to all the components
+  // Press altKey+ right_mouse_click to get the data of the component, give the id to all the components
   logData(id: string, data: {}) {
+    console.log("logger")
       if (this.loggerEnable) {
         var a = document.getElementById(id);
         a["this"] = data;

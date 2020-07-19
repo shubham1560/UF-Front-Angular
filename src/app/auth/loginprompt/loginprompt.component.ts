@@ -37,7 +37,12 @@ export class LoginpromptComponent implements OnInit {
   ) { }
 
   signInWithFB(): void {
+    this.signingIn = true;
     this.socialService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
+  signInWithGoogle(): void {
+    this.signingIn = true;
   }
 
   ngOnInit() {
@@ -50,11 +55,12 @@ export class LoginpromptComponent implements OnInit {
           // console.log(result);
           this.cookieService.set('token', result.token);
             // this.router.navigate(['/welcome']);
-            window.location.href = "welcome"
+            window.location.href = "welcome";
+            this.signingIn = false;
         },
         error=>{
           console.log(error);
-          
+          this.signingIn = false;
         }
       )
       // this.loggedIn = (user != null);
@@ -65,7 +71,7 @@ export class LoginpromptComponent implements OnInit {
 
       this.loginForm = this.fb.group({
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(10)]]
+        password: ['', [Validators.required, Validators.minLength(8)]]
       })
       // this.testData();
     }
@@ -98,6 +104,8 @@ export class LoginpromptComponent implements OnInit {
     }
   }
 
+
+
   // testData() {
   //   // We can use setValue to set all the values in the form
   //   this.loginForm.patchValue({
@@ -122,17 +130,18 @@ export class LoginpromptComponent implements OnInit {
   public attachSignin(element) {
     this.auth2.attachClickHandler(element, {},
       (googleUser) => {
-
         var access_token = googleUser.getAuthResponse().access_token;
         console.log(access_token);
         this.authService.login_google(access_token).subscribe(
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);
             // this.router.navigate(['/welcome']);
-            window.location.href = "welcome"
+            window.location.href = "welcome";
+            this.signingIn = false;
           },
           error => {
-            console.log(error)
+            console.log(error);
+            this.signingIn = false;
           }
         )
         //YOUR CODE HERE

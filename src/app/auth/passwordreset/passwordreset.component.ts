@@ -48,16 +48,15 @@ export class PasswordresetComponent implements OnInit {
         this.disableButton = false;
         this.sendingLink = false;
         this.errorOccured = true;
-        if (!error.error["user_exist"]) {
-          this.message = "User with this email id doesn't exist";
+        if (!error.error.user_exist) {
+          this.message = "User with this email id doesn't exist!";
         }
-        if (error.error["user_exist"] && !error.error["is_active"]){
-          this.message = "The user has not activated his account yet, please activate your account";
+        else if (error.error.user_exist && !error.error.is_active){
+          this.message = "Please activate your account using the link you received when you registered!";
         }
-        if(error.error["user_exist"] && !error.error["token_exist"]){
-          this.message = "This is a server error, and since it has occured now, it shall be solved within a day";
+        else if(error.error["user_exist"] && !error.error["token_exist"]){
+          this.message = "This is a server error, we are working on it!";
         }
-        
       }
     );
   }
