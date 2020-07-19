@@ -50,6 +50,7 @@ export class RegisterComponent implements OnInit {
   errorMessage: string;
   error;
   response;
+  registering = false;
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private loggerService: LoggerService) { }
@@ -82,6 +83,7 @@ export class RegisterComponent implements OnInit {
     this.disableButton = true;
     console.log("Registered the user");
     console.log(this.registrationForm);
+    this.registering = true;
     this.user = {};
     this.user["email"] = this.registrationForm.value["email"];
     this.user["first_name"] = this.registrationForm.value["full_name"].split(" ")[0];
@@ -93,15 +95,16 @@ export class RegisterComponent implements OnInit {
         this.disableButton = true;
         this.response = response;
         console.log(response);
+        this.registering = false;
       },
       error => {
+        this.registering = false;
         // console.log(error.error["message"]);
         if (error.error["ue"]==true){
           this.errorMessage = error.error["message"];
         }else{
           this.errorMessage = "The email address is invalid";
         }
-        
         // this.errorMessage = error.error;
         this.error = error;
         this.disableButton = false;
