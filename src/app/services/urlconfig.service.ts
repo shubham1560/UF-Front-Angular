@@ -7,8 +7,8 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class UrlconfigService {
 
-  base_url = "http://127.0.0.1:8000/";           //local
-  // base_url="https://database1560.herokuapp.com/";          //dev
+  // base_url = "http://127.0.0.1:8000/";           //local
+  base_url="https://database1560.herokuapp.com/";          //dev
   // base_url = "https://uf-preprod.herokuapp.com/";          //preprod
 
 
