@@ -26,6 +26,15 @@
                 </button>
             </div>
 
+            <div>
+                <button (click)="signInWithFB()" mat-button class="uf-googlelogin">
+                    <div style="padding-top: 5px; float: left;">
+                        <img height="25px" style="vertical-align: baseline;"
+                            src="assets/fb.png" />
+                    </div>
+                    Continue with Facebook
+                </button>
+            </div>
             <!-- <div class="uf-auth-or">--OR--</div> -->
 
             <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">

@@ -57,6 +57,16 @@ export class AuthService {
 
   }
 
+  login_facebook(token: string){
+    const body = JSON.stringify({ "access_token": token });
+    const url = `${this.base_auth_url}create_user_facebook/`;
+    this.body = body;
+    this.url = url;
+    this.header = this.getHeader();
+    return this.httpService.post(url, body, { headers: this.getHeader() });
+  }
+
+
   // This method authenticates the backend for the google user and gets back the token for further request with authentication
   // This method takes the access token as parameter to get the token
   login_google(token: string) {

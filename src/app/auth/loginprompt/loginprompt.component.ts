@@ -6,6 +6,8 @@ import { CookieService } from 'ngx-cookie-service'
 import { PasswordresetFormComponent } from '../passwordreset-form/passwordreset-form.component';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Router } from '@angular/router';
+import { SocialAuthService } from "angularx-social-login";
+import { FacebookLoginProvider } from "angularx-social-login";
 
 declare const gapi: any;
 
@@ -31,9 +33,33 @@ export class LoginpromptComponent implements OnInit {
     private cookieService: CookieService,
     private loggerService: LoggerService,
     private router: Router,
+    private socialService: SocialAuthService,
   ) { }
 
+  signInWithFB(): void {
+    this.socialService.signIn(FacebookLoginProvider.PROVIDER_ID);
+  }
+
   ngOnInit() {
+
+    this.socialService.authState.subscribe((user) => {
+      console.log(user);
+      var access_token = user.authToken;
+      this.authService.login_facebook(access_token).subscribe(
+        (result:any)=>{
+          // console.log(result);
+          this.cookieService.set('token', result.token);
+            // this.router.navigate(['/welcome']);
+            window.location.href = "welcome"
+        },
+        error=>{
+          console.log(error);
+          
+        }
+      )
+      // this.loggedIn = (user != null);
+    });
+
     this.isLoggedIn = this.authService.isLoggedIn();
     if (!this.isLoggedIn) {
 

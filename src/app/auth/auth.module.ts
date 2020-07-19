@@ -13,6 +13,9 @@ import { LoggerService } from '../services/cx-menu/realtimelogger.service';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MaterialModule } from '../shared/material.module';
 import { LoginpromptComponent } from './loginprompt/loginprompt.component';
+import { SocialAuthService } from "angularx-social-login";
+ 
+
 
 
 @NgModule({
@@ -31,6 +34,6 @@ import { LoginpromptComponent } from './loginprompt/loginprompt.component';
     MatFormFieldModule,
     MaterialModule,
   ],
-  providers: [LoggerService, AuthService, DataService],
+  providers: [LoggerService, AuthService, DataService, SocialAuthService],
 })
 export class AuthModule { }

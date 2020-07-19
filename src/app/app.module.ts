@@ -14,9 +14,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeaderComponent } from './shared/header/header.component'
 import { UrlconfigService } from "./services/urlconfig.service"
 import { FormsModule } from '@angular/forms'
-import { ReactiveFormsModule } from '@angular/forms'
-
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import {
+  FacebookLoginProvider,
+  GoogleLoginProvider,
+} from 'angularx-social-login';
 
 // var routes = [
 //   { path: "", component: ArticleListComponent },
@@ -49,8 +52,26 @@ import { ReactiveFormsModule } from '@angular/forms'
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    SocialLoginModule,
   ],
-  providers: [LoggerService, AuthService, DataService, UrlconfigService,],
+  providers: [
+    LoggerService, 
+    AuthService, 
+    DataService, 
+    UrlconfigService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('300909670932138'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
