@@ -34,8 +34,8 @@
                 </div>
                 
                 <div class="uf-auth-buttons-div">
-                    <button class="uf-auth-right-button" mat-button type="submit"
-                        [title]="registrationForm.valid?'Register': 'Please enter valid details to continue'"
+                    <button class="uf-auth-right-button" mat-raised-button type="submit" color="primary"
+                        [title]="registrationForm.valid?'Register': 'Please enter valid details to register'"
                         [disabled]='!registrationForm.valid || disableButton'>
                         <span *ngIf="!disableButton">Register</span>
                         <span *ngIf="disableButton"> ......</span>

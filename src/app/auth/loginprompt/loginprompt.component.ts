@@ -46,17 +46,20 @@ export class LoginpromptComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    localStorage.setItem("redirect_url", window.location.href);
     this.socialService.authState.subscribe((user) => {
       var access_token = user.authToken;
       this.authService.login_facebook(access_token).subscribe(
-        (result:any)=>{
+        (result: any) => {
           this.cookieService.set('token', result.token);
-            // this.router.navigate(['/welcome']);
-            window.location.href = "welcome";
-            this.signingIn = false;
+          // this.router.navigate(['/welcome']);
+          // window.location.href = "welcome";
+          window.location.href = localStorage.getItem("redirect_url");
+          window.location.reload();
+          localStorage.clear();
+          this.signingIn = false;
         },
-        error=>{
+        error => {
           this.signingIn = false;
           this.errorMessage = "Problem signing in with your facebook account";
         }
@@ -85,7 +88,10 @@ export class LoginpromptComponent implements OnInit {
           this.signingIn = false;
           this.cookieService.set('token', response.token);
           // this.router.navigate(['/welcome']);
-          window.location.href = "welcome"
+          // window.location.href = "welcome"
+          window.location.href = localStorage.getItem("redirect_url");
+          window.location.reload()
+          localStorage.clear()
         },
         error => {
           this.errorMessage = error.error.message;
@@ -128,7 +134,10 @@ export class LoginpromptComponent implements OnInit {
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);
             // this.router.navigate(['/welcome']);
-            window.location.href = "welcome";
+            // window.location.href = "welcome";
+            window.location.href = localStorage.getItem("redirect_url");
+            window.location.reload()
+            localStorage.clear()
             this.signingIn = false;
           },
           error => {
@@ -140,7 +149,9 @@ export class LoginpromptComponent implements OnInit {
 
 
       }, (error) => {
-        alert(JSON.stringify(error, undefined, 2));
+        this.signingIn = false;
+        this.errorMessage = "User closed the login window, please try again"
+        // alert(JSON.stringify(error, undefined, 2));
       });
   }
 
