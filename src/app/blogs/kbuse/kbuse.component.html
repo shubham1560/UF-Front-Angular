@@ -1,15 +1,24 @@
 <div id="uf-kbuse" style="text-align: center;">
 
     <div *ngIf="!isLoading" class="uf-kbuse">
-        <div *ngIf="!found_useful">
+        <!-- <div *ngIf="!found_useful"> -->
+            <div>
             Did You find this article useful?
             <br>
-            <button mat-raised-button color="primary" (click)="markUseful(true)">Yes</button>
-            <button mat-raised-button color="background" (click)="markUseful(false)">No</button>
+            <button mat-raised-button (click)="markUseful(true)" [ngClass]="{'selected' : found_useful}">
+                <mat-icon matSuffix>
+                    thumb_up
+                </mat-icon>
+            </button>
+            <button mat-raised-button (click)="markUseful(false)" [ngClass]="{'selected' : found_useful == false}">
+                <mat-icon matSuffix>
+                    thumb_down
+                </mat-icon>
+            </button>
         </div>
-        <div *ngIf="found_useful" style="color: green">
+        <!-- <div *ngIf="found_useful" style="color: green">
             You found this article useful
-        </div>
+        </div> -->
         <br>
         <button mat-button color="accent" (click)="bookmark()" *ngIf="bookmarked">
             Remove the bookmark

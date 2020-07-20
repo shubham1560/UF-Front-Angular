@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FeedbackComponent } from '../feedback/feedback.component';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-kbuse',
@@ -20,10 +21,11 @@ export class KbuseComponent implements OnInit {
     private dialog: MatDialog,
     private route: ActivatedRoute,
     private _snackBar: MatSnackBar,
+    private loggerService: LoggerService,
   ) { }
 
   article = '';
-  found_useful = false;
+  found_useful: boolean;
   bookmarked: boolean;
   isLoading = true;
 
@@ -45,7 +47,7 @@ export class KbuseComponent implements OnInit {
       }
     )
 
-
+    this.loggerService.logData('uf-kbuse', this);
     // this.knowledge.postUseArticle()
   }
 
@@ -76,6 +78,7 @@ export class KbuseComponent implements OnInit {
         this.knowledge.postUseArticle(this.article, 'false').subscribe(
           data => {
             console.log(data);
+            this.found_useful = false;
             this.showSnackBar("we will working on improving the article");
             this.openDialog();
           }

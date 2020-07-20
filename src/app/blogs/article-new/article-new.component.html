@@ -1,7 +1,69 @@
-<div class="container">
+<div class="container-fluid" id="uf-article-new">
     <div class="row">
-        <div class="col-xs-12">
-            <p>article-new works!</p>
+        <div class="col-md-4">
+            <div class="text-options">
+                Text Options(for the text selected):
+                <br>
+                <button mat-raised-button (click)="makeBold()">
+                    <b>B </b>
+                </button> 
+                <button mat-raised-button (click)="makeItalic()">
+                    <i>I </i>
+                </button>
+                <button mat-raised-button (click)="makeHyperlink()">
+                    <u>hyperlink</u>
+                </button>
+                <br>
+                <br>
+                <button mat-raised-button (click)="makeTitle()">
+                    <h3>Title</h3>
+                </button>
+                <button mat-raised-button (click)="makeHighlight()">
+                    HighLight
+                </button>
+                <br>
+                <br>
+                <button mat-raised-button (click)="makeNewSection()">
+                    New Section
+                </button>
+                
+            </div>
+
+            <div class="image-button">
+                <button mat-raised-button>
+                    <label for="file-upload" class="custom-file-upload">
+                        add image
+                    </label>
+                    <input id="file-upload" (change)="onImageChange($event)" type="file" />
+                    <!-- <input type="file" class="uf-file-upload" (change)="onImageChange($event)"> -->
+                </button>
+            </div>
+
+            <form novalidate (ngSubmit)="addTitleElement()" [formGroup]="addTitle">
+                <mat-form-field appearance="outline">
+                    <mat-label>Title</mat-label>
+                    <input matInput type="text" id="email" formControlName="title" placeholder="Enter Email">
+                </mat-form-field> <br>
+                <!-- <button class="uf-auth-right-button" mat-raised-button color="primary" type="submit">
+                    <span>Enter Title</span>
+                </button> -->
+            </form>
+            <br>
+
+            <form novalidate (ngSubmit)="addParagraphElement()" [formGroup]="addParagraph">
+                <mat-form-field appearance="outline">
+                    <mat-label>Add Paragraph</mat-label>
+                    <textarea rows="10" cols="20" matInput formControlName="paragraph"></textarea>
+                </mat-form-field> <br>
+                <button class="uf-auth-right-button" mat-raised-button color="primary" type="submit">
+                    <span>Add Paragraph</span>
+                </button>
+            </form>
+
+        </div>
+        <div class="col-md-8">
+            <div [innerHTML]="article"></div>
+            {{article}}
         </div>
     </div>
 </div>
