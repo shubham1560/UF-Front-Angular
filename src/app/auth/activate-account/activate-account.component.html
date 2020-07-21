@@ -1,23 +1,34 @@
 <mat-progress-bar color="warn" *ngIf="!isAuthorised" mode="indeterminate"></mat-progress-bar>
-<div class="uf-auth-wrapper" id="activateaccount">
-    <div class="uf-auth-form">
-        <div class="uf-auth-logo-space"></div>
-        <div class="uf-auth-form-header">ACCOUNT ACTIVATION</div>
-        <div class="uf-auth-form-body">
-            <div class="uf-auth-info-block" *ngIf="isAuthorised">
-
-                <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color':data['activated'] ? 'green' : 'indianred'}">{{data["icon"]}}
-                </mat-icon>
-                <br>
-                {{data["message"]}}
-            </div>
-            <div class="" style="height: 110px; text-align:center;padding-top: 45px;" *ngIf="!isAuthorised">
-                Loading...
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="uf-auth-wrapper" id="activateaccount">
+                <div class="uf-auth-form">
+                    <div class="uf-auth-logo-space"></div>
+                    <div class="uf-auth-form-header">ACCOUNT ACTIVATION</div>
+                    <div class="uf-auth-form-body">
+                        <div class="uf-auth-info-block" *ngIf="isAuthorised">
+            
+                            <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color':data['activated'] ? 'green' : 'indianred'}">{{data["icon"]}}
+                            </mat-icon>
+                            <br>
+                            {{data["message"]}}
+                        </div>
+                        <div class="" style="height: 110px; text-align:center;padding-top: 45px;" *ngIf="!isAuthorised">
+                            Loading...
+                        </div>
+                    </div>
+                    <br>
+                    <div class="uf-auth-form-footer">
+                        <a style="text-decoration: none;" color="primary" routerLink="/auth/">Sign in</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <br>
-        <div class="uf-auth-form-footer">
-            <a style="text-decoration: none;" color="primary" routerLink="/auth/">Sign in</a>
+        <div class="col-md-7 d-none d-sm-none d-md-block" style="padding-left: 0px; padding-right: 0;">
+            
+            <app-rightpanel></app-rightpanel>
+
         </div>
     </div>
 </div>

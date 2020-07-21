@@ -1,7 +1,91 @@
 <mat-progress-bar color="warn" *ngIf="signingIn" mode="indeterminate"></mat-progress-bar>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="uf-auth-wrapper" id="auth-login">
+                <div class="uf-auth-form">
+                    <div class="uf-auth-logo-space"></div>
+                    <div class="uf-auth-form-header">LOGO OF THE APPLICATION</div>
+            
+                    <div class="uf-auth-form-body" *ngIf="isLoggedIn">
+                        <p style="text-align: center;">
+                            Already Logged in
+                        </p>
+                    </div>
+            
+                    <div class="uf-auth-form-body" *ngIf="!isLoggedIn">
+                        <div>
+                            <button id="googleBtn" mat-button class="uf-googlelogin" (click)="signInWithGoogle()">
+                                <div style="padding-top: 5px; float: left;">
+                                    <img height="25px" style="vertical-align: baseline;" src="assets/gl.png" />
+                                </div>
+                                Continue with google
+                            </button>
+                        </div>
+            
+                        <div>
+                            <button (click)="signInWithFB()" mat-button class="uf-googlelogin">
+                                <div style="padding-top: 5px; float: left;">
+                                    <img height="25px" style="vertical-align: baseline;" src="assets/fb.png" />
+                                </div>
+                                Continue with Facebook
+                            </button>
+                        </div>
+            
+                        <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
+                            <mat-form-field appearance="outline" class="uf-auth-input-block">
+                                <mat-label>Email</mat-label>
+                                <input matInput type="email" id="email" formControlName="email" placeholder="Enter Email">
+                                <mat-icon matSuffix style="margin: 0px 8px;">account_box</mat-icon>
+                                <mat-error>Please enter a valid email address</mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="uf-auth-input-block">
+                                <mat-label>Password</mat-label>
+                                <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                    [attr.aria-pressed]="hide">
+                                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                </button>
+                                <mat-error>Password(minimum length is 8)</mat-error>
+                            </mat-form-field>
+                            <div class="uf-auth-form-footer error" *ngIf="signInFailure">
+                                {{errorMessage}}
+                            </div>
+                            <div class="uf-auth-buttons-div">
+                                <button class="uf-auth-left-button" mat-button color="primary"
+                                    routerLink="/auth/passwordreset">Forgot
+                                    Password</button>
+                                <button class="uf-auth-right-button" mat-raised-button color="primary" type="submit"
+                                    [title]="loginForm.valid?'login': 'Please enter a valid email and password'"
+                                    [disabled]='!loginForm.valid || signingIn'>
+            
+                                    <span *ngIf="!signingIn">Login</span>
+                                    <span *ngIf="signingIn">.....</span>
+                                    <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
+            
+                                </button>
+                            </div>
+                            <br>
+                            <!-- <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar> -->
+                        </form>
+                    </div>
+            
+                    <br>
+                    <div class="uf-auth-form-footer ">
+                        No Account? <a style="text-decoration: none;" color="primary" routerLink="/auth/register"> Create One</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 d-none d-sm-none d-md-block" style="padding-left: 0px; padding-right: 0;">
+            
+            <app-rightpanel></app-rightpanel>
 
-<div class="uf-auth-wrapper" id="auth-login">
+        </div>
+    </div>
+</div>
+<!-- <div class="uf-auth-wrapper" id="auth-login">
     <div class="uf-auth-form">
         <div class="uf-auth-logo-space"></div>
         <div class="uf-auth-form-header">LOGO OF THE APPLICATION</div>
@@ -16,8 +100,7 @@
             <div>
                 <button id="googleBtn" mat-button class="uf-googlelogin" (click)="signInWithGoogle()">
                     <div style="padding-top: 5px; float: left;">
-                        <img height="25px" style="vertical-align: baseline;"
-                            src="assets/gl.png" />
+                        <img height="25px" style="vertical-align: baseline;" src="assets/gl.png" />
                     </div>
                     Continue with google
                 </button>
@@ -26,16 +109,11 @@
             <div>
                 <button (click)="signInWithFB()" mat-button class="uf-googlelogin">
                     <div style="padding-top: 5px; float: left;">
-                        <img height="25px" style="vertical-align: baseline;"
-                            src="assets/fb.png" />
+                        <img height="25px" style="vertical-align: baseline;" src="assets/fb.png" />
                     </div>
                     Continue with Facebook
                 </button>
             </div>
-            <!-- <button (click)="signInWithGoogle()">Google</button> -->
-            <!-- <button >Continue with facebook</button> -->
-            
-            <!-- <div class="uf-auth-or">--OR--</div> -->
 
             <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
                 <mat-form-field appearance="outline" class="uf-auth-input-block">
@@ -71,57 +149,13 @@
                     </button>
                 </div>
                 <br>
-                <!-- <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar> -->
+                <mat-progress-bar mode="indeterminate" *ngIf="signingIn"></mat-progress-bar>
             </form>
         </div>
-        
+
         <br>
         <div class="uf-auth-form-footer ">
             No Account? <a style="text-decoration: none;" color="primary" routerLink="/auth/register"> Create One</a>
         </div>
     </div>
-</div>
-
-<br><br><br><br>
-<!-- <div class="wrapper" style="display: none;">
-    <div class="box">
-        <h1>Login to Your Account!</h1>
-        <div class="button-wrapper">
-            <button id="googleBtn">
-                <div>Continue with Google</div>
-            </button>
-        </div>
-        <div class="or">- OR -</div>
-        <form novalidate (ngSubmit)="login()" [formGroup]="loginForm">
-            <div class="input-box">
-                <label for="exampleInputEmail1">Email</label>
-                <input type="email" formControlName='email' id="email" aria-describedby="emailHelp"
-                    placeholder="something@example.com">
-            </div>
-            <div class="input-box">
-                <label for="password">Password</label>
-                <input type="password" formControlName='password' id="password" placeholder="••••••••••••">
-            </div>
-            <button routerLink="/auth/passwordreset" class="forgot">Forgot Password</button>
-            <div class="button-wrapper" style="margin-top: 50px;">
-                <button id="uf-auth-button" type="submit" [title]="loginForm.valid?'login': 'data is ambiguous'"
-                    [disabled]='!loginForm.valid'>
-                    Login<div></div>
-                </button>
-            </div>
-        </form>
-        <div class="register-box">
-            Don't have an account? <button routerLink="/auth/register">Register</button>
-        </div>
-    </div>
 </div> -->
-
-<!-- <pre>
-Password Touched:   {{loginForm.get('password').touched}} <br>
-Email Touched:      {{loginForm.get('email').touched}} <br>
-Password Dirty:   {{loginForm.get('password').dirty}} <br>
-Email Dirty:      {{loginForm.get('email').dirty}} <br>
-
-Form valid:         {{loginForm.valid}} <br>
-Form value:         {{loginForm.value | json}}
-</pre> -->

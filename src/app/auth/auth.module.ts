@@ -14,6 +14,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MaterialModule } from '../shared/material.module';
 import { LoginpromptComponent } from './loginprompt/loginprompt.component';
 import { SocialAuthService } from "angularx-social-login";
+import { RightpanelComponent } from './rightpanel/rightpanel.component';
  
 
 
@@ -26,6 +27,7 @@ import { SocialAuthService } from "angularx-social-login";
     ActivateAccountComponent,
     PasswordresetFormComponent,
     LoginpromptComponent,
+    RightpanelComponent,
  ],
   imports: [
     CommonModule,
