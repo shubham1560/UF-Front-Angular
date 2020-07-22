@@ -13,12 +13,14 @@ export class ExplorerootsComponent implements OnInit {
   ) { }
   myColor= "#ccebff";
   products: any;
+  dataLoading = true;
 
   ngOnInit(): void {
     this.knowledgeServie.getKnowledgeBases().subscribe(
       (result:any)=>{
         console.log(result);
         this.products = result.bases;
+        this.dataLoading = false;
       },
       error => {
         console.log(error);

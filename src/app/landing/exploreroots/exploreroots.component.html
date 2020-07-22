@@ -14,9 +14,9 @@
 </div>
 
 
-<div class="row">
+<div class="row" *ngIf="!dataLoading">
 
-    <div class="col-md-3" style="margin-bottom: 10px;" *ngFor="let product of products" >
+    <div  class="col-md-3" style="margin-bottom: 10px;" *ngFor="let product of products" >
         <div style="width: max-content;margin: auto;">
             <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
                 <div class="card_div" matRipple [matRippleColor]="myColor">
@@ -25,6 +25,24 @@
                         <p>
                             <b>{{product.title}}</b> <br>
                             {{product.description}}
+                        </p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+
+</div>
+<div class="row" *ngIf="dataLoading">
+    <div  id="ghost" class="col-md-3" style="margin-bottom: 10px;" *ngFor="let product of [1,2,3,4]">
+        <div style="width: max-content;margin: auto;">
+            <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
+                <div class="card_div" matRipple [matRippleColor]="myColor">
+                    <div style="background-color: lightgray; height: 180px;" class="image_div"></div>
+                    <mat-card-content>
+                        <p style="margin-top: 20px;height: 20px; background-color: lightgray;">
+                        </p>
+                        <p style="height: 20px; background-color: lightgray;">
                         </p>
                     </mat-card-content>
                 </div>
