@@ -20,10 +20,11 @@ export class ArticleNewComponent implements OnInit {
     private fb: FormBuilder,
   ) { }
 
-  elements= [];
+  elements = [];
   article = "";
   addTitle: FormGroup;
   addParagraph: FormGroup;
+  element: number;
 
   ngOnInit() {
 
@@ -39,76 +40,159 @@ export class ArticleNewComponent implements OnInit {
     this.loggerService.logData('uf-article-new', this);
   }
 
-  addTitleElement(){
-    var heading = "<h2>"+this.addTitle.get('title').value+"</h2>";
+  addTitleElement() {
+    var heading = "<h2>" + this.addTitle.get('title').value + "</h2>";
     this.elements[0] = (heading);
     this.article = this.arrayToString(this.elements, "");
-    // var c = this.elements.toString()
-    // console.log(c);
-
   }
 
-  addParagraphElement(){
-    var paragraph = "<p>"+this.addParagraph.get('paragraph').value+"</p>";
+  addParagraphElement() {
+    var paragraph = "<p>" + this.addParagraph.get('paragraph').value + "</p>";
     this.elements.push(paragraph);
     this.article = this.arrayToString(this.elements, "");
   }
 
-  onImageChange(event){
+  onImageChange(event) {
     if (event.target.files[0]) {
       const uploadImage = new FormData();
       uploadImage.append('image', event.target.files[0], event.target.files[0].name);
-      // uploadImage.append('token', this.authService.getToken());
       const url = `${this.url.base_url}attachment/add_image/`
       this.http.post(url, uploadImage).subscribe(
-        (result:any) => {
+        (result: any) => {
           console.log(result);
-          var image = " <br><br> <img src='"+result.image_url+"' height=200px widht=300px>";
+          var image = " <br><br> <img src='" + result.image_url + "' height='300px' width=auto>";
           this.elements.push(image);
           this.article = this.arrayToString(this.elements, "");
         },
-        error => { 
+        error => {
           console.log("well");
-          console.log(error) 
+          console.log(error)
         }
       )
     }
-    else{
+    else {
       console.log("hawabaazi");
-      
+
     }
-    
+
   }
 
-  arrayToString(arr:any, art: string){
-    arr.forEach(function(element, index){
-      art+=element;
+  arrayToString(arr: any, art: string) {
+    arr.forEach(function (element, index) {
+      art += element;
     })
     return art;
   }
 
-  makeBold(){
+  makeBold() {
+    this.changeSelected("<b>", "</b>");
+    // var a: any = window.getSelection();
+    // var data = a.baseNode.data;
+    // var repeatData = "<i>" + data + "</i>"
+    // var ind;
+    // var indl;
+    // this.elements.forEach(function (element1: string, index: number) {
+    //   if (element1.includes(data)) {
+    //     ind = index;
+    //     return;
+    //   }
+    // })
+
+    // this.elements.forEach(function (element1, index) {
+    //   if (element1.includes(repeatData)) {
+    //     ind = index;
+    //     return;
+    //   }
+    // })
+
+    // // if (indl) {
+    //   // console.log(this.elements[indl]);
+    // // }
+    // var end = a.focusOffset;
+    // var start = a.baseOffset;
+    // var text = data.substring(start, end);
+    // // var textAlready = data.substring((start - 3), (end + 3));
+    // console.log(data);
+    // console.log(start, end, text);
+    // // console.log(textAlready);
+    // if (!this.elements[ind].includes("<i>"+text+"</i>")) {
+    //   console.log("running")
+    //   this.elements[ind] = this.elements[ind].replace(text, "<i>" + text + "</i>");
+    // }
+    // else if(this.elements[ind].includes("<i>"+text+"</i>")) {
+    //   console.log("too")
+    //   this.elements[ind] = this.elements[ind].replace("<i>" + text + "</i>", text)
+    // }
+    // this.article = this.arrayToString(this.elements, "");
+  }
+
+  getTheWholeFuckingDom() {
+    var a = document.getElementById("article");
+    console.log(a);
+  }
+
+  makeItalic() {
+    this.changeSelected("<i>", "</i>");
+  }
+
+  makeHyperlink() {
+
+    this.changeSelected("<a href='www.google.com'>", "</a>");
+  }
+
+  makeTitle() {
+    this.changeSelected("<h1>", "</h1>")
+  }
+
+  makeHighlight() {
 
   }
 
-  makeItalic(){
+  makeNewSection() {
 
   }
 
-  makeHyperlink(){
 
+  changeSelected(starttag, b){
+    var a: any = window.getSelection();
+    var data = a.baseNode.data;
+    var repeatData = starttag + data + b
+    var ind;
+    var indl;
+    this.elements.forEach(function (element1: string, index: number) {
+      if (element1.includes(data)) {
+        ind = index;
+        return;
+      }
+    })
+
+    this.elements.forEach(function (element1, index) {
+      if (element1.includes(repeatData)) {
+        ind = index;
+        return;
+      }
+    })
+
+    // if (indl) {
+      // console.log(this.elements[indl]);
+    // }
+    var end = a.focusOffset;
+    var start = a.baseOffset;
+    var text = data.substring(start, end);
+    // var textAlready = data.substring((start - 3), (end + 3));
+    console.log(data);
+    console.log(start, end, text);
+    // console.log(textAlready);
+    if (!this.elements[ind].includes(starttag+text+b)) {
+      console.log("running")
+      this.elements[ind] = this.elements[ind].replace(text, starttag + text + b);
+    }
+    else if(this.elements[ind].includes(starttag+text+b)) {
+      console.log("too")
+      this.elements[ind] = this.elements[ind].replace(starttag + text + b, text)
+    }
+    this.article = this.arrayToString(this.elements, "");
   }
-
-  makeTitle(){
-
-  }
-
-  makeHighlight(){
-
-  }
-
-  makeNewSection(){
-    
-  }
+  
 
 }
