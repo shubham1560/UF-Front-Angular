@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
     private url: UrlconfigService,
   ) { }
 
-  image: string = "assets/pf.png";
+  image: string = "";
   response: any = {};
   error: any = {};
   name: string;
@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
   about: string;
   imageUploading: boolean = false;
   buttonText = "Upload Image";
+  display_name;
 
   ngOnInit(): void {
     this.profile.getUserData().subscribe(
@@ -45,10 +46,11 @@ export class ProfileComponent implements OnInit {
         console.log(result);
         this.isLoading = false;
         this.image = this.response.user.header_image ? this.response.user.header_image : this.response.user.profile_pic;
-        if(!this.image){
-          this.image = "assets/pf.png";
-        }
+        // if(!this.image){
+        //   this.image = "assets/pf.png";
+        // }
         this.name = this.response.user.first_name + " " + this.response.user.last_name;
+        this.display_name = this.response.user.first_name[0]+this.response.user.last_name[0]
         this.email = this.response.user.email;
         this.about = this.response.user.about;
       },

@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: any;
   user: any = {};
   error: any;
-  image = "assets/pf.png";
+  image = "";
 
   constructor(
     private authService: AuthService,

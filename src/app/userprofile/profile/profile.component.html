@@ -49,10 +49,16 @@
             <div class="col-md-4 uf-border" style="padding:20px">
                 <div style="width:160px; height:160px;margin:auto; border-radius:100px; border: 2px solid #3f51b5; padding:3px;">
                     
-                    <div [ngStyle]="{background: 'url('+image+')'}"
+                    <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
                         style="width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
                         class="border">
                         <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner>
+                    </div>
+                    <div *ngIf="!image" [ngStyle]="{background: 'url('+image+')'}"
+                        style="background-color: black; color: white;text-align:center; font-size: 40px; padding-top:50px; width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
+                        class="border">
+                        {{display_name}}
+                        <!-- <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner> -->
                     </div>
                 </div>
                 <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;"

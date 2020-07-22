@@ -13,11 +13,22 @@
 
     <span class="sign-in" *ngIf="isLoggedIn">
 
-    <div [ngStyle]="{background: 'url('+image+')'}" style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(255, 255, 255);" [matMenuTriggerFor]="beforeMenu"></div>
+    <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(255, 255, 255);" [matMenuTriggerFor]="beforeMenu"></div>
+    <div *ngIf="!image" style="cursor: pointer; font-weight:100; font-size: 14px; padding-top: 1px; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: black;color: white;text-align: center;" [matMenuTriggerFor]="beforeMenu">
+        {{user.first_name[0]+user.last_name[0]}}
+    </div>
+    
     <mat-menu #beforeMenu="matMenu" xPosition="before">
-        <div mat-menu-item>Hi, <b> {{user.first_name}}</b></div>
-        <button mat-menu-item routerLink="/user_profile"> My Profile</button>
-        <button mat-menu-item (click)="logout()">
+        <div mat-menu-item style="line-height: initial; height: auto;cursor: default;">
+             <b>{{user.first_name+" "+user.last_name}}</b>
+             <br>
+            {{user.email}}
+            <!-- <b> {{user.first_name+" "+user.last_name}}</b> <br> -->
+                <!-- {{user.email}} -->
+        </div>
+        <hr>
+        <button mat-menu-item routerLink="/user_profile" style="line-height: 20px; height: auto;"> My Profile</button>
+        <button mat-menu-item (click)="logout()" style="line-height: 20px; height: auto;">
             Sign out
             <mat-icon matSuffix style="margin: 0px 2px;">login</mat-icon>
         </button>

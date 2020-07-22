@@ -12,7 +12,7 @@ import {MatTableModule } from '@angular/material/table';
 import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {MatRippleModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [],
@@ -32,8 +32,10 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDialogModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatRippleModule,
   ],
   exports:[
+    MatRippleModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatDialogModule,
