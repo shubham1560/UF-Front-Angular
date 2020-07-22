@@ -70,4 +70,9 @@ export class DataService {
     const body = {"feedback": feedback};
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  getKnowledgeBases(){
+    this.called_url = `${this.base_knowledge_url}knowledge_base/get_knowledge_bases/`
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

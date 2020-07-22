@@ -1,17 +1,34 @@
 <!-- <p>exploreroots works!</p> -->
+<!-- 
+<div class="row" style="text-align: center;">
+    <div class="col-xs-12">
+        Please explore any of the following roots, we always keep adding content to meet your needs
+    </div>
+</div> -->
+<div class="row" style="text-align: center;">
+    <div class="col-xs-12" class="heading_div">
+        <div class="heading_text">
+            <h3 style="font-weight: 400px;">We're always improving. Give us a hand by giving feedback on our material.</h3>
+        </div>
+    </div>
+</div>
+
 
 <div class="row">
-    <div class="col-md-6" matRipple [matRippleColor]="myColor">
-            <div >
-                <ng-content>
 
-                </ng-content>
-              </div>
-
-        </div>
-    <div class="col-md-6">
-        <div style="margin:auto">
-            Hello
+    <div class="col-md-3" style="margin-bottom: 10px;" *ngFor="let product of products" matRipple [matRippleColor]="myColor">
+        <div style="width: max-content;margin: auto;">
+            <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
+                <div class="card_div">
+                    <div [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
+                    <mat-card-content>
+                        <p>
+                            <b>{{product.title}}</b> <br>
+                            {{product.description}}
+                        </p>
+                    </mat-card-content>
+                </div>
+            </mat-card>
         </div>
     </div>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 
 @Component({
   selector: 'app-exploreroots',
@@ -7,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExplorerootsComponent implements OnInit {
 
-  constructor() { }
-  myColor= "red";
+  constructor(
+    private knowledgeServie: DataService,
+  ) { }
+  myColor= "lightgray";
+  products: any;
 
   ngOnInit(): void {
+    this.knowledgeServie.getKnowledgeBases().subscribe(
+      (result:any)=>{
+        console.log(result);
+        this.products = result.bases;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
 }
