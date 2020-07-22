@@ -11,7 +11,7 @@ export class ExplorerootsComponent implements OnInit {
   constructor(
     private knowledgeServie: DataService,
   ) { }
-  myColor= "lightgray";
+  myColor= "#ccebff";
   products: any;
 
   ngOnInit(): void {

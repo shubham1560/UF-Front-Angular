@@ -16,12 +16,12 @@
 
 <div class="row">
 
-    <div class="col-md-3" style="margin-bottom: 10px;" *ngFor="let product of products" matRipple [matRippleColor]="myColor">
+    <div class="col-md-3" style="margin-bottom: 10px;" *ngFor="let product of products" >
         <div style="width: max-content;margin: auto;">
             <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
-                <div class="card_div">
+                <div class="card_div" matRipple [matRippleColor]="myColor">
                     <div [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
-                    <mat-card-content>
+                    <mat-card-content >
                         <p>
                             <b>{{product.title}}</b> <br>
                             {{product.description}}
