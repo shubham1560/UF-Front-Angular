@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./blogs/blogs.module").then(bm=>bm.BlogsModule) 
   },
+  {
+    path: "roots",
+    loadChildren: () =>
+      import("./tree/tree-routing.module").then(root=>root.TreeRoutingModule)
+  },
   { 
     path: "**", 
     component: NotFoundComponent 
