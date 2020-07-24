@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-header',
@@ -10,10 +11,11 @@ export class HeaderComponent implements OnInit {
   isLoggedIn: any;
   user: any = {};
   error: any;
-  image = "";
+  image = false;
 
   constructor(
     private authService: AuthService,
+    private loggerService: LoggerService,
   ) { }
 
   ngOnInit(): void {
@@ -36,6 +38,7 @@ export class HeaderComponent implements OnInit {
         }
       )
     }
+    this.loggerService.logData("uf-header", this);
   }
 
   logout() {

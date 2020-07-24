@@ -17,7 +17,9 @@ export class RootComponent implements OnInit {
     private knowledgeService: DataService,
   ) { }
 
-  myColor = "red";
+  colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"]
+
+  myColor = this.colorArray[Math.floor(Math.random()*10)];
   categories;
   imageLoaded=false;
   startLoadingImages = false;
