@@ -9,7 +9,7 @@ const routes: Routes = [
     component: RootComponent
   },
   {
-    path: ':knowledge_base',
+    path: ':kb_base/:kb_category',
     component: RootComponent
   }
 ];

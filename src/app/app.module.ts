@@ -20,6 +20,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider,
 } from 'angularx-social-login';
+import { RootComponent } from './tree/root/root.component';
 
 // var routes = [
 //   { path: "", component: ArticleListComponent },
@@ -39,6 +40,7 @@ import {
     AppComponent,
     NotFoundComponent,
     HeaderComponent,
+    RootComponent,
   ],
   imports: [
     FlexLayoutModule,

@@ -19,7 +19,6 @@ export class LoggerService {
         a.addEventListener("contextmenu", function (event) {
           if (event.altKey){
             console.log(a["this"]);
-            // console.log(a);
           }
           if (event.shiftKey){
             console.log({"data":a["this"]["data"]});
