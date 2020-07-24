@@ -23,6 +23,7 @@ export class ArticleListComponent implements OnInit {
   course = "";
   panelOpenState = false;
   sections: any;
+  article;
 
   ngOnInit() {
     this.data["golibaaz"] = true;
@@ -30,12 +31,17 @@ export class ArticleListComponent implements OnInit {
     this.route.paramMap.subscribe(
       result => {
         this.course = result.get("category");
+        this.article = result.get("article_id");
       }
     )
 
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       response => {
         this.sections = response;
+        if(!this.article){
+          this.article = this.sections[0].articles[0].id;
+          this.navigate(this.article);
+        }
       }, error => {
         this.data["error"] = error;
       }
