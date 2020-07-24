@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -14,21 +15,39 @@ export class ArticleListComponent implements OnInit {
   };
 
   constructor(private knowledgeService: DataService,
-              private dataLogger: LoggerService) { }
+    private dataLogger: LoggerService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) { }
+
+  course = "";
+  panelOpenState = false;
+  sections: any;
 
   ngOnInit() {
     this.data["golibaaz"] = true;
     this.data.addon = true;
-    this.knowledgeService.getAllArticles().subscribe(
+    this.route.paramMap.subscribe(
+      result => {
+        this.course = result.get("category");
+      }
+    )
+
+    this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       response => {
-        this.data["response"] = response;
-      }, error =>{
+        this.sections = response;
+      }, error => {
         this.data["error"] = error;
       }
     )
-    
-
     //At the end to get the data from the component, any time the data changes, the realtime data can be seen
     this.dataLogger.logData("articlelist", this);
+  }
+
+  navigate(article_id) {
+    console.log(article_id);
+    var url = `courses/${this.course}/${article_id}`
+    // this.router.navigateByUrl(url);
+    this.router.navigate(['courses', this.course, article_id])
   }
 }

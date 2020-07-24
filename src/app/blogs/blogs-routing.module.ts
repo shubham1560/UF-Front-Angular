@@ -10,6 +10,10 @@ const routes: Routes = [
         component: ArticleListComponent
     },
     {
+        path: ':category',
+        component: BlogsComponent
+    },
+    {
         path: 'new',
         component: ArticleNewComponent
     },
@@ -17,6 +21,7 @@ const routes: Routes = [
         path: ':category/:article', 
         component: BlogsComponent
     },
+    
 ];
 
 @NgModule({

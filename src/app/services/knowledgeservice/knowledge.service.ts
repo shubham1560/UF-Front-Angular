@@ -81,4 +81,9 @@ export class DataService {
     const body = {"category": kb_category};
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  getRelatedSectionAndArticles(kb_category){
+    this.called_url = `${this.base_knowledge_url}course/${kb_category}/`
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

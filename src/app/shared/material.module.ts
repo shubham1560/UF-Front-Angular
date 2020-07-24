@@ -13,10 +13,12 @@ import {MatDialogModule, MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
   imports: [
+    MatExpansionModule,
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
@@ -35,6 +37,7 @@ import {MatRippleModule} from '@angular/material/core';
     MatRippleModule,
   ],
   exports:[
+    MatExpansionModule,
     MatRippleModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,

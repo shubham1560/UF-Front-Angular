@@ -1,5 +1,23 @@
 <div id="articlelist">
-    Yo maan
+    <!-- Yo maan -->
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let section of sections" (opened)="panelOpenState = true"
+            (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    {{section.label}}
+                </mat-panel-title>
+                <!-- <mat-panel-description> -->
+                <!-- Introduction to the course -->
+                <!-- </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <div *ngFor="let article of section.articles">
+                <p (click)="navigate(article.id)">
+                    {{article.title}}
+                </p>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
 </div>
 
-<p>article-list works!</p>
+<!-- <p>article-list works!</p> -->
