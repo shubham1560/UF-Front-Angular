@@ -23,7 +23,7 @@ const routes: Routes = [
       import("./userprofile/userprofile.module").then(up => up.UserprofileModule)
   },
   { 
-    path: "blog", 
+    path: "courses", 
     loadChildren: () =>
       import("./blogs/blogs.module").then(bm=>bm.BlogsModule) 
   },
