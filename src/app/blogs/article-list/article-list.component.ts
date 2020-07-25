@@ -39,7 +39,7 @@ export class ArticleListComponent implements OnInit {
         this.course = result.get("category");
         this.article = result.get("article");
         if (this.course != this.courseInit) {
-          console.log("changed");
+          // console.log("changed");
           this.changeTheCourse();
         }
       }
@@ -71,7 +71,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   navigate(article_id) {
-    console.log(article_id);
+    // console.log(article_id);
     var url = `courses/${this.course}/${article_id}`
     this.markViewed(article_id)
     // this.router.navigateByUrl(url);
@@ -83,7 +83,7 @@ export class ArticleListComponent implements OnInit {
     var totalNumArticles = 0;
     var totalReadArticles = 0;
     this.sections.forEach(section => {
-      console.log(section);
+      // console.log(section);
       section.active = false;
       section.doneAll = true;
       var totalSectionArticles = 0
@@ -110,7 +110,7 @@ export class ArticleListComponent implements OnInit {
       })
 
     });
-    console.log(totalReadArticles, totalNumArticles);
+    // console.log(totalReadArticles, totalNumArticles);
     this.progress = Math.round((totalReadArticles / totalNumArticles) *100);
   }
   // }

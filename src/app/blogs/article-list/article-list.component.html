@@ -1,21 +1,15 @@
 <div id="articlelist">
-    <!-- Yo maan -->
     <div class="heading">
-        {{isLoading}}
         <h2>{{courseName}}</h2>
         <b>Progress: </b>{{progress}} %
     </div>
     <mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
-    <!-- <mat-progress-spinner class="example-margin" color="green" [value]="progress">
-    </mat-progress-spinner> -->
     <mat-accordion color="primary">
         <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
             (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-progress-bar mode="determinate" [value]="section.progress"></mat-progress-bar>
             <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
                 <mat-panel-title [ngClass]="{'active' : section.active}">
-                    <!-- <mat-progress-spinner class="example-margin" [value]="section.progress">
-                    </mat-progress-spinner> -->
 
                     <b>
                         <div *ngIf="!section.doneAll"
@@ -26,26 +20,13 @@
                             style="margin-right: 10px; padding: 3px 10px; border: 3px solid green; border-radius: 20px;display: inline-block;">
                             {{i+1}}
                         </div>
-
-                        <!-- <mat-icon *ngIf="section.doneAll" style="vertical-align: middle; color: green; border: 1px solid green; border-radius: 20px;"
-                        matSuffix>
-                        done_all</mat-icon> -->
-
                         {{section.label}}
                     </b>
+
                 </mat-panel-title>
-
-                <!-- <mat-panel-description>
-                    <mat-icon *ngIf="section.doneAll" style="vertical-align: middle; color: green;"
-                        matSuffix>
-                        done_all</mat-icon>
-
-                </mat-panel-description> -->
             </mat-expansion-panel-header>
             <div *ngFor="let article of section.articles; let j = index">
                 <div (click)="navigate(article.id)" class="uf-article">
-                    <!-- <mat-icon matSuffix style="margin: 0px 8px;">check_circle_outline</mat-icon> -->
-
                     <div class="d-inline" *ngIf="!article.viewed">
                         <mat-icon style="vertical-align: middle;" matSuffix>
                         </mat-icon>
@@ -59,16 +40,8 @@
                         {{article.title}}
                     </div>
 
-
-                    <!--                     
-                    <span>
-                        {{article.title}}
-                    </span> -->
-
                 </div>
             </div>
         </mat-expansion-panel>
     </mat-accordion>
 </div>
-
-<!-- <p>article-list works!</p> -->
