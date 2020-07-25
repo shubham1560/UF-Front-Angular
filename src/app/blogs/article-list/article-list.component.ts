@@ -28,6 +28,8 @@ export class ArticleListComponent implements OnInit {
   article;
   courseInit;
   courseName;
+  progress: number;
+  isLoading =true;
 
   ngOnInit() {
     // this.data["golibaaz"] = true;
@@ -42,9 +44,10 @@ export class ArticleListComponent implements OnInit {
         }
       }
     )
-    setTimeout(() => {
-      this.markViewed(this.article);
-    }, 1000)
+    // setTimeout(() => {
+    //   this.markViewed(this.article);
+    //   this.isLoading = false;
+    // }, 1000)
     this.courseInit = this.course;
     //At the end to get the data from the component, any time the data changes, the realtime data can be seen
     this.dataLogger.logData("articlelist", this);
@@ -59,6 +62,7 @@ export class ArticleListComponent implements OnInit {
           this.article = this.sections[0].articles[0].id;
           this.navigate(this.article);
         }
+        this.markViewed(this.article);
       }, error => {
         this.data["error"] = error;
       }
@@ -75,19 +79,39 @@ export class ArticleListComponent implements OnInit {
   }
 
   markViewed(article_id) {
-    if (this.authService.isLoggedIn()) {
-      this.sections.forEach(element => {
-        console.log(element);
-        element.active = false;
-        element.articles.forEach(article => {
-          article.active = false;
-          if (article.id == article_id) {
-            element.active = true;
+    // if (this.authService.isLoggedIn()) {
+    var totalNumArticles = 0;
+    var totalReadArticles = 0;
+    this.sections.forEach(section => {
+      console.log(section);
+      section.active = false;
+      section.doneAll = true;
+      var totalSectionArticles = 0
+      var totalSectionReadArticles = 0;
+      section.articles.forEach(article => {
+        totalNumArticles += 1;
+        totalReadArticles += 1;
+        totalSectionArticles += 1;
+        totalSectionReadArticles +=1;
+        article.active = false;
+        if (article.id == article_id) {
+          section.active = true;
+          if (this.authService.isLoggedIn()) {
             article.viewed = true;
-            article.active = true;
           }
-        })
-      });
-    }
+          article.active = true;
+        }
+        if (article.viewed == false) {
+          totalReadArticles -= 1;
+          totalSectionReadArticles -=1;
+          section.doneAll = false;
+        }
+        section.progress = Math.round((totalSectionReadArticles/totalSectionArticles)*100)
+      })
+
+    });
+    console.log(totalReadArticles, totalNumArticles);
+    this.progress = Math.round((totalReadArticles / totalNumArticles) *100);
   }
+  // }
 }
