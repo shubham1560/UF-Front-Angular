@@ -24,6 +24,7 @@ export class ArticleListComponent implements OnInit {
   panelOpenState = false;
   sections: any;
   article;
+  courseInit;
 
   ngOnInit() {
     this.data["golibaaz"] = true;
@@ -32,9 +33,18 @@ export class ArticleListComponent implements OnInit {
       result => {
         this.course = result.get("category");
         this.article = result.get("article_id");
+        if(this.course!=this.courseInit){
+          console.log("changed");
+          this.changeTheCourse();
+        }
       }
     )
+    this.courseInit = this.course;
+    //At the end to get the data from the component, any time the data changes, the realtime data can be seen
+    this.dataLogger.logData("articlelist", this);
+  }
 
+  changeTheCourse(){
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       response => {
         this.sections = response;
@@ -46,8 +56,7 @@ export class ArticleListComponent implements OnInit {
         this.data["error"] = error;
       }
     )
-    //At the end to get the data from the component, any time the data changes, the realtime data can be seen
-    this.dataLogger.logData("articlelist", this);
+    
   }
 
   navigate(article_id) {

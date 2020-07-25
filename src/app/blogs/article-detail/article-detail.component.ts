@@ -22,11 +22,13 @@ export class ArticleDetailComponent implements OnInit {
   image: string = ""
   loadOriginalImage: boolean = false;
   authorImage = "";
+  category;
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
         this.article_id = params.get('article');
+        this.category = params.get("category");
         this.knowledge.getArticleById(this.article_id).subscribe(
           (result: any) => {
             this.article = result.data;

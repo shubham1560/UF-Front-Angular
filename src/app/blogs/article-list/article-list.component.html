@@ -1,11 +1,11 @@
 <div id="articlelist">
     <!-- Yo maan -->
     <mat-accordion>
-        <mat-expansion-panel *ngFor="let section of sections" (opened)="panelOpenState = true"
+        <mat-expansion-panel *ngFor="let section of sections; let i = index" (opened)="panelOpenState = true"
             (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
                 <mat-panel-title>
-                    {{section.label}}
+                <span style="padding-right: 10px;">{{i+1}}.</span>   {{section.label}}
                 </mat-panel-title>
                 <!-- <mat-panel-description> -->
                 <!-- Introduction to the course -->
