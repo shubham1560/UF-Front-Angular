@@ -107,11 +107,18 @@ export class ArticleListComponent implements OnInit {
           section.doneAll = false;
         }
         section.progress = Math.round((totalSectionReadArticles/totalSectionArticles)*100)
+        if (!this.authService.isLoggedIn()){
+          section.progress = undefined;
+        }
       })
 
     });
-    // console.log(totalReadArticles, totalNumArticles);
     this.progress = Math.round((totalReadArticles / totalNumArticles) *100);
+    if (!this.authService.isLoggedIn()) {
+      this.progress = undefined;
+    }
+    // console.log(totalReadArticles, totalNumArticles);
+    
   }
   // }
 }
