@@ -1,20 +1,43 @@
 <div id="articlelist">
     <!-- Yo maan -->
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let section of sections; let i = index" (opened)="panelOpenState = true"
+    <div class="heading">
+        <h2>{{courseName}}</h2>
+    </div>
+    <mat-accordion color="primary">
+        <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active" (opened)="panelOpenState = true"
             (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                <span style="padding-right: 10px;">{{i+1}}.</span>   {{section.label}}
+            <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
+                <mat-panel-title [ngClass]="{'active' : section.active}">
+                    <b><span style="padding-right: 10px;">{{i+1}}.</span> {{section.label}}</b>
                 </mat-panel-title>
                 <!-- <mat-panel-description> -->
                 <!-- Introduction to the course -->
                 <!-- </mat-panel-description> -->
             </mat-expansion-panel-header>
-            <div *ngFor="let article of section.articles">
-                <p (click)="navigate(article.id)">
-                    {{article.title}}
-                </p>
+            <div *ngFor="let article of section.articles; let j = index">
+                <div (click)="navigate(article.id)" class="uf-article">
+                    <!-- <mat-icon matSuffix style="margin: 0px 8px;">check_circle_outline</mat-icon> -->
+
+                    <div class="d-inline" *ngIf="!article.viewed">
+                        <mat-icon style="vertical-align: middle;" matSuffix>
+                            check_box_outline_blank</mat-icon>
+
+                    </div>
+                    <div class="d-inline" *ngIf="article.viewed">
+                        <mat-icon style="vertical-align: middle;" matSuffix>
+                            check_box</mat-icon>
+                    </div>
+                    <div class="d-inline" [ngClass]="{'active' : article.active}">
+                        {{article.title}}
+                    </div>
+
+
+                    <!--                     
+                    <span>
+                        {{article.title}}
+                    </span> -->
+
+                </div>
             </div>
         </mat-expansion-panel>
     </mat-accordion>
