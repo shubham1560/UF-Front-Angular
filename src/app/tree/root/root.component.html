@@ -5,8 +5,9 @@
         <!-- We'll show th subcate -->
         <div class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom: 10px;" *ngFor="let product of categories">
             <div style="width: max-content;margin: auto;">
-                <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
-                    <div *ngIf="!product.course" class="card_div"
+                <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
+                    <mat-card class="product-card">
+                    <div *ngIf="!product.course" class="card_div" 
                         routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}/" matRipple
                         [matRippleColor]="myColor">
 
@@ -24,9 +25,12 @@
                             </p>
                             <!-- <mat-button>Start Course</mat-button> -->
                         </mat-card-content>
+                        <!-- <mat-card-actions>
+                            <button mat-raised-button color="accent" (click)="navigate(product.id)">Start Course</button>
+                            <button mat-raised-button color="primary" (click)="seeDetails(product.id)">See Preview</button>
+                        </mat-card-actions> -->
                     </div>
-                    <div *ngIf="product.course" class="card_div" (click)="navigate(product.id)" matRipple
-                        [matRippleColor]="myColor">
+                    <div *ngIf="product.course" class="card_div">
                         <div [hidden]="imageLoaded"
                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
                         </div>
@@ -41,14 +45,15 @@
                             <!-- <mat-button>Start Course</mat-button> -->
                         </mat-card-content>
                         <mat-card-actions>
-                            <button mat-raised-button color="accent">Course</button>
+                            <button mat-raised-button color="accent" (click)="seeDetails(product.id)">See Preview</button>
+                            <button mat-raised-button color="primary" (click)="navigate(product.id)">Start Course</button>
                         </mat-card-actions>
                     </div>
                     
-                    <mat-card-actions *ngIf="product.course">
-                        <button mat-button (click)="seeDetails(product.id)">See Details</button>
-                        <!-- <button mat-button>SHARE</button> -->
-                      </mat-card-actions>
+                    <!-- <mat-card-actions *ngIf="product.course">
+                        
+                        <button mat-button>SHARE</button>
+                      </mat-card-actions> -->
                 </mat-card>
             </div>
         </div>

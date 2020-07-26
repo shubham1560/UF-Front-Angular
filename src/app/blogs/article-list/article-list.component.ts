@@ -66,8 +66,6 @@ export class ArticleListComponent implements OnInit {
           this.article = this.sections[0].articles[0].id;
           if (!this.course_for_modal.category) {
             this.navigate(this.article);
-
-            // this.course = this.course_for_modal.category;
           }
         }
         this.markViewed(this.article);
@@ -81,10 +79,14 @@ export class ArticleListComponent implements OnInit {
   navigate(article_id) {
     var url = `courses/${this.course}/${article_id}`
     this.markViewed(article_id)
-    this.router.navigate(['courses', this.course, article_id])
+    if (this.course_for_modal.category) {
+      window.open("#/"+url);
+    } else {
+      this.router.navigate(['courses', this.course, article_id])
+    }
   }
 
-  openLoginPrompt(){
+  openLoginPrompt() {
     const dialogRef = this.dialog.open(LoginpromptComponent);
   }
 
@@ -104,7 +106,7 @@ export class ArticleListComponent implements OnInit {
         article.active = false;
         if (article.id == article_id) {
           section.active = true;
-          if (this.authService.isLoggedIn()) {
+          if (this.authService.isLoggedIn() && !this.course_for_modal.category) {
             article.viewed = true;
           }
           article.active = true;

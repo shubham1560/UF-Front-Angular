@@ -16,9 +16,10 @@
     <div class="row" *ngIf="!dataLoading">
 
         <div class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom: 10px;" *ngFor="let product of products">
-            <div style="width: max-content;margin: auto;">
-                <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
-                    <div class="card_div" routerLink="/roots/{{product.id}}/root/" matRipple [matRippleColor]="myColor">
+            <div style="width: max-content;margin: auto;" >
+                <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
+                    <mat-card class="products-card" matRipple [matRippleColor]="myColor" >
+                    <div class="card_div" routerLink="/roots/{{product.id}}/root/" >
                         <div [hidden]="imageLoaded"
                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
                         </div>
