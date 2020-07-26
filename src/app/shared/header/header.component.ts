@@ -45,5 +45,8 @@ export class HeaderComponent implements OnInit {
     this.authService.logoutUser();
   }
 
+  sendToLoginPage(){
+    localStorage.setItem("redirect_url", window.location.href);
+  }
 
 }

@@ -5,7 +5,7 @@
     <span class="fillspace"></span>
 
     <span class="sign-in" *ngIf="!isLoggedIn">
-        <button mat-button routerLink="/auth/" routerLinkActive="active">Sign in</button>
+        <button mat-button routerLink="/auth/" (click)="sendToLoginPage()" routerLinkActive="active">Sign in</button>
     </span>
 
     <!-- <img [src]="image" alt=""> -->

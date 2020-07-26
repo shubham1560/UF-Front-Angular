@@ -52,7 +52,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.login_facebook(access_token).subscribe(
         (result: any) => {
           this.cookieService.set('token', result.token);
-          window.location.href = "welcome";
+          if (localStorage.getItem("redirect_url")) {
+            window.location.href = localStorage.getItem("redirect_url");
+            window.location.reload();
+          }else{
+            window.location.href = "welcome";
+          }
           this.signingIn = false;
         },
         error => {
@@ -83,7 +88,11 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.response = response;
           this.signingIn = false;
           this.cookieService.set('token', response.token);
-          window.location.href = "welcome"
+          if (localStorage.getItem("redirect_url")) {
+            window.location.href = localStorage.getItem("redirect_url");
+            window.location.reload();
+            window.location.href = "welcome";
+          }
         },
         error => {
           this.errorMessage = error.error.message;
@@ -126,7 +135,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
           (response: TokenObj) => {
             this.cookieService.set('token', response.token);
             // this.router.navigate(['/welcome']);
-            window.location.href = "welcome"
+            if (localStorage.getItem("redirect_url")) {
+              window.location.href = localStorage.getItem("redirect_url");
+              window.location.reload();
+            } else {
+              window.location.href = "welcome";
+            }
             this.signingIn = false;
           },
           error => {
