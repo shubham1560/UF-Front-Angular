@@ -21,6 +21,7 @@ import {
   GoogleLoginProvider,
 } from 'angularx-social-login';
 import { RootComponent } from './tree/root/root.component';
+import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
 
 // var routes = [
 //   { path: "", component: ArticleListComponent },
@@ -41,6 +42,7 @@ import { RootComponent } from './tree/root/root.component';
     NotFoundComponent,
     HeaderComponent,
     RootComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     FlexLayoutModule,
