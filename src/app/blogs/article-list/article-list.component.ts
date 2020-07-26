@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.component';
+
 
 
 @Component({
@@ -20,6 +23,9 @@ export class ArticleListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
+    public dialogRef: MatDialogRef<ArticleListComponent>,
+    @Inject(MAT_DIALOG_DATA) public course_for_modal: any,
+    public dialog: MatDialog,
   ) { }
 
   course = "";
@@ -29,25 +35,23 @@ export class ArticleListComponent implements OnInit {
   courseInit;
   courseName;
   progress: number;
-  isLoading =true;
+  isLoading = true;
+
 
   ngOnInit() {
-    // this.data["golibaaz"] = true;
-    // this.data.addon = true;
     this.route.paramMap.subscribe(
       result => {
-        this.course = result.get("category");
+        if (this.course_for_modal.category) {
+          this.course = this.course_for_modal.category;
+        } else {
+          this.course = result.get("category");
+        }
         this.article = result.get("article");
         if (this.course != this.courseInit) {
-          // console.log("changed");
           this.changeTheCourse();
         }
       }
     )
-    // setTimeout(() => {
-    //   this.markViewed(this.article);
-    //   this.isLoading = false;
-    // }, 1000)
     this.courseInit = this.course;
     //At the end to get the data from the component, any time the data changes, the realtime data can be seen
     this.dataLogger.logData("articlelist", this);
@@ -60,7 +64,11 @@ export class ArticleListComponent implements OnInit {
         this.sections = response.sections;
         if (!this.article) {
           this.article = this.sections[0].articles[0].id;
-          this.navigate(this.article);
+          if (!this.course_for_modal.category) {
+            this.navigate(this.article);
+
+            // this.course = this.course_for_modal.category;
+          }
         }
         this.markViewed(this.article);
       }, error => {
@@ -71,19 +79,19 @@ export class ArticleListComponent implements OnInit {
   }
 
   navigate(article_id) {
-    // console.log(article_id);
     var url = `courses/${this.course}/${article_id}`
     this.markViewed(article_id)
-    // this.router.navigateByUrl(url);
     this.router.navigate(['courses', this.course, article_id])
   }
 
+  openLoginPrompt(){
+    const dialogRef = this.dialog.open(LoginpromptComponent);
+  }
+
   markViewed(article_id) {
-    // if (this.authService.isLoggedIn()) {
     var totalNumArticles = 0;
     var totalReadArticles = 0;
     this.sections.forEach(section => {
-      // console.log(section);
       section.active = false;
       section.doneAll = true;
       var totalSectionArticles = 0
@@ -92,7 +100,7 @@ export class ArticleListComponent implements OnInit {
         totalNumArticles += 1;
         totalReadArticles += 1;
         totalSectionArticles += 1;
-        totalSectionReadArticles +=1;
+        totalSectionReadArticles += 1;
         article.active = false;
         if (article.id == article_id) {
           section.active = true;
@@ -103,22 +111,19 @@ export class ArticleListComponent implements OnInit {
         }
         if (article.viewed == false) {
           totalReadArticles -= 1;
-          totalSectionReadArticles -=1;
+          totalSectionReadArticles -= 1;
           section.doneAll = false;
         }
-        section.progress = Math.round((totalSectionReadArticles/totalSectionArticles)*100)
-        if (!this.authService.isLoggedIn()){
+        section.progress = Math.round((totalSectionReadArticles / totalSectionArticles) * 100)
+        if (!this.authService.isLoggedIn()) {
           section.progress = undefined;
         }
       })
 
     });
-    this.progress = Math.round((totalReadArticles / totalNumArticles) *100);
+    this.progress = Math.round((totalReadArticles / totalNumArticles) * 100);
     if (!this.authService.isLoggedIn()) {
       this.progress = undefined;
     }
-    // console.log(totalReadArticles, totalNumArticles);
-    
   }
-  // }
 }

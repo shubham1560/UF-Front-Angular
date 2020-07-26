@@ -5,7 +5,7 @@
             <b>Progress: </b>{{progress}} %
         </div>
         <div *ngIf="!progress">
-            You can log in and track your progress!
+            You can <a (click)="openLoginPrompt()" style="color: royalblue; cursor: pointer;">sign in</a> and track your progress!
         </div>
         
     </div>

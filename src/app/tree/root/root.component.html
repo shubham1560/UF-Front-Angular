@@ -42,6 +42,11 @@
                             <button mat-raised-button color="accent">Course</button>
                         </mat-card-actions>
                     </div>
+                    
+                    <mat-card-actions *ngIf="product.course">
+                        <button mat-button (click)="seeDetails(product.id)">See Details</button>
+                        <!-- <button mat-button>SHARE</button> -->
+                      </mat-card-actions>
                 </mat-card>
             </div>
         </div>

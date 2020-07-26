@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { ArticleListComponent } from 'src/app/blogs/article-list/article-list.component';
 
 
 @Component({
@@ -15,6 +17,7 @@ export class RootComponent implements OnInit {
     private route: ActivatedRoute,
     private loggerService: LoggerService,
     private knowledgeService: DataService,
+    public dialog: MatDialog,
   ) { }
 
   colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"]
@@ -43,4 +46,10 @@ export class RootComponent implements OnInit {
     this.loggerService.logData("uf-roots", this);  
   }
 
+  seeDetails(course){
+    console.log("Open modal")
+    const dialogRef = this.dialog.open(ArticleListComponent, {
+      data: {category: course}
+    });
+  }
 }
