@@ -26,12 +26,14 @@ export class RootComponent implements OnInit {
   categories;
   imageLoaded=false;
   startLoadingImages = false;
+  isLoading= true;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result:any)=>{
         this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category).subscribe(
           (result:any) =>{
             this.categories = result.categories;
+            this.isLoading = false;
             setTimeout(()=>{
               this.startLoadingImages = true
             }, 50);
@@ -51,5 +53,9 @@ export class RootComponent implements OnInit {
     const dialogRef = this.dialog.open(ArticleListComponent, {
       data: {category: course}
     });
+  }
+
+  navigate(url){
+    window.open("#/courses/"+url)
   }
 }

@@ -35,7 +35,7 @@ export class ArticleListComponent implements OnInit {
   courseInit;
   courseName;
   progress: number;
-  isLoading = true;
+  signedIn = true;
 
 
   ngOnInit() {
@@ -124,6 +124,7 @@ export class ArticleListComponent implements OnInit {
     this.progress = Math.round((totalReadArticles / totalNumArticles) * 100);
     if (!this.authService.isLoggedIn()) {
       this.progress = undefined;
+      this.signedIn = false;
     }
   }
 }

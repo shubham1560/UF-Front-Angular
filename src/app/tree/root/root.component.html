@@ -1,3 +1,5 @@
+<mat-progress-bar mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-bar>
+
 <div id="uf-roots" class="container">
     <div class="row">
         <!-- We'll show th subcate -->
@@ -23,7 +25,7 @@
                             <!-- <mat-button>Start Course</mat-button> -->
                         </mat-card-content>
                     </div>
-                    <div *ngIf="product.course" class="card_div" routerLink="/courses/{{product.id}}/" matRipple
+                    <div *ngIf="product.course" class="card_div" (click)="navigate(product.id)" matRipple
                         [matRippleColor]="myColor">
                         <div [hidden]="imageLoaded"
                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
