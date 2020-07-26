@@ -1,1 +1,19 @@
-<p>breadcrumbs works!</p>
+<div *ngIf="this.isLoading">
+    Voila
+</div>
+<div *ngIf="!this.isLoading" class="uf-breadcrumbs">
+    <div class="d-inline"mat-button *ngFor="let crumb of breadcrumb; let i = index" style="cursor: pointer;">
+        <mat-icon matSuffix *ngIf="i==0">
+            account_tree
+        </mat-icon>
+        <span (click)="navigateCrumb(i)" style="text-transform: capitalize;" [ngClass]="{'active' : i==(breadcrumb.length-1)}">
+            {{crumb}} 
+        </span>
+        <span *ngIf="i!=(breadcrumb.length-1)">
+            /
+        </span>
+        
+    </div>
+
+</div>
+<br>

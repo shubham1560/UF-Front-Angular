@@ -86,4 +86,9 @@ export class DataService {
     this.called_url = `${this.base_knowledge_url}course/${kb_category}/`
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  getBreadCrumbFromCategory(category){
+    this.called_url = `${this.base_knowledge_url}knowledge_crumb/${category}/`
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }
