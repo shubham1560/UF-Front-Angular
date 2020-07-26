@@ -21,6 +21,13 @@ body { margin: 0;
     background-color: #cecece;
     }
 
+div:focus{
+    outline: none;
+    }
+
+button{
+    outline: none;
+}
 
 .uf-auth-wrapper{
     width: 100%;

@@ -1,13 +1,13 @@
 <mat-progress-bar mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-bar>
-
+<br><br>
 <div id="uf-roots" class="container">
     <div class="row">
         <!-- We'll show th subcate -->
         <div class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom: 10px;" *ngFor="let product of categories">
             <div style="width: max-content;margin: auto;">
                 <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
-                    <mat-card class="product-card">
-                    <div *ngIf="!product.course" class="card_div" 
+                <mat-card class="product-card">
+                    <div *ngIf="!product.course" class="card_div"
                         routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}/" matRipple
                         [matRippleColor]="myColor">
 
@@ -25,10 +25,15 @@
                             </p>
                             <!-- <mat-button>Start Course</mat-button> -->
                         </mat-card-content>
-                        <!-- <mat-card-actions>
-                            <button mat-raised-button color="accent" (click)="navigate(product.id)">Start Course</button>
-                            <button mat-raised-button color="primary" (click)="seeDetails(product.id)">See Preview</button>
-                        </mat-card-actions> -->
+                        <mat-card-actions>
+                            <button mat-button color="accent">
+                                Explore further
+                                <mat-icon matSuffix>
+                                    account_tree
+                                </mat-icon>
+                            </button>
+                            <!-- <button mat-raised-button color="primary" (click)="seeDetails(product.id)">See Preview</button> -->
+                        </mat-card-actions>
                     </div>
                     <div *ngIf="product.course" class="card_div">
                         <div [hidden]="imageLoaded"
@@ -45,11 +50,18 @@
                             <!-- <mat-button>Start Course</mat-button> -->
                         </mat-card-content>
                         <mat-card-actions>
-                            <button mat-raised-button color="accent" (click)="seeDetails(product.id)">See Preview</button>
-                            <button mat-raised-button color="primary" (click)="navigate(product.id)">Start Course</button>
+                            <button mat-stroked-button color="accent" (click)="seeDetails(product.id)">
+                                Preview
+                            </button>
+                            <button mat-raised-button color="primary" (click)="navigate(product.id)">
+                                Learn
+                                <mat-icon matSuffix>
+                                    launch
+                                </mat-icon>
+                            </button>
                         </mat-card-actions>
                     </div>
-                    
+
                     <!-- <mat-card-actions *ngIf="product.course">
                         
                         <button mat-button>SHARE</button>
