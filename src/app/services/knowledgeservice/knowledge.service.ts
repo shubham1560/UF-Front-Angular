@@ -91,4 +91,10 @@ export class DataService {
     this.called_url = `${this.base_knowledge_url}knowledge_crumb/${category}/`
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  setCourseProgress(course, progress){
+    this.called_url = `${this.base_knowledge_url}course_progress/`
+    const body = {'course': course, 'progress': progress}
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

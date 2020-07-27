@@ -124,6 +124,15 @@ export class ArticleListComponent implements OnInit {
 
     });
     this.progress = Math.round((totalReadArticles / totalNumArticles) * 100);
+    if (this.authService.isLoggedIn()){
+      this.knowledgeService.setCourseProgress(this.course, this.progress).subscribe(
+        result =>{
+          console.log(result)
+        }, error =>{
+          console.log(error);
+        }
+      )
+    }
     if (!this.authService.isLoggedIn()) {
       this.progress = undefined;
       this.signedIn = false;

@@ -10,14 +10,6 @@
         </div>
 
     </div>
-    <!-- <mat-tab-group animationDuration="0ms" color="warn" backgroundColor="">
-        <mat-tab label="Table of Content">
-
-        </mat-tab>
-        <mat-tab label="Notes">
-            <app-feedback></app-feedback>
-        </mat-tab>
-      </mat-tab-group> -->
     <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress"></mat-progress-bar>
     <mat-accordion color="primary">
         <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"

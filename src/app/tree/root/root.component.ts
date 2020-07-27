@@ -53,7 +53,7 @@ export class RootComponent implements OnInit {
     const dialogRef = this.dialog.open(ArticleListComponent, {
       data: {category: course},
       minWidth:'320px',
-      width: '70%'
+      width: '40%'
     });
   }
 
