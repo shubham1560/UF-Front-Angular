@@ -48,14 +48,15 @@ export class ArticleDetailComponent implements OnInit {
         )
       }
     )
-
+    // this.logger.logData("uf-article-detail", this)
+    this.logger.logData('uf-article-detail', this)
     setTimeout(() => {
       this.loadOriginalImage = true;
       // console.log("yo maan");
     }, 6000);
 
 
-    this.logger.logData('uf-article-detail', this)
+    
   }
 
 }
