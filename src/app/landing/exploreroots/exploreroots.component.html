@@ -2,7 +2,7 @@
 
 <div id="uf-exploreroots">
 
-    <!-- <div class="row" style="text-align: center;">
+    <div class="row" style="text-align: center; margin: 0px;">
         <div class="col-xs-12" class="heading_div">
             <div class="heading_text">
                 <h3 style="font-weight: 400px;">We're always improving. Give us a hand by giving feedback on our
@@ -10,21 +10,21 @@
                 </h3>
             </div>
         </div>
-    </div> -->
+    </div>
     <br><br>
 
-    <div class="row" *ngIf="!dataLoading">
+    <div class="row" *ngIf="!dataLoading" style="margin: 0px;">
 
         <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 10px;" *ngFor="let product of products">
-            <div style="width: max-content;margin: auto;" >
+            <div style="width: max-content;margin: auto;">
                 <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
-                    <mat-card class="products-card" matRipple [matRippleColor]="myColor" >
-                    <div class="card_div" routerLink="/roots/{{product.id}}/root/" >
+                <mat-card class="products-card" matRipple [matRippleColor]="myColor">
+                    <div class="card_div" routerLink="/roots/{{product.id}}/root/">
                         <div [hidden]="imageLoaded"
                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
                         </div>
-                        <div *ngIf="startLoadingImages" [hidden]="!imageLoaded" [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}"
-                            class="image_div"></div>
+                        <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
+                            [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
 
                         <mat-card-content>
                             <p>
@@ -38,11 +38,12 @@
         </div>
 
     </div>
-    <div class="row" *ngIf="dataLoading">
+    <div class="row" *ngIf="dataLoading" style="margin: 0px;">
+    <!-- <div class="row"> -->
         <div id="ghost" class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom: 10px;"
             *ngFor="let product of [1,2,3,4]">
             <div style="width: max-content;margin: auto;">
-                <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;">
+                <mat-card class="products-card ghost" style=" width: auto; margin: auto;">
                     <div class="card_div" matRipple [matRippleColor]="myColor">
                         <div style="background-color: lightgray; height: 180px;" class="image_div"></div>
                         <mat-card-content>

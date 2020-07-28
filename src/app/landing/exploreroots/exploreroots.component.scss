@@ -19,3 +19,19 @@
 .products-card{
     text-align: center;
 }
+
+.ghost{
+    background-color: white;
+    animation-name: flicker;
+    animation-duration: 2s;
+}
+
+@keyframes flicker{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
