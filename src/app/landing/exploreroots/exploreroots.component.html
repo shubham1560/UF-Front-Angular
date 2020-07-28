@@ -2,7 +2,7 @@
 
 <div id="uf-exploreroots">
 
-    <div class="row" style="text-align: center;">
+    <!-- <div class="row" style="text-align: center;">
         <div class="col-xs-12" class="heading_div">
             <div class="heading_text">
                 <h3 style="font-weight: 400px;">We're always improving. Give us a hand by giving feedback on our
@@ -10,12 +10,12 @@
                 </h3>
             </div>
         </div>
-    </div>
-
+    </div> -->
+    <br><br>
 
     <div class="row" *ngIf="!dataLoading">
 
-        <div class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom: 10px;" *ngFor="let product of products">
+        <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 10px;" *ngFor="let product of products">
             <div style="width: max-content;margin: auto;" >
                 <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
                     <mat-card class="products-card" matRipple [matRippleColor]="myColor" >

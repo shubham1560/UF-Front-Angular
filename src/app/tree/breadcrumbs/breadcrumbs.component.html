@@ -1,5 +1,12 @@
 <div *ngIf="this.isLoading">
-    Voila
+    <div class="d-inline"mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
+        <mat-icon matSuffix *ngIf="b==0">
+            account_tree
+        </mat-icon>
+        <span style="color: lightgray; background-color: lightgray;">
+            {{i}}
+        </span>
+    </div>
 </div>
 <div *ngIf="!this.isLoading" class="uf-breadcrumbs">
     <div class="d-inline"mat-button *ngFor="let crumb of breadcrumb; let i = index" style="cursor: pointer;">

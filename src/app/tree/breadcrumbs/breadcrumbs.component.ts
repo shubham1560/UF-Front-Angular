@@ -25,6 +25,7 @@ export class BreadcrumbsComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       route => {
+        this.isLoading = true;
         this.breadcrumb = ["Home", ""]
         this.breadcrumbLink = ["", ""]
         this.kb_base = route.get('kb_base');
