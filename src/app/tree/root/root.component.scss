@@ -1,14 +1,24 @@
 .image_div{
-    height: 200px;
-    width: 200px;
+    height: 150px;
+    width: 150px;
     background-size: 100% 100%;
     margin: auto;
 }
+
+@media (max-width: 768px) {
+    .image_div {
+        height: 100px;
+        width: 100px;
+        background-size: 100% 100%;
+        margin: auto;
+    }
+  }
 
 .card_div{
     // text-align: center;
     margin: auto;
     cursor: pointer;
+    text-align: center;
 }
 
 .heading_div{

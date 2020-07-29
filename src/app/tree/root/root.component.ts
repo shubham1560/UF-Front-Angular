@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ArticleListComponent } from 'src/app/blogs/article-list/article-list.component';
@@ -15,6 +15,7 @@ export class RootComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private loggerService: LoggerService,
     private knowledgeService: DataService,
     public dialog: MatDialog,
@@ -59,6 +60,7 @@ export class RootComponent implements OnInit {
   }
 
   navigate(url) {
-    window.open("#/courses/" + url)
+    this.router.navigateByUrl("/courses/"+url);
+    // window.open("#/courses/" + url)
   }
 }
