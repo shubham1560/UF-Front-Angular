@@ -2,7 +2,7 @@
 
 <div id="uf-exploreroots">
 
-    <div class="row" style="text-align: center; margin: 0px;">
+    <!-- <div class="row" style="text-align: center; margin: 0px;">
         <div class="col-xs-12" class="heading_div">
             <div class="heading_text">
                 <h3 style="font-weight: 400px;">We're always improving. Give us a hand by giving feedback on our
@@ -10,16 +10,19 @@
                 </h3>
             </div>
         </div>
-    </div>
+    </div> -->
     <br><br>
 
     <div class="row" *ngIf="!dataLoading" style="margin: 0px;">
 
-        <div class="col-lg-3 col-md-6 col-xs-6" style="margin-bottom: 10px;" *ngFor="let product of products">
-            <div style="width: max-content;margin: auto;">
+        <div class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;" *ngFor="let product of products">
+            <div style="margin: auto;">
                 <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
                 <mat-card class="products-card" matRipple [matRippleColor]="myColor">
                     <div class="card_div" routerLink="/roots/{{product.id}}/root/">
+                        <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                            <mat-icon>more_vert</mat-icon>
+                          </button> -->
                         <div [hidden]="imageLoaded"
                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
                         </div>
@@ -28,8 +31,11 @@
 
                         <mat-card-content style="max-width: 200px;">
                             <p>
-                                <b>{{product.title}}</b> <br>
-                                {{product.description}}
+                                <b>{{product.title}}</b> 
+                                
+                                <br>
+                                <!-- <button mat-raised-button color="accent">detail</button> -->
+                                <!-- {{product.description}} -->
                             </p>
                         </mat-card-content>
                     </div>
@@ -40,9 +46,9 @@
     </div>
     <div class="row" *ngIf="dataLoading" style="margin: 0px;">
     <!-- <div class="row"> -->
-        <div id="ghost" class="col-lg-3 col-md-6 col-sm-6" style="margin-bottom: 10px;"
+        <div id="ghost" class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;"
             *ngFor="let product of [1,2,3,4]">
-            <div style="width: max-content;margin: auto;">
+            <div style="margin: auto;">
                 <mat-card class="products-card ghost" style=" width: auto; margin: auto;">
                     <div class="card_div" matRipple [matRippleColor]="myColor">
                         <div style="background-color: lightgray; height: 180px;" class="image_div"></div>
