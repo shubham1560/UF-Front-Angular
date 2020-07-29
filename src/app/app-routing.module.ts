@@ -30,7 +30,7 @@ const routes: Routes = [
   {
     path: "roots",
     loadChildren: () =>
-      import("./tree/tree-routing.module").then(root=>root.TreeRoutingModule)
+      import("./tree/tree.module").then(root=>root.TreeModule)
   },
   { 
     path: "**", 
