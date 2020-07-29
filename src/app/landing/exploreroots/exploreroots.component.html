@@ -26,7 +26,7 @@
                         <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
                             [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
 
-                        <mat-card-content>
+                        <mat-card-content style="max-width: 200px;">
                             <p>
                                 <b>{{product.title}}</b> <br>
                                 {{product.description}}
