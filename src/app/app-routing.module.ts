@@ -5,11 +5,19 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { LandingComponent } from './landing/landing.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { ProfileGuard } from './userprofile/guard/profile.guard'
+import { ExplorerootsComponent } from './landing/exploreroots/exploreroots.component';
 
 
 const routes: Routes = [
   { path: "welcome", redirectTo: "" },
-  { path: "", component: LandingComponent },
+  { 
+    path: "", 
+    component: ExplorerootsComponent 
+  },
+  {
+    path: "dashboard",
+    component: LandingComponent
+  },
   {
     path: "auth",
     canActivate: [AuthGuard],

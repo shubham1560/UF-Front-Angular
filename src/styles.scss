@@ -14,6 +14,23 @@
 //     100% {background: lightgray;}
 // }
   
+.float-over{
+    position: fixed !important;
+    bottom: 10px !important;
+    right: 10px !important;
+    z-index: 1 !important;
+}
+
+@media (min-width: 768px){
+    .float-over{
+        position: fixed !important;
+        bottom: 50px !important;
+        right: 50px !important;
+        z-index: 1 !important;
+    }
+    
+}
+
 
 html, body { height: 100%; }
 body { margin: 0;

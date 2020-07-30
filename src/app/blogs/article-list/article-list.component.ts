@@ -90,6 +90,10 @@ export class ArticleListComponent implements OnInit {
     const dialogRef = this.dialog.open(LoginpromptComponent);
   }
 
+  goBack(){
+    console.log("going back")
+  }
+
   markViewed(article_id) {
     var totalNumArticles = 0;
     var totalReadArticles = 0;

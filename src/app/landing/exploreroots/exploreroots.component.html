@@ -13,55 +13,59 @@
     </div> -->
     <br><br>
 
-    <div class="row" *ngIf="!dataLoading" style="margin: 0px;">
+    <div class="container">
+        <div class="row" *ngIf="!dataLoading" style="margin: 0px;">
 
-        <div class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;" *ngFor="let product of products">
-            <div style="margin: auto;">
-                <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
-                <mat-card class="products-card" matRipple [matRippleColor]="myColor">
-                    <div class="card_div" routerLink="/roots/{{product.id}}/root/">
-                        <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <div class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;" *ngFor="let product of products">
+                <div style="margin: auto;">
+                    <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
+                    <mat-card class="products-card" matRipple [matRippleColor]="myColor">
+                        <div class="card_div" routerLink="/roots/{{product.id}}/root/">
+                            <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
                             <mat-icon>more_vert</mat-icon>
                           </button> -->
-                        <div [hidden]="imageLoaded"
-                            [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
+                            <div [hidden]="imageLoaded"
+                                [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
+                                class="image_div">
+                            </div>
+                            <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
+                                [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div">
+                            </div>
+
+                            <mat-card-content style="max-width: 200px;">
+                                <p>
+                                    <b>{{product.title}}</b>
+
+                                    <br>
+                                    <!-- <button mat-raised-button color="accent">detail</button> -->
+                                    <!-- {{product.description}} -->
+                                </p>
+                            </mat-card-content>
                         </div>
-                        <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
-                            [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
-
-                        <mat-card-content style="max-width: 200px;">
-                            <p>
-                                <b>{{product.title}}</b> 
-                                
-                                <br>
-                                <!-- <button mat-raised-button color="accent">detail</button> -->
-                                <!-- {{product.description}} -->
-                            </p>
-                        </mat-card-content>
-                    </div>
-                </mat-card>
+                    </mat-card>
+                </div>
             </div>
-        </div>
 
-    </div>
-    <div class="row" *ngIf="dataLoading" style="margin: 0px;">
-    <!-- <div class="row" style="margin: 0px;"> -->
-        <div id="ghost" class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;"
-            *ngFor="let product of [1,2,3,4]">
-            <div style="margin: auto;">
-                <mat-card class="products-card ghost" style=" width: auto; margin: auto;">
-                    <div class="card_div" matRipple [matRippleColor]="myColor">
-                        <div style="background-color: lightgray;" class="image_div"></div>
-                        <mat-card-content>
-                            <p style="margin: auto;margin-top: 20px;height: 20px; width: 100px; background-color: lightgray;">
-                            </p>
-                            <!-- <p style="height: 20px; background-color: lightgray;"> -->
-                            <!-- </p> -->
-                        </mat-card-content>
-                    </div>
-                </mat-card>
+        </div>
+        <div class="row" *ngIf="dataLoading" style="margin: 0px;">
+            <!-- <div class="row" style="margin: 0px;"> -->
+            <div id="ghost" class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;"
+                *ngFor="let product of [1,2,3,4]">
+                <div style="margin: auto;">
+                    <mat-card class="products-card ghost" style=" width: auto; margin: auto;">
+                        <div class="card_div" matRipple [matRippleColor]="myColor">
+                            <div style="background-color: lightgray;" class="image_div"></div>
+                            <mat-card-content>
+                                <p
+                                    style="margin: auto;margin-top: 20px;height: 20px; width: 100px; background-color: lightgray;">
+                                </p>
+                                <!-- <p style="height: 20px; background-color: lightgray;"> -->
+                                <!-- </p> -->
+                            </mat-card-content>
+                        </div>
+                    </mat-card>
+                </div>
             </div>
         </div>
     </div>
-
 </div>

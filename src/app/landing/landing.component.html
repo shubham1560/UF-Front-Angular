@@ -1,6 +1,18 @@
 <div class="container" color="primary">
 
-    <mat-tab-group animationDuration="0ms">
+
+    <app-exploreroots></app-exploreroots>
+
+    <div class="row" style="margin: 0px;">
+        <br><br>
+        <div class="col-md-4">
+            <app-featured></app-featured>
+        </div>
+        <div class="col-md-8">
+            <app-all-articles></app-all-articles>
+        </div>
+    </div>
+    <!-- <mat-tab-group animationDuration="0ms">
         <mat-tab label="Paths">
             <ng-template matTabContent>
                 <app-exploreroots></app-exploreroots>
@@ -8,18 +20,10 @@
         </mat-tab>
         <mat-tab label="My Dashboard">
             <ng-template matTabContent>
-                <div class="row" style="margin: 0px;">
-                    <br><br>
-                    <div class="col-md-4">
-                        <app-featured></app-featured>
-                    </div>
-                    <div class="col-md-8">
-                        <app-all-articles></app-all-articles>
-                    </div>
-                </div>
+                
             </ng-template>
         </mat-tab>
-    </mat-tab-group>
+    </mat-tab-group> -->
     <!-- <button mat-button class="voila">Voila</button> -->
     <!-- <app-all-articles></app-all-articles> -->
 </div>

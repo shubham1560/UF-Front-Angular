@@ -1,8 +1,20 @@
-
 <app-header></app-header>
 <div [@slideInAnimation]="o.isActivated? o.activatedRoute: ''"></div>
 <div>
     <router-outlet #o="outlet" (activate)="onActivate($event)">
-        
+
     </router-outlet>
+
+    <!-- <button mat-button class="float-over">Menu</button> -->
+
+    <!-- <button mat-reaised-button [matMenuTriggerFor]="aboveMenu" class="float-over">
+        Above
+    </button> -->
+    <button mat-mini-fab color="accent" [matMenuTriggerFor]="aboveMenu" class="float-over">
+        <mat-icon>menu</mat-icon>
+      </button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button mat-menu-item routerLink=""> Home <mat-icon>home</mat-icon></button>
+        <button mat-menu-item routerLink="/dashboard">Dashboard</button>
+    </mat-menu>
 </div>
