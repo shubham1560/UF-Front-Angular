@@ -9,22 +9,31 @@ export class LoggerService {
 
   constructor() { }
 
+  password = "1234";
 
   // Press altKey+ right_mouse_click to get the data of the component, give the id to all the components
   logData(id: string, data: {}) {
     console.log("logger")
-      if (this.loggerEnable) {
-        var a = document.getElementById(id);
-        a["this"] = data;
-        a.addEventListener("contextmenu", function (event) {
-          if (event.altKey){
+    if (this.loggerEnable) {
+      var a = document.getElementById(id);
+      a["this"] = data;
+      a.addEventListener("contextmenu", function (event) {
+        if (event.altKey) {
+          var passcode = prompt("Give me the password?");
+          if (passcode == "1234") {
             console.log(a["this"]);
           }
-          if (event.shiftKey){
-            console.log({"data":a["this"]["data"]});
+          else{
+            prompt("Wrong password mate!")
           }
-        })
-      }
-    
+        }
+        if (event.shiftKey) {
+          console.log({ "data": a["this"]["data"] });
+        }
+      })
+    }
   }
+  // else{
+  //   prompt("Wrong password mate");
+  // }
 }
