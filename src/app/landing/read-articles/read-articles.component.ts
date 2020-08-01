@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 @Component({
   selector: 'app-read-articles',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReadArticlesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userProfileService: UserprofileService,
+  ) { }
 
   ngOnInit(): void {
+    this.userProfileService.getUserStartedCourse().subscribe(
+      result =>{
+        console.log(result);
+      }
+    )
   }
 
 }

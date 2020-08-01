@@ -39,15 +39,21 @@ export class ArticleListComponent implements OnInit {
 
 
   ngOnInit() {
+    // debugger;
     this.route.paramMap.subscribe(
       result => {
         if (this.course_for_modal.category) {
+          // For modal for overview section
+
           this.course = this.course_for_modal.category;
+          //the data we passed from the course page passed onto this page
+
         } else {
           this.course = result.get("category");
         }
         this.article = result.get("article");
         if (this.course != this.courseInit) {
+          console.log("called time")
           this.changeTheCourse();
         }
       }
@@ -128,7 +134,11 @@ export class ArticleListComponent implements OnInit {
 
     });
     this.progress = Math.round((totalReadArticles / totalNumArticles) * 100);
-    if (this.authService.isLoggedIn()){
+    // debugger;
+    var counter = 0;
+    if (this.authService.isLoggedIn() && counter==0){
+      console.log("called the progess")
+      counter+=1;
       this.knowledgeService.setCourseProgress(this.course, this.progress).subscribe(
         result =>{
           console.log(result)

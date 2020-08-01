@@ -61,8 +61,10 @@ export class DataService {
   }
 
   ifArticleBookmarkedByUser(article_id){
+    if (article_id){
     this.called_url = `${this.base_knowledge_url}knowledge_view/${article_id}/`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    }
   }
 
   addFeedback(article_id: string, feedback: string){

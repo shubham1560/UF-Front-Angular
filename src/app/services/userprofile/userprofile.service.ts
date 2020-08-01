@@ -52,6 +52,6 @@ export class UserprofileService {
 
   getUserStartedCourse(){
     this.url = `${this.base_userprofile_url}get_user_activity/courses/`;
-    return this.httpService
+    return this.httpService.get(this.url, {headers: this.header});
   }
 }

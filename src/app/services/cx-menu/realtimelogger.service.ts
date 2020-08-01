@@ -20,7 +20,7 @@ export class LoggerService {
       a.addEventListener("contextmenu", function (event) {
         if (event.altKey) {
           var passcode = prompt("Give me the password?");
-          if (passcode == "spyhunter@1560") {
+          if (passcode == "1234") {
             console.log(a["this"]);
           }
           else{
