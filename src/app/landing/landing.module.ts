@@ -11,10 +11,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeaturedComponent } from './featured/featured.component';
 import { ExplorerootsComponent } from './exploreroots/exploreroots.component';
+import { ReadArticlesComponent } from './read-articles/read-articles.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, AllArticlesComponent, FeaturedComponent, ExplorerootsComponent],
+  declarations: [LandingComponent, AllArticlesComponent, FeaturedComponent, ExplorerootsComponent, ReadArticlesComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
