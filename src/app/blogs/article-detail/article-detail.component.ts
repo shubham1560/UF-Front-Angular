@@ -29,23 +29,25 @@ export class ArticleDetailComponent implements OnInit {
       params => {
         this.article_id = params.get('article');
         this.category = params.get("category");
-        this.knowledge.getArticleById(this.article_id).subscribe(
-          (result: any) => {
-            this.article = result.data;
-            this.isLoading = false;
-            console.log(this.article.getAuthor.header_image);
-            console.log(this.article.getAuthor.google_pic);
-            if (this.article.getAuthor.google_pic){
-              this.authorImage = this.article.getAuthor.google_pic;
+        if (this.article_id) {
+          this.knowledge.getArticleById(this.article_id).subscribe(
+            (result: any) => {
+              this.article = result.data;
+              this.isLoading = false;
+              console.log(this.article.getAuthor.header_image);
+              console.log(this.article.getAuthor.google_pic);
+              if (this.article.getAuthor.google_pic) {
+                this.authorImage = this.article.getAuthor.google_pic;
+              }
+              else {
+                this.authorImage = this.article.getAuthor.header_image
+              }
+            }, error => {
+              this.article = {};
+              console.log(error);
             }
-            else{
-              this.authorImage = this.article.getAuthor.header_image
-            }
-          }, error => {
-            this.article = {};
-            console.log(error);
-          }
-        )
+          )
+        }
       }
     )
     // this.logger.logData("uf-article-detail", this)
@@ -56,7 +58,7 @@ export class ArticleDetailComponent implements OnInit {
     }, 6000);
 
 
-    
+
   }
 
 }

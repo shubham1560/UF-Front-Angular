@@ -33,17 +33,20 @@ export class KbuseComponent implements OnInit {
     this.route.paramMap.subscribe(
       params => {
         this.article = params.get('article');
-        this.viewed(this.article);
-        setTimeout(() =>
-          this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
-            (data: any) => {
-              console.log(data);
-              this.found_useful = data.found_useful;
-              this.bookmarked = data.bookmarked;
-              this.isLoading = false;
-            }
-          )
-          , 2000)
+        
+        if (this.article) {
+          this.viewed(this.article);
+          setTimeout(() =>
+            this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
+              (data: any) => {
+                console.log(data);
+                this.found_useful = data.found_useful;
+                this.bookmarked = data.bookmarked;
+                this.isLoading = false;
+              }
+            )
+            , 2000)
+        }
       }
     )
 
