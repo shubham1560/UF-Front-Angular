@@ -9,18 +9,18 @@ export class LoggerService {
 
   constructor() { }
 
-  password = "1234";
+  password = "spyhunter@1560";
 
   // Press altKey+ right_mouse_click to get the data of the component, give the id to all the components
   logData(id: string, data: {}) {
-    console.log("logger")
+    // console.log("logger")
     if (this.loggerEnable) {
       var a = document.getElementById(id);
       a["this"] = data;
       a.addEventListener("contextmenu", function (event) {
         if (event.altKey) {
           var passcode = prompt("Give me the password?");
-          if (passcode == "1234") {
+          if (passcode == "spyhunter@1560") {
             console.log(a["this"]);
           }
           else{

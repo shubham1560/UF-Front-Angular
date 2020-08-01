@@ -1,8 +1,16 @@
 .image_div{
     height: 150px;
     width: 150px;
-    background-size: 100% 100%;
+    background: center;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
     margin: auto;
+    transition: all 0.3s ease-in-out;
+    
+    &:hover{
+        transform: scale(1.2);
+        // background-size: 100% 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -27,6 +35,12 @@
 
 .products-card{
     text-align: center;
+
+    &:hover{
+        .image_div{
+            transform: scale(1.24);
+        }
+    }
 }
 
 .ghost{

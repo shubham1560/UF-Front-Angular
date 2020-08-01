@@ -97,4 +97,6 @@ export class DataService {
     const body = {'course': course, 'progress': progress}
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  
 }

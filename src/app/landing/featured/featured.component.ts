@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 @Component({
   selector: 'app-featured',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeaturedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userProfileService: UserprofileService,
+  ) { }
 
   ngOnInit(): void {
+    this.userProfileService.getUserReadArticle().subscribe(
+      result=>{
+        console.log(result);
+      }
+    )
   }
 
 }

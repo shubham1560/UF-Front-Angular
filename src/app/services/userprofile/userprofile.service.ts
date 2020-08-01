@@ -12,7 +12,7 @@ export class UserprofileService {
   base_userprofile_url = `${this.base_url}userprofile/`
   
   constructor(private urlService: UrlconfigService,
-      private httService: HttpClient,
+      private httpService: HttpClient,
       private knowledgeService: DataService,
     ) { }
 
@@ -22,18 +22,18 @@ export class UserprofileService {
 
   getUserData(){
     this.url = `${this.base_userprofile_url}get_user_data/`
-    return this.httService.get(this.url, {headers: this.header});
+    return this.httpService.get(this.url, {headers: this.header});
   }
 
   deleteUser(){
     this.url = `${this.base_userprofile_url}get_user_data/`
     this.body = {"delete": "true"};
-    return this.httService.post(this.url, this.body,  {headers: this.header})
+    return this.httpService.post(this.url, this.body,  {headers: this.header})
   }
 
   getBookmarkedArticles(){
     this.url = `${this.knowledgeService.getKnowledgeUrl()}bookmarked_articles/`;
-      return this.httService.get(this.url, {headers:this.header} )
+      return this.httpService.get(this.url, {headers:this.header} )
   }
 
   editUserData(user_data){
@@ -42,6 +42,16 @@ export class UserprofileService {
                   "last_name": user_data.last_name,
                   "about": user_data.about,
     };
-    return this.httService.post(this.url, body, {headers: this.header});
+    return this.httpService.post(this.url, body, {headers: this.header});
+  }
+
+  getUserReadArticle(){
+    this.url = `${this.base_userprofile_url}get_user_activity/articles/`;
+    return this.httpService.get(this.url, {headers: this.header});
+  }
+
+  getUserStartedCourse(){
+    this.url = `${this.base_userprofile_url}get_user_activity/courses/`;
+    return this.httpService
   }
 }
