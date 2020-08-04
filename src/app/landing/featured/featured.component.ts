@@ -14,7 +14,7 @@ export class FeaturedComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userProfileService.getUserReadArticle().subscribe(
+    this.userProfileService.getUserStartedCourse(0, 5).subscribe(
       result=>{
         console.log(result);
       }

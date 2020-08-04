@@ -45,13 +45,13 @@ export class UserprofileService {
     return this.httpService.post(this.url, body, {headers: this.header});
   }
 
-  getUserReadArticle(){
-    this.url = `${this.base_userprofile_url}get_user_activity/articles/`;
+  getUserReadArticle(start, end){
+    this.url = `${this.base_userprofile_url}get_user_activity/articles/${start}/${end}/`;
     return this.httpService.get(this.url, {headers: this.header});
   }
 
-  getUserStartedCourse(){
-    this.url = `${this.base_userprofile_url}get_user_activity/courses/`;
+  getUserStartedCourse(start, end){
+    this.url = `${this.base_userprofile_url}get_user_activity/courses/${start}/${end}/`;
     return this.httpService.get(this.url, {headers: this.header});
   }
 }

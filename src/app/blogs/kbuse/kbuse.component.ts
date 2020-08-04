@@ -32,20 +32,25 @@ export class KbuseComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
-        this.article = params.get('article');
-        
-        if (this.article) {
-          this.viewed(this.article);
-          setTimeout(() =>
-            this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
-              (data: any) => {
-                console.log(data);
-                this.found_useful = data.found_useful;
-                this.bookmarked = data.bookmarked;
-                this.isLoading = false;
-              }
-            )
-            , 2000)
+        if (this.authService.isLoggedIn()) {
+          this.article = params.get('article');
+
+          if (this.article) {
+            this.viewed(this.article);
+            setTimeout(() =>
+              this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
+                (data: any) => {
+                  console.log(data);
+                  this.found_useful = data.found_useful;
+                  this.bookmarked = data.bookmarked;
+                  this.isLoading = false;
+                }
+              )
+              , 2000)
+          }
+        }
+        else{
+          this.isLoading = false;
         }
       }
     )

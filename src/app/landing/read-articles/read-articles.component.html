@@ -1,1 +1,118 @@
-<p>read-articles works!</p>
+<div>
+
+    <pre>
+
+        <!-- {{articles | json}} -->
+    </pre>
+    <div id="uf-read-articles" class="" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+        (scrolled)="getNextPage()">
+        <div *ngFor="let article of articles">
+            <pre>
+            <!-- {{article.article | json}} -->
+        </pre>
+            <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
+                <!-- <mat-card-header> -->
+
+                <span>Course: {{article.article?.course_name}}</span>
+                <!-- <span style="float: right; cursor: pointer;">
+                    <mat-icon matSuffix (click)="addBokmark(article.article.id)" *ngIf="article.article.bookmarked">bookmark</mat-icon>
+                    <mat-icon matSuffix (click)="addBokmark(article.article.id)" *ngIf="!article.article.bookmarked">bookmark_border
+                    </mat-icon>
+                </span> -->
+
+                <div fxLayout="row" routerLink="/blog/{{article.article.id}}" fxLayout.xs="row" fxLayoutWrap
+                    fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+                    style="flex-direction:row !important;height: 100px; cursor: pointer;">
+                    <div [ngStyle]="{background: 'url('+article.article?.featured_image_thumbnail+')'}"
+                        class="uf-resp-image-div" style="background-size: 100% 100%;"></div>
+                    <div fxFlex="80%">
+
+
+                        <mat-card-content style="padding-left: 10px;">
+                            <p class="uf-heading-wrapper">{{article.article?.title}}</p>
+
+                            <p class="uf-paragraph-wrapper">
+                                <!-- <img class="img" height="100" width="100" [src]="article.article.featured_image_thumbnail"
+                                style="float: left; padding-right: 10px;"> -->
+
+
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                                Description
+                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
+                                Japan.
+                            </p>
+                        </mat-card-content>
+
+                    </div>
+                </div>
+                <mat-card-content style="padding-top: 5px;">
+                    <span style="float: left;">Base: {{article.article.knowledge_base}}</span>
+                    <!-- <span style="float: right;">
+                        <b>{{article?.getAuthor.first_name}}</b>
+                    </span> -->
+
+                </mat-card-content>
+                <!-- <mat-card-actions> -->
+                <!-- <button mat-button>LIKE</button> -->
+                <!-- <button mat-button>SHARE</button> -->
+                <!-- </mat-card-actions> -->
+            </mat-card>
+            <br>
+        </div>
+        <div *ngIf="isLoading">
+            <!-- <div> -->
+            <mat-card *ngFor="let i of [1,2,3,4,5] let x = index"
+                style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px; margin-bottom: 20px;">
+                <mat-card-header class="ghost animate__animated animate__flash animate__infinite"
+                    style="height: 1em; margin-bottom: 3px;width: 60%">
+                    <!-- <div mat-card-avatar class="example-header-image"></div> -->
+                    <!-- <mat-card-title style="font-size: 14px; overflow: hidden;">{{article.article.id}}</mat-card-title> -->
+                    <!-- <mat-card-subtitle>yo</mat-card-subtitle> -->
+                </mat-card-header>
+
+                <div fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="stretch"
+                    style="flex-direction:row !important;height: 100px;">
+                    <div class="uf-resp-image-div ghost animate__animated animate__flash animate__infinite"
+                        style="background-size: 100% 100%;"></div>
+                    <div fxFlex="80%">
+
+
+                        <mat-card-content style="padding-left: 10px;">
+                            <h3 class="uf-heading-wrapper-ghost animate__animated animate__flash animate__infinite">
+                            </h3>
+
+                            <p class="uf-paragraph-wrapper-ghost animate__animated animate__flash animate__infinite">
+                                <!-- <img class="img" height="100" width="100" [src]="article.article.featured_image_thumbnail"
+                                style="float: left; padding-right: 10px;"> -->
+                            </p>
+                        </mat-card-content>
+
+                    </div>
+                </div>
+                <mat-card-content style="padding-top: 5px;">
+                    <span style="float: left;"
+                        class="footer-card ghost animate__animated animate__flash animate__infinite"></span>
+                    <span style="float: right;"
+                        class="footer-card ghost animate__animated animate__flash animate__infinite">
+                    </span>
+                </mat-card-content>
+            </mat-card>
+
+        </div>
+
+        <br>
+
+    </div>
+
+</div>
+
+<!-- <button (click)="getNextPage()" *ngIf="!endReached">More</button> -->
+<!-- <div style="text-align: center;" *ngIf="endReached">You have seen all the articles</div> -->
