@@ -1,11 +1,16 @@
 <!-- <p>header works!</p> -->
-<mat-toolbar id="uf-header" color="primary" style="height: 48px;">
+<mat-toolbar id="uf-header" color="" style="background: transparent;">
 
-    <button mat-button routerLink="/welcome/">Logo</button>
+    <div mat-button routerLink="/welcome/">Logo</div>
     <span class="fillspace"></span>
 
     <span class="sign-in" *ngIf="!isLoggedIn">
-        <button mat-button routerLink="/auth/" (click)="sendToLoginPage()" routerLinkActive="active">Sign in</button>
+        <button mat-flat-button color="primary" routerLink="/auth/" (click)="sendToLoginPage()" routerLinkActive="active">Sign in</button>
+    </span>
+
+    <span *ngIf="isLoggedIn">
+        <button mat-button color="accent" routerLink="/dashboard"routerLinkActive="active">Dashboard</button>
+
     </span>
 
     <!-- <img [src]="image" alt=""> -->
