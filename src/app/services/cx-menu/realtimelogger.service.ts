@@ -9,7 +9,7 @@ export class LoggerService {
 
   constructor() { }
 
-  password = "spyhunter@1560";
+  password = "123";
 
   // Press altKey+ right_mouse_click to get the data of the component, give the id to all the components
   logData(id: string, data: {}) {
@@ -20,7 +20,7 @@ export class LoggerService {
       a.addEventListener("contextmenu", function (event) {
         if (event.altKey) {
           var passcode = prompt("Give me the password?");
-          if (passcode == "1234") {
+          if (passcode == "123") {
             console.log(a["this"]);
           }
           else{

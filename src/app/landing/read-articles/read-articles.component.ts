@@ -16,12 +16,19 @@ export class ReadArticlesComponent implements OnInit {
 
   articles;
 
+  fetchedAllArticles = false;
+  start = 0;
+  numberOfArticlesToFetch = 3;
+  end = this.start+ this.numberOfArticlesToFetch;
+
   isLoading= true;
   ngOnInit(): void {
-    this.userProfileService.getUserReadArticle(0, 4).subscribe(
+    this.userProfileService.getUserReadArticle(this.start, this.end).subscribe(
       (result:any) =>{
         this.articles = result;
         this.isLoading = false
+        this.start = this.start+this.numberOfArticlesToFetch;
+        this.end = this.start + this.numberOfArticlesToFetch;
       }
     )
     this.loggerService.logData("uf-read-articles", this);
@@ -29,11 +36,25 @@ export class ReadArticlesComponent implements OnInit {
 
   getNextPage(){
     console.log("hola")
+
+    this.fetchArticles(this.start,this.end);
   }
 
 
   addBokmark(yo){
     console.log("hola");
     
+  }
+
+  fetchArticles(start, end){
+    this.userProfileService.getUserReadArticle(start, end).subscribe(
+      (result:any) =>{
+        console.log(result);
+        this.articles = this.articles.concat(result);
+        this.isLoading = false
+        this.start = this.start+this.numberOfArticlesToFetch;
+        this.end = this.start + this.numberOfArticlesToFetch;
+      }
+    )
   }
 }
