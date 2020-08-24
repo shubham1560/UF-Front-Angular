@@ -6,22 +6,28 @@
 
 .sign-in{
     font-size: medium;
-    // color: #1e88e5;
+    color: #f8f9f9;
     .active{
-        color: white;
+        color: #f8f9f9;
     }    
 
     &:hover{
         cursor: pointer;
+        color: white;
     }
 }
 
 .uf-header{
     background-color: var(--primary-color);
+    height: 48px;
 }
 
 .uf-dashboard{
-    color: white;
+    color: #f8f9f9;
     background-color: var(--highlight-text);
+
+    &:hover{
+        background-color: #205542;;
+    }
 }
 

@@ -8,6 +8,7 @@ const routes: Routes = [
     {
         path:"",
         component: ExplorerootsComponent
+        // component: LandingComponent
     },
     {
         path:"dashboard",

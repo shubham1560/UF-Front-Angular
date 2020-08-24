@@ -1,7 +1,7 @@
 <!-- <p>header works!</p> -->
 <mat-toolbar id="uf-header" class="uf-header">
 
-    <div mat-button routerLink="/welcome/">Logo</div>
+    <div mat-button routerLink="/welcome/" style="color: #f8f7f7;">Logo</div>
     <span class="fillspace"></span>
 
     <span class="sign-in" *ngIf="!isLoggedIn">
@@ -9,7 +9,7 @@
     </span>
 
     <span *ngIf="isLoggedIn">
-        <button mat-button class="uf-dashboard" routerLink="/dashboard"routerLinkActive="active">Dashboard</button>
+        <button mat-button class="uf-dashboard" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
 
     </span>
 
@@ -51,3 +51,8 @@
     </span>
 
 </mat-toolbar>
+<!-- 
+<mat-toolbar>
+
+
+</mat-toolbar> -->
