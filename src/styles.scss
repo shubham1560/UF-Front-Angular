@@ -35,7 +35,8 @@
 html, body { height: 100%; }
 body { margin: 0;
      font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-color: #cecece;
+    // background-color: var(--tertiary-color);
+    background-color: #f6f7f7 !important;
     }
 
 div:focus{
@@ -68,10 +69,10 @@ button{
             text-align: center;
         }
         .uf-auth-form-body{
-            // border: 1px solid rgba(0,0,0,.26);
-            // border-radius: 5px;
-            // padding: 15px;
-            // background-color: white;
+            border: 1px solid rgba(0,0,0,.26);
+            border-radius: 5px;
+            padding: 15px;
+            background-color: white;
 
 
             .uf-auth-info-block{
@@ -150,3 +151,21 @@ button{
         margin: 10px 160px 0px 160px;
     }
  }
+
+
+$base-color: #c6538c;
+$border-dark: rgba($base-color, 0.88);
+
+
+
+:root 
+{
+    --primary-color: #293e40;
+    --secondary-color: #3e5153;
+    --tertiary-color: #516264;
+    --highlight-text: #00FF27;
+}
+
+.alert1 {
+  border: 1px solid $border-dark;
+}
