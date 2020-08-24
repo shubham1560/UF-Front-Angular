@@ -7,19 +7,29 @@
 
 
     <form (ngSubmit)=save() [formGroup]="feedbackForm">
-        <!-- Feedback -->
+        <b> Feedback</b>
+        <br>
+        <br>
 
         <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>Feedback:</mat-label>
-            <textarea rows="10" matInput formControlName="feedback"></textarea>
+            <mat-label>Tell us about this specific page?</mat-label>
+            <textarea rows="10" cols="100" matInput formControlName="feedback"></textarea>
         </mat-form-field>
         <br>
+        <!-- We will try to get back to you with this feedback! -->
+        <!-- <br> -->
+        <br>
         <div>
-            <button style="float: right;" mat-button color="primary" type="submit"
+            <!-- <button style="float: right;" mat-button color="primary" type="submit"
+                [disabled]='!feedbackForm.valid || disableButton '> -->
+                <button style="float: right; color: white; background-color: #39866e;" mat-raised-button type="submit"
                 [disabled]='!feedbackForm.valid || disableButton '>
-                <mat-icon matSuffix>send</mat-icon>
+
+                Send Feedback
+                <!-- <mat-icon matSuffix>send</mat-icon> -->
             </button>
         </div>
+        
     </form>
 </div>
 

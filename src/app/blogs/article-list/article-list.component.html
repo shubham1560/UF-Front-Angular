@@ -20,20 +20,27 @@
         <mat-accordion color="primary">
             <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
                 (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-                <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar>
+                <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
                 <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
                     <mat-panel-title [ngClass]="{'active' : section.active}">
 
                         <b>
-                            <div *ngIf="!section.doneAll || !progress"
+                            <!-- <div *ngIf="!section.doneAll || !progress"
                                 style="margin-right: 10px; padding: 3px 10px; border: 3px solid lightgray; border-radius: 20px;display: inline-block;">
                                 {{i+1}}
                             </div>
                             <div *ngIf="section.doneAll && progress"
                                 style="margin-right: 10px; padding: 3px 10px; border: 3px solid green; border-radius: 20px;display: inline-block;">
                                 {{i+1}}
-                            </div>
+                            </div> -->
+                            
+                            
+
+                            {{i+1}}. 
                             {{section.label}}
+                            <br>
+                            <span style="color:#b8e0d7;"> Section Progress: {{progress}} % </span>
+
                         </b>
 
                     </mat-panel-title>

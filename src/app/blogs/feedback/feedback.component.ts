@@ -28,21 +28,20 @@ export class FeedbackComponent implements OnInit {
     })
   }
 
-  save(){
+  save() {
     this.disableButton = true;
-    console.log(this.feedbackForm.value["feedback"]);
+    // console.log(this.feedbackForm.value["feedback"]);
     this.knowledgeService.addFeedback(this.article_from_modal.name, this.feedbackForm.value["feedback"]).subscribe(
-      data=>{
+      data => {
         console.log(data);
         this.disableButton = false;
         this.feedbackReceived = true;
-      }, 
-      error =>{
+      },
+      error => {
         this.disableButton = false;
         this.feedbackReceived = true;
         console.log(error);
       }
     )
   }
-
 }

@@ -2,8 +2,8 @@
 
     <div *ngIf="!isLoading" class="uf-kbuse">
         <!-- <div *ngIf="!found_useful"> -->
-            <div>
-            Did You find this article useful?
+        <div>
+            <span style="color: #8dc1ba"> Did You find this article useful?</span>
             <br>
             <button mat-raised-button (click)="markUseful(true)" [ngClass]="{'selected' : found_useful}">
                 <mat-icon matSuffix>
@@ -25,15 +25,15 @@
             <mat-icon matSuffix color="accent">bookmark_border
             </mat-icon>
         </button>
-        <button mat-button color="primary" (click)="bookmark()" *ngIf="!bookmarked">
+        <button mat-button style="color: #63a7b6" (click)="bookmark()" *ngIf="!bookmarked">
             Bookmark this article
-            <mat-icon matSuffix color="primary">bookmark
+            <mat-icon matSuffix style="color: #63a7b6">bookmark
             </mat-icon>
         </button>
 
-        <button mat-stroked-button color="primary" (click)="sendFeedback()">
+        <button mat-stroked-button style="color: #63a7b6" (click)="sendFeedback()">
             Send Feedback
-            <mat-icon matSuffix color="primary">feedback
+            <mat-icon matSuffix style="color: #63a7b6">feedback
             </mat-icon>
         </button>
     </div>
