@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import {MatDialog} from '@angular/material/dialog';
+import {  SearchResultsComponent } from '../search-results/search-results.component'
+
 
 @Component({
   selector: 'app-header',
@@ -16,6 +19,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private loggerService: LoggerService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +43,14 @@ export class HeaderComponent implements OnInit {
       )
     }
     this.loggerService.logData("uf-header", this);
+  }
+
+  searchResults(){
+    const dialogRef = this.dialog.open(SearchResultsComponent, {
+      data: {
+        query: 'panda'
+      }
+    });
   }
 
   logout() {
