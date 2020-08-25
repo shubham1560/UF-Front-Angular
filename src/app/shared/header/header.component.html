@@ -64,9 +64,9 @@
         </div>
         <div class="col-md-4" style="padding: 0px;">
             <mat-toolbar class="uf-header" style="background-color: #516264;">
-                <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm">
+                <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" style="width: 100%;">
                     <input type="text"
-                        style="background-color: #516264; border: none;outline: none; color: white; width: 80%;"
+                        style="background-color: #516264; border: none;outline: none; color: white; width: 70%;"
                         placeholder="Search" formControlName="query">
                     <button type="submit" class="uf-search-button">
                         <mat-icon class="uf-search-icon">search</mat-icon>

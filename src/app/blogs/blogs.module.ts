@@ -26,7 +26,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     BlogsComponent, 
     ArticleNewComponent, 
     SeecommentsComponent,
-    FooterComponent,
+    // FooterComponent,
     KbuseComponent,
     FeedbackComponent,
     ],
