@@ -27,6 +27,8 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
+        console.log("changed");
+        this.isLoading = true;
         this.article_id = params.get('article');
         this.category = params.get("category");
         if (this.article_id) {

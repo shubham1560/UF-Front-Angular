@@ -39,7 +39,7 @@
                             {{i+1}}. 
                             {{section.label}}
                             <br>
-                            <span style="color:#b8e0d7;"> Section Progress: {{progress}} % </span>
+                            <span style="color:#b8e0d7;"> Section Progress: {{section.progress}} % </span>
 
                         </b>
 
@@ -54,8 +54,8 @@
 
                         </div>
                         <div class="d-inline" *ngIf="article.viewed">
-                            <mat-icon style="vertical-align: middle; color: green" matSuffix>
-                                done</mat-icon>
+                            <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
+                                check_circle</mat-icon>
                         </div>
                         <div class="d-inline" [ngClass]="{'active' : article.active}">
                             {{article.title}}

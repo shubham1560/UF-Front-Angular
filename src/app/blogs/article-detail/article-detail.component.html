@@ -1,5 +1,7 @@
+<!-- <mat-progress-bar *ngIf="isLoading" mode="query" color="accent" style="margin: -15px;"></mat-progress-bar> -->
 <div id="uf-article-detail" style="padding-top: 20px;">
 <!-- <div> -->
+    
     <div *ngIf="!isLoading">
         <p class="uf-article-title">{{article?.title}}</p>
 
@@ -26,6 +28,8 @@
     </div>
 
     <div *ngIf="isLoading" id="ghost">
+        <!-- Progress -->
+
         <!-- <div> -->
         <p class="uf-article-title ghost-heading ghost" style="height:40px">
 
