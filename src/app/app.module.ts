@@ -20,6 +20,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider,
 } from 'angularx-social-login';
+import { SearchResultsComponent } from './shared/search-results/search-results.component';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
 
@@ -41,6 +42,7 @@ import {
     AppComponent,
     NotFoundComponent,
     HeaderComponent,
+    SearchResultsComponent,
     // RootComponent,
     // BreadcrumbsComponent,
   ],
