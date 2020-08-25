@@ -1,27 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
+
 export class FooterComponent implements OnInit {
 
   subscribeForm: FormGroup;
+  showFooter = true;
 
   constructor(
     private fb: FormBuilder,
+    private route: ActivatedRoute,
+    private loggerService: LoggerService
   ) { 
     
   }
 
   ngOnInit() {
+    // setTimeout(()=>{
+    //   this.showFooter = false;
+    // }, 3000)
+    this.route.paramMap.subscribe(
+      params=>{
+        console.log("changed");
+        console.log(this.route.paramMap);
+      }
+    )
 
     this.subscribeForm = this.fb.group({
       email: ['', [Validators.required, Validators.minLength(1), Validators.email]],
-      // confirm_password: ['', [Validators.required, Validators.minLength(8)]]
     })
+
+    this.loggerService.logData("uf-footer", this);
   }
 
   subscribeViaMail(){
