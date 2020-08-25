@@ -13,7 +13,7 @@ export class ExplorerootsComponent implements OnInit {
     private knowledgeServie: DataService,
     private loggerService: LoggerService,
   ) { }
-  myColor= "#ccebff";
+  myColor= "#8dbcaa";
   products: any;
   dataLoading = true;
   imageLoaded = false;
