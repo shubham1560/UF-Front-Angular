@@ -11,8 +11,7 @@
             <form novalidate (ngSubmit)="subscribeViaMail()" [formGroup]="subscribeForm">
 
                 <input matInput placeholder="Email" class="subscribe-form" formControlName="email">
-                <button mat-button type="submit"
-                    style="border: 2px solid #293e40; border-radius: 0px ; color: #3e5153; background-color: transparent;">
+                <button mat-button type="submit" class="subscribe-button">
                     Subscribe
                 </button>
             </form>
@@ -33,45 +32,6 @@
             Logo | Working to serve you better and clear the clutter
         </div>
     </div>
+    <br><br>
 </div>
 
-<!-- <mat-toolbar>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                Subscribe to us via email
-                <br><br>
-                We will send you latest articles via email
-
-                <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" >
-                    
-                    <button mat-raised-button style="background-color: #516264;" type="submit">
-                        <mat-icon>Subscribe</mat-icon>
-                    </button>
-                </form>
-
-
-            </div>
-            <div class="col-md-4">
-                Connect with us
-                <br>
-                Social Icons
-            </div>
-        </div>
-    </div>
-</mat-toolbar>
-
-<br><br>
-
-
-<mat-toolbar style="height: 48px">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-3">
-                Logo | We are working for you!
-
-            </div>
-
-        </div>
-    </div>
-</mat-toolbar> -->

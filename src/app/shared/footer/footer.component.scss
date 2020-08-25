@@ -1,6 +1,18 @@
 .subscribe-form{
-    padding: 5px;
+    padding: 7px;
     margin-right: 20px;
     width: 60%;
     border: 1px solid #293e40;
+}
+
+.subscribe-button{
+    border: 2px solid #293e40;
+    border-radius: 0px ;
+    color: #3e5153; 
+    background-color: transparent;
+
+    &:hover{
+        color: white;
+        background-color: #293e40; 
+    }
 }
