@@ -1,24 +1,36 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
-            Subscribe to us via email
-            <br> <br>
-            We will send you latest articles via email
+<div class="container-fluid" style="word-spacing: 2px;">
+    <hr>
+    <br><br>
 
-            <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" >
-                    
-                <!-- <mat-form-field appearance="outline"> -->
-                    <!-- <mat-label>Outline form field</mat-label> -->
-                    <input matInput placeholder="Email" class="subscribe-form">
-                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
-                    <!-- <mat-hint>Hint</mat-hint> -->
-                  <!-- </mat-form-field> -->
-                <button mat-raised-button style="background-color: #8dbcaa; color: #f7f8f8;">
+    <div class="row">
+        <div class="col-md-8" style="color: #293e40;">
+
+            <p style="font-size: 18px;"> <b> Subscribe to us via email </b> </p>
+            <p> We will send you latest articles via email</p>
+
+            <form novalidate (ngSubmit)="subscribeViaMail()" [formGroup]="subscribeForm">
+
+                <input matInput placeholder="Email" class="subscribe-form" formControlName="email">
+                <button mat-button type="submit"
+                    style="border: 2px solid #293e40; border-radius: 0px ; color: #3e5153; background-color: transparent;">
                     Subscribe
                 </button>
             </form>
 
 
+        </div>
+
+        <div class="col-md-4" style="color: #293e40;">
+            Connect with us
+            <br>
+
+        </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+        <div class="col-md-12">
+            Logo | Working to serve you better and clear the clutter
         </div>
     </div>
 </div>
