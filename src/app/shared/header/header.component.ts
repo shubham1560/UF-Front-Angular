@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
-import {MatDialog} from '@angular/material/dialog';
-import {  SearchResultsComponent } from '../search-results/search-results.component'
+import { MatDialog } from '@angular/material/dialog';
+import { SearchResultsComponent } from '../search-results/search-results.component'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -15,11 +16,13 @@ export class HeaderComponent implements OnInit {
   user: any = {};
   error: any;
   image = false;
+  searchQueryForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private loggerService: LoggerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit(): void {
@@ -42,22 +45,36 @@ export class HeaderComponent implements OnInit {
         }
       )
     }
+
+    this.searchQueryForm = this.fb.group({
+      query: ['', [Validators.required, Validators.minLength(1)]],
+      // confirm_password: ['', [Validators.required, Validators.minLength(8)]]
+    })
+
     this.loggerService.logData("uf-header", this);
   }
 
-  searchResults(){
-    const dialogRef = this.dialog.open(SearchResultsComponent, {
-      data: {
-        query: 'panda'
-      }
-    });
+
+
+  searchResults() {
+    var queryParm = this.searchQueryForm.get('query');
+
+    if (queryParm.valid){
+      const dialogRef = this.dialog.open(SearchResultsComponent, {
+        data: {
+          query: queryParm.value
+        }
+      });
+    }
+
+    
   }
 
   logout() {
     this.authService.logoutUser();
   }
 
-  sendToLoginPage(){
+  sendToLoginPage() {
     localStorage.setItem("redirect_url", window.location.href);
   }
 

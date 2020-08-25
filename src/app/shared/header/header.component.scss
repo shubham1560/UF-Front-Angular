@@ -17,6 +17,18 @@
     }
 }
 
+
+.uf-search-button{
+    border: none;
+    background-color: #516264;
+    outline: none;
+
+    &:hover{
+        background-color: #3e5153;
+        cursor: pointer;
+    }
+}
+
 .uf-header{
     background-color: var(--primary-color);
     height: 48px;
@@ -36,6 +48,7 @@
     font-weight: 100;
     opacity: 1; /* Firefox */
     font-size: 16px;
+    // padding-bottom: 60px;
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
