@@ -1,9 +1,43 @@
-<mat-toolbar>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            Subscribe to us via email
+            <br> <br>
+            We will send you latest articles via email
+
+            <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" >
+                    
+                <!-- <mat-form-field appearance="outline"> -->
+                    <!-- <mat-label>Outline form field</mat-label> -->
+                    <input matInput placeholder="Email" class="subscribe-form">
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                  <!-- </mat-form-field> -->
+                <button mat-raised-button style="background-color: #8dbcaa; color: #f7f8f8;">
+                    Subscribe
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- <mat-toolbar>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
-                Subscribe to get the latest updates
-                
+                Subscribe to us via email
+                <br><br>
+                We will send you latest articles via email
+
+                <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" >
+                    
+                    <button mat-raised-button style="background-color: #516264;" type="submit">
+                        <mat-icon>Subscribe</mat-icon>
+                    </button>
+                </form>
+
 
             </div>
             <div class="col-md-4">
@@ -15,6 +49,8 @@
     </div>
 </mat-toolbar>
 
+<br><br>
+
 
 <mat-toolbar style="height: 48px">
     <div class="container-fluid">
@@ -23,7 +59,7 @@
                 Logo | We are working for you!
 
             </div>
-            
+
         </div>
     </div>
-</mat-toolbar>
+</mat-toolbar> -->
