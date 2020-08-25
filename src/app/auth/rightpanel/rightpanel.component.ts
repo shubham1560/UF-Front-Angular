@@ -10,6 +10,7 @@ export class RightpanelComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // document.getElementById("uf-footer").style.display = "none";
   }
 
 }

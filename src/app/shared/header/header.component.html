@@ -55,7 +55,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-8" style="padding: 0px;">
+        <div class="col-md-8  d-none d-md-block d-lg-block" style="padding: 0px;">
             <mat-toolbar class="uf-header"
                 style="background-color: #3e5153; color: white; font-weight: 100; font-size: 16px;;">
                 <mat-icon class="uf-main-icon">home</mat-icon>
@@ -66,7 +66,7 @@
             <mat-toolbar class="uf-header" style="background-color: #516264;">
                 <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" style="width: 100%;">
                     <input type="text"
-                        style="background-color: #516264; border: none;outline: none; color: white; width: 70%;"
+                        style="background-color: #516264; border: none;outline: none; color: white; width: 85%; font-size: 16px; font-weight: 100;"
                         placeholder="Search" formControlName="query">
                     <button type="submit" class="uf-search-button">
                         <mat-icon class="uf-search-icon">search</mat-icon>

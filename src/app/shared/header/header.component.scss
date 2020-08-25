@@ -22,7 +22,8 @@
     border: none;
     background-color: #516264;
     outline: none;
-
+    vertical-align: sub;
+    
     &:hover{
         background-color: #3e5153;
         cursor: pointer;
