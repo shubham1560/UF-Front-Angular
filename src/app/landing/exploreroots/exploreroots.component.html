@@ -8,65 +8,69 @@
                 <div class="container-fluid" style="text-align: center;">
                     <div class="heading_div" style="margin: 0px -15px;">
                         <div class="heading_text">
-                            <h3 style="font-weight: 100px; color: #f8f9f9;">We're always improving. Give us a hand by giving feedback on our
+                            <h3 style="font-weight: 100px; color: #f8f9f9;">We're always improving. Give us a hand by
+                                giving feedback on our
                                 material.
                             </h3>
                         </div>
                     </div>
                 </div>
                 <br><br>
-            
+
                 <div class="container-fluid">
                     <div class="row">
-                        <h4 style="color: #425051;padding-left: 25px;">Explore roots</h4>
+                        <h4 style="color: #425051;padding-left: 25px;">
+                            <mat-icon matSuffix>
+                                account_tree
+                            </mat-icon>
+                            Explore roots
+                        </h4>
                         <br><br><br>
                     </div>
-                    
+
                     <div class="row" *ngIf="dataLoading">
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let n of [1,2,3,4]">
-                            <mat-card class="mat-card" matRipple [matRippleColor]="myColor">
+                            <mat-card class="mat-card">
                                 <mat-card-header>
-                                  <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;"></mat-card-title>
-                                  <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                  <div mat-card-avatar 
-                                  style="background-size: cover; background-color: #f6f7f7;"></div>
+                                    <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
+                                    </mat-card-title>
+                                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                                    <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;">
+                                    </div>
                                 </mat-card-header>
                                 <mat-card-content>
-                                  <p style="width: 60%; height: 22px; background-color: #f6f7f7;">
-                                    
-                                  </p>
+                                    <p style="width: 60%; height: 22px; background-color: #f6f7f7;">
+
+                                    </p>
                                 </mat-card-content>
                                 <!-- <mat-card-actions>
                                   <button mat-button>LIKE</button>
                                   <button mat-button>SHARE</button>
                                 </mat-card-actions> -->
-                              </mat-card>
-                            </div>
+                            </mat-card>
+                        </div>
                     </div>
 
                     <div class="row" *ngIf="!dataLoading">
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of products">
-                            <mat-card class="mat-card" matRipple [matRippleColor]="myColor" routerLink="/roots/{{product.id}}/root/">
+                            <mat-card class="mat-card" routerLink="/roots/{{product.id}}/root/">
                                 <mat-card-header>
-                                  <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
-                                  <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                  <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                  style="background-size: cover;"></div>
+                                    <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
+                                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                                    <div mat-card-avatar
+                                        [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
+                                        style="background-size: cover;"></div>
                                 </mat-card-header>
                                 <mat-card-content>
-                                  <p>
-                                    {{product.description}}
-                                  </p>
+                                    <p>
+                                        {{product.description}}
+                                    </p>
                                 </mat-card-content>
-                                <!-- <mat-card-actions>
-                                  <button mat-button>LIKE</button>
-                                  <button mat-button>SHARE</button>
-                                </mat-card-actions> -->
-                              </mat-card>
+                            </mat-card>
                         </div>
                     </div>
 
-<!-- 
+                    <!-- 
                     <div class="row" *ngIf="!dataLoading" style="margin: 0px;">
                         
                         <div class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;" *ngFor="let product of products">
@@ -119,5 +123,3 @@
     </div>
 
 </div>
-
-
