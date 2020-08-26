@@ -51,7 +51,7 @@ export class RootComponent implements OnInit {
   }
 
   seeDetails(course) {
-    console.log("Open modal")
+    // console.log("Open modal")
     const dialogRef = this.dialog.open(ArticleListComponent, {
       data: { category: course },
       minWidth: '320px',

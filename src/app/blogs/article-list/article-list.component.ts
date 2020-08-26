@@ -59,7 +59,7 @@ export class ArticleListComponent implements OnInit {
         }
       }
     )
-    console.log("Init-called------------------"+ this.article);
+    // console.log("Init-called------------------"+ this.article);
 
     this.courseInit = this.course;
     //At the end to get the data from the component, any time the data changes, the realtime data can be seen
@@ -67,7 +67,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   changeTheCourse() {
-    console.log('change the course called------------------');
+    // console.log('change the course called------------------');
     
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
@@ -90,7 +90,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   navigate(article_id) {
-    console.log("navigation called -----------------------");
+    // console.log("navigation called -----------------------");
     
     
     var url = `courses/${this.course}/${article_id}`
@@ -111,7 +111,7 @@ export class ArticleListComponent implements OnInit {
   }
 
   markViewed(article_id) {
-    console.log("called viewed ------------------" + this.article)
+    // console.log("called viewed ------------------" + this.article)
     var totalNumArticles = 0;
     var totalReadArticles = 0;
     this.sections.forEach(section => {
