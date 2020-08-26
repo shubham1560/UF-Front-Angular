@@ -1,0 +1,10 @@
+.welcome-button{
+    border: 1px solid #425051;
+    color: #425051;
+    border-radius: 0px;
+
+    &:hover{
+        color: #f7f8f8;
+        background-color: #425051;
+    }
+}

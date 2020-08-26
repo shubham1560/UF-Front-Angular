@@ -56,6 +56,7 @@ button{
         .uf-auth-form-header{
             padding:  15px;
             text-align: center;
+            color: #425051;
         }
         .uf-auth-form-body{
             border: 1px solid rgba(0,0,0,.26);
@@ -80,9 +81,10 @@ button{
                 text-align: center;
                 padding-top: 5px;
                 margin-bottom: 10px;
-                border: 1px solid rgba(0,0,0,.26) !important;
-                border-color: rgb(170, 170, 170);
+                border: 1px solid #425051 !important;
+                // border-color: rgb(170, 170, 170);
                 cursor: pointer;
+                color: #425051;
             }
             .uf-auth-or{
                 width: 100%;
@@ -91,6 +93,8 @@ button{
             .uf-auth-input-block{
                 display: block;
                 width: 100%;
+                color: #425051;
+
             }
             .uf-auth-buttons-div{
                 padding: 5px; 
@@ -98,6 +102,8 @@ button{
                 .uf-auth-left-button{
                     display: block;
                     float: left;
+                    color: #3a899d;
+                    
                 }
                 .uf-auth-right-button{
                     display: block;
@@ -112,6 +118,7 @@ button{
             padding: 10px;
             text-align: center;
             background-color: white;
+            color: #425051;
         }
     }
 
