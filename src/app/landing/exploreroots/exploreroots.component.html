@@ -41,7 +41,6 @@
                                 </mat-card-header>
                                 <mat-card-content>
                                     <p style="width: 60%; height: 22px; background-color: #f6f7f7;">
-
                                     </p>
                                 </mat-card-content>
                                 <!-- <mat-card-actions>
@@ -54,7 +53,8 @@
 
                     <div class="row" *ngIf="!dataLoading">
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of products">
-                            <mat-card class="mat-card" routerLink="/roots/{{product.id}}/root/">
+                            <mat-card class="mat-card" 
+                                      [routerLink]='["roots", product.id, "root", {view: "course"}]'>
                                 <mat-card-header>
                                     <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
                                     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->

@@ -3,139 +3,78 @@
 
 <br><br>
 <div id="uf-roots" class="container-fluid">
+    
     <div class="row">
-        <div class="col-lg-12 col-xs-12">
-            <app-breadcrumbs></app-breadcrumbs>
-        </div>
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-xs-12 col-lg-12">
+                    <div style="text-align: left;">
+                        <button mat-button class="view-button" [routerLink]="[{view: 'course'}]"
+                            [ngClass]="{'selected' : view=='course'}">
+                            <mat-icon matSuffix>
+                                apps
+                            </mat-icon>
+                        </button>
 
-    </div>
-    <div class="row" >
-        <div class="col-lg-12 col-xs-12">
-            <div style="text-align: right;">
-                <button mat-button class="view-button" [routerLink]="[{view: 'course'}]" [ngClass]="{'selected' : view=='course'}">
-                    <mat-icon matSuffix>
-                        apps
-                    </mat-icon>
-                </button>
-        
-                <button mat-button class="view-button" [routerLink]="[{view: 'tree'}]" [ngClass]="{'selected' : view=='tree'}" (click)="changeView('tree')">
-                    <mat-icon matSuffix>
-                        account_tree
-                    </mat-icon>
-                </button>
+                        <button mat-button class="view-button" [routerLink]="[{view: 'tree'}]"
+                            [ngClass]="{'selected' : view=='tree'}" (click)="changeView('tree')">
+                            <mat-icon matSuffix>
+                                account_tree
+                            </mat-icon>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of categories">
-            <mat-card style="margin-bottom: 20px; box-shadow: none;">
-                <mat-card-header>
-                    <mat-card-title style="color: #566364;">{{product.label}}</mat-card-title>
-                    <mat-card-subtitle style="color: #212121">
-                        {{product.description}} <br>
-                        {{product.get_parent_category.label}} <br>
-                        {{product.get_parent_knowledgebase.label}} <br>
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-12 col-xs-12">
+                    <app-breadcrumbs></app-breadcrumbs>
+                </div>
+                <br><br>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of categories">
+                    <mat-card style="margin-bottom: 20px; box-shadow: none;">
+                        <mat-card-header>
+                            <mat-card-title style="color: #566364;">{{product.label}}</mat-card-title>
+                            <mat-card-subtitle style="color: #212121">
+                                {{product.description}} <br>
+                                {{product.get_parent_category.label}} <br>
+                                {{product.get_parent_knowledgebase.label}} <br>
 
-                    </mat-card-subtitle>
-                    <div mat-card-avatar *ngIf="product.compressed_image"
-                        [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                        style="background-size: cover;"
-                        ></div>
-                </mat-card-header>
-                <mat-card-actions style="text-align: right;" *ngIf="product.course"> 
+                            </mat-card-subtitle>
+                            <div mat-card-avatar *ngIf="product.compressed_image"
+                                [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
+                                style="background-size: cover;"></div>
+                        </mat-card-header>
+                        <mat-card-actions style="text-align: right;" *ngIf="product.course">
 
-                    <button mat-button class="preview-button" (click)="seeDetails(product.id)">
-                        <mat-icon>info_outline</mat-icon>.
-                    </button>
-                    <button mat-button class="learn-button" (click)="navigate(product.id)">
-                        Learn
-                        <mat-icon matSuffix>
-                            launch
-                        </mat-icon>
-                    </button>
-                </mat-card-actions>
-                <mat-card-actions style="text-align: right;" *ngIf="!product.course"> 
-                    <button mat-button class="learn-button" routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}/">
-                        Explore Inside
-                        <mat-icon matSuffix>
-                            account_tree
-                        </mat-icon>
-                    </button>
-                </mat-card-actions>
-            </mat-card>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- We'll show th subcate -->
-        <div class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;" *ngFor="let product of categories">
-            <div style="margin: auto;">
-                <!-- <mat-card class="products-card" style="box-shadow: none; width: auto; margin: auto;"> -->
-                <mat-card class="product-card">
-                    <div *ngIf="!product.course" class="card_div"
-                        routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}/" matRipple
-                        [matRippleColor]="myColor">
-
-
-                        <div [hidden]="imageLoaded"
-                            [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
-                        </div>
-                        <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
-                            [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
-
-                        <mat-card-content>
-                            <p>
-                                <b>{{product.label}}</b> <br>
-                                <!-- {{product.description}} -->
-                            </p>
-                            <!-- <mat-button>Start Course</mat-button> -->
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <button mat-button color="accent">
-                                Explore
+                            <button mat-button class="preview-button" (click)="seeDetails(product.id)">
+                                <mat-icon>info_outline</mat-icon>.
+                            </button>
+                            <button mat-button class="learn-button" (click)="navigate(product.id)">
+                                Learn
+                                <mat-icon matSuffix>
+                                    launch
+                                </mat-icon>
+                            </button>
+                        </mat-card-actions>
+                        <mat-card-actions style="text-align: right;" *ngIf="!product.course">
+                            <button mat-button class="learn-button"
+                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}/">
+                                Explore Inside
                                 <mat-icon matSuffix>
                                     account_tree
                                 </mat-icon>
                             </button>
-                            <!-- <button mat-raised-button color="primary" (click)="seeDetails(product.id)">See Preview</button> -->
                         </mat-card-actions>
-                    </div>
-                    <div *ngIf="product.course" class="card_div">
-                        <div [hidden]="imageLoaded"
-                            [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}" class="image_div">
-                        </div>
-                        <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
-                            [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div"></div>
-
-                        <mat-card-content>
-                            <p>
-                                <b>{{product.label}}</b> <br>
-                                <!-- {{product.description}} -->
-                            </p>
-                            <!-- <mat-button>Start Course</mat-button> -->
-                        </mat-card-content>
-                        <mat-card-actions>
-                            <!-- <button mat-stroked-button color="accent" (click)="seeDetails(product.id)">
-                                Preview
-                            </button> -->
-                            <button mat-stroked-button color="primary" (click)="navigate(product.id)">
-                                Start
-                                <mat-icon matSuffix>
-                                    launch
-                                </mat-icon>
-                            </button><br>
-                            <span (click)="seeDetails(product.id)">
-
-                            </span>
-                        </mat-card-actions>
-                    </div>
-
-                    <!-- <mat-card-actions *ngIf="product.course">
-                        
-                        <button mat-button>SHARE</button>
-                      </mat-card-actions> -->
-                </mat-card>
+                    </mat-card>
+                </div>
             </div>
         </div>
     </div>
+
+
+
 </div>
