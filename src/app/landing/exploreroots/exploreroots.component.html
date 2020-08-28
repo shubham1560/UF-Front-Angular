@@ -1,4 +1,5 @@
 <mat-progress-bar *ngIf="dataLoading" color="warn" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="!dataLoading" mode="determinate" value="100" color="accent"></mat-progress-bar>
 
 <div class="container-fluid">
     <div class="row">

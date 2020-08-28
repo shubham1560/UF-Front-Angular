@@ -30,3 +30,38 @@
     text-align: center;
     margin: auto;
 }
+
+.learn-button{
+    border: 2px solid #2a3e40;
+    border-radius: 0px;
+    color: #2a3e40;
+    outline: none;
+
+    &:hover{
+        background-color: #2a3e40;
+        color: #f7f8f8;
+    }
+}
+
+.preview-button{
+    outline: none;
+    color: #2a3e40;
+
+    &hover{
+        background-color: none;
+    }
+}
+
+.view-button{
+    outline: none;
+    color: #2a3e40;
+
+    &hover{
+        background-color: none;
+    }
+}
+
+.selected{
+    background-color: #2a3e40;
+    color: white;
+}

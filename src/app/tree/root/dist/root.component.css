@@ -1,0 +1,62 @@
+.image_div {
+  height: 150px;
+  width: 150px;
+  background-size: 100% 100%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .image_div {
+    height: 100px;
+    width: 100px;
+    background-size: 100% 100%;
+    margin: auto;
+  }
+}
+.card_div {
+  margin: auto;
+  cursor: pointer;
+  text-align: center;
+}
+
+.heading_div {
+  padding: 50px;
+  margin: auto;
+}
+
+.products-card {
+  text-align: center;
+  margin: auto;
+}
+
+.learn-button {
+  border: 2px solid #2a3e40;
+  border-radius: 0px;
+  color: #2a3e40;
+  outline: none;
+}
+.learn-button:hover {
+  background-color: #2a3e40;
+  color: #f7f8f8;
+}
+
+.preview-button {
+  outline: none;
+  color: #2a3e40;
+}
+.preview-buttonhover {
+  background-color: none;
+}
+
+.view-button {
+  outline: none;
+  color: #2a3e40;
+}
+.view-buttonhover {
+  background-color: none;
+}
+
+.selected {
+  background-color: #2a3e40;
+  color: white;
+}
