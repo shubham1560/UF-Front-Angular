@@ -26,8 +26,10 @@ var RootComponent = /** @class */ (function () {
     RootComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.paramMap.subscribe(function (result) {
+            console.log(result);
             _this.isLoading = true;
-            _this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category).subscribe(function (result) {
+            _this.view = result.params.view;
+            _this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, result.params.view).subscribe(function (result) {
                 _this.categories = result.categories;
                 _this.isLoading = false;
                 setTimeout(function () {

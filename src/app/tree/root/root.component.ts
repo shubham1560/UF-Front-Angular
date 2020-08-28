@@ -33,8 +33,10 @@ export class RootComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
+        console.log(result);
         this.isLoading = true;
-        this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category).subscribe(
+        this.view = result.params.view;
+        this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, result.params.view).subscribe(
           (result: any) => {
             this.categories = result.categories;
             this.isLoading = false;

@@ -78,8 +78,12 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
-  getRelatedCategories(kb_base, kb_category){
-    this.called_url = `${this.base_knowledge_url}${kb_base}/categories/${kb_category}/courses`;
+  getRelatedCategories(kb_base, kb_category, course){
+    if(course=="course"){
+      this.called_url = `${this.base_knowledge_url}${kb_base}/categories/${kb_category}/courses/`;
+    }else{
+      this.called_url = `${this.base_knowledge_url}${kb_base}/categories/${kb_category}/tree/`;    
+    }
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 

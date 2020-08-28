@@ -18,7 +18,6 @@ export class BreadcrumbsComponent implements OnInit {
   ) { }
   
 
-  view= "course";
   isLoading = true;
   kb_base;
   kb_category;
@@ -58,17 +57,6 @@ export class BreadcrumbsComponent implements OnInit {
   navigateCrumb(index) {
     this.router.navigateByUrl(this.breadcrumbLink[index])
     // window.open();
-  }
-
-
-  changeView(changedView){
-    console.log(changedView);
-    if(changedView=="tree"){
-      this.view = "tree";
-    }
-    else if(changedView=="course"){
-      this.view = "course";
-    }
   }
 
   extractKnowledgeBaseName() {

@@ -14,7 +14,6 @@ var BreadcrumbsComponent = /** @class */ (function () {
         this.router = router;
         this.loggerService = loggerService;
         this.KnowledgeService = KnowledgeService;
-        this.view = "course";
         this.isLoading = true;
         this.breadcrumb = ["Home", ""];
         this.breadcrumbLink = ["", ""];
@@ -50,15 +49,6 @@ var BreadcrumbsComponent = /** @class */ (function () {
     BreadcrumbsComponent.prototype.navigateCrumb = function (index) {
         this.router.navigateByUrl(this.breadcrumbLink[index]);
         // window.open();
-    };
-    BreadcrumbsComponent.prototype.changeView = function (changedView) {
-        console.log(changedView);
-        if (changedView == "tree") {
-            this.view = "tree";
-        }
-        else if (changedView == "course") {
-            this.view = "course";
-        }
     };
     BreadcrumbsComponent.prototype.extractKnowledgeBaseName = function () {
         var base = "";
