@@ -1,23 +1,22 @@
 <mat-progress-bar mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-bar>
 <br><br>
-<div id="uf-roots" class="container">
+<div id="uf-roots" class="container-fluid">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-lg-12 col-xs-12">
             <app-breadcrumbs></app-breadcrumbs>
-            <br>
         </div>
 
     </div>
     <div class="row" >
-        <div class="col-xs-12">
+        <div class="col-lg-12 col-xs-12">
             <div style="text-align: right;">
-                <button mat-button class="view-button selected">
+                <button mat-button class="view-button" [ngClass]="{'selected' : view=='course'}" (click)="changeView('course')">
                     <mat-icon matSuffix>
                         apps
                     </mat-icon>
                 </button>
         
-                <button mat-button class="view-button">
+                <button mat-button class="view-button" [ngClass]="{'selected' : view=='tree'}" (click)="changeView('tree')">
                     <mat-icon matSuffix>
                         account_tree
                     </mat-icon>

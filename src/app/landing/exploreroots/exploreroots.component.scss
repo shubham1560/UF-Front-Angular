@@ -25,6 +25,13 @@
     }
 }
 
+a{
+    color: black;
+    &:hover{
+        text-decoration: none;
+    }
+}
+
 @media (max-width: 768px) {
     .image_div {
         height: 100px;

@@ -1,6 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '~animate.css/animate.min';
 
   
 .float-over{
@@ -32,6 +31,13 @@ div:focus{
     outline: none;
     }
 
+a:hover{
+    text-decoration: none;
+}
+
+a:link { 
+    text-decoration: none; 
+} 
 button{
     outline: none;
 }

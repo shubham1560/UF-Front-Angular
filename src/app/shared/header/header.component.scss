@@ -4,6 +4,15 @@
     flex: 1 1 auto;
 }
 
+
+a{
+    color: black;
+    &:hover{
+        text-decoration: none;
+    }
+}
+
+
 .sign-in{
     font-size: medium;
     color: #f8f9f9;
@@ -84,6 +93,7 @@
     padding-top: 10px;
     width: 40px;
     text-align: center;
+    outline: none;
 
     &:hover{
         background-color: #052418;

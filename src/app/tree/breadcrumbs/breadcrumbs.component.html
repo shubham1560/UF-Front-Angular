@@ -1,5 +1,5 @@
 <div *ngIf="this.isLoading">
-    <div class="d-inline"mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
+    <div class="d-inline" mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
         <mat-icon matSuffix *ngIf="b==0">
             account_tree
         </mat-icon>
@@ -8,17 +8,32 @@
         </span>
     </div>
 </div>
-<div *ngIf="!this.isLoading" class="uf-breadcrumbs">
-    <div class="d-inline"mat-button *ngFor="let crumb of breadcrumb; let i = index" style="cursor: pointer;">
+<div *ngIf="!this.isLoading" class="uf-breadcrumbs" style="width: 100%;">
+    <div class="d-inline" mat-button *ngFor="let crumb of breadcrumb; let i = index" style="cursor: pointer; color: #3e5153">
         <mat-icon matSuffix *ngIf="i==0">
             account_tree
         </mat-icon>
-        <span (click)="navigateCrumb(i)" style="text-transform: capitalize;" [ngClass]="{'active' : i==(breadcrumb.length-1)}">
-            {{crumb}} 
+        <span (click)="navigateCrumb(i)" style="text-transform: capitalize;"
+            [ngClass]="{'active' : i==(breadcrumb.length-1)}">
+            {{crumb}}
         </span>
         <span *ngIf="i!=(breadcrumb.length-1)">
             >
         </span>
     </div>
+
+    <div class="d-inline" style="text-align: right;">
+        <button mat-button class="view-button" [ngClass]="{'selected' : view=='course'}" (click)="changeView('course')">
+            <mat-icon matSuffix>
+                apps
+            </mat-icon>
+        </button>
+
+        <button mat-button class="view-button" [ngClass]="{'selected' : view=='tree'}" (click)="changeView('tree')">
+            <mat-icon matSuffix>
+                account_tree
+            </mat-icon>
+        </button>
+    </div>
+    <br>
 </div>
-<br>

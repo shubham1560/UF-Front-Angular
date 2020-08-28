@@ -4,6 +4,7 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog } from '@angular/material/dialog';
 import { SearchResultsComponent } from '../search-results/search-results.component'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 
 
 @Component({
@@ -17,12 +18,14 @@ export class HeaderComponent implements OnInit {
   error: any;
   image = false;
   searchQueryForm: FormGroup;
+  roots;
 
   constructor(
     private authService: AuthService,
     private loggerService: LoggerService,
     public dialog: MatDialog,
     private fb: FormBuilder,
+    private knowledgeService: DataService,
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +48,16 @@ export class HeaderComponent implements OnInit {
         }
       )
     }
+
+    this.knowledgeService.getKnowledgeBases().subscribe(
+      (result:any) =>{
+        this.roots = (result.bases);
+      }, 
+      error =>{
+        console.log(error);
+      }
+      
+    )
 
     this.searchQueryForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(1)]],

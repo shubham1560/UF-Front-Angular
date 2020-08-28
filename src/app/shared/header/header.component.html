@@ -57,9 +57,22 @@
     <div class="row">
         <div class="col-md-8  d-none d-md-block d-lg-block" style="padding: 0px;">
             <mat-toolbar class="uf-header"
-                style="background-color: #3e5153; color: white; font-weight: 100; font-size: 16px;;">
-                <mat-icon class="uf-main-icon">home</mat-icon>
-
+                style="background-color: #3e5153; color: white; font-weight: 100; font-size: 16px;border-radius: 0px;">
+                <mat-icon class="uf-main-icon" routerLink="/welcome/">home</mat-icon>
+                <button mat-button [matMenuTriggerFor]="menu" style="outline: none; height: 48px; border-radius: 0px;">
+                    Roots
+                    <mat-icon>
+                        keyboard_arrow_down
+                    </mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item style="outline: none;line-height: 30px; height: auto;" *ngFor="let root of roots">
+                        <span style="width: 100%; color: #3e5153; outline: none;"  routerLink="/roots/{{root.id}}/root/">
+                            {{root.title}}
+                        </span>
+                    </button>
+                    <!-- <button mat-menu-item></button> -->
+                </mat-menu>
             </mat-toolbar>
         </div>
         <div class="col-md-4" style="padding: 0px;">

@@ -1,0 +1,96 @@
+.fillspace {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+a {
+  color: black;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.sign-in {
+  font-size: medium;
+  color: #f8f9f9;
+}
+.sign-in .active {
+  color: #f8f9f9;
+}
+.sign-in:hover {
+  cursor: pointer;
+  color: white;
+}
+
+.uf-search-button {
+  border: none;
+  background-color: #516264;
+  outline: none;
+  vertical-align: sub;
+}
+.uf-search-button:hover {
+  background-color: #3e5153;
+  cursor: pointer;
+}
+
+.uf-header {
+  background-color: var(--primary-color);
+  height: 48px;
+}
+
+.uf-dashboard {
+  color: #f8f9f9;
+  background-color: var(--highlight-text);
+  outline: none;
+}
+.uf-dashboard:hover {
+  background-color: #205542;
+}
+
+::placeholder {
+  color: white;
+  font-weight: 100;
+  opacity: 1;
+  /* Firefox */
+  font-size: 16px;
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: white;
+  font-weight: 100;
+  font-size: 16px;
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: white;
+  font-weight: 100;
+  font-size: 16px;
+}
+
+.uf-search-icon {
+  color: white;
+  height: inherit;
+  padding-top: 10px;
+  width: 40px;
+  text-align: center;
+}
+.uf-search-icon:hover {
+  background-color: #3e5153;
+  cursor: pointer;
+}
+
+.uf-main-icon {
+  color: white;
+  height: inherit;
+  padding-top: 10px;
+  width: 40px;
+  text-align: center;
+  outline: none;
+}
+.uf-main-icon:hover {
+  background-color: #052418;
+  cursor: pointer;
+}

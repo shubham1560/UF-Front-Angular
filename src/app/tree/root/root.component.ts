@@ -23,6 +23,8 @@ export class RootComponent implements OnInit {
 
   colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"]
 
+  view = "course";
+
   myColor = this.colorArray[Math.floor(Math.random() * 10)];
   categories;
   imageLoaded = false;
@@ -48,6 +50,16 @@ export class RootComponent implements OnInit {
       }
     )
     this.loggerService.logData("uf-roots", this);
+  }
+
+  changeView(changedView){
+    console.log(changedView);
+    if(changedView=="tree"){
+      this.view = "tree";
+    }
+    else if(changedView=="course"){
+      this.view = "course";
+    }
   }
 
   seeDetails(course) {
