@@ -8,10 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.RecentlyViewedComponent = void 0;
 var core_1 = require("@angular/core");
+var read_articles_component_1 = require("../read-articles/read-articles.component");
 var RecentlyViewedComponent = /** @class */ (function () {
-    function RecentlyViewedComponent(userProfileService, loggerService) {
+    function RecentlyViewedComponent(userProfileService, loggerService, dialog) {
         this.userProfileService = userProfileService;
         this.loggerService = loggerService;
+        this.dialog = dialog;
         this.fetchedAllArticles = false;
         this.start = 0;
         this.numberOfArticlesToFetch = 3;
@@ -27,7 +29,9 @@ var RecentlyViewedComponent = /** @class */ (function () {
         this.loggerService.logData("uf-recently-viewed", this);
     };
     RecentlyViewedComponent.prototype.openAllReadArticles = function () {
-        console.log("Opening");
+        this.dialog.open(read_articles_component_1.ReadArticlesComponent, {
+            width: '340px'
+        });
     };
     RecentlyViewedComponent = __decorate([
         core_1.Component({

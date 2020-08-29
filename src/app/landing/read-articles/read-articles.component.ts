@@ -18,7 +18,7 @@ export class ReadArticlesComponent implements OnInit {
 
   fetchedAllArticles = false;
   start = 0;
-  numberOfArticlesToFetch = 3;
+  numberOfArticlesToFetch = 100;
   end = this.start+ this.numberOfArticlesToFetch;
 
   isLoading= true;

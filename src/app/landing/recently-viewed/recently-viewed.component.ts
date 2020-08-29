@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { MatDialog } from '@angular/material';
+import { ReadArticlesComponent } from '../read-articles/read-articles.component';
 
 @Component({
   selector: 'app-recently-viewed',
@@ -12,6 +14,7 @@ export class RecentlyViewedComponent implements OnInit {
   constructor(
     private userProfileService: UserprofileService,
     private loggerService: LoggerService,
+    public dialog: MatDialog,
   ) { }
 
   articles;
@@ -34,7 +37,11 @@ export class RecentlyViewedComponent implements OnInit {
   }
 
   openAllReadArticles(){
-    console.log("Opening")
+    this.dialog.open(ReadArticlesComponent, 
+      {
+        width:'340px',
+      }
+      );
   }
 
 }
