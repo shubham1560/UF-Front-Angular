@@ -1,0 +1,33 @@
+.uf-recently-viewed-card{
+    background-color: #f7f7f7;
+    color: #2e778e;
+    box-shadow: none;
+    margin-bottom: 10px;
+
+    &:hover{
+        background-color: rgb(235, 235, 235);
+        cursor: pointer;
+    }
+}
+
+.uf-recently-viewed-header{
+    margin-bottom: 10px;
+    color: white;
+    background-color: #81b5a1;
+    margin-left: -20px;
+    width: fit-content;
+    padding: 0px 20px;
+}
+
+.recently-viewed-all-button{
+    color: #81b5a1;
+    border: 2px solid #81b5a1;
+    border-radius: 0px;
+    background-color: white;
+    outline: none;
+
+    &:hover{
+        background-color: #81b5a1;
+        color: white;
+    }
+}

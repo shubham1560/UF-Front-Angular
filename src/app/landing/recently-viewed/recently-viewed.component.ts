@@ -33,4 +33,8 @@ export class RecentlyViewedComponent implements OnInit {
     this.loggerService.logData("uf-recently-viewed", this);
   }
 
+  openAllReadArticles(){
+    console.log("Opening")
+  }
+
 }
