@@ -14,10 +14,12 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [],
   imports: [
+    MatTooltipModule,
     MatExpansionModule,
     MatToolbarModule,
     MatButtonModule,
@@ -37,6 +39,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatRippleModule,
   ],
   exports:[
+    MatTooltipModule,
     MatExpansionModule,
     MatRippleModule,
     MatSnackBarModule,

@@ -23,6 +23,7 @@ export class RootComponent implements OnInit {
 
   colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"]
 
+  viewChangeValid = true;
   view = "course";
   myColor = this.colorArray[Math.floor(Math.random() * 10)];
   categories;
@@ -38,7 +39,10 @@ export class RootComponent implements OnInit {
         if(localStorage.getItem("view")){
           this.view = localStorage.getItem("view")
           console.log("if working: "+ this.view);
-
+        }
+        this.viewChangeValid = true;
+        if(result.params.kb_category != "root"){
+          this.viewChangeValid = false;
         }
         this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, this.view).subscribe(
           (result: any) => {

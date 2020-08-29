@@ -2,7 +2,7 @@
 <mat-progress-bar mode="determinate" value="100" color="accent" *ngIf="!isLoading"></mat-progress-bar>
 
 <div id="uf-roots" class="container-fluid">
-    
+
     <div class="row">
         <div class="col-lg-3" style="background-color: white;">
             <br><br>
@@ -10,7 +10,8 @@
                 <div class="col-xs-12 col-lg-12">
                     <div style="text-align: left;">
                         <button mat-button class="view-button" [routerLink]="[{view: 'course'}]"
-                            [ngClass]="{'selected' : view=='course'}" (click)="changeView('course')">
+                            [ngClass]="{'selected' : view=='course'}" [disabled]="!viewChangeValid"
+                            (click)="changeView('course')">
                             <mat-icon matSuffix>
                                 apps
                             </mat-icon>
@@ -37,12 +38,23 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-12" *ngFor="let product of categories">
                     <mat-card style="margin-bottom: 20px; box-shadow: none;">
+                        <div style="background-color: #81b5a1;
+                        color: white;
+                        width: fit-content;
+                        padding: 0px 10px;
+                        margin-left: -20px;">
+                        {{product.get_parent_knowledgebase.label}}
+                        <span *ngIf="product.get_parent_category.label != 'root' ">
+                            ->  {{product.get_parent_category.label}}
+                        </span>
+                        <br>
+                        </div>
+                        <br>
                         <mat-card-header>
                             <mat-card-title style="color: #566364;">{{product.label}}</mat-card-title>
                             <mat-card-subtitle style="color: #212121">
                                 {{product.description}} <br>
-                                {{product.get_parent_category.label}} <br>
-                                {{product.get_parent_knowledgebase.label}} <br>
+                                <!-- {{product.get_parent_knowledgebase.label}} <br> -->
 
                             </mat-card-subtitle>
                             <div mat-card-avatar *ngIf="product.compressed_image"

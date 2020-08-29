@@ -17,6 +17,7 @@ var RootComponent = /** @class */ (function () {
         this.knowledgeService = knowledgeService;
         this.dialog = dialog;
         this.colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"];
+        this.viewChangeValid = true;
         this.view = "course";
         this.myColor = this.colorArray[Math.floor(Math.random() * 10)];
         this.imageLoaded = false;
@@ -32,6 +33,10 @@ var RootComponent = /** @class */ (function () {
             if (localStorage.getItem("view")) {
                 _this.view = localStorage.getItem("view");
                 console.log("if working: " + _this.view);
+            }
+            _this.viewChangeValid = true;
+            if (result.params.kb_category != "root") {
+                _this.viewChangeValid = false;
             }
             _this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, _this.view).subscribe(function (result) {
                 _this.categories = result.categories;
