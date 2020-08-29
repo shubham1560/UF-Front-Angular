@@ -14,7 +14,7 @@ var ReadArticlesComponent = /** @class */ (function () {
         this.loggerService = loggerService;
         this.fetchedAllArticles = false;
         this.start = 0;
-        this.numberOfArticlesToFetch = 100;
+        this.numberOfArticlesToFetch = 4;
         this.end = this.start + this.numberOfArticlesToFetch;
         this.isLoading = true;
     }
@@ -23,13 +23,12 @@ var ReadArticlesComponent = /** @class */ (function () {
         this.userProfileService.getUserReadArticle(this.start, this.end).subscribe(function (result) {
             _this.articles = result;
             _this.isLoading = false;
-            _this.start = _this.start + _this.numberOfArticlesToFetch;
-            _this.end = _this.start + _this.numberOfArticlesToFetch;
+            // this.start = this.start + this.numberOfArticlesToFetch;
+            // this.end = this.start + this.numberOfArticlesToFetch;
         });
         this.loggerService.logData("uf-read-articles", this);
     };
     ReadArticlesComponent.prototype.getNextPage = function () {
-        console.log("hola");
         this.fetchArticles(this.start, this.end);
     };
     ReadArticlesComponent.prototype.addBokmark = function (yo) {
@@ -39,7 +38,9 @@ var ReadArticlesComponent = /** @class */ (function () {
         var _this = this;
         this.userProfileService.getUserReadArticle(start, end).subscribe(function (result) {
             console.log(result);
-            _this.articles = _this.articles.concat(result);
+            if (result.length > 0) {
+                _this.articles = _this.articles.concat(result);
+            }
             _this.isLoading = false;
             _this.start = _this.start + _this.numberOfArticlesToFetch;
             _this.end = _this.start + _this.numberOfArticlesToFetch;

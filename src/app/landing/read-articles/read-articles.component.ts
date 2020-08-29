@@ -18,41 +18,41 @@ export class ReadArticlesComponent implements OnInit {
 
   fetchedAllArticles = false;
   start = 0;
-  numberOfArticlesToFetch = 100;
-  end = this.start+ this.numberOfArticlesToFetch;
+  numberOfArticlesToFetch = 4;
+  end = this.start + this.numberOfArticlesToFetch;
 
-  isLoading= true;
+  isLoading = true;
   ngOnInit(): void {
     this.userProfileService.getUserReadArticle(this.start, this.end).subscribe(
-      (result:any) =>{
+      (result: any) => {
         this.articles = result;
         this.isLoading = false
-        this.start = this.start+this.numberOfArticlesToFetch;
-        this.end = this.start + this.numberOfArticlesToFetch;
+        // this.start = this.start + this.numberOfArticlesToFetch;
+        // this.end = this.start + this.numberOfArticlesToFetch;
       }
     )
     this.loggerService.logData("uf-read-articles", this);
   }
 
-  getNextPage(){
-    console.log("hola")
-
-    this.fetchArticles(this.start,this.end);
+  getNextPage() {
+    this.fetchArticles(this.start, this.end);
   }
 
 
-  addBokmark(yo){
+  addBokmark(yo) {
     console.log("hola");
-    
+
   }
 
-  fetchArticles(start, end){
+  fetchArticles(start, end) {
     this.userProfileService.getUserReadArticle(start, end).subscribe(
-      (result:any) =>{
+      (result: any) => {
         console.log(result);
-        this.articles = this.articles.concat(result);
+        if (result.length > 0) {
+          this.articles = this.articles.concat(result);
+        }
         this.isLoading = false
-        this.start = this.start+this.numberOfArticlesToFetch;
+        this.start = this.start + this.numberOfArticlesToFetch;
         this.end = this.start + this.numberOfArticlesToFetch;
       }
     )
