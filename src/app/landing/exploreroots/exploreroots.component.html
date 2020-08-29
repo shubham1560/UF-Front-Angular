@@ -53,8 +53,7 @@
 
                     <div class="row" *ngIf="!dataLoading">
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of products">
-                            <mat-card class="mat-card" 
-                                      [routerLink]='["roots", product.id, "root", {view: "course"}]'>
+                            <mat-card class="mat-card" [routerLink]='["roots", product.id, "root", {view: "course"}]'>
                                 <mat-card-header>
                                     <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
                                     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
@@ -118,12 +117,14 @@
                     </div> -->
                 </div>
             </div>
-            <app-continue-courses></app-continue-courses>
         </div>
         <div class="col-md-4" style="padding: 20px; background-color: white;">
+            <app-continue-courses></app-continue-courses>
+
+            <hr>
+            
             <app-recently-viewed></app-recently-viewed>
             <!-- <app-read-articles></app-read-articles> -->
         </div>
     </div>
-
 </div>

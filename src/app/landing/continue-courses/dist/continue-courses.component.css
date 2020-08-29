@@ -1,0 +1,21 @@
+.uf-course-card {
+  box-shadow: none;
+  background-color: #f7f7f7;
+  margin-bottom: 10px;
+}
+.uf-course-card:hover {
+  background-color: #ebebeb;
+  cursor: pointer;
+}
+
+.uf-course-header {
+  width: fit-content;
+  color: white;
+  background-color: #72a08d;
+  padding: 0px 20px;
+  margin-left: -20px;
+}
+
+.uf-course-title {
+  color: #566364;
+}

@@ -37,7 +37,7 @@ export class FooterComponent implements OnInit {
       email: ['', [Validators.required, Validators.minLength(1), Validators.email]],
     })
 
-    this.loggerService.logData("uf-footer", this);
+    // this.loggerService.logData("uf-footer", this);
   }
 
   subscribeViaMail(){

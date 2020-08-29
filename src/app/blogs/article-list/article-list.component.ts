@@ -58,6 +58,7 @@ export class ArticleListComponent implements OnInit {
           this.changeTheCourse();
         }
       }
+
     )
     // console.log("Init-called------------------"+ this.article);
 
@@ -145,13 +146,13 @@ export class ArticleListComponent implements OnInit {
 
     });
     this.progress = Math.round((totalReadArticles / totalNumArticles) * 100);
-    // debugger;
-    ;
-    if (this.authService.isLoggedIn() && this.counter == 0) {
+    // if (this.authService.isLoggedIn() && this.counter == 0) {
+      if(this.authService.isLoggedIn()){
       // console.log("called the progess")
       this.counter += 1;
       this.knowledgeService.setCourseProgress(this.course, this.progress).subscribe(
         result => {
+          console.log("changed the progress");
           // console.log(result)
         }, error => {
           // console.log(error);
@@ -163,4 +164,5 @@ export class ArticleListComponent implements OnInit {
       this.signedIn = false;
     }
   }
+
 }

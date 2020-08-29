@@ -1,4 +1,26 @@
-<div id="uf-recently-viewed-course">
-    Well
-</div>
+<div id="uf-recently-viewed-course" style="color: #425051">
+    <p>Continue learning about </p> 
+    <div *ngFor="let course of courses">
+        <mat-card class="uf-course-card" routerLink="courses/{{course.course.id}}/">
+            <div class="uf-course-header">
+                {{course.course.knowledge_base}}
+            </div>
+            <mat-card-header>
+                <mat-card-title class="uf-course-title">
+                    {{course.course.label}}
+                </mat-card-title>
+                
+                <mat-card-subtitle class="uf-course-desc">
+                    Progress: {{course.progress}} %
+                </mat-card-subtitle>
+            </mat-card-header>
+            <div style="font-size: 14px;text-align: right; color: #2e778e;">
+                <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
+                    access_time
+                </mat-icon>
+                {{course.created_on | dateAgo}}
+            </div>
+        </mat-card>
 
+    </div>
+</div>

@@ -27,7 +27,7 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        console.log("changed");
+        // console.log("changed");
         this.isLoading = true;
         this.article_id = params.get('article');
         this.category = params.get("category");
@@ -36,8 +36,8 @@ export class ArticleDetailComponent implements OnInit {
             (result: any) => {
               this.article = result.data;
               this.isLoading = false;
-              console.log(this.article.getAuthor.header_image);
-              console.log(this.article.getAuthor.google_pic);
+              // console.log(this.article.getAuthor.header_image);
+              // console.log(this.article.getAuthor.google_pic);
               if (this.article.getAuthor.google_pic) {
                 this.authorImage = this.article.getAuthor.google_pic;
               }
@@ -46,7 +46,7 @@ export class ArticleDetailComponent implements OnInit {
               }
             }, error => {
               this.article = {};
-              console.log(error);
+              // console.log(error);
             }
           )
         }
