@@ -30,13 +30,19 @@
 }
 
 .recently-viewed-all-button {
-  color: #81b5a1;
-  border: 2px solid #81b5a1;
+  color: #3c869a;
   border-radius: 0px;
   background-color: white;
   outline: none;
 }
 .recently-viewed-all-button:hover {
-  background-color: #81b5a1;
+  background-color: #3c869a;
   color: white;
+}
+
+.anchor {
+  color: #3c869a;
+}
+.anchor:hover {
+  color: #3c869a;
 }

@@ -4,12 +4,19 @@
   <div class="row">
     <div class="col-12" *ngFor="let article of articles">
 
-      <!-- courses/health-insurance-fraud-910d7c2f/fsadfasdfasd -->
-      <mat-card class="uf-recently-viewed-card"
+
+      <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="anchor"> 
+        {{article.article.title}}
+      </a>
+
+      <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;">
+        {{article.article.knowledge_base}} / {{article.article.course_name}} <br>
+      </div>
+      <!-- <mat-card class="uf-recently-viewed-card"
         routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
 
         <div class="uf-recently-viewed-header">
-          {{article.article.knowledge_base}} -> {{article.article.course_name}}
+          
         </div>
         <mat-card-header>
           <mat-card-title style="color: #425051; font-size: 16px;font-weight: 400;"> {{article.article.title}}
@@ -26,15 +33,20 @@
           {{article.created_on | dateAgo}}
         </div>
         
-      </mat-card>
+      </mat-card> -->
 
 
     </div>
   </div>
   <!-- <button class="recently-viewed-all-button"> View all</button> -->
   <div style="text-align: right;">
-    <button mat-button class="recently-viewed-all-button" (click)="openAllReadArticles()">View all</button>
-
+    <button mat-button class="recently-viewed-all-button" (click)="openAllReadArticles()">
+      View all
+      <mat-icon style="font-size: 20px;">
+        call_made
+      </mat-icon>
+    </button>
+    
   </div>
 
   <!-- <pre>

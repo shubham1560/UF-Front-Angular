@@ -29,9 +29,7 @@ var RecentlyViewedComponent = /** @class */ (function () {
         this.loggerService.logData("uf-recently-viewed", this);
     };
     RecentlyViewedComponent.prototype.openAllReadArticles = function () {
-        this.dialog.open(read_articles_component_1.ReadArticlesComponent, {
-            width: '340px'
-        });
+        this.dialog.open(read_articles_component_1.ReadArticlesComponent, {});
     };
     RecentlyViewedComponent = __decorate([
         core_1.Component({
