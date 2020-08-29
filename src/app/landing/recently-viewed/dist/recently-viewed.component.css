@@ -3,6 +3,7 @@
   color: #2e778e;
   box-shadow: none;
   margin-bottom: 10px;
+  outline: none;
 }
 .uf-recently-viewed-card:hover {
   background-color: #ebebeb;

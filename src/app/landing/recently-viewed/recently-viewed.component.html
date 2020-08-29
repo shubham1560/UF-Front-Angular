@@ -3,7 +3,9 @@
 
     <div class="row">
       <div class="col-12" *ngFor="let article of articles">
-        <mat-card class="uf-recently-viewed-card">
+
+        <!-- courses/health-insurance-fraud-910d7c2f/fsadfasdfasd -->
+        <mat-card class="uf-recently-viewed-card" routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
 
           <div class="uf-recently-viewed-header">
             {{article.article.knowledge_base}} -> {{article.article.course_name}}
@@ -23,8 +25,8 @@
 
     </div>
     
-    <!-- <pre>
+    <pre>
     {{articles | json}}
 
-    </pre> -->
+    </pre>
 </div>
