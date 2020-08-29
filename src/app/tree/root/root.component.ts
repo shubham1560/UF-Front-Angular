@@ -35,7 +35,12 @@ export class RootComponent implements OnInit {
         console.log(result);
         this.isLoading = true;
         this.view = result.params.view;
-        this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, result.params.view).subscribe(
+        if(localStorage.getItem("view")){
+          this.view = localStorage.getItem("view")
+          console.log("if working: "+ this.view);
+
+        }
+        this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, this.view).subscribe(
           (result: any) => {
             this.categories = result.categories;
             this.isLoading = false;
@@ -61,6 +66,7 @@ export class RootComponent implements OnInit {
     else if(changedView=="course"){
       this.view = "course";
     }
+    localStorage.setItem("view", this.view);
   }
 
   seeDetails(course) {

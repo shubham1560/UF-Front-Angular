@@ -25,7 +25,7 @@ export class BreadcrumbsComponent implements OnInit {
   breadcrumbLink = ["", ""]
   ngOnInit(): void {
     this.route.paramMap.subscribe(
-      route => {
+      (route:any) => {
         this.isLoading = true;
         this.breadcrumb = ["Home", ""]
         this.breadcrumbLink = ["", ""]

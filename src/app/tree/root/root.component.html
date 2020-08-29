@@ -1,16 +1,16 @@
 <mat-progress-bar mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-bar>
 <mat-progress-bar mode="determinate" value="100" color="accent" *ngIf="!isLoading"></mat-progress-bar>
 
-<br><br>
 <div id="uf-roots" class="container-fluid">
     
     <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-3" style="background-color: white;">
+            <br><br>
             <div class="row">
                 <div class="col-xs-12 col-lg-12">
                     <div style="text-align: left;">
                         <button mat-button class="view-button" [routerLink]="[{view: 'course'}]"
-                            [ngClass]="{'selected' : view=='course'}">
+                            [ngClass]="{'selected' : view=='course'}" (click)="changeView('course')">
                             <mat-icon matSuffix>
                                 apps
                             </mat-icon>
@@ -27,6 +27,7 @@
             </div>
         </div>
         <div class="col-lg-9">
+            <br><br>
             <div class="row">
                 <div class="col-lg-12 col-xs-12">
                     <app-breadcrumbs></app-breadcrumbs>
@@ -34,7 +35,7 @@
                 <br><br>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of categories">
+                <div class="col-lg-4 col-md-6 col-12" *ngFor="let product of categories">
                     <mat-card style="margin-bottom: 20px; box-shadow: none;">
                         <mat-card-header>
                             <mat-card-title style="color: #566364;">{{product.label}}</mat-card-title>
@@ -62,7 +63,7 @@
                         </mat-card-actions>
                         <mat-card-actions style="text-align: right;" *ngIf="!product.course">
                             <button mat-button class="learn-button"
-                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}/">
+                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
                                 Explore Inside
                                 <mat-icon matSuffix>
                                     account_tree

@@ -29,7 +29,11 @@ var RootComponent = /** @class */ (function () {
             console.log(result);
             _this.isLoading = true;
             _this.view = result.params.view;
-            _this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, result.params.view).subscribe(function (result) {
+            if (localStorage.getItem("view")) {
+                _this.view = localStorage.getItem("view");
+                console.log("if working: " + _this.view);
+            }
+            _this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, _this.view).subscribe(function (result) {
                 _this.categories = result.categories;
                 _this.isLoading = false;
                 setTimeout(function () {
@@ -51,6 +55,7 @@ var RootComponent = /** @class */ (function () {
         else if (changedView == "course") {
             this.view = "course";
         }
+        localStorage.setItem("view", this.view);
     };
     RootComponent.prototype.seeDetails = function (course) {
         // console.log("Open modal")

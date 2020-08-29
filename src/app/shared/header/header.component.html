@@ -66,8 +66,8 @@
                     </mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item style="outline: none;line-height: 30px; height: auto;" *ngFor="let root of roots">
-                        <span style="width: 100%; color: #3e5153; outline: none;"  routerLink="/roots/{{root.id}}/root/">
+                    <button mat-menu-item style="outline: none;line-height: 30px; height: auto;" routerLink="/roots/{{root.id}}/root/" *ngFor="let root of roots">
+                        <span style="width: 100%; color: #3e5153; outline: none;">
                             {{root.title}}
                         </span>
                     </button>
