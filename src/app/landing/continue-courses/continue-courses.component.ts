@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-continue-courses',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContinueCoursesComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private userService: UserprofileService,
+    private loggerService: LoggerService
+  ) { }
+
+  courses: any;
 
   ngOnInit(): void {
+    this.userService.getUserStartedCourse(0,4).subscribe(
+      (result:any) =>{
+        this.courses = result
+      }
+    )
+
+    this.loggerService.logData("uf-recently-viewed-course", this);
   }
 
 }
