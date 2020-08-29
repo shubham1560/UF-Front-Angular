@@ -12,10 +12,11 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { FeaturedComponent } from './featured/featured.component';
 import { ExplorerootsComponent } from './exploreroots/exploreroots.component';
 import { ReadArticlesComponent } from './read-articles/read-articles.component';
+import { RecentlyViewedComponent } from './recently-viewed/recently-viewed.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, AllArticlesComponent, FeaturedComponent, ExplorerootsComponent, ReadArticlesComponent],
+  declarations: [LandingComponent, AllArticlesComponent, FeaturedComponent, ExplorerootsComponent, ReadArticlesComponent, RecentlyViewedComponent],
   imports: [
     CommonModule,
     LandingRoutingModule,
