@@ -1,3 +1,14 @@
+
+.uf-paragraph-wrapper{
+    display: -webkit-box;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   color: rgb(60, 57, 61);
+   font-weight: lighter;
+}
+
 .uf-recently-viewed-card{
     background-color: #f7f7f7;
     color: #2e778e;

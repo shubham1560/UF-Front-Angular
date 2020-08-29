@@ -1,35 +1,44 @@
 <div id="uf-recently-viewed">
-    <p style="color: #425051;" *ngIf="articles">Recently viewed articles</p>
+  <p style="color: #425051;" *ngIf="articles">Recently viewed articles</p>
 
-    <div class="row">
-      <div class="col-12" *ngFor="let article of articles">
+  <div class="row">
+    <div class="col-12" *ngFor="let article of articles">
 
-        <!-- courses/health-insurance-fraud-910d7c2f/fsadfasdfasd -->
-        <mat-card class="uf-recently-viewed-card" routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
+      <!-- courses/health-insurance-fraud-910d7c2f/fsadfasdfasd -->
+      <mat-card class="uf-recently-viewed-card"
+        routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
 
-          <div class="uf-recently-viewed-header">
-            {{article.article.knowledge_base}} -> {{article.article.course_name}}
-          </div>
-          <mat-card-header>
-            <mat-card-title style="color: #425051; font-size: 16px;font-weight: 400;"> {{article.article.title}} </mat-card-title>
-            <mat-card-subtitle style="color: #425051; font-size: 14px;">{{article.article.description}}</mat-card-subtitle>
-          </mat-card-header>
-          
-          
-          
-        </mat-card>
+        <div class="uf-recently-viewed-header">
+          {{article.article.knowledge_base}} -> {{article.article.course_name}}
+        </div>
+        <mat-card-header>
+          <mat-card-title style="color: #425051; font-size: 16px;font-weight: 400;"> {{article.article.title}}
+          </mat-card-title>
+          <mat-card-subtitle style="color: #425051; font-size: 14px;" class="uf-paragraph-wrapper">
+            {{article.article.description}}
+          </mat-card-subtitle>
+        </mat-card-header>
 
-  
-      </div>
+        <div style="font-size: 14px;text-align: right;">
+          <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
+            access_time
+          </mat-icon>
+          {{article.created_on | dateAgo}}
+        </div>
+        
+      </mat-card>
+
+
     </div>
-    <!-- <button class="recently-viewed-all-button"> View all</button> -->
-    <div style="text-align: right;">
+  </div>
+  <!-- <button class="recently-viewed-all-button"> View all</button> -->
+  <div style="text-align: right;">
     <button mat-button class="recently-viewed-all-button" (click)="openAllReadArticles()">View all</button>
 
-    </div>
-    
-    <pre>
+  </div>
+
+  <!-- <pre>
     {{articles | json}}
 
-    </pre>
+    </pre> -->
 </div>

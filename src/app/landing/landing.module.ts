@@ -13,10 +13,19 @@ import { FeaturedComponent } from './featured/featured.component';
 import { ExplorerootsComponent } from './exploreroots/exploreroots.component';
 import { ReadArticlesComponent } from './read-articles/read-articles.component';
 import { RecentlyViewedComponent } from './recently-viewed/recently-viewed.component';
+import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
+import { ContinueCoursesComponent } from './continue-courses/continue-courses.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, AllArticlesComponent, FeaturedComponent, ExplorerootsComponent, ReadArticlesComponent, RecentlyViewedComponent],
+  declarations: [LandingComponent, 
+    AllArticlesComponent, 
+    FeaturedComponent, 
+    ExplorerootsComponent, 
+    ReadArticlesComponent, 
+    RecentlyViewedComponent, 
+    DateAgoPipe, ContinueCoursesComponent,
+  ],
   imports: [
     CommonModule,
     LandingRoutingModule,

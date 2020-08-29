@@ -28,6 +28,7 @@ var angularx_social_login_1 = require("angularx-social-login");
 var angularx_social_login_2 = require("angularx-social-login");
 var search_results_component_1 = require("./shared/search-results/search-results.component");
 var footer_component_1 = require("./shared/footer/footer.component");
+// import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
 // var routes = [

@@ -22,7 +22,7 @@ import {
 } from 'angularx-social-login';
 import { SearchResultsComponent } from './shared/search-results/search-results.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
+// import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
 
@@ -46,7 +46,7 @@ import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
     HeaderComponent,
     SearchResultsComponent,
     FooterComponent,
-    DateAgoPipe,
+    // DateAgoPipe,
     // RootComponent,
     // BreadcrumbsComponent,
   ],
