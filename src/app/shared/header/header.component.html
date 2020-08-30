@@ -77,6 +77,7 @@
         </div>
         <div class="col-md-4" style="padding: 0px;">
             <mat-toolbar class="uf-header" style="background-color: #516264;">
+                
                 <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" style="width: 100%;">
                     <input type="text"
                         style="background-color: #516264; border: none;outline: none; color: white; width: 85%; font-size: 16px; font-weight: 100;"
@@ -85,6 +86,20 @@
                         <mat-icon class="uf-search-icon">search</mat-icon>
                     </button>
                 </form>
+                <button class="d-md-none d-lg-none" mat-button [matMenuTriggerFor]="menu" style="outline: none; height: 48px; color: white; border-radius: 0px;">
+                    Roots
+                    <mat-icon>
+                        keyboard_arrow_down
+                    </mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item style="outline: none;line-height: 30px; height: auto;" routerLink="/roots/{{root.id}}/root/" *ngFor="let root of roots">
+                        <span style="width: 100%; color: #3e5153; outline: none;">
+                            {{root.title}}
+                        </span>
+                    </button>
+                    <!-- <button mat-menu-item></button> -->
+                </mat-menu>
             </mat-toolbar>
 
         </div>

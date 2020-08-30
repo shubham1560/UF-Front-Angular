@@ -46,7 +46,9 @@ var UrlconfigService = /** @class */ (function () {
     };
     UrlconfigService.prototype.isLoggedIn = function () {
         if (this.cookieService.get('token')) {
-            return true;
+            if (this.cookieService.get('token') == localStorage.getItem('token')) {
+                return true;
+            }
         }
         return false;
     };

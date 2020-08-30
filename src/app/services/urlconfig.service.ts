@@ -8,7 +8,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class UrlconfigService {
 
   // base_url = "http://127.0.0.1:8000/";           //local
-  base_url="https://database1560.herokuapp.com/";          //dev
+  base_url = "https://database1560.herokuapp.com/";          //dev
   // base_url = "https://uf-preprod.herokuapp.com/";          //preprod
 
 
@@ -16,23 +16,23 @@ export class UrlconfigService {
     private cookieService: CookieService
   ) { }
 
-  getUrl(){
+  getUrl() {
     return this.base_url;
   }
 
-  getFileUploadHeader(){
+  getFileUploadHeader() {
     const token = this.cookieService.get('token');
     return new HttpHeaders({
       'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary',
-      Authorization : `Token ${token}`,
+      Authorization: `Token ${token}`,
     })
   }
 
-  getHeader(){
-    if (this.isLoggedIn()){
+  getHeader() {
+    if (this.isLoggedIn()) {
       return this.getAuthenticationHeader();
     }
-  return this.getUnauthenticatedHeader()    
+    return this.getUnauthenticatedHeader()
   }
 
   getUnauthenticatedHeader() {
@@ -45,13 +45,15 @@ export class UrlconfigService {
     const token = this.cookieService.get('token');
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization : `Token ${token}`,
+      Authorization: `Token ${token}`,
     })
   }
 
-  isLoggedIn(): boolean{
-    if(this.cookieService.get('token')){
-      return true;
+  isLoggedIn(): boolean {
+    if (this.cookieService.get('token')) {
+      if (this.cookieService.get('token') == localStorage.getItem('token')) {
+        return true;
+      }
     }
     return false;
   }
