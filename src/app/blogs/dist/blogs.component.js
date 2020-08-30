@@ -10,7 +10,9 @@ exports.BlogsComponent = void 0;
 var core_1 = require("@angular/core");
 var BlogsComponent = /** @class */ (function () {
     function BlogsComponent(changeDetectorRef, media) {
-        this.mobileQuery = media.matchMedia('(max-width: 600px)');
+        // constructor() { }
+        this.icon = "menu";
+        this.mobileQuery = media.matchMedia('(max-width: 768px)');
         this._mobileQueryListener = function () { return changeDetectorRef.detectChanges(); };
         this.mobileQuery.addListener(this._mobileQueryListener);
     }
@@ -24,7 +26,11 @@ var BlogsComponent = /** @class */ (function () {
     //   document.getElementById("main").style.marginLeft = "0px";
     // }
     BlogsComponent.prototype.openNav = function () {
+        this.icon = "menu";
         document.getElementById("sidebar").classList.toggle("active");
+        if (document.getElementById("sidebar").classList["value"] == "active") {
+            this.icon = "close";
+        }
     };
     BlogsComponent = __decorate([
         core_1.Component({

@@ -60,3 +60,29 @@
   background-color: #2a3e40;
   color: white;
 }
+
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  min-width: 280px;
+  max-width: 280px;
+  transition: 0.5s;
+}
+
+#sidebar.active {
+  margin-left: -280px;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -280px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+}

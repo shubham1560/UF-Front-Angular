@@ -10,12 +10,13 @@ exports.RootComponent = void 0;
 var core_1 = require("@angular/core");
 var article_list_component_1 = require("src/app/blogs/article-list/article-list.component");
 var RootComponent = /** @class */ (function () {
-    function RootComponent(route, router, loggerService, knowledgeService, dialog) {
+    function RootComponent(route, router, loggerService, knowledgeService, dialog, changeDetectorRef, media) {
         this.route = route;
         this.router = router;
         this.loggerService = loggerService;
         this.knowledgeService = knowledgeService;
         this.dialog = dialog;
+        this.icon = "menu";
         this.colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"];
         this.viewChangeValid = true;
         this.view = "course";
@@ -23,6 +24,9 @@ var RootComponent = /** @class */ (function () {
         this.imageLoaded = false;
         this.startLoadingImages = false;
         this.isLoading = true;
+        this.mobileQuery = media.matchMedia('(max-width: 768px)');
+        this._mobileQueryListener = function () { return changeDetectorRef.detectChanges(); };
+        this.mobileQuery.addListener(this._mobileQueryListener);
     }
     RootComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -73,6 +77,13 @@ var RootComponent = /** @class */ (function () {
     RootComponent.prototype.navigate = function (url) {
         this.router.navigateByUrl("/courses/" + url);
         // window.open("#/courses/" + url)
+    };
+    RootComponent.prototype.openNav = function () {
+        this.icon = "menu";
+        document.getElementById("sidebar").classList.toggle("active");
+        if (document.getElementById("sidebar").classList["value"] == "active") {
+            this.icon = "close";
+        }
     };
     RootComponent = __decorate([
         core_1.Component({

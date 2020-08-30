@@ -29,11 +29,12 @@
 
     <div id="content" style=" background-color: white; width: 100%;">
         <nav class="navbar navbar-expand-lg navbar-light" *ngIf="mobileQuery.matches">
-                <button type="button" id="sidebarCollapse" (click)="openNav()" class="btn btn-info">
-                    <mat-icon>
-                        menu
-                    </mat-icon>
-                </button>
+
+            <button mat-raised-button color="primary" style="background-color: #4f9aab; color: white;"
+                id="sidebarCollapse" (click)="openNav()">
+                <mat-icon>{{icon}}</mat-icon>
+            </button>
+
         </nav>
         <div style="padding: 0px 20px;">
             <app-article-detail></app-article-detail>

@@ -10,11 +10,13 @@ export class BlogsComponent implements OnInit {
 
   // constructor() { }
 
+  icon="menu";
+
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileQuery = media.matchMedia('(max-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
@@ -32,7 +34,11 @@ export class BlogsComponent implements OnInit {
   // }
 
   openNav(){
+    this.icon = "menu";
     document.getElementById("sidebar").classList.toggle("active")
+    if(document.getElementById("sidebar").classList["value"] == "active"){
+      this.icon = "close";
+    }
   }
 
 

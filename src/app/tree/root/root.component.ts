@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ArticleListComponent } from 'src/app/blogs/article-list/article-list.component';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 
 @Component({
@@ -13,13 +14,23 @@ import { ArticleListComponent } from 'src/app/blogs/article-list/article-list.co
 })
 export class RootComponent implements OnInit {
 
+  icon="menu";
+
+  mobileQuery: MediaQueryList;
+  private _mobileQueryListener: () => void;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private loggerService: LoggerService,
     private knowledgeService: DataService,
     public dialog: MatDialog,
-  ) { }
+    changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
+  ) { 
+    this.mobileQuery = media.matchMedia('(max-width: 768px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
+  }
 
   colorArray = ["#ffcccc", "#ccffcc", "#ffccff", "#e8e3e8", "#ccffff", "#f2ffcc", "#e0ebeb", "#ecd9c6", "#d6e0f5", "#ffccf2"]
 
@@ -73,6 +84,8 @@ export class RootComponent implements OnInit {
     localStorage.setItem("view", this.view);
   }
 
+
+
   seeDetails(course) {
     // console.log("Open modal")
     const dialogRef = this.dialog.open(ArticleListComponent, {
@@ -86,4 +99,13 @@ export class RootComponent implements OnInit {
     this.router.navigateByUrl("/courses/"+url);
     // window.open("#/courses/" + url)
   }
+
+  openNav(){
+    this.icon = "menu";
+    document.getElementById("sidebar").classList.toggle("active")
+    if(document.getElementById("sidebar").classList["value"] == "active"){
+      this.icon = "close";
+    }
+  }
+  
 }
