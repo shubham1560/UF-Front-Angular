@@ -1,12 +1,61 @@
+<!-- <div class="example-container" [class.example-is-mobile]="mobileQuery.matches"> -->
+<!-- <mat-toolbar color="primary" class="example-toolbar"> -->
+<!-- <button mat-icon-button (click)="snav.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button> -->
+<!-- <h1 class="example-app-name"></h1> -->
+<!-- </mat-toolbar> -->
+
+<!-- <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+        <mat-sidenav #snav 
+            [mode]="mobileQuery.matches ? 'over' : 'side'" 
+            [fixedInViewport]="mobileQuery.matches"
+            fixedTopGap="56" 
+            opened>
+            <app-article-list></app-article-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <app-article-detail></app-article-detail>
+
+        </mat-sidenav-content>
+    </mat-sidenav-container> -->
+<!-- </div> -->
+
+<div class="wrapper">
+    <nav id="sidebar">
+        <app-article-list></app-article-list>
+    </nav>
+
+    <div id="content" style=" background-color: white; width: 100%;">
+        <nav class="navbar navbar-expand-lg navbar-light" *ngIf="mobileQuery.matches">
+                <button type="button" id="sidebarCollapse" (click)="openNav()" class="btn btn-info">
+                    <mat-icon>
+                        menu
+                    </mat-icon>
+                </button>
+        </nav>
+        <div style="padding: 0px 20px;">
+            <app-article-detail></app-article-detail>
+
+        </div>
+
+    </div>
+</div>
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-3 col-md-4" style="padding: 0px;">
-            <app-article-list></app-article-list>
+            <!-- <button mat-icon-button (click)="closeNav()">
+                <mat-icon>menu</mat-icon>
+            </button> -->
+            <!-- <app-article-list></app-article-list> -->
         </div>
         <div class="col-lg-9 col-md-8" style="background-color: white;">
-            <app-article-detail></app-article-detail>
-            
-            <app-kbuse></app-kbuse>
+            <!-- <app-article-detail></app-article-detail> -->
+
+            <!-- <app-kbuse></app-kbuse> -->
             <!-- <app-seecomments></app-seecomments> -->
         </div>
         <!-- <div class="col-md-12">
