@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 
 @Component({
   selector: 'app-side-nav',
@@ -10,6 +11,7 @@ export class SideNavComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private knowledgeService: DataService,
   ) { }
 
   icon="menu";
@@ -23,6 +25,11 @@ export class SideNavComponent implements OnInit {
         if(result.params.kb_category != "root"){
           this.viewChangeValid = false;
         }
+        this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(
+          (result:any) =>{
+            console.log(result);
+          }
+        )
       }
     )
   }

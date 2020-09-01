@@ -9,8 +9,9 @@ exports.__esModule = true;
 exports.SideNavComponent = void 0;
 var core_1 = require("@angular/core");
 var SideNavComponent = /** @class */ (function () {
-    function SideNavComponent(route) {
+    function SideNavComponent(route, knowledgeService) {
         this.route = route;
+        this.knowledgeService = knowledgeService;
         this.icon = "menu";
         this.view = "course";
         this.viewChangeValid = true;
@@ -22,6 +23,9 @@ var SideNavComponent = /** @class */ (function () {
             if (result.params.kb_category != "root") {
                 _this.viewChangeValid = false;
             }
+            _this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(function (result) {
+                console.log(result);
+            });
         });
     };
     SideNavComponent.prototype.changeView = function (changedView) {

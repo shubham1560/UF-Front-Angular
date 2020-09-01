@@ -87,6 +87,10 @@ var DataService = /** @class */ (function () {
         var body = { 'course': course, 'progress': progress };
         return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
     };
+    DataService.prototype.getCategoriesForSideNav = function (kb_base) {
+        this.called_url = "" + this.base_knowledge_url + kb_base + "/categories_kb_base";
+        return this.httpService.get(this.called_url, { headers: this.getHeader() });
+    };
     DataService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

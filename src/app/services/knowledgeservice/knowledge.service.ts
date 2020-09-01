@@ -103,5 +103,9 @@ export class DataService {
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
+  getCategoriesForSideNav(kb_base){
+    this.called_url = `${this.base_knowledge_url}${kb_base}/categories_kb_base`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
   
 }
