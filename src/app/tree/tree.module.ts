@@ -4,7 +4,8 @@ import { TreeRoutingModule } from './tree-routing.module';
 import { MaterialModule } from '../shared/material.module';
 import { RootComponent } from './root/root.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
-import { CourseviewComponent } from './courseview/courseview.component'
+import { CourseviewComponent } from './courseview/courseview.component';
+import { SideNavComponent } from './side-nav/side-nav.component'
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { CourseviewComponent } from './courseview/courseview.component'
     RootComponent,
     BreadcrumbsComponent,
     CourseviewComponent,
+    SideNavComponent,
   ],
   imports: [
     CommonModule,
