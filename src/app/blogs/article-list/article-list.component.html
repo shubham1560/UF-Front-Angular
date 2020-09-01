@@ -18,7 +18,7 @@
     <br>
     <div class="left-widget-wrapper">
         <mat-accordion color="primary">
-            <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
+            <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active" style="box-shadow: none; margin-bottom: 10px;"
                 (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
                 <mat-expansion-panel-header [ngClass]="{'active' : section.active}">

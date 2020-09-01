@@ -10,11 +10,11 @@ exports.UrlconfigService = void 0;
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 var UrlconfigService = /** @class */ (function () {
+    // base_url = "https://database1560.herokuapp.com/";          //dev
     // base_url = "https://uf-preprod.herokuapp.com/";          //preprod
     function UrlconfigService(cookieService) {
         this.cookieService = cookieService;
-        // base_url = "http://127.0.0.1:8000/";           //local
-        this.base_url = "https://database1560.herokuapp.com/"; //dev
+        this.base_url = "http://127.0.0.1:8000/"; //local
     }
     UrlconfigService.prototype.getUrl = function () {
         return this.base_url;
