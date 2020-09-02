@@ -8,15 +8,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 exports.SideNavComponent = void 0;
 var core_1 = require("@angular/core");
+var tree_1 = require("@angular/cdk/tree");
+var tree_2 = require("@angular/material/tree");
+var TREE_DATA = [
+    {
+        name: 'Fruit',
+        children: [
+            { name: 'Apple' },
+            { name: 'Banana' },
+            { name: 'Fruit loops' },
+        ]
+    }, {
+        name: 'Vegetables',
+        children: [
+            {
+                name: 'Green',
+                children: [
+                    { name: 'Broccoli' },
+                    { name: 'Brussels sprouts' },
+                ]
+            }, {
+                name: 'Orange',
+                children: [
+                    { name: 'Pumpkins' },
+                    { name: 'Carrots' },
+                ]
+            },
+        ]
+    },
+];
 var SideNavComponent = /** @class */ (function () {
     function SideNavComponent(route, knowledgeService, loggerService) {
         this.route = route;
         this.knowledgeService = knowledgeService;
         this.loggerService = loggerService;
+        this.hasChild = function (_, node) { return !!node.children && node.children.length > 0; };
         this.icon = "menu";
         this.view = "course";
         this.viewChangeValid = true;
-        this.categories = [];
+        this.treeControl = new tree_1.NestedTreeControl(function (node) { return node.children; });
+        this.dataSource = new tree_2.MatTreeNestedDataSource();
+        // console.log(this.tree_data);
     }
     SideNavComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -30,7 +62,9 @@ var SideNavComponent = /** @class */ (function () {
                 _this.viewChangeValid = false;
             }
             _this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(function (result) {
-                _this.categories = result;
+                // this.categories = result;
+                _this.tree_data = result;
+                _this.dataSource.data = _this.tree_data;
                 // console.log(result);
             });
         });

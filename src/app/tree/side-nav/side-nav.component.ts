@@ -2,6 +2,51 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import {NestedTreeControl} from '@angular/cdk/tree';
+import {MatTreeNestedDataSource} from '@angular/material/tree';
+
+
+interface Category {
+  label: string;
+  id: string;
+  parent_catgory: string;
+  parent_kb_base: string;
+  children?: Category[];
+}
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Fruit',
+    children: [
+      {name: 'Apple'},
+      {name: 'Banana'},
+      {name: 'Fruit loops'},
+    ]
+  }, {
+    name: 'Vegetables',
+    children: [
+      {
+        name: 'Green',
+        children: [
+          {name: 'Broccoli'},
+          {name: 'Brussels sprouts'},
+        ]
+      }, {
+        name: 'Orange',
+        children: [
+          {name: 'Pumpkins'},
+          {name: 'Carrots'},
+        ]
+      },
+    ]
+  },
+];
 
 @Component({
   selector: 'app-side-nav',
@@ -14,13 +59,17 @@ export class SideNavComponent implements OnInit {
     private route: ActivatedRoute,
     private knowledgeService: DataService,
     private loggerService: LoggerService,
+  ) { 
+    // console.log(this.tree_data);
+  }
 
-  ) { }
+  hasChild = (_: number, node: Category) => !!node.children && node.children.length > 0;
 
   icon="menu";
   view = "course";
   viewChangeValid = true;
-  categories = [];
+  // categories = [];
+  tree_data: Category[] ;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
@@ -35,7 +84,10 @@ export class SideNavComponent implements OnInit {
         }
         this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(
           (result:any) =>{
-            this.categories = result;
+            // this.categories = result;
+            this.tree_data = result;
+            this.dataSource.data = this.tree_data;
+
             // console.log(result);
           }
         )
@@ -43,6 +95,8 @@ export class SideNavComponent implements OnInit {
     )
     this.loggerService.logData("uf-side-nav", this);
   }
+  treeControl = new NestedTreeControl<Category>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<Category>();
 
   changeView(changedView){
     console.log(changedView);
