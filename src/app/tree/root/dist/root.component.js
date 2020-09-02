@@ -36,12 +36,12 @@ var RootComponent = /** @class */ (function () {
             _this.view = result.params.view;
             if (localStorage.getItem("view")) {
                 _this.view = localStorage.getItem("view");
-                console.log("if working: " + _this.view);
+                //   // console.log("if working: "+ this.view);
             }
-            _this.viewChangeValid = true;
-            if (result.params.kb_category != "root") {
-                _this.viewChangeValid = false;
-            }
+            // this.viewChangeValid = true;
+            // if(result.params.kb_category != "root"){
+            //   this.viewChangeValid = false;
+            // }
             _this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, _this.view).subscribe(function (result) {
                 _this.categories = result.categories;
                 _this.isLoading = false;
@@ -56,16 +56,16 @@ var RootComponent = /** @class */ (function () {
         });
         this.loggerService.logData("uf-roots", this);
     };
-    RootComponent.prototype.changeView = function (changedView) {
-        console.log(changedView);
-        if (changedView == "tree") {
-            this.view = "tree";
-        }
-        else if (changedView == "course") {
-            this.view = "course";
-        }
-        localStorage.setItem("view", this.view);
-    };
+    // changeView(changedView){
+    //   console.log(changedView);
+    //   if(changedView=="tree"){
+    //     this.view = "tree";
+    //   }
+    //   else if(changedView=="course"){
+    //     this.view = "course";
+    //   }
+    //   localStorage.setItem("view", this.view);
+    // }
     RootComponent.prototype.seeDetails = function (course) {
         // console.log("Open modal")
         var dialogRef = this.dialog.open(article_list_component_1.ArticleListComponent, {

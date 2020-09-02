@@ -9,24 +9,32 @@ exports.__esModule = true;
 exports.SideNavComponent = void 0;
 var core_1 = require("@angular/core");
 var SideNavComponent = /** @class */ (function () {
-    function SideNavComponent(route, knowledgeService) {
+    function SideNavComponent(route, knowledgeService, loggerService) {
         this.route = route;
         this.knowledgeService = knowledgeService;
+        this.loggerService = loggerService;
         this.icon = "menu";
         this.view = "course";
         this.viewChangeValid = true;
+        this.categories = [];
     }
     SideNavComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.paramMap.subscribe(function (result) {
+            _this.view = result.params.view;
+            if (localStorage.getItem("view")) {
+                _this.view = localStorage.getItem("view");
+            }
             _this.viewChangeValid = true;
             if (result.params.kb_category != "root") {
                 _this.viewChangeValid = false;
             }
             _this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(function (result) {
-                console.log(result);
+                _this.categories = result;
+                // console.log(result);
             });
         });
+        this.loggerService.logData("uf-side-nav", this);
     };
     SideNavComponent.prototype.changeView = function (changedView) {
         console.log(changedView);
@@ -37,13 +45,6 @@ var SideNavComponent = /** @class */ (function () {
             this.view = "course";
         }
         localStorage.setItem("view", this.view);
-    };
-    SideNavComponent.prototype.openNav = function () {
-        this.icon = "menu";
-        document.getElementById("sidebar").classList.toggle("active");
-        if (document.getElementById("sidebar").classList["value"] == "active") {
-            this.icon = "close";
-        }
     };
     SideNavComponent = __decorate([
         core_1.Component({

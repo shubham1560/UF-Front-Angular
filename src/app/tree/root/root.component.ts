@@ -49,12 +49,12 @@ export class RootComponent implements OnInit {
         this.view = result.params.view;
         if(localStorage.getItem("view")){
           this.view = localStorage.getItem("view")
-          console.log("if working: "+ this.view);
+        //   // console.log("if working: "+ this.view);
         }
-        this.viewChangeValid = true;
-        if(result.params.kb_category != "root"){
-          this.viewChangeValid = false;
-        }
+        // this.viewChangeValid = true;
+        // if(result.params.kb_category != "root"){
+        //   this.viewChangeValid = false;
+        // }
         this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, this.view).subscribe(
           (result: any) => {
             this.categories = result.categories;
@@ -73,16 +73,16 @@ export class RootComponent implements OnInit {
     this.loggerService.logData("uf-roots", this);
   }
 
-  changeView(changedView){
-    console.log(changedView);
-    if(changedView=="tree"){
-      this.view = "tree";
-    }
-    else if(changedView=="course"){
-      this.view = "course";
-    }
-    localStorage.setItem("view", this.view);
-  }
+  // changeView(changedView){
+  //   console.log(changedView);
+  //   if(changedView=="tree"){
+  //     this.view = "tree";
+  //   }
+  //   else if(changedView=="course"){
+  //     this.view = "course";
+  //   }
+  //   localStorage.setItem("view", this.view);
+  // }
 
 
 

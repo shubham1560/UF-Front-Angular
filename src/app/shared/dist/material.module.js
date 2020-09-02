@@ -22,6 +22,7 @@ var progress_spinner_1 = require("@angular/material/progress-spinner");
 var core_2 = require("@angular/material/core");
 var expansion_1 = require("@angular/material/expansion");
 var tooltip_1 = require("@angular/material/tooltip");
+var tree_1 = require("@angular/material/tree");
 var MaterialModule = /** @class */ (function () {
     function MaterialModule() {
     }
@@ -29,6 +30,7 @@ var MaterialModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [],
             imports: [
+                tree_1.MatTreeModule,
                 tooltip_1.MatTooltipModule,
                 expansion_1.MatExpansionModule,
                 material_1.MatToolbarModule,
@@ -49,6 +51,7 @@ var MaterialModule = /** @class */ (function () {
                 core_2.MatRippleModule,
             ],
             exports: [
+                tree_1.MatTreeModule,
                 tooltip_1.MatTooltipModule,
                 expansion_1.MatExpansionModule,
                 core_2.MatRippleModule,

@@ -15,10 +15,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [],
   imports: [
+    MatTreeModule,
     MatTooltipModule,
     MatExpansionModule,
     MatToolbarModule,
@@ -39,6 +41,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatRippleModule,
   ],
   exports:[
+    MatTreeModule,
     MatTooltipModule,
     MatExpansionModule,
     MatRippleModule,
