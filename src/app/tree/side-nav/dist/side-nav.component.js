@@ -47,6 +47,7 @@ var SideNavComponent = /** @class */ (function () {
         this.view = "course";
         this.viewChangeValid = true;
         this.initialized_kb_base = "";
+        this.active_id = "";
         this.treeControl = new tree_1.NestedTreeControl(function (node) { return node.children; });
         this.dataSource = new tree_2.MatTreeNestedDataSource();
         // console.log(this.tree_data);
@@ -54,6 +55,7 @@ var SideNavComponent = /** @class */ (function () {
     SideNavComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.paramMap.subscribe(function (result) {
+            _this.active_id = result.params.kb_category;
             _this.view = result.params.view;
             if (localStorage.getItem("view")) {
                 _this.view = localStorage.getItem("view");

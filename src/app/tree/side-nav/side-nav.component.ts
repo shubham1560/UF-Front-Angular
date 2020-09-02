@@ -69,11 +69,13 @@ export class SideNavComponent implements OnInit {
   view = "course";
   viewChangeValid = true;
   initialized_kb_base = "";
+  active_id = ""
   // categories = [];
   tree_data: Category[] ;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
+        this.active_id = result.params.kb_category;
         this.view = result.params.view;
         if(localStorage.getItem("view")){
           this.view = localStorage.getItem("view")

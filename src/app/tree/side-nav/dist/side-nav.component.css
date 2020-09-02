@@ -13,3 +13,12 @@
   margin-bottom: 0;
   list-style-type: none;
 }
+
+a {
+  color: #1d2223;
+}
+
+.active {
+  background-color: #b8e0d7;
+  color: blue;
+}
