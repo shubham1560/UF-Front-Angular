@@ -68,12 +68,12 @@ export class SideNavComponent implements OnInit {
   icon="menu";
   view = "course";
   viewChangeValid = true;
+  initialized_kb_base = "";
   // categories = [];
   tree_data: Category[] ;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
-
         this.view = result.params.view;
         if(localStorage.getItem("view")){
           this.view = localStorage.getItem("view")
@@ -82,15 +82,20 @@ export class SideNavComponent implements OnInit {
         if(result.params.kb_category != "root"){
           this.viewChangeValid = false;
         }
-        this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(
-          (result:any) =>{
-            // this.categories = result;
-            this.tree_data = result;
-            this.dataSource.data = this.tree_data;
-
-            // console.log(result);
-          }
-        )
+        if (result.params.kb_base != this.initialized_kb_base){
+          // console.log("change in base");
+          this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(
+            (result:any) =>{
+              // this.categories = result;
+              this.tree_data = result;
+              this.dataSource.data = this.tree_data;
+  
+              // console.log(result);
+            }
+          )
+        }
+        
+        this.initialized_kb_base = result.params.kb_base;
       }
     )
     this.loggerService.logData("uf-side-nav", this);

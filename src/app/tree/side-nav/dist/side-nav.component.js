@@ -46,6 +46,7 @@ var SideNavComponent = /** @class */ (function () {
         this.icon = "menu";
         this.view = "course";
         this.viewChangeValid = true;
+        this.initialized_kb_base = "";
         this.treeControl = new tree_1.NestedTreeControl(function (node) { return node.children; });
         this.dataSource = new tree_2.MatTreeNestedDataSource();
         // console.log(this.tree_data);
@@ -61,12 +62,16 @@ var SideNavComponent = /** @class */ (function () {
             if (result.params.kb_category != "root") {
                 _this.viewChangeValid = false;
             }
-            _this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(function (result) {
-                // this.categories = result;
-                _this.tree_data = result;
-                _this.dataSource.data = _this.tree_data;
-                // console.log(result);
-            });
+            if (result.params.kb_base != _this.initialized_kb_base) {
+                // console.log("change in base");
+                _this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(function (result) {
+                    // this.categories = result;
+                    _this.tree_data = result;
+                    _this.dataSource.data = _this.tree_data;
+                    // console.log(result);
+                });
+            }
+            _this.initialized_kb_base = result.params.kb_base;
         });
         this.loggerService.logData("uf-side-nav", this);
     };
