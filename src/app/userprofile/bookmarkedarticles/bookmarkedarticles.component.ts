@@ -35,7 +35,7 @@ export class BookmarkedarticlesComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.userprofile.getBookmarkedArticles().subscribe(
+    this.userprofile.getBookmarkedArticles(0,3).subscribe(
       result => {
         this.response = result;
         this.bookmarkedArticles = this.response.bookmarked_articles

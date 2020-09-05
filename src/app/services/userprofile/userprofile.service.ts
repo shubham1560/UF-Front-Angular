@@ -31,8 +31,8 @@ export class UserprofileService {
     return this.httpService.post(this.url, this.body,  {headers: this.header})
   }
 
-  getBookmarkedArticles(){
-    this.url = `${this.knowledgeService.getKnowledgeUrl()}bookmarked_articles/`;
+  getBookmarkedArticles(start, end){
+    this.url = `${this.knowledgeService.getKnowledgeUrl()}bookmarked_articles/${start}/${end}/`;
       return this.httpService.get(this.url, {headers:this.header} )
   }
 

@@ -27,8 +27,8 @@ var UserprofileService = /** @class */ (function () {
         this.body = { "delete": "true" };
         return this.httpService.post(this.url, this.body, { headers: this.header });
     };
-    UserprofileService.prototype.getBookmarkedArticles = function () {
-        this.url = this.knowledgeService.getKnowledgeUrl() + "bookmarked_articles/";
+    UserprofileService.prototype.getBookmarkedArticles = function (start, end) {
+        this.url = this.knowledgeService.getKnowledgeUrl() + "bookmarked_articles/" + start + "/" + end + "/";
         return this.httpService.get(this.url, { headers: this.header });
     };
     UserprofileService.prototype.editUserData = function (user_data) {
