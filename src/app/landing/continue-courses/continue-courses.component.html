@@ -1,7 +1,8 @@
 <div id="uf-recently-viewed-course" style="color: #425051">
     <p>Continue learning about </p> 
     <div *ngFor="let course of courses">
-        <mat-card class="uf-course-card" routerLink="courses/{{course.course.id}}/">
+        <a routerLink="courses/{{course.course.id}}/">
+        <mat-card class="uf-course-card">
             <div class="uf-course-header">
                 {{course.course.knowledge_base}}
             </div>
@@ -21,6 +22,6 @@
                 {{course.created_on | dateAgo}}
             </div>
         </mat-card>
-
+    </a>
     </div>
 </div>

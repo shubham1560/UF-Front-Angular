@@ -1,0 +1,22 @@
+
+.recently-viewed-all-button{
+    color: #3c869a;
+    // border: 2px solid #3c869a;
+    border-radius: 0px;
+    background-color: white;
+    outline: none;
+
+    &:hover{
+        background-color: #3c869a;
+        color: white;
+    }
+}
+
+.anchor{
+    color: #3c869a;
+
+    &:hover{
+        color: #3c869a;
+
+    }
+}

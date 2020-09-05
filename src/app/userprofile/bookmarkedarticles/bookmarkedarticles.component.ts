@@ -11,7 +11,6 @@ import {MatPaginator} from '@angular/material/paginator';
 })
 export class BookmarkedarticlesComponent implements OnInit {
 
-
   ghostEl = 3;
   response: any = {};
   error: any = {};

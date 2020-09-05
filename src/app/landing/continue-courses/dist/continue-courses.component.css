@@ -19,3 +19,7 @@
 .uf-course-title {
   color: #566364;
 }
+
+a:hover {
+  text-decoration: none;
+}
