@@ -1,31 +1,35 @@
 <div id="uf-bookmarked">
-    <p style="color: #425051;">Bookmarked Articles</p>
-    <div class="row">
-        <div class="col-12" *ngFor="let article of bookmarkedArticles.bookmarked_articles">
+    <div *ngIf="!bookmarkedArticles">
 
-            <a routerLink="courses/{{article.get_article.course_id}}/{{article.article}}" class="anchor">
-                {{article.get_article.title}}
-            </a>
+        <p style="color: #425051;">{{title}}</p>
 
-            <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;">
-                {{article.get_article.kb_base_label}} / {{article.get_article.course_label}} <br>
+        You have not bookmarked any articles yet!
+    </div>
+
+
+    <div *ngIf="bookmarkedArticles">
+        <p style="color: #425051;">{{title}}</p>
+        <div class="row">
+            <div class="col-12" *ngFor="let article of bookmarkedArticles">
+
+                <a routerLink="courses/{{article.get_article.course_id}}/{{article.article}}" class="anchor">
+                    {{article.get_article.title}}
+                </a>
+
+                <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;">
+                    {{article.get_article.kb_base_label}} / {{article.get_article.course_label}} <br>
+                </div>
             </div>
-
+        </div>
+        <div style="text-align: right;" *ngIf="showButton">
+            <button mat-button class="recently-viewed-all-button" (click)="openAllBookmarkedArticles()">
+                View all
+                <mat-icon style="font-size: 20px;">
+                    call_made
+                </mat-icon>
+            </button>
 
         </div>
-    </div>
-    <div style="text-align: right;">
-        <button mat-button class="recently-viewed-all-button">
-            View all
-            <mat-icon style="font-size: 20px;">
-                call_made
-            </mat-icon>
-        </button>
 
     </div>
-
-    <!-- <pre>
-      {{articles | json}}
-  
-      </pre> -->
 </div>
