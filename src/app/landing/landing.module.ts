@@ -15,6 +15,7 @@ import { ReadArticlesComponent } from './read-articles/read-articles.component';
 import { RecentlyViewedComponent } from './recently-viewed/recently-viewed.component';
 import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 import { ContinueCoursesComponent } from './continue-courses/continue-courses.component';
+import { BookmarkedComponent } from './bookmarked/bookmarked.component';
 
 
 @NgModule({
@@ -24,7 +25,7 @@ import { ContinueCoursesComponent } from './continue-courses/continue-courses.co
     ExplorerootsComponent, 
     ReadArticlesComponent, 
     RecentlyViewedComponent, 
-    DateAgoPipe, ContinueCoursesComponent,
+    DateAgoPipe, ContinueCoursesComponent, BookmarkedComponent,
   ],
   imports: [
     CommonModule,
