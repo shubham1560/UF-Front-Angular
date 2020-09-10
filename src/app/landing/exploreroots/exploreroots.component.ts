@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 @Component({
   selector: 'app-exploreroots',
@@ -11,6 +12,7 @@ export class ExplorerootsComponent implements OnInit {
 
   constructor(
     private knowledgeServie: DataService,
+    private authService: AuthService,
     private loggerService: LoggerService,
   ) { }
   myColor= "#8dbcaa";
@@ -18,6 +20,7 @@ export class ExplorerootsComponent implements OnInit {
   dataLoading = true;
   imageLoaded = false;
   startLoadingImages = false;
+  isLoggedIn = false;
 
   ngOnInit(): void {
     this.knowledgeServie.getKnowledgeBases().subscribe(
@@ -36,6 +39,9 @@ export class ExplorerootsComponent implements OnInit {
         console.log(error);
       }
     )
+    if(this.authService.isLoggedIn()){
+      this.isLoggedIn = true;
+    }
     this.loggerService.logData("uf-exploreroots", this);
   }
 

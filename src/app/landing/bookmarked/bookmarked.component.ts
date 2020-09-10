@@ -25,7 +25,7 @@ export class BookmarkedComponent implements OnInit {
     if (this.data["modal"]){
       this.end = 0;
       this.showButton = false;
-      this.title = "All Bookmarked Articles"
+      this.title = "All Bookmarked Articles";
     }
     this.userService.getBookmarkedArticles(this.start, this.end).subscribe(
       (result:any) =>{
