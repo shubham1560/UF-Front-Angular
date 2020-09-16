@@ -31,7 +31,7 @@ var RootComponent = /** @class */ (function () {
     RootComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.route.paramMap.subscribe(function (result) {
-            console.log(result);
+            // console.log(result);
             _this.isLoading = true;
             _this.view = result.params.view;
             if (localStorage.getItem("view")) {

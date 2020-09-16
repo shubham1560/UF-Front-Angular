@@ -91,6 +91,10 @@ var DataService = /** @class */ (function () {
         this.called_url = "" + this.base_knowledge_url + kb_base + "/categories_kb_base";
         return this.httpService.get(this.called_url, { headers: this.getHeader() });
     };
+    DataService.prototype.getSearchResults = function (query_key) {
+        this.called_url = this.base_knowledge_url + "query/" + query_key;
+        return this.httpService.get(this.called_url, { headers: this.getHeader() });
+    };
     DataService = __decorate([
         core_1.Injectable({
             providedIn: 'root'

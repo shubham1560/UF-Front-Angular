@@ -108,4 +108,8 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
   
+  getSearchResults(query_key){
+    this.called_url = `${this.base_knowledge_url}query/${query_key}`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

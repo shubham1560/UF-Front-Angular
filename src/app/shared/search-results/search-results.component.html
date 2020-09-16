@@ -1,3 +1,11 @@
 <!-- <p>search-results works!</p> -->
 
-{{data.query}}
+<div id="uf-search-results">
+You searched for: <b> {{data.query}}</b>
+
+<pre>
+    {{searchResults | json}}
+</pre>
+
+</div>
+

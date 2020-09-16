@@ -14,7 +14,7 @@ var ReadArticlesComponent = /** @class */ (function () {
         this.loggerService = loggerService;
         this.fetchedAllArticles = false;
         this.start = 0;
-        this.numberOfArticlesToFetch = 4;
+        this.numberOfArticlesToFetch = 100;
         this.end = this.start + this.numberOfArticlesToFetch;
         this.isLoading = true;
     }

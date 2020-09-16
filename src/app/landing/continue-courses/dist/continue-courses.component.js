@@ -15,7 +15,7 @@ var ContinueCoursesComponent = /** @class */ (function () {
     }
     ContinueCoursesComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.userService.getUserStartedCourse(0, 4).subscribe(function (result) {
+        this.userService.getUserStartedCourse(0, 10).subscribe(function (result) {
             _this.courses = result;
         });
         this.loggerService.logData("uf-recently-viewed-course", this);

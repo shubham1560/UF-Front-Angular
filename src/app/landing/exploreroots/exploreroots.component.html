@@ -122,9 +122,7 @@
         <div class="col-md-4" *ngIf="isLoggedIn" style="padding: 20px; background-color: white;">
             <app-continue-courses></app-continue-courses>
 
-
             <hr>
-
             <div class="row">
                 <div class="col-lg-6">
                     <app-recently-viewed></app-recently-viewed>
@@ -135,5 +133,10 @@
             </div>
             <!-- <app-read-articles></app-read-articles> -->
         </div>
+
+        <div class="col-md-4" *ngIf="!isLoggedIn" style="padding: 20px; background-color: white;">
+            <app-featured></app-featured>
+        </div>
+
     </div>
 </div>

@@ -44,7 +44,7 @@ export class RootComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
-        console.log(result);
+        // console.log(result);
         this.isLoading = true;
         this.view = result.params.view;
         if(localStorage.getItem("view")){
