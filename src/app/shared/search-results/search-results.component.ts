@@ -26,8 +26,6 @@ export class SearchResultsComponent implements OnInit {
     )
 
     this.loggerService.logData("uf-search-results", this);
-    // console.log(this.data);
-
   }
 
 }

@@ -1,11 +1,68 @@
 <!-- <p>search-results works!</p> -->
 
 <div id="uf-search-results">
-You searched for: <b> {{data.query}}</b>
 
-<pre>
-    {{searchResults | json}}
+
+    <h2 mat-dialog-title style="color: #293e40;">Search results for: {{data.query}}</h2>
+    <mat-dialog-content class="mat-typography">
+        <!-- You searched for: <b> {{data.query}}</b> -->
+        <div *ngIf="searchResults">
+            <div *ngIf="searchResults.courses.length">
+                <p style="color: #425051;">Path(s): </p>
+                <div class="row">
+                    <div class="col-12" *ngFor="let course of searchResults.courses">
+
+                        <a routerLink="courses/{{course.id}}/" class="anchor">
+                            {{course.label}}
+                        </a>
+
+                        <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;">
+                            {{course.description}}
+
+                            <!-- {{article.get_article.kb_base_label}} / {{article.get_article.course_label}} <br> -->
+                        </div>
+                        <div style="font-size: 12px;text-align: left; color: #8bb2aa; padding-bottom: 10px;">
+                            Root: {{course.get_parent_knowledgebase.label}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="searchResults.articles.length">
+                <p style="color: #425051;">Article(s): </p>
+                <div class="row">
+                    <div class="col-12" *ngFor="let article of searchResults.articles">
+
+                        <a routerLink="courses/{{article.category}}/{{article.id}}" class="anchor">
+                            {{article.title}}
+                        </a>
+
+                        <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;"
+                            [innerHTML]="article?.description"></div>
+                        <!-- {{article.article_body}} -->
+
+                        <!-- {{article.get_article.kb_base_label}} / {{article.get_article.course_label}} <br> -->
+                        <!-- </div> -->
+                        <div style="font-size: 12px;text-align: left; color: #8bb2aa; padding-bottom: 10px;">
+                            <!-- ---- {{course.get_parent_knowledgebase.label}} ---- -->
+                            Path: {{article.get_category.category_label}}
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <pre>
+    {{searchResults.courses | json}}
 </pre>
 
-</div>
+        Articles:
 
+        <pre>
+    {{searchResults.articles | json}}
+</pre> -->
+
+    </mat-dialog-content>
+</div>

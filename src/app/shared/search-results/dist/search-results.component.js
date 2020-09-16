@@ -25,7 +25,6 @@ var SearchResultsComponent = /** @class */ (function () {
             _this.searchResults = result;
         });
         this.loggerService.logData("uf-search-results", this);
-        // console.log(this.data);
     };
     SearchResultsComponent = __decorate([
         core_1.Component({
