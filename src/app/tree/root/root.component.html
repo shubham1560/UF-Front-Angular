@@ -18,7 +18,7 @@
             <div class="row" style="padding: 20px;">
                 <app-breadcrumbs></app-breadcrumbs>
             </div>
-            <div class="row">
+            <div class="row" *ngIf = "!isLoading">
                 <div class="col-lg-4 col-md-6 col-12" *ngFor="let product of categories">
                     <mat-card style="margin-bottom: 20px; box-shadow: none;">
                         <div style="background-color: #81b5a1;
@@ -68,6 +68,53 @@
                     </mat-card>
                 </div>
             </div>
+
+            <div class="row" *ngIf="isLoading">
+
+                <div class="col-lg-4 col-md-6 col-12" *ngFor="let product of [1,2]">
+                    <mat-card style="margin-bottom: 20px; box-shadow: none;">
+                        <div style="background-color: #81b5a1;
+                        color: white;
+                        width: 100px;
+                        padding: 0px 10px;
+                        margin-left: -20px;">
+                            <!-- Test     -->
+                            <br>
+                        </div>
+                        <br>
+                        <mat-card-header>
+                            <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;"></mat-card-title>
+                            <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;"></mat-card-subtitle>
+                            <!-- <mat-card-subtitle style="width: 150px; height: 24px; background-color: #f6f7f7;"></mat-card-subtitle> -->
+                            <div mat-card-avatar
+                                style="background-size: cover; background-color: #f6f7f7;"></div>
+                            <!-- <div mat-card-avatar  -->
+                                <!-- style="background-size: cover;"></div> -->
+                        </mat-card-header>
+                        <mat-card-actions style="text-align: right;" >
+
+                            <button mat-button style="width: 40px; height: 40px; background-color: #f6f7f7;">
+                                <!-- <mat-icon>info_outline</mat-icon>. -->
+                            </button>
+                            <button mat-button style="width: 100px; height: 40px; background-color: #f6f7f7;">
+                                <!-- Learn -->
+                                <!-- <mat-icon matSuffix> -->
+                                    <!-- launch -->
+                                <!-- </mat-icon> -->
+                            </button>
+                        </mat-card-actions>
+                        <!-- <mat-card-actions style="text-align: right;" >
+                            <button mat-button class="learn-button">
+                                Explore Inside
+                                <mat-icon matSuffix>
+                                    account_tree
+                                </mat-icon>
+                            </button>
+                        </mat-card-actions> -->
+                    </mat-card>
+                </div>
+            </div>
+
         </div>
 
     </div>
