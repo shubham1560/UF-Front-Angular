@@ -1,11 +1,11 @@
 <mat-toolbar id="uf-header" class="uf-header">
 
-    <div mat-button routerLink="/welcome/" style="color: #f8f7f7;">Logo</div>
+    <a mat-button routerLink="/welcome/" style="color: #f8f7f7;">Logo</a>
     <span class="fillspace"></span>
 
     <span class="sign-in" *ngIf="!isLoggedIn">
-        <button mat-flat-button class="uf-dashboard" routerLink="/auth/" (click)="sendToLoginPage()"
-            routerLinkActive="active">Sign in</button>
+        <a mat-flat-button class="uf-dashboard" routerLink="/auth/" (click)="sendToLoginPage()"
+            routerLinkActive="active">Sign in</a>
     </span>
 
     <!-- <span *ngIf="isLoggedIn" style="margin-right: 10px;">
@@ -41,8 +41,8 @@
                 </span>
             </div>
             <hr>
-            <button mat-menu-item routerLink="/user_profile" style="line-height: 20px; height: auto;"> My
-                Profile</button>
+            <a mat-menu-item routerLink="/user_profile" style="line-height: 20px; height: auto;"> My
+                Profile</a>
             <button mat-menu-item (click)="logout()" style="line-height: 20px; height: auto;">
                 Sign out
                 <mat-icon matSuffix style="margin: 0px 2px;">login</mat-icon>
@@ -58,7 +58,7 @@
         <div class="col-md-8  d-none d-md-block d-lg-block" style="padding: 0px;">
             <mat-toolbar class="uf-header"
                 style="background-color: #3e5153; color: white; font-weight: 100; font-size: 16px;border-radius: 0px;">
-                <mat-icon class="uf-main-icon" routerLink="/welcome/">home</mat-icon>
+                <a class="uf-main-icon" routerLink="/welcome/"> <mat-icon > home</mat-icon> </a>
                 <button mat-button [matMenuTriggerFor]="menu" style="outline: none; height: 48px; border-radius: 0px;">
                     Roots
                     <mat-icon>
@@ -66,11 +66,11 @@
                     </mat-icon>
                 </button>
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item style="outline: none;line-height: 30px; height: auto;" routerLink="/roots/{{root.id}}/root/" *ngFor="let root of roots">
+                    <a mat-menu-item style="outline: none;line-height: 30px; height: auto;" routerLink="/roots/{{root.id}}/root/" *ngFor="let root of roots">
                         <span style="width: 100%; color: #3e5153; outline: none;">
                             {{root.title}}
                         </span>
-                    </button>
+                    </a>    
                     <!-- <button mat-menu-item></button> -->
                 </mat-menu>
             </mat-toolbar>

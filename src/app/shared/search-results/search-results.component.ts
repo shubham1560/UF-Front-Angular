@@ -16,12 +16,14 @@ export class SearchResultsComponent implements OnInit {
   ) { }
 
   searchResults;
+  searching = true;
+  searchResultsFound = false;
 
   ngOnInit(): void {
     this.KnowledgeService.getSearchResults(this.data.query).subscribe(
       (result:any)=>{
         this.searchResults = result;
-
+        this.searching = false;
       }
     )
 
