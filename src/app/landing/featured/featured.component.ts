@@ -14,11 +14,11 @@ export class FeaturedComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userProfileService.getUserStartedCourse(0, 5).subscribe(
-      result=>{
-        console.log(result);
-      }
-    )
+    // this.userProfileService.getUserStartedCourse(0, 5).subscribe(
+      // result=>{
+        // console.log(result);
+      // }
+    // )
   }
 
 }

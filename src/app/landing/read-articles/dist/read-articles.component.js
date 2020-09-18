@@ -32,12 +32,12 @@ var ReadArticlesComponent = /** @class */ (function () {
         this.fetchArticles(this.start, this.end);
     };
     ReadArticlesComponent.prototype.addBokmark = function (yo) {
-        console.log("hola");
+        // console.log("hola");
     };
     ReadArticlesComponent.prototype.fetchArticles = function (start, end) {
         var _this = this;
         this.userProfileService.getUserReadArticle(start, end).subscribe(function (result) {
-            console.log(result);
+            // console.log(result);
             if (result.length > 0) {
                 _this.articles = _this.articles.concat(result);
             }

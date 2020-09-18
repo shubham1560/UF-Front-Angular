@@ -40,14 +40,14 @@ export class ReadArticlesComponent implements OnInit {
 
 
   addBokmark(yo) {
-    console.log("hola");
+    // console.log("hola");
 
   }
 
   fetchArticles(start, end) {
     this.userProfileService.getUserReadArticle(start, end).subscribe(
       (result: any) => {
-        console.log(result);
+        // console.log(result);
         if (result.length > 0) {
           this.articles = this.articles.concat(result);
         }

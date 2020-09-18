@@ -52,11 +52,11 @@ export class PasswordresetFormComponent implements OnInit {
     )
     this.authService.token_valid(this.token).subscribe(
       (response:any) => {
-        console.log(response);
+        // console.log(response);
         this.username = response.username;
         this.response = response;
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.error = error;
         this.attempt = true;
         this.reset = false;
@@ -80,14 +80,14 @@ export class PasswordresetFormComponent implements OnInit {
     })
 
     this.loggerService.logData("auth-passwordresetform", this);
-    console.log(this);
+    // console.log(this);
   }
 
   resetPassword() {
     this.reseting = true;
     this.authService.resetPassword(this.token, this.passwordResetForm.get('passwordGroup.password').value).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         this.icon = "verified_user";
         this.message = "the password has been changed for the user";
         this.reset = true;
@@ -95,7 +95,7 @@ export class PasswordresetFormComponent implements OnInit {
         this.reseting = false;
       },
       error => {
-        console.log(error);
+        // console.log(error);
         this.icon = "report_problem"
         this.message = "the url is invalid"
         this.reset = false;

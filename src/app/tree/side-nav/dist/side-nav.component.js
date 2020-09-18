@@ -78,7 +78,7 @@ var SideNavComponent = /** @class */ (function () {
         this.loggerService.logData("uf-side-nav", this);
     };
     SideNavComponent.prototype.changeView = function (changedView) {
-        console.log(changedView);
+        // console.log(changedView);
         if (changedView == "tree") {
             this.view = "tree";
         }

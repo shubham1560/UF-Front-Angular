@@ -36,12 +36,12 @@ export class UserprofileeditComponent implements OnInit {
     this.isEditing = true;
     this.userService.editUserData(this.userProfileEditForm.value).subscribe(
       data=>{
-        console.log(data);
+        // console.log(data);
         this.isEditing = false;
         this.jobDone = true;
       },
       error=>{
-        console.log(error);
+        // console.log(error);
       }
     )
   }

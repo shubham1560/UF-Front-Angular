@@ -41,9 +41,9 @@ export class BookmarkedarticlesComponent implements OnInit {
         var dataSource = new MatTableDataSource<BookmarkedArticles>(this.bookmarkedArticles);
         this.dataSource = dataSource;
         this.dataSource.paginator = this.paginator
-        console.log(this.dataSource)
+        // console.log(this.dataSource)
         this.isLoading = false;
-        console.log(this)
+        // console.log(this)
       }, error => {
         this.error = error;
       }

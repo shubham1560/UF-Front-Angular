@@ -28,7 +28,7 @@ export class ActivateAccountComponent implements OnInit {
     this.route.paramMap.subscribe(
       params => {
         this.data["token"] = params.get('token');
-        console.log("running");
+        // console.log("running");
       }
     )
     this.authService.activate_account(this.data["token"]).subscribe(

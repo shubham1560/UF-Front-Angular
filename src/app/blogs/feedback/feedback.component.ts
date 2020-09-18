@@ -22,7 +22,7 @@ export class FeedbackComponent implements OnInit {
   feedbackReceived = false;
 
   ngOnInit(): void {
-    console.log(this.article_from_modal.name);
+    // console.log(this.article_from_modal.name);
     this.feedbackForm = this.fb.group({
       feedback: ['', [Validators.minLength(1), Validators.required]],
     })
@@ -33,14 +33,14 @@ export class FeedbackComponent implements OnInit {
     // console.log(this.feedbackForm.value["feedback"]);
     this.knowledgeService.addFeedback(this.article_from_modal.name, this.feedbackForm.value["feedback"]).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.disableButton = false;
         this.feedbackReceived = true;
       },
       error => {
         this.disableButton = false;
         this.feedbackReceived = true;
-        console.log(error);
+        // console.log(error);
       }
     )
   }

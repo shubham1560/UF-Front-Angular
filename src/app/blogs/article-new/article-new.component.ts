@@ -59,19 +59,19 @@ export class ArticleNewComponent implements OnInit {
       const url = `${this.url.base_url}attachment/add_image/`
       this.http.post(url, uploadImage).subscribe(
         (result: any) => {
-          console.log(result);
+          // console.log(result);
           var image = " <br><br> <img src='" + result.image_url + "' height='300px' width=auto>";
           this.elements.push(image);
           this.article = this.arrayToString(this.elements, "");
         },
         error => {
-          console.log("well");
-          console.log(error)
+          // console.log("well");
+          // console.log(error)
         }
       )
     }
     else {
-      console.log("hawabaazi");
+      // console.log("hawabaazi");
 
     }
 
@@ -128,7 +128,7 @@ export class ArticleNewComponent implements OnInit {
 
   getTheWholeFuckingDom() {
     var a = document.getElementById("article");
-    console.log(a);
+    // console.log(a);
   }
 
   makeItalic() {
@@ -180,15 +180,15 @@ export class ArticleNewComponent implements OnInit {
     var start = a.baseOffset;
     var text = data.substring(start, end);
     // var textAlready = data.substring((start - 3), (end + 3));
-    console.log(data);
-    console.log(start, end, text);
+    // console.log(data);
+    // console.log(start, end, text);
     // console.log(textAlready);
     if (!this.elements[ind].includes(starttag+text+b)) {
-      console.log("running")
+      // console.log("running")
       this.elements[ind] = this.elements[ind].replace(text, starttag + text + b);
     }
     else if(this.elements[ind].includes(starttag+text+b)) {
-      console.log("too")
+      // console.log("too")
       this.elements[ind] = this.elements[ind].replace(starttag + text + b, text)
     }
     this.article = this.arrayToString(this.elements, "");

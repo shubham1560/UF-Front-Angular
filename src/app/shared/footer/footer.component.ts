@@ -28,8 +28,8 @@ export class FooterComponent implements OnInit {
     // }, 3000)
     this.route.paramMap.subscribe(
       params=>{
-        console.log("changed");
-        console.log(this.route.paramMap);
+        // console.log("changed");
+        // console.log(this.route.paramMap);
       }
     )
 

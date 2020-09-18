@@ -40,7 +40,7 @@ export class KbuseComponent implements OnInit {
             setTimeout(() =>
               this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
                 (data: any) => {
-                  console.log(data);
+                  // console.log(data);
                   this.found_useful = data.found_useful;
                   this.bookmarked = data.bookmarked;
                   this.isLoading = false;
@@ -62,7 +62,7 @@ export class KbuseComponent implements OnInit {
   viewed(article) {
     this.knowledge.postUseArticle(article, 'no_response').subscribe(
       (response: any) => {
-        console.log(response)
+        // console.log(response)
       },
       error => {
       }
@@ -76,16 +76,16 @@ export class KbuseComponent implements OnInit {
         this.found_useful = true;
         this.knowledge.postUseArticle(this.article, 'true').subscribe(
           (data: any) => {
-            console.log(data);
+            // console.log(data);
             var message = "We are glad that you find the article useful"
             this.showSnackBar(message);
           }
         )
       } else {
-        console.log("did not find useful");
+        // console.log("did not find useful");
         this.knowledge.postUseArticle(this.article, 'false').subscribe(
           data => {
-            console.log(data);
+            // console.log(data);
             this.found_useful = false;
             this.showSnackBar("we will working on improving the article");
             this.openDialog();
@@ -100,7 +100,7 @@ export class KbuseComponent implements OnInit {
 
   bookmark() {
     if (this.authService.isLoggedIn()) {
-      console.log("Bookmarked")
+      // console.log("Bookmarked")
       this.knowledge.addBookmarkArticle(this.article).subscribe(
         data => {
           this.bookmarked = !this.bookmarked;
@@ -122,7 +122,7 @@ export class KbuseComponent implements OnInit {
 
   sendFeedback() {
     if (this.authService.isLoggedIn()) {
-      console.log("open the modal");
+      // console.log("open the modal");
       this.openDialog();
     } else {
       this.openLoginPrompt();
@@ -136,7 +136,7 @@ export class KbuseComponent implements OnInit {
       data: { name: this.article }
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
     });
   }
 

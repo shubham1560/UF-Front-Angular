@@ -31,11 +31,11 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
-      console.log("calling func");
+      // console.log("calling func");
       this.authService.getLoggedInUserDetail().subscribe(
         (response: any) => {
           this.user = response.user;
-          console.log(this.user);
+          // console.log(this.user);
           if (this.user.profile_pic) {
             this.image = this.user.profile_pic;
           }
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
         this.roots = (result.bases);
       }, 
       error =>{
-        console.log(error);
+        // console.log(error);
       }
       
     )

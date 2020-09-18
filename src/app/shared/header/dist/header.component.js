@@ -24,10 +24,10 @@ var HeaderComponent = /** @class */ (function () {
         var _this = this;
         this.isLoggedIn = this.authService.isLoggedIn();
         if (this.isLoggedIn) {
-            console.log("calling func");
+            // console.log("calling func");
             this.authService.getLoggedInUserDetail().subscribe(function (response) {
                 _this.user = response.user;
-                console.log(_this.user);
+                // console.log(_this.user);
                 if (_this.user.profile_pic) {
                     _this.image = _this.user.profile_pic;
                 }
@@ -41,7 +41,7 @@ var HeaderComponent = /** @class */ (function () {
         this.knowledgeService.getKnowledgeBases().subscribe(function (result) {
             _this.roots = (result.bases);
         }, function (error) {
-            console.log(error);
+            // console.log(error);
         });
         this.searchQueryForm = this.fb.group({
             query: ['', [forms_1.Validators.required, forms_1.Validators.minLength(1)]]

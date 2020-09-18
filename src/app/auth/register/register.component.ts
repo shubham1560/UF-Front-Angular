@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
       full_name: ['', [Validators.required,]],
     },)
 
-    console.log(this.registrationForm);
+    // console.log(this.registrationForm);
 
     this.registrationForm.get('email').valueChanges.pipe(
       debounceTime(1000)
@@ -81,8 +81,8 @@ export class RegisterComponent implements OnInit {
 
   register() {
     this.disableButton = true;
-    console.log("Registered the user");
-    console.log(this.registrationForm);
+    // console.log("Registered the user");
+    // console.log(this.registrationForm);
     this.registering = true;
     this.user = {};
     this.user["email"] = this.registrationForm.value["email"];
@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
         this.registrationDone = true;
         this.disableButton = true;
         this.response = response;
-        console.log(response);
+        // console.log(response);
         this.registering = false;
       },
       error => {

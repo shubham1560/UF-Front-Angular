@@ -33,9 +33,9 @@ var BookmarkedarticlesComponent = /** @class */ (function () {
             var dataSource = new table_1.MatTableDataSource(_this.bookmarkedArticles);
             _this.dataSource = dataSource;
             _this.dataSource.paginator = _this.paginator;
-            console.log(_this.dataSource);
+            // console.log(_this.dataSource);
             _this.isLoading = false;
-            console.log(_this);
+            // console.log(_this);
         }, function (error) {
             _this.error = error;
         });

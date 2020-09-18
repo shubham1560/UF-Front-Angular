@@ -43,7 +43,7 @@ export class ProfileComponent implements OnInit {
     this.profile.getUserData().subscribe(
       result => {
         this.response = result;
-        console.log(result);
+        // console.log(result);
         this.isLoading = false;
         this.image = this.response.user.header_image ? this.response.user.header_image : this.response.user.profile_pic;
         // if(!this.image){
@@ -76,23 +76,25 @@ export class ProfileComponent implements OnInit {
           this.ngOnInit();
           this.buttonText = "Upload Image";
         },
-        error => { console.log(error) }
+        error => { 
+          // console.log(error) 
+        }
       )
     }
     else{
-      console.log("hawabaazi");
+      // console.log("hawabaazi");
       
     }
   }
 
   editUser() {
-    console.log("Opening edit form");
+    // console.log("Opening edit form");
     const dialogRef = this.dialog.open(UserprofileeditComponent, {
       data: this.response,
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
       this.ngOnInit();
     });
   }

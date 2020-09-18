@@ -62,12 +62,12 @@ export class AllArticlesComponent implements OnInit {
       const dialogRef = this.dialog.open(LoginpromptComponent);
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        // console.log(`Dialog result: ${result}`);
       });
       // this._snackBar.openFromComponent(LoginpromptComponent, {
       //   duration: 5000,
       // });
-      console.log("Please Log in first");
+      // console.log("Please Log in first");
 
     }
   }

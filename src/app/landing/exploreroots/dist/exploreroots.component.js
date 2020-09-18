@@ -22,7 +22,7 @@ var ExplorerootsComponent = /** @class */ (function () {
     ExplorerootsComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.knowledgeServie.getKnowledgeBases().subscribe(function (result) {
-            console.log(result);
+            // console.log(result);
             _this.products = result.bases;
             _this.dataLoading = false;
             setTimeout(function () {
@@ -32,7 +32,7 @@ var ExplorerootsComponent = /** @class */ (function () {
                 _this.imageLoaded = true;
             }, 3000);
         }, function (error) {
-            console.log(error);
+            // console.log(error);
         });
         if (this.authService.isLoggedIn()) {
             this.isLoggedIn = true;

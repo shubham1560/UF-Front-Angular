@@ -28,7 +28,7 @@ export class LoggerService {
           }
         }
         if (event.shiftKey) {
-          console.log({ "data": a["this"]["data"] });
+          // console.log({ "data": a["this"]["data"] });
         }
       })
     }

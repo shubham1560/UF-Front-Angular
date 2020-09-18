@@ -25,7 +25,7 @@ export class ExplorerootsComponent implements OnInit {
   ngOnInit(): void {
     this.knowledgeServie.getKnowledgeBases().subscribe(
       (result:any)=>{
-        console.log(result);
+        // console.log(result);
         this.products = result.bases;
         this.dataLoading = false;
         setTimeout(()=>{
@@ -36,7 +36,7 @@ export class ExplorerootsComponent implements OnInit {
         }, 3000);
       },
       error => {
-        console.log(error);
+        // console.log(error);
       }
     )
     if(this.authService.isLoggedIn()){

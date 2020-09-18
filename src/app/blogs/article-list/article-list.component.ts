@@ -152,7 +152,7 @@ export class ArticleListComponent implements OnInit {
       this.counter += 1;
       this.knowledgeService.setCourseProgress(this.course, this.progress).subscribe(
         result => {
-          console.log("changed the progress");
+          // console.log("changed the progress");
           // console.log(result)
         }, error => {
           // console.log(error);

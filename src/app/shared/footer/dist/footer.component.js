@@ -22,8 +22,8 @@ var FooterComponent = /** @class */ (function () {
         //   this.showFooter = false;
         // }, 3000)
         this.route.paramMap.subscribe(function (params) {
-            console.log("changed");
-            console.log(_this.route.paramMap);
+            // console.log("changed");
+            // console.log(_this.route.paramMap);
         });
         this.subscribeForm = this.fb.group({
             email: ['', [forms_1.Validators.required, forms_1.Validators.minLength(1), forms_1.Validators.email]]

@@ -131,7 +131,7 @@ var ArticleListComponent = /** @class */ (function () {
             // console.log("called the progess")
             this.counter += 1;
             this.knowledgeService.setCourseProgress(this.course, this.progress).subscribe(function (result) {
-                console.log("changed the progress");
+                // console.log("changed the progress");
                 // console.log(result)
             }, function (error) {
                 // console.log(error);

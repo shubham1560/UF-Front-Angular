@@ -106,7 +106,7 @@ export class SideNavComponent implements OnInit {
   dataSource = new MatTreeNestedDataSource<Category>();
 
   changeView(changedView){
-    console.log(changedView);
+    // console.log(changedView);
     if(changedView=="tree"){
       this.view = "tree";
     }
