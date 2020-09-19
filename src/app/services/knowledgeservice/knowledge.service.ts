@@ -114,7 +114,7 @@ export class DataService {
   }
 
   getQuotes(){
-    this.called_url = "https://type.fit/api/quotes";
+    this.called_url = `https://type.fit/api/quotes`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 }
