@@ -112,4 +112,9 @@ export class DataService {
     this.called_url = `${this.base_knowledge_url}query/${query_key}`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  getQuotes(){
+    this.called_url = "https://type.fit/api/quotes";
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }
