@@ -9,7 +9,7 @@
             <p> Get the latest updates</p>
 
             <form novalidate (ngSubmit)="subscribeViaMail()" [formGroup]="subscribeForm">
-                <input matInput placeholder="Email" style="outline: none;" class="subscribe-form" formControlName="email">
+                <input matInput placeholder="Email" type="email" style="outline: none;" class="subscribe-form" formControlName="email">
                 <button mat-button type="submit" class="subscribe-button" style="outline: none;">
                     Subscribe
                 </button>
