@@ -37,6 +37,8 @@ export class ArticleListComponent implements OnInit {
   progress: number;
   signedIn = true;
   counter = 0;
+  isLoading = true;
+  openInModal = false;
 
   ngOnInit() {
     // debugger;
@@ -47,10 +49,12 @@ export class ArticleListComponent implements OnInit {
           // For modal for overview section
 
           this.course = this.course_for_modal.category;
+          this.openInModal = true;
           //the data we passed from the course page passed onto this page
-
+          this.isLoading = false;
         } else {
           this.course = result.get("category");
+          this.isLoading = false;
         }
         this.article = result.get("article");
         if (this.course != this.courseInit) {
@@ -69,9 +73,10 @@ export class ArticleListComponent implements OnInit {
 
   changeTheCourse() {
     // console.log('change the course called------------------');
-    
+    this.isLoading = true;
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
+
         this.courseName = response.course;
         this.sections = response.sections;
         if (!this.article) {
@@ -83,6 +88,7 @@ export class ArticleListComponent implements OnInit {
         if (this.article) {
           this.markViewed(this.article)
         };
+        this.isLoading = false;
       }, error => {
         this.data["error"] = error;
       }
