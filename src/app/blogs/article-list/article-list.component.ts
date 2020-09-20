@@ -42,7 +42,7 @@ export class ArticleListComponent implements OnInit {
 
   ngOnInit() {
     // debugger;
-    
+
     this.route.paramMap.subscribe(
       result => {
         if (this.course_for_modal.category) {
@@ -51,7 +51,9 @@ export class ArticleListComponent implements OnInit {
           this.course = this.course_for_modal.category;
           this.openInModal = true;
           //the data we passed from the course page passed onto this page
-          this.isLoading = false;
+          // setTimeout(() => {
+            this.isLoading = false;
+          // }, 1000)
         } else {
           this.course = result.get("category");
           this.isLoading = false;
@@ -73,7 +75,7 @@ export class ArticleListComponent implements OnInit {
 
   changeTheCourse() {
     // console.log('change the course called------------------');
-    this.isLoading = true;
+    // this.isLoading = true;
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
 
@@ -98,8 +100,8 @@ export class ArticleListComponent implements OnInit {
 
   navigate(article_id) {
     // console.log("navigation called -----------------------");
-    
-    
+
+
     var url = `courses/${this.course}/${article_id}`
     this.markViewed(article_id)
     if (this.course_for_modal.category) {
@@ -153,7 +155,7 @@ export class ArticleListComponent implements OnInit {
     });
     this.progress = Math.round((totalReadArticles / totalNumArticles) * 100);
     // if (this.authService.isLoggedIn() && this.counter == 0) {
-      if(this.authService.isLoggedIn()){
+    if (this.authService.isLoggedIn()) {
       // console.log("called the progess")
       this.counter += 1;
       this.knowledgeService.setCourseProgress(this.course, this.progress).subscribe(

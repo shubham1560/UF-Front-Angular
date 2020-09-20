@@ -74,15 +74,15 @@
                         </span>
                     </a>    
                 </mat-menu> -->
-                <button *ngFor="let root of roots" mat-button
-                    style="outline: none; height: 48px; color: white; border-radius: 0px;">
-                    <a routerLink="/roots/{{root.id}}/root/" style="color: white;">
+                <a *ngFor="let root of roots" mat-button routerLink="/roots/{{root.id}}/root/"
+                    style="outline: none; height: 48px; color: white; border-radius: 0px; padding: 7px;">
+                    <!-- <button  style="color: white;"> -->
                         {{root.title}}
-                    </a>
+                    <!-- </button> -->
                     <!-- <mat-icon>
                         keyboard_arrow_down
                     </mat-icon> -->
-                </button>
+                </a>
 
             </mat-toolbar>
         </div>
