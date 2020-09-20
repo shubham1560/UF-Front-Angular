@@ -3,19 +3,24 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;">
+        <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;" *ngIf="!subscribed">
 
             <!-- <p style="font-size: 18px;"> <b> Subscribe to us via email </b> </p> -->
             <p> Get the latest updates</p>
 
             <form novalidate (ngSubmit)="subscribeViaMail()" [formGroup]="subscribeForm">
-
-                <input matInput placeholder="Email" class="subscribe-form" formControlName="email">
-                <button mat-button type="submit" class="subscribe-button">
+                <input matInput placeholder="Email" style="outline: none;" class="subscribe-form" formControlName="email">
+                <button mat-button type="submit" class="subscribe-button" style="outline: none;">
                     Subscribe
                 </button>
             </form>
+            <span style="color: red; font-size: x-small;">{{error_message}}</span> 
+
         </div>
+
+        <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;" *ngIf="subscribed" [innerHtml]="message">
+        </div>
+
 
         <div class="col-md-4" style="color: #293e40;padding-top: 30px; padding-bottom: 30px;">
             <!-- <p>Social outreach</p> -->

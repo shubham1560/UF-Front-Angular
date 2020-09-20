@@ -14,6 +14,9 @@ export class FooterComponent implements OnInit {
 
   subscribeForm: FormGroup;
   showFooter = true;
+  subscribed;
+  message = "";
+  error_message = '';
 
   constructor(
     private fb: FormBuilder,
@@ -44,12 +47,21 @@ export class FooterComponent implements OnInit {
 
   subscribeViaMail(){
     let email = this.subscribeForm.get("email").value;
-    console.log( email );
+    // console.log( email );
     //make the service to send it to the mailing list
     this.userProfileService.addSubscriber(email).subscribe(
-      result => {
-        console.log(result);
-      }
+      (result:any) => {
+        // console.log(result);
+        if(result.value){
+          this.subscribed = true;
+          this.message = " <p> Thank you! <br> Stay tuned for the updates which we will be getting to you! </p> ";
+        }
+        else{
+          this.subscribed = false;
+          this.error_message = "The email already exists in the mailing list";
+        }
+      },
+      
     )
   }
 
