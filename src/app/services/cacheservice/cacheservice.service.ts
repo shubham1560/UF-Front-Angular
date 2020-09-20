@@ -22,7 +22,7 @@ export class CacheserviceService {
   delete(url: string) {
     setTimeout(() => {
       this.requests[url] = undefined;
-      console.log("invalidated the url");
+      // console.log("invalidated the url");
     }, 30*60*1000);
   }
 
