@@ -6,11 +6,12 @@
         <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;" *ngIf="!subscribed">
 
             <!-- <p style="font-size: 18px;"> <b> Subscribe to us via email </b> </p> -->
-            <p> Get the latest updates</p>
+            <p *ngIf="!subscribing"> Get the latest updates</p>
+            <p *ngIf="subscribing">Subscribing......</p>
 
             <form novalidate (ngSubmit)="subscribeViaMail()" [formGroup]="subscribeForm">
                 <input matInput placeholder="Email" type="email" style="outline: none;" class="subscribe-form" formControlName="email">
-                <button mat-button type="submit" class="subscribe-button" style="outline: none;">
+                <button mat-button type="submit" [disabled]="subscribing" class="subscribe-button" style="outline: none;">
                     Subscribe
                 </button>
             </form>
