@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
@@ -22,6 +22,7 @@ import {
 } from 'angularx-social-login';
 import { SearchResultsComponent } from './shared/search-results/search-results.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { CacheInterceptor } from "./shared/interceptors/cache.interceptor"
 // import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
@@ -65,10 +66,13 @@ import { FooterComponent } from './shared/footer/footer.component';
     SocialLoginModule,
   ],
   providers: [
-    LoggerService, 
-    AuthService, 
-    DataService, 
+    LoggerService,
+    AuthService,
+    DataService,
     UrlconfigService,
+    {
+      provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true,
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
