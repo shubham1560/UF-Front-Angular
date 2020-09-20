@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 @Component({
   selector: 'app-footer',
@@ -17,7 +18,8 @@ export class FooterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    public userProfileService: UserprofileService,
   ) { 
     
   }
@@ -41,8 +43,14 @@ export class FooterComponent implements OnInit {
   }
 
   subscribeViaMail(){
-    // console.log( this.subscribeForm.get("email").value);
+    let email = this.subscribeForm.get("email").value;
+    console.log( email );
     //make the service to send it to the mailing list
+    this.userProfileService.addSubscriber(email).subscribe(
+      result => {
+        console.log(result);
+      }
+    )
   }
 
 }

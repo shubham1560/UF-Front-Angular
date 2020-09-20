@@ -54,4 +54,12 @@ export class UserprofileService {
     this.url = `${this.base_userprofile_url}get_user_activity/courses/${start}/${end}/`;
     return this.httpService.get(this.url, {headers: this.header});
   }
+
+  addSubscriber(email){
+    this.url = `${this.base_userprofile_url}add_subscriber/`;
+    const body = {
+      "email": email,
+    }
+    return this.httpService.post(this.url, body, {headers: this.header});
+  }
 }
