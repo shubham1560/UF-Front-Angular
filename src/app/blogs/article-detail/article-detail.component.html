@@ -1,7 +1,7 @@
 <!-- <mat-progress-bar *ngIf="isLoading" mode="query" color="accent" style="margin: -15px;"></mat-progress-bar> -->
 <div id="uf-article-detail" style="padding-top: 20px;">
-<!-- <div> -->
-    
+    <!-- <div> -->
+
     <div *ngIf="!isLoading">
         <p class="uf-article-title">{{article?.title}}</p>
 
@@ -19,9 +19,11 @@
         <div class="author-detail author-about" style="font-weight: 200">
             <img [src]="authorImage" class="uf-author-image" alt="author image">
             <p class="author-heading"><b>Author: </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
-                <br>
-                {{article.getAuthor?.about}}
             </p>
+                <br>
+            <pre>
+                {{article.getAuthor?.about}}
+            </pre>
 
         </div>
         <br><br><br>

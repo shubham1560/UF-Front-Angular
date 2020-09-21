@@ -15,6 +15,8 @@ export class CacheInterceptor implements HttpInterceptor{
 
         const cachedResponse: HttpResponse<any> = this.cacheService.read(req.url);
 
+        var excluded_keywords = ['get_user_data',];
+
         if(req.method != "GET"){
             return next.handle(req);
         }
@@ -26,15 +28,23 @@ export class CacheInterceptor implements HttpInterceptor{
             // console.log(cachedResponse);
             return of(cachedResponse);
         }
-
+        var not_to_be_cached = false;
         return next.handle(req)
         .pipe(
             tap(event => {
                 if (event instanceof HttpResponse){
-                    // console.log("response from server");
-                    // console.log(event);
-                    this.cacheService.create(req.url, event);
-                    // console.log(this.cacheService);
+                    excluded_keywords.forEach(element => {
+                        if(req.url.includes(element)){
+                            // console.log("inside");
+                            not_to_be_cached = true;
+                            // return next.handle(req);
+                        }
+                    });
+                    if (!not_to_be_cached){
+                        this.cacheService.create(req.url, event);
+                        // console.log(req.url);
+                    }
+
                 }
             })
         )
