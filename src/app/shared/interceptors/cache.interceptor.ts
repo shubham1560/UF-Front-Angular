@@ -11,7 +11,6 @@ export class CacheInterceptor implements HttpInterceptor{
     constructor(private cacheService: CacheserviceService){};
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // console.log(req);
 
         const cachedResponse: HttpResponse<any> = this.cacheService.read(req.url);
 
@@ -21,11 +20,7 @@ export class CacheInterceptor implements HttpInterceptor{
             return next.handle(req);
         }
 
-        // console.log(this.cacheService.getCache());
-
         if(cachedResponse){
-            // console.log("Response from cache: ");
-            // console.log(cachedResponse);
             return of(cachedResponse);
         }
         var not_to_be_cached = false;
@@ -35,14 +30,11 @@ export class CacheInterceptor implements HttpInterceptor{
                 if (event instanceof HttpResponse){
                     excluded_keywords.forEach(element => {
                         if(req.url.includes(element)){
-                            // console.log("inside");
                             not_to_be_cached = true;
-                            // return next.handle(req);
                         }
                     });
                     if (!not_to_be_cached){
                         this.cacheService.create(req.url, event);
-                        // console.log(req.url);
                     }
 
                 }

@@ -24,6 +24,7 @@ export class UserprofileeditComponent implements OnInit {
   jobDone = false;
 
   ngOnInit(): void {
+    console.log(this.user_data);
     this.userProfileEditForm = this.fb.group({
       first_name: [this.user_data.user.first_name|| "", Validators.required],
       last_name: this.user_data.user.last_name|| "",
