@@ -3,45 +3,77 @@
         close
     </mat-icon>
 </p>
-<div *ngIf="!jobDone">
-    <br>
-    <form (ngSubmit)="editUserDetail()" [formGroup]="userProfileEditForm">
+<!-- <h4 mat-dialog-title>Edit user data:</h4> -->
+<mat-dialog-content>
+    <div *ngIf="!jobDone">
+        <br>
+        <form (ngSubmit)="editUserDetail()" [formGroup]="userProfileEditForm">
 
-        <mat-form-field appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input matInput type="email" formControlName="first_name">
-            <mat-error>First name required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input matInput type="text" formControlName="last_name">
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>First Name</mat-label>
+                <input matInput type="email" formControlName="first_name">
+                <mat-error>First name required</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>Last Name</mat-label>
+                <input matInput type="text" formControlName="last_name">
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label>About</mat-label>
-            <textarea rows="5" matInput formControlName="about"></textarea>
-        </mat-form-field>
-        <mat-progress-bar mode="indeterminate" *ngIf="isEditing"></mat-progress-bar>
+            <mat-form-field appearance="outline" style="width: 100%; padding: 0px 10px;">
+                <mat-label>About</mat-label>
+                <textarea rows="2" matInput formControlName="about"></textarea>
+            </mat-form-field>
+            <input type="checkbox" formControlName="public"> Public Profile 
+            <br><br>
+                Social: 
+            <br>
 
-        <div class="uf-auth-buttons-div">
-            <button style="float: right;" mat-raised-button color="primary" type="submit">
-                <span>Update</span>
-            </button>
-        </div>
-    </form>
-</div>
-<!-- <pre>
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>Facebook Link</mat-label>
+                <input matInput type="email" formControlName="facebook_link">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>Instagram Link</mat-label>
+                <input matInput type="text" formControlName="instagram_link">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>Linkedin Link</mat-label>
+                <input matInput type="email" formControlName="linkedin_link">
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>Twitter Link</mat-label>
+                <input matInput type="text" formControlName="twitter_link">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="edit-form">
+                <mat-label>External Website Link</mat-label>
+                <input matInput type="text" formControlName="external_link">
+            </mat-form-field>
+            
+
+            <mat-progress-bar mode="indeterminate" *ngIf="isEditing"></mat-progress-bar>
+
+            <div class="uf-auth-buttons-div">
+                <button style="float: right;" mat-raised-button color="primary" type="submit">
+                    <span>Update</span>
+                </button>
+            </div>
+        </form>
+    </div>
+    <!-- <pre>
 {{userProfileEditForm.value['first_name']}} <br>
  {{userProfileEditForm.value['last_name']}} <br>
   {{userProfileEditForm.value['about']}}
   <br>
 </pre> -->
 
-<div *ngIf="jobDone">
-    <div style="text-align: center;">
-        <mat-icon style="font-size: 80px; color: green;height: 80px; width: 80px;" matSuffix>
-            done_all
-        </mat-icon>
-        <p>The user detail has been updated</p>
+    <div *ngIf="jobDone">
+        <div style="text-align: center;">
+            <mat-icon style="font-size: 80px; color: green;height: 80px; width: 80px;" matSuffix>
+                done_all
+            </mat-icon>
+            <p>The user detail has been updated</p>
+        </div>
     </div>
-</div>
+
+</mat-dialog-content>

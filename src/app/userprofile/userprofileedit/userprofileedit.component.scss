@@ -1,0 +1,10 @@
+.edit-form{
+    width: 50%;
+    padding: 0px 10px;
+}
+
+@media(max-width: 768px){
+    .edit-form{
+        width: 100%;
+    }
+}

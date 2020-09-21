@@ -29,6 +29,12 @@ export class UserprofileeditComponent implements OnInit {
       first_name: [this.user_data.user.first_name|| "", Validators.required],
       last_name: this.user_data.user.last_name|| "",
       about: this.user_data.user.about || " ",
+      facebook_link: this.user_data.user.facebook_profile_link || "",
+      instagram_link: this.user_data.user.instagram_profile_link || "",
+      external_link: this.user_data.user.external_website_link || "",
+      linkedin_link: this.user_data.user.linkedin_profile || "",
+      public: this.user_data.user.public || false,
+      twitter_link: this.user_data.twitter_profile_link || "",
     })
     // console.log(this.user_data.user.first_name);
   }

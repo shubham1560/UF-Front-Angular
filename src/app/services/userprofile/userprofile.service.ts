@@ -38,10 +38,11 @@ export class UserprofileService {
 
   editUserData(user_data){
     this.url = `${this.base_userprofile_url}edit_user_data/`;
-    const body = {"first_name": user_data.first_name ,
-                  "last_name": user_data.last_name,
-                  "about": user_data.about,
-    };
+    // const body = {"first_name": user_data.first_name ,
+    //               "last_name": user_data.last_name,
+    //               "about": user_data.about,
+    // };
+    const body = user_data;
     return this.httpService.post(this.url, body, {headers: this.header});
   }
 
