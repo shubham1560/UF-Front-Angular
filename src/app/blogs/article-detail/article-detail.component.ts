@@ -38,6 +38,7 @@ export class ArticleDetailComponent implements OnInit {
               this.isLoading = false;
               // console.log(this.article.getAuthor.header_image);
               // console.log(this.article.getAuthor.google_pic);
+              console.log(result);
               if (this.article.getAuthor.google_pic) {
                 this.authorImage = this.article.getAuthor.google_pic;
               }

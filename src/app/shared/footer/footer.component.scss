@@ -19,6 +19,15 @@
     }
 }
 
+.footerLink{
+    color: #6e7c7e;
+    
+    &:hover{
+        text-decoration: none;
+        color: #3e5153;
+    }
+}
+
 .uf-social{
     color: #3e5153;
     align-items: center;
