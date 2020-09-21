@@ -40,6 +40,11 @@ const routes: Routes = [
     loadChildren: () =>
       import("./tree/tree.module").then(root=>root.TreeModule)
   },
+  {
+    path: "about_us",
+    loadChildren: ()=>
+      import("./about/about.module").then(about=>about.AboutModule)
+  },
   { 
     path: "**", 
     component: NotFoundComponent 
