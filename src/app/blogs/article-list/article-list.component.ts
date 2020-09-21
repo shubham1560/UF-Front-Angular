@@ -63,6 +63,7 @@ export class ArticleListComponent implements OnInit {
           // console.log("called time")
           this.changeTheCourse();
         }
+
       }
 
     )
