@@ -40,7 +40,7 @@ export class QuotesComponent implements OnInit {
 
   fetchQuotes(quotes) {
     this.quotes = [];
-    for (var i = 0; i < 3; i++) {
+    for (var i = 0; i < 4; i++) {
       let len = this.allQuotes.length
       let selected_quote = quotes[this.getRndInteger(1, len)];
       // console.log(selected_quote);
