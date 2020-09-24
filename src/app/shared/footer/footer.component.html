@@ -18,7 +18,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-4" style="text-align: center;">
+        <div class="col-md-4" style="text-align: center; padding-top: 20px;">
             <a routerLink="about_us" class="footerLink"> About </a>
             <br>
             <a routerLink="" class="footerLink">
@@ -29,67 +29,27 @@
                 Team
             </a>
         </div>
-        <div class="col-sm-4" style="text-align: center;">
+        <div class="col-md-4" style="text-align: center;padding-top: 20px;">
             <p>Connect with us</p>
-            <a href="" class="uf-social" style="margin: 0px 20px">
+            <a href="" class="uf-social" style="margin: 0px 10px">
                 <i class="fa fa-facebook" aria-hidden="true"></i>
             </a>
-            <a href="" class="uf-social" style="margin: 0px 20px;">
+            <a href="" class="uf-social" style="margin: 0px 10px;">
                 <i class="fa fa-instagram" aria-hidden="true"></i>
             </a>
-            
-            <a href="" class="uf-social" style="margin: 0px 20px">
+
+            <a href="" class="uf-social" style="margin: 0px 10px">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
             </a>
-            <a href="" class="uf-social" style="margin: 0px 20px;">
+            <a href="" class="uf-social" style="margin: 0px 10px;">
                 <i class="fa fa-pinterest" aria-hidden="true"></i>
             </a>
 
         </div>
         <!-- <div class="col-sm-4" style="text-align: center;"> -->
-            <div class="col-md-4" style="color: #293e40;" *ngIf="!subscribed">
+        <div class="col-md-4" style="padding-top: 20px; color: #293e40; text-align: center;" *ngIf="!subscribed">
 
-                <!-- <p style="font-size: 18px;"> <b> Subscribe to us via email </b> </p> -->
-                <p *ngIf="!subscribing"> Get the latest updates</p>
-                <p *ngIf="subscribing">Subscribing......</p>
-    
-                <form novalidate (ngSubmit)="subscribeViaMail()" [formGroup]="subscribeForm">
-                    <input matInput placeholder="Email" type="email" style="outline: none;" class="subscribe-form"
-                        formControlName="email">
-                    <button mat-button type="submit" [disabled]="subscribing" class="subscribe-button"
-                        style="outline: none;">
-                        Subscribe
-                    </button>
-                </form>
-                <span style="color: rgb(163, 56, 56); font-size: x-small;">{{error_message}}</span>
-    
-            </div>
-    
-            <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;" *ngIf="subscribed"
-                [innerHtml]="message">
-            </div>
-        <!-- </div> -->
-    </div>
-    <!-- <div class="row">
-        <div class="col-4">
-            <a routerLink="about_us" class="footerLink"> About </a>
-        </div>
-        <div class="col-4">
-            <a routerLink="" class="footerLink">
-                Services
-            </a>
-        </div>
-        <div class="col-4">
-            <a routerLink="" class="footerLink">
-                Team
-            </a>
-        </div>
-
-    </div> -->
-
-    <!-- <div class="row">
-        <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;" *ngIf="!subscribed">
-
+            <!-- <p style="font-size: 18px;"> <b> Subscribe to us via email </b> </p> -->
             <p *ngIf="!subscribing"> Get the latest updates</p>
             <p *ngIf="subscribing">Subscribing......</p>
 
@@ -101,44 +61,19 @@
                     Subscribe
                 </button>
             </form>
-            <span style="color: red; font-size: x-small;">{{error_message}}</span>
+            <span style="color: rgb(163, 56, 56); font-size: x-small;">{{error_message}}</span>
 
         </div>
 
         <div class="col-md-8" style="color: #293e40; padding-top: 30px; padding-bottom: 30px;" *ngIf="subscribed"
             [innerHtml]="message">
         </div>
+    </div>
 
-
-        <div class="col-md-4" style="color: #293e40;padding-top: 30px; padding-bottom: 30px;"> -->
-            <!-- <p>Social outreach</p> -->
-            <!-- <button mat-button type="submit" class="subscribe-button">
-                Sign up
-            </button>
-            <button mat-button type="submit" class="subscribe-button">
-                Sign in
-            </button> -->
-<!-- 
-            <p> Connect with us </p>
-            <a href="" class="uf-social">
-                <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-            <a href="" class="uf-social">
-                <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
-            <a href="" class="uf-social">
-                <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="" class="uf-social">
-                <i class="fa fa-pinterest" aria-hidden="true"></i>
-            </a>
-
-        </div>
-    </div> -->
     <br><br>
 
     <div class="row" style="background-color: #eeeeee; padding: 20px 0px;">
-        <div class="col-md-12">
+        <div class="col-md-12" style="text-align: center;">
             2020
         </div>
     </div>
