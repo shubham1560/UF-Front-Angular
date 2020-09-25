@@ -53,6 +53,7 @@ export class AuthService {
     this.url = url;
     this.body = body;
     this.header = this.getHeader();
+    // console.log(this);
     return this.httpService.post(url, body, { headers: this.getHeader() });
 
   }
@@ -104,6 +105,7 @@ export class AuthService {
 
   logoutUser() {
     this.cookieService.delete('token');
+    localStorage.removeItem("token");
     window.window.location.href = "welcome";
   }
 
