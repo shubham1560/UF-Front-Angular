@@ -12,6 +12,7 @@ import Link from '@editorjs/link';
 import delimiter from '@editorjs/delimiter';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ArticleNewComponent implements OnInit {
     private url: UrlconfigService,
     private knowledgeService: DataService,
     private routerService: ActivatedRoute,
+    private userService: UserprofileService,
   ) { }
 
   editor: EditorJS
@@ -32,8 +34,23 @@ export class ArticleNewComponent implements OnInit {
   a;
   ngOnInit() {
 
-    this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
-    this.replacement(this.a);
+    // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
+    // this.replacement(this.a);
+
+    this.userService.inGroup("Authors").subscribe(
+      (response:Boolean) => {
+        console.log(response);
+        if (response){
+          return true;
+        }
+        else{
+          window.location.href = "welcome";
+          return false;
+        }
+      }, error => {
+        return false;
+      }
+    )
 
     this.routerService.paramMap.subscribe(
       params => {
@@ -49,7 +66,7 @@ export class ArticleNewComponent implements OnInit {
               var len = response.data.article_body.length - 1;
               this.data = {
                 time: 1552744582955, 
-                blocks:  this.replacement(response.data.article_body.substring(1, len)), 
+                blocks:  this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
                 version: "2.11.10"
               };
               this.initializeEditor();
