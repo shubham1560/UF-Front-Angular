@@ -54,6 +54,8 @@ export class ArticleNewComponent implements OnInit {
       },
 
       placeholder: 'Let`s do some good together, Start writing by clicking here!',
+      
+      readOnly: false,
 
       tools: {
         header: {
