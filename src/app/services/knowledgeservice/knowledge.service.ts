@@ -121,7 +121,7 @@ export class DataService {
   operateArticles(article, id){
     console.log(article, id);
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "id": id, "publish_ready": false} ;
+    const body ={"article": article, "id": id, "publish_ready": false, "body_data": JSON.stringify(article["blocks"])} ;
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
@@ -129,7 +129,7 @@ export class DataService {
   publishArticles(article, id){
     console.log(article, id);
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "id": id, "publish_ready": true} ;
+    const body ={"article": article, "id": id, "publish_ready": true, "body_data": JSON.stringify(article["blocks"])} ;
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 }

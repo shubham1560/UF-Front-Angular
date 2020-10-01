@@ -11,6 +11,7 @@ import Quote from '@editorjs/quote';
 import Link from '@editorjs/link';
 import delimiter from '@editorjs/delimiter';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -23,39 +24,74 @@ export class ArticleNewComponent implements OnInit {
   constructor(
     private url: UrlconfigService,
     private knowledgeService: DataService,
+    private routerService: ActivatedRoute,
   ) { }
 
   editor: EditorJS
-
+  data: any;
+  a;
   ngOnInit() {
+
+    // alert(this.replaceAt("hwllow", 2, "@"));
+    this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
+    this.replacement(this.a);
+
+    this.routerService.paramMap.subscribe(
+      params => {
+        var article_id = params.get("id");
+        if (article_id == '1') {
+          return this.data = {};
+        }
+        else {
+          this.knowledgeService.getArticleById(article_id).subscribe(
+            (response: any) => {
+              var len = response.data.article_body.length - 1;
+              this.data = {
+                time: 1552744582955, 
+                blocks:  this.replacement(response.data.article_body.substring(1, len)), 
+                version: "2.11.10"
+              };
+              
+              // console.log(this);
+              
+            }, error => {
+              console.log(error);
+            }
+          )
+          // this.data = {
+          //   time: 1552744582955,
+          //   blocks: [
+          //     {
+          //       type: "image",
+          //       data: {
+          //         caption: "",
+          //         file:
+          //         {
+          //           url: "https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG",
+          //           stretched: false,
+          //           withBackground: false,
+          //           withBorder: false,
+          //         }
+          //       }
+          //     }
+          //   ],
+          //   version: "2.11.10"
+
+          // }
+        }
+      }
+
+    )
 
     this.editor = new EditorJS({
 
       holder: 'editorjs',
 
-      data: {
-        time: 1552744582955,
-        blocks: [
-          {
-            type: "image",
-            data: {
-              caption: "",
-              file:
-              {
-                url: "https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG",
-                stretched: false,
-                withBackground: false,
-                withBorder: false,
-              }
-            }
-          }
-        ],
-        version: "2.11.10"
-      },
+      data: this.data,
 
       placeholder: 'Let`s do some good together, Start writing by clicking here!',
-      
-      readOnly: false,
+
+      // readOnly: false,
 
       tools: {
         header: {
@@ -132,24 +168,45 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response
-              console.log(response);
+              // console.log(response);
             }
           )
         }
         else {
           this.knowledgeService.publishArticles(outputData, this.id).subscribe(
             (response: any) => {
-              console.log(response);
+              // console.log(response);
             }
           )
         }
       }
       else {
-        console.log("likh toh le bhai pehle");
+        // console.log("likh toh le bhai pehle");
       }
     }).catch((error) => {
-      console.log('Saving failed: ', error)
+      // console.log('Saving failed: ', error)
     });
   }
 
+  replacement = function(a) {
+    let b = []
+    let c = []
+    let j = 0
+    for (var i = 0; i < a.length; i++) { 
+      if (a[i] == "{") {
+        b.push("{"); 
+      } 
+      if (a[i] == "}") { 
+        b.pop(); 
+      } 
+      if (b.length == 0) {
+        if (a[i] == ',') { 
+          c.push(JSON.parse(a.substring(j, i)))  ;
+          j = i+1
+        } 
+      } 
+    }
+    c.push(JSON.parse(a.substring(j, a.length)))  ;
+    return c;
+  }
 }
