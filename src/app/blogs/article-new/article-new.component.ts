@@ -30,7 +30,28 @@ export class ArticleNewComponent implements OnInit {
   ngOnInit() {
 
     this.editor = new EditorJS({
+
       holder: 'editorjs',
+
+      data: {
+        time: 1552744582955,
+        blocks: [
+          {
+            type: "image",
+            data: {
+              caption: "",
+              file:
+              {
+                url: "https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG",
+                stretched: false,
+                withBackground: false,
+                withBorder: false,
+              }
+            }
+          }
+        ],
+        version: "2.11.10"
+      },
 
       placeholder: 'Let`s do some good together, Start writing by clicking here!',
 
@@ -94,6 +115,7 @@ export class ArticleNewComponent implements OnInit {
         raw: rawTool,
 
       }
+
     })
 
   }
@@ -104,23 +126,23 @@ export class ArticleNewComponent implements OnInit {
     this.editor.save().then((outputData) => {
 
       if (outputData.blocks.length > 0) {
-        if(update){
-        this.knowledgeService.operateArticles(outputData, this.id).subscribe(
-          (response: any) => {
-            this.id = response
-            console.log(response);
-          }
-        )
+        if (update) {
+          this.knowledgeService.operateArticles(outputData, this.id).subscribe(
+            (response: any) => {
+              this.id = response
+              console.log(response);
+            }
+          )
         }
-        else{
+        else {
           this.knowledgeService.publishArticles(outputData, this.id).subscribe(
-            (response: any)=>{
+            (response: any) => {
               console.log(response);
             }
           )
         }
       }
-      else{
+      else {
         console.log("likh toh le bhai pehle");
       }
     }).catch((error) => {
