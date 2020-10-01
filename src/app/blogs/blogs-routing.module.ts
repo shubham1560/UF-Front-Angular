@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticleNewComponent } from './article-new/article-new.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { BlogsComponent } from './blogs.component';
+import { AuthorGuard } from './guard/author.guard'
 
 const routes: Routes = [
     {
@@ -11,7 +12,7 @@ const routes: Routes = [
     },
     {
         path: 'article/:id',
-        // canActivate: [],
+        // canActivate: [AuthorGuard],
         component: ArticleNewComponent
     },
     {
