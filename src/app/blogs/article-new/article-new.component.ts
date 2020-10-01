@@ -32,7 +32,6 @@ export class ArticleNewComponent implements OnInit {
   a;
   ngOnInit() {
 
-    // alert(this.replaceAt("hwllow", 2, "@"));
     this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
     this.replacement(this.a);
 
@@ -40,49 +39,34 @@ export class ArticleNewComponent implements OnInit {
       params => {
         var article_id = params.get("id");
         if (article_id == '1') {
-          return this.data = {};
+          this.data = {};
+          this.initializeEditor();
         }
         else {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
+              this.id = article_id;
               var len = response.data.article_body.length - 1;
               this.data = {
                 time: 1552744582955, 
                 blocks:  this.replacement(response.data.article_body.substring(1, len)), 
                 version: "2.11.10"
               };
-              
+              this.initializeEditor();
               // console.log(this);
               
             }, error => {
               console.log(error);
             }
           )
-          // this.data = {
-          //   time: 1552744582955,
-          //   blocks: [
-          //     {
-          //       type: "image",
-          //       data: {
-          //         caption: "",
-          //         file:
-          //         {
-          //           url: "https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG",
-          //           stretched: false,
-          //           withBackground: false,
-          //           withBorder: false,
-          //         }
-          //       }
-          //     }
-          //   ],
-          //   version: "2.11.10"
-
-          // }
         }
       }
-
     )
+  }
 
+  id = '';  // if id =0, first save, otherwise populating the id from response
+
+  initializeEditor(){
     this.editor = new EditorJS({
 
       holder: 'editorjs',
@@ -90,8 +74,6 @@ export class ArticleNewComponent implements OnInit {
       data: this.data,
 
       placeholder: 'Let`s do some good together, Start writing by clicking here!',
-
-      // readOnly: false,
 
       tools: {
         header: {
@@ -155,10 +137,7 @@ export class ArticleNewComponent implements OnInit {
       }
 
     })
-
   }
-
-  id = '';  // if id =0, first save, otherwise populating the id from response
 
   updateArticle(update) {
     this.editor.save().then((outputData) => {
@@ -181,10 +160,10 @@ export class ArticleNewComponent implements OnInit {
         }
       }
       else {
-        // console.log("likh toh le bhai pehle");
+        console.log("likh toh le bhai pehle");
       }
     }).catch((error) => {
-      // console.log('Saving failed: ', error)
+      console.log('Saving failed: ', error)
     });
   }
 
