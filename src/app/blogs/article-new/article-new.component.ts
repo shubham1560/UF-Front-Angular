@@ -5,12 +5,12 @@ import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import EditorJS from '@editorjs/editorjs';
-import header from '@editorjs/header'; 
+import header from '@editorjs/header';
 import rawTool from '@editorjs/raw';
 import ImageTool from '@editorjs/image';
 import checkList from '@editorjs/checklist';
 import List from '@editorjs/list';
-import embed from'@editorjs/embed';
+import embed from '@editorjs/embed';
 import Quote from '@editorjs/quote';
 import Link from '@editorjs/link';
 import delimiter from '@editorjs/delimiter';
@@ -22,7 +22,7 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
   templateUrl: './article-new.component.html',
   styleUrls: ['./article-new.component.scss']
 })
-export class ArticleNewComponent implements OnInit{
+export class ArticleNewComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
@@ -86,7 +86,7 @@ export class ArticleNewComponent implements OnInit{
         linkTool: {
           class: Link,
           // config: {
-            // endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching
+          // endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching
           // }
         },
         checklist: {
@@ -106,11 +106,11 @@ export class ArticleNewComponent implements OnInit{
           }
         },
         raw: rawTool,
-        
+
       }
     })
 
-    
+
 
     // this.addTitle = this.fb.group({
     //   title: ['', [Validators.required]],
@@ -126,17 +126,29 @@ export class ArticleNewComponent implements OnInit{
 
   id = '';  // if id =0, first save, otherwise populating the id from response
 
-  saveData(){
+  updateArticle(update) {
     this.editor.save().then((outputData) => {
-    this.knowledgeService.operateArticles(outputData, this.id).subscribe(
-      (response:any) => {
-        this.id = response
-        console.log(response);
-        
-      }
-    )
 
-      console.log('Article data: ', outputData)
+      if (outputData.blocks.length > 0) {
+        if(update){
+        this.knowledgeService.operateArticles(outputData, this.id).subscribe(
+          (response: any) => {
+            this.id = response
+            console.log(response);
+          }
+        )
+        }
+        else{
+          this.knowledgeService.publishArticles(outputData, this.id).subscribe(
+            (response: any)=>{
+              console.log(response);
+            }
+          )
+        }
+      }
+      else{
+        console.log("likh toh le bhai pehle");
+      }
     }).catch((error) => {
       console.log('Saving failed: ', error)
     });
@@ -295,6 +307,6 @@ export class ArticleNewComponent implements OnInit{
   //   }
   //   this.article = this.arrayToString(this.elements, "");
   // }
-  
+
 
 }
