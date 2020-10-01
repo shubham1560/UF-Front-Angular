@@ -132,4 +132,6 @@ export class DataService {
     const body ={"article": article, "id": id, "publish_ready": true, "body_data": JSON.stringify(article["blocks"])} ;
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  
 }

@@ -63,4 +63,9 @@ export class UserprofileService {
     }
     return this.httpService.post(this.url, body, {headers: this.header});
   }
+
+  inGroup(group){
+    this.url = `${this.base_userprofile_url}group/${group}/`;
+    return this.httpService.get(this.url, {headers: this.header});
+  }
 }

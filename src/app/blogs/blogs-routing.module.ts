@@ -11,6 +11,7 @@ const routes: Routes = [
     },
     {
         path: 'article/:id',
+        // canActivate: [],
         component: ArticleNewComponent
     },
     {

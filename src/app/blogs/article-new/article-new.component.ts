@@ -139,14 +139,17 @@ export class ArticleNewComponent implements OnInit {
     })
   }
 
+  updatingData;
+
   updateArticle(update) {
     this.editor.save().then((outputData) => {
-
+      this.updatingData = true;
       if (outputData.blocks.length > 0) {
         if (update) {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response
+              this.updatingData = false;
               // console.log(response);
             }
           )
@@ -154,6 +157,7 @@ export class ArticleNewComponent implements OnInit {
         else {
           this.knowledgeService.publishArticles(outputData, this.id).subscribe(
             (response: any) => {
+              this.updatingData = false;
               // console.log(response);
             }
           )

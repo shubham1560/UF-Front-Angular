@@ -1,3 +1,6 @@
+<mat-progress-bar mode="query" color="accent" *ngIf="updatingData"></mat-progress-bar>
+<mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
+
 <br> <br>
 <div style="text-align: center;">
     <button mat-raised-button color="primary" (click)="updateArticle(true)">Save</button>
