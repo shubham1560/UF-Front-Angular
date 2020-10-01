@@ -10,13 +10,14 @@ const routes: Routes = [
         component: ArticleListComponent
     },
     {
-        path: ':category',
-        component: BlogsComponent
-    },
-    {
         path: 'new',
         component: ArticleNewComponent
     },
+    {
+        path: ':category',
+        component: BlogsComponent
+    },
+    
     {
         path: ':category/:article', 
         component: BlogsComponent

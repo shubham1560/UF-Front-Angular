@@ -117,4 +117,19 @@ export class DataService {
     this.called_url = `https://type.fit/api/quotes`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  operateArticles(article, id){
+    console.log(article, id);
+    this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
+    const body ={"article": article, "id": id, "publish_ready": false} ;
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+
+  publishArticles(article, id){
+    console.log(article, id);
+    this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
+    const body ={"article": article, "id": id, "publish_ready": true} ;
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }
