@@ -12,6 +12,7 @@ import Link from '@editorjs/link';
 import Warning from '@editorjs/warning';
 import delimiter from '@editorjs/delimiter';
 import Table from '@editorjs/table';
+import CodeTool from '@editorjs/code';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
@@ -137,6 +138,7 @@ export class ArticleNewComponent implements OnInit {
         delimiter: {
           class: delimiter,
         },
+        code: CodeTool,
         embed: {
           class: embed,
           shortcut: 'CMD+SHIFT+O',

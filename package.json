@@ -45,6 +45,7 @@
     "@angular/compiler-cli": "~10.0.2",
     "@angular/language-service": "~10.0.2",
     "@editorjs/checklist": "^1.2.0",
+    "@editorjs/code": "^2.6.0",
     "@editorjs/delimiter": "^1.2.0",
     "@editorjs/embed": "^2.4.0",
     "@editorjs/link": "^2.3.0",
