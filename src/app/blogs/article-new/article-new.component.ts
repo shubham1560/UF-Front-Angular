@@ -9,9 +9,11 @@ import List from '@editorjs/list';
 import embed from '@editorjs/embed';
 import Quote from '@editorjs/quote';
 import Link from '@editorjs/link';
+import Warning from '@editorjs/warning';
 import delimiter from '@editorjs/delimiter';
+import Table from '@editorjs/table';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 
@@ -27,6 +29,7 @@ export class ArticleNewComponent implements OnInit {
     private knowledgeService: DataService,
     private routerService: ActivatedRoute,
     private userService: UserprofileService,
+    private route: Router,
   ) { }
 
   editor: EditorJS
@@ -90,12 +93,37 @@ export class ArticleNewComponent implements OnInit {
 
       data: this.data,
 
-      placeholder: 'Let`s do some good together, Start writing by clicking here!',
+      placeholder: 'Let`s do some good together, Start by giving it a heading!',
 
       tools: {
         header: {
           class: header,
           inlineToolbar: ['link']
+        },
+        image: {
+          class: ImageTool,
+          config: {
+            endpoints: {
+              byFile: `${this.url.base_url}attachment/add_image/`, // Your backend file uploader endpoint
+            }
+          }
+        },
+        table: {
+          class: Table,
+          inlineToolbar: true,
+          config: {
+            rows: 2,
+            cols: 3,
+          },
+        },
+        warning: {
+          class: Warning,
+          inlineToolbar: true,
+          shortcut: 'CMD+SHIFT+W',
+          config: {
+            titlePlaceholder: 'Title',
+            messagePlaceholder: 'Message',
+          },
         },
         quote: {
           class: Quote,
@@ -141,14 +169,7 @@ export class ArticleNewComponent implements OnInit {
           class: List,
           inlineToolbar: true,
         },
-        image: {
-          class: ImageTool,
-          config: {
-            endpoints: {
-              byFile: `${this.url.base_url}attachment/add_image/`, // Your backend file uploader endpoint
-            }
-          }
-        },
+        
         raw: rawTool,
 
       }
@@ -166,6 +187,7 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response
+              this.route.navigateByUrl('courses/article/'+this.id);
               this.updatingData = false;
               // console.log(response);
             }

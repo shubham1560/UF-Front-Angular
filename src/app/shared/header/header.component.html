@@ -41,6 +41,12 @@
                 </span>
             </div>
             <hr>
+            <a mat-menu-item routerLink="/courses/article/1" *ngIf="isAuthor" style="line-height: 20px; height: auto;">
+                Add Article
+            </a>
+            <a mat-menu-item routerLink="/courses/article/1" *ngIf="isAuthor" style="line-height: 20px; height: auto;">
+                Authored Articles
+            </a>
             <a mat-menu-item routerLink="/user_profile" style="line-height: 20px; height: auto;"> My
                 Profile</a>
             <button mat-menu-item (click)="logout()" style="line-height: 20px; height: auto;">

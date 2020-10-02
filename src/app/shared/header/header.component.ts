@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { SearchResultsComponent } from '../search-results/search-results.component'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class HeaderComponent implements OnInit {
   image = false;
   searchQueryForm: FormGroup;
   roots;
+  isAuthor;
 
   constructor(
     private authService: AuthService,
@@ -26,6 +28,7 @@ export class HeaderComponent implements OnInit {
     public dialog: MatDialog,
     private fb: FormBuilder,
     private knowledgeService: DataService,
+    private userService: UserprofileService,
   ) { }
 
   ngOnInit(): void {
@@ -45,6 +48,13 @@ export class HeaderComponent implements OnInit {
         },
         error => {
           this.error = error;
+        }
+      )
+
+      this.userService.inGroup('Authors').subscribe(
+        response => {
+          this.isAuthor = response;
+          console.log(response);
         }
       )
     }
