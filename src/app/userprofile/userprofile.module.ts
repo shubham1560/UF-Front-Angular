@@ -10,11 +10,12 @@ import {MatTableModule, MatCellDef, MatRowDef} from '@angular/material/table';
 import { DeleteusermodalComponent } from './deleteusermodal/deleteusermodal.component';
 import { UserprofileeditComponent } from './userprofileedit/userprofileedit.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthoredArticlesComponent } from './authored-articles/authored-articles.component';
 
 
 
 @NgModule({
-  declarations: [ProfileComponent, BookmarkedarticlesComponent, DeleteusermodalComponent, UserprofileeditComponent],
+  declarations: [ProfileComponent, BookmarkedarticlesComponent, DeleteusermodalComponent, UserprofileeditComponent, AuthoredArticlesComponent],
   imports: [
     CommonModule,
     UserprofileRoutingModule,
