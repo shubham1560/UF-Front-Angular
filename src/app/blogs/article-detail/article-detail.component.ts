@@ -23,6 +23,7 @@ export class ArticleDetailComponent implements OnInit {
   loadOriginalImage: boolean = false;
   authorImage = "";
   category;
+  current_url = window.location.href;
   article_body;
 
   ngOnInit() {

@@ -117,24 +117,24 @@ export class ArticleNewComponent implements OnInit {
             cols: 3,
           },
         },
-        warning: {
-          class: Warning,
-          inlineToolbar: true,
-          shortcut: 'CMD+SHIFT+W',
-          config: {
-            titlePlaceholder: 'Title',
-            messagePlaceholder: 'Message',
-          },
-        },
-        quote: {
-          class: Quote,
-          inlineToolbar: true,
-          // shortcut: 'CMD+SHIFT+O',
-          config: {
-            quotePlaceholder: 'Enter a quote',
-            captionPlaceholder: 'Quote\'s author',
-          },
-        },
+        // warning: {
+        //   class: Warning,
+        //   inlineToolbar: true,
+        //   shortcut: 'CMD+SHIFT+W',
+        //   config: {
+        //     titlePlaceholder: 'Title',
+        //     messagePlaceholder: 'Message',
+        //   },
+        // },
+        // quote: {
+        //   class: Quote,
+        //   inlineToolbar: true,
+        //   // shortcut: 'CMD+SHIFT+O',
+        //   config: {
+        //     quotePlaceholder: 'Enter a quote',
+        //     captionPlaceholder: 'Quote\'s author',
+        //   },
+        // },
         delimiter: {
           class: delimiter,
         },
@@ -150,10 +150,10 @@ export class ArticleNewComponent implements OnInit {
             endpoint: `${this.url.base_url}attachment/fetch_url/`, // Your backend endpoint for url data fetching
           }
         },
-        checklist: {
-          class: checkList,
-          inlineToolbar: true,
-        },
+        // checklist: {
+        //   class: checkList,
+        //   inlineToolbar: true,
+        // },
         list: {
           class: List,
           inlineToolbar: true,

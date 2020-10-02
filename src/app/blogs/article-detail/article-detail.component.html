@@ -37,14 +37,14 @@
                                 <iframe align="center" [src]="block.data.embed | safe" allowfullscreen>
                                 </iframe>
                             </div>
-                            <div class="caption" style="margin-bottom: 40px;"> 
+                            <div class="caption" style="margin-bottom: 40px;">
                                 {{block.data?.caption}}
                             </div>
                         </div>
 
                         <div *ngIf="block.type=='image'">
                             <img [src]="block.data.file?.url" alt="Nature" class="responsive">
-                            <div class="caption" style="margin-bottom: 40px;"> 
+                            <div class="caption" style="margin-bottom: 40px;">
                                 {{block.data?.caption}}
                             </div>
                         </div>
@@ -55,33 +55,44 @@
                                 <!-- yellow -->
                                 <mat-list role="list">
                                     <!-- yellow -->
-                                    <mat-list-item role="listitem" *ngFor="let item of block.data.items ; let i = index">
-                                       <b style="padding-right: 14px;"> {{i+1}} </b> <span [innerHTML]="item"></span>
+                                    <mat-list-item role="listitem"
+                                        *ngFor="let item of block.data.items ; let i = index">
+                                        <b style="padding-right: 14px;"> {{i+1}} </b> <span [innerHTML]="item"></span>
                                     </mat-list-item>
-                                  </mat-list>
+                                </mat-list>
                             </div>
                             <div *ngIf="block.data.style=='unordered'">
                                 <!-- yellow -->
                                 <mat-list role="list">
                                     <!-- yellow -->
                                     <mat-list-item role="listitem" *ngFor="let item of block.data.items">
-                                      <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon>  <span [innerHTML]="item"></span>
+                                        <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon>
+                                        <span [innerHTML]="item"></span>
                                     </mat-list-item>
-                                  </mat-list>
+                                </mat-list>
                             </div>
 
-                            
+
                         </div>
                         <div *ngIf="block.type=='delimiter'">
                             <!-- <div></div> -->
                             <hr>
                         </div>
 
+                        <div *ngIf="block.type=='code'">
+                            <!-- <div></div> -->
+                            <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                                <pre style="color: #41314E;">{{block.data.code}}</pre>
+
+                            </div>
+                            <!-- <hr> -->
+                        </div>
+
                     </div>
 
-                    <pre>
+                    <!-- <pre>
                         {{article_body | json}}
-                    </pre>
+                    </pre> -->
 
 
                     <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
@@ -142,7 +153,17 @@
             </div>
         </div>
         <div class="col-lg-4">
+            <!-- Well Well Well -->
 
+            <br>
+            <div style="position: fixed ;">
+            <h6 style="color: #425051;"> On this page </h6>
+            <div *ngFor="let block of article_body">
+                <div *ngIf="block.type=='header'" style="padding: 6px 0px">
+                    <a href="{{current_url.split('#')[0]}}#{{block.data.text}}" class="right-nav"> {{block.data.text}} </a>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
 </div>
