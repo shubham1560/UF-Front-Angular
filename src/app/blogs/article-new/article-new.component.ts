@@ -109,6 +109,14 @@ export class ArticleNewComponent implements OnInit {
             }
           }
         },
+        list: {
+          class: List,
+          inlineToolbar: true,
+        },
+        delimiter: {
+          class: delimiter,
+        },
+        code: CodeTool,
         table: {
           class: Table,
           inlineToolbar: true,
@@ -135,10 +143,7 @@ export class ArticleNewComponent implements OnInit {
         //     captionPlaceholder: 'Quote\'s author',
         //   },
         // },
-        delimiter: {
-          class: delimiter,
-        },
-        code: CodeTool,
+        
         embed: {
           class: embed,
           shortcut: 'CMD+SHIFT+O',
@@ -154,10 +159,6 @@ export class ArticleNewComponent implements OnInit {
         //   class: checkList,
         //   inlineToolbar: true,
         // },
-        list: {
-          class: List,
-          inlineToolbar: true,
-        },
         
         raw: rawTool,
 
