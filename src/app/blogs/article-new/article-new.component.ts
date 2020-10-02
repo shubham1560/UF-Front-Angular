@@ -128,38 +128,25 @@ export class ArticleNewComponent implements OnInit {
         quote: {
           class: Quote,
           inlineToolbar: true,
-          shortcut: 'CMD+SHIFT+O',
+          // shortcut: 'CMD+SHIFT+O',
           config: {
             quotePlaceholder: 'Enter a quote',
             captionPlaceholder: 'Quote\'s author',
           },
         },
         delimiter: {
-          class: delimiter
+          class: delimiter,
         },
         embed: {
           class: embed,
-          inlineToolbar: true,
-          config: {
-            services: {
-              youtube: true,
-              coub: true,
-              codepen: {
-                regex: /https?:\/\/codepen.io\/([^\/\?\&]*)\/pen\/([^\/\?\&]*)/,
-                embedUrl: 'https://codepen.io/<%= remote_id %>?height=300&theme-id=0&default-tab=css,result&embed-version=2',
-                html: "<iframe height='300' scrolling='no' frameborder='no' allowtransparency='true' allowfullscreen='true' style='width: 100%;'></iframe>",
-                height: 300,
-                width: 600,
-                id: (groups) => groups.join('/embed/')
-              }
-            }
-          }
+          shortcut: 'CMD+SHIFT+O',
+          
         },
         linkTool: {
           class: Link,
-          // config: {
-          // endpoint: 'http://localhost:8008/fetchUrl', // Your backend endpoint for url data fetching
-          // }
+          config: {
+            endpoint: `${this.url.base_url}attachment/fetch_url/`, // Your backend endpoint for url data fetching
+          }
         },
         checklist: {
           class: checkList,
