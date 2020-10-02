@@ -14,9 +14,9 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let article of articles_data.articles">
-                        <td>{{article.title}}</td>
-                        <td>{{article.sys_created_on | date: 'medium'}}</td>
-                        <td>{{article.sys_updated_on | date: 'medium'}}</td>
+                        <td><a href="courses/article/{{article.id}}">{{article.title}}</a></td>
+                        <td>{{article.sys_created_on | datesAgoDate}}</td>
+                        <td>{{article.sys_updated_on | datesAgoDate}}</td>
                         <td>{{article.workflow}}</td>
                     </tr>
                 </tbody>
