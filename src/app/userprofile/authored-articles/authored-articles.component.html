@@ -4,57 +4,75 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            Sort By:
-            <button mat-button style="outline: none;" (click)="changeSort('title')">
-                Title
-                <mat-icon *ngIf="sort_by=='title'">
-                    keyboard_arrow_down
-                </mat-icon>
-                <mat-icon *ngIf="sort_by=='-title'">
-                    keyboard_arrow_up
-                </mat-icon>
-            </button>
-            <button mat-button style="outline: none;" (click)="changeSort('sys_created_on')">
-                Created
-                <mat-icon *ngIf="sort_by=='sys_created_on'">
-                    keyboard_arrow_down
-                </mat-icon>
-                <mat-icon *ngIf="sort_by=='-sys_created_on'">
-                    keyboard_arrow_up
-                </mat-icon>
-            </button>
-            <button mat-button style="outline: none;" (click)="changeSort('sys_updated_on')">
-                Updated
-                <mat-icon *ngIf="sort_by=='sys_updated_on'">
-                    keyboard_arrow_down
-                </mat-icon>
-                <mat-icon *ngIf="sort_by=='-sys_updated_on'">
-                    keyboard_arrow_up
-                </mat-icon>
-            </button>
+            <div class="row">
+                <div class="col-md-6">
+                    Sort By:
+                    <button mat-button style="outline: none;" (click)="changeSort('title')">
+                        Title
+                        <mat-icon *ngIf="sort_by=='title'">
+                            keyboard_arrow_down
+                        </mat-icon>
+                        <mat-icon *ngIf="sort_by=='-title'">
+                            keyboard_arrow_up
+                        </mat-icon>
+                    </button>
+                    <button mat-button style="outline: none;" (click)="changeSort('sys_created_on')">
+                        Created
+                        <mat-icon *ngIf="sort_by=='sys_created_on'">
+                            keyboard_arrow_down
+                        </mat-icon>
+                        <mat-icon *ngIf="sort_by=='-sys_created_on'">
+                            keyboard_arrow_up
+                        </mat-icon>
+                    </button>
+                    <button mat-button style="outline: none;" (click)="changeSort('sys_updated_on')">
+                        Updated
+                        <mat-icon *ngIf="sort_by=='sys_updated_on'">
+                            keyboard_arrow_down
+                        </mat-icon>
+                        <mat-icon *ngIf="sort_by=='-sys_updated_on'">
+                            keyboard_arrow_up
+                        </mat-icon>
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    States:
+                </div>
+            </div>
         </div>
         <br>
         <br>
         <div class="col-md-6" *ngFor="let article of articles_data.articles">
             <mat-card style="border: 0px; box-shadow: none;">
-                <button mat-button style="float: right;">{{article?.workflow}}</button>
+                <!-- <a mat-button style="float: right;">Created: {{article.sys_created_on | datesAgoDate}}</a> -->
                 <mat-card-header>
-                    <mat-card-title class="anchor-table">{{article.title}}</mat-card-title>
-                    <mat-card-subtitle>{{article.sys_created_on | datesAgoDate}}</mat-card-subtitle>
-                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                    
+                    <mat-card-title>{{article.title}}</mat-card-title>
+                    <mat-card-subtitle>Updated: {{article.sys_updated_on | datesAgoDate}}</mat-card-subtitle>
+                    <mat-card-subtitle *ngIf="article.workflow=='draft'">
+                        The article is in draft mode, please send it for review to be published.
+                    </mat-card-subtitle>
+                    <mat-card-subtitle *ngIf="article.workflow=='review'">
+                        The article is being reviewed, we will send the feedback shortly!! <br>
+                        Meanwhile, keep on adding awesome articles on your end
+                    </mat-card-subtitle>
+                    <mat-card-subtitle *ngIf="article.workflow=='published'">
+                        The article is published, if you want you can retire it
+                    </mat-card-subtitle>
                 </mat-card-header>
-                <mat-card-actions style="text-align: right;">
-                    <button mat-button style="outline: none;">
+                <mat-card-actions>
+                    <button mat-button style="outline: none; margin-left: 20px;">
+                        {{article.workflow}}
+                    </button>
+                    <button mat-button style="outline: none; float: right;">
                         <mat-icon style="color: red;">
                             delete
                         </mat-icon>
                     </button>
-                    <button mat-button style="outline: none;">
+                    <a href="courses/article/{{article.id}}" mat-button style="outline: none;float: right;">
                         <mat-icon>
                             edit
                         </mat-icon>
-                    </button>
+                    </a>
                 </mat-card-actions>
             </mat-card>
             <br>
