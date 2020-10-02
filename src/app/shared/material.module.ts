@@ -16,6 +16,7 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [],
@@ -39,8 +40,10 @@ import {MatTreeModule} from '@angular/material/tree';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatRippleModule,
+    MatListModule,
   ],
   exports:[
+    MatListModule,
     MatTreeModule,
     MatTooltipModule,
     MatExpansionModule,

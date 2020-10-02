@@ -1,101 +1,148 @@
 <!-- <mat-progress-bar *ngIf="isLoading" mode="query" color="accent" style="margin: -15px;"></mat-progress-bar> -->
-<div id="uf-article-detail" style="padding-top: 20px;">
-    <!-- <div> -->
-    <button mat-button (click)="reload()">Reload</button>
-    <div *ngIf="!isLoading">
-        <p class="uf-article-title">{{article?.title}}</p>
+<div class="cotntainer-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+
+            <div id="uf-article-detail" style="padding-top: 20px;">
+                <!-- <div> -->
+                <!-- <button mat-button (click)="reload()">Reload</button> -->
+                <div *ngIf="!isLoading">
+                    <!-- <p class="uf-article-title">{{article?.title}}</p> -->
+                    <div *ngFor="let block of article_body">
+                        <!-- {{block | json}} -->
+                        <div class="uf-header" *ngIf="block.type=='header'">
+                            <h1 id={{block.data.text}} *ngIf="block.data.level==1">{{block.data.text}}</h1>
+                            <h2 id={{block.data.text}} *ngIf="block.data.level==2">{{block.data.text}}</h2>
+                            <h3 id={{block.data.text}} *ngIf="block.data.level==3">{{block.data.text}}</h3>
+                            <h4 id={{block.data.text}} *ngIf="block.data.level==4">{{block.data.text}}</h4>
+                            <h5 id={{block.data.text}} *ngIf="block.data.level==5">{{block.data.text}}</h5>
+                            <h6 id={{block.data.text}} *ngIf="block.data.level==6">{{block.data.text}}</h6>
+                        </div>
+
+                        <div *ngIf="block.type=='linkTool'">
+                            <mat-card class="example-card" routerLink="{{block.data.link}}">
+                                <mat-card-header>
+                                    <mat-card-title>{{block.data.meta.title}}</mat-card-title>
+                                    <mat-card-subtitle>{{block.data.meta.description}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-actions style="padding-left: 20px;text-align: right;">
+                                    <span mat-button style="color: #B8B8B8;">{{block.data.link}}</span>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+
+                        <div *ngIf="block.type=='embed'">
+                            <!-- <iframe *ngIf="block.data.service=='youtube'" height="auto" width="auto"  -->
+                            <div class="videoWrapper">
+                                <iframe align="center" [src]="block.data.embed | safe" allowfullscreen>
+                                </iframe>
+                            </div>
+                            <div class="caption" style="margin-bottom: 40px;"> 
+                                {{block.data?.caption}}
+                            </div>
+                        </div>
+
+                        <div *ngIf="block.type=='image'">
+                            <img [src]="block.data.file?.url" alt="Nature" class="responsive">
+                            <div class="caption" style="margin-bottom: 40px;"> 
+                                {{block.data?.caption}}
+                            </div>
+                        </div>
+
+                        <div *ngIf="block.type=='list'" style="padding-left: 10%;">
+                            <!-- yellow -->
+                            <div *ngIf="block.data.style=='ordered'">
+                                <!-- yellow -->
+                                <mat-list role="list">
+                                    <!-- yellow -->
+                                    <mat-list-item role="listitem" *ngFor="let item of block.data.items ; let i = index">
+                                       <b style="padding-right: 14px;"> {{i+1}} </b> <span [innerHTML]="item"></span>
+                                    </mat-list-item>
+                                  </mat-list>
+                            </div>
+                            <div *ngIf="block.data.style=='unordered'">
+                                <!-- yellow -->
+                                <mat-list role="list">
+                                    <!-- yellow -->
+                                    <mat-list-item role="listitem" *ngFor="let item of block.data.items">
+                                      <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon>  <span [innerHTML]="item"></span>
+                                    </mat-list-item>
+                                  </mat-list>
+                            </div>
+
+                            
+                        </div>
+                        <div *ngIf="block.type=='delimiter'">
+                            <!-- <div></div> -->
+                            <hr>
+                        </div>
+
+                    </div>
+
+                    <pre>
+                        {{article_body | json}}
+                    </pre>
 
 
-        <div *ngFor="let block of article_body">
-            <!-- {{block | json}} -->
-            <div class="uf-header" *ngIf="block.type=='header'">
-                <h1 id={{block.data.text}} *ngIf="block.data.level==1">{{block.data.text}}</h1>
-                <h2 id={{block.data.text}} *ngIf="block.data.level==2">{{block.data.text}}</h2>
-                <h3 id={{block.data.text}} *ngIf="block.data.level==3">{{block.data.text}}</h3>
-                <h4 id={{block.data.text}} *ngIf="block.data.level==4">{{block.data.text}}</h4>
-                <h5 id={{block.data.text}} *ngIf="block.data.level==5">{{block.data.text}}</h5>
-                <h6 id={{block.data.text}} *ngIf="block.data.level==6">{{block.data.text}}</h6>
+                    <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
+                    <br><br>
+                    <div class="author-detail author-about" style="font-weight: 200">
+                        <img [src]="authorImage" class="uf-author-image" alt="author image">
+                        <p class="author-heading"><b>Author:
+                            </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
+                        </p>
+                        <br>
+                        <pre>
+                            {{article.getAuthor?.about}}
+                        </pre>
+
+                    </div>
+                    <br><br><br>
+                </div>
+
+
+
+
+                <!-- Shadow Dom, please don't be bothered by it, f**king nonsense -->
+                <div *ngIf="isLoading" id="ghost">
+                    <p class="uf-article-title ghost-heading ghost" style="height:40px">
+
+                    </p>
+
+                    <div class="uf-article-image ">
+                        <div class="ghost ghost-image">
+
+                        </div>
+                    </div>
+
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost ghost-body-trail"></p>
+                    <div style="height: 40px;"></div>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost"></p>
+                    <p class="uf-article-body ghost-body ghost ghost-body-trail"></p>
+                    <br>
+
+                    <div class="uf-author-details ghost">
+
+                    </div>
+                    <br><br>
+
+
+                </div>
             </div>
-
-            <div *ngIf="block.type=='linkTool'">
-                <mat-card class="example-card" routerLink="{{block.data.link}}">
-                    <mat-card-header>
-                      <mat-card-title>{{block.data.meta.title}}</mat-card-title>
-                      <mat-card-subtitle>{{block.data.meta.description}}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-actions style="padding-left: 20px;text-align: right;">
-                      <span mat-button style="color: #B8B8B8;">{{block.data.link}}</span>
-                    </mat-card-actions>
-                  </mat-card>
-            </div>
-
-            <div *ngIf="block.type=='embed'" class="videoWrapper">
-                <!-- <iframe *ngIf="block.data.service=='youtube'" height="auto" width="auto"  -->
-                    <iframe 
-                [src]="block.data.embed | safe" 
-                allowfullscreen>
-                </iframe>
-            </div>
+        </div>
+        <div class="col-lg-4">
 
         </div>
-
-        <pre>
-            <!-- {{article_body | json}} -->
-        </pre>
-
-
-        <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
-        <br><br>
-        <div class="author-detail author-about" style="font-weight: 200">
-            <img [src]="authorImage" class="uf-author-image" alt="author image">
-            <p class="author-heading"><b>Author: </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
-            </p>
-            <br>
-            <pre>
-                {{article.getAuthor?.about}}
-            </pre>
-
-        </div>
-        <br><br><br>
-    </div>
-
-
-
-
-    <!-- Shadow Dom, please don't be bothered by it, f**king nonsense -->
-    <div *ngIf="isLoading" id="ghost">
-        <p class="uf-article-title ghost-heading ghost" style="height:40px">
-
-        </p>
-
-        <div class="uf-article-image ">
-            <div class="ghost ghost-image">
-
-            </div>
-        </div>
-
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost ghost-body-trail"></p>
-        <div style="height: 40px;"></div>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost"></p>
-        <p class="uf-article-body ghost-body ghost ghost-body-trail"></p>
-        <br>
-
-        <div class="uf-author-details ghost">
-
-        </div>
-        <br><br>
-
-
     </div>
 </div>
