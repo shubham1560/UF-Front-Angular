@@ -18,22 +18,22 @@
             </div>
 
             <div *ngIf="block.type=='linkTool'">
-
                 <mat-card class="example-card" routerLink="{{block.data.link}}">
                     <mat-card-header>
-                      <div mat-card-avatar class="example-header-image"></div>
                       <mat-card-title>{{block.data.meta.title}}</mat-card-title>
                       <mat-card-subtitle>{{block.data.meta.description}}</mat-card-subtitle>
                     </mat-card-header>
-                    <img mat-card-image [src]="block.data.meta.image.url">
-                    <mat-card-actions>
-                      <button mat-button>{{block.data.link}}</button>
-                      <!-- <button mat-button>SHARE</button> -->
+                    <mat-card-actions style="padding-left: 20px;text-align: right;">
+                      <span mat-button style="color: #B8B8B8;">{{block.data.link}}</span>
                     </mat-card-actions>
                   </mat-card>
+            </div>
 
-
-                
+            <div *ngIf="block.type=='embed'">
+                <iframe *ngIf="block.data.service=='youtube'" width="951" height="535" 
+                [src]="block.data.embed | safe" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
             </div>
 
         </div>

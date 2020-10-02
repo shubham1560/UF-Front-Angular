@@ -15,6 +15,7 @@ import { MaterialModule } from '../shared/material.module';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { KbuseComponent } from './kbuse/kbuse.component';
 import { FeedbackComponent } from './feedback/feedback.component';
+import { SafeurlPipe } from './pipes/safeurl.pipe';
 
 
 
@@ -29,6 +30,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
     // FooterComponent,
     KbuseComponent,
     FeedbackComponent,
+    SafeurlPipe,
     ],
   imports: [
     CommonModule,
