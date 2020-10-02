@@ -24,8 +24,20 @@ export class AuthoredArticlesComponent implements OnInit {
     )
   }
 
-  changeSort(sort){
-    this.sort_by = sort;
+  changeSort(sort: string){
+    if (sort == this.sort_by){
+      if(sort[0]=="-"){
+      this.sort_by = sort.substring(1, sort.length)
+      }
+      else{
+        this.sort_by = "-"+sort;
+      }
+    }else{
+      this.sort_by = sort;
+    }
+    if(sort == 'workflow'){
+      this.sort_by = 'workflow';
+    }
     this.ngOnInit();
   }
 

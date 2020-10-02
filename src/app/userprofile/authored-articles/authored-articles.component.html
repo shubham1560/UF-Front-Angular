@@ -1,32 +1,69 @@
 <!-- <p>authored-articles works!</p> -->
 <br><br>
+
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th (click)="changeSort('title')"> Title</th>
-                        <th>Created On</th>
-                        <th>Updated On</th>
-                        <th>State</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let article of articles_data.articles">
-                        <td><a href="courses/article/{{article.id}}">{{article.title}}</a></td>
-                        <td>{{article.sys_created_on | datesAgoDate}}</td>
-                        <td>{{article.sys_updated_on | datesAgoDate}}</td>
-                        <td>{{article.workflow}}</td>
-                    </tr>
-                </tbody>
-            </table>
-
+        <div class="col-md-12">
+            Sort By:
+            <button mat-button style="outline: none;" (click)="changeSort('title')">
+                Title
+                <mat-icon *ngIf="sort_by=='title'">
+                    keyboard_arrow_down
+                </mat-icon>
+                <mat-icon *ngIf="sort_by=='-title'">
+                    keyboard_arrow_up
+                </mat-icon>
+            </button>
+            <button mat-button style="outline: none;" (click)="changeSort('sys_created_on')">
+                Created
+                <mat-icon *ngIf="sort_by=='sys_created_on'">
+                    keyboard_arrow_down
+                </mat-icon>
+                <mat-icon *ngIf="sort_by=='-sys_created_on'">
+                    keyboard_arrow_up
+                </mat-icon>
+            </button>
+            <button mat-button style="outline: none;" (click)="changeSort('sys_updated_on')">
+                Updated
+                <mat-icon *ngIf="sort_by=='sys_updated_on'">
+                    keyboard_arrow_down
+                </mat-icon>
+                <mat-icon *ngIf="sort_by=='-sys_updated_on'">
+                    keyboard_arrow_up
+                </mat-icon>
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="col-md-6" *ngFor="let article of articles_data.articles">
+            <mat-card style="border: 0px; box-shadow: none;">
+                <button mat-button style="float: right;">{{article?.workflow}}</button>
+                <mat-card-header>
+                    <mat-card-title class="anchor-table">{{article.title}}</mat-card-title>
+                    <mat-card-subtitle>{{article.sys_created_on | datesAgoDate}}</mat-card-subtitle>
+                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                    
+                </mat-card-header>
+                <mat-card-actions style="text-align: right;">
+                    <button mat-button style="outline: none;">
+                        <mat-icon style="color: red;">
+                            delete
+                        </mat-icon>
+                    </button>
+                    <button mat-button style="outline: none;">
+                        <mat-icon>
+                            edit
+                        </mat-icon>
+                    </button>
+                </mat-card-actions>
+            </mat-card>
+            <br>
         </div>
     </div>
+
+
 </div>
 
-
-<pre>
+<!-- <pre>
 {{articles_data | json}}
-</pre>
+</pre> -->
