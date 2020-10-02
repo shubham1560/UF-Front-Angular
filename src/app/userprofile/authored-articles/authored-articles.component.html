@@ -1,1 +1,32 @@
-<p>authored-articles works!</p>
+<!-- <p>authored-articles works!</p> -->
+<br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th (click)="changeSort('title')"> Title</th>
+                        <th>Created On</th>
+                        <th>Updated On</th>
+                        <th>State</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let article of articles_data.articles">
+                        <td>{{article.title}}</td>
+                        <td>{{article.sys_created_on | date: 'medium'}}</td>
+                        <td>{{article.sys_updated_on | date: 'medium'}}</td>
+                        <td>{{article.workflow}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+<pre>
+{{articles_data | json}}
+</pre>
