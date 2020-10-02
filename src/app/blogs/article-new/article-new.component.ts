@@ -16,6 +16,8 @@ import CodeTool from '@editorjs/code';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 
 @Component({
@@ -31,11 +33,14 @@ export class ArticleNewComponent implements OnInit {
     private routerService: ActivatedRoute,
     private userService: UserprofileService,
     private route: Router,
+    private _snackBar: MatSnackBar,
   ) { }
 
   editor: EditorJS
   data: any;
   a;
+  editorInitilized = false;
+
   ngOnInit() {
 
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
@@ -56,12 +61,15 @@ export class ArticleNewComponent implements OnInit {
       }
     )
 
+
     this.routerService.paramMap.subscribe(
       params => {
         var article_id = params.get("id");
         if (article_id == '1') {
           this.data = {};
           this.initializeEditor();
+          this.editorInitilized = true;
+
         }
         else {
           this.knowledgeService.getArticleById(article_id).subscribe(
@@ -73,7 +81,9 @@ export class ArticleNewComponent implements OnInit {
                 blocks:  this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
                 version: "2.11.10"
               };
-              this.initializeEditor();
+              if (!this.editorInitilized){
+                this.initializeEditor();
+              }
               // console.log(this);
               
             }, error => {
@@ -179,7 +189,13 @@ export class ArticleNewComponent implements OnInit {
               this.id = response
               this.route.navigateByUrl('courses/article/'+this.id);
               this.updatingData = false;
+              this.openSnackBar("The progress has been saved", '');
               // console.log(response);
+
+            }, 
+            (error)=>{
+              this.updatingData = false;
+              this.openSnackBar("There seems to be a problem, please try again", '');
             }
           )
         }
@@ -187,7 +203,13 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.publishArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.updatingData = false;
+              this.openSnackBar("The article has been sent for review!!", '');
+
               // console.log(response);
+            },
+            (error)=>{
+              this.updatingData = false;
+              this.openSnackBar("There seems to be a problem, please try again", '');
             }
           )
         }
@@ -220,5 +242,11 @@ export class ArticleNewComponent implements OnInit {
     }
     c.push(JSON.parse(a.substring(j, a.length)))  ;
     return c;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message , action, {
+      duration: 2000,
+    });
   }
 }
