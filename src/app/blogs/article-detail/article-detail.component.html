@@ -29,17 +29,18 @@
                   </mat-card>
             </div>
 
-            <div *ngIf="block.type=='embed'">
-                <iframe *ngIf="block.data.service=='youtube'" width="951" height="535" 
+            <div *ngIf="block.type=='embed'" class="videoWrapper">
+                <!-- <iframe *ngIf="block.data.service=='youtube'" height="auto" width="auto"  -->
+                    <iframe 
                 [src]="block.data.embed | safe" 
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                allowfullscreen>
                 </iframe>
             </div>
 
         </div>
 
         <pre>
-            {{article_body | json}}
+            <!-- {{article_body | json}} -->
         </pre>
 
 
