@@ -4,26 +4,45 @@
 <br> <br>
 <div id="uf-breadcrumb">
     <div class="breadcrumb-pagination">
-  
-        {{state}}
 
-        <div [ngClass]="{'completed' : state=='review' || state=='published'}">
-          <span></span>
-          <p>Draft</p>   
+
+        <div [ngClass]="{'completed' : state=='review' || state=='published', 'active': state =='draft'}"
+        matTooltip="The article is in draft mode!"
+        >
+            <!-- <span>
+                1
+            </span> -->
+            <mat-icon>edit</mat-icon>
+            <p>
+            Draft state
+                <br>
+            </p>
         </div>
-      
-        <div class="active">
-          <span>2</span>
-          <p>Sent for review</p>
+
+        <div [ngClass]="{'completed' : state=='published', 'active': state =='review'}"
+            matTooltip="The article has been sent for review!">
+            <!-- <span>
+                2
+            </span> -->
+            <mat-icon>publish</mat-icon>
+            <p>Sent for review <br>
+            </p>
         </div>
-      
-        <div class="todo">
-          <span>3</span>
-          <p>Published</p>
+
+        <div [ngClass]="{'active': state =='published'}"
+            matTooltip="The article is published, any change will send it to draft mode!"
+        >
+            <!-- <span>
+                3
+            </span> -->
+            <mat-icon>published_with_changes</mat-icon>
+            <p>Published
+            </p>
         </div>
-        
-      </div>
+
+    </div>
 </div>
+<br><br>
 <div id="uf-new-article" style="text-align: center;">
     <button mat-raised-button color="primary" (click)="updateArticle(true)">
         <span *ngIf="updatingData">
@@ -34,12 +53,12 @@
         </span>
     </button>
     <span style="padding: 10px;"></span>
-    <button mat-raised-button style="color: white; background-color: #8DBCAA;"
+    <button mat-raised-button style="color: white; background-color: #8DBCAA;" [disabled]='state=="review" || state=="publised"'
         (click)="updateArticle(false)">Publish</button>
     <br>
     <a color="primary" routerLink="/courses/test_article_preview/{{id}}">See how it looks</a>
 
 </div>
-<br><br>
+<br>
 <div id="editorjs">
 </div>

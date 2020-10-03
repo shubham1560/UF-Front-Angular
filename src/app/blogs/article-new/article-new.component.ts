@@ -193,7 +193,8 @@ export class ArticleNewComponent implements OnInit {
         if (update) {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
-              this.id = response
+              this.id = response;
+              this.state = "draft";
               this.route.navigateByUrl('courses/article/' + this.id);
               this.updatingData = false;
               this.openSnackBar("The progress has been saved", '');
@@ -210,6 +211,7 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.publishArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.updatingData = false;
+              this.state = 'review';
               this.openSnackBar("The article has been sent for review!!", '');
 
               // console.log(response);
