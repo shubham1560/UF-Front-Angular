@@ -92,7 +92,12 @@ export class ArticleNewComponent implements OnInit {
           )
         }
       }
-    )
+      )
+      // setInterval(()=>{
+      //   console.log("saving");  
+      //   this.updateArticle(true);      
+        
+      // }, 20000)
   }
 
   id = '';  // if id =0, first save, otherwise populating the id from response
@@ -179,11 +184,19 @@ export class ArticleNewComponent implements OnInit {
 
   updatingData;
 
+  dataToSave = {
+    blocks :[]
+  };
+  
+
   updateArticle(update) {
     this.editor.save().then((outputData) => {
       this.updatingData = true;
+      // console.log(outputData);
+      // console.log(this.dataToSave);
       if (outputData.blocks.length > 0) {
         if (update) {
+          this.dataToSave = outputData;
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response
@@ -195,7 +208,7 @@ export class ArticleNewComponent implements OnInit {
             }, 
             (error)=>{
               this.updatingData = false;
-              this.openSnackBar("There seems to be a problem, please try again", '');
+              this.openSnackBar("Please give a heading or title to the article, and try again", '');
             }
           )
         }
@@ -215,6 +228,7 @@ export class ArticleNewComponent implements OnInit {
         }
       }
       else {
+        this.updatingData = false;
         console.log("likh toh le bhai pehle");
       }
     }).catch((error) => {
