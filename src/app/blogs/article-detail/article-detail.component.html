@@ -4,12 +4,9 @@
         <div class="col-lg-8 col-md-12">
 
             <div id="uf-article-detail" style="padding-top: 20px;">
-                <!-- <div> -->
-                <!-- <button mat-button (click)="reload()">Reload</button> -->
                 <div *ngIf="!isLoading">
-                    <!-- <p class="uf-article-title">{{article?.title}}</p> -->
                     <div *ngFor="let block of article_body">
-                        <!-- {{block | json}} -->
+
                         <div class="uf-header" *ngIf="block.type=='header'">
                             <h1 id={{block.data.text}} *ngIf="block.data.level==1">{{block.data.text}}</h1>
                             <h2 id={{block.data.text}} *ngIf="block.data.level==2">{{block.data.text}}</h2>
@@ -19,16 +16,94 @@
                             <h6 id={{block.data.text}} *ngIf="block.data.level==6">{{block.data.text}}</h6>
                         </div>
 
-                        <div *ngIf="block.type=='linkTool'">
-                            <mat-card class="example-card" routerLink="{{block.data.link}}">
-                                <mat-card-header>
-                                    <mat-card-title>{{block.data.meta.title}}</mat-card-title>
-                                    <mat-card-subtitle>{{block.data.meta.description}}</mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-actions style="padding-left: 20px;text-align: right;">
-                                    <span mat-button style="color: #B8B8B8;">{{block.data.link}}</span>
-                                </mat-card-actions>
-                            </mat-card>
+                        <div *ngIf="block.type=='linkTool'" class="link-embed">
+                            <div>
+                                Embedded from other 
+                                <a style="text-align: right;" target="_blank" href="{{block.data.link}}">
+                                    article
+                                    <mat-icon>open_in_new</mat-icon>
+                                </a>
+                            </div>
+                            <br>
+                            <div *ngFor="let block of block.data.meta.result">
+                                <div *ngIf="block.type=='image'">
+                                    <img [src]="block.data.file?.url" alt="Nature" class="responsive">
+                                    <div class="caption" style="margin-bottom: 40px;">
+                                        {{block.data?.caption}}
+                                    </div>
+                                </div>
+
+                                <div *ngIf="block.type=='list'" style="padding-left: 10%;">
+                                    <!-- yellow -->
+                                    <div *ngIf="block.data.style=='ordered'">
+                                        <!-- yellow -->
+                                        <mat-list role="list">
+                                            <!-- yellow -->
+                                            <mat-list-item role="listitem"
+                                                *ngFor="let item of block.data.items ; let i = index">
+                                                <b style="padding-right: 14px;"> {{i+1}} </b> <span
+                                                    [innerHTML]="item"></span>
+                                            </mat-list-item>
+                                        </mat-list>
+                                    </div>
+                                    <div *ngIf="block.data.style=='unordered'">
+                                        <!-- yellow -->
+                                        <mat-list role="list">
+                                            <!-- yellow -->
+                                            <mat-list-item role="listitem" *ngFor="let item of block.data.items">
+                                                <mat-icon style="font-size: small; height: auto;">fiber_manual_record
+                                                </mat-icon>
+                                                <span [innerHTML]="item"></span>
+                                            </mat-list-item>
+                                        </mat-list>
+                                    </div>
+
+
+                                </div>
+                                <div *ngIf="block.type=='code'">
+                                    <!-- <div></div> -->
+                                    <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                                        <pre style="color: #41314E;">{{block.data.code}}</pre>
+                                    </div>
+                                    <!-- <hr> -->
+                                </div>
+
+                                <div *ngIf="block.type=='paragraph'">
+                                    <p [innerHTML]="block.data.text"></p>
+                                </div>
+                                <div *ngIf="block.type=='table'">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr *ngFor="let row of block.data.content">
+                                                <!-- {{row}} -->
+                                                <td *ngFor="let content of row">
+                                                    <span [innerHTML]="content">
+
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="uf-header" *ngIf="block.type=='header'">
+                                    <h1 id={{block.data.text}} *ngIf="block.data.level==1">{{block.data.text}}</h1>
+                                    <h2 id={{block.data.text}} *ngIf="block.data.level==2">{{block.data.text}}</h2>
+                                    <h3 id={{block.data.text}} *ngIf="block.data.level==3">{{block.data.text}}</h3>
+                                    <h4 id={{block.data.text}} *ngIf="block.data.level==4">{{block.data.text}}</h4>
+                                    <h5 id={{block.data.text}} *ngIf="block.data.level==5">{{block.data.text}}</h5>
+                                    <h6 id={{block.data.text}} *ngIf="block.data.level==6">{{block.data.text}}</h6>
+                                </div>
+                                <div *ngIf="block.type=='embed'">
+                                    <div class="videoWrapper">
+                                        <iframe align="center" [src]="block.data.embed | safe" allowfullscreen>
+                                        </iframe>
+                                    </div>
+                                    <div class="caption" style="margin-bottom: 40px;">
+                                        {{block.data?.caption}}
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div *ngIf="block.type=='embed'">
@@ -109,8 +184,8 @@
 <!-- 
                     <pre>
                         {{article_body | json}}
-                    </pre>
- -->
+                    </pre> -->
+
 
                     <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
                     <br><br>
@@ -119,7 +194,7 @@
                         <p class="author-heading"><b>Author:
                             </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
                         </p>
-                            {{article.getAuthor?.about}}
+                        {{article.getAuthor?.about}}
 
                     </div>
                     <br><br><br>
