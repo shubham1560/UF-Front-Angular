@@ -16,8 +16,9 @@ import CodeTool from '@editorjs/code';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action } from 'rxjs/internal/scheduler/Action';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 
 @Component({
@@ -34,11 +35,13 @@ export class ArticleNewComponent implements OnInit {
     private userService: UserprofileService,
     private route: Router,
     private _snackBar: MatSnackBar,
+    private loggerService: LoggerService,
   ) { }
 
   editor: EditorJS
   data: any;
-  a;
+  // a;
+  article;
   editorInitilized = false;
 
   ngOnInit() {
@@ -47,12 +50,12 @@ export class ArticleNewComponent implements OnInit {
     // this.replacement(this.a);
 
     this.userService.inGroup("Authors").subscribe(
-      (response:Boolean) => {
+      (response: Boolean) => {
         console.log(response);
-        if (response){
+        if (response) {
           return true;
         }
-        else{
+        else {
           window.location.href = "welcome";
           return false;
         }
@@ -74,35 +77,32 @@ export class ArticleNewComponent implements OnInit {
         else {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
+              this.article = response;
               this.id = article_id;
               var len = response.data.article_body.length - 1;
               this.data = {
-                time: 1552744582955, 
-                blocks:  this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
+                time: 1552744582955,
+                blocks: this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
                 version: "2.11.10"
               };
-              if (!this.editorInitilized){
+              if (!this.editorInitilized) {
                 this.initializeEditor();
               }
               // console.log(this);
-              
+
             }, error => {
               console.log(error);
             }
           )
         }
       }
-      )
-      // setInterval(()=>{
-      //   console.log("saving");  
-      //   this.updateArticle(true);      
-        
-      // }, 20000)
+    )
+    this.loggerService.logData('uf-new-article', this);
   }
 
   id = '';  // if id =0, first save, otherwise populating the id from response
 
-  initializeEditor(){
+  initializeEditor() {
     this.editor = new EditorJS({
 
       holder: 'editorjs',
@@ -158,11 +158,11 @@ export class ArticleNewComponent implements OnInit {
         //     captionPlaceholder: 'Quote\'s author',
         //   },
         // },
-        
+
         embed: {
           class: embed,
           shortcut: 'CMD+SHIFT+O',
-          
+
         },
         linkTool: {
           class: Link,
@@ -174,7 +174,7 @@ export class ArticleNewComponent implements OnInit {
         //   class: checkList,
         //   inlineToolbar: true,
         // },
-        
+
         raw: rawTool,
 
       }
@@ -184,29 +184,21 @@ export class ArticleNewComponent implements OnInit {
 
   updatingData;
 
-  dataToSave = {
-    blocks :[]
-  };
-  
-
   updateArticle(update) {
     this.editor.save().then((outputData) => {
       this.updatingData = true;
-      // console.log(outputData);
-      // console.log(this.dataToSave);
       if (outputData.blocks.length > 0) {
         if (update) {
-          this.dataToSave = outputData;
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response
-              this.route.navigateByUrl('courses/article/'+this.id);
+              this.route.navigateByUrl('courses/article/' + this.id);
               this.updatingData = false;
               this.openSnackBar("The progress has been saved", '');
               // console.log(response);
 
-            }, 
-            (error)=>{
+            },
+            (error) => {
               this.updatingData = false;
               this.openSnackBar("Please give a heading or title to the article, and try again", '');
             }
@@ -220,7 +212,7 @@ export class ArticleNewComponent implements OnInit {
 
               // console.log(response);
             },
-            (error)=>{
+            (error) => {
               this.updatingData = false;
               this.openSnackBar("There seems to be a problem, please try again", '');
             }
@@ -236,30 +228,30 @@ export class ArticleNewComponent implements OnInit {
     });
   }
 
-  replacement = function(a) {
+  replacement = function (a) {
     let b = []
     let c = []
     let j = 0
-    for (var i = 0; i < a.length; i++) { 
+    for (var i = 0; i < a.length; i++) {
       if (a[i] == "{") {
-        b.push("{"); 
-      } 
-      if (a[i] == "}") { 
-        b.pop(); 
-      } 
+        b.push("{");
+      }
+      if (a[i] == "}") {
+        b.pop();
+      }
       if (b.length == 0) {
-        if (a[i] == ',') { 
-          c.push(JSON.parse(a.substring(j, i)))  ;
-          j = i+1
-        } 
-      } 
+        if (a[i] == ',') {
+          c.push(JSON.parse(a.substring(j, i)));
+          j = i + 1
+        }
+      }
     }
-    c.push(JSON.parse(a.substring(j, a.length)))  ;
+    c.push(JSON.parse(a.substring(j, a.length)));
     return c;
   }
 
   openSnackBar(message: string, action: string) {
-    this._snackBar.open(message , action, {
+    this._snackBar.open(message, action, {
       duration: 2000,
     });
   }

@@ -2,7 +2,8 @@
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
 
 <br> <br>
-<div style="text-align: center;">
+<div id="uf-new-article" style="text-align: center;">
+    {{article.data?.workflow}}
     <button mat-raised-button color="primary" (click)="updateArticle(true)">
         <span *ngIf="updatingData">
             Saving....
