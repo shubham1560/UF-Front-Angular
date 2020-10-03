@@ -43,6 +43,7 @@ export class ArticleNewComponent implements OnInit {
   // a;
   article;
   editorInitilized = false;
+  state;
 
   ngOnInit() {
 
@@ -78,6 +79,7 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
               this.article = response;
+              this.state = this.article.data.workflow
               this.id = article_id;
               var len = response.data.article_body.length - 1;
               this.data = {
@@ -132,14 +134,14 @@ export class ArticleNewComponent implements OnInit {
           class: delimiter,
         },
         code: CodeTool,
-        table: {
-          class: Table,
-          inlineToolbar: true,
-          config: {
-            rows: 2,
-            cols: 3,
-          },
-        },
+        // table: {
+        //   class: Table,
+        //   inlineToolbar: true,
+        //   config: {
+        //     rows: 2,
+        //     cols: 3,
+        //   },
+        // },
         // warning: {
         //   class: Warning,
         //   inlineToolbar: true,
