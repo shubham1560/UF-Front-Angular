@@ -4,14 +4,14 @@ import EditorJS from '@editorjs/editorjs';
 import header from '@editorjs/header';
 import rawTool from '@editorjs/raw';
 import ImageTool from '@editorjs/image';
-import checkList from '@editorjs/checklist';
+// import checkList from '@editorjs/checklist';
 import List from '@editorjs/list';
 import embed from '@editorjs/embed';
 import Quote from '@editorjs/quote';
 import Link from '@editorjs/link';
-import Warning from '@editorjs/warning';
+// import Warning from '@editorjs/warning';
 import delimiter from '@editorjs/delimiter';
-import Table from '@editorjs/table';
+// import Table from '@editorjs/table';
 import CodeTool from '@editorjs/code';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -73,7 +73,9 @@ export class ArticleNewComponent implements OnInit {
           this.data = {};
           this.initializeEditor();
           this.editorInitilized = true;
-
+          setTimeout(()=>{
+            console.clear();
+          }, 1000)
         }
         else {
           this.knowledgeService.getArticleById(article_id).subscribe(
@@ -89,6 +91,10 @@ export class ArticleNewComponent implements OnInit {
               };
               if (!this.editorInitilized) {
                 this.initializeEditor();
+                setTimeout(()=>{
+                  console.clear();
+                }, 1000)
+      
               }
               // console.log(this);
 
@@ -185,11 +191,16 @@ export class ArticleNewComponent implements OnInit {
   }
 
   updatingData;
-
+  prevData = [];
   updateArticle(update) {
-    this.editor.save().then((outputData) => {
+    this.editor.save().then((outputData:any) => {
       this.updatingData = true;
-      if (outputData.blocks.length > 0) {
+      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+        // this.prevData
+        // console.log(this.prevData)
+        // console.log(outputData.blocks);
+        // console.log(this.arrayEqual(this.prevData, outputData.blocks));
+        this.prevData = outputData.blocks;
         if (update) {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
@@ -223,11 +234,17 @@ export class ArticleNewComponent implements OnInit {
           )
         }
       }
-      else {
+      else if(outputData.blocks.length == 0){
         this.updatingData = false;
-        console.log("likh toh le bhai pehle");
+        this.openSnackBar("Please add something to the article to save!", "");
+        // console.log();
+      }
+      else if(this.arrayEqual(this.prevData, outputData.blocks)){
+        this.openSnackBar("No change in article detected!!", '')
+        this.updatingData = false;
       }
     }).catch((error) => {
+      this.updatingData = false;
       console.log('Saving failed: ', error)
     });
   }
@@ -257,6 +274,29 @@ export class ArticleNewComponent implements OnInit {
   openSnackBar(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: 2000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
     });
   }
+
+
+  arrayEqual(ary1:any[],ary2:any[]){
+    return (ary1.join('') == ary2.join(''));
+  }
+
+  // arrayEqual(a, b){
+  //   if(a.length == b.length){
+  //     for (let i = 0; i < a.length; i++){
+  //       if (!this.objectsEqual(a[i], b[i])){
+  //         return false;
+  //       }
+  //     }
+  //   }
+
+  // }
+
+  // objectsEqual = (a1, a2) => {
+  //   return a1.length === a2.length && a1.every((o, idx) => this.objectsEqual(o, a2[idx]));
+  // }
+
 }

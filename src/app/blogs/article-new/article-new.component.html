@@ -31,9 +31,8 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
-            <br>
-            <div id="uf-new-article" style="text-align: right;">
+        <div class="col-md-3">
+            <div id="uf-new-article" style="text-align: right; padding-top: 40px;">
                 <button mat-button color="primary" (click)="updateArticle(true)">
                     <span *ngIf="updatingData">
                         Saving....
@@ -55,13 +54,13 @@
                     </mat-icon>
                 </button>
                     <br> <br>
-                <a mat-button color="primary" routerLink="/courses/test_article_preview/{{id}}">
+                <a target="_blank" mat-button color="primary" routerLink="/courses/test_article_preview/{{id}}">
                     Preview the article
                     <mat-icon>preview</mat-icon>
                 </a>
             </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div id="editorjs">
             </div>
         </div>
