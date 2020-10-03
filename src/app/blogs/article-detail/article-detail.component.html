@@ -88,11 +88,29 @@
                             <!-- <hr> -->
                         </div>
 
+                        <div *ngIf="block.type=='paragraph'">
+                            <p [innerHTML]="block.data.text"></p>
+                        </div>
+                        <div *ngIf="block.type=='table'">
+                            <table class="table">
+                                <tbody>
+                                    <tr *ngFor="let row of block.data.content">
+                                        <!-- {{row}} -->
+                                        <td *ngFor="let content of row">
+                                            <span [innerHTML]="content">
+                                                
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
-                    <!-- <pre>
+                    <pre>
                         {{article_body | json}}
-                    </pre> -->
+                    </pre>
 
 
                     <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
@@ -157,13 +175,14 @@
 
             <br>
             <div style="position: fixed ;">
-            <h6 style="color: #425051;"> On this page </h6>
-            <div *ngFor="let block of article_body">
-                <div *ngIf="block.type=='header'" style="padding: 6px 0px">
-                    <a href="{{current_url.split('#')[0]}}#{{block.data.text}}" class="right-nav"> {{block.data.text}} </a>
+                <h6 style="color: #425051;"> On this page </h6>
+                <div *ngFor="let block of article_body">
+                    <div *ngIf="block.type=='header'" style="padding: 6px 0px">
+                        <a href="{{current_url.split('#')[0]}}#{{block.data.text}}" class="right-nav">
+                            {{block.data.text}} </a>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
