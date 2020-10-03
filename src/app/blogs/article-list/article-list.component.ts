@@ -45,25 +45,27 @@ export class ArticleListComponent implements OnInit {
 
     this.route.paramMap.subscribe(
       result => {
-        if (this.course_for_modal.category) {
-          // For modal for overview section
+        if (result.get("category") != "test_article_preview") {
+          if (this.course_for_modal.category) {
+            // For modal for overview section
 
-          this.course = this.course_for_modal.category;
-          this.openInModal = true;
-          //the data we passed from the course page passed onto this page
-          // setTimeout(() => {
+            this.course = this.course_for_modal.category;
+            this.openInModal = true;
+            //the data we passed from the course page passed onto this page
+            // setTimeout(() => {
             this.isLoading = false;
-          // }, 1000)
-        } else {
-          this.course = result.get("category");
-          this.isLoading = false;
-        }
-        this.article = result.get("article");
-        if (this.course != this.courseInit) {
-          // console.log("called time")
-          this.changeTheCourse();
-        }
+            // }, 1000)
+          } else {
+            this.course = result.get("category");
+            this.isLoading = false;
+          }
+          this.article = result.get("article");
+          if (this.course != this.courseInit) {
+            // console.log("called time")
+            this.changeTheCourse();
+          }
 
+        }
       }
 
     )

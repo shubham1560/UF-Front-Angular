@@ -1,7 +1,7 @@
 <!-- <mat-progress-bar *ngIf="isLoading" mode="query" color="accent" style="margin: -15px;"></mat-progress-bar> -->
 <div class="cotntainer-fluid">
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-8 col-md-12">
 
             <div id="uf-article-detail" style="padding-top: 20px;">
                 <!-- <div> -->
@@ -106,11 +106,11 @@
                         </div>
 
                     </div>
-
+<!-- 
                     <pre>
                         {{article_body | json}}
                     </pre>
-
+ -->
 
                     <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
                     <br><br>
@@ -119,10 +119,7 @@
                         <p class="author-heading"><b>Author:
                             </b>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
                         </p>
-                        <br>
-                        <pre>
                             {{article.getAuthor?.about}}
-                        </pre>
 
                     </div>
                     <br><br><br>
@@ -169,7 +166,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-12">
             <!-- Well Well Well -->
 
             <br>

@@ -78,3 +78,14 @@ input[type="file"] {
   content: '\2713' 
 }
   
+a{
+  text-decoration: none;
+
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+button{
+  outline: none;
+}
