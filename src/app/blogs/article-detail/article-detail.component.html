@@ -202,11 +202,16 @@
 
                     <mat-card class="author-card">
                         <mat-card-header>
-                            <div mat-card-avatar class="author-image" [ngStyle]="{'background-image': 'url(' + authorImage + ')'}"
+
+                            <div mat-card-avatar class="author-image" *ngIf="!authorImage" 
+                            style="background-size: cover; background-color: #f5f5f5;"></div>
+
+                            <div mat-card-avatar class="author-image" *ngIf="authorImage" [ngStyle]="{'background-image': 'url(' + authorImage + ')'}"
                                 style="background-size: cover;"></div>
 
-                            <mat-card-title>{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
+                            <mat-card-title *ngIf="article.getAuthor.first_name">{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
                             </mat-card-title>
+                            <mat-card-title *ngIf="!article.getAuthor.first_name">The author has decided to keep his profile private</mat-card-title>
 
                             <div style="color: #293e40; padding-bottom: 20px;">
                                 <!-- <pre>
