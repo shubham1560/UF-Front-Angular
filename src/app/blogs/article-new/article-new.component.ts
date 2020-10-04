@@ -44,7 +44,6 @@ export class ArticleNewComponent implements OnInit {
   article;
   editorInitilized = false;
   state;
-  canPublish;
 
   ngOnInit() {
 
@@ -71,16 +70,11 @@ export class ArticleNewComponent implements OnInit {
       params => {
         var article_id = params.get("id");
         if (article_id == '1') {
-          // window.location.reload();
           this.data = {};
-          this.state = '';
-          this.article = [];
-          if (this.editorInitilized) {
-            this.editor.destroy()
-          }
+          // window.location.reload();
           this.initializeEditor();
           this.editorInitilized = true;
-          setTimeout(() => {
+          setTimeout(()=>{
             console.clear();
           }, 1000)
         }
@@ -96,15 +90,13 @@ export class ArticleNewComponent implements OnInit {
                 blocks: this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
                 version: "2.11.10"
               };
-              if (this.editorInitilized) {
-                this.editor.destroy()
+              if (!this.editorInitilized) {
+                this.initializeEditor();
+                setTimeout(()=>{
+                  console.clear();
+                }, 1000)
+      
               }
-              this.initializeEditor();
-              this.editorInitilized = true;
-              setTimeout(() => {
-                console.clear();
-              }, 1000)
-
               // console.log(this);
 
             }, error => {
@@ -202,7 +194,7 @@ export class ArticleNewComponent implements OnInit {
   updatingData;
   prevData = [];
   updateArticle(update) {
-    this.editor.save().then((outputData: any) => {
+    this.editor.save().then((outputData:any) => {
       this.updatingData = true;
       // if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
       if (outputData.blocks.length > 0) {
@@ -245,12 +237,12 @@ export class ArticleNewComponent implements OnInit {
           )
         }
       }
-      else if (outputData.blocks.length == 0) {
+      else if(outputData.blocks.length == 0){
         this.updatingData = false;
         this.openSnackBar("Please add something to the article to save!", "");
         // console.log();
       }
-      else if (this.arrayEqual(this.prevData, outputData.blocks)) {
+      else if(this.arrayEqual(this.prevData, outputData.blocks)){
         this.openSnackBar("No change in article detected!!", '')
         this.updatingData = false;
       }
@@ -291,7 +283,7 @@ export class ArticleNewComponent implements OnInit {
   }
 
 
-  arrayEqual(ary1: any[], ary2: any[]) {
+  arrayEqual(ary1:any[],ary2:any[]){
     return (ary1.join('') == ary2.join(''));
   }
 

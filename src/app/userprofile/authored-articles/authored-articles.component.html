@@ -3,9 +3,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     Sort By:
                     <button mat-button style="outline: none;" (click)="changeSort('title')">
                         Title
@@ -35,18 +35,18 @@
                         </mat-icon>
                     </button>
                 </div>
-                <div class="col-md-6">
+                <div class="col-lg-6">
                     States:
                 </div>
             </div>
         </div>
         <br>
         <br>
-        <div class="col-md-6" *ngFor="let article of articles_data.articles">
+        <div class="col-lg-6" *ngFor="let article of articles_data?.articles">
             <mat-card style="border: 0px; box-shadow: none;">
                 <!-- <a mat-button style="float: right;">Created: {{article.sys_created_on | datesAgoDate}}</a> -->
                 <mat-card-header>
-                    <mat-card-title>{{article.title}}</mat-card-title>
+                    <mat-card-title><a style="color: #293E40;" href="courses/article/{{article.id}}">{{article.title}}</a></mat-card-title>
                     <mat-card-subtitle>Updated: {{article.sys_updated_on | datesAgoDate}}</mat-card-subtitle>
                     <mat-card-subtitle *ngIf="article.workflow=='draft'">
                         The article is in draft mode, please send it for review to be published.
@@ -60,19 +60,46 @@
                     </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-actions>
-                    <button mat-button style="outline: none; margin-left: 20px;">
-                        {{article.workflow}}
-                    </button>
-                    <button mat-button style="outline: none; float: right;">
+                    <button mat-button style="outline: none;">
                         <mat-icon style="color: red;">
                             delete
                         </mat-icon>
                     </button>
-                    <a href="courses/article/{{article.id}}" mat-button style="outline: none;float: right;">
+
+                    <button mat-button style="outline: none; color:#438C9F">
+                        <!-- {{article.workflow}} -->
+                        Draft 
+                    </button> 
+                    <span style="color: #438C9F;">>>>></span>
+                    <button *ngIf = "article.workflow!='draft'" mat-button style="outline: none;color:#438C9F">
+                        <!-- {{article.workflow}} -->
+                        
+                        Sent for review 
+                    </button> 
+                    <button *ngIf= "article.workflow=='draft'" disabled mat-button style="outline: none;">
+                        <!-- {{article.workflow}} -->
+                        Sent for review 
+                    </button> 
+                    
+                    <span style="color: #438C9F;">>>>></span>
+
+                    <button *ngIf ="article.workflow=='published'" mat-button style="outline: none; color: #438C9F">
+                        <!-- {{article.workflow}} -->
+                        
+                        Published 
+                    </button>
+                    <button *ngIf ="article.workflow!='published'" disabled mat-button style="outline: none;">
+                        <!-- {{article.workflow}} -->
+                        
+                        Published 
+                    </button>
+                    
+                    
+                    <!-- <a href="courses/article/{{article.id}}" mat-button style="outline: none;float: right;">
                         <mat-icon>
                             edit
                         </mat-icon>
-                    </a>
+                    </a> -->
                 </mat-card-actions>
             </mat-card>
             <br>
