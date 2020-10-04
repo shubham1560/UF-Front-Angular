@@ -1,43 +1,14 @@
 
-.uf-article-image{
-    width: 100%;
-    height: auto;
-    text-align: center;
-    padding: 30px 10px;
-    margin: auto;
+.author-card{
+    border: 1px solid rgba(201, 201, 204, 0.48);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
 }
 
-.author-heading{
-    font-size: 12px;
-    font-weight: 300;
-    display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        color: #3c393d;
-        font-weight: lighter;
-}
-
-.author-about{
-    font-size: 10px;
-    font-weight: 200;
-}
-
-
-
-.uf-author-image{
-    width: 50px;
-    height: 50px;
-    float: left;
-    border-radius: 40px;
-    margin-right: 10px;
-}
-
-.authorImage{
-    max-height: 100%;
-    max-width: 100%;
-    border-radius: 25px;
+.author-image{
+    height: 80px;
+    width: 80px;
+    border-radius: 6px;
 }
 
 .uf-article-title{
@@ -209,3 +180,24 @@
     margin: 20px 0px;
     
   }
+
+
+.uf-social{
+    color: #3e5153;
+    align-items: center;
+    border: 1px solid #293e40;
+    border-radius: 100px;
+    display: inline-flex;
+    font-size: 1em;
+    height: 40px;
+    justify-content: center;
+    margin: 0 14px 0 0;
+    transition: all 250ms;
+    width: 40px;
+
+    &:hover{
+        color:white;
+        background-color: #293e40;
+        text-decoration: none;
+    }
+}
