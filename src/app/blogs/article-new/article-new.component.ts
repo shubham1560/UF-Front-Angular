@@ -195,7 +195,9 @@ export class ArticleNewComponent implements OnInit {
   updateArticle(update) {
     this.editor.save().then((outputData:any) => {
       this.updatingData = true;
-      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+      // if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+      if (outputData.blocks.length > 0) {
+
         // this.prevData
         // console.log(this.prevData)
         // console.log(outputData.blocks);

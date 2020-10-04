@@ -1,11 +1,11 @@
 <!-- <mat-progress-bar *ngIf="isLoading" mode="query" color="accent" style="margin: -15px;"></mat-progress-bar> -->
-<div class="cotntainer-fluid">
+<div class="cotntainer-fluid" >
     <div class="row">
         <div class="col-lg-8 col-md-12">
 
             <div id="uf-article-detail" style="padding-top: 20px;">
                 <div *ngIf="!isLoading">
-                    <div *ngFor="let block of article_body">
+                    <div *ngFor="let block of article_body ; let i = index">
 
                         <div class="uf-header" *ngIf="block.type=='header'">
                             <h1 id={{block.data.text}} *ngIf="block.data.level==1">{{block.data.text}}</h1>
@@ -23,6 +23,8 @@
                                     article
                                     <mat-icon>open_in_new</mat-icon>
                                 </a>
+                                <br>
+                                <span style="color:gray">captions and hyperlinks are removed for safety porpose</span>
                             </div>
                             <br>
                             <div *ngFor="let block of block.data.meta.result">

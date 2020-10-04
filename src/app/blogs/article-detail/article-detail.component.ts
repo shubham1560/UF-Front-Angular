@@ -97,7 +97,4 @@ export class ArticleDetailComponent implements OnInit {
     return c;
   }
 
-
-  // Html templates
-
 }
