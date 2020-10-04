@@ -27,6 +27,14 @@
                                 <span style="color:gray">captions and hyperlinks are removed for safety porpose</span>
                             </div>
                             <br>
+                            <div>
+                                <span style="color:gray">
+                                    The article mentioned here is titled: 
+                                    <span style="color: #4F9AAB">
+                                        {{block.data.meta.title}}
+                                    </span>
+                                </span>
+                            </div>
                             <div *ngFor="let block of block.data.meta.result">
                                 <div *ngIf="block.type=='image'">
                                     <img [src]="block.data.file?.url" alt="Nature" class="responsive">

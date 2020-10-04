@@ -40,6 +40,8 @@ export class ArticleDetailComponent implements OnInit {
               this.isLoading = false;
               var len = this.article.article_body.length - 1;
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
+              this.current_url = window.location.href;
+
               // console.log(this.article.getAuthor.header_image);
               // console.log(this.article.getAuthor.google_pic);
               // console.log(result);
@@ -59,21 +61,8 @@ export class ArticleDetailComponent implements OnInit {
     )
     // this.logger.logData("uf-article-detail", this)
     this.logger.logData('uf-article-detail', this)
-    setTimeout(() => {
-      this.loadOriginalImage = true;
-      // console.log("yo maan");
-    }, 6000);
-
-
-
   }
 
-
-  reload(){
-    console.log("running");
-    
-    this.ngOnInit();
-  }
 
   replacement = function(a) {
     let b = []
