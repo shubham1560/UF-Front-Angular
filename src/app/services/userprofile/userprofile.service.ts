@@ -64,8 +64,8 @@ export class UserprofileService {
     return this.httpService.post(this.url, body, {headers: this.header});
   }
 
-  getUserAuthoredArticles(sort_by){
-    this.url = `${this.base_userprofile_url}user/kb_knowledge/author/${sort_by}`;
+  getUserAuthoredArticles(sort_by, state){
+    this.url = `${this.base_userprofile_url}user/kb_knowledge/author/${sort_by}/${state}/`;
     return this.httpService.get(this.url, {headers: this.header});
   }
 

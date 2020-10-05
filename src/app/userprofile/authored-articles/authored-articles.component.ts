@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-authored-articles',
@@ -15,13 +16,27 @@ export class AuthoredArticlesComponent implements OnInit {
 
   articles_data;
   sort_by = "sys_created_on";
+  all_articles;
+  state = 'all';
   // start = 0;
   ngOnInit(): void {
-    this.userProfile.getUserAuthoredArticles(this.sort_by).subscribe(
+    this.userProfile.getUserAuthoredArticles(this.sort_by, this.state).subscribe(
       (response:any)=>{
+        // this.all_articles = response
         this.articles_data = response;
       }
     )
+  }
+
+  // filterByState(state){
+  //   this.articles_data = this.all_articles[0]
+  // }  
+
+  changeState(state_to_change: string){
+    this.state = state_to_change;
+    this.ngOnInit();  
+    console.log("called")
+    console.log(this);
   }
 
   changeSort(sort: string){

@@ -8,14 +8,14 @@
 
                 <div class="container-fluid" style="text-align: center;">
                     <!-- <div class="heading_div" style="margin: 0px -15px;"> -->
-                        <!-- <div class="heading_text">
-                            <br>
-                            <h3 style="font-weight: 100px; color: #8dbcaa;">
-                                Give us a hand by
-                                giving feedback on the
-                                material.
-                            </h3>
-                        </div> -->
+                    <div class="heading_text">
+                        <br>
+                        <h3 style="font-weight: 100px; color: #8dbcaa;">
+                            Give us a hand by
+                            giving feedback on the
+                            material.
+                        </h3>
+                    </div>
                     <!-- </div> -->
                 </div>
                 <br><br>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="row" *ngIf="dataLoading">
-                        <div class="col-lg-4 col-sm-6 col-12" *ngFor="let n of [1,2,3,4]">
+                        <div class="col-lg-4 col-sm-6 col-12" *ngFor="let n of [1,2,3]">
                             <mat-card class="mat-card">
                                 <mat-card-header>
                                     <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
@@ -60,9 +60,9 @@
                                     <mat-card-header>
                                         <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
                                         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                        <!-- <div mat-card-avatar
+                                        <div mat-card-avatar
                                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                            style="background-size: cover;"></div> -->
+                                            style="background-size: cover;"></div>
                                     </mat-card-header>
                                     <mat-card-content>
                                         <p>
@@ -73,8 +73,9 @@
                             </a>
                         </div>
                     </div>
-                    <hr>
-                    <div class="row">
+                    <div class="row" *ngIf="isLoggedIn">
+                        <hr>
+
                         <div class="col-lg-4">
                             <app-continue-courses></app-continue-courses>
                         </div>
@@ -86,7 +87,7 @@
                         </div>
                     </div>
                 </div>
-                
+
 
             </div>
         </div>
@@ -94,8 +95,8 @@
             <app-quotes></app-quotes>
 
 
-            <hr>
-            
+            <!-- <hr> -->
+
             <!-- <app-read-articles></app-read-articles> -->
         </div>
 

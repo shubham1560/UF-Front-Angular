@@ -6,16 +6,22 @@
 
         <div class="col-md-4">
             State
-<br>
-            Draft
             <br>
-            Review
+            <span (click)="changeState('all')">
+                All
+
+            </span>
+            <br>
+            <span (click)="changeState('draft')">
+                Draft
+            </span>
+            <br>
+            <span (click)="changeState('review')">
+                Review
+            </span>
             <br>
             Published
             <br>
-            Retired
-            <br>
-            Outdated
         </div>
 
 
@@ -58,8 +64,11 @@
                     <mat-card-header>
                         <mat-card-title><a style="color: #293E40;"
                                 href="courses/article/{{article.id}}">{{article.title}}</a></mat-card-title>
-                        <mat-card-subtitle>Updated: {{article.sys_updated_on | datesAgoDate}}</mat-card-subtitle>
-                        <mat-card-subtitle *ngIf="article.workflow=='draft'">
+                        <mat-card-subtitle>Updated: {{article.sys_updated_on | datesAgoDate}}
+                            <br>
+                            Created: {{article.sys_created_on | datesAgoDate}}
+                        </mat-card-subtitle>
+                        <!-- <mat-card-subtitle *ngIf="article.workflow=='draft'">
                             The article is in draft mode, please send it for review to be published.
                         </mat-card-subtitle>
                         <mat-card-subtitle *ngIf="article.workflow=='review'">
@@ -68,7 +77,7 @@
                         </mat-card-subtitle>
                         <mat-card-subtitle *ngIf="article.workflow=='published'">
                             The article is published, if you want you can retire it
-                        </mat-card-subtitle>
+                        </mat-card-subtitle> -->
                     </mat-card-header>
                     <mat-card-actions>
                         <button mat-button style="outline: none;">
