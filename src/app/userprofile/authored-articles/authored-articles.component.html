@@ -6,21 +6,37 @@
 
         <div class="col-md-4">
             State
-            <br>
-            <span (click)="changeState('all')">
+            <br> <br>
+            <button mat-button (click)="changeState('all')" class="uf-button">
+                <mat-icon *ngIf="state=='all'">
+                    send
+                </mat-icon>
                 All
 
-            </span>
+            </button>
             <br>
-            <span (click)="changeState('draft')">
+            <button mat-button (click)="changeState('draft')" class="uf-button">
+                <mat-icon *ngIf="state=='draft'">
+                    send
+                </mat-icon>
+                
                 Draft
-            </span>
+            </button>
             <br>
-            <span (click)="changeState('review')">
+            <button mat-button (click)="changeState('review')" class="uf-button">
+                <mat-icon *ngIf="state=='review'">
+                    send
+                </mat-icon>
+                
                 Review
-            </span>
+            </button>
             <br>
-            Published
+            <button mat-button (click)='changeState("published")' class="uf-button">
+                <mat-icon *ngIf="state=='published'">
+                    send
+                </mat-icon>
+                Published
+            </button>
             <br>
         </div>
 
