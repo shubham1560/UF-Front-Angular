@@ -22,7 +22,7 @@ export class AuthorGuard implements CanActivate {
       // return true;
       return this.httpClient.get(`${this.userProfile.base_userprofile_url}group/Author/`).pipe(
         map((res:boolean) => {
-          console.log(res);
+          // console.log(res);
           // return res;
           if (res){
             return true;

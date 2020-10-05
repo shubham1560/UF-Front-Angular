@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
       this.userService.inGroup('Authors').subscribe(
         response => {
           this.isAuthor = response;
-          console.log(response);
+          // console.log(response);
         }
       )
     }

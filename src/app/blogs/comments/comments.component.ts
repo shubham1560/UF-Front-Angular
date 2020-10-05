@@ -30,7 +30,7 @@ export class CommentsComponent implements OnInit {
         this.httpService.getRelatedComments(this.article_from_modal.name).subscribe(
           (response: any) => {
             this.data["response"] = response.data;
-            console.log(response)
+            // console.log(response)
           },
           error => {
             this.data["error"] = error;

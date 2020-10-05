@@ -52,7 +52,7 @@ export class ArticleNewComponent implements OnInit {
 
     this.userService.inGroup("Authors").subscribe(
       (response: Boolean) => {
-        console.log(response);
+        // console.log(response);
         if (response) {
           return true;
         }
@@ -100,7 +100,7 @@ export class ArticleNewComponent implements OnInit {
               // console.log(this);
 
             }, error => {
-              console.log(error);
+              // console.log(error);
             }
           )
         }

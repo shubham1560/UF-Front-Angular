@@ -35,8 +35,8 @@ export class AuthoredArticlesComponent implements OnInit {
   changeState(state_to_change: string){
     this.state = state_to_change;
     this.ngOnInit();  
-    console.log("called")
-    console.log(this);
+    // console.log("called")
+    // console.log(this);
   }
 
   changeSort(sort: string){

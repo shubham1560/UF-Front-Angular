@@ -34,7 +34,7 @@ export class ExplorerootsComponent implements OnInit {
     if (cachedResponse) {
       this.products = cachedResponse.body.bases;
       this.dataLoading = false;
-      console.log("from cache");
+      // console.log("from cache");
     }
     else {
       setTimeout(() => {

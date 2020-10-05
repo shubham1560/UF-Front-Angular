@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             window.location.reload();
             window.location.href = "welcome";
           }
-          console.log("successfull");
+          // console.log("successfull");
           window.location.href = "welcome"
         },
         error => {
@@ -140,7 +140,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
             this.cookieService.set('token', response.token);
             localStorage.setItem('token', response.token);
             // this.router.navigate(['/welcome']);
-            console.log("succesful login google");
+            // console.log("succesful login google");
             if (localStorage.getItem("redirect_url")) {
               window.location.href = localStorage.getItem("redirect_url");
             } else {
