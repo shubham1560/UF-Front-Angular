@@ -24,7 +24,7 @@ html, body { height: 100%; }
 body { margin: 0;
      font-family: Roboto, "Helvetica Neue", sans-serif;
     // background-color: var(--tertiary-color);
-    background-color: #f6f7f7 !important;
+    background-color: #f9f9f97d !important;
     }
 
 div:focus{
@@ -65,7 +65,7 @@ button{
             color: #425051;
         }
         .uf-auth-form-body{
-            border: 1px solid rgba(0,0,0,.26);
+            // border: 1px solid rgba(0,0,0,.26);
             border-radius: 5px;
             padding: 15px;
             background-color: white;
@@ -118,7 +118,7 @@ button{
             }
         }
         .uf-auth-form-footer{
-            border: 1px solid rgba(0,0,0,.26);
+            // border: 1px solid rgba(0,0,0,.26);
             font-size: 12px;
             border-radius: 5px;
             padding: 10px;

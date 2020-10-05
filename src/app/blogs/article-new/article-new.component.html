@@ -1,37 +1,51 @@
 <mat-progress-bar mode="query" color="primary" *ngIf="updatingData"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
-<div id="uf-breadcrumb" style="margin-top: 20px;">
-    <div class="breadcrumb-pagination">
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
 
-        <div [ngClass]="{'completed' : state=='review' || state=='published', 'active': state =='draft'}"
-        matTooltip="The article is in draft mode!">
-            <mat-icon>edit</mat-icon>
-            <p>
-            Draft
-                <br>
-            </p>
         </div>
-
-        <div [ngClass]="{'completed' : state=='published', 'active': state =='review'}"
-            matTooltip="The article has been sent for review! The moderators will be back with results">
-            <mat-icon>publish</mat-icon>
-            <p>Review <br>
-            </p>
+        <div class="col-lg-6">
+            <div id="uf-breadcrumb" style="margin-top: 20px;">
+                <div class="breadcrumb-pagination">
+            
+            
+                    <div [ngClass]="{'completed' : state=='review' || state=='published', 'active': state =='draft'}"
+                    matTooltip="The article is in draft mode!">
+                        <mat-icon>edit</mat-icon>
+                        <p>
+                        Draft
+                            <br>
+                        </p>
+                    </div>
+            
+                    <div [ngClass]="{'completed' : state=='published', 'active': state =='review'}"
+                        matTooltip="The article has been sent for review! The moderators will be back with results">
+                        <mat-icon>publish</mat-icon>
+                        <p>Review <br>
+                        </p>
+                    </div>
+            
+                    <div [ngClass]="{'active': state =='published'}"
+                        matTooltip="The article is published, any change will send it to draft mode!">
+                        <mat-icon>published_with_changes</mat-icon>
+                        <p>Published
+                        </p>
+                    </div>
+            
+                </div>
+            </div>
         </div>
+        <div class="col-lg-3">
 
-        <div [ngClass]="{'active': state =='published'}"
-            matTooltip="The article is published, any change will send it to draft mode!">
-            <mat-icon>published_with_changes</mat-icon>
-            <p>Published
-            </p>
         </div>
-
     </div>
 </div>
-<div class="container">
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-3">
             <div id="uf-new-article" style="text-align: right; padding-top: 40px;">
                 <button mat-button color="primary" (click)="updateArticle(true)">
                     <span *ngIf="updatingData">
@@ -62,9 +76,12 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-lg-6">
             <div id="editorjs">
             </div>
+        </div>
+        <div class="col-lg-3" style="padding-top: 40px;">
+            Roots and Category mangement
         </div>
     </div>
 </div>

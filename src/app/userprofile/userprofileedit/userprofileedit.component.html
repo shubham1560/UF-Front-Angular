@@ -9,17 +9,17 @@
         <br>
         <form (ngSubmit)="editUserDetail()" [formGroup]="userProfileEditForm">
 
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>First Name</mat-label>
                 <input matInput type="email" formControlName="first_name">
                 <mat-error>First name required</mat-error>
             </mat-form-field>
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>Last Name</mat-label>
                 <input matInput type="text" formControlName="last_name">
             </mat-form-field>
 
-            <mat-form-field appearance="outline" style="width: 100%; padding: 0px 10px;">
+            <mat-form-field appearance="legacy" style="width: 100%; padding: 0px 10px;">
                 <mat-label>About</mat-label>
                 <textarea rows="2" matInput formControlName="about"></textarea>
             </mat-form-field>
@@ -28,24 +28,24 @@
                 Social: 
             <br>
 
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>Facebook Link</mat-label>
                 <input matInput type="email" formControlName="facebook_link">
             </mat-form-field>
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>Instagram Link</mat-label>
                 <input matInput type="text" formControlName="instagram_link">
             </mat-form-field>
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>Linkedin Link</mat-label>
                 <input matInput type="email" formControlName="linkedin_link">
             </mat-form-field>
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>Twitter Link</mat-label>
                 <input matInput type="text" formControlName="twitter_link">
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="edit-form">
+            <mat-form-field appearance="legacy" class="edit-form">
                 <mat-label>External Website Link</mat-label>
                 <input matInput type="text" formControlName="external_link">
             </mat-form-field>
