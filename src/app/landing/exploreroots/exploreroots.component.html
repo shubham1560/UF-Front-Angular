@@ -6,7 +6,7 @@
         <div class="col-md-8" style="padding: 0px;">
             <div id="uf-exploreroots">
 
-                <div class="container-fluid" style="text-align: center;">
+                <!-- <div class="container-fluid" style="text-align: center;">
                     <div class="heading_div" style="margin: 0px -15px;">
                         <div class="heading_text">
                             <h3 style="font-weight: 100px; color: #f8f9f9;">
@@ -16,7 +16,7 @@
                             </h3>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <br><br>
 
                 <div class="container-fluid">
@@ -59,9 +59,9 @@
                                     <mat-card-header>
                                         <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
                                         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                        <div mat-card-avatar
+                                        <!-- <div mat-card-avatar
                                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                            style="background-size: cover;"></div>
+                                            style="background-size: cover;"></div> -->
                                     </mat-card-header>
                                     <mat-card-content>
                                         <p>
@@ -72,68 +72,29 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 
-                    <div class="row" *ngIf="!dataLoading" style="margin: 0px;">
-                        
-                        <div class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;" *ngFor="let product of products">
-                            <div style="margin: auto;">
-                                <mat-card class="products-card" style="box-shadow: none;" matRipple [matRippleColor]="myColor">
-                                    <div class="card_div" routerLink="/roots/{{product.id}}/root/">
-                                        <div [hidden]="imageLoaded"
-                                            [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                            class="image_div">
-                                        </div>
-                                        <div *ngIf="startLoadingImages" [hidden]="!imageLoaded"
-                                            [ngStyle]="{'background-image': 'url(' + product.real_image + ')'}" class="image_div">
-                                        </div>
-            
-                                        <mat-card-content style="max-width: 200px;">
-                                            <p>
-                                                <b>{{product.title}}</b>
-                                                <br>
-                                            </p>
-                                        </mat-card-content>
-                                    </div>
-                                </mat-card>
-                            </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <app-continue-courses></app-continue-courses>
                         </div>
-            
-                    </div> -->
-                    <!-- <div class="row" *ngIf="dataLoading" style="margin: 0px;">
-                        <div id="ghost" class="col-lg-3 col-md-6 col-6" style="margin-bottom: 10px;"
-                            *ngFor="let product of [1,2,3,4]">
-                            <div style="margin: auto;">
-                                <mat-card class="products-card ghost" style=" width: auto; margin: auto;">
-                                    <div class="card_div" matRipple [matRippleColor]="myColor">
-                                        <div style="background-color: lightgray;" class="image_div"></div>
-                                        <mat-card-content>
-                                            <p
-                                                style="margin: auto;margin-top: 20px;height: 20px; width: 100px; background-color: lightgray;">
-                                            </p>
-                                        </mat-card-content>
-                                    </div>
-                                </mat-card>
-                            </div>
+                        <div class="col-lg-4">
+                            <app-recently-viewed></app-recently-viewed>
                         </div>
-                    </div> -->
+                        <div class="col-lg-4">
+                            <app-bookmarked></app-bookmarked>
+                        </div>
+                    </div>
                 </div>
+                
+
             </div>
         </div>
         <div class="col-md-4" *ngIf="isLoggedIn" style="padding: 20px; background-color: white;">
             <app-quotes></app-quotes>
 
-            <app-continue-courses></app-continue-courses>
 
             <hr>
-            <div class="row">
-                <div class="col-lg-6">
-                    <app-recently-viewed></app-recently-viewed>
-                </div>
-                <div class="col-lg-6">
-                    <app-bookmarked></app-bookmarked>
-                </div>
-            </div>
+            
             <!-- <app-read-articles></app-read-articles> -->
         </div>
 
