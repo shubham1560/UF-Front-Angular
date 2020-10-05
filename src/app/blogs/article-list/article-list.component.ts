@@ -84,6 +84,7 @@ export class ArticleListComponent implements OnInit {
 
         this.courseName = response.course;
         this.sections = response.sections;
+        this.deleteSectionsWithoutArticles(this.sections);
         if (!this.article) {
           this.article = this.sections[0].articles[0].id;
           if (!this.course_for_modal.category) {
@@ -176,4 +177,22 @@ export class ArticleListComponent implements OnInit {
     }
   }
 
+
+  deleteSectionsWithoutArticles(sections){
+    var index_to_delete = [];
+    var index = 0;
+    console.log(sections);
+    sections.forEach(element => {
+      if (element["articles"].length == 0){
+        index_to_delete.push(index);
+        index += 1;
+      }
+    });
+    index_to_delete.reverse().forEach(element => {
+      sections.splice(element, 1);
+    });
+    // console.log(sections);
+    // console.log(index_to_delete.reverse());
+
+  }
 }
