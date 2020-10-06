@@ -7,6 +7,8 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Router } from '@angular/router';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
+import { Title } from '@angular/platform-browser';
+
 
 declare const gapi: any;
 
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private cookieService: CookieService,
     private loggerService: LoggerService,
     private socialService: SocialAuthService,
+    private titleService: Title
   ) { }
 
   signInWithFB(): void {
@@ -47,6 +50,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.titleService.setTitle("Sign in to SortedTree")
     this.socialService.authState.subscribe((user) => {
       var access_token = user.authToken;
       this.authService.login_facebook(access_token).subscribe(

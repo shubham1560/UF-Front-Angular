@@ -32,7 +32,7 @@ export class ExplorerootsComponent implements OnInit {
 
   ngOnInit(): void {
     const cachedResponse: HttpResponse<any> = this.cacheService.read(`${this.urlService.base_url}knowledge/knowledge_base/get_knowledge_bases/`);
-    this.titleService.setTitle("Sorted Tree");
+    this.titleService.setTitle("Home - SortedTree");
     if (cachedResponse) {
       this.products = cachedResponse.body.bases;
       this.dataLoading = false;

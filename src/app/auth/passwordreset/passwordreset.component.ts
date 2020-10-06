@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-passwordreset',
@@ -21,13 +23,15 @@ export class PasswordresetComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private loggerService: LoggerService) { }
+    private loggerService: LoggerService,
+    private titleService: Title
+    ) { }
 
   ngOnInit() {
     this.resetForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
     })
-
+    this.titleService.setTitle("Forgot your password? SortedTree");
     this.loggerService.logData("auth-passwordreset", this);
   }
 

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { debounceTime } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { Title } from '@angular/platform-browser';
+
 
 // function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
 //   const p1 = c.get('password');
@@ -53,10 +55,13 @@ export class RegisterComponent implements OnInit {
   registering = false;
   constructor(private fb: FormBuilder,
     private authService: AuthService,
-    private loggerService: LoggerService) { }
+    private loggerService: LoggerService,
+    private titleService: Title
+    ) { }
 
 
   ngOnInit() {
+    this.titleService.setTitle("Sign up to SortedTree");
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
