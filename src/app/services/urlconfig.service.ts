@@ -8,11 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class UrlconfigService {
 
-  // base_url = "http://127.0.0.1:8000/";           //local
-  // base_url = "https://database1560.herokuapp.com/";          //dev
-  // base_url = "https://uf-preprod.herokuapp.com/";          //preprod
-  // base_url = "https://uf-api.herokuapp.com/"            //prod
-
   base_url = environment.url;
   
   constructor(
