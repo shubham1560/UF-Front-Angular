@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
@@ -14,6 +15,7 @@ export class ArticleDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private logger: LoggerService,
     private knowledge: DataService,
+    private titleService: Title,
   ) { }
 
   article_id: string;
@@ -41,7 +43,7 @@ export class ArticleDetailComponent implements OnInit {
               var len = this.article.article_body.length - 1;
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
               this.current_url = window.location.href;
-
+              this.titleService.setTitle(this.article_body[0].data.text);
               // console.log(this.article.getAuthor.header_image);
               // console.log(this.article.getAuthor.google_pic);
               // console.log(result);

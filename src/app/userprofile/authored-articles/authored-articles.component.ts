@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
-import { state } from '@angular/animations';
+// import { state } from '@angular/animations';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-authored-articles',
@@ -13,6 +15,7 @@ export class AuthoredArticlesComponent implements OnInit {
   constructor(
     private userProfile: UserprofileService,
     private loggerService: LoggerService,
+    private titleService: Title
   ) { }
 
 
@@ -30,7 +33,7 @@ export class AuthoredArticlesComponent implements OnInit {
         this.isLoading = false;
       }
     )
-
+    this.titleService.setTitle("My articles");
     this.loggerService.logData("uf-authored-articles", this);
 
   }

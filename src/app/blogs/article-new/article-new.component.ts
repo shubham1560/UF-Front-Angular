@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import EditorJS from '@editorjs/editorjs';
 import header from '@editorjs/header';
@@ -36,6 +37,7 @@ export class ArticleNewComponent implements OnInit {
     private route: Router,
     private _snackBar: MatSnackBar,
     private loggerService: LoggerService,
+    private titleService: Title
   ) { }
 
   editor: EditorJS
@@ -46,7 +48,7 @@ export class ArticleNewComponent implements OnInit {
   state;
 
   ngOnInit() {
-
+    this.titleService.setTitle("Add new article")
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
     // this.replacement(this.a);
 

@@ -7,6 +7,7 @@ import { DeleteusermodalComponent } from 'src/app/userprofile/deleteusermodal/de
 import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import { UserprofileeditComponent } from 'src/app/userprofile/userprofileedit/userprofileedit.component';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
     private dialog: MatDialog,
     private http: HttpClient,
     private url: UrlconfigService,
+    private titleService: Title,
   ) { }
 
   image: string = "";
@@ -46,6 +48,7 @@ export class ProfileComponent implements OnInit {
         this.display_name = this.response.user.first_name[0]+this.response.user.last_name[0]
         this.email = this.response.user.email;
         this.about = this.response.user.about;
+        this.titleService.setTitle(this.name);
       },
       error => {
         this.error = error;

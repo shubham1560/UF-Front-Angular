@@ -1,4 +1,4 @@
-<div *ngIf="this.isLoading">
+<div *ngIf="this.isLoading" id="uf-breadcrumbs">
     <div class="d-inline" mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
         <mat-icon matSuffix *ngIf="b==0">
             account_tree
