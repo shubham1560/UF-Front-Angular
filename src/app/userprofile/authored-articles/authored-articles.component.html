@@ -1,4 +1,7 @@
 <!-- <p>authored-articles works!</p> -->
+
+<mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
+<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
 <br><br>
 
 <div class="container">

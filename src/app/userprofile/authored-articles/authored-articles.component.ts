@@ -18,12 +18,14 @@ export class AuthoredArticlesComponent implements OnInit {
   sort_by = "sys_created_on";
   all_articles;
   state = 'all';
+  isLoading =false;
   // start = 0;
   ngOnInit(): void {
     this.userProfile.getUserAuthoredArticles(this.sort_by, this.state).subscribe(
       (response:any)=>{
         // this.all_articles = response
         this.articles_data = response;
+        this.isLoading = false;
       }
     )
   }
@@ -34,12 +36,14 @@ export class AuthoredArticlesComponent implements OnInit {
 
   changeState(state_to_change: string){
     this.state = state_to_change;
+    this.isLoading = true;
     this.ngOnInit();  
     // console.log("called")
     // console.log(this);
   }
 
   changeSort(sort: string){
+    this.isLoading = true;
     if (sort == this.sort_by){
       if(sort[0]=="-"){
       this.sort_by = sort.substring(1, sort.length)
