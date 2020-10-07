@@ -16,6 +16,7 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { KbuseComponent } from './kbuse/kbuse.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SafeurlPipe } from './pipes/safeurl.pipe';
+import { CoursesComponent } from './courses/courses.component';
 
 
 
@@ -31,6 +32,7 @@ import { SafeurlPipe } from './pipes/safeurl.pipe';
     KbuseComponent,
     FeedbackComponent,
     SafeurlPipe,
+    CoursesComponent,
     ],
   imports: [
     CommonModule,

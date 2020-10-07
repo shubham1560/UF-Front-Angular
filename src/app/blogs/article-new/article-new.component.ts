@@ -20,6 +20,8 @@ import { UserprofileService } from 'src/app/services/userprofile/userprofile.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CoursesComponent } from '../courses/courses.component';
 
 
 @Component({
@@ -37,7 +39,8 @@ export class ArticleNewComponent implements OnInit {
     private route: Router,
     private _snackBar: MatSnackBar,
     private loggerService: LoggerService,
-    private titleService: Title
+    private titleService: Title,
+    public dialog: MatDialog
   ) { }
 
   editor: EditorJS
@@ -287,6 +290,12 @@ export class ArticleNewComponent implements OnInit {
 
   arrayEqual(ary1:any[],ary2:any[]){
     return (ary1.join('') == ary2.join(''));
+  }
+
+
+  addToCourse(){
+    const dialogRef = this.dialog.open(CoursesComponent);
+    console.log("adding the modal");
   }
 
   // arrayEqual(a, b){
