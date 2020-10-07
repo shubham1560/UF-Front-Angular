@@ -198,8 +198,8 @@ export class ArticleNewComponent implements OnInit {
   updateArticle(update) {
     this.editor.save().then((outputData:any) => {
       this.updatingData = true;
-      // if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
-      if (outputData.blocks.length > 0) {
+      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+      // if (outputData.blocks.length > 0) {
 
         // this.prevData
         // console.log(this.prevData)
@@ -245,7 +245,7 @@ export class ArticleNewComponent implements OnInit {
         // console.log();
       }
       else if(this.arrayEqual(this.prevData, outputData.blocks)){
-        this.openSnackBar("No change in article detected!!", '')
+        this.openSnackBar("No change in article detected, change in spaces are not detected, please add in some words to get the change detection!!", '')
         this.updatingData = false;
       }
     }).catch((error) => {
