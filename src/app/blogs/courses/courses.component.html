@@ -1,4 +1,7 @@
 
+<pre>
+    {{data | json}}
+</pre>
 
 <h6 mat-dialog-title>Click on the course to add the article in it</h6>
 
@@ -22,9 +25,9 @@
             <mat-card-content>
                 {{course.description}}
             </mat-card-content>
-            <mat-dialog-actions align="end">
+            <!-- <mat-dialog-actions align="end">
                 <button mat-button (click)="filterData('jan')" cdkFocusInitial>Save</button>
-              </mat-dialog-actions>
+              </mat-dialog-actions> -->
         </mat-card>
     </div>
 </mat-dialog-content>

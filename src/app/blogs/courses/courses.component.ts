@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ArticleListComponent } from '../article-list/article-list.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -12,13 +13,17 @@ export class CoursesComponent implements OnInit {
 
   constructor(
     private knowledgeService: DataService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private router: ActivatedRoute,
+    public dialogRef: MatDialogRef<CoursesComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   courses;
   filteredCourses = [];
   name;
   input;
+  article_id = this.data.article_id;
   ngOnInit(): void {
     this.knowledgeService.getAllCourses().subscribe(
       (response:any) =>{
@@ -40,6 +45,7 @@ export class CoursesComponent implements OnInit {
   check_user = function(w){
     console.log(w);
   }
+
   filterData(keyword){
     console.log(keyword);
     this.filteredCourses = [];
@@ -50,11 +56,22 @@ export class CoursesComponent implements OnInit {
     });
   }
   
-  addToCourse(id){
-    console.log(id);
+  addToCourse(course_id){
+    this.knowledgeService.AddArticleToCourse(course_id, this.article_id).subscribe(
+      response => {
+        console.log(response);
+        
+      }
+    )
+    console.log(course_id, this.article_id);
   }
 
   seeDetails(course) {
+    // this.router.paramMap.subscribe(
+    //   params => {
+    //     console.log(params);
+    //   }
+    // )
     // console.log("Open modal")
     const dialogRef = this.dialog.open(ArticleListComponent, {
       data: { category: course },

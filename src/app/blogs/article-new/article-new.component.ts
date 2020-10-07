@@ -294,7 +294,9 @@ export class ArticleNewComponent implements OnInit {
 
 
   addToCourse(){
-    const dialogRef = this.dialog.open(CoursesComponent);
+    const dialogRef = this.dialog.open(CoursesComponent, {
+      data: {article_id : this.id }
+    });
     console.log("adding the modal");
   }
 
