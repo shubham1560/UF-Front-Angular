@@ -16,14 +16,42 @@ export class CoursesComponent implements OnInit {
   ) { }
 
   courses;
-
+  filteredCourses = [];
+  name;
+  input;
   ngOnInit(): void {
     this.knowledgeService.getAllCourses().subscribe(
       (response:any) =>{
         this.courses = response;
         // console.log(response);
+        this.filterData("");
       }
     )
+    
+    console.log(this);
+  }
+
+
+  call(){
+    console.log("called");  
+  }
+
+
+  check_user = function(w){
+    console.log(w);
+  }
+  filterData(keyword){
+    console.log(keyword);
+    this.filteredCourses = [];
+    this.courses.forEach(element => {
+      if (element["label"].toLowerCase().includes(keyword.toLowerCase())){
+        this.filteredCourses.push(element);
+      }
+    });
+  }
+  
+  addToCourse(id){
+    console.log(id);
   }
 
   seeDetails(course) {

@@ -1,28 +1,30 @@
-<!-- <p>courses works!</p> -->
-<!-- <pre>
-    {{courses | json}}
-</pre> -->
 
-<div *ngFor="let course of courses">
-    <!-- <pre>
-    {{course | json}}
-</pre> -->
-    <mat-card class="example-card">
-        <mat-card-header>
-            
-            <mat-card-title>{{course.label}}</mat-card-title>
-            <mat-card-subtitle>{{course.get_parent_knowledgebase.label}}</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            {{course.description}}
-          </mat-card-content>
-        <mat-card-actions style="text-align: right;">
-            <button mat-button (click)="seeDetails(course.id)" style="outline: none">
-                <mat-icon>
-                    info
-                </mat-icon>
-            </button>
-        </mat-card-actions>
-    </mat-card>
 
-</div>
+<h6 mat-dialog-title>Click on the course to add the article in it</h6>
+
+<input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
+<br>
+
+<mat-dialog-content class="mat-typography">
+    <div *ngFor="let course of filteredCourses">
+        <mat-card style="margin-bottom: 20px; padding: 5px;">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"> 
+                    <button mat-icon-button (click)="seeDetails(course.id)" style="outline: none;">
+                        <mat-icon>
+                            info
+                        </mat-icon>
+                    </button>
+                </div>
+                <mat-card-title (click)="addToCourse(course.id)">{{course.label}}</mat-card-title>
+                <mat-card-subtitle>{{course.get_parent_knowledgebase.label}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                {{course.description}}
+            </mat-card-content>
+            <mat-dialog-actions align="end">
+                <button mat-button (click)="filterData('jan')" cdkFocusInitial>Save</button>
+              </mat-dialog-actions>
+        </mat-card>
+    </div>
+</mat-dialog-content>

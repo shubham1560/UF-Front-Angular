@@ -17,7 +17,7 @@ import { KbuseComponent } from './kbuse/kbuse.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { SafeurlPipe } from './pipes/safeurl.pipe';
 import { CoursesComponent } from './courses/courses.component';
-
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import { CoursesComponent } from './courses/courses.component';
     ReactiveFormsModule,
     BlogsRoutingModule,
     MaterialModule,
+    FormsModule
   ],
   providers: [LoggerService, AuthService, DataService],
 })
