@@ -109,7 +109,7 @@ export class ArticleListComponent implements OnInit {
     var url = `courses/${this.course}/${article_id}`
     this.markViewed(article_id)
     if (this.course_for_modal.category) {
-      window.open("#/" + url);
+      window.open(url);
     } else {
       this.router.navigate(['courses', this.course, article_id])
     }

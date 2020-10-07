@@ -132,5 +132,9 @@ export class DataService {
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
+  getAllCourses(){
+    this.called_url = `${this.base_knowledge_url}kb_category/courses/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
   
 }
