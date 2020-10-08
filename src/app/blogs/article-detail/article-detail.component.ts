@@ -27,6 +27,9 @@ export class ArticleDetailComponent implements OnInit {
   category;
   current_url = window.location.href;
   article_body;
+  sections;
+  breadCrumb;
+  initCourse;
 
   ngOnInit() {
     this.route.paramMap.subscribe(
@@ -59,32 +62,85 @@ export class ArticleDetailComponent implements OnInit {
             }
           )
         }
+        // params.get("").
+        setTimeout(() => {
+          if (this.category != this.initCourse) {
+            this.knowledge.getRelatedSectionAndArticles(this.category).subscribe(
+              (response: any) => {
+                this.sections = response.sections;
+                // console.log("running");
+                // console.log(this.sections);
+                this.fetchArticles();
+                this.setNextPrevious();
+                // console.log(this);
+                this.initCourse = params.get("category");
+              },
+              error => {
+                
+              }
+            )
+          }
+          else {
+            this.setNextPrevious();
+          }
+        }, 1000)
+
+
       }
     )
     // this.logger.logData("uf-article-detail", this)
     this.logger.logData('uf-article-detail', this)
   }
 
+  articles = [];
+  fetchArticles() {
+    this.articles = [];
+    this.sections.forEach(element => {
+      element["articles"].forEach(element => {
+        this.articles.push(element);
+      });
+    });
+  }
 
-  replacement = function(a) {
+  setNextPrevious() {
+    var counter = 0
+    this.articles.forEach(element => {
+      if (element["id"] == this.article_id) {
+        if (counter != 0) {
+          this.previousArticle = this.articles[counter - 1];
+        }
+        if(counter == 0){
+          this.previousArticle = null;
+        }
+        if (counter < this.articles.length) {
+          this.nextArticle = this.articles[counter + 1];
+        }
+      }
+      counter += 1;
+    })
+  }
+  previousArticle;
+  nextArticle;
+
+  replacement = function (a) {
     let b = []
     let c = []
     let j = 0
-    for (var i = 0; i < a.length; i++) { 
+    for (var i = 0; i < a.length; i++) {
       if (a[i] == "{") {
-        b.push("{"); 
-      } 
-      if (a[i] == "}") { 
-        b.pop(); 
-      } 
+        b.push("{");
+      }
+      if (a[i] == "}") {
+        b.pop();
+      }
       if (b.length == 0) {
-        if (a[i] == ',') { 
-          c.push(JSON.parse(a.substring(j, i)))  ;
-          j = i+1
-        } 
-      } 
+        if (a[i] == ',') {
+          c.push(JSON.parse(a.substring(j, i)));
+          j = i + 1
+        }
+      }
     }
-    c.push(JSON.parse(a.substring(j, a.length)))  ;
+    c.push(JSON.parse(a.substring(j, a.length)));
     return c;
   }
 

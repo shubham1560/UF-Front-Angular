@@ -1,7 +1,7 @@
 <!-- <mat-progress-bar *ngIf="isLoading" mode="query" color="accent" style="margin: -15px;"></mat-progress-bar> -->
 <div class="cotntainer-fluid">
     <div class="row">
-        <div class="col-lg-8 col-md-12">
+        <div class="col-lg-8">
 
             <div id="uf-article-detail" style="padding-top: 20px;">
                 <div *ngIf="!isLoading">
@@ -189,7 +189,6 @@
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                     <!-- 
                     <pre>
@@ -199,7 +198,31 @@
 
                     <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
                     <br><br>
+                    <div class="row">
+                        <div class="col-md-4" style="text-align: left;">
+                            <!-- {{previousArticle | json}} -->
+                            <a routerLink="/courses/{{category}}/{{previousArticle.id}}"  *ngIf="previousArticle">
+                                <!-- <mat-icon>
+                                    navigate_before
+                                </mat-icon> -->
+                                Previous
+                            </a>
+                        </div>
+                        <div class="col-md-4" style="text-align: center;">
+                            Follow the trail
+                        </div>
+                        <div class="col-md-4" style="text-align: right;" >
+                            <!-- {{nextArticle | json}} -->
+                            <a routerLink="/courses/{{category}}/{{nextArticle.id}}" *ngIf="nextArticle">
+                                <!-- <mat-icon>
+                                    navigate_next
+                                </mat-icon> -->
+                                Next
+                            </a>
 
+                        </div>
+                    </div>
+                    <br>
                     <mat-card class="author-card">
                         <mat-card-header>
 
@@ -283,7 +306,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-12">
+        <div class="col-lg-4 .d-none .d-lg-block">
             <!-- Well Well Well -->
 
             <br>
