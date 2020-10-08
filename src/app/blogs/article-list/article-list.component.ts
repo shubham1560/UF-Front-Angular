@@ -188,7 +188,7 @@ export class ArticleListComponent implements OnInit {
         index += 1;
       }
     });
-    console.log(id_to_delete);
+    // console.log(id_to_delete);
     var final_sections = []
     sections.forEach(element => {
       if(!id_to_delete.includes(element["id"])){
