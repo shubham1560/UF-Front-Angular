@@ -1,13 +1,13 @@
 <div id="uf-bookmarked">
-    <div *ngIf="!bookmarkedArticles">
+    <!-- <div *ngIf="bookmarkedArticles.length==0">
 
         <p style="color: #425051;">{{title}}</p>
 
         You have not bookmarked any articles yet!
-    </div>
+    </div> -->
 
 
-    <div *ngIf="bookmarkedArticles">
+    <div *ngIf="bookmarkedArticles.length>0">
         <p style="color: #425051;">{{title}}</p>
         <div class="row">
             <div class="col-12" *ngFor="let article of bookmarkedArticles">

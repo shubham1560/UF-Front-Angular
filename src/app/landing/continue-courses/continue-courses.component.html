@@ -1,4 +1,4 @@
-<div id="uf-recently-viewed-course" style="color: #425051">
+<div id="uf-recently-viewed-course" *ngIf="courses.length>0" style="color: #425051">
     <p>Continue learning about </p>
     <div *ngIf="courses">
         <div *ngFor="let course of courses">
@@ -26,7 +26,7 @@
             </a>
         </div>
     </div>
-    <div *ngIf="!courses">
+    <!-- <div *ngIf="!courses">
         Start learning about a topic!!
-    </div>
+    </div> -->
 </div>
