@@ -18,7 +18,7 @@ export class ContinueCoursesComponent implements OnInit {
   courses: any;
 
   ngOnInit(): void {
-    this.userService.getUserStartedCourse(0,10).subscribe(
+    this.userService.getUserStartedCourse(0,2).subscribe(
       (result:any) =>{
         this.courses = result
       }

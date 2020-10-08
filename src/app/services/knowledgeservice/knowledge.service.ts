@@ -137,7 +137,7 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
   
-  AddArticleToCourse(course_id, article_id){
+  addArticleToCourse(course_id, article_id){
     this.called_url = `${this.base_knowledge_url}kb_sections/article/insert/`;
     const body = {"article_id": article_id, "course_id": course_id};
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});

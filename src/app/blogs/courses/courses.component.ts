@@ -57,7 +57,7 @@ export class CoursesComponent implements OnInit {
   }
   
   addToCourse(course_id){
-    this.knowledgeService.AddArticleToCourse(course_id, this.article_id).subscribe(
+    this.knowledgeService.addArticleToCourse(course_id, this.article_id).subscribe(
       response => {
         console.log(response);
         
