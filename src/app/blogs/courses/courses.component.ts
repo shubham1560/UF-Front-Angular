@@ -24,6 +24,7 @@ export class CoursesComponent implements OnInit {
   name;
   input;
   article_id = this.data.article_id;
+
   ngOnInit(): void {
     this.knowledgeService.getAllCourses().subscribe(
       (response:any) =>{
@@ -36,16 +37,7 @@ export class CoursesComponent implements OnInit {
     console.log(this);
   }
 
-
-  call(){
-    console.log("called");  
-  }
-
-
-  check_user = function(w){
-    console.log(w);
-  }
-
+  
   filterData(keyword){
     console.log(keyword);
     this.filteredCourses = [];
@@ -55,12 +47,17 @@ export class CoursesComponent implements OnInit {
       }
     });
   }
-  
+
+  article_link;
+  isLoading = false;
   addToCourse(course_id){
+    this.isLoading = true;
     this.knowledgeService.addArticleToCourse(course_id, this.article_id).subscribe(
       response => {
         console.log(response);
-        
+        this.isLoading = false;
+        this.article_link = "courses/"+course_id+"/"+this.article_id;
+        // window.location.reload();
       }
     )
     console.log(course_id, this.article_id);

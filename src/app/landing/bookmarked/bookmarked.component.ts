@@ -18,7 +18,7 @@ export class BookmarkedComponent implements OnInit {
   ) { }
   bookmarkedArticles;
   start = 0;
-  end = 3;
+  end = 5;
   showButton = true;
   title = "Recently Bookmarked";
   ngOnInit(): void {

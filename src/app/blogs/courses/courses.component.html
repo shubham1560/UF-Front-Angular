@@ -1,10 +1,11 @@
-
+<!-- 
 <pre>
     {{data | json}}
-</pre>
+</pre> -->
 
 <h6 mat-dialog-title>Click on the course to add the article in it</h6>
-
+<span *ngIf="isLoading">Adding....</span>
+<span *ngIf="article_link"><a routerLink="{{article_link}}" >click</a> to checkout the article</span>
 <input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
 <br>
 
@@ -19,7 +20,7 @@
                         </mat-icon>
                     </button>
                 </div>
-                <mat-card-title (click)="addToCourse(course.id)">{{course.label}}</mat-card-title>
+                <mat-card-title (click)="addToCourse(course.id)" style="cursor: pointer"><a>{{course.label}}</a></mat-card-title>
                 <mat-card-subtitle>{{course.get_parent_knowledgebase.label}}</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
