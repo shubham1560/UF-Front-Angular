@@ -53,7 +53,7 @@ export class BreadcrumbsComponent implements OnInit {
         }else{
           this.isLoading = false;
         }
-        console.log(this)
+        // console.log(this)
       }
     )
     // this.loggerService.logData("uf-breadcrumbs", this);

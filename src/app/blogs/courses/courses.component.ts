@@ -34,12 +34,12 @@ export class CoursesComponent implements OnInit {
       }
     )
     
-    console.log(this);
+    // console.log(this);
   }
 
   
   filterData(keyword){
-    console.log(keyword);
+    // console.log(keyword);
     this.filteredCourses = [];
     this.courses.forEach(element => {
       if (element["label"].toLowerCase().includes(keyword.toLowerCase())){
@@ -54,13 +54,13 @@ export class CoursesComponent implements OnInit {
     this.isLoading = true;
     this.knowledgeService.addArticleToCourse(course_id, this.article_id).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         this.isLoading = false;
         this.article_link = "courses/"+course_id+"/"+this.article_id;
         // window.location.reload();
       }
     )
-    console.log(course_id, this.article_id);
+    // console.log(course_id, this.article_id);
   }
 
   seeDetails(course) {
