@@ -7,7 +7,7 @@
     </div> -->
 
 
-    <div *ngIf="bookmarkedArticles.length>0">
+    <div *ngIf="bookmarkedArticles?.length>0">
         <p style="color: #425051;">{{title}}</p>
         <div class="row">
             <div class="col-12" *ngFor="let article of bookmarkedArticles">
