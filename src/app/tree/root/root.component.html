@@ -4,7 +4,7 @@
 <div class="wrapper" id="uf-roots">
     <nav id="sidebar" style="background-color: white;">
         <app-side-nav></app-side-nav>
-        
+
     </nav>
 
     <div id="content" style=" width: 100%;">
@@ -18,55 +18,88 @@
             <div class="row" style="padding: 20px;">
                 <app-breadcrumbs></app-breadcrumbs>
             </div>
-            <div class="row" *ngIf = "!isLoading">
-                <div class="col-lg-4 col-md-6 col-12" *ngFor="let product of categories">
-                    <mat-card style="margin-bottom: 20px; box-shadow: none;">
-                        <div style="background-color: #81b5a1;
-                        color: white;
-                        width: fit-content;
-                        padding: 0px 10px;
-                        margin-left: -20px;">
-                            {{product.get_parent_knowledgebase.label}}
-                            <span *ngIf="product.get_parent_category.label != 'root' ">
-                                -> {{product.get_parent_category.label}}
-                            </span>
-                            <br>
+            <div class="row" *ngIf="!isLoading">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-lg-6 col-12" *ngFor="let product of categories">
+                            <mat-card style="margin-bottom: 20px; 
+                            border: 1px solid rgba(201, 201, 204, 0.48);
+                            box-shadow: 0 1px 3px rgba(0,0,0, .1);
+                            border-radius: 6px;">
+                                <div>
+                                    <span style="background-color: #81b5a1;
+                                                color: white;
+                                                width: fit-content;
+                                                padding: 0px 10px;
+                                                margin-left: -20px;">
+                                        {{product.get_parent_knowledgebase.label}}
+                                        <span *ngIf="product.get_parent_category.label != 'root' ">
+                                            -> {{product.get_parent_category.label}}
+                                        </span>
+                                    </span>
+                                </div>
+                                <br>
+                                <mat-card-header>
+                                    <mat-card-title *ngIf="product.course" (click)="navigate(product.id)"
+                                        style="cursor:pointer; color: #566364;">
+                                        {{product.label}}
+                                    </mat-card-title>
+                                    <mat-card-title *ngIf="!product.course"
+                                        routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}"
+                                        style="cursor:pointer; color: #566364;">
+                                        {{product.label}}
+                                    </mat-card-title>
+                                    <mat-card-subtitle class="desc-text" style="color: #212121">
+                                        {{product.description}} <br>
+                                        <!-- {{product.get_parent_knowledgebase.label}} <br> -->
+
+                                    </mat-card-subtitle>
+                                    <div mat-card-avatar>
+                                        <button mat-icon-button *ngIf="product.course" style="text-align: right;"
+                                            (click)="seeDetails(product.id)">
+                                            <mat-icon>info_outline</mat-icon>.
+                                        </button>
+                                        <button mat-icon-button *ngIf="!product.course"
+                                            routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
+                                            <mat-icon matSuffix>
+                                                account_tree
+                                            </mat-icon>
+                                        </button>
+                                    </div>
+
+                                    <!-- <div mat-card-avatar *ngIf="product.compressed_image"
+                                        [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
+                                        style="background-size: cover;"></div> -->
+                                </mat-card-header>
+                                <!-- <mat-card-actions style="text-align: right;" *ngIf="product.course">
+
+                                    <button mat-icon-button (click)="seeDetails(product.id)">
+                                        <mat-icon>info_outline</mat-icon>.
+                                    </button>
+                                    <button mat-button class="learn-button" (click)="navigate(product.id)">
+                                        Learn
+                                        <mat-icon matSuffix>
+                                            launch
+                                        </mat-icon>
+                                    </button>
+                                </mat-card-actions> -->
+                                <!-- <mat-card-actions style="text-align: right;" *ngIf="!product.course">
+                                    <button mat-button class="learn-button"
+                                        routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
+                                        Explore Inside
+                                        <mat-icon matSuffix>
+                                            account_tree
+                                        </mat-icon>
+                                    </button>
+                                </mat-card-actions> -->
+                            </mat-card>
                         </div>
-                        <br>
-                        <mat-card-header>
-                            <mat-card-title style="color: #566364;">{{product.label}}</mat-card-title>
-                            <mat-card-subtitle style="color: #212121">
-                                {{product.description}} <br>
-                                <!-- {{product.get_parent_knowledgebase.label}} <br> -->
-
-                            </mat-card-subtitle>
-                            <div mat-card-avatar *ngIf="product.compressed_image"
-                                [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                style="background-size: cover;"></div>
-                        </mat-card-header>
-                        <mat-card-actions style="text-align: right;" *ngIf="product.course">
-
-                            <button mat-button class="preview-button" (click)="seeDetails(product.id)">
-                                <mat-icon>info_outline</mat-icon>.
-                            </button>
-                            <button mat-button class="learn-button" (click)="navigate(product.id)">
-                                Learn
-                                <mat-icon matSuffix>
-                                    launch
-                                </mat-icon>
-                            </button>
-                        </mat-card-actions>
-                        <mat-card-actions style="text-align: right;" *ngIf="!product.course">
-                            <button mat-button class="learn-button"
-                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
-                                Explore Inside
-                                <mat-icon matSuffix>
-                                    account_tree
-                                </mat-icon>
-                            </button>
-                        </mat-card-actions>
-                    </mat-card>
+                    </div>
                 </div>
+                <div class="col-lg-4">
+                    Rogue
+                </div>
+
             </div>
 
             <div class="row" *ngIf="isLoading">
@@ -83,15 +116,16 @@
                         </div>
                         <br>
                         <mat-card-header>
-                            <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;"></mat-card-title>
-                            <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;"></mat-card-subtitle>
+                            <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
+                            </mat-card-title>
+                            <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
+                            </mat-card-subtitle>
                             <!-- <mat-card-subtitle style="width: 150px; height: 24px; background-color: #f6f7f7;"></mat-card-subtitle> -->
-                            <div mat-card-avatar
-                                style="background-size: cover; background-color: #f6f7f7;"></div>
+                            <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;"></div>
                             <!-- <div mat-card-avatar  -->
-                                <!-- style="background-size: cover;"></div> -->
+                            <!-- style="background-size: cover;"></div> -->
                         </mat-card-header>
-                        <mat-card-actions style="text-align: right;" >
+                        <mat-card-actions style="text-align: right;">
 
                             <button mat-button style="width: 40px; height: 40px; background-color: #f6f7f7;">
                                 <!-- <mat-icon>info_outline</mat-icon>. -->
@@ -99,7 +133,7 @@
                             <button mat-button style="width: 100px; height: 40px; background-color: #f6f7f7;">
                                 <!-- Learn -->
                                 <!-- <mat-icon matSuffix> -->
-                                    <!-- launch -->
+                                <!-- launch -->
                                 <!-- </mat-icon> -->
                             </button>
                         </mat-card-actions>

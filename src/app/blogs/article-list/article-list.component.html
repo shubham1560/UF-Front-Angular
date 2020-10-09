@@ -59,14 +59,15 @@
     <div *ngIf="openInModal">
         <div class="heading" mat-dialog-title>
             <h4 style="color: #4f9aab">{{courseName}}</h4>
+            <span style="color: #3c869a; font-size: smaller;">{{courseDescription}}</span>
             <div *ngIf="progress">
                 <b>Progress: </b>{{progress}} %
             </div>
-            <div *ngIf="!signedIn">
+            <!-- <div *ngIf="!signedIn">
                 You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
                 your
                 progress!
-            </div>
+            </div> -->
 
         </div>
         <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
@@ -98,7 +99,7 @@
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
-                                    <span style="color:#b8e0d7;"> Section Progress: {{section.progress}} % </span>
+                                    <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
     
                                 </b>
     
@@ -133,14 +134,15 @@
         <div *ngIf="!isLoading" >
             <div class="heading">
                 <h4 style="color: #4f9aab">{{courseName}}</h4>
+                <span style="color: #3c869a; font-size: smaller; font-size: smaller;">{{courseDescription}}</span>
                 <div *ngIf="progress">
                     <b>Progress: </b>{{progress}} %
                 </div>
-                <div *ngIf="!signedIn">
+                <!-- <div *ngIf="!signedIn">
                     You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
                     your
                     progress!
-                </div>
+                </div> -->
     
             </div>
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
@@ -170,7 +172,7 @@
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
-                                    <span style="color:#b8e0d7;"> Section Progress: {{section.progress}} % </span>
+                                    <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
     
                                 </b>
     

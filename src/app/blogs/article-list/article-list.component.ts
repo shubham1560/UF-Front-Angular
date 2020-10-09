@@ -39,6 +39,7 @@ export class ArticleListComponent implements OnInit {
   counter = 0;
   isLoading = true;
   openInModal = false;
+  courseDescription;
 
   ngOnInit() {
     // debugger;
@@ -76,13 +77,15 @@ export class ArticleListComponent implements OnInit {
     this.dataLogger.logData("articlelist", this);
   }
 
+
   changeTheCourse() {
     // console.log('change the course called------------------');
     // this.isLoading = true;
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
 
-        this.courseName = response.course;
+        this.courseName = response.course.label;
+        this.courseDescription = response.course.description;
         this.sections = response.sections;
         this.sections = this.deleteSectionsWithoutArticles(this.sections);
         if (!this.article) {
