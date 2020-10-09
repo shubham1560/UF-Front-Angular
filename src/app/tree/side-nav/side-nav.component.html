@@ -1,6 +1,6 @@
 <div id="uf-side-nav">
 
-    <!-- <div style="text-align: left;padding: 20px 10px;">
+    <div style="text-align: left;padding: 20px 10px;">
         <button mat-button class="view-button" [routerLink]="[{view: 'course'}]" style="outline: none;"
             [ngClass]="{'selected' : view=='course'}" [disabled]="!viewChangeValid" (click)="changeView('course')">
             <mat-icon matSuffix>
@@ -14,7 +14,7 @@
                 account_tree
             </mat-icon>
         </button>
-    </div> -->
+    </div>
 
     <br>
     <div style="text-align: left;padding: 10px 10px;" *ngIf="isLoading">

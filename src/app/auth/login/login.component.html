@@ -6,7 +6,7 @@
             <div class="uf-auth-wrapper" id="auth-login">
                 <div class="uf-auth-form">
                     <div class="uf-auth-logo-space"></div>
-                    <div class="uf-auth-form-header">LOGO OF THE APPLICATION</div>
+                    <div class="uf-auth-form-header">SIGN IN TO SORTEDTREE</div>
             
                     <div class="uf-auth-form-body" *ngIf="isLoggedIn">
                         <p style="text-align: center;">
@@ -60,7 +60,7 @@
                                     [title]="loginForm.valid?'login': 'Please enter a valid email and password'"
                                     [disabled]='!loginForm.valid || signingIn'>
             
-                                    <span *ngIf="!signingIn">Login</span>
+                                    <span *ngIf="!signingIn">Sign in</span>
                                     <span *ngIf="signingIn">.....</span>
                                     <mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
             

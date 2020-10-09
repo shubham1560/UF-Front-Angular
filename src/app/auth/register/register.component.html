@@ -6,7 +6,7 @@
             <div class="uf-auth-wrapper" id="auth-register">
                 <div class="uf-auth-form">
                     <div class="uf-auth-logo-space"></div>
-                    <div class="uf-auth-form-header">CREATE AN ACCOUNT</div>
+                    <div class="uf-auth-form-header">SIGN UP TO SORTEDTREE</div>
                     <div *ngIf="!registrationDone">
                         <form (ngSubmit)="register()" [formGroup]='registrationForm' class="uf-auth-form-body">
 
@@ -42,7 +42,7 @@
                                 <button class="uf-auth-right-button" mat-raised-button type="submit" color="primary"
                                     [title]="registrationForm.valid?'Register': 'Please enter valid details to register'"
                                     [disabled]='!registrationForm.valid || disableButton'>
-                                    <span *ngIf="!disableButton">Register</span>
+                                    <span *ngIf="!disableButton">Sign up</span>
                                     <span *ngIf="disableButton"> ......</span>
 
                                     <mat-icon *ngIf="!disableButton" matSuffix style="margin: 0px 8px;">login</mat-icon>
