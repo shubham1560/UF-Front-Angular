@@ -51,8 +51,6 @@
                                     </mat-card-title>
                                     <mat-card-subtitle class="desc-text" style="color: #212121">
                                         {{product.description}} <br>
-                                        <!-- {{product.get_parent_knowledgebase.label}} <br> -->
-
                                     </mat-card-subtitle>
                                     <div mat-card-avatar>
                                         <button mat-icon-button *ngIf="product.course" style="text-align: right;"
@@ -66,38 +64,21 @@
                                             </mat-icon>
                                         </button>
                                     </div>
-
-                                    <!-- <div mat-card-avatar *ngIf="product.compressed_image"
-                                        [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                        style="background-size: cover;"></div> -->
                                 </mat-card-header>
-                                <!-- <mat-card-actions style="text-align: right;" *ngIf="product.course">
-
-                                    <button mat-icon-button (click)="seeDetails(product.id)">
-                                        <mat-icon>info_outline</mat-icon>.
-                                    </button>
-                                    <button mat-button class="learn-button" (click)="navigate(product.id)">
-                                        Learn
-                                        <mat-icon matSuffix>
-                                            launch
-                                        </mat-icon>
-                                    </button>
-                                </mat-card-actions> -->
-                                <!-- <mat-card-actions style="text-align: right;" *ngIf="!product.course">
-                                    <button mat-button class="learn-button"
-                                        routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
-                                        Explore Inside
-                                        <mat-icon matSuffix>
-                                            account_tree
-                                        </mat-icon>
-                                    </button>
-                                </mat-card-actions> -->
                             </mat-card>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    Rogue
+                    <!-- Rogue -->
+                    <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon button with a home icon">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>Add branch here</button>
+                        <button mat-menu-item>Add path</button>
+                    </mat-menu>
+                    Moderator's corner
                 </div>
 
             </div>
@@ -111,7 +92,6 @@
                         width: 100px;
                         padding: 0px 10px;
                         margin-left: -20px;">
-                            <!-- Test     -->
                             <br>
                         </div>
                         <br>
@@ -120,31 +100,15 @@
                             </mat-card-title>
                             <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
                             </mat-card-subtitle>
-                            <!-- <mat-card-subtitle style="width: 150px; height: 24px; background-color: #f6f7f7;"></mat-card-subtitle> -->
                             <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;"></div>
-                            <!-- <div mat-card-avatar  -->
-                            <!-- style="background-size: cover;"></div> -->
                         </mat-card-header>
                         <mat-card-actions style="text-align: right;">
 
                             <button mat-button style="width: 40px; height: 40px; background-color: #f6f7f7;">
-                                <!-- <mat-icon>info_outline</mat-icon>. -->
                             </button>
                             <button mat-button style="width: 100px; height: 40px; background-color: #f6f7f7;">
-                                <!-- Learn -->
-                                <!-- <mat-icon matSuffix> -->
-                                <!-- launch -->
-                                <!-- </mat-icon> -->
                             </button>
                         </mat-card-actions>
-                        <!-- <mat-card-actions style="text-align: right;" >
-                            <button mat-button class="learn-button">
-                                Explore Inside
-                                <mat-icon matSuffix>
-                                    account_tree
-                                </mat-icon>
-                            </button>
-                        </mat-card-actions> -->
                     </mat-card>
                 </div>
             </div>
@@ -153,95 +117,3 @@
 
     </div>
 </div>
-
-
-<!-- 
-<div id="uf-roots" class="container-fluid">
-
-    <div class="row">
-        <div class="col-lg-3" style="background-color: white;">
-            <br><br>
-            <div class="row">
-                <div class="col-xs-12 col-lg-12">
-                    <div style="text-align: left;">
-                        <button mat-button class="view-button" [routerLink]="[{view: 'course'}]"
-                            [ngClass]="{'selected' : view=='course'}" [disabled]="!viewChangeValid"
-                            (click)="changeView('course')">
-                            <mat-icon matSuffix>
-                                apps
-                            </mat-icon>
-                        </button>
-
-                        <button mat-button class="view-button" [routerLink]="[{view: 'tree'}]"
-                            [ngClass]="{'selected' : view=='tree'}" (click)="changeView('tree')">
-                            <mat-icon matSuffix>
-                                account_tree
-                            </mat-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-9">
-            <br><br>
-            <div class="row">
-                <div class="col-lg-12 col-xs-12">
-                    <app-breadcrumbs></app-breadcrumbs>
-                </div>
-                <br><br>
-            </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12" *ngFor="let product of categories">
-                    <mat-card style="margin-bottom: 20px; box-shadow: none;">
-                        <div style="background-color: #81b5a1;
-                        color: white;
-                        width: fit-content;
-                        padding: 0px 10px;
-                        margin-left: -20px;">
-                            {{product.get_parent_knowledgebase.label}}
-                            <span *ngIf="product.get_parent_category.label != 'root' ">
-                                -> {{product.get_parent_category.label}}
-                            </span>
-                            <br>
-                        </div>
-                        <br>
-                        <mat-card-header>
-                            <mat-card-title style="color: #566364;">{{product.label}}</mat-card-title>
-                            <mat-card-subtitle style="color: #212121">
-                                {{product.description}} <br>
-
-                            </mat-card-subtitle>
-                            <div mat-card-avatar *ngIf="product.compressed_image"
-                                [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                style="background-size: cover;"></div>
-                        </mat-card-header>
-                        <mat-card-actions style="text-align: right;" *ngIf="product.course">
-
-                            <button mat-button class="preview-button" (click)="seeDetails(product.id)">
-                                <mat-icon>info_outline</mat-icon>.
-                            </button>
-                            <button mat-button class="learn-button" (click)="navigate(product.id)">
-                                Learn
-                                <mat-icon matSuffix>
-                                    launch
-                                </mat-icon>
-                            </button>
-                        </mat-card-actions>
-                        <mat-card-actions style="text-align: right;" *ngIf="!product.course">
-                            <button mat-button class="learn-button"
-                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
-                                Explore Inside
-                                <mat-icon matSuffix>
-                                    account_tree
-                                </mat-icon>
-                            </button>
-                        </mat-card-actions>
-                    </mat-card>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-</div> -->

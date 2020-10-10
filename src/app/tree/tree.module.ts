@@ -5,7 +5,8 @@ import { MaterialModule } from '../shared/material.module';
 import { RootComponent } from './root/root.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CourseviewComponent } from './courseview/courseview.component';
-import { SideNavComponent } from './side-nav/side-nav.component'
+import { SideNavComponent } from './side-nav/side-nav.component';
+import { AddpathorbranchComponent } from './addpathorbranch/addpathorbranch.component'
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { SideNavComponent } from './side-nav/side-nav.component'
     BreadcrumbsComponent,
     CourseviewComponent,
     SideNavComponent,
+    AddpathorbranchComponent,
   ],
   imports: [
     CommonModule,
