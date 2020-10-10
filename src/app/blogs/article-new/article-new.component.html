@@ -81,8 +81,19 @@
             </div>
         </div>
         <div class="col-lg-3" style="padding-top: 40px;">
-            Roots and Category mangement
-            <button mat-raised-button (click)="addToCourse()">Add to the course</button>
+            <!-- Roots and Category mangement -->
+            Currently the article is part of the path:
+            <br>
+            <a routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
+                {{article?.data.get_category.category_label}}
+            </a>  
+
+            <!-- <pre>
+                {{article| json}}
+            </pre> -->
+            <br><br>
+
+            <button mat-button color="primary" (click)="addToCourse()">Add to the path</button>
 
         </div>
     </div>

@@ -16,14 +16,14 @@ export class CoursesComponent implements OnInit {
     private dialog: MatDialog,
     private router: ActivatedRoute,
     public dialogRef: MatDialogRef<CoursesComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public datum: any
   ) { }
 
   courses;
   filteredCourses = [];
   name;
   input;
-  article_id = this.data.article_id;
+  article_id = this.datum.article_id;
 
   ngOnInit(): void {
     this.knowledgeService.getAllCourses().subscribe(
@@ -52,6 +52,7 @@ export class CoursesComponent implements OnInit {
   isLoading = false;
   addToCourse(course_id){
     this.isLoading = true;
+    this.datum.selected_course = course_id;
     this.knowledgeService.addArticleToCourse(course_id, this.article_id).subscribe(
       response => {
         // console.log(response);

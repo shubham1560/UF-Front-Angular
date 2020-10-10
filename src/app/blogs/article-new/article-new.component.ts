@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import EditorJS from '@editorjs/editorjs';
@@ -20,7 +20,7 @@ import { UserprofileService } from 'src/app/services/userprofile/userprofile.ser
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Action } from 'rxjs/internal/scheduler/Action';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
 
 
@@ -40,7 +40,8 @@ export class ArticleNewComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private loggerService: LoggerService,
     private titleService: Title,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+
   ) { }
 
   editor: EditorJS
@@ -80,7 +81,7 @@ export class ArticleNewComponent implements OnInit {
           this.initializeEditor();
           this.editorInitilized = true;
           setTimeout(()=>{
-            console.clear();
+            // console.clear();
           }, 1000)
         }
         else {
@@ -98,7 +99,7 @@ export class ArticleNewComponent implements OnInit {
               if (!this.editorInitilized) {
                 this.initializeEditor();
                 setTimeout(()=>{
-                  console.clear();
+                  // console.clear();
                 }, 1000)
       
               }
@@ -209,16 +210,12 @@ export class ArticleNewComponent implements OnInit {
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
       // if (outputData.blocks.length > 0) {
 
-        // this.prevData
-        // console.log(this.prevData)
-        // console.log(outputData.blocks);
-        // console.log(this.arrayEqual(this.prevData, outputData.blocks));
         this.prevData = outputData.blocks;
         if (update) {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response;
-              this.state = "draft";
+              // this.state = response.article.data.workflow;
               this.route.navigateByUrl('courses/article/' + this.id);
               this.updatingData = false;
               this.openSnackBar("The progress has been saved", '');
@@ -237,7 +234,6 @@ export class ArticleNewComponent implements OnInit {
               this.updatingData = false;
               this.state = 'review';
               this.openSnackBar("The article has been sent for review!!", '');
-
               // console.log(response);
             },
             (error) => {
@@ -300,7 +296,14 @@ export class ArticleNewComponent implements OnInit {
 
   addToCourse(){
     const dialogRef = this.dialog.open(CoursesComponent, {
-      data: {article_id : this.id }
+      data: {article_id : this.id , current_course: this.article.data.get_category.id}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // window.location.reload();
+      // this.animal = result;
+      // console.log(this.data);
+      console.log(result);
     });
     console.log("adding the modal");
   }
