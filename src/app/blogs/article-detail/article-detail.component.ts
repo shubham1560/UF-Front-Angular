@@ -3,6 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { HttpClient } from '@angular/common/http';
+import { UrlconfigService } from 'src/app/services/urlconfig.service';
 
 @Component({
   selector: 'app-article-detail',
@@ -16,6 +18,9 @@ export class ArticleDetailComponent implements OnInit {
     private logger: LoggerService,
     private knowledge: DataService,
     private titleService: Title,
+    private httpService: HttpClient,
+    private url: UrlconfigService,
+
   ) { }
 
   article_id: string;
@@ -45,6 +50,7 @@ export class ArticleDetailComponent implements OnInit {
               this.isLoading = false;
               var len = this.article.article_body.length - 1;
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
+              this.fetchEmbedDetails();
               this.current_url = window.location.href;
               this.titleService.setTitle(this.article_body[0].data.text);
               // console.log(this.article.getAuthor.header_image);
@@ -76,15 +82,18 @@ export class ArticleDetailComponent implements OnInit {
                 this.initCourse = params.get("category");
               },
               error => {
-                
+
               }
             )
           }
           else {
-            this.setNextPrevious();
+            // this.setNextPrevious();
           }
         }, 1000)
 
+        if (this.category == this.initCourse) {
+          this.setNextPrevious();
+        }
 
       }
     )
@@ -102,6 +111,24 @@ export class ArticleDetailComponent implements OnInit {
     });
   }
 
+  fetchEmbedDetails() {
+    this.article_body.forEach(element => {
+      if (element.type == "linkTool") {
+        var link = element.data.link;
+        var url = `${this.url.base_url}attachment/fetch_url/`;
+        console.log(url);
+        console.log(element);
+        // link = encodeURI(link);
+        this.httpService.get(url, { params: { "url": link }, headers: this.url.getHeader() }).subscribe(
+          (response:any) => {
+            element.data.meta = response.meta;
+            // console.log(response);
+          }
+        );
+      }
+    });
+  }
+
   setNextPrevious() {
     var counter = 0
     this.articles.forEach(element => {
@@ -109,7 +136,7 @@ export class ArticleDetailComponent implements OnInit {
         if (counter != 0) {
           this.previousArticle = this.articles[counter - 1];
         }
-        if(counter == 0){
+        if (counter == 0) {
           this.previousArticle = null;
         }
         if (counter < this.articles.length) {

@@ -128,6 +128,7 @@ export class ArticleNewComponent implements OnInit {
       tools: {
         header: {
           class: header,
+          shortcut: 'CMD+SHIFT+H',
           inlineToolbar: ['link']
         },
         image: {
@@ -145,7 +146,10 @@ export class ArticleNewComponent implements OnInit {
         delimiter: {
           class: delimiter,
         },
-        code: CodeTool,
+        code: {
+          class: CodeTool,
+          // shortcut: 'CMD+SHIFT+/'
+        },
         // table: {
         //   class: Table,
         //   inlineToolbar: true,
@@ -180,6 +184,7 @@ export class ArticleNewComponent implements OnInit {
         },
         linkTool: {
           class: Link,
+          shortcut: 'CMD+SHIFT+L',
           config: {
             endpoint: `${this.url.base_url}attachment/fetch_url/`, // Your backend endpoint for url data fetching
           }
