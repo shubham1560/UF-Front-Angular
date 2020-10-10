@@ -19,6 +19,9 @@ export class AddpathorbranchComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { }
 
+  isLoading = false;
+  successMessage = "";
+
   ngOnInit(): void {
     this.addPathOrBranch = this.fb.group({
       title: ["", Validators.required],
@@ -28,10 +31,12 @@ export class AddpathorbranchComponent implements OnInit {
   }
 
   postPathOrBranch(): void{
+    this.isLoading = true;
     this.knowledgeService.addPathOrBranch(this.addPathOrBranch.value, this.data).subscribe(
       response => {
-        console.log(response);
-        
+        // console.log(response);
+        this.isLoading = false;
+        this.successMessage = "The "+this.data.add+" has been added to branch. Close the dialog to see the changes.";
       }
     )
     // console.log(this.addPathOrBranch);

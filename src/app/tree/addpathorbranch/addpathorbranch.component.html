@@ -1,8 +1,9 @@
-<pre>
+<!-- <pre>
     {{data | json}}
-</pre>
+</pre> -->
 <form (ngSubmit)="postPathOrBranch()" [formGroup]="addPathOrBranch">
-
+    <span style="color: green">{{successMessage}}</span>
+    <br>
     <mat-form-field appearance="legacy">
         <mat-label>Title</mat-label>
         <input matInput type="email" formControlName="title">
@@ -14,10 +15,11 @@
         <!-- <input matInput type="text" formControlName="description"> -->
         <textarea rows="4" matInput formControlName="description"></textarea>
     </mat-form-field>
-
+    <br>
     <div class="uf-auth-buttons-div">
         <button style="float: right;" mat-raised-button color="primary" type="submit">
-            <span>Add</span>
+            <span *ngIf="!isLoading">Add</span>
+            <span *ngIf="isLoading">Adding...</span>
         </button>
     </div>
 </form>

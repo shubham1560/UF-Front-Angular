@@ -6,6 +6,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ArticleListComponent } from 'src/app/blogs/article-list/article-list.component';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AddpathorbranchComponent } from "../addpathorbranch/addpathorbranch.component"
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 
 @Component({
@@ -26,6 +28,8 @@ export class RootComponent implements OnInit {
     private loggerService: LoggerService,
     private knowledgeService: DataService,
     public dialog: MatDialog,
+    private userService: UserprofileService,
+    private authService: AuthService,
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
   ) { 
     this.mobileQuery = media.matchMedia('(max-width: 768px)');
@@ -44,7 +48,16 @@ export class RootComponent implements OnInit {
   isLoading = true;
   kb_base;
   kb_category;
+  isModerator = false;
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
+    this.userService.inGroup("Moderators").subscribe(
+      (result:any)=>{
+        this.isModerator = result;
+        // console.log(result);
+      }
+    )
+    }
     this.route.paramMap.subscribe(
       (result: any) => {
         // console.log(result);
@@ -65,12 +78,12 @@ export class RootComponent implements OnInit {
             
             this.categories = result.categories;
             this.isLoading = false;
-            setTimeout(() => {
-              this.startLoadingImages = true
-            }, 50);
-            setTimeout(() => {
-              this.imageLoaded = true;
-            }, 3000);
+            // setTimeout(() => {
+            //   this.startLoadingImages = true
+            // }, 50);
+            // setTimeout(() => {
+            //   this.imageLoaded = true;
+            // }, 3000);
           }
         )
         // console.log(result);
@@ -82,6 +95,11 @@ export class RootComponent implements OnInit {
   openDialog(type){
     const dialogRef = this.dialog.open(AddpathorbranchComponent,{
       data: {add: type, kb_base: this.kb_base, kb_category: this.kb_category},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.ngOnInit();
     });
   }
 

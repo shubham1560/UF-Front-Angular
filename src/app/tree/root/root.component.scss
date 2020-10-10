@@ -95,6 +95,7 @@
 .desc-text {
     overflow: hidden;
     text-overflow: ellipsis;
+    height: 40px;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
     -webkit-box-orient: vertical;
