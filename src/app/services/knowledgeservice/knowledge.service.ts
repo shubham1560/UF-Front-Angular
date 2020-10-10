@@ -142,4 +142,10 @@ export class DataService {
     const body = {"article_id": article_id, "course_id": course_id};
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  addPathOrBranch(form_data, type){
+    this.called_url = `${this.base_knowledge_url}kb_category/add/`;
+    const body = {"form_data": form_data, "type": type};
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

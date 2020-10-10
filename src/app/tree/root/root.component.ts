@@ -5,6 +5,7 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ArticleListComponent } from 'src/app/blogs/article-list/article-list.component';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { AddpathorbranchComponent } from "../addpathorbranch/addpathorbranch.component"
 
 
 @Component({
@@ -41,6 +42,8 @@ export class RootComponent implements OnInit {
   imageLoaded = false;
   startLoadingImages = false;
   isLoading = true;
+  kb_base;
+  kb_category;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (result: any) => {
@@ -51,12 +54,15 @@ export class RootComponent implements OnInit {
           this.view = localStorage.getItem("view")
         //   // console.log("if working: "+ this.view);
         }
+        this.kb_base = result.params.kb_base;
+        this.kb_category = result.params.kb_category;
         // this.viewChangeValid = true;
         // if(result.params.kb_category != "root"){
         //   this.viewChangeValid = false;
         // }
         this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, this.view).subscribe(
           (result: any) => {
+            
             this.categories = result.categories;
             this.isLoading = false;
             setTimeout(() => {
@@ -71,6 +77,12 @@ export class RootComponent implements OnInit {
       }
     )
     this.loggerService.logData("uf-roots", this);
+  }
+
+  openDialog(type){
+    const dialogRef = this.dialog.open(AddpathorbranchComponent,{
+      data: {add: type, kb_base: this.kb_base, kb_category: this.kb_category},
+    });
   }
 
   // changeView(changedView){

@@ -7,6 +7,7 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CourseviewComponent } from './courseview/courseview.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AddpathorbranchComponent } from './addpathorbranch/addpathorbranch.component'
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { AddpathorbranchComponent } from './addpathorbranch/addpathorbranch.comp
     CommonModule,
     TreeRoutingModule,
     MaterialModule,
+    ReactiveFormsModule,
+
   ]
 })
 export class TreeModule { }

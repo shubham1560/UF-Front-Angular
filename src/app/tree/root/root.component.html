@@ -16,7 +16,17 @@
         </nav>
         <div style="padding: 20px 20px;">
             <div class="row" style="padding: 20px;">
+                <button style="margin-right: 30px;" mat-raised-button color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon button with a home icon">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog('branch')">Add folder</button>
+                    <button mat-menu-item (click)="openDialog('course')"> Add course</button>
+                </mat-menu>
                 <app-breadcrumbs></app-breadcrumbs>
+                    <!-- Rogue -->
+                    
+                    <!-- Moderator's corner -->
             </div>
             <div class="row" *ngIf="!isLoading">
                 <div class="col-lg-8">
@@ -69,19 +79,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <!-- Rogue -->
-                    <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon button with a home icon">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item>Add branch here</button>
-                        <button mat-menu-item>Add path</button>
-                    </mat-menu>
-                    Moderator's corner
-                </div>
+                
 
             </div>
+            
 
             <div class="row" *ngIf="isLoading">
 

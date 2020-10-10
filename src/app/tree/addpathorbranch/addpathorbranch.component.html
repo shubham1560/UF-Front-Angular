@@ -1,1 +1,23 @@
-<p>addpathorbranch works!</p>
+<pre>
+    {{data | json}}
+</pre>
+<form (ngSubmit)="postPathOrBranch()" [formGroup]="addPathOrBranch">
+
+    <mat-form-field appearance="legacy">
+        <mat-label>Title</mat-label>
+        <input matInput type="email" formControlName="title">
+        <mat-error>Title is required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="legacy">
+        <mat-label>Description</mat-label>
+        <!-- <input matInput type="text" formControlName="description"> -->
+        <textarea rows="4" matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <div class="uf-auth-buttons-div">
+        <button style="float: right;" mat-raised-button color="primary" type="submit">
+            <span>Add</span>
+        </button>
+    </div>
+</form>
