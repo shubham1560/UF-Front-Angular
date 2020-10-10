@@ -123,6 +123,8 @@ export class ArticleDetailComponent implements OnInit {
           (response:any) => {
             element.data.meta = response.meta;
             // console.log(response);
+          }, error => {
+            console.log(error);
           }
         );
       }
