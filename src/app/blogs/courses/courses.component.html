@@ -2,33 +2,51 @@
 <pre>
     {{data | json}}
 </pre> -->
+<div id="uf-addtocourse" >
+    <br>
+    <div *ngIf="article_link" style="color: green">
+        The article has been added to the path: <b>{{selectedCourse}}</b>
+        <br><br>
+        <span>
+            <a routerLink="{{article_link}}" target="_blank">
+                Click
+            </a>
+            to checkout the article.
+        </span>
+        <br><br>
+        Please exit the dialog to see the changes
+    </div>
 
-<h6 mat-dialog-title>Click on the course to add the article in it</h6>
-<span *ngIf="isLoading">Adding....</span>
-<span *ngIf="article_link"><a routerLink="{{article_link}}" >click</a> to checkout the article</span>
-<input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
-<br>
+    <div *ngIf="!article_link">
+        <h6 mat-dialog-title>Click on the course to add the article in it</h6>
+        <span *ngIf="isLoading">Adding....</span>
 
-<mat-dialog-content class="mat-typography">
-    <div *ngFor="let course of filteredCourses">
-        <mat-card style="margin-bottom: 20px; padding: 5px;">
-            <mat-card-header>
-                <div mat-card-avatar class="example-header-image"> 
-                    <button mat-icon-button (click)="seeDetails(course.id)" style="outline: none;">
-                        <mat-icon>
-                            info
-                        </mat-icon>
-                    </button>
-                </div>
-                <mat-card-title (click)="addToCourse(course.id)" style="cursor: pointer"><a>{{course.label}}</a></mat-card-title>
-                <mat-card-subtitle>{{course.get_parent_knowledgebase.label}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                {{course.description}}
-            </mat-card-content>
-            <!-- <mat-dialog-actions align="end">
+        <input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
+        <br>
+
+        <mat-dialog-content class="mat-typography">
+            <div *ngFor="let course of filteredCourses">
+                <mat-card style="margin-bottom: 20px; padding: 5px;">
+                    <mat-card-header>
+                        <div mat-card-avatar class="example-header-image">
+                            <button mat-icon-button (click)="seeDetails(course.id)" style="outline: none;">
+                                <mat-icon>
+                                    info
+                                </mat-icon>
+                            </button>
+                        </div>
+                        <mat-card-title (click)="addToCourse(course.id, course.label)" style="cursor: pointer"><a>{{course.label}}</a>
+                        </mat-card-title>
+                        <mat-card-subtitle>{{course.get_parent_knowledgebase.label}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        {{course.description}}
+                    </mat-card-content>
+                    <!-- <mat-dialog-actions align="end">
                 <button mat-button (click)="filterData('jan')" cdkFocusInitial>Save</button>
               </mat-dialog-actions> -->
-        </mat-card>
+                </mat-card>
+            </div>
+        </mat-dialog-content>
     </div>
-</mat-dialog-content>
+</div>

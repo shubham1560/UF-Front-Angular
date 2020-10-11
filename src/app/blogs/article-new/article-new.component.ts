@@ -207,8 +207,8 @@ export class ArticleNewComponent implements OnInit {
   updateArticle(update) {
     this.editor.save().then((outputData:any) => {
       this.updatingData = true;
-      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
-      // if (outputData.blocks.length > 0) {
+      // if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+      if (outputData.blocks.length > 0) {
 
         this.prevData = outputData.blocks;
         if (update) {
@@ -300,7 +300,7 @@ export class ArticleNewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // window.location.reload();
+      window.location.reload();
       // this.animal = result;
       // console.log(this.data);
       console.log(result);

@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ArticleListComponent } from '../article-list/article-list.component';
 import { ActivatedRoute } from '@angular/router';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-courses',
@@ -15,6 +16,7 @@ export class CoursesComponent implements OnInit {
     private knowledgeService: DataService,
     private dialog: MatDialog,
     private router: ActivatedRoute,
+    private logger: LoggerService,
     public dialogRef: MatDialogRef<CoursesComponent>,
     @Inject(MAT_DIALOG_DATA) public datum: any
   ) { }
@@ -34,6 +36,7 @@ export class CoursesComponent implements OnInit {
       }
     )
     
+    this.logger.logData("uf-addtocourse", this);
     // console.log(this);
   }
 
@@ -50,12 +53,14 @@ export class CoursesComponent implements OnInit {
 
   article_link;
   isLoading = false;
-  addToCourse(course_id){
+  selectedCourse;
+  addToCourse(course_id, course_label){
     this.isLoading = true;
     this.datum.selected_course = course_id;
     this.knowledgeService.addArticleToCourse(course_id, this.article_id).subscribe(
       response => {
         // console.log(response);
+        this.selectedCourse = course_label;
         this.isLoading = false;
         this.article_link = "courses/"+course_id+"/"+this.article_id;
         // window.location.reload();
