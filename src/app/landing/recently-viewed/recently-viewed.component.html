@@ -1,4 +1,5 @@
-<div id="uf-recently-viewed" *ngIf="articles?.length>0">
+<div id="uf-recently-viewed" >
+  <div *ngIf="articles?.length>0">
   <p style="color: #425051;" *ngIf="articles">Recently viewed articles</p>
 
   <div class="row">
@@ -30,4 +31,5 @@
     {{articles | json}}
 
     </pre> -->
+  </div>
 </div>

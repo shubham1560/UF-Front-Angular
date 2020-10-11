@@ -31,6 +31,9 @@ export class ExplorerootsComponent implements OnInit {
   isLoggedIn = false;
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.isLoggedIn = true;
+    }
     const cachedResponse: HttpResponse<any> = this.cacheService.read(`${this.urlService.base_url}knowledge/knowledge_base/get_knowledge_bases/`);
     this.titleService.setTitle("Home - SortedTree");
     if (cachedResponse) {
@@ -39,7 +42,7 @@ export class ExplorerootsComponent implements OnInit {
       // console.log("from cache");
     }
     else {
-      setTimeout(() => {
+      // setTimeout(() => {
 
         this.knowledgeServie.getKnowledgeBases().subscribe(
           (result: any) => {
@@ -58,11 +61,9 @@ export class ExplorerootsComponent implements OnInit {
           }
         )
 
-      }, 1000);
+      // }, 1000);
     }
-    if (this.authService.isLoggedIn()) {
-      this.isLoggedIn = true;
-    }
+    
     this.loggerService.logData("uf-exploreroots", this);
   }
 
