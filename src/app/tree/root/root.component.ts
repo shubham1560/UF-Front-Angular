@@ -17,7 +17,7 @@ import { AuthService } from 'src/app/services/authservice/auth.service';
 })
 export class RootComponent implements OnInit {
 
-  icon="menu";
+  icon = "menu";
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -31,7 +31,7 @@ export class RootComponent implements OnInit {
     private userService: UserprofileService,
     private authService: AuthService,
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
-  ) { 
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 768px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
@@ -49,57 +49,83 @@ export class RootComponent implements OnInit {
   kb_base;
   kb_category;
   isModerator = false;
+  _categories = [];
+  _courses = [];
+
+
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()){
-    this.userService.inGroup("Moderators").subscribe(
-      (result:any)=>{
-        this.isModerator = result;
-        // console.log(result);
-      }
-    )
+    if (this.authService.isLoggedIn()) {
+      this.userService.inGroup("Moderators").subscribe(
+        (result: any) => {
+          this.isModerator = result;
+          if(this.isModerator){
+            this.getUserData();
+          }
+        }
+      )
     }
     this.route.paramMap.subscribe(
       (result: any) => {
         // console.log(result);
         this.isLoading = true;
         this.view = result.params.view;
-        if(localStorage.getItem("view")){
+        if (localStorage.getItem("view")) {
           this.view = localStorage.getItem("view")
-        //   // console.log("if working: "+ this.view);
+          //   // console.log("if working: "+ this.view);
         }
         this.kb_base = result.params.kb_base;
         this.kb_category = result.params.kb_category;
-        // this.viewChangeValid = true;
-        // if(result.params.kb_category != "root"){
-        //   this.viewChangeValid = false;
-        // }
         this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, this.view).subscribe(
           (result: any) => {
-            
             this.categories = result.categories;
+            this.getTheCategoryandCourses();
             this.isLoading = false;
-            // setTimeout(() => {
-            //   this.startLoadingImages = true
-            // }, 50);
-            // setTimeout(() => {
-            //   this.imageLoaded = true;
-            // }, 3000);
           }
         )
-        // console.log(result);
       }
     )
     this.loggerService.logData("uf-roots", this);
   }
 
-  openDialog(type){
-    const dialogRef = this.dialog.open(AddpathorbranchComponent,{
-      data: {add: type, kb_base: this.kb_base, kb_category: this.kb_category},
+
+  getTheCategoryandCourses(){
+    this._courses=[];
+    this._categories=[];
+    this.categories.forEach(element => {
+      if(element.course){
+        this._courses.push(element);
+      }
+      else{
+        this._categories.push(element);
+      }
+    });
+  }
+
+  moderator_email;
+  getUserData(){
+    this.userService.getUserData().subscribe(
+      (result:any)=>{
+        console.log(result);
+        this.moderator_email = result.user.email;
+      }
+    )
+  }
+
+  editProduct(product, type){
+    const dialogRef = this.dialog.open(AddpathorbranchComponent, {
+      data: { add: type, product: product },
+    });
+  }
+
+  openDialog(type) {
+    const dialogRef = this.dialog.open(AddpathorbranchComponent, {
+      data: { add: type, kb_base: this.kb_base, kb_category: this.kb_category },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.ngOnInit();
+      // console.log('The dialog was closed');
+      window.location.reload();
+      // this.ngOnInit();
     });
   }
 
@@ -126,16 +152,15 @@ export class RootComponent implements OnInit {
   }
 
   navigate(url) {
-    this.router.navigateByUrl("/courses/"+url);
-    // window.open("#/courses/" + url)
+    this.router.navigateByUrl("/courses/" + url);
   }
 
-  openNav(){
+  openNav() {
     this.icon = "menu";
     document.getElementById("sidebar").classList.toggle("active")
-    if(document.getElementById("sidebar").classList["value"] == "active"){
+    if (document.getElementById("sidebar").classList["value"] == "active") {
       this.icon = "close";
     }
   }
-  
+
 }

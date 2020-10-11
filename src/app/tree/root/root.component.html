@@ -27,13 +27,19 @@
                     </mat-menu>
                 </span>
                 <app-breadcrumbs></app-breadcrumbs>
-                <!-- Rogue -->
-
-                <!-- Moderator's corner -->
             </div>
             <div class="row" *ngIf="!isLoading">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of categories">
-                    <mat-card style="margin-bottom: 20px; 
+                <!-- <pre> -->
+                        <!-- {{product | json}} -->
+                    <!-- </pre> -->
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _courses">
+
+                    <pre> 
+                    {{product.get_created_by?.author | json}}
+                    {{moderator_email | json}}
+                    </pre>
+
+                    <mat-card *ngIf="product.course" style="margin-bottom: 20px; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
                             border-radius: 6px;">
@@ -50,23 +56,88 @@
                             </span>
                         </div>
                         <mat-card-header>
-                            <mat-card-title *ngIf="product.course" (click)="navigate(product.id)"
+
+                            <mat-card-title (click)="navigate(product.id)" style="cursor:pointer; color: #566364;">
+                                {{product.label}}
+                                
+                            </mat-card-title>
+                            <button mat-icon-button *ngIf="moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'course')">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <!-- <mat-card-title *ngIf="!product.course"
+                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}"
                                 style="cursor:pointer; color: #566364;">
                                 {{product.label}}
-                            </mat-card-title>
+                            </mat-card-title> -->
+                            <mat-card-subtitle class="desc-text" style="color: #212121">
+                                {{product.description}} <br>
+                            </mat-card-subtitle>
+                            <div mat-card-avatar>
+                                <button mat-icon-button (click)="seeDetails(product.id)">
+                                    <mat-icon>info_outline</mat-icon>
+                                </button>
+                                
+                                <!-- <button mat-icon-button *ngIf="!product.course"
+                                    routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
+                                    <mat-icon matSuffix>
+                                        account_tree
+                                    </mat-icon>
+                                </button> -->
+                            </div>
+                        </mat-card-header>
+                    </mat-card>
+
+                </div>
+            </div>
+            <br>
+            <br>
+            <h3 *ngIf="_categories?.length>0">Explore further</h3>
+            <div class="row" *ngIf="!isLoading">
+
+
+
+                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
+                    <pre> 
+                        {{product.get_created_by?.author | json}}
+                        {{moderator_email | json}}
+                        </pre>
+                    <mat-card *ngIf="!product.course" style="margin-bottom: 20px; 
+                            border: 1px solid rgba(201, 201, 204, 0.48);
+                            box-shadow: 0 1px 3px rgba(0,0,0, .1);
+                            border-radius: 6px;">
+                        <div>
+                            <span style="background-color: #81b5a1;
+                                                color: white;
+                                                width: fit-content;
+                                                padding: 0px 10px;
+                                                margin-left: -20px;">
+                                {{product.get_parent_knowledgebase.label}}
+                                <span *ngIf="product.get_parent_category.label != 'root' ">
+                                    -> {{product.get_parent_category.label}}
+                                </span>
+                            </span>
+                        </div>
+                        <mat-card-header>
+                            <!-- <mat-card-title *ngIf="product.course" (click)="navigate(product.id)"
+                                style="cursor:pointer; color: #566364;">
+                                {{product.label}}
+                            </mat-card-title> -->
                             <mat-card-title *ngIf="!product.course"
                                 routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}"
                                 style="cursor:pointer; color: #566364;">
                                 {{product.label}}
                             </mat-card-title>
+                            <button mat-icon-button *ngIf="moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'category')">
+                                <mat-icon>edit</mat-icon>
+                            </button>
                             <mat-card-subtitle class="desc-text" style="color: #212121">
                                 {{product.description}} <br>
                             </mat-card-subtitle>
                             <div mat-card-avatar>
-                                <button mat-icon-button *ngIf="product.course" style="text-align: right;"
+                                <!-- <button mat-icon-button *ngIf="product.course" style="text-align: right;"
                                     (click)="seeDetails(product.id)">
                                     <mat-icon>info_outline</mat-icon>.
-                                </button>
+                                </button> -->
                                 <button mat-icon-button *ngIf="!product.course"
                                     routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
                                     <mat-icon matSuffix>
@@ -76,6 +147,7 @@
                             </div>
                         </mat-card-header>
                     </mat-card>
+
                 </div>
             </div>
 

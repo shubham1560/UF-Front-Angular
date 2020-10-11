@@ -1,8 +1,8 @@
-<!-- <pre>
+<pre>
     {{data | json}}
-</pre> -->
+</pre>
 <form (ngSubmit)="postPathOrBranch()" [formGroup]="addPathOrBranch">
-    <span style="color: green">{{successMessage}}</span>
+    <span style="color: green" [innerHTML]="successMessage"></span>
     <br>
     <mat-form-field appearance="legacy">
         <mat-label>Title</mat-label>

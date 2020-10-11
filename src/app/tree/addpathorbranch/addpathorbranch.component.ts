@@ -22,21 +22,31 @@ export class AddpathorbranchComponent implements OnInit {
   isLoading = false;
   successMessage = "";
 
+
   ngOnInit(): void {
-    this.addPathOrBranch = this.fb.group({
-      title: ["", Validators.required],
-      description: [""], 
-      active: true,
-    })
+    if (this.data.product) {
+      this.addPathOrBranch = this.fb.group({
+        title: [this.data.product.label, Validators.required],
+        description: [this.data.product.description],
+        active: true,
+      })
+    }
+    else {
+      this.addPathOrBranch = this.fb.group({
+        title: ["", Validators.required],
+        description: [""],
+        active: true,
+      })
+    }
   }
 
-  postPathOrBranch(): void{
+  postPathOrBranch(): void {
     this.isLoading = true;
     this.knowledgeService.addPathOrBranch(this.addPathOrBranch.value, this.data).subscribe(
       response => {
         // console.log(response);
         this.isLoading = false;
-        this.successMessage = "The "+this.data.add+" has been added to branch. Close the dialog to see the changes.";
+        this.successMessage = "The " + this.data.add + " has been added to branch. <br> Close the dialog to see the changes.";
       }
     )
     // console.log(this.addPathOrBranch);
