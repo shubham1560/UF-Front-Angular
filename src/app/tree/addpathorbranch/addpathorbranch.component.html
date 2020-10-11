@@ -1,25 +1,61 @@
-<pre>
+
+<!-- <h2 mat-dialog-title>Add</h2> -->
+<mat-dialog-content class="mat-typography">
+    <!-- <pre>
     {{data | json}}
-</pre>
-<form (ngSubmit)="postPathOrBranch()" [formGroup]="addPathOrBranch">
+</pre> -->
+
     <span style="color: green" [innerHTML]="successMessage"></span>
-    <br>
-    <mat-form-field appearance="legacy">
-        <mat-label>Title</mat-label>
-        <input matInput type="email" formControlName="title">
-        <mat-error>Title is required</mat-error>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="legacy">
-        <mat-label>Description</mat-label>
-        <!-- <input matInput type="text" formControlName="description"> -->
-        <textarea rows="4" matInput formControlName="description"></textarea>
-    </mat-form-field>
-    <br>
-    <div class="uf-auth-buttons-div">
-        <button style="float: right;" mat-raised-button color="primary" type="submit">
-            <span *ngIf="!isLoading">Add</span>
-            <span *ngIf="isLoading">Adding...</span>
-        </button>
+
+
+    <div *ngIf="!data.product && !successMessage">
+        Add:
+        <form (ngSubmit)="postPathOrBranch()" [formGroup]="addPathOrBranch">
+            <span style="color: green" [innerHTML]="successMessage"></span>
+            <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Title</mat-label>
+                <input matInput type="email" formControlName="title">
+                <mat-error>Title is required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Description</mat-label>
+                <!-- <input matInput type="text" formControlName="description"> -->
+                <textarea rows="4" matInput formControlName="description"></textarea>
+            </mat-form-field>
+            <br>
+            <div class="uf-auth-buttons-div">
+                <button style="float: right;" mat-raised-button color="primary" type="submit">
+                    <span *ngIf="!isLoading">Add</span>
+                    <span *ngIf="isLoading">Adding...</span>
+                </button>
+            </div>
+        </form>
     </div>
-</form>
+    <div *ngIf="data.product && !successMessage">
+        Edit:
+        <form (ngSubmit)="postPathOrBranch()" [formGroup]="addPathOrBranch">
+            <span style="color: green" [innerHTML]="successMessage"></span>
+            <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Title</mat-label>
+                <input matInput type="email" formControlName="title">
+                <mat-error>Title is required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Description</mat-label>
+                <!-- <input matInput type="text" formControlName="description"> -->
+                <textarea rows="4" matInput formControlName="description"></textarea>
+            </mat-form-field>
+            <br>
+            <div class="uf-auth-buttons-div">
+                <button style="float: right;" mat-raised-button color="primary" type="submit">
+                    <span *ngIf="!isLoading">Edit</span>
+                    <span *ngIf="isLoading">Editing...</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</mat-dialog-content>

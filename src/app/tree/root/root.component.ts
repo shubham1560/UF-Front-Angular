@@ -105,7 +105,7 @@ export class RootComponent implements OnInit {
   getUserData(){
     this.userService.getUserData().subscribe(
       (result:any)=>{
-        console.log(result);
+        // console.log(result);
         this.moderator_email = result.user.email;
       }
     )
@@ -114,6 +114,12 @@ export class RootComponent implements OnInit {
   editProduct(product, type){
     const dialogRef = this.dialog.open(AddpathorbranchComponent, {
       data: { add: type, product: product },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+      window.location.reload();
+      // this.ngOnInit();
     });
   }
 

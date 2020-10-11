@@ -46,10 +46,14 @@ export class AddpathorbranchComponent implements OnInit {
       response => {
         // console.log(response);
         this.isLoading = false;
-        this.successMessage = "The " + this.data.add + " has been added to branch. <br> Close the dialog to see the changes.";
+        this.successMessage = "The action is successful, please exit this screen to see changes!!";
       }
     )
     // console.log(this.addPathOrBranch);
   }
+
+  // editPathOrBranch():void{
+    
+  // }
 
 }

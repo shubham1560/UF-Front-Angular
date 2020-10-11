@@ -34,10 +34,10 @@
                     <!-- </pre> -->
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _courses">
 
-                    <pre> 
+                    <!-- <pre> 
                     {{product.get_created_by?.author | json}}
                     {{moderator_email | json}}
-                    </pre>
+                    </pre> -->
 
                     <mat-card *ngIf="product.course" style="margin-bottom: 20px; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
@@ -97,10 +97,10 @@
 
 
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
-                    <pre> 
+                    <!-- <pre> 
                         {{product.get_created_by?.author | json}}
                         {{moderator_email | json}}
-                        </pre>
+                        </pre> -->
                     <mat-card *ngIf="!product.course" style="margin-bottom: 20px; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
