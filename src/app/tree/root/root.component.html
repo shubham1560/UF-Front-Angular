@@ -61,7 +61,7 @@
                                 {{product.label}}
                                 
                             </mat-card-title>
-                            <button mat-icon-button *ngIf="moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'course')">
+                            <button mat-icon-button *ngIf="isModerator && moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'course')">
                                 <mat-icon>edit</mat-icon>
                             </button>
                             <!-- <mat-card-title *ngIf="!product.course"
@@ -93,9 +93,6 @@
             <br>
             <h3 *ngIf="_categories?.length>0">Explore further</h3>
             <div class="row" *ngIf="!isLoading">
-
-
-
                 <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
                     <!-- <pre> 
                         {{product.get_created_by?.author | json}}
@@ -127,11 +124,14 @@
                                 style="cursor:pointer; color: #566364;">
                                 {{product.label}}
                             </mat-card-title>
-                            <button mat-icon-button *ngIf="moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'category')">
+                            
+                            <button mat-icon-button *ngIf="isModerator && moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'category')">
                                 <mat-icon>edit</mat-icon>
                             </button>
                             <mat-card-subtitle class="desc-text" style="color: #212121">
                                 {{product.description}} <br>
+                                <!-- {{moderator_email}}
+                                {{product.get_created_by?.author}} -->
                             </mat-card-subtitle>
                             <div mat-card-avatar>
                                 <!-- <button mat-icon-button *ngIf="product.course" style="text-align: right;"
