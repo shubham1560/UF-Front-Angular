@@ -42,6 +42,7 @@ export class BreadcrumbsComponent implements OnInit {
         if (this.kb_category != "root") {
           this.KnowledgeService.getBreadCrumbFromCategory(this.kb_category).subscribe(
             (result: any) => {
+              console.log(result);
               result.labels.forEach((element, index, arr) => {
                 this.breadcrumb[index + 2] = element;
                 this.breadcrumbLink[index + 2] = "roots/" + this.kb_base + "/" + result.id[index];
@@ -53,7 +54,7 @@ export class BreadcrumbsComponent implements OnInit {
         }else{
           this.isLoading = false;
         }
-        // console.log(this)
+        console.log(this)
       }
     )
     // this.loggerService.logData("uf-breadcrumbs", this);
