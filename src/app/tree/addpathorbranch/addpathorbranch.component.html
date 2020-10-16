@@ -1,9 +1,8 @@
-
 <!-- <h2 mat-dialog-title>Add</h2> -->
 <mat-dialog-content class="mat-typography">
-    <!-- <pre>
+    <pre>
     {{data | json}}
-</pre> -->
+</pre>
 
     <span style="color: green" [innerHTML]="successMessage"></span>
 
@@ -50,10 +49,17 @@
                 <textarea rows="4" matInput formControlName="description"></textarea>
             </mat-form-field>
             <br>
+            <!-- <mat-checkbox > -->
+            <label *ngIf="data.add == 'course'">
+                <input type="checkbox" formControlName="active">
+                Active
+            </label>
+            <!-- Hide required marker</mat-checkbox> -->
+            <br>
             <div class="uf-auth-buttons-div">
                 <button style="float: right;" mat-raised-button color="primary" type="submit">
                     <span *ngIf="!isLoading">Edit</span>
-                    <span *ngIf="isLoading">Editing...</span>
+                    <span *ngIf="isLoading">Saving changes...</span>
                 </button>
             </div>
         </form>

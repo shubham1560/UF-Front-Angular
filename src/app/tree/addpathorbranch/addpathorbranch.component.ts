@@ -28,14 +28,14 @@ export class AddpathorbranchComponent implements OnInit {
       this.addPathOrBranch = this.fb.group({
         title: [this.data.product.label, Validators.required],
         description: [this.data.product.description],
-        active: true,
+        active: [this.data.product.active],
       })
     }
     else {
       this.addPathOrBranch = this.fb.group({
         title: ["", Validators.required],
         description: [""],
-        active: true,
+        active: [true],
       })
     }
   }

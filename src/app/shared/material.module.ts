@@ -17,6 +17,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatListModule} from '@angular/material/list';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -42,8 +43,10 @@ import {MatListModule} from '@angular/material/list';
     MatProgressSpinnerModule,
     MatRippleModule,
     MatListModule,
+    MatCheckboxModule,
   ],
   exports:[
+    MatCheckboxModule,
     MatListModule,
     MatTreeModule,
     MatTooltipModule,
