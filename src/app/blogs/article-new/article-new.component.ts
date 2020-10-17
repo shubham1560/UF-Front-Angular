@@ -254,7 +254,7 @@ export class ArticleNewComponent implements OnInit {
       }
     }).catch((error) => {
       this.updatingData = false;
-      console.log('Saving failed: ', error)
+      // console.log('Saving failed: ', error)
     });
   }
 
@@ -303,9 +303,9 @@ export class ArticleNewComponent implements OnInit {
       window.location.reload();
       // this.animal = result;
       // console.log(this.data);
-      console.log(result);
+      // console.log(result);
     });
-    console.log("adding the modal");
+    // console.log("adding the modal");
   }
 
   // arrayEqual(a, b){

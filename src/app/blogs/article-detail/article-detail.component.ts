@@ -116,15 +116,15 @@ export class ArticleDetailComponent implements OnInit {
       if (element.type == "linkTool") {
         var link = element.data.link;
         var url = `${this.url.base_url}attachment/fetch_url/`;
-        console.log(url);
-        console.log(element);
+        // console.log(url);
+        // console.log(element);
         // link = encodeURI(link);
         this.httpService.get(url, { params: { "url": link }, headers: this.url.getHeader() }).subscribe(
           (response:any) => {
             element.data.meta = response.meta;
             // console.log(response);
           }, error => {
-            console.log(error);
+            // console.log(error);
           }
         );
       }
