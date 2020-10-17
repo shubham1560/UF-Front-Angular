@@ -46,7 +46,7 @@ export class KbuseComponent implements OnInit {
                   this.isLoading = false;
                 }
               )
-              , 20)
+              , 200)
           }
         }
         else{
