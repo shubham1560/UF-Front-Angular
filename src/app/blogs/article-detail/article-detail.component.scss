@@ -202,5 +202,15 @@
 }
 
 .article-image{
-    // padding: 40px;
+    padding: 0px;
+}
+
+
+@media(min-width: 768px){
+    // #uf-article-detail{
+    //     padding: 0 200px;
+    // }
+    .article-image{
+        padding: 40px
+    }
 }
