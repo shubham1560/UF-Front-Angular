@@ -36,14 +36,14 @@
                                 </span>
                             </div>
                             <div *ngFor="let block of block.data.meta.result">
-                                <div *ngIf="block.type=='image'">
+                                <div *ngIf="block.type=='image'" style="padding: 40px;">
                                     <img [src]="block.data.file?.url" alt="Nature" class="responsive">
-                                    <div class="caption" style="margin-bottom: 40px;">
+                                    <div class="caption">
                                         {{block.data?.caption}}
                                     </div>
                                 </div>
 
-                                <div *ngIf="block.type=='list'" style="padding-left: 10%;">
+                                <div *ngIf="block.type=='list'" style="padding-left:10px;">
                                     <!-- yellow -->
                                     <div *ngIf="block.data.style=='ordered'">
                                         <!-- yellow -->
@@ -61,8 +61,8 @@
                                         <mat-list role="list">
                                             <!-- yellow -->
                                             <mat-list-item role="listitem" *ngFor="let item of block.data.items">
-                                                <mat-icon style="font-size: small; height: auto;">fiber_manual_record
-                                                </mat-icon>
+                                                <!-- <mat-icon style="font-size: small; height: auto;">fiber_manual_record
+                                                </mat-icon> -->
                                                 <span [innerHTML]="item"></span>
                                             </mat-list-item>
                                         </mat-list>
@@ -127,14 +127,14 @@
                             </div>
                         </div>
 
-                        <div *ngIf="block.type=='image'">
-                            <img [src]="block.data.file?.url" alt="Nature" class="responsive">
-                            <div class="caption" style="margin-bottom: 40px;">
+                        <div *ngIf="block.type=='image'" style="padding: 40px;">
+                            <img [src]="block.data.file?.url" alt="Nature" class="responsive caption">
+                            <div class="caption">
                                 {{block.data?.caption}}
                             </div>
                         </div>
 
-                        <div *ngIf="block.type=='list'" style="padding-left: 10%;">
+                        <div *ngIf="block.type=='list'" style="padding-left: 10px;">
                             <!-- yellow -->
                             <div *ngIf="block.data.style=='ordered'">
                                 <!-- yellow -->
@@ -151,8 +151,10 @@
                                 <mat-list role="list">
                                     <!-- yellow -->
                                     <mat-list-item role="listitem" *ngFor="let item of block.data.items">
-                                        <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon>
-                                        <span [innerHTML]="item"></span>
+                                        <!-- <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon> -->
+                                        <ul>
+                                            <li [innerHTML]="item"></li>
+                                        </ul>
                                     </mat-list-item>
                                 </mat-list>
                             </div>
@@ -172,7 +174,7 @@
                             <!-- <hr> -->
                         </div>
 
-                        <div *ngIf="block.type=='paragraph'">
+                        <div *ngIf="block.type=='paragraph'" style="padding: 10px 0px;">
                             <p [innerHTML]="block.data.text"></p>
                         </div>
                         <div *ngIf="block.type=='table'">
@@ -201,19 +203,20 @@
                     <div class="row">
                         <div class="col-lg-4" style="text-align: left;">
                             <!-- {{previousArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{previousArticle.id}}"  *ngIf="previousArticle">
+                            <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{previousArticle.id}}"
+                                *ngIf="previousArticle">
                                 <!-- <mat-icon>
                                     navigate_before
                                 </mat-icon> -->
-                                <<{{previousArticle.title}}
-                            </a>
+                                <<{{previousArticle.title}} </a>
                         </div>
                         <div class="col-lg-4" style="text-align: center; color: rgba(0,0,0,.87)">
                             Follow the trail
                         </div>
-                        <div class="col-lg-4" style="text-align: right;" >
+                        <div class="col-lg-4" style="text-align: right;">
                             <!-- {{nextArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{nextArticle.id}}" *ngIf="nextArticle">
+                            <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{nextArticle.id}}"
+                                *ngIf="nextArticle">
                                 <!-- <mat-icon>
                                     navigate_next
                                 </mat-icon> -->
@@ -225,39 +228,48 @@
                     <mat-card class="author-card">
                         <mat-card-header>
 
-                            <div mat-card-avatar class="author-image" *ngIf="!authorImage" 
-                            style="background-size: cover; background-color: #f5f5f5;"></div>
+                            <div mat-card-avatar class="author-image" *ngIf="!authorImage"
+                                style="background-size: cover; background-color: #f5f5f5;"></div>
 
-                            <div mat-card-avatar class="author-image" *ngIf="authorImage" [ngStyle]="{'background-image': 'url(' + authorImage + ')'}"
+                            <div mat-card-avatar class="author-image" *ngIf="authorImage"
+                                [ngStyle]="{'background-image': 'url(' + authorImage + ')'}"
                                 style="background-size: cover;"></div>
 
-                            <mat-card-title *ngIf="article.getAuthor.first_name">{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
+                            <mat-card-title *ngIf="article.getAuthor.first_name">
+                                {{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
                             </mat-card-title>
-                            <mat-card-title *ngIf="!article.getAuthor.first_name">The author has decided to keep his profile private</mat-card-title>
+                            <mat-card-title *ngIf="!article.getAuthor.first_name">The author has decided to keep the
+                                profile private</mat-card-title>
 
                             <div style="color: #293e40; padding-bottom: 20px;">
                                 <!-- <pre>
                                     {{article.getAuthor | json }}
                                 </pre> -->
-                                <a target="_blank" href="{{article.getAuthor.facebook_link}}" *ngIf="article.getAuthor.facebook_link" class="uf-social">
+                                <a target="_blank" href="{{article.getAuthor.facebook_link}}"
+                                    *ngIf="article.getAuthor.facebook_link" class="uf-social">
                                     <i class="fa fa-facebook" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.instagram_link}}" class="uf-social" *ngIf="article.getAuthor.instagram_link">
+                                <a target="_blank" href="{{article.getAuthor.instagram_link}}" class="uf-social"
+                                    *ngIf="article.getAuthor.instagram_link">
                                     <i class="fa fa-instagram" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.linkedin_link}}" class="uf-social" *ngIf="article.getAuthor.linkedin_link">
+                                <a target="_blank" href="{{article.getAuthor.linkedin_link}}" class="uf-social"
+                                    *ngIf="article.getAuthor.linkedin_link">
                                     <i class="fa fa-linkedin" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.twitter_link}}" class="uf-social" *ngIf="article.getAuthor.twitter_link"> 
+                                <a target="_blank" href="{{article.getAuthor.twitter_link}}" class="uf-social"
+                                    *ngIf="article.getAuthor.twitter_link">
                                     <i class="fa fa-twitter" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.external_website_link}}" class="uf-social" *ngIf="article.getAuthor.external_website_link">
+                                <a target="_blank" href="{{article.getAuthor.external_website_link}}" class="uf-social"
+                                    *ngIf="article.getAuthor.external_website_link">
                                     <i class="fa fa-globe" aria-hidden="true"></i>
                                 </a>
                             </div>
 
 
-                            <mat-card-subtitle style="text-align: justify;">{{article.getAuthor?.about}}</mat-card-subtitle>
+                            <mat-card-subtitle style="text-align: justify;">{{article.getAuthor?.about}}
+                            </mat-card-subtitle>
                         </mat-card-header>
                         <!-- <mat-card-actions>
                             <button mat-button>LIKE</button>

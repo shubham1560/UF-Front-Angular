@@ -22,6 +22,7 @@ import { Action } from 'rxjs/internal/scheduler/Action';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
+import { timeout } from 'rxjs/operators';
 
 
 @Component({
@@ -80,9 +81,9 @@ export class ArticleNewComponent implements OnInit {
           // window.location.reload();
           this.initializeEditor();
           this.editorInitilized = true;
-          setTimeout(()=>{
-            // console.clear();
-          }, 1000)
+          // setTimeout(()=>{
+          //   // console.clear();
+          // }, 1000)
         }
         else {
           this.knowledgeService.getArticleById(article_id).subscribe(
@@ -98,9 +99,9 @@ export class ArticleNewComponent implements OnInit {
               };
               if (!this.editorInitilized) {
                 this.initializeEditor();
-                setTimeout(()=>{
-                  // console.clear();
-                }, 1000)
+                // setTimeout(()=>{
+                //   // console.clear();
+                // }, 1000)
       
               }
               // console.log(this);
@@ -109,6 +110,11 @@ export class ArticleNewComponent implements OnInit {
               // console.log(error);
             }
           )
+          setInterval(()=>{
+            // if (this.arrayEqual(this.prevData, outputData.blocks)){
+            this.updateArticle(true);
+            // }
+          }, 60*1000)
         }
       }
     )
@@ -125,6 +131,8 @@ export class ArticleNewComponent implements OnInit {
       data: this.data,
 
       placeholder: 'Let`s do some good together, Start by giving it a heading!',
+
+      // autofocus: true,
 
       tools: {
         header: {
@@ -151,6 +159,7 @@ export class ArticleNewComponent implements OnInit {
           class: CodeTool,
           // shortcut: 'CMD+SHIFT+/'
         },
+        
         // table: {
         //   class: Table,
         //   inlineToolbar: true,
@@ -207,8 +216,8 @@ export class ArticleNewComponent implements OnInit {
   updateArticle(update) {
     this.editor.save().then((outputData:any) => {
       this.updatingData = true;
-      // if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
-      if (outputData.blocks.length > 0) {
+      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+      // if (outputData.blocks.length > 0) {
 
         this.prevData = outputData.blocks;
         if (update) {
@@ -249,7 +258,7 @@ export class ArticleNewComponent implements OnInit {
         // console.log();
       }
       else if(this.arrayEqual(this.prevData, outputData.blocks)){
-        this.openSnackBar("No change in article detected, change in spaces are not detected, please add in some words to get the change detection!!", '')
+        this.openSnackBar("No change in article detected", '')
         this.updatingData = false;
       }
     }).catch((error) => {
@@ -290,11 +299,25 @@ export class ArticleNewComponent implements OnInit {
 
 
   arrayEqual(ary1:any[],ary2:any[]){
-    return (ary1.join('') == ary2.join(''));
+    // console.log(ary1, ary2);
+    // console.log(ary1.join(''), ary2.join(''));
+    var new_ary2 = [];
+    var new_ary1 = [];
+    ary2.forEach(element => {
+      new_ary2.push(JSON.stringify(element.data));
+    });
+    ary1.forEach(element => {
+      new_ary1.push(JSON.stringify(element.data));
+    });
+    // console.log(new_ary1.join(''));
+    // console.log(new_ary2.join(''))
+
+    return (new_ary1.join('') == new_ary2.join(''));
   }
 
 
   addToCourse(){
+    this.updateArticle(true);
     const dialogRef = this.dialog.open(CoursesComponent, {
       data: {article_id : this.id , current_course: this.article.data.get_category.id}
     });
