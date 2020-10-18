@@ -4,6 +4,8 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { AuthService } from 'src/app/services/authservice/auth.service';
+import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 
 
 interface Category {
@@ -59,6 +61,8 @@ export class SideNavComponent implements OnInit {
     private route: ActivatedRoute,
     private knowledgeService: DataService,
     private loggerService: LoggerService,
+    private authService: AuthService,
+    private userService: UserprofileService,
   ) {
     // console.log(this.tree_data);
   }
@@ -71,9 +75,24 @@ export class SideNavComponent implements OnInit {
   initialized_kb_base = "";
   active_id = ""
   isLoading = true;
+  isModerator = false;
   // categories = [];
   tree_data: Category[];
   ngOnInit(): void {
+
+    if (this.authService.isLoggedIn()) {
+      setTimeout(()=>{
+        this.userService.inGroup("Moderators").subscribe(
+          (result: any) => {
+            this.isModerator = result;
+            // if(this.isModerator){
+              // this.getUserData();
+            // }
+          }
+        )
+      }, 3000)
+    }
+
     this.route.paramMap.subscribe(
       (result: any) => {
         this.active_id = result.params.kb_category;
@@ -116,6 +135,7 @@ export class SideNavComponent implements OnInit {
     }
     localStorage.setItem("view", this.view);
   }
+
 
   // openNav(){
   //   this.icon = "menu";
