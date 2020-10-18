@@ -38,8 +38,8 @@
                                     <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
                                     </mat-card-title>
                                     <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                    <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;">
-                                    </div>
+                                    <!-- <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;">
+                                    </div> -->
                                 </mat-card-header>
                                 <mat-card-content>
                                     <p style="width: 60%; height: 22px; background-color: #f6f7f7;">
@@ -58,7 +58,7 @@
                             <a [routerLink]='["roots", product.id, "root", {view: "course"}]'>
                                 <mat-card class="mat-card">
                                     <mat-card-header>
-                                        <mat-card-title style="color: #566364">{{product.title}}</mat-card-title>
+                                        <mat-card-title class="mat-card-title-nm">{{product.title}}</mat-card-title>
                                         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
                                         <!-- <div mat-card-avatar
                                             [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"

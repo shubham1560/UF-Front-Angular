@@ -1,42 +1,25 @@
 <div id="uf-quotes">
 
-    <!-- <pre>
-        {{quotes | json}}
-    </pre> -->
-
     <div *ngIf="!isLoading">
 
     <div style="width: 100%;">
-        <span style="color: #72a08d;"> Quotes </span>
-        <button (click)=getNewQuotes() mat-icon-button style="outline: none; color: #72a08d;"
+        <span class="q-refresh"> Quotes </span>
+        <button (click)=getNewQuotes() mat-icon-button class="q-refresh"
             aria-label="Refresh button">
             <mat-icon>refresh</mat-icon>
         </button>
 
     </div>
-    <!-- <span style="color: #72a08d;"> Quotes </span>
-    <button (click)=getNewQuotes() mat-icon-button style="outline: none; color: #72a08d; text-align: right;"
-        aria-label="Refresh button">
-        <mat-icon>refresh</mat-icon>
-    </button> -->
     <br>
     <div *ngFor="let quote of quotes">
         <a>
             <mat-card class="uf-course-card">
-                <!-- <div class="uf-course-header">
-                    Quote
-                </div> -->
                 <mat-card-header>
-                    <!-- <mat-card-title class="uf-course-title">
-                        {{quote.text}}
-                    </mat-card-title> -->
-
                     <mat-card-subtitle class="uf-course-desc">
                         "{{quote.text}}"
-
                     </mat-card-subtitle>
                 </mat-card-header>
-                <div style="font-size: 14px;text-align: right; color: #2e778e;">
+                <div class="q-author">
                     - {{quote.author}}
                 </div>
             </mat-card>
