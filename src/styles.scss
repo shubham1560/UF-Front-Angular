@@ -51,10 +51,9 @@ button{
 .landing-title-color{
     color: #3c869a;
 
-    // &:hover{
-    //     color: #3c869a;
-
-    // }
+    &:hover{
+        color: #3c869a;
+    }
 }
 
 .landing-breadcrumb{

@@ -1,16 +1,16 @@
 <div id="uf-recently-viewed" >
   <div *ngIf="articles?.length>0">
-  <p style="color: #425051;" *ngIf="articles">Recently viewed articles</p>
+  <p class="comp-heading" *ngIf="articles">Recently viewed articles</p>
 
   <div class="row">
     <div class="col-12" *ngFor="let article of articles">
 
 
-      <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="anchor"> 
+      <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color"> 
         {{article.article.title}}
       </a>
 
-      <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;">
+      <div class="landing-breadcrumb">
         {{article.article.knowledge_base}} / {{article.article.course_name}} <br>
       </div>
       

@@ -4,73 +4,38 @@
 
     <h2 mat-dialog-title style="color: #293e40;">Viewed Articles</h2>
     <mat-dialog-content class="mat-typography">
-        <div class="row" >
-            <div class="col-lg-12" *ngFor="let article of articles">
+            <div *ngFor="let article of articles">
             <mat-card class="uf-recently-viewed-card" routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
 
+                <!-- <div style="font-size: 14px; text-align: right;">
+                    
+                  </div> -->
+                <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color"> 
+                    {{article.article.title}}
+                  </a>
+            
+                  <div class="landing-breadcrumb">
+                    {{article.article.knowledge_base}} / {{article.article.course_name}} <br>
+                    <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
+                        access_time
+                      </mat-icon>
+                      {{article.created_on | dateAgo}}
+                  </div>
+                  
+<!-- 
                 <div class="uf-recently-viewed-header">
                   {{article.article.knowledge_base}} -> {{article.article.course_name}}
                 </div>
                 <mat-card-header>
                   <mat-card-title style="color: #425051; font-size: 16px;font-weight: 400;"> {{article.article.title}} </mat-card-title>
                   <mat-card-subtitle style="color: #425051; font-size: 14px;" class="uf-paragraph-wrapper">{{article.article.description}}</mat-card-subtitle>
-                </mat-card-header>
-                <div style="font-size: 14px; text-align: right;">
-                    <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
-                      access_time
-                    </mat-icon>
-                    {{article.created_on | dateAgo}}
-                  </div>
+                </mat-card-header> -->
+                
                   
               </mat-card>
-              
-
 
             </div>
             
-            <!-- <mat-card style="box-shadow: none;border: 1px solid #eee; padding: none; padding-bottom: 40px;">
-
-                <span>Course: {{article.article?.course_name}}</span>
-                <div fxLayout="row" routerLink="/blog/{{article.article.id}}" fxLayout.xs="row" fxLayoutWrap
-                    fxLayoutGap="0.5%" fxLayoutAlign="stretch"
-                    style="flex-direction:row !important;height: 100px; cursor: pointer;">
-                    <div [ngStyle]="{background: 'url('+article.article?.featured_image_thumbnail+')'}"
-                        class="uf-resp-image-div" style="background-size: 100% 100%;"></div>
-                    <div fxFlex="80%">
-
-
-                        <mat-card-content style="padding-left: 10px;">
-                            <p class="uf-heading-wrapper">{{article.article?.title}}</p>
-
-                            <p class="uf-paragraph-wrapper">
-
-                                Description
-                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                                Japan.
-                                Description
-                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                                Japan.
-                                Description
-                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                                Japan.
-                                Description
-                                The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from
-                                Japan.
-                            </p>
-                        </mat-card-content>
-
-                    </div>
-                </div>
-                <mat-card-content style="padding-top: 5px;">
-                    <span style="float: left;">Base: {{article.article.knowledge_base}}</span>
-                
-
-                </mat-card-content>
-            </mat-card> -->
-        </div>
+            
     </mat-dialog-content>
 </div>
-
-
-<!-- <button (click)="getNextPage()" *ngIf="!endReached">More</button> -->
-<!-- <div style="text-align: center;" *ngIf="endReached">You have seen all the articles</div> -->
