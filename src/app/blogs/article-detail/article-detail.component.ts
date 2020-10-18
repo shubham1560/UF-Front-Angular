@@ -173,4 +173,8 @@ export class ArticleDetailComponent implements OnInit {
     return c;
   }
 
+  onImageLoad(){
+    console.log("imageLoaded");
+  }
+
 }

@@ -128,7 +128,7 @@
                         </div>
 
                         <div *ngIf="block.type=='image'" style="padding: 40px;">
-                            <img [src]="block.data.file?.url" alt="Nature" class="responsive caption">
+                            <img [src]="block.data.file?.url" (load)="onImageLoad()" alt="Nature" class="responsive caption">
                             <div class="caption">
                                 {{block.data?.caption}}
                             </div>
@@ -208,7 +208,11 @@
                                 <!-- <mat-icon>
                                     navigate_before
                                 </mat-icon> -->
-                                <<{{previousArticle.title}} </a>
+                                <button mat-button>
+                                    <mat-icon>arrow_left</mat-icon>
+                                    {{previousArticle.title}}
+                                </button>
+                            </a>
                         </div>
                         <div class="col-lg-4" style="text-align: center; color: rgba(0,0,0,.87)">
                             Follow the trail
@@ -220,7 +224,11 @@
                                 <!-- <mat-icon>
                                     navigate_next
                                 </mat-icon> -->
-                                {{nextArticle.title}}>>
+                                <button mat-button>
+                                    {{nextArticle.title}}
+                                    <mat-icon>arrow_right</mat-icon>
+                                </button>
+
                             </a>
                         </div>
                     </div>

@@ -110,11 +110,12 @@ export class ArticleNewComponent implements OnInit {
               // console.log(error);
             }
           )
-          setInterval(()=>{
-            // if (this.arrayEqual(this.prevData, outputData.blocks)){
-            this.updateArticle(true);
-            // }
-          }, 60*1000)
+          // var a = setInterval(()=>{
+          //   // if (this.arrayEqual(this.prevData, outputData.blocks)){
+          //   this.updateArticle(true);
+          //   // }
+          // }, 60*1000)
+          // clearInterval(a);
         }
       }
     )
