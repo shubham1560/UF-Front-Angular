@@ -38,6 +38,8 @@
                             <div *ngFor="let block of block.data.meta.result">
                                 <div *ngIf="block.type=='image'" style="padding: 40px;">
                                     <img [src]="block.data.file?.url" alt="Nature" class="responsive">
+                                    <!-- <br> -->
+                                    <!-- <br> -->
                                     <div class="caption">
                                         {{block.data?.caption}}
                                     </div>

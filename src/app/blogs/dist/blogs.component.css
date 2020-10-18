@@ -19,7 +19,7 @@
 #sidebar {
   min-width: 280px;
   max-width: 280px;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 #sidebar.active {

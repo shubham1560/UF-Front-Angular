@@ -36,9 +36,19 @@ export class ArticleDetailComponent implements OnInit {
   breadCrumb;
   initCourse;
 
+  
+
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
+        let scrollToTop = window.setInterval(() => {
+          let pos = window.pageYOffset;
+          if (pos > 0) {
+            window.scrollTo(0, pos - 20); // how far to scroll on each step
+          } else {
+            window.clearInterval(scrollToTop);
+          }
+        }, 16);
         // console.log("changed");
         this.isLoading = true;
         this.article_id = params.get('article');
@@ -174,7 +184,7 @@ export class ArticleDetailComponent implements OnInit {
   }
 
   onImageLoad(){
-    console.log("imageLoaded");
+    // console.log("imageLoaded");
   }
 
 }
