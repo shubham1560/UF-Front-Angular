@@ -23,7 +23,7 @@
                 <mat-label>About</mat-label>
                 <textarea rows="2" matInput formControlName="about"></textarea>
             </mat-form-field>
-            <input type="checkbox" formControlName="public"> Public Profile 
+            <label style="padding-left: 10px;"><input type="checkbox" formControlName="public"> Public Profile </label>
             <br><br>
                 Social: 
             <br>
@@ -49,13 +49,12 @@
                 <mat-label>External Website Link</mat-label>
                 <input matInput type="text" formControlName="external_link">
             </mat-form-field>
-            
-
-            <mat-progress-bar mode="indeterminate" *ngIf="isEditing"></mat-progress-bar>
-
+            <!-- <mat-progress-bar mode="indeterminate" ></mat-progress-bar> -->
             <div class="uf-auth-buttons-div">
                 <button style="float: right;" mat-raised-button color="primary" type="submit">
-                    <span>Update</span>
+                    <span *ngIf="!isEditing">Update</span>
+                    <span *ngIf="isEditing">Updating...</span>
+
                 </button>
             </div>
         </form>

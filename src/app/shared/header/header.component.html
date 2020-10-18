@@ -22,12 +22,14 @@
         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
             style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(255, 255, 255);"
             [matMenuTriggerFor]="beforeMenu">
+
         </div>
         <div *ngIf="!image"
             style="cursor: pointer; font-weight:100; font-size: 14px; padding-top: 1px; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: black;color: white;text-align: center;"
             [matMenuTriggerFor]="beforeMenu">
-            {{user?.first_name+user?.last_name}}
+            <!-- {{user?.first_name[0]+user?.last_name[0]}} -->
 
+            <!-- {{user?.first_name+user?.last_name}} -->
         </div>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
@@ -36,7 +38,8 @@
                     style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(255, 255, 255);">
                 </div>
 
-                <span style="display: inline-block;padding-left: 10px;"><b>{{user?.first_name+" "+user?.last_name}}</b>
+                <span style="display: inline-block;padding-left: 10px;"><b>
+                    {{user?.first_name+" "+user?.last_name}}</b>
                     <br>
                     {{user.email}}
                 </span>
