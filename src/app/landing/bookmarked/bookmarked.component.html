@@ -8,21 +8,21 @@
 
 
     <div *ngIf="bookmarkedArticles?.length>0">
-        <p style="color: #425051;">{{title}}</p>
+        <p class="comp-heading">{{title}}</p>
         <div class="row">
             <div class="col-12" *ngFor="let article of bookmarkedArticles">
 
-                <a routerLink="courses/{{article.get_article.course_id}}/{{article.article}}" class="anchor">
+                <a routerLink="courses/{{article.get_article.course_id}}/{{article.article}}" class="landing-title-color">
                     {{article.get_article.title}}
                 </a>
 
-                <div style="font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;">
+                <div class="landing-breadcrumb">
                     {{article.get_article.kb_base_label}} / {{article.get_article.course_label}} <br>
                 </div>
             </div>
         </div>
         <div style="text-align: right;" *ngIf="showButton">
-            <button mat-button class="recently-viewed-all-button" (click)="openAllBookmarkedArticles()">
+            <button class="landing-view-all-button" mat-button class="recently-viewed-all-button" (click)="openAllBookmarkedArticles()">
                 View all
                 <mat-icon style="font-size: 20px;">
                     call_made

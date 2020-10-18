@@ -44,6 +44,36 @@ button{
     outline: none;
 }
 
+.landing-comp-heading{
+    color: #425051;
+}
+
+.landing-title-color{
+    color: #3c869a;
+
+    // &:hover{
+    //     color: #3c869a;
+
+    // }
+}
+
+.landing-breadcrumb{
+    font-size: 12px;text-align: left; color: #a4acad; padding-bottom: 10px;
+}
+
+.landing-view-all-button{
+    color: #3c869a;
+    // border: 2px solid #3c869a;
+    border-radius: 0px;
+    background-color: white;
+    outline: none;
+
+    &:hover{
+        background-color: #3c869a;
+        color: white;
+    }
+}
+
 .uf-auth-wrapper{
     width: 100%;
     display: flex;
