@@ -127,14 +127,15 @@
                             </div>
                         </div>
 
-                        <div *ngIf="block.type=='image'" style="padding: 40px;">
+                        <div *ngIf="block.type=='image'" class="article-image">
                             <img [src]="block.data.file?.url" (load)="onImageLoad()" alt="Nature" class="responsive caption">
                             <div class="caption">
                                 {{block.data?.caption}}
                             </div>
+                            <br>
                         </div>
 
-                        <div *ngIf="block.type=='list'" style="padding-left: 10px;">
+                        <div *ngIf="block.type=='list'" style="padding-left: 0px;">
                             <!-- yellow -->
                             <div *ngIf="block.data.style=='ordered'">
                                 <!-- yellow -->
@@ -145,18 +146,21 @@
                                         <b style="padding-right: 14px;"> {{i+1}} </b> <span [innerHTML]="item"></span>
                                     </mat-list-item>
                                 </mat-list>
+                                <br>
                             </div>
                             <div *ngIf="block.data.style=='unordered'">
                                 <!-- yellow -->
-                                <mat-list role="list">
+                                <!-- <br> -->
+                                <!-- <mat-list role="list"> -->
                                     <!-- yellow -->
-                                    <mat-list-item role="listitem" *ngFor="let item of block.data.items">
+                                    <!-- <mat-list-item role="listitem" *ngFor="let item of block.data.items"> -->
                                         <!-- <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon> -->
-                                        <ul>
+                                        <ul *ngFor="let item of block.data.items">
                                             <li [innerHTML]="item"></li>
                                         </ul>
-                                    </mat-list-item>
-                                </mat-list>
+                                    <!-- </mat-list-item> -->
+                                <!-- </mat-list> -->
+                                <!-- <br> -->
                             </div>
 
 
