@@ -15,20 +15,16 @@
 
                             <mat-card-subtitle class="uf-course-desc">
                                 Progress: {{course.progress}} %
+                                <br>
+                                <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
+                                    access_time
+                                </mat-icon>
+                                {{course.created_on | dateAgo}}
                             </mat-card-subtitle>
                         </mat-card-header>
-                        <div style="font-size: 14px;text-align: right; color: #2e778e;">
-                            <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
-                                access_time
-                            </mat-icon>
-                            {{course.created_on | dateAgo}}
-                        </div>
                     </mat-card>
                 </a>
             </div>
         </div>
-        <!-- <div *ngIf="!courses">
-        Start learning about a topic!!
-    </div> -->
     </div>
 </div>

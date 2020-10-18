@@ -1,35 +1,25 @@
-<div id="uf-recently-viewed" >
+<div id="uf-recently-viewed">
   <div *ngIf="articles?.length>0">
-  <p class="comp-heading" *ngIf="articles">Recently viewed articles</p>
+    <p class="comp-heading" *ngIf="articles">Recently viewed articles</p>
 
-  <div class="row">
-    <div class="col-12" *ngFor="let article of articles">
-
-
-      <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color"> 
-        {{article.article.title}}
-      </a>
-
-      <div class="landing-breadcrumb">
-        {{article.article.knowledge_base}} / {{article.article.course_name}} <br>
+    <div class="row">
+      <div class="col-12" *ngFor="let article of articles">
+        <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color">
+          {{article.article.title}}
+        </a>
+        <div class="landing-breadcrumb">
+          {{article.article.knowledge_base}} / {{article.article.course_name}} <br>
+        </div>
       </div>
-      
+    </div>
+    <div style="text-align: right;">
+      <button mat-button class="recently-viewed-all-button" (click)="openAllReadArticles()">
+        View all
+        <mat-icon style="font-size: 20px;">
+          call_made
+        </mat-icon>
+      </button>
 
     </div>
-  </div>
-  <div style="text-align: right;">
-    <button mat-button class="recently-viewed-all-button" (click)="openAllReadArticles()">
-      View all
-      <mat-icon style="font-size: 20px;">
-        call_made
-      </mat-icon>
-    </button>
-    
-  </div>
-
-  <!-- <pre>
-    {{articles | json}}
-
-    </pre> -->
   </div>
 </div>

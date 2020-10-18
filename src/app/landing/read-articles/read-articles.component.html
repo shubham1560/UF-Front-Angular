@@ -1,41 +1,20 @@
-<!-- <div id="uf-read-articles" class="" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-        (scrolled)="getNextPage()"> -->
 <div id="uf-read-articles">
-
     <h2 mat-dialog-title style="color: #293e40;">Viewed Articles</h2>
     <mat-dialog-content class="mat-typography">
-            <div *ngFor="let article of articles">
-            <mat-card class="uf-recently-viewed-card" routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
-
-                <!-- <div style="font-size: 14px; text-align: right;">
-                    
-                  </div> -->
-                <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color"> 
+        <div *ngFor="let article of articles">
+            <mat-card class="uf-recently-viewed-card"
+                routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
+                <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color">
                     {{article.article.title}}
-                  </a>
-            
-                  <div class="landing-breadcrumb">
+                </a>
+                <div class="landing-breadcrumb">
                     {{article.article.knowledge_base}} / {{article.article.course_name}} <br>
                     <mat-icon style="font-size: 14px; padding: 0px; margin:0px; height: auto; width: auto;">
                         access_time
-                      </mat-icon>
-                      {{article.created_on | dateAgo}}
-                  </div>
-                  
-<!-- 
-                <div class="uf-recently-viewed-header">
-                  {{article.article.knowledge_base}} -> {{article.article.course_name}}
+                    </mat-icon>
+                    {{article.created_on | dateAgo}}
                 </div>
-                <mat-card-header>
-                  <mat-card-title style="color: #425051; font-size: 16px;font-weight: 400;"> {{article.article.title}} </mat-card-title>
-                  <mat-card-subtitle style="color: #425051; font-size: 14px;" class="uf-paragraph-wrapper">{{article.article.description}}</mat-card-subtitle>
-                </mat-card-header> -->
-                
-                  
-              </mat-card>
-
-            </div>
-            
-            
+            </mat-card>
+        </div>
     </mat-dialog-content>
 </div>
