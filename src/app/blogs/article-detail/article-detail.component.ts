@@ -182,9 +182,9 @@ export class ArticleDetailComponent implements OnInit {
     c.push(JSON.parse(a.substring(j, a.length)));
     return c;
   }
-
+  imageLoaded = false;
   onImageLoad(){
-    // console.log("imageLoaded");
+    this.imageLoaded = true;
   }
 
 }

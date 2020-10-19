@@ -130,8 +130,13 @@
                         </div>
 
                         <div *ngIf="block.type=='image'" class="article-image">
-                            <img [src]="block.data.file?.url" (load)="onImageLoad()" alt="Nature" class="responsive caption">
-                            <div class="caption">
+                            <img [src]="block.data.file?.url" *ngIf="!imageLoaded" (load)="onImageLoad()">
+                            <div class="caption imageDiv" *ngIf="!imageLoaded">
+                                <div class="loader"></div>
+                            </div>
+                            <img *ngIf="imageLoaded" [src]="block.data.file?.url" (load)="onImageLoad()" alt="Nature" class="responsive caption">
+
+                            <div class="caption" style="margin-top: 10px;">
                                 {{block.data?.caption}}
                             </div>
                             <br>
