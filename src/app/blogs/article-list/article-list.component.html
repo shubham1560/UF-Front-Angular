@@ -1,63 +1,63 @@
-<mat-dialog-content class="mat-typography">
-    <div id="articlelist">
-        <!-- <div class="go-back" (click)="goBack()">
+<div id="articlelist">
+    <!-- <div class="go-back" (click)="goBack()">
         Go Back
     </div> -->
-        <div *ngIf="isLoading">
-            <!-- <div> -->
-            <div class="heading" *ngIf="!openInModal">
-                <div style="width: 200px; height: 30px; background-color: white;"></div>
-                <!-- Loading.... -->
-                <div style="width: 220px; height: 20px; margin-top: 10px; background-color: white;"></div>
-                <!-- Loading.... -->
-                <div style="width: 120px; height: 20px; margin-top: 10px; background-color: white;"></div>
-                <!-- Loading.... -->
+    <div *ngIf="isLoading">
+        <!-- <div> -->
+        <div class="heading" *ngIf="!openInModal">
+            <div style="width: 200px; height: 30px; background-color: white;"></div>
+            <!-- Loading.... -->
+            <div style="width: 220px; height: 20px; margin-top: 10px; background-color: white;"></div>
+            <!-- Loading.... -->
+            <div style="width: 120px; height: 20px; margin-top: 10px; background-color: white;"></div>
+            <!-- Loading.... -->
 
-            </div>
-            <div class="heading" *ngIf="openInModal">
-                <div style="width: 200px; height: 30px; background-color: #f7f7f7;"></div>
-                <div style="width: 260px; height: 20px; margin-top: 10px; background-color: #f7f7f7;"></div>
-            </div>
-
-            <div style="margin-top: 30px; padding-right: 10px;">
-                <div class="section-ghost" style="height: 135px">
-                    <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
-                    </div>
-                    <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                    </div>
-                    <div style="padding: 10px 10px 10px 30px">
-                        <div style="height: 15px; background-color: #f7f7f7;">
-                        </div>
-                        <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                        </div>
-                        <!-- <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                    </div> -->
-                    </div>
-                </div>
-                <div class="section-ghost">
-                    <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
-                    </div>
-                    <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                    </div>
-                </div>
-
-                <!-- <div class="section-ghost">
-                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
-                </div>
-                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                </div>
-            </div> -->
-                <!-- <div class="section-ghost">
-                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
-                </div>
-                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                </div>
-            </div> -->
-
-            </div>
+        </div>
+        <div class="heading" *ngIf="openInModal">
+            <div style="width: 200px; height: 30px; background-color: #f7f7f7;"></div>
+            <div style="width: 260px; height: 20px; margin-top: 10px; background-color: #f7f7f7;"></div>
         </div>
 
-        <div *ngIf="openInModal">
+        <div style="margin-top: 30px; padding-right: 10px;">
+            <div class="section-ghost" style="height: 135px">
+                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
+                </div>
+                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
+                </div>
+                <div style="padding: 10px 10px 10px 30px">
+                    <div style="height: 15px; background-color: #f7f7f7;">
+                    </div>
+                    <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
+                    </div>
+                    <!-- <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
+                    </div> -->
+                </div>
+            </div>
+            <div class="section-ghost">
+                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
+                </div>
+                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
+                </div>
+            </div>
+
+            <!-- <div class="section-ghost">
+                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
+                </div>
+                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
+                </div>
+            </div> -->
+            <!-- <div class="section-ghost">
+                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
+                </div>
+                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+
+    <div *ngIf="openInModal">
+        <mat-dialog-content class="mat-typography">
             <div class="heading" mat-dialog-title>
                 <h4 style="color: #4f9aab">{{courseName}}</h4>
                 <span style="color: #3c869a; font-size: smaller;">{{courseDescription}}</span>
@@ -74,19 +74,19 @@
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
             </mat-progress-bar>
 
-            <mat-dialog-content class="mat-typography">
-                <!-- <div style="height: 500px;"></div> -->
-                <div class="left-widget-wrapper">
-                    <mat-accordion color="primary">
-                        <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
-                            style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
-                            (closed)="panelOpenState = false">
-                            <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
-                            <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
-                                <mat-panel-title [ngClass]="{'active' : section.active}">
 
-                                    <b>
-                                        <!-- <div *ngIf="!section.doneAll || !progress"
+            <!-- <div style="height: 500px;"></div> -->
+            <div class="left-widget-wrapper">
+                <mat-accordion color="primary">
+                    <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
+                        style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                        <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
+                        <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
+                            <mat-panel-title [ngClass]="{'active' : section.active}">
+
+                                <b>
+                                    <!-- <div *ngIf="!section.doneAll || !progress"
                                     style="margin-right: 10px; padding: 3px 10px; border: 3px solid lightgray; border-radius: 20px;display: inline-block;">
                                     {{i+1}}
                                 </div>
@@ -97,69 +97,69 @@
 
 
 
-                                        {{i+1}}.
-                                        {{section.label}}
-                                        <br>
-                                        <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
+                                    {{i+1}}.
+                                    {{section.label}}
+                                    <br>
+                                    <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
-                                    </b>
+                                </b>
 
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <div *ngFor="let article of section.articles; let j = index">
-                                <div (click)="navigate(article.id)" class="uf-article">
-                                    <div class="d-inline" *ngIf="!article.viewed">
-                                        <mat-icon style="vertical-align: middle;" matSuffix>
-                                            panorama_fish_eye
-                                        </mat-icon>
-
-                                    </div>
-                                    <div class="d-inline" *ngIf="article.viewed">
-                                        <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
-                                            check_circle</mat-icon>
-                                    </div>
-                                    <div class="d-inline" [ngClass]="{'active' : article.active}">
-                                        {{article.title}}
-                                    </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let article of section.articles; let j = index">
+                            <div (click)="navigate(article.id)" class="uf-article">
+                                <div class="d-inline" *ngIf="!article.viewed">
+                                    <mat-icon style="vertical-align: middle;" matSuffix>
+                                        panorama_fish_eye
+                                    </mat-icon>
 
                                 </div>
+                                <div class="d-inline" *ngIf="article.viewed">
+                                    <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
+                                        check_circle</mat-icon>
+                                </div>
+                                <div class="d-inline" [ngClass]="{'active' : article.active}">
+                                    {{article.title}}
+                                </div>
+
                             </div>
-                        </mat-expansion-panel>
-                    </mat-accordion>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
 
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div *ngIf="!openInModal">
+        <div *ngIf="!isLoading">
+            <div class="heading">
+                <h4 style="color: #4f9aab">{{courseName}}</h4>
+                <span style="color: #3c869a; font-size: smaller; font-size: smaller;">{{courseDescription}}</span>
+                <div *ngIf="progress">
+                    <b>Progress: </b>{{progress}} %
                 </div>
-            </mat-dialog-content>
-        </div>
-
-        <div *ngIf="!openInModal">
-            <div *ngIf="!isLoading">
-                <div class="heading">
-                    <h4 style="color: #4f9aab">{{courseName}}</h4>
-                    <span style="color: #3c869a; font-size: smaller; font-size: smaller;">{{courseDescription}}</span>
-                    <div *ngIf="progress">
-                        <b>Progress: </b>{{progress}} %
-                    </div>
-                    <!-- <div *ngIf="!signedIn">
+                <!-- <div *ngIf="!signedIn">
                     You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
                     your
                     progress!
                 </div> -->
 
-                </div>
-                <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
-                </mat-progress-bar>
-                <br>
-                <div class="left-widget-wrapper">
-                    <mat-accordion color="primary">
-                        <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
-                            style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
-                            (closed)="panelOpenState = false">
-                            <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
-                            <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
-                                <mat-panel-title [ngClass]="{'active' : section.active}">
+            </div>
+            <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
+            </mat-progress-bar>
+            <br>
+            <div class="left-widget-wrapper">
+                <mat-accordion color="primary">
+                    <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
+                        style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
+                        (closed)="panelOpenState = false">
+                        <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
+                        <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
+                            <mat-panel-title [ngClass]="{'active' : section.active}">
 
-                                    <b>
-                                        <!-- <div *ngIf="!section.doneAll || !progress"
+                                <b>
+                                    <!-- <div *ngIf="!section.doneAll || !progress"
                                     style="margin-right: 10px; padding: 3px 10px; border: 3px solid lightgray; border-radius: 20px;display: inline-block;">
                                     {{i+1}}
                                 </div>
@@ -170,39 +170,38 @@
 
 
 
-                                        {{i+1}}.
-                                        {{section.label}}
-                                        <br>
-                                        <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
+                                    {{i+1}}.
+                                    {{section.label}}
+                                    <br>
+                                    <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
-                                    </b>
+                                </b>
 
-                                </mat-panel-title>
-                            </mat-expansion-panel-header>
-                            <div *ngFor="let article of section.articles; let j = index">
-                                <div (click)="navigate(article.id)" class="uf-article">
-                                    <div class="d-inline" *ngIf="!article.viewed">
-                                        <mat-icon style="vertical-align: middle;" matSuffix>
-                                            panorama_fish_eye
-                                        </mat-icon>
-
-                                    </div>
-                                    <div class="d-inline" *ngIf="article.viewed">
-                                        <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
-                                            check_circle</mat-icon>
-                                    </div>
-                                    <div class="d-inline" [ngClass]="{'active' : article.active}">
-                                        {{article.title}}
-                                    </div>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let article of section.articles; let j = index">
+                            <div (click)="navigate(article.id)" class="uf-article">
+                                <div class="d-inline" *ngIf="!article.viewed">
+                                    <mat-icon style="vertical-align: middle;" matSuffix>
+                                        panorama_fish_eye
+                                    </mat-icon>
 
                                 </div>
-                            </div>
-                        </mat-expansion-panel>
-                    </mat-accordion>
+                                <div class="d-inline" *ngIf="article.viewed">
+                                    <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
+                                        check_circle</mat-icon>
+                                </div>
+                                <div class="d-inline" [ngClass]="{'active' : article.active}">
+                                    {{article.title}}
+                                </div>
 
-                </div>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
             </div>
         </div>
-
     </div>
-</mat-dialog-content>
+
+</div>
