@@ -51,7 +51,8 @@ export class ArticleNewComponent implements OnInit {
   article;
   editorInitilized = false;
   state;
-
+  owner = false
+  isLoading = true;
   ngOnInit() {
     this.titleService.setTitle("Add new article")
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
@@ -72,12 +73,13 @@ export class ArticleNewComponent implements OnInit {
       }
     )
 
-
     this.routerService.paramMap.subscribe(
       params => {
         var article_id = params.get("id");
         if (article_id == '1') {
           this.data = {};
+          this.owner = true;
+          this.isLoading = true;
           // window.location.reload();
           this.initializeEditor();
           this.editorInitilized = true;
@@ -89,6 +91,12 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
               this.article = response;
+              this.owner = response.owner;
+              if(!this.owner){
+                window.location.href = "";
+              }else{
+                this.isLoading = false;
+              }
               this.state = this.article.data.workflow
               this.id = article_id;
               var len = response.data.article_body.length - 1;
