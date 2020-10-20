@@ -35,7 +35,7 @@ export class ArticleDetailComponent implements OnInit {
   sections;
   breadCrumb;
   initCourse;
-
+  owner   //variable to get if the logged in guy is owner or not
   
 
   ngOnInit() {
@@ -57,6 +57,9 @@ export class ArticleDetailComponent implements OnInit {
           this.knowledge.getArticleById(this.article_id).subscribe(
             (result: any) => {
               this.article = result.data;
+              // if(result.owner){
+              this.owner = result.owner;
+              // }
               this.isLoading = false;
               var len = this.article.article_body.length - 1;
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
