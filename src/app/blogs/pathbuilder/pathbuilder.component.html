@@ -1,1 +1,9 @@
-<p>pathbuilder works!</p>
+<!-- <p>pathbuilder works!</p> -->
+<br><br><br><br>
+<div class="container">
+    <div class="row">
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+        </div>
+    </div>
+</div>

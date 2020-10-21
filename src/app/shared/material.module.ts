@@ -18,11 +18,13 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 @NgModule({
   declarations: [],
   imports: [
+    DragDropModule,
     MatTreeModule,
     MatTooltipModule,
     MatExpansionModule,
@@ -46,6 +48,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatCheckboxModule,
   ],
   exports:[
+    DragDropModule,
     MatCheckboxModule,
     MatListModule,
     MatTreeModule,
