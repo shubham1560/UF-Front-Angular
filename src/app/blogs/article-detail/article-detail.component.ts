@@ -41,7 +41,7 @@ export class ArticleDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        console.log(params);
+        // console.log(params);
         if (window.location.hash == "") {
           let scrollToTop = window.setInterval(() => {
             let pos = window.pageYOffset;

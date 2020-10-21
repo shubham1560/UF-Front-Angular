@@ -1,11 +1,23 @@
 <!-- <p>pathbuilder works!</p> -->
 <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
-<br><br><br><br>
+<br><br>
+
 <div class="container" id="uf-path">
     <!-- <pre>
         {{sectionAndArticles | json}}
     </pre> -->
+    <div class="row">
+        <h5 style="color:#8dbcaa"> You are building the structure for:  
+            <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/courses/{{course}}/" mat-icon-button>
+                {{courseName}} 
+                <mat-icon >
+                    open_in_new
+                </mat-icon>
+            </a>
+        </h5>
+    </div>
+    <br>
     <div class="row">
         <div class="col-md-4">
             Add section <br>
@@ -19,13 +31,15 @@
         <div class="col-md-8">
             <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
                 <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles" cdkDrag>
-                    <span style="padding-left: 40px; " *ngIf="element.type=='article'">
-                        <mat-icon>
-                            subdirectory_arrow_right
-                        </mat-icon>
+                    <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">
+                        <a target="_blank" routerLink="/courses/article_preview/{{element.id}}" mat-icon-button>
+                            <mat-icon style="color: #3c869a;" matTooltip="See the article preview">
+                                open_in_new
+                            </mat-icon>
+                        </a>
                         {{element.label}}
-                    </span>
-                    <span style="color: #3c869a;" *ngIf="element.type=='section'">{{element.label}}</span>
+                    </div>
+                    <div style="color: #3c869a;" *ngIf="element.type=='section'">{{element.label}}</div>
                 </div>
             </div>
             <br>

@@ -154,4 +154,9 @@ export class DataService {
     const body = {"course": course, "path": path};
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  ifCourseOwner(course){
+    this.called_url = `${this.base_knowledge_url}path_valid_user/${course}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

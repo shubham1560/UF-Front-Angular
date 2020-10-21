@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-pathbuilder',
@@ -14,31 +15,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class PathbuilderComponent implements OnInit {
 
-  movies = [
-    'Episode I - The Phantom Menace',
-    'Episode II - Attack of the Clones',
-    'Episode III - Revenge of the Sith',
-    'Episode IV - A New Hope',
-    'Episode V - The Empire Strikes Back',
-    'Episode VI - Return of the Jedi',
-    'Episode VII - The Force Awakens',
-    'Episode VIII - The Last Jedi',
-    'Episode IX – The Rise of Skywalker'
-  ];
-
   drop(event: CdkDragDrop<string[]>) {
-    // console.log(event);
     moveItemInArray(this.flatSectionAndArticles, event.previousIndex, event.currentIndex);
-
-    // console.log(this.flatSectionAndArticles);
-
   }
+
 
   course;
   sectionAndArticles;
   flatSectionAndArticles: any[];
   newSection;
-
+  courseName;
 
   constructor(
     private userService: UserprofileService,
@@ -46,11 +32,12 @@ export class PathbuilderComponent implements OnInit {
     private route: ActivatedRoute,
     private knowledgeService: DataService,
     private logger: LoggerService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private titleService: Title,
   ) { }
 
   ngOnInit(): void {
-
+    this.titleService.setTitle("Path Builder")
     this.route.paramMap.subscribe(
       (params: any) => {
         // console.log(params);
@@ -63,7 +50,7 @@ export class PathbuilderComponent implements OnInit {
       this.userService.inGroup("Moderators").subscribe(
         (response: Boolean) => {
           if (response) {
-            this.getSectionAndArticles();
+            this.courseOwner();
           }
           else {
             window.location.href = "welcome";
@@ -80,11 +67,29 @@ export class PathbuilderComponent implements OnInit {
     this.logger.logData("uf-path", this);
   }
 
+  courseOwner(){
+    this.knowledgeService.ifCourseOwner(this.course).subscribe(
+      (result:any)=>{
+        // console.log(result);
+        if(result.owner){
+          this.getSectionAndArticles();
+          this.courseName = result.course;
+        }
+        else{
+          window.location.href = "/welcome";
+          // alert("You are not the owner of this course");
+        }
+      }, error =>{
+        window.location.href = "/welcome";
+        // console.log(error);
+        
+      }
+    )
+  }
+
   getSectionAndArticles() {
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
-        // console.log(response);
-        // return response;
         this.sectionAndArticles = response;
         this.convertToArray(this.sectionAndArticles.sections);
       }, error => { }
@@ -169,12 +174,17 @@ export class PathbuilderComponent implements OnInit {
     if (valid) {
       this.knowledgeService.buildPathForCourse(this.course, heir).subscribe(
         (result: any) => {
+          console.log(heir);
           this.getSectionAndArticles();
           this.isLoading = false;
-          this._snackBar.open("Saved successfully!", '');
+          this._snackBar.open("Saved successfully!", '', {
+            duration: 2000,
+          });
         },
         error =>{
-          this._snackBar.open("Some error occured! Please try again!", '');
+          this._snackBar.open("Some error occured! Please try again!", '', {
+            duration: 5000,
+          });
           this.isLoading = false;
         }
       )
