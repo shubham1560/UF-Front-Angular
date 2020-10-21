@@ -46,7 +46,7 @@ export class ArticleListComponent implements OnInit {
 
     this.route.paramMap.subscribe(
       result => {
-        if (result.get("category") != "test_article_preview") {
+        if (result.get("category") != "article_preview") {
           if (this.course_for_modal.category) {
             // For modal for overview section
 

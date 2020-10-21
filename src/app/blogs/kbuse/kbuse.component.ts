@@ -28,34 +28,42 @@ export class KbuseComponent implements OnInit {
   found_useful: boolean;
   bookmarked: boolean;
   isLoading = true;
+  course;
+  forTesting;
 
   ngOnInit(): void {
+
     this.route.paramMap.subscribe(
       params => {
         if (this.authService.isLoggedIn()) {
           this.article = params.get('article');
-
-          if (this.article) {
-            this.viewed(this.article);
-            setTimeout(() =>
-              this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
-                (data: any) => {
-                  // console.log(data);
-                  this.found_useful = data.found_useful;
-                  this.bookmarked = data.bookmarked;
-                  this.isLoading = false;
-                }
-              )
-              , 200)
+          this.course = params.get('category');
+          if (this.course != "article_preview") {
+            if (this.article) {
+              this.viewed(this.article);
+              setTimeout(() =>
+                this.knowledge.ifArticleBookmarkedByUser(this.article).subscribe(
+                  (data: any) => {
+                    // console.log(data);
+                    this.found_useful = data.found_useful;
+                    this.bookmarked = data.bookmarked;
+                    this.isLoading = false;
+                  }
+                )
+                , 200)
+            }
+          }
+          else{
+            this.forTesting = true;
           }
         }
-        else{
+        else {
           this.isLoading = false;
         }
       }
     )
 
-    this.loggerService.logData('uf-kbuse', this);
+    // this.loggerService.logData('uf-kbuse', this);
     // this.knowledge.postUseArticle()
   }
 

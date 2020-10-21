@@ -10,20 +10,30 @@
         <div class="col-md-4">
             Add section <br>
             <br>
-            <mat-form-field class="example-full-width">
+            <mat-form-field class="pathbuild-full-width">
                 <mat-label>Add New Section</mat-label>
                 <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
             </mat-form-field>
-            <button mat-flat-button (click)="addSection()">Add section</button>
+            <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
         </div>
         <div class="col-md-8">
-            <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let element of flatSectionAndArticles" cdkDrag>
-                    <span style="padding-left: 40px;" *ngIf="element.type=='article'">{{element.label}}</span>
-                    <span *ngIf="element.type=='section'">{{element.label}}</span>
+            <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
+                <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles" cdkDrag>
+                    <span style="padding-left: 40px; " *ngIf="element.type=='article'">
+                        <mat-icon>
+                            subdirectory_arrow_right
+                        </mat-icon>
+                        {{element.label}}
+                    </span>
+                    <span style="color: #3c869a;" *ngIf="element.type=='section'">{{element.label}}</span>
                 </div>
             </div>
+            <br>
+            <div>
+                <button mat-flat-button color="primary" [disabled]="isLoading" (click)="finalPathStructure()">
+                    Save the path
+                </button>
+            </div>
         </div>
-        <button mat-button (click)="finalPathStructure()">Save the path</button>
     </div>
 </div>

@@ -1,4 +1,4 @@
-.example-list {
+.pathbuild-list {
     width: 500px;
     max-width: 100%;
     border: solid 1px #ccc;
@@ -9,8 +9,8 @@
     overflow: hidden;
   }
   
-  .example-box {
-    padding: 20px 10px;
+  .pathbuild-box {
+    padding: 10px 10px;
     border-bottom: solid 1px #ccc;
     color: rgba(0, 0, 0, 0.87);
     display: flex;
@@ -39,10 +39,10 @@
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
   
-  .example-box:last-child {
+  .pathbuild-box:last-child {
     border: none;
   }
   
-  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  .pathbuild-list.cdk-drop-list-dragging .pathbuild-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }

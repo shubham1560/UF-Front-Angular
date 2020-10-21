@@ -125,53 +125,60 @@ export class PathbuilderComponent implements OnInit {
         "articles": []
       })
     }
-    else{
+    else {
       this._snackBar.open('Please type the name of the section', "", {
         duration: 2000,
       });
     }
   }
-  isLoading=false;
+  isLoading = false;
 
   finalPathStructure() {
     // console.log(this.flatSectionAndArticles);
     this.isLoading = true;
-    var heir=[]
+    var heir = []
     var sectionOrder = 100;
     var articleOrder = 100;
+    var valid = true;
     this.flatSectionAndArticles.forEach(element => {
-      if(element.type == 'section'){
+      if (element.type == 'section') {
         element.order = sectionOrder;
         sectionOrder += 100;
         element.articles = [];
         heir.push(element);
       }
-      if(element.type == 'article'){
+      if (element.type == 'article') {
         element.order = articleOrder;
         articleOrder += 100;
-        if(heir.length >= 1){
-          heir[heir.length-1].articles.push(element);
+        if (heir.length >= 1) {
+          heir[heir.length - 1].articles.push(element);
         }
-        else{
+        else {
           this._snackBar.open("The path can't start with article, please add section on top", "", {
             duration: 2000,
             horizontalPosition: "right",
             verticalPosition: "top",
           });
-          return;
           this.isLoading = false;
+          valid = false;
+          return;
         }
       }
     })
     // console.log(heir);
-
-    this.knowledgeService.buildPathForCourse(this.course, heir).subscribe(
-      (result:any) => {
-        console.log(heir);
-        this.getSectionAndArticles();
-        this.isLoading = false;
-      }
-    )
+    if (valid) {
+      this.knowledgeService.buildPathForCourse(this.course, heir).subscribe(
+        (result: any) => {
+          this.getSectionAndArticles();
+          this.isLoading = false;
+          this._snackBar.open("Saved successfully!", '');
+        },
+        error =>{
+          this._snackBar.open("Some error occured! Please try again!", '');
+          this.isLoading = false;
+        }
+      )
+    }
   }
 
 }

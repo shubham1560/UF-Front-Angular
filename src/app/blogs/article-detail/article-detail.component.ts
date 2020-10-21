@@ -87,20 +87,18 @@ export class ArticleDetailComponent implements OnInit {
         // params.get("").
         setTimeout(() => {
           if (this.category != this.initCourse) {
-            this.knowledge.getRelatedSectionAndArticles(this.category).subscribe(
-              (response: any) => {
-                this.sections = response.sections;
-                // console.log("running");
-                // console.log(this.sections);
-                this.fetchArticles();
-                this.setNextPrevious();
-                // console.log(this);
-                this.initCourse = params.get("category");
-              },
-              error => {
-
-              }
-            )
+            if (this.category != "article_preview") {
+              this.knowledge.getRelatedSectionAndArticles(this.category).subscribe(
+                (response: any) => {
+                  this.sections = response.sections;
+                  this.fetchArticles();
+                  this.setNextPrevious();
+                  this.initCourse = params.get("category");
+                },
+                error => {
+                }
+              )
+            }
           }
           else {
             // this.setNextPrevious();
