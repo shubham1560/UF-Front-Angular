@@ -5,6 +5,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pathbuilder',
@@ -42,7 +43,8 @@ export class PathbuilderComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private knowledgeService: DataService,
-    private logger: LoggerService
+    private logger: LoggerService,
+    private _snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -111,16 +113,50 @@ export class PathbuilderComponent implements OnInit {
     // console.log(finArray);
   }
 
-  addSection(){
-    this.flatSectionAndArticles.push({
-      "label": this.newSection,
-      "type": "section"
-    })
+  addSection() {
+    // alert(this.newSection)
+    if (this.newSection) {
+      this.flatSectionAndArticles.push({
+        "label": this.newSection,
+        "type": "section",
+        "order": null,
+        "articles": []
+      })
+    }
+    else{
+      this._snackBar.open('Please type the name of the section', "", {
+        duration: 2000,
+      });
+    }
   }
 
-  finalPathStructure(){
+  finalPathStructure() {
     console.log(this.flatSectionAndArticles);
-
+    var heir=[]
+    var sectionOrder = 100;
+    var articleOrder = 100;
+    this.flatSectionAndArticles.forEach(element => {
+      if(element.type == 'section'){
+        element.order = sectionOrder;
+        sectionOrder += 100;
+        heir.push(element);
+      }
+      if(element.type == 'article'){
+        element.order = articleOrder;
+        articleOrder += 100;
+        if(heir.length >= 1){
+          heir[heir.length-1].articles.push(element);
+        }
+        else{
+          this._snackBar.open("The path can't start with article, please add section on top", "", {
+            duration: 2000,
+            horizontalPosition: "right",
+            verticalPosition: "top",
+          });
+        }
+      }
+    })
+    console.log(heir);
   }
 
 }

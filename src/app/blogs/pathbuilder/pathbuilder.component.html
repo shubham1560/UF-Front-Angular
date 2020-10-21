@@ -5,17 +5,16 @@
         {{sectionAndArticles | json}}
     </pre> -->
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             Add section <br>
             <br>
             <mat-form-field class="example-full-width">
                 <mat-label>Add New Section</mat-label>
                 <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
             </mat-form-field>
-            <button mat-button (click)="addSection()">Add section</button>
-            <!-- {{newSection}} -->
+            <button mat-flat-button (click)="addSection()">Add section</button>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let element of flatSectionAndArticles" cdkDrag>
                     <span style="padding-left: 40px;" *ngIf="element.type=='article'">{{element.label}}</span>
