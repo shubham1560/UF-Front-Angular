@@ -36,19 +36,22 @@ export class ArticleDetailComponent implements OnInit {
   breadCrumb;
   initCourse;
   owner   //variable to get if the logged in guy is owner or not
-  
+
 
   ngOnInit() {
     this.route.paramMap.subscribe(
       params => {
-        let scrollToTop = window.setInterval(() => {
-          let pos = window.pageYOffset;
-          if (pos > 0) {
-            window.scrollTo(0, pos - 20); // how far to scroll on each step
-          } else {
-            window.clearInterval(scrollToTop);
-          }
-        }, 16);
+        console.log(params);
+        if (window.location.hash == "") {
+          let scrollToTop = window.setInterval(() => {
+            let pos = window.pageYOffset;
+            if (pos > 0) {
+              window.scrollTo(0, pos - 20); // how far to scroll on each step
+            } else {
+              window.clearInterval(scrollToTop);
+            }
+          }, 16);
+        }
         // console.log("changed");
         this.isLoading = true;
         this.article_id = params.get('article');
@@ -133,7 +136,7 @@ export class ArticleDetailComponent implements OnInit {
         // console.log(element);
         // link = encodeURI(link);
         this.httpService.get(url, { params: { "url": link }, headers: this.url.getHeader() }).subscribe(
-          (response:any) => {
+          (response: any) => {
             element.data.meta = response.meta;
             // console.log(response);
           }, error => {
@@ -186,7 +189,7 @@ export class ArticleDetailComponent implements OnInit {
     return c;
   }
   imageLoaded = false;
-  onImageLoad(){
+  onImageLoad() {
     this.imageLoaded = true;
   }
 

@@ -18,6 +18,7 @@ import { FeedbackComponent } from './feedback/feedback.component';
 import { SafeurlPipe } from './pipes/safeurl.pipe';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
+import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     FeedbackComponent,
     SafeurlPipe,
     CoursesComponent,
+    PathbuilderComponent,
     ],
   imports: [
     CommonModule,
