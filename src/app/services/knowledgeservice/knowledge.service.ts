@@ -148,4 +148,10 @@ export class DataService {
     const body = {"form_data": form_data, "type": type};
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  buildPathForCourse(course, path){
+    this.called_url = `${this.base_knowledge_url}kb_section/path/`;
+    const body = {"course": course, "path": path};
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

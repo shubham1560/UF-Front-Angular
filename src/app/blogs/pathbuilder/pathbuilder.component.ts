@@ -27,8 +27,10 @@ export class PathbuilderComponent implements OnInit {
   ];
 
   drop(event: CdkDragDrop<string[]>) {
+    // console.log(event);
     moveItemInArray(this.flatSectionAndArticles, event.previousIndex, event.currentIndex);
-    console.log(this.flatSectionAndArticles);
+
+    // console.log(this.flatSectionAndArticles);
 
   }
 
@@ -129,9 +131,11 @@ export class PathbuilderComponent implements OnInit {
       });
     }
   }
+  isLoading=false;
 
   finalPathStructure() {
-    console.log(this.flatSectionAndArticles);
+    // console.log(this.flatSectionAndArticles);
+    this.isLoading = true;
     var heir=[]
     var sectionOrder = 100;
     var articleOrder = 100;
@@ -139,6 +143,7 @@ export class PathbuilderComponent implements OnInit {
       if(element.type == 'section'){
         element.order = sectionOrder;
         sectionOrder += 100;
+        element.articles = [];
         heir.push(element);
       }
       if(element.type == 'article'){
@@ -153,10 +158,20 @@ export class PathbuilderComponent implements OnInit {
             horizontalPosition: "right",
             verticalPosition: "top",
           });
+          return;
+          this.isLoading = false;
         }
       }
     })
-    console.log(heir);
+    // console.log(heir);
+
+    this.knowledgeService.buildPathForCourse(this.course, heir).subscribe(
+      (result:any) => {
+        console.log(heir);
+        this.getSectionAndArticles();
+        this.isLoading = false;
+      }
+    )
   }
 
 }

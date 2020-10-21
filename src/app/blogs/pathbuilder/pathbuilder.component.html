@@ -1,11 +1,13 @@
 <!-- <p>pathbuilder works!</p> -->
+<mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
+<mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
 <br><br><br><br>
 <div class="container" id="uf-path">
     <!-- <pre>
         {{sectionAndArticles | json}}
     </pre> -->
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             Add section <br>
             <br>
             <mat-form-field class="example-full-width">
@@ -14,7 +16,7 @@
             </mat-form-field>
             <button mat-flat-button (click)="addSection()">Add section</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let element of flatSectionAndArticles" cdkDrag>
                     <span style="padding-left: 40px;" *ngIf="element.type=='article'">{{element.label}}</span>
