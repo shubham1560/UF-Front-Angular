@@ -6,7 +6,7 @@
             <div id="uf-article-detail" style="padding-top: 20px;">
                 <div *ngIf="!isLoading">
                     <div *ngIf="owner">
-                        Article Options : 
+                        Article Options :
                         <a mat-icon-button routerLink="/courses/article/{{article.id}}">
                             <mat-icon>
                                 edit
@@ -350,7 +350,8 @@
 
             <br>
 
-            <div style="position: fixed ;">
+            <!-- <div style="position: fixed ;"> -->
+            <div>
                 <h6 style="color: #425051;"> On this page </h6>
                 <div *ngFor="let block of article_body">
                     <div *ngIf="block.type=='header'" style="padding: 6px 0px">

@@ -8,14 +8,16 @@
         {{sectionAndArticles | json}}
     </pre> -->
     <div class="row">
-        <h5 style="color:#8dbcaa"> You are building the structure for:  
-            <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/courses/{{course}}/" mat-icon-button>
-                {{courseName}} 
-                <mat-icon >
-                    open_in_new
-                </mat-icon>
-            </a>
-        </h5>
+        <span style="color:#3c869a"> You are building the structure for:   <br> 
+        </span> 
+        {{courseName}}
+        <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/courses/{{course}}/">
+            
+            <mat-icon >
+                open_in_new
+            </mat-icon>
+        </a>
+
     </div>
     <br>
     <div class="row">
@@ -27,6 +29,7 @@
                 <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
             </mat-form-field>
             <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
+            <h4 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h4>
         </div>
         <div class="col-md-6">
             
