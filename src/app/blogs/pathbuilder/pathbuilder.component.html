@@ -19,7 +19,7 @@
     </div>
     <br>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             Add section <br>
             <br>
             <mat-form-field class="pathbuild-full-width">
@@ -28,9 +28,11 @@
             </mat-form-field>
             <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-6">
+            
+            <br>
             <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
-                <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles" cdkDrag>
+                <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
                     <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">
                         <a target="_blank" routerLink="/courses/article_preview/{{element.id}}" mat-icon-button>
                             <mat-icon style="color: #3c869a;" matTooltip="See the article preview">
@@ -39,13 +41,23 @@
                         </a>
                         {{element.label}}
                     </div>
-                    <div style="color: #3c869a;" *ngIf="element.type=='section'">{{element.label}}</div>
+                    <div style="color: #3c869a;" *ngIf="element.type=='section'">
+                        <button *ngIf="element.label != 'Individual Articles'" mat-icon-button (click)="deleteSection(element, i)" style="color: #EC407F">
+                            <mat-icon>
+                                delete
+                            </mat-icon>
+                        </button>
+                        {{element.label}}
+                    </div>
                 </div>
             </div>
             <br>
             <div>
-                <button mat-flat-button color="primary" [disabled]="isLoading" (click)="finalPathStructure()">
-                    Save the path
+                <button mat-flat-button class="save-button" [disabled]="isLoading" (click)="finalPathStructure()">
+                    Save the path <mat-icon>publish</mat-icon>
+                </button> 
+                <button style="margin-left: 20px;" mat-flat-button class="save-button" [disabled]="isLoading" (click)="resetStructure()">
+                    Reset <mat-icon>refresh</mat-icon>
                 </button>
             </div>
         </div>

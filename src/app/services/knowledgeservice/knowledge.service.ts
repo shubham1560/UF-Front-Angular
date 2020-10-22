@@ -149,9 +149,10 @@ export class DataService {
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
-  buildPathForCourse(course, path){
+  buildPathForCourse(course, path, deleteSectionIdArray){
     this.called_url = `${this.base_knowledge_url}kb_section/path/`;
-    const body = {"course": course, "path": path};
+    const body = {"course": course, "path": path, "deleteSections": deleteSectionIdArray};
+    // console.log(body);
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 

@@ -221,7 +221,7 @@
                     <!-- <div class="uf-article-body" [innerHTML]="article?.article_body"></div> -->
                     <br><br>
                     <div class="row">
-                        <div class="col-lg-4" style="text-align: left;">
+                        <div class="col-lg-6" style="text-align: left;">
                             <!-- {{previousArticle | json}} -->
                             <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{previousArticle.id}}"
                                 *ngIf="previousArticle">
@@ -234,10 +234,10 @@
                                 </button>
                             </a>
                         </div>
-                        <div class="col-lg-4" style="text-align: center; color: rgba(0,0,0,.87)">
+                        <!-- <div class="col-lg-2" style="text-align: center; color: rgba(0,0,0,.87)">
                             Follow the trail
-                        </div>
-                        <div class="col-lg-4" style="text-align: right;">
+                        </div> -->
+                        <div class="col-lg-6" style="text-align: right;">
                             <!-- {{nextArticle | json}} -->
                             <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{nextArticle.id}}"
                                 *ngIf="nextArticle">

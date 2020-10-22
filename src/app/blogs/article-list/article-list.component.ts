@@ -63,10 +63,7 @@ export class ArticleListComponent implements OnInit {
             this.isLoading = false;
           }
           this.article = result.get("article");
-          // if (this.course != this.courseInit) {
-          // console.log("called time")
           this.changeTheCourse();
-          // }
           if (this.authService.isLoggedIn()) {
             this.knowledgeService.ifCourseOwner(this.course).subscribe(
               (result:any) => {

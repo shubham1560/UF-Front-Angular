@@ -91,7 +91,7 @@
                         style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
                         (closed)="panelOpenState = false">
                         <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
-                        <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
+                        <mat-expansion-panel-header style="height: 70px" [ngClass]="{'active' : section.active}">
                             <mat-panel-title [ngClass]="{'active' : section.active}">
 
                                 <b>
@@ -190,7 +190,7 @@
                                 </div> -->
 
 
-
+                                    
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
@@ -199,7 +199,11 @@
                                 </b>
 
                             </mat-panel-title>
+                            <br>
+                            <!-- <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span> -->
                         </mat-expansion-panel-header>
+                        
+
                         <div *ngFor="let article of section.articles; let j = index">
                             <div (click)="navigate(article.id)" class="uf-article">
                                 <div class="d-inline" *ngIf="!article.viewed">
