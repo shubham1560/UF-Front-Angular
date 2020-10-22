@@ -253,3 +253,13 @@
   .imageDiv{
       height: 260px;
   }
+
+  .right-nav-div{
+      display: none;
+  }
+
+@media(min-width: 992px){
+    .right-nav-div{
+        display: block
+    }
+}
