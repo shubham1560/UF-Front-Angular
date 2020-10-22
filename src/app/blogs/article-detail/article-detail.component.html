@@ -58,21 +58,15 @@
                                             <!-- yellow -->
                                             <mat-list-item role="listitem"
                                                 *ngFor="let item of block.data.items ; let i = index">
-                                                <b style="padding-right: 14px;"> {{i+1}} </b> <span
-                                                    [innerHTML]="item"></span>
+                                                <b style="padding-right: 14px;"> {{i+1}} </b> <span [innerHTML]="item"></span>
                                             </mat-list-item>
                                         </mat-list>
+                                        <br>
                                     </div>
                                     <div *ngIf="block.data.style=='unordered'">
-                                        <!-- yellow -->
-                                        <mat-list role="list">
-                                            <!-- yellow -->
-                                            <mat-list-item role="listitem" *ngFor="let item of block.data.items">
-                                                <!-- <mat-icon style="font-size: small; height: auto;">fiber_manual_record
-                                                </mat-icon> -->
-                                                <span [innerHTML]="item"></span>
-                                            </mat-list-item>
-                                        </mat-list>
+                                        <ul *ngFor="let item of block.data.items">
+                                            <li [innerHTML]="item"></li>
+                                        </ul>
                                     </div>
                                 </div>
                                 <div *ngIf="block.type=='code'">
@@ -118,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div *ngIf="block.type=='embed'">
                             <!-- <iframe *ngIf="block.data.service=='youtube'" height="auto" width="auto"  -->
                             <div class="videoWrapper">
