@@ -64,6 +64,8 @@
                 <div *ngIf="progress">
                     <b>Progress: </b>{{progress}} %
                 </div>
+                
+                
                 <!-- <div *ngIf="!signedIn">
                 You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
                 your
@@ -74,7 +76,14 @@
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
             </mat-progress-bar>
 
-
+            <div *ngIf="owner">
+                Edit Section 
+                <a routerLink="/courses/{{course}}/pathbuild" mat-icon-button>
+                    <mat-icon>
+                        edit
+                    </mat-icon>
+                </a>         
+            </div>
             <!-- <div style="height: 500px;"></div> -->
             <div class="left-widget-wrapper">
                 <mat-accordion color="primary">
@@ -132,6 +141,7 @@
     </div>
 
     <div *ngIf="!openInModal">
+
         <div *ngIf="!isLoading">
             <div class="heading">
                 <h4 style="color: #4f9aab">{{courseName}}</h4>
@@ -139,6 +149,8 @@
                 <div *ngIf="progress">
                     <b>Progress: </b>{{progress}} %
                 </div>
+                
+                
                 <!-- <div *ngIf="!signedIn">
                     You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
                     your
@@ -148,6 +160,15 @@
             </div>
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
             </mat-progress-bar>
+            <br>
+            <div *ngIf="owner" style="padding-left: 20px; color: #3c869a;">
+                Edit Sections
+                <a routerLink="/courses/{{course}}/pathbuild" mat-icon-button>
+                    <mat-icon>
+                        edit
+                    </mat-icon>
+                </a>         
+            </div>
             <br>
             <div class="left-widget-wrapper">
                 <mat-accordion color="primary">

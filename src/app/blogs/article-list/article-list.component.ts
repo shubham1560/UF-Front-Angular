@@ -40,6 +40,7 @@ export class ArticleListComponent implements OnInit {
   isLoading = true;
   openInModal = false;
   courseDescription;
+  owner;
 
   ngOnInit() {
     // debugger;
@@ -47,6 +48,7 @@ export class ArticleListComponent implements OnInit {
     this.route.paramMap.subscribe(
       result => {
         if (result.get("category") != "article_preview") {
+
           if (this.course_for_modal.category) {
             // For modal for overview section
 
@@ -62,9 +64,17 @@ export class ArticleListComponent implements OnInit {
           }
           this.article = result.get("article");
           // if (this.course != this.courseInit) {
-            // console.log("called time")
-            this.changeTheCourse();
+          // console.log("called time")
+          this.changeTheCourse();
           // }
+          if (this.authService.isLoggedIn()) {
+            this.knowledgeService.ifCourseOwner(this.course).subscribe(
+              (result:any) => {
+                // console.log(result);
+                this.owner = result.owner;
+              }
+            )
+          }
 
         }
       }
@@ -181,12 +191,12 @@ export class ArticleListComponent implements OnInit {
   }
 
 
-  deleteSectionsWithoutArticles(sections){
+  deleteSectionsWithoutArticles(sections) {
     var id_to_delete = [];
     var index = 0;
     // console.log(sections);
     sections.forEach(element => {
-      if (element["articles"].length == 0){
+      if (element["articles"].length == 0) {
         id_to_delete.push(element["id"]);
         index += 1;
       }
@@ -194,7 +204,7 @@ export class ArticleListComponent implements OnInit {
     // console.log(id_to_delete);
     var final_sections = []
     sections.forEach(element => {
-      if(!id_to_delete.includes(element["id"])){
+      if (!id_to_delete.includes(element["id"])) {
         final_sections.push(element);
       }
     });
