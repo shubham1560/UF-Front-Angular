@@ -26,15 +26,14 @@
 
                         <div *ngIf="block.type=='linkTool'" class="link-embed">
                             <div>
-                                Embedded from other article, see
+                                See the full
                                 <a style="text-align: right;" target="_blank" href="{{block.data.link}}">
                                     article
                                     <mat-icon>open_in_new</mat-icon>
                                 </a>
                                 <br>
-                                <span style="color:gray">captions and hyperlinks are removed for safety porpose</span>
+                                <!-- <span style="color:gray">captions and hyperlinks are removed for safety porpose</span> -->
                             </div>
-                            <br>
                             <div>
                                 <span style="color:gray">
                                     The article mentioned here is titled:
@@ -46,8 +45,6 @@
                             <div *ngFor="let block of block.data.meta.result">
                                 <div *ngIf="block.type=='image'" style="padding: 40px;">
                                     <img [src]="block.data.file?.url" alt="Nature" class="responsive">
-                                    <!-- <br> -->
-                                    <!-- <br> -->
                                     <div class="caption">
                                         {{block.data?.caption}}
                                     </div>
@@ -77,8 +74,6 @@
                                             </mat-list-item>
                                         </mat-list>
                                     </div>
-
-
                                 </div>
                                 <div *ngIf="block.type=='code'">
                                     <!-- <div></div> -->
@@ -98,7 +93,6 @@
                                                 <!-- {{row}} -->
                                                 <td *ngFor="let content of row">
                                                     <span [innerHTML]="content">
-
                                                     </span>
                                                 </td>
                                             </tr>
@@ -123,9 +117,8 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
+                        
                         <div *ngIf="block.type=='embed'">
                             <!-- <iframe *ngIf="block.data.service=='youtube'" height="auto" width="auto"  -->
                             <div class="videoWrapper">
@@ -165,25 +158,16 @@
                                 <br>
                             </div>
                             <div *ngIf="block.data.style=='unordered'">
-                                <!-- yellow -->
-                                <!-- <br> -->
-                                <!-- <mat-list role="list"> -->
-                                <!-- yellow -->
-                                <!-- <mat-list-item role="listitem" *ngFor="let item of block.data.items"> -->
-                                <!-- <mat-icon style="font-size: small; height: auto;">fiber_manual_record</mat-icon> -->
                                 <ul *ngFor="let item of block.data.items">
                                     <li [innerHTML]="item"></li>
                                 </ul>
-                                <!-- </mat-list-item> -->
-                                <!-- </mat-list> -->
-                                <!-- <br> -->
                             </div>
 
 
                         </div>
                         <div *ngIf="block.type=='delimiter'">
-                            <!-- <div></div> -->
                             <hr>
+                            
                         </div>
 
                         <div *ngIf="block.type=='code'">
@@ -194,7 +178,7 @@
                             <!-- <hr> -->
                         </div>
 
-                        <div *ngIf="block.type=='paragraph'" style="padding: 10px 0px;">
+                        <div *ngIf="block.type=='paragraph'" style="padding: 5px 0px;">
                             <p [innerHTML]="block.data.text"></p>
                         </div>
                         <div *ngIf="block.type=='table'">

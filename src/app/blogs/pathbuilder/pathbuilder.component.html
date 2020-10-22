@@ -57,7 +57,9 @@
             <br>
             <div>
                 <button mat-flat-button class="save-button" [disabled]="isLoading" (click)="finalPathStructure()">
-                    Save the path <mat-icon>publish</mat-icon>
+                <span *ngIf="!isLoading"> Save the path </span> 
+                <span *ngIf="isLoading"> Saving... </span> 
+                <mat-icon>publish</mat-icon>
                 </button> 
                 <button style="margin-left: 20px;" mat-flat-button class="save-button" [disabled]="isLoading" (click)="resetStructure()">
                     Reset <mat-icon>refresh</mat-icon>
