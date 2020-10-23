@@ -33,7 +33,7 @@
 
                     <div class="row" *ngIf="dataLoading">
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let n of [1,2,3]">
-                            <mat-card class="mat-card">
+                            <mat-card class="mat-card st-border">
                                 <mat-card-header>
                                     <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
                                     </mat-card-title>
@@ -56,7 +56,7 @@
                     <div class="row" *ngIf="!dataLoading">
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let product of products">
                             <a [routerLink]='["roots", product.id, "root", {view: "course"}]'>
-                                <mat-card class="mat-card">
+                                <mat-card class="mat-card st-border">
                                     <mat-card-header>
                                         <mat-card-title class="mat-card-title-nm">{{product.title}}</mat-card-title>
                                         <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
