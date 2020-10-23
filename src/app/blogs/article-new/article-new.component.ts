@@ -92,9 +92,9 @@ export class ArticleNewComponent implements OnInit {
             (response: any) => {
               this.article = response;
               this.owner = response.owner;
-              if(!this.owner){
+              if (!this.owner) {
                 window.location.href = "";
-              }else{
+              } else {
                 this.isLoading = false;
               }
               this.state = this.article.data.workflow
@@ -110,7 +110,7 @@ export class ArticleNewComponent implements OnInit {
                 // setTimeout(()=>{
                 //   // console.clear();
                 // }, 1000)
-      
+
               }
               // console.log(this);
 
@@ -168,7 +168,7 @@ export class ArticleNewComponent implements OnInit {
           class: CodeTool,
           // shortcut: 'CMD+SHIFT+/'
         },
-        
+
         // table: {
         //   class: Table,
         //   inlineToolbar: true,
@@ -223,10 +223,10 @@ export class ArticleNewComponent implements OnInit {
   updatingData;
   prevData = [];
   updateArticle(update) {
-    this.editor.save().then((outputData:any) => {
+    this.editor.save().then((outputData: any) => {
       this.updatingData = true;
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
-      // if (outputData.blocks.length > 0) {
+        // if (outputData.blocks.length > 0) {
 
         this.prevData = outputData.blocks;
         if (update) {
@@ -261,12 +261,12 @@ export class ArticleNewComponent implements OnInit {
           )
         }
       }
-      else if(outputData.blocks.length == 0){
+      else if (outputData.blocks.length == 0) {
         this.updatingData = false;
         this.openSnackBar("Please add something to the article to save!", "");
         // console.log();
       }
-      else if(this.arrayEqual(this.prevData, outputData.blocks)){
+      else if (this.arrayEqual(this.prevData, outputData.blocks)) {
         this.openSnackBar("No change in article detected", '')
         this.updatingData = false;
       }
@@ -307,7 +307,7 @@ export class ArticleNewComponent implements OnInit {
   }
 
 
-  arrayEqual(ary1:any[],ary2:any[]){
+  arrayEqual(ary1: any[], ary2: any[]) {
     // console.log(ary1, ary2);
     // console.log(ary1.join(''), ary2.join(''));
     var new_ary2 = [];
@@ -325,14 +325,16 @@ export class ArticleNewComponent implements OnInit {
   }
 
 
-  addToCourse(){
+  addToCourse() {
     this.updateArticle(true);
     const dialogRef = this.dialog.open(CoursesComponent, {
-      data: {article_id : this.id , current_course: this.article.data.get_category.id}
+      data: { article_id: this.id, current_course: this.article.data.get_category.id }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      window.location.reload();
+      if (result?.reload) {
+        window.location.reload();
+      }
       // this.animal = result;
       // console.log(this.data);
       // console.log(result);

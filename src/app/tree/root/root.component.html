@@ -17,13 +17,13 @@
         <div style="padding: 20px 20px;">
             <div class="row" style="padding: 20px;">
                 <span *ngIf="isModerator">
-                    <button style="margin-right: 30px;" mat-raised-button color="primary" [matMenuTriggerFor]="menu"
+                    <button style="margin-right: 30px;" class="primary-button" mat-raised-button [matMenuTriggerFor]="menu"
                         aria-label="Example icon button with a home icon">
                         <mat-icon>add</mat-icon>
                     </button>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item (click)="openDialog('branch')">Add folder</button>
-                        <button mat-menu-item (click)="openDialog('course')"> Add course</button>
+                        <button mat-menu-item class="st-menu" (click)="openDialog('course')"> Add course</button>
+                        <button mat-menu-item class="st-menu" (click)="openDialog('branch')">Add folder</button>
                     </mat-menu>
                 </span>
                 <app-breadcrumbs></app-breadcrumbs>

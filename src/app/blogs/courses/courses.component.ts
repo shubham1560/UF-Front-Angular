@@ -63,6 +63,7 @@ export class CoursesComponent implements OnInit {
         this.selectedCourse = course_label;
         this.isLoading = false;
         this.article_link = "courses/"+course_id+"/"+this.article_id;
+        this.dialogRef.close({ reload: true });
         // window.location.reload();
       }
     )

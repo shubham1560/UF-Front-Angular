@@ -118,7 +118,11 @@ export class RootComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('The dialog was closed');
-      window.location.reload();
+      // console.log(result);
+      if(result?.reload){
+        window.location.reload();
+      }
+      
       // this.ngOnInit();
     });
   }
@@ -130,7 +134,12 @@ export class RootComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log('The dialog was closed');
-      window.location.reload();
+      // console.log(result);
+      if(result?.reload){
+        window.location.reload();
+      }
+      
+      // window.location.reload();
       // this.ngOnInit();
     });
   }

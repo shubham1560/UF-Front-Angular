@@ -22,7 +22,6 @@ export class AddpathorbranchComponent implements OnInit {
   isLoading = false;
   successMessage = "";
 
-
   ngOnInit(): void {
     if (this.data.product) {
       this.addPathOrBranch = this.fb.group({
@@ -45,8 +44,11 @@ export class AddpathorbranchComponent implements OnInit {
     this.knowledgeService.addPathOrBranch(this.addPathOrBranch.value, this.data).subscribe(
       response => {
         // console.log(response);
+        this.dialogRef.close({ reload: true })
         this.isLoading = false;
+
         this.successMessage = "The action is successful, please exit this screen to see changes!!";
+        
       }
     )
     // console.log(this.addPathOrBranch);

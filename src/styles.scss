@@ -208,14 +208,20 @@ button{
 
 .primary-button{
     color: #3c869a;
-    border: 2px solid #3c869a;
-    border-radius: 0px;
+    border: 2px solid #3c869a !important;
+    border-radius: 0px !important;
     background-color: white;
-    outline: none;
+    outline: none !important;
     
     &:hover{
       background-color: #3c869a;
       color: white;
   
     }
+}
+
+
+.st-menu{
+    height: 25px !important;
+    line-height: 25px !important;
 }
