@@ -58,9 +58,9 @@
 
     <div *ngIf="openInModal">
         <mat-dialog-content class="mat-typography">
-            <div class="heading" mat-dialog-title>
-                <h4 style="color: #4f9aab">{{courseName}}</h4>
-                <span style="color: #3c869a; font-size: smaller;">{{courseDescription}}</span>
+            <div class="" mat-dialog-title>
+                <span style="color: #4f9aab; font-size: 16px;">{{courseName}}</span> <br>
+                <span style="color: #3c869a; font-size: 14px; text-align: justify;">{{courseDescription}}</span>
                 <div *ngIf="progress">
                     <b>Progress: </b>{{progress}} %
                 </div>
