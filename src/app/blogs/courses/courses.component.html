@@ -1,9 +1,4 @@
-<!-- 
-<pre>
-    {{data | json}}
-</pre> -->
 <div id="uf-addtocourse" >
-    <br>
     <div *ngIf="article_link" style="color: green">
         The article has been added to the path: <b>{{selectedCourse}}</b>
         <br><br>
@@ -18,33 +13,36 @@
     </div>
 
     <div *ngIf="!article_link">
-        <h6 mat-dialog-title>Click on the course to add the article in it</h6>
+        <h6 mat-dialog-title style="color: #293e40;">Click on the path to add the article in it</h6>
         <span *ngIf="isLoading">Adding....</span>
 
         <input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
         <br>
-
         <mat-dialog-content class="mat-typography">
             <div *ngFor="let course of filteredCourses">
-                <mat-card style="margin-bottom: 20px; padding: 5px;">
+                <mat-card style="padding: 5px; box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, 0.06);
+                border-radius: 3px;
+                border: 1px solid rgba(201, 201, 204, 0.48); margin-bottom: 10px;">
                     <mat-card-header>
                         <div mat-card-avatar class="example-header-image">
                             <button mat-icon-button (click)="seeDetails(course.id)" style="outline: none;">
-                                <mat-icon>
+                                <mat-icon style="color: #8dbcaa;">
                                     info
                                 </mat-icon>
                             </button>
                         </div>
-                        <mat-card-title (click)="addToCourse(course.id, course.label)" style="cursor: pointer"><a>{{course.label}}</a>
+                        <mat-card-title (click)="addToCourse(course.id, course.label)" style="font-size: 14px; cursor: pointer; color: #4f9aab;">
+                            <a>
+                                {{course.get_parent_knowledgebase.label}}/{{course.label}}
+                            </a>
                         </mat-card-title>
-                        <mat-card-subtitle>{{course.get_parent_knowledgebase.label}}</mat-card-subtitle>
+                        <mat-card-subtitle style="font-size: 12px; margin-bottom: 0px;">
+                            {{course.description}}
+                        </mat-card-subtitle>
                     </mat-card-header>
-                    <mat-card-content>
-                        {{course.description}}
-                    </mat-card-content>
-                    <!-- <mat-dialog-actions align="end">
-                <button mat-button (click)="filterData('jan')" cdkFocusInitial>Save</button>
-              </mat-dialog-actions> -->
+                    <!-- <mat-card-content> -->
+                        <!-- {{course.description}} -->
+                    <!-- </mat-card-content> -->
                 </mat-card>
             </div>
         </mat-dialog-content>
