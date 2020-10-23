@@ -10,7 +10,8 @@ export class BlogsComponent implements OnInit {
 
   // constructor() { }
 
-  icon="menu";
+  icon = "menu";
+  loadKbUse = false;
 
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
@@ -21,6 +22,10 @@ export class BlogsComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit() {
+    setTimeout(() => {
+      this.observer();
+      // console.log(this);
+    }, 500)
   }
 
   // ngOnDestroy(){
@@ -33,13 +38,31 @@ export class BlogsComponent implements OnInit {
 
   // }
 
-  openNav(){
+  openNav() {
     this.icon = "menu";
     document.getElementById("sidebar").classList.toggle("active")
-    if(document.getElementById("sidebar").classList["value"] == "active"){
+    if (document.getElementById("sidebar").classList["value"] == "active") {
       this.icon = "close";
     }
   }
 
+  callback = function (entries) {
+    // console.log(entries);
+    if (entries[0].isIntersecting) {
+      // return true;
+      this.loadKbUse = true;
+    }
+    // return false;
+    // console.log(this);
+  }
 
+
+  observer() {
+    var box = document.getElementById("kbuse-load");
+
+
+    var observer = new IntersectionObserver(this.callback);
+    observer.observe(box);
+    // this.callback
+  }
 }

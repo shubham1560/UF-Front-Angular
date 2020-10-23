@@ -14,7 +14,9 @@
         </nav>
         <div style="padding: 0px 20px;">
             <app-article-detail></app-article-detail>
-            <app-kbuse></app-kbuse>
+            <div id="kbuse-load" style="height: 10px; width: auto;">
+            </div>
+            <app-kbuse *ngIf="loadKbUse"></app-kbuse>
         </div>
 
     </div>

@@ -5,7 +5,7 @@
 
             <div id="uf-article-detail" style="padding-top: 20px;">
                 <div *ngIf="!isLoading">
-                    <div *ngIf="owner">
+                    <div *ngIf="owner" id="owner-box">
                         Article Options :
                         <a mat-icon-button routerLink="/courses/article/{{article.id}}">
                             <mat-icon>
@@ -334,13 +334,14 @@
                 <div *ngFor="let block of article_body">
                     <div *ngIf="block.type=='header'" style="padding: 6px 0px">
                         <a href="{{current_url.split('#')[0]}}#{{block.data.text}}" class="right-nav">
+                            <!-- {{block.data.text}} -->
                             {{block.data.text}} </a>
                     </div>
                 </div>
                 <br><br>
                 <div style="color: gray;">
                     Updated on: <br>
-                    {{article?.sys_updated_on | date: 'short'}}
+                    {{article?.sys_updated_on | date: 'mediumDate'}}
                 </div>
 
             </div>
