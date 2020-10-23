@@ -8,15 +8,18 @@
         {{sectionAndArticles | json}}
     </pre> -->
     <div class="row">
-        <span style="color:#3c869a"> You are building the structure for:   <br> 
-        </span> 
-        {{courseName}}
-        <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/courses/{{course}}/">
-            
-            <mat-icon >
-                open_in_new
-            </mat-icon>
-        </a>
+        <div class="col-md-12">
+            <span style="color:#3c869a"> You are building the structure for
+            </span>
+            <br>
+            {{courseName}}
+            <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/courses/{{course}}/">
+
+                <mat-icon>
+                    open_in_new
+                </mat-icon>
+            </a>
+        </div>
 
     </div>
     <br>
@@ -29,10 +32,10 @@
                 <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
             </mat-form-field>
             <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
-            <h4 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h4>
+            <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
         </div>
         <div class="col-md-6">
-            
+
             <br>
             <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
                 <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
@@ -45,7 +48,8 @@
                         {{element.label}}
                     </div>
                     <div style="color: #3c869a;" *ngIf="element.type=='section'">
-                        <button *ngIf="element.label != 'Individual Articles'" mat-icon-button (click)="deleteSection(element, i)" style="color: #EC407F">
+                        <button *ngIf="element.label != 'Individual Articles'" mat-icon-button
+                            (click)="deleteSection(element, i)" style="color: #EC407F">
                             <mat-icon>
                                 delete
                             </mat-icon>
@@ -57,11 +61,12 @@
             <br>
             <div>
                 <button mat-flat-button class="save-button" [disabled]="isLoading" (click)="finalPathStructure()">
-                <span *ngIf="!isLoading"> Save the path </span> 
-                <span *ngIf="isLoading"> Saving... </span> 
-                <mat-icon>publish</mat-icon>
-                </button> 
-                <button style="margin-left: 20px;" mat-flat-button class="save-button" [disabled]="isLoading" (click)="resetStructure()">
+                    <span *ngIf="!isLoading"> Save the path </span>
+                    <span *ngIf="isLoading"> Saving... </span>
+                    <mat-icon>publish</mat-icon>
+                </button>
+                <button style="margin-left: 20px;" mat-flat-button class="save-button" [disabled]="isLoading"
+                    (click)="resetStructure()">
                     Reset <mat-icon>refresh</mat-icon>
                 </button>
             </div>

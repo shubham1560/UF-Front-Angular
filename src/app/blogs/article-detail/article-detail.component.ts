@@ -112,10 +112,6 @@ export class ArticleDetailComponent implements OnInit {
       }
     )
 
-    setTimeout(()=>{
-      this.observer();
-    }, 500)
-
     // this.logger.logData("uf-article-detail", this)
     this.logger.logData('uf-article-detail', this)
   }
@@ -196,15 +192,6 @@ export class ArticleDetailComponent implements OnInit {
     this.imageLoaded = true;
   }
 
-  observer(){
-    var box = document.getElementById("Adding a heading");
-
-    var callback = function (entries) {
-      console.log(entries);
-    }
-
-    var observer = new IntersectionObserver(callback);
-    observer.observe(box);
-}
+  
   
 }

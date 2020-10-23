@@ -46,23 +46,18 @@ export class BlogsComponent implements OnInit {
     }
   }
 
-  callback = function (entries) {
-    // console.log(entries);
+  callback(entries) {
     if (entries[0].isIntersecting) {
-      // return true;
-      this.loadKbUse = true;
+      // console.log(entries)
+      // this.loadKbUse = true;
+      // console.log(this);
     }
-    // return false;
-    // console.log(this);
   }
 
 
   observer() {
     var box = document.getElementById("kbuse-load");
-
-
     var observer = new IntersectionObserver(this.callback);
     observer.observe(box);
-    // this.callback
   }
 }
