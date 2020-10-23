@@ -225,3 +225,9 @@ button{
     height: 25px !important;
     line-height: 25px !important;
 }
+
+.st-border{
+    box-shadow: inset 0 1px 2px 0 rgba(35, 44, 72, 0.06) !important;
+    border-radius: 3px !important;
+    border: 1px solid rgba(201, 201, 204, 0.48) !important;
+}

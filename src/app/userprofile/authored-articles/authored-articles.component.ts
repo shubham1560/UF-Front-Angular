@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
-// import { state } from '@angular/animations';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Title } from '@angular/platform-browser';
 

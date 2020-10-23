@@ -2,15 +2,19 @@
 
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
 <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
-<br><br>
+<br>
 
 <div class="container" id="uf-authored-articles">
     <div class="row">
+        <h2 style="color: #8dbcaa; margin: auto;">Authored articles</h2>
+        <br>    <br>
+    </div>
+    <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             State
             <br> <br>
-            <button mat-button (click)="changeState('all')" class="uf-button">
+            <button mat-button class="primary-button uf-button" (click)="changeState('all')">
                 <mat-icon *ngIf="state=='all'">
                     send
                 </mat-icon>
@@ -18,7 +22,7 @@
 
             </button>
             <br>
-            <button mat-button (click)="changeState('draft')" class="uf-button">
+            <button mat-button class="primary-button uf-button" (click)="changeState('draft')">
                 <mat-icon *ngIf="state=='draft'">
                     send
                 </mat-icon>
@@ -26,7 +30,7 @@
                 Draft
             </button>
             <br>
-            <button mat-button (click)="changeState('review')" class="uf-button">
+            <button mat-button class="primary-button uf-button" (click)="changeState('review')">
                 <mat-icon *ngIf="state=='review'">
                     send
                 </mat-icon>
@@ -34,7 +38,7 @@
                 Review
             </button>
             <br>
-            <button mat-button (click)='changeState("published")' class="uf-button">
+            <button mat-button class="primary-button uf-button" (click)='changeState("published")'>
                 <mat-icon *ngIf="state=='published'">
                     send
                 </mat-icon>
@@ -45,10 +49,10 @@
 
 
 
-        <div class="col-md-8">
-            <div>
+        <div class="col-md-9">
+            <div style="text-align: end;">
                 Sort By:
-                <button mat-button style="outline: none;" (click)="changeSort('title')">
+                <button mat-button class="primary-button" style="border: none !important;" (click)="changeSort('title')">
                     Title
                     <mat-icon *ngIf="sort_by=='title'">
                         keyboard_arrow_down
@@ -57,7 +61,7 @@
                         keyboard_arrow_up
                     </mat-icon>
                 </button>
-                <button mat-button style="outline: none;" (click)="changeSort('sys_created_on')">
+                <button mat-button class="primary-button" style="border: none !important;" (click)="changeSort('sys_created_on')">
                     Created
                     <mat-icon *ngIf="sort_by=='sys_created_on'">
                         keyboard_arrow_down
@@ -66,7 +70,7 @@
                         keyboard_arrow_up
                     </mat-icon>
                 </button>
-                <button mat-button style="outline: none;" (click)="changeSort('sys_updated_on')">
+                <button mat-button  class="primary-button" style="border: none !important;" (click)="changeSort('sys_updated_on')">
                     Updated
                     <mat-icon *ngIf="sort_by=='sys_updated_on'">
                         keyboard_arrow_down
@@ -76,9 +80,10 @@
                     </mat-icon>
                 </button>
             </div>
+            <br>
             <div *ngFor="let article of articles_data?.articles">
 
-                <mat-card style="border: 0px; box-shadow: none;">
+                <mat-card class="st-border">
                     <!-- <a mat-button style="float: right;">Created: {{article.sys_created_on | datesAgoDate}}</a> -->
                     <mat-card-header>
                         <mat-card-title><a style="color: #293E40;"
@@ -87,16 +92,6 @@
                             <br>
                             Created: {{article.sys_created_on | datesAgoDate}}
                         </mat-card-subtitle>
-                        <!-- <mat-card-subtitle *ngIf="article.workflow=='draft'">
-                            The article is in draft mode, please send it for review to be published.
-                        </mat-card-subtitle>
-                        <mat-card-subtitle *ngIf="article.workflow=='review'">
-                            The article is being reviewed, we will send the feedback shortly!! <br>
-                            Meanwhile, keep on adding awesome articles on your end
-                        </mat-card-subtitle>
-                        <mat-card-subtitle *ngIf="article.workflow=='published'">
-                            The article is published, if you want you can retire it
-                        </mat-card-subtitle> -->
                     </mat-card-header>
                     <mat-card-actions>
                         <button mat-button style="outline: none;">
@@ -106,33 +101,26 @@
                         </button>
 
                         <button mat-button style="outline: none; color:#438C9F">
-                            <!-- {{article.workflow}} -->
-                            Draft
+                            {{article.workflow}}
                         </button>
-                        <span style="color: #438C9F;">>>>></span>
+                        <!-- <span style="color: #438C9F;">>>>></span>
                         <button *ngIf="article.workflow!='draft'" mat-button style="outline: none;color:#438C9F">
-                            <!-- {{article.workflow}} -->
 
                             Sent for review
                         </button>
                         <button *ngIf="article.workflow=='draft'" disabled mat-button style="outline: none;">
-                            <!-- {{article.workflow}} -->
                             Sent for review
                         </button>
 
                         <span style="color: #438C9F;">>>>></span>
 
                         <button *ngIf="article.workflow=='published'" mat-button style="outline: none; color: #438C9F">
-                            <!-- {{article.workflow}} -->
-
                             Published
                         </button>
                         <button *ngIf="article.workflow!='published'" disabled mat-button style="outline: none;">
-                            <!-- {{article.workflow}} -->
-
                             Published
                         </button>
-
+ -->
 
                         <!-- <a href="courses/article/{{article.id}}" mat-button style="outline: none;float: right;">
                         <mat-icon>
