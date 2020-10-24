@@ -174,7 +174,7 @@ export class PathbuilderComponent implements OnInit {
     if (valid) {
       this.knowledgeService.buildPathForCourse(this.course, heir, this.deleteSectionArray).subscribe(
         (result: any) => {
-          console.log(heir);
+          // console.log(heir);
           this.getSectionAndArticles();
           this.isLoading = false;
           this._snackBar.open("Saved successfully!", '', {
@@ -194,13 +194,13 @@ export class PathbuilderComponent implements OnInit {
   deleteSectionArray = [];
 
   deleteSection(element, index){
-    console.log(element);
+    // console.log(element);
     this.flatSectionAndArticles.splice(index, 1);
     if(element.id){
       this.deleteSectionArray.push(element.id)
     }
-    console.log(this.deleteSectionArray);
-    console.log(this.flatSectionAndArticles);
+    // console.log(this.deleteSectionArray);
+    // console.log(this.flatSectionAndArticles);
   }
 
   resetStructure(){

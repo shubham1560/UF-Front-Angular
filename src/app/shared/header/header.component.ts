@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit {
 
 
   getKnowledgeBases() {
-    console.log("getting knowledge bases");
+    // console.log("getting knowledge bases");
     
     this.knowledgeService.getKnowledgeBases().subscribe(
       (result: any) => {
