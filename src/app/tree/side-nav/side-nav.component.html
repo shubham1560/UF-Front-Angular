@@ -7,9 +7,8 @@
                 apps
             </mat-icon>
         </button>
-        <button mat-button class="view-button" [routerLink]="[{view: 'tree'}]" style="outline: none;" 
-            [ngClass]="{'selected' : view=='tree'}"
-            (click)="changeView('tree')">
+        <button mat-button class="view-button" [routerLink]="[{view: 'tree'}]" style="outline: none;"
+            [ngClass]="{'selected' : view=='tree'}" (click)="changeView('tree')">
             <mat-icon matSuffix>
                 account_tree
             </mat-icon>
@@ -43,22 +42,23 @@
                     <!-- use a disabled button to provide padding for tree leaf -->
                     <button mat-icon-button disabled style="outline: none;width: 25px;">
                     </button>
-                    <a [routerLink]='["/roots",node.parent_kb_base, node.id]'
-                         queryParamsHandling="merge"
-                        style="outline: none; cursor: pointer;">
+                    <a [routerLink]='["/roots",node.parent_kb_base, node.id]' queryParamsHandling="merge"
+                        style="outline: none; cursor: pointer; color: #4f9aab;">
                         {{node.label}}
                     </a>
+                    <!-- <button mat-icon-button style="margin-left: auto; margin-right: 20px;"> {{node.course_count}} </button> -->
+                    <button mat-icon-button style="margin-left: auto; margin-right: 20px; color: #566364;">
+                        {{node.course_count}} </button>
                 </li>
             </mat-tree-node>
             <!-- This is the tree node template for expandable nodes -->
             <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
                 <li>
-                    <div class="mat-tree-node" style="width: 100%; color: #1d2223; text-align: right;
+                    <div class="mat-tree-node" style="width: 100%; color: #4f9aab; text-align: right;
                     border-bottom: 1px solid black;
                     border-left: 1px solid black;
                     box-shadow: 0 1px 3px rgba(0,0,0, .1);
-                    border-radius: 5px;"
-                        [ngClass]="{'active' : node.id==active_id}">
+                    border-radius: 5px;" [ngClass]="{'active' : node.id==active_id}">
                         <button mat-icon-button matTreeNodeToggle style="outline: none;width: fit-content;"
                             [attr.aria-label]="'toggle ' + node.name">
                             <mat-icon class="mat-icon-rtl-mirror">
@@ -66,10 +66,11 @@
                             </mat-icon>
                         </button>
                         <a [routerLink]='["/roots",node.parent_kb_base, node.id]' queryParamsHandling="merge"
-                            style="outline: none; cursor: pointer;">
+                            style="outline: none; cursor: pointer; color: #4f9aab;">
                             {{node.label}}
                         </a>
-
+                        <button mat-icon-button style="margin-left: auto; margin-right: 20px; color: #566364;">
+                            {{node.course_count}} </button>
                     </div>
                     <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
                         <ng-container matTreeNodeOutlet></ng-container>

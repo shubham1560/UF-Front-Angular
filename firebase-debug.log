@@ -1,0 +1,193 @@
+[debug] [2020-10-24T20:12:56.131Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T20:12:56.134Z] Command:       /usr/local/bin/node /usr/local/bin/firebase hosting:channel:deploy sorted-tree
+[debug] [2020-10-24T20:12:56.135Z] CLI Version:   8.13.1
+[debug] [2020-10-24T20:12:56.135Z] Platform:      darwin
+[debug] [2020-10-24T20:12:56.135Z] Node Version:  v12.17.0
+[debug] [2020-10-24T20:12:56.137Z] Time:          Sun Oct 25 2020 01:42:56 GMT+0530 (India Standard Time)
+[debug] [2020-10-24T20:12:56.138Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T20:12:56.138Z] 
+[debug] [2020-10-24T20:12:56.152Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-24T20:12:56.153Z] > authorizing via signed-in user
+[debug] [2020-10-24T20:12:56.153Z] [iam] checking project uf-front for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-10-24T20:12:56.157Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/uf-front:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-10-24T20:12:57.813Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:12:57 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1338","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:12:57.817Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/uf-front  
+ 
+[debug] [2020-10-24T20:12:58.319Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:12:58 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:12:58.321Z] >>> HTTP REQUEST GET https://firebasehosting.googleapis.com/v1beta1/projects/uf-front/sites/uf-front/channels/sorted-tree  
+ 
+[debug] [2020-10-24T20:13:00.161Z] <<< HTTP RESPONSE 404 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Sat, 24 Oct 2020 20:13:00 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:00.161Z] <<< HTTP RESPONSE BODY {"error":{"code":404,"message":"Requested entity was not found.","status":"NOT_FOUND"}}
+[debug] [2020-10-24T20:13:00.163Z] [hosting] found existing channel for site uf-front null
+[debug] [2020-10-24T20:13:00.163Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/projects/uf-front/sites/uf-front/channels?channelId=sorted-tree  
+ {"ttl":"604800s"}
+[debug] [2020-10-24T20:13:01.947Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:01 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:01.947Z] [hosting] created new channnel for site uf-front {"name":"projects/956494549381/sites/uf-front/channels/sorted-tree","url":"https://uf-front--sorted-tree-5kt9m8tb.web.app","createTime":"2020-10-24T20:13:01.776450768Z","updateTime":"2020-10-24T20:13:01.776450768Z","retainedReleaseCount":10,"expireTime":"2020-10-31T20:13:01.776450768Z"}
+[debug] [2020-10-24T20:13:01.948Z] >>> HTTP REQUEST GET https://identitytoolkit.googleapis.com/admin/v2/projects/uf-front/config  
+ 
+[debug] [2020-10-24T20:13:02.516Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 24 Oct 2020 20:13:02 GMT","pragma":"no-cache","content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"ESF","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:02.518Z] >>> HTTP REQUEST PATCH https://identitytoolkit.googleapis.com/admin/v2/projects/uf-front/config?update_mask=authorizedDomains  
+ {"authorizedDomains":["localhost","uf-front.firebaseapp.com","uf-front.web.app","uf-front--sorted-tree-5kt9m8tb.web.app"]}
+[debug] [2020-10-24T20:13:03.229Z] <<< HTTP RESPONSE 200 {"expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 24 Oct 2020 20:13:03 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"ESF","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:03.232Z] >>> HTTP REQUEST GET https://firebasehosting.googleapis.com/v1beta1/projects/uf-front/sites/uf-front/channels?pageToken=&pageSize=100  
+ 
+[debug] [2020-10-24T20:13:04.953Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:04.954Z] >>> HTTP REQUEST GET https://identitytoolkit.googleapis.com/admin/v2/projects/uf-front/config  
+ 
+[debug] [2020-10-24T20:13:05.418Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sat, 24 Oct 2020 20:13:05 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"ESF","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:05.419Z] >>> HTTP REQUEST PATCH https://identitytoolkit.googleapis.com/admin/v2/projects/uf-front/config?update_mask=authorizedDomains  
+ {"authorizedDomains":["localhost","uf-front.firebaseapp.com","uf-front.web.app","uf-front--sorted-tree-5kt9m8tb.web.app"]}
+[debug] [2020-10-24T20:13:05.992Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","date":"Sat, 24 Oct 2020 20:13:05 GMT","pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"ESF","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'uf-front'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-10-24T20:13:05.995Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/uf-front/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-10-24T20:13:07.816Z] <<< HTTP RESPONSE 500 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Sat, 24 Oct 2020 20:13:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:07.817Z] <<< HTTP RESPONSE BODY {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2020-10-24T20:13:07.997Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Sat, 24 Oct 2020 20:13:07 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/uf-front/versions",
+        "path": "/v1beta1/sites/uf-front/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/uf-front/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2020-10-24T20:13:17.855Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T20:13:17.858Z] Command:       /usr/local/bin/node /usr/local/bin/firebase hosting:channel:deploy sorted-tree
+[debug] [2020-10-24T20:13:17.858Z] CLI Version:   8.13.1
+[debug] [2020-10-24T20:13:17.858Z] Platform:      darwin
+[debug] [2020-10-24T20:13:17.859Z] Node Version:  v12.17.0
+[debug] [2020-10-24T20:13:17.860Z] Time:          Sun Oct 25 2020 01:43:17 GMT+0530 (India Standard Time)
+[debug] [2020-10-24T20:13:17.860Z] ----------------------------------------------------------------------
+[debug] [2020-10-24T20:13:17.860Z] 
+[debug] [2020-10-24T20:13:17.876Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-10-24T20:13:17.876Z] > authorizing via signed-in user
+[debug] [2020-10-24T20:13:17.877Z] [iam] checking project uf-front for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-10-24T20:13:17.880Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/uf-front:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-10-24T20:13:19.403Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1351","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:19.407Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/uf-front  
+ 
+[debug] [2020-10-24T20:13:19.910Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:19.914Z] >>> HTTP REQUEST GET https://firebasehosting.googleapis.com/v1beta1/projects/uf-front/sites/uf-front/channels/sorted-tree  
+ 
+[debug] [2020-10-24T20:13:21.563Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:21.564Z] [hosting] found existing channel for site uf-front {"name":"projects/956494549381/sites/uf-front/channels/sorted-tree","url":"https://uf-front--sorted-tree-5kt9m8tb.web.app","createTime":"2020-10-24T20:13:01.776450768Z","updateTime":"2020-10-24T20:13:01.776450768Z","retainedReleaseCount":10,"expireTime":"2020-10-31T20:13:01.776450768Z"}
+[debug] [2020-10-24T20:13:21.565Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/projects/uf-front/sites/uf-front/channels/sorted-tree?updateMask=ttl  
+ {"ttl":"604800s"}
+[debug] [2020-10-24T20:13:23.345Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:23.345Z] [hosting] updated TTL for existing channel for site uf-front {"name":"projects/956494549381/sites/uf-front/channels/sorted-tree","url":"https://uf-front--sorted-tree-5kt9m8tb.web.app","createTime":"2020-10-24T20:13:01.776450768Z","updateTime":"2020-10-24T20:13:23.143724626Z","retainedReleaseCount":10,"expireTime":"2020-10-31T20:13:23.143724626Z"}
+[debug] [2020-10-24T20:13:23.347Z] >>> HTTP REQUEST GET https://firebasehosting.googleapis.com/v1beta1/projects/uf-front/sites/uf-front/channels?pageToken=&pageSize=100  
+ 
+[debug] [2020-10-24T20:13:25.128Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 24 Oct 2020 20:13:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:25.130Z] >>> HTTP REQUEST GET https://identitytoolkit.googleapis.com/admin/v2/projects/uf-front/config  
+ 
+[debug] [2020-10-24T20:13:25.601Z] <<< HTTP RESPONSE 200 {"cache-control":"no-cache, no-store, max-age=0, must-revalidate","pragma":"no-cache","date":"Sat, 24 Oct 2020 20:13:25 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"ESF","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:25.603Z] >>> HTTP REQUEST PATCH https://identitytoolkit.googleapis.com/admin/v2/projects/uf-front/config?update_mask=authorizedDomains  
+ {"authorizedDomains":["localhost","uf-front.firebaseapp.com","uf-front.web.app","uf-front--sorted-tree-5kt9m8tb.web.app"]}
+[debug] [2020-10-24T20:13:26.101Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Sat, 24 Oct 2020 20:13:25 GMT","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"ESF","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'uf-front'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-10-24T20:13:26.108Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/uf-front/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-10-24T20:13:28.199Z] <<< HTTP RESPONSE 500 {"vary":"X-Origin, Referer, Origin,Accept-Encoding","content-type":"application/json; charset=UTF-8","date":"Sat, 24 Oct 2020 20:13:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-10-24T20:13:28.199Z] <<< HTTP RESPONSE BODY {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2020-10-24T20:13:28.397Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Sat, 24 Oct 2020 20:13:27 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/uf-front/versions",
+        "path": "/v1beta1/sites/uf-front/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/uf-front/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
