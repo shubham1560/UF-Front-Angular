@@ -19,6 +19,10 @@ export class CacheserviceService {
     return this.requests[url];
   }
 
+  deleteInstant(url){
+    this.requests[url] = undefined;
+  }
+
   delete(url: string) {
     setTimeout(() => {
       this.requests[url] = undefined;

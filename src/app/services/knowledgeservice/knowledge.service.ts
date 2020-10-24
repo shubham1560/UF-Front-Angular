@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from '../urlconfig.service';
+import { CacheserviceService  } from '../../services/cacheservice/cacheservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class DataService {
 
   constructor(private httpService: HttpClient,
     private urlService: UrlconfigService,
+    private cache: CacheserviceService,
   ) { }
 
   getHeader() {
@@ -51,6 +53,7 @@ export class DataService {
 
   getArticleById(article_id: string){
     this.called_url = `${this.base_knowledge_url}articles/${article_id}/`;
+    console.log(this.called_url);
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
@@ -88,7 +91,7 @@ export class DataService {
   }
 
   getRelatedSectionAndArticles(kb_category){
-    this.called_url = `${this.base_knowledge_url}course/${kb_category}/`
+    this.called_url = `${this.base_knowledge_url}course/${kb_category}/`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
@@ -120,15 +123,20 @@ export class DataService {
 
   operateArticles(article, id){
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "id": id, "publish_ready": false, "body_data": JSON.stringify(article["blocks"])} ;
+    const body ={"article": article, "id": id, "publish_ready": false, "body_data": JSON.stringify(article["blocks"])};
+    console.log(body);
+    this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
+    console.log(`${this.base_knowledge_url}articles/${id}/`);
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
 
   publishArticles(article, id){
-    // console.log(article, id);
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
     const body ={"article": article, "id": id, "publish_ready": true, "body_data": JSON.stringify(article["blocks"])} ;
+    console.log(body);
+    this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
+    console.log(`${this.base_knowledge_url}articles/${id}/`);
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
@@ -152,7 +160,7 @@ export class DataService {
   buildPathForCourse(course, path, deleteSectionIdArray){
     this.called_url = `${this.base_knowledge_url}kb_section/path/`;
     const body = {"course": course, "path": path, "deleteSections": deleteSectionIdArray};
-    // console.log(body);
+    this.cache.deleteInstant(`${this.base_knowledge_url}course/${course}/`);
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 

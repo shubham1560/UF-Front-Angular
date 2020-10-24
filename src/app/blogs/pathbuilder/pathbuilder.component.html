@@ -8,7 +8,7 @@
         {{sectionAndArticles | json}}
     </pre> -->
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <span style="color:#3c869a"> You are building the structure for
             </span>
             <br>
@@ -19,12 +19,18 @@
                     open_in_new
                 </mat-icon>
             </a>
+            <br>
+            <br>
+            Add section <br>
+            <mat-form-field class="pathbuild-full-width">
+                <mat-label>Add New Section</mat-label>
+                <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
+            </mat-form-field>
+            <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
+            <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
         </div>
 
-    </div>
-    <br>
-    <div class="row">
-        <div class="col-md-6">
+        <!-- <div class="col-md-6">
             Add section <br>
             <br>
             <mat-form-field class="pathbuild-full-width">
@@ -33,10 +39,8 @@
             </mat-form-field>
             <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
             <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
-        </div>
+        </div> -->
         <div class="col-md-6">
-
-            <br>
             <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
                 <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
                     <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">

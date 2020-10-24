@@ -8,6 +8,7 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
 
+
 @Component({
   selector: 'app-pathbuilder',
   templateUrl: './pathbuilder.component.html',
@@ -177,6 +178,7 @@ export class PathbuilderComponent implements OnInit {
           // console.log(heir);
           this.getSectionAndArticles();
           this.isLoading = false;
+
           this._snackBar.open("Saved successfully!", '', {
             duration: 2000,
           });
