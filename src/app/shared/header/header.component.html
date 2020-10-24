@@ -1,13 +1,42 @@
-
 <mat-toolbar id="uf-header" class="uf-header">
 
     <a mat-button routerLink="/welcome/" style="color: #f8f7f7;">SortedTree</a>
+    <button mat-button class="d-none d-md-block d-lg-block" (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
+        style="outline: none; height: 48px; color: white; border-radius: 0px;">
+        Roots
+        <mat-icon>
+            keyboard_arrow_down
+        </mat-icon>
+    </button>
+
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item style="outline: none;line-height: 30px; height: auto;"
+            routerLink="/roots/{{root.id}}/root/" *ngFor="let root of roots">
+            <span style="width: 100%; color: #3e5153; outline: none;">
+                {{root.title}}
+            </span>
+        </button>
+        <!-- <button mat-menu-item></button> -->
+    </mat-menu>
     <span class="fillspace"></span>
 
-    <span class="sign-in" *ngIf="!isLoggedIn">
-        <a mat-flat-button class="uf-dashboard" routerLink="/auth/" (click)="sendToLoginPage()"
-            routerLinkActive="active">Sign in</a>
-    </span>
+    
+    <form novalidate (ngSubmit)="searchResults()" class="d-none d-md-block d-lg-block" [formGroup]="searchQueryForm" >
+        <input type="text"
+            class='search-button'
+            placeholder="Search..." formControlName="query">
+        <button type="submit" mat-icon-button style="background-color: #293E40;outline: none;">
+            <mat-icon class="uf-search-icon">search</mat-icon>
+        </button>
+    </form>
+    <a mat-button class="add-article-button" target="_blank" href="/courses/article/1" *ngIf="isAuthor"
+        style="line-height: 30px; outline: none; height: auto;">
+        <mat-icon>
+            add
+        </mat-icon> new article
+    </a>
+    
 
     <!-- <span *ngIf="isLoggedIn" style="margin-right: 10px;">
         <button mat-button class="uf-dashboard" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
@@ -15,9 +44,14 @@
     </span> -->
 
     <!-- <img [src]="image" alt=""> -->
+    <span class="sign-in" *ngIf="!isLoggedIn">
+        <a mat-flat-button class="uf-dashboard" routerLink="/auth/" (click)="sendToLoginPage()"
+            routerLinkActive="active">Sign in</a>
 
+    </span>
 
     <span class="sign-in" *ngIf="isLoggedIn">
+
 
         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
             style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(255, 255, 255);"
@@ -39,16 +73,18 @@
                 </div>
 
                 <span style="display: inline-block;padding-left: 10px;"><b>
-                    {{user?.first_name+" "+user?.last_name}}</b>
+                        {{user?.first_name+" "+user?.last_name}}</b>
                     <br>
                     {{user.email}}
                 </span>
             </div>
             <hr>
-            <a mat-menu-item target="_blank" href="/courses/article/1" *ngIf="isAuthor" style="line-height: 30px; outline: none; height: auto;">
+            <a mat-menu-item target="_blank" href="/courses/article/1" *ngIf="isAuthor"
+                style="line-height: 30px; outline: none; height: auto;">
                 Add new article
             </a>
-            <a mat-menu-item routerLink="/user_profile/authored_articles" *ngIf="isAuthor" style="line-height: 30px; outline: none; height: auto;">
+            <a mat-menu-item routerLink="/user_profile/authored_articles" *ngIf="isAuthor"
+                style="line-height: 30px; outline: none; height: auto;">
                 Authored Articles
             </a>
             <a mat-menu-item routerLink="/user_profile" style="line-height: 30px; outline: none; height: auto;"> My
@@ -63,37 +99,19 @@
 
 </mat-toolbar>
 
-<div class="container-fluid">
+<div class="container-fluid d-md-none d-lg-none">
     <div class="row">
         <div class="col-md-8  d-none d-md-block d-lg-block" style="padding: 0px;">
             <mat-toolbar class="uf-header"
                 style="background-color: #3e5153; color: white; font-weight: 100; font-size: 16px;border-radius: 0px;">
-                <a class="uf-main-icon" routerLink="/welcome/">
+                <!-- <a class="uf-main-icon" routerLink="/welcome/">
                     <mat-icon> home</mat-icon>
                 </a>
-                <!-- <button mat-button [matMenuTriggerFor]="menu" style="outline: none; height: 48px; border-radius: 0px;">
-                    Roots
-                    <mat-icon>
-                        keyboard_arrow_down
-                    </mat-icon>
-                </button> -->
-                <!-- <mat-menu #menu="matMenu">
-                    <a mat-menu-item style="outline: none;line-height: 30px; height: auto;" routerLink="/roots/{{root.id}}/root/" *ngFor="let root of roots">
-                        <span style="width: 100%; color: #3e5153; outline: none;">
-                            {{root.title}}
-                        </span>
-                    </a>    
-                </mat-menu> -->
+                
                 <a *ngFor="let root of roots" mat-button routerLink="/roots/{{root.id}}/root/"
                     style="outline: none; height: 48px; color: white; border-radius: 0px; padding: 7px;">
-                    <!-- <button  style="color: white;"> -->
-                        {{root.title}}
-                    <!-- </button> -->
-                    <!-- <mat-icon>
-                        keyboard_arrow_down
-                    </mat-icon> -->
-                </a>
-
+                    {{root.title}}
+                </a> -->
             </mat-toolbar>
         </div>
         <div class="col-md-4" style="padding: 0px;">
@@ -107,7 +125,7 @@
                         <mat-icon class="uf-search-icon">search</mat-icon>
                     </button>
                 </form>
-                <button class="d-md-none d-lg-none" mat-button [matMenuTriggerFor]="menu"
+                <button mat-button (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
                     style="outline: none; height: 48px; color: white; border-radius: 0px;">
                     Roots
                     <mat-icon>
@@ -123,7 +141,6 @@
                             {{root.title}}
                         </span>
                     </button>
-                    <!-- <button mat-menu-item></button> -->
                 </mat-menu>
             </mat-toolbar>
 

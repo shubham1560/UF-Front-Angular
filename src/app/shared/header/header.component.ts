@@ -59,15 +59,6 @@ export class HeaderComponent implements OnInit {
       )
     }
 
-    this.knowledgeService.getKnowledgeBases().subscribe(
-      (result:any) =>{
-        this.roots = (result.bases);
-      }, 
-      error =>{
-        // console.log(error);
-      }
-      
-    )
 
     this.searchQueryForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(1)]],
@@ -78,11 +69,26 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  getKnowledgeBases() {
+    console.log("getting knowledge bases");
+    
+    this.knowledgeService.getKnowledgeBases().subscribe(
+      (result: any) => {
+        this.roots = (result.bases);
+      },
+      error => {
+        // console.log(error);
+      }
+
+    )
+  }
+
+
 
   searchResults() {
     var queryParm = this.searchQueryForm.get('query');
 
-    if (queryParm.valid){
+    if (queryParm.valid) {
       const dialogRef = this.dialog.open(SearchResultsComponent, {
         data: {
           query: queryParm.value
@@ -90,7 +96,7 @@ export class HeaderComponent implements OnInit {
       });
     }
 
-    
+
   }
 
   logout() {

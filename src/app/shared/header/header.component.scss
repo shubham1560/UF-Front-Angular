@@ -12,6 +12,21 @@ a{
     }
 }
 
+.add-article-button{
+    color: white;
+}
+
+.search-button{
+    background-color: #293E40;
+    border: 1px solid #516264;
+    outline: none;
+    color: white;
+    width: 85%;
+    font-size: 16px;
+    font-weight: 100;
+    border-radius: 40px;
+    padding: 0px 20px;
+}
 
 .sign-in{
     font-size: medium;
@@ -36,12 +51,21 @@ a{
     &:hover{
         background-color: #3e5153;
         cursor: pointer;
+        // color: whit
     }
 }
 
 .uf-header{
     background-color: var(--primary-color);
-    height: 48px;
+    // height: 48px;
+}
+
+@media(max-width: 768px){
+    .uf-header{
+        background-color: var(--primary-color);
+        height: 48px;
+    }
+        
 }
 
 .uf-dashboard{
@@ -77,12 +101,13 @@ a{
   .uf-search-icon{
     color: white;
     height: inherit;
-    padding-top: 10px;
-    width: 40px;
+    // padding-top: 10px;
+    // width: 40px;
     text-align: center;
 
     &:hover{
-        background-color: #3e5153;
+        // background-color: #3e5153;
+        color: #8dbcaa;
         cursor: pointer;
     }
   }
