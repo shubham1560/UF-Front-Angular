@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
         this.display_name = this.response.user.first_name[0]+this.response.user.last_name[0]
         this.email = this.response.user.email;
         this.about = this.response.user.about;
-        this.titleService.setTitle(this.name  );
+        this.titleService.setTitle(this.name + " - SortedTree");
       },
       error => {
         this.error = error;

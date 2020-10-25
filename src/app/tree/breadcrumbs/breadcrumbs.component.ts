@@ -35,7 +35,7 @@ export class BreadcrumbsComponent implements OnInit {
         this.kb_base = route.get('kb_base');
         this.kb_category = route.get('kb_category');
         this.breadcrumb[1] = this.extractKnowledgeBaseName();
-        this.titleService.setTitle(this.breadcrumb[1]);
+        this.titleService.setTitle(this.breadcrumb[1] + " - SortedTree");
         // if (this.kb_category == "root") {
         this.breadcrumbLink[1] = "roots/" + this.kb_base + "/root";
         // }else{
@@ -47,7 +47,7 @@ export class BreadcrumbsComponent implements OnInit {
                 this.breadcrumb[index + 2] = element;
                 this.breadcrumbLink[index + 2] = "roots/" + this.kb_base + "/" + result.id[index];
               });
-              this.titleService.setTitle(this.breadcrumb[this.breadcrumb.length-1]);
+              this.titleService.setTitle(this.breadcrumb[this.breadcrumb.length-1] +" - SortedTree" );
               this.isLoading = false;
             }
           )

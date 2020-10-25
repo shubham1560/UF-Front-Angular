@@ -32,7 +32,7 @@ export class AuthoredArticlesComponent implements OnInit {
         this.isLoading = false;
       }
     )
-    this.titleService.setTitle("My articles");
+    this.titleService.setTitle("My articles - SortedTree");
     this.loggerService.logData("uf-authored-articles", this);
 
   }

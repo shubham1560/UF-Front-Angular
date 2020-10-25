@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle("Sign in to SortedTree")
+    this.titleService.setTitle("Sign in to SortedTree - SortedTree")
     this.socialService.authState.subscribe((user) => {
       var access_token = user.authToken;
       this.authService.login_facebook(access_token).subscribe(

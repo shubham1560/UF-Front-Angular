@@ -42,28 +42,16 @@ export class ExplorerootsComponent implements OnInit {
       // console.log("from cache");
     }
     else {
-      // setTimeout(() => {
-
-        this.knowledgeServie.getKnowledgeBases().subscribe(
-          (result: any) => {
-            // console.log(result);
-            this.products = result.bases;
-            this.dataLoading = false;
-            // setTimeout(() => {
-            //   this.startLoadingImages = true;
-            // }, 50);
-            // setTimeout(() => {
-            //   this.imageLoaded = true;
-            // }, 500);
-          },
-          error => {
-            // console.log(error);
-          }
-        )
-
-      // }, 1000);
+      this.knowledgeServie.getKnowledgeBases().subscribe(
+        (result: any) => {
+          this.products = result.bases;
+          this.dataLoading = false;
+        },
+        error => {
+        }
+      )
     }
-    
+
     this.loggerService.logData("uf-exploreroots", this);
   }
 

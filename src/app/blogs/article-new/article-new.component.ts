@@ -54,7 +54,6 @@ export class ArticleNewComponent implements OnInit {
   owner = false
   isLoading = true;
   ngOnInit() {
-    this.titleService.setTitle("Add new article")
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
     // this.replacement(this.a);
 
@@ -77,6 +76,7 @@ export class ArticleNewComponent implements OnInit {
       params => {
         var article_id = params.get("id");
         if (article_id == '1') {
+          this.titleService.setTitle("Add new article - SortedTree")
           this.data = {};
           this.owner = true;
           this.isLoading = true;
@@ -91,6 +91,8 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
               this.article = response;
+              this.titleService.setTitle("Editing: "+ this.article.data.title +" - SortedTree")
+
               this.owner = response.owner;
               if (!this.owner) {
                 window.location.href = "";

@@ -36,9 +36,11 @@ export class ArticleDetailComponent implements OnInit {
   breadCrumb;
   initCourse;
   owner   //variable to get if the logged in guy is owner or not
-
+  imageLoaded;
+  
 
   ngOnInit() {
+    this.imageLoaded = false;
     this.route.paramMap.subscribe(
       params => {
         // console.log(params);
@@ -68,7 +70,7 @@ export class ArticleDetailComponent implements OnInit {
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
               this.fetchEmbedDetails();
               this.current_url = window.location.href;
-              this.titleService.setTitle(this.article_body[0].data.text);
+              this.titleService.setTitle(this.article_body[0].data.text + " - SortedTree");
               // console.log(this.article.getAuthor.header_image);
               // console.log(this.article.getAuthor.google_pic);
               // console.log(result);
@@ -187,7 +189,7 @@ export class ArticleDetailComponent implements OnInit {
     c.push(JSON.parse(a.substring(j, a.length)));
     return c;
   }
-  imageLoaded = false;
+
   onImageLoad() {
     this.imageLoaded = true;
   }

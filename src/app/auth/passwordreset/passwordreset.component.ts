@@ -31,7 +31,7 @@ export class PasswordresetComponent implements OnInit {
     this.resetForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
     })
-    this.titleService.setTitle("Forgot your password? SortedTree");
+    this.titleService.setTitle("Forgot your password? - SortedTree");
     this.loggerService.logData("auth-passwordreset", this);
   }
 

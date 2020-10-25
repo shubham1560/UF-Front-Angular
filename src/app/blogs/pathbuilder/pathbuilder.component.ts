@@ -38,7 +38,7 @@ export class PathbuilderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.titleService.setTitle("Path Builder")
+    this.titleService.setTitle("Path Builder - SortedTree");
     this.route.paramMap.subscribe(
       (params: any) => {
         // console.log(params);
@@ -75,6 +75,7 @@ export class PathbuilderComponent implements OnInit {
         if(result.owner){
           this.getSectionAndArticles();
           this.courseName = result.course;
+          this.titleService.setTitle("Edit Path: "+ this.courseName +" - SortedTree");
         }
         else{
           window.location.href = "/welcome";
