@@ -92,7 +92,6 @@ export class ArticleNewComponent implements OnInit {
             (response: any) => {
               this.article = response;
               this.titleService.setTitle("Editing: "+ this.article.data.title +" - SortedTree")
-
               this.owner = response.owner;
               if (!this.owner) {
                 window.location.href = "";
