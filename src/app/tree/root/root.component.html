@@ -49,7 +49,7 @@
                         <mat-card-header>
 
                             <mat-card-title (click)="navigate(product.id)" style="cursor:pointer; color: #566364;">
-                                <a routerLink="/courses/{{product.id}}/{{product.get_first_article.first_article_id}}/">
+                                <a routerLink="/courses/{{product.id}}/{{product.get_first_article?.first_article_id}}/">
                                     {{product.label}}
                                 </a>
                                 <button mat-icon-button *ngIf="isModerator">

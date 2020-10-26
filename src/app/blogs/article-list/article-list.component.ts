@@ -66,7 +66,7 @@ export class ArticleListComponent implements OnInit {
           this.changeTheCourse();
           if (this.authService.isLoggedIn()) {
             this.knowledgeService.ifCourseOwner(this.course).subscribe(
-              (result:any) => {
+              (result: any) => {
                 // console.log(result);
                 this.owner = result.owner;
               }
@@ -96,9 +96,11 @@ export class ArticleListComponent implements OnInit {
         this.sections = response.sections;
         this.sections = this.deleteSectionsWithoutArticles(this.sections);
         if (!this.article) {
-          this.article = this.sections[0].articles[0].id;
+          this.article = this.sections[0]?.articles[0].id;
           if (!this.course_for_modal.category) {
-            this.navigate(this.article);
+            if (this.article) {
+              this.navigate(this.article);
+            }
           }
         }
         if (this.article) {
