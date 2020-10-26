@@ -49,7 +49,9 @@
                         <mat-card-header>
 
                             <mat-card-title (click)="navigate(product.id)" style="cursor:pointer; color: #566364;">
-                                {{product.label}}
+                                <a routerLink="/courses/{{product.id}}/{{product.get_first_article.first_article_id}}/">
+                                    {{product.label}}
+                                </a>
                                 <button mat-icon-button *ngIf="isModerator">
                                     <mat-icon *ngIf="product.active" matTooltip="Visible to public"> visibility </mat-icon>
                                     <mat-icon *ngIf="!product.active"  matTooltip="Not visible to public"> visibility_off </mat-icon>

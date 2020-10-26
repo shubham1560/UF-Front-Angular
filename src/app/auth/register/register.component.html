@@ -52,12 +52,13 @@
                         </form>
                     </div>
                     <div *ngIf="registrationDone" class="uf-auth-form-body">
+                        <!-- <div> -->
                         <div class="uf-auth-info-block">
                             <mat-icon matSuffix class="uf-auth-icon" [ngStyle]="{'color': 'green'}">
                                 verified_user
                             </mat-icon>
                             <br>
-                            Activation link has has been sent to <b>{{user["email"]}}</b>, please check the inbox
+                            Activation link has has been sent to <b style="color: #3a899d">{{user["email"]}}</b>, please check the inbox
                         </div>
                     </div>
                     <br>

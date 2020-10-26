@@ -22,10 +22,10 @@ export class BlogsComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
   ngOnInit() {
-    setTimeout(() => {
-      this.observer();
-      // console.log(this);
-    }, 500)
+    // setTimeout(() => {
+    //   this.observer();
+    //   // console.log(this);
+    // }, 500)
   }
 
   // ngOnDestroy(){
@@ -46,18 +46,18 @@ export class BlogsComponent implements OnInit {
     }
   }
 
-  callback(entries) {
-    if (entries[0].isIntersecting) {
-      // console.log(entries)
-      // this.loadKbUse = true;
-      // console.log(this);
-    }
-  }
+  // callback(entries) {
+  //   if (entries[0].isIntersecting) {
+  //     // console.log(entries)
+  //     // this.loadKbUse = true;
+  //     // console.log(this);
+  //   }
+  // }
 
 
-  observer() {
-    var box = document.getElementById("kbuse-load");
-    var observer = new IntersectionObserver(this.callback);
-    observer.observe(box);
-  }
+  // observer() {
+  //   var box = document.getElementById("kbuse-load");
+  //   var observer = new IntersectionObserver(this.callback);
+  //   observer.observe(box);
+  // }
 }
