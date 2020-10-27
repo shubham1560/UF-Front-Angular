@@ -176,7 +176,6 @@ export class ArticleNewComponent implements OnInit {
   updateArticle(update) {
     this.editor.save().then((outputData: any) => {
       this.updatingData = true;
-      console.log(outputData);
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks) && this.title != '') {
         this.prevData = outputData.blocks;
         if (update) {
@@ -202,7 +201,7 @@ export class ArticleNewComponent implements OnInit {
             },
             (error) => {
               this.updatingData = false;
-              this.openSnackBar("There seems to be a problem, please try again", '');
+              this.openSnackBar("There seems to be a problem, please try again!", '');
             }
           )
         }

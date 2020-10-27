@@ -35,20 +35,16 @@
                         <div class="col-lg-4 col-sm-6 col-12" *ngFor="let n of [1,2,3]">
                             <mat-card class="mat-card st-border">
                                 <mat-card-header>
-                                    <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
+                                    <mat-card-title style="width: 120px; height: 18px; background-color: #f6f7f7;
+                                    margin: 10px -16px">
                                     </mat-card-title>
-                                    <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                    <!-- <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;">
-                                    </div> -->
                                 </mat-card-header>
                                 <mat-card-content>
-                                    <p style="width: 60%; height: 22px; background-color: #f6f7f7;">
+                                    <p style="width: 100%; height: 12px; background-color: #f6f7f7;">
+                                    </p>
+                                    <p style="width: 60%; height: 12px; background-color: #f6f7f7;">
                                     </p>
                                 </mat-card-content>
-                                <!-- <mat-card-actions>
-                                  <button mat-button>LIKE</button>
-                                  <button mat-button>SHARE</button>
-                                </mat-card-actions> -->
                             </mat-card>
                         </div>
                     </div>
@@ -59,13 +55,9 @@
                                 <mat-card class="mat-card st-border">
                                     <mat-card-header>
                                         <mat-card-title class="mat-card-title-nm">{{product.title}}</mat-card-title>
-                                        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-                                        <!-- <div mat-card-avatar
-                                            [ngStyle]="{'background-image': 'url(' + product.compressed_image + ')'}"
-                                            style="background-size: cover;"></div> -->
                                     </mat-card-header>
                                     <mat-card-content>
-                                        <p>
+                                        <p style="min-height: 40px;">
                                             {{product.description}}
                                         </p>
                                     </mat-card-content>
@@ -92,15 +84,9 @@
         </div>
         <div class="col-md-4" *ngIf="isLoggedIn" style="padding: 20px; background-color: white;">
             <app-quotes></app-quotes>
-
-
-            <!-- <hr> -->
-
-            <!-- <app-read-articles></app-read-articles> -->
         </div>
 
         <div class="col-md-4" *ngIf="!isLoggedIn" style="padding: 20px; background-color: white;">
-            <!-- <app-featured></app-featured> -->
             <app-quotes></app-quotes>
         </div>
 
