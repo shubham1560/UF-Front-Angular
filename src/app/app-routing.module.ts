@@ -41,6 +41,11 @@ const routes: Routes = [
       import("./tree/tree.module").then(root=>root.TreeModule)
   },
   {
+    path: "author",
+    loadChildren: () => 
+      import("./author/author.module").then(author=>author.AuthorModule)
+  },
+  {
     path: "about_us",
     loadChildren: ()=>
       import("./about/about.module").then(about=>about.AboutModule)
@@ -50,7 +55,6 @@ const routes: Routes = [
     component: NotFoundComponent 
   },
   
-
 ];
 
 @NgModule({
