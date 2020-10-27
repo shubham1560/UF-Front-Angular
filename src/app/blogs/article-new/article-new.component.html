@@ -6,11 +6,12 @@
         <div class="row">
 
             <div class="col-lg-9">
-                <!-- input -->
+
                 <div style="max-width: 650px; margin: auto;">
-                    <!-- <h2 class="ce-header" contenteditable="true" data-placeholder="Add a title...">
-                        {{title}}
-                    </h2> -->
+                    <br>
+                    <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
+                        Last updated on: {{this.article?.data.sys_updated_on | date: 'medium'}}
+                    </span>
                     <br>
                     <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
                     <br>
@@ -26,11 +27,11 @@
                     <h5 style="color: #516264;" *ngIf="!state">State: New</h5>
                     <br>
                     <h4 style="color: #4f9aab;" *ngIf="title">
-                        <!-- {{title}} -->
-                        <a target="_blank" style="color: #4f9aab;" *ngIf="id"
+                        {{title}}
+                        <a target="_blank" style="color: #4f9aab; font-size: 18px; text-decoration: underline;" *ngIf="id"
                             routerLink="/courses/article_preview/{{id}}">
-                            {{title}}
-                            <mat-icon>open_in_new</mat-icon>
+                             <br>
+                            Preview<mat-icon>open_in_new</mat-icon>
                         </a>
                     </h4>
                     <h4 style="color: #4f9aab;" *ngIf="!title">Start by giving it a title!</h4>
@@ -43,10 +44,6 @@
                         <span *ngIf="!updatingData">
                             Save progress
                         </span>
-                        <!-- <mat-icon>
-                        save
-                    </mat-icon> -->
-
                     </button>
                     <button mat-button class="primary-button" (click)="addToCourse()">
                         Publish to the path
@@ -66,21 +63,13 @@
                         </button>
 
                     </div>
-                    <!-- <a target="_blank" *ngIf="id" mat-button color="primary"
-                        routerLink="/courses/article_preview/{{id}}">
-                        Preview
-                        <mat-icon>open_in_new</mat-icon>
-                    </a> -->
+
                 </div>
                 <hr>
-                <!-- <div *ngIf="article?.data.get_category.category_label == 'Testing'" style="color: green">
-                    Currently this article is not part of any path, please add this article to the path by clicking the
-                    button below
-                </div> -->
+
                 <div
                     *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label">
                     Path of the path:
-                    <!-- <br> -->
                     <a target="_blank" style="color: #4f9aab;"
                         routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
                         {{article?.data.get_category.category_label}}
@@ -89,100 +78,9 @@
                 </div>
                 <br>
                 <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
-                <!-- <div style="text-align: right;">
-                    <button mat-button class="primary-button" style="border: none !important ;"
-                        (click)="addToCourse()">Publish to the path</button>
-                </div> -->
+
+
             </div>
         </div>
     </div>
 </div>
-
-<!-- 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3">
-            <div id="uf-new-article" style="text-align: right; padding-top: 40px;">
-                <button mat-button [disabled]="updatingData" color="primary" (click)="updateArticle(true)">
-                    <span *ngIf="updatingData">
-                        Saving....
-                    </span>
-                    <span *ngIf="!updatingData">
-                        Save
-                    </span>
-                    <mat-icon>
-                        save
-                    </mat-icon>
-
-                </button>
-                <br> <br>
-                <button mat-button color="accent" [disabled]='state=="review" || state=="publised"'
-                    (click)="updateArticle(false)">
-                    Send for review
-                    <mat-icon>
-                        rate_review
-                    </mat-icon>
-                </button>
-
-
-                <br> <br>
-                <a target="_blank" mat-button color="primary" routerLink="/courses/article_preview/{{id}}">
-                    Preview the article
-                    <mat-icon>open_in_new</mat-icon>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div id="editorjs">
-            </div>
-        </div>
-        <div class="col-lg-3" style="padding-top: 40px;">
-            <div *ngIf="article?.data.get_category.category_label == 'Testing'" style="color: green">
-                Currently this article is not part of any path, please add this article to the path by clicking the
-                button below
-            </div>
-            <div *ngIf="article?.data.get_category.category_label != 'Testing'">
-                Currently the article is part of the path:
-                <br>
-                <a routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
-                    {{article?.data.get_category.category_label}}
-                </a>
-            </div>
-            <br><br>
-            <button mat-button class="primary-button" (click)="addToCourse()">Add to the path</button>
-
-        </div>
-    </div>
-</div> -->
-
-
-<!-- 
-<div id="uf-breadcrumb" style="margin-top: 20px;">
-    <div class="breadcrumb-pagination">
-
-
-        <div [ngClass]="{'completed' : state=='review' || state=='published', 'active': state =='draft'}"
-            matTooltip="The article is in draft mode!">
-            <mat-icon>edit</mat-icon>
-            <p>
-                Draft
-                <br>
-            </p>
-        </div>
-
-        <div [ngClass]="{'completed' : state=='published', 'active': state =='review'}"
-            matTooltip="The article has been sent for review! The moderators will be back with results">
-            <mat-icon>publish</mat-icon>
-            <p>Review <br>
-            </p>
-        </div>
-
-        <div [ngClass]="{'active': state =='published'}"
-            matTooltip="The article is published, any change will send it to draft mode!">
-            <mat-icon>published_with_changes</mat-icon>
-            <p>Published
-            </p>
-        </div>
-
-    </div>
-</div> -->
