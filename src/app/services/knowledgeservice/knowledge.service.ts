@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from '../urlconfig.service';
-import { CacheserviceService  } from '../../services/cacheservice/cacheservice.service';
+import { CacheserviceService } from '../../services/cacheservice/cacheservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -41,131 +41,145 @@ export class DataService {
     return this.httpService.get(url, { headers: this.getHeader() });
   }
 
-  getKnowledgeUrl(){
+  getKnowledgeUrl() {
     return `${this.base_knowledge_url}`;
   }
 
-  addBookmarkArticle(article_id: string){
+  addBookmarkArticle(article_id: string) {
     this.called_url = `${this.base_knowledge_url}bookmark_this_article/`;
-    const body = {"article_id": article_id};
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    const body = { "article_id": article_id };
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  getArticleById(article_id: string){
+  getArticleById(article_id: string) {
     this.called_url = `${this.base_knowledge_url}articles/${article_id}/`;
     // console.log(this.called_url);
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  postUseArticle(article, useful){
+  postUseArticle(article, useful) {
     this.called_url = `${this.base_knowledge_url}knowledge_view/`
-    const body = {"article": article, 'useful': useful, 'viewed': 'true'}
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    const body = { "article": article, 'useful': useful, 'viewed': 'true' }
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  ifArticleBookmarkedByUser(article_id){
-    if (article_id){
-    this.called_url = `${this.base_knowledge_url}knowledge_view/${article_id}/`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  ifArticleBookmarkedByUser(article_id) {
+    if (article_id) {
+      this.called_url = `${this.base_knowledge_url}knowledge_view/${article_id}/`;
+      return this.httpService.get(this.called_url, { headers: this.getHeader() });
     }
   }
 
-  addFeedback(article_id: string, feedback: string){
+  addFeedback(article_id: string, feedback: string) {
     this.called_url = `${this.base_knowledge_url}articles/${article_id}/feedback/`;
-    const body = {"feedback": feedback};
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    const body = { "feedback": feedback };
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  getKnowledgeBases(){
+  getKnowledgeBases() {
     this.called_url = `${this.base_knowledge_url}knowledge_base/get_knowledge_bases/`
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  getRelatedCategories(kb_base, kb_category, course){
-    if(course=="course"){
+  getRelatedCategories(kb_base, kb_category, course) {
+    if (course == "course") {
       this.called_url = `${this.base_knowledge_url}${kb_base}/categories/${kb_category}/courses/`;
-    }else{
-      this.called_url = `${this.base_knowledge_url}${kb_base}/categories/${kb_category}/tree/`;    
+    } else {
+      this.called_url = `${this.base_knowledge_url}${kb_base}/categories/${kb_category}/tree/`;
     }
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  getRelatedSectionAndArticles(kb_category){
+  getRelatedSectionAndArticles(kb_category) {
     this.called_url = `${this.base_knowledge_url}course/${kb_category}/`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  getBreadCrumbFromCategory(category){
+  getBreadCrumbFromCategory(category) {
     this.called_url = `${this.base_knowledge_url}knowledge_crumb/${category}/`
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  setCourseProgress(course, progress){
+  setCourseProgress(course, progress) {
     this.called_url = `${this.base_knowledge_url}course_progress/`
-    const body = {'course': course, 'progress': progress}
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    const body = { 'course': course, 'progress': progress }
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  getCategoriesForSideNav(kb_base){
+  getCategoriesForSideNav(kb_base) {
     this.called_url = `${this.base_knowledge_url}${kb_base}/categories_kb_base`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
-  
-  getSearchResults(query_key){
+
+  getSearchResults(query_key) {
     this.called_url = `${this.base_knowledge_url}query/${query_key}`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  getQuotes(){
+  getQuotes() {
     this.called_url = `https://type.fit/api/quotes`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 
-  operateArticles(article, id, title){
+  operateArticles(article, id, title, description) {
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "title": title, "id": id, "publish_ready": false, "body_data": JSON.stringify(article["blocks"])};
+    const body = {
+      "article": article,
+      "description": description,
+      "title": title,
+      "id": id,
+      "publish_ready": false,
+      "body_data": JSON.stringify(article["blocks"])
+    };
     // console.log(body);
     this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
     // console.log(`${this.base_knowledge_url}articles/${id}/`);
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
 
-  publishArticles(article, id, title){
+  publishArticles(article, id, title, description) {
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "title": title, "id": id, "publish_ready": true, "body_data": JSON.stringify(article["blocks"])} ;
+    const body = {
+      "article": article,
+      "title": title,
+      "id": id,
+      "publish_ready": true,
+      "body_data": JSON.stringify(article["blocks"]),
+      "description": description
+    };
     // console.log(body);
     this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
     // console.log(`${this.base_knowledge_url}articles/${id}/`);
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  getAllCourses(){
+  getAllCourses() {
     this.called_url = `${this.base_knowledge_url}kb_category/courses/`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
-  
-  addArticleToCourse(course_id, article_id){
+
+  addArticleToCourse(course_id, article_id) {
     this.called_url = `${this.base_knowledge_url}kb_sections/article/insert/`;
-    const body = {"article_id": article_id, "course_id": course_id};
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    const body = { "article_id": article_id, "course_id": course_id };
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  addPathOrBranch(form_data, type){
+  addPathOrBranch(form_data, type) {
     this.called_url = `${this.base_knowledge_url}kb_category/add/`;
-    const body = {"form_data": form_data, "type": type};
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    const body = { "form_data": form_data, "type": type };
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  buildPathForCourse(course, path, deleteSectionIdArray){
+  buildPathForCourse(course, path, deleteSectionIdArray) {
     this.called_url = `${this.base_knowledge_url}kb_section/path/`;
-    const body = {"course": course, "path": path, "deleteSections": deleteSectionIdArray};
+    const body = { "course": course, "path": path, "deleteSections": deleteSectionIdArray };
     this.cache.deleteInstant(`${this.base_knowledge_url}course/${course}/`);
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  ifCourseOwner(course){
+  ifCourseOwner(course) {
     this.called_url = `${this.base_knowledge_url}path_valid_user/${course}/`;
-    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
 }

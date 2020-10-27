@@ -47,6 +47,7 @@ export class ArticleNewComponent implements OnInit {
   owner = false
   isLoading = true;
   title;
+  description;
 
   ngOnInit() {
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
@@ -82,6 +83,7 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
               this.article = response;
+              this.description = this.article.data.description;
               this.title = this.article.data.title;
               this.titleService.setTitle("Editing: "+ this.article.data.title +" - SortedTree")
               this.owner = response.owner;
@@ -179,7 +181,7 @@ export class ArticleNewComponent implements OnInit {
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks) && this.title != '') {
         this.prevData = outputData.blocks;
         if (update) {
-          this.knowledgeService.operateArticles(outputData, this.id, this.title).subscribe(
+          this.knowledgeService.operateArticles(outputData, this.id, this.title, this.description).subscribe(
             (response: any) => {
               this.id = response;
               this.route.navigateByUrl('courses/article/' + this.id);
@@ -193,7 +195,7 @@ export class ArticleNewComponent implements OnInit {
           )
         }
         else {
-          this.knowledgeService.publishArticles(outputData, this.id, this.title).subscribe(
+          this.knowledgeService.publishArticles(outputData, this.id, this.title, this.description).subscribe(
             (response: any) => {
               this.updatingData = false;
               this.state = 'review';
