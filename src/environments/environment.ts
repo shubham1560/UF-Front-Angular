@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // url: "http://127.0.0.1:8000/"
-  url : "https://database1560.herokuapp.com/"          //dev
+  url: "http://127.0.0.1:8000/"
+  // url : "https://database1560.herokuapp.com/"          //dev
   // url : "https://uf-preprod.herokuapp.com/"          //preprod
   // url : "https://uf-api.herokuapp.com/"            //prod
 };

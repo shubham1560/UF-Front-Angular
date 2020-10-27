@@ -5,24 +5,18 @@ import EditorJS from '@editorjs/editorjs';
 import header from '@editorjs/header';
 import rawTool from '@editorjs/raw';
 import ImageTool from '@editorjs/image';
-// import checkList from '@editorjs/checklist';
 import List from '@editorjs/list';
 import embed from '@editorjs/embed';
-import Quote from '@editorjs/quote';
 import Link from '@editorjs/link';
-// import Warning from '@editorjs/warning';
 import delimiter from '@editorjs/delimiter';
-// import Table from '@editorjs/table';
 import CodeTool from '@editorjs/code';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Action } from 'rxjs/internal/scheduler/Action';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
-import { timeout } from 'rxjs/operators';
 
 
 @Component({
@@ -80,12 +74,8 @@ export class ArticleNewComponent implements OnInit {
           this.data = {};
           this.owner = true;
           this.isLoading = true;
-          // window.location.reload();
           this.initializeEditor();
           this.editorInitilized = true;
-          // setTimeout(()=>{
-          //   // console.clear();
-          // }, 1000)
         }
         else {
           this.knowledgeService.getArticleById(article_id).subscribe(
@@ -108,15 +98,9 @@ export class ArticleNewComponent implements OnInit {
               };
               if (!this.editorInitilized) {
                 this.initializeEditor();
-                // setTimeout(()=>{
-                //   // console.clear();
-                // }, 1000)
-
               }
-              // console.log(this);
 
             }, error => {
-              // console.log(error);
             }
           )
           // var a = setInterval(()=>{
@@ -167,36 +151,7 @@ export class ArticleNewComponent implements OnInit {
         },
         code: {
           class: CodeTool,
-          // shortcut: 'CMD+SHIFT+/'
         },
-
-        // table: {
-        //   class: Table,
-        //   inlineToolbar: true,
-        //   config: {
-        //     rows: 2,
-        //     cols: 3,
-        //   },
-        // },
-        // warning: {
-        //   class: Warning,
-        //   inlineToolbar: true,
-        //   shortcut: 'CMD+SHIFT+W',
-        //   config: {
-        //     titlePlaceholder: 'Title',
-        //     messagePlaceholder: 'Message',
-        //   },
-        // },
-        // quote: {
-        //   class: Quote,
-        //   inlineToolbar: true,
-        //   // shortcut: 'CMD+SHIFT+O',
-        //   config: {
-        //     quotePlaceholder: 'Enter a quote',
-        //     captionPlaceholder: 'Quote\'s author',
-        //   },
-        // },
-
         embed: {
           class: embed,
           shortcut: 'CMD+SHIFT+O',
@@ -209,15 +164,8 @@ export class ArticleNewComponent implements OnInit {
             endpoint: `${this.url.base_url}attachment/fetch_url/`, // Your backend endpoint for url data fetching
           }
         },
-        // checklist: {
-        //   class: checkList,
-        //   inlineToolbar: true,
-        // },
-
         raw: rawTool,
-
       }
-
     })
   }
 
@@ -227,19 +175,14 @@ export class ArticleNewComponent implements OnInit {
     this.editor.save().then((outputData: any) => {
       this.updatingData = true;
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
-        // if (outputData.blocks.length > 0) {
-
         this.prevData = outputData.blocks;
         if (update) {
           this.knowledgeService.operateArticles(outputData, this.id).subscribe(
             (response: any) => {
               this.id = response;
-              // this.state = response.article.data.workflow;
               this.route.navigateByUrl('courses/article/' + this.id);
               this.updatingData = false;
               this.openSnackBar("The progress has been saved", '');
-              // console.log(response);
-
             },
             (error) => {
               this.updatingData = false;
@@ -253,7 +196,6 @@ export class ArticleNewComponent implements OnInit {
               this.updatingData = false;
               this.state = 'review';
               this.openSnackBar("The article has been sent for review!!", '');
-              // console.log(response);
             },
             (error) => {
               this.updatingData = false;
@@ -265,7 +207,6 @@ export class ArticleNewComponent implements OnInit {
       else if (outputData.blocks.length == 0) {
         this.updatingData = false;
         this.openSnackBar("Please add something to the article to save!", "");
-        // console.log();
       }
       else if (this.arrayEqual(this.prevData, outputData.blocks)) {
         this.openSnackBar("No change in article detected", '')
@@ -273,7 +214,6 @@ export class ArticleNewComponent implements OnInit {
       }
     }).catch((error) => {
       this.updatingData = false;
-      // console.log('Saving failed: ', error)
     });
   }
 
@@ -309,8 +249,6 @@ export class ArticleNewComponent implements OnInit {
 
 
   arrayEqual(ary1: any[], ary2: any[]) {
-    // console.log(ary1, ary2);
-    // console.log(ary1.join(''), ary2.join(''));
     var new_ary2 = [];
     var new_ary1 = [];
     ary2.forEach(element => {
@@ -319,9 +257,6 @@ export class ArticleNewComponent implements OnInit {
     ary1.forEach(element => {
       new_ary1.push(JSON.stringify(element.data));
     });
-    // console.log(new_ary1.join(''));
-    // console.log(new_ary2.join(''))
-
     return (new_ary1.join('') == new_ary2.join(''));
   }
 
@@ -336,26 +271,6 @@ export class ArticleNewComponent implements OnInit {
       if (result?.reload) {
         window.location.reload();
       }
-      // this.animal = result;
-      // console.log(this.data);
-      // console.log(result);
     });
-    // console.log("adding the modal");
   }
-
-  // arrayEqual(a, b){
-  //   if(a.length == b.length){
-  //     for (let i = 0; i < a.length; i++){
-  //       if (!this.objectsEqual(a[i], b[i])){
-  //         return false;
-  //       }
-  //     }
-  //   }
-
-  // }
-
-  // objectsEqual = (a1, a2) => {
-  //   return a1.length === a2.length && a1.every((o, idx) => this.objectsEqual(o, a2[idx]));
-  // }
-
 }
