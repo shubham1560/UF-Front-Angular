@@ -13,6 +13,9 @@
                             </mat-icon>
                         </a>
                     </div>
+
+                    <h2 style="color: #435152">{{title}}</h2>
+
                     <div *ngFor="let block of article_body ; let i = index">
 
                         <div class="uf-header" *ngIf="block.type=='header'">

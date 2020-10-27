@@ -121,9 +121,9 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
-  operateArticles(article, id){
+  operateArticles(article, id, title){
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "id": id, "publish_ready": false, "body_data": JSON.stringify(article["blocks"])};
+    const body ={"article": article, "title": title, "id": id, "publish_ready": false, "body_data": JSON.stringify(article["blocks"])};
     // console.log(body);
     this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
     // console.log(`${this.base_knowledge_url}articles/${id}/`);
@@ -131,9 +131,9 @@ export class DataService {
   }
 
 
-  publishArticles(article, id){
+  publishArticles(article, id, title){
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body ={"article": article, "id": id, "publish_ready": true, "body_data": JSON.stringify(article["blocks"])} ;
+    const body ={"article": article, "title": title, "id": id, "publish_ready": true, "body_data": JSON.stringify(article["blocks"])} ;
     // console.log(body);
     this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
     // console.log(`${this.base_knowledge_url}articles/${id}/`);

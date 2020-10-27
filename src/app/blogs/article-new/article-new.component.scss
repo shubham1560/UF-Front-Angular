@@ -89,3 +89,23 @@ a{
 button{
   outline: none;
 }
+
+.title-input{
+  padding: 1em 0;
+    margin: 0;
+    margin-bottom: -0.9em;
+    line-height: 1.5em;
+    outline: none;
+
+  &:hover{
+    cursor: default ;
+  }
+}
+
+.input-title{
+  border: none;
+    height: 50px;
+    font-size: 36px;
+    outline: none;
+    width: 100%;
+}

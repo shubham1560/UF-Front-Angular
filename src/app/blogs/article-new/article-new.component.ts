@@ -41,12 +41,13 @@ export class ArticleNewComponent implements OnInit {
 
   editor: EditorJS
   data: any;
-  // a;
   article;
   editorInitilized = false;
   state;
   owner = false
   isLoading = true;
+  title;
+
   ngOnInit() {
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
     // this.replacement(this.a);
@@ -81,6 +82,7 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.getArticleById(article_id).subscribe(
             (response: any) => {
               this.article = response;
+              this.title = this.article.data.title;
               this.titleService.setTitle("Editing: "+ this.article.data.title +" - SortedTree")
               this.owner = response.owner;
               if (!this.owner) {
@@ -124,7 +126,7 @@ export class ArticleNewComponent implements OnInit {
 
       data: this.data,
 
-      placeholder: 'Let`s do some good together, Start by giving it a heading!',
+      placeholder: 'Let`s do some good together, type away!',
 
       // autofocus: true,
 
@@ -174,10 +176,11 @@ export class ArticleNewComponent implements OnInit {
   updateArticle(update) {
     this.editor.save().then((outputData: any) => {
       this.updatingData = true;
-      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks)) {
+      console.log(outputData);
+      if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks) && this.title != '') {
         this.prevData = outputData.blocks;
         if (update) {
-          this.knowledgeService.operateArticles(outputData, this.id).subscribe(
+          this.knowledgeService.operateArticles(outputData, this.id, this.title).subscribe(
             (response: any) => {
               this.id = response;
               this.route.navigateByUrl('courses/article/' + this.id);
@@ -191,7 +194,7 @@ export class ArticleNewComponent implements OnInit {
           )
         }
         else {
-          this.knowledgeService.publishArticles(outputData, this.id).subscribe(
+          this.knowledgeService.publishArticles(outputData, this.id, this.title).subscribe(
             (response: any) => {
               this.updatingData = false;
               this.state = 'review';
@@ -204,9 +207,9 @@ export class ArticleNewComponent implements OnInit {
           )
         }
       }
-      else if (outputData.blocks.length == 0) {
+      else if (outputData.blocks.length == 0 || this.title == '') {
         this.updatingData = false;
-        this.openSnackBar("Please add something to the article to save!", "");
+        this.openSnackBar("Please add something title and paragraph to the article to save!", "");
       }
       else if (this.arrayEqual(this.prevData, outputData.blocks)) {
         this.openSnackBar("No change in article detected", '')

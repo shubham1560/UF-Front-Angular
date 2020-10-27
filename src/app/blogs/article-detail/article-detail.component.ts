@@ -37,6 +37,7 @@ export class ArticleDetailComponent implements OnInit {
   initCourse;
   owner   //variable to get if the logged in guy is owner or not
   imageLoaded;
+  title
   
 
   ngOnInit() {
@@ -62,6 +63,7 @@ export class ArticleDetailComponent implements OnInit {
           this.knowledge.getArticleById(this.article_id).subscribe(
             (result: any) => {
               this.article = result.data;
+              this.title = this.article.title;
               // if(result.owner){
               this.owner = result.owner;
               // }
@@ -70,7 +72,7 @@ export class ArticleDetailComponent implements OnInit {
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
               this.fetchEmbedDetails();
               this.current_url = window.location.href;
-              this.titleService.setTitle(this.article_body[0].data.text + " - SortedTree");
+              this.titleService.setTitle(this.title + " - SortedTree");
               // console.log(this.article.getAuthor.header_image);
               // console.log(this.article.getAuthor.google_pic);
               // console.log(result);
