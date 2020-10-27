@@ -67,7 +67,7 @@
                         <label for="file-upload" class="custom-file-upload">
                             {{buttonText}}
                         </label>
-                        <input id="file-upload" (change)="onImageChange($event)" type="file" />
+                        <input id="file-upload" accept="image/png, image/jpeg" (change)="onImageChange($event)" type="file" />
                         <!-- <input type="file" class="uf-file-upload" (change)="onImageChange($event)"> -->
                     </button>
                 </div>
