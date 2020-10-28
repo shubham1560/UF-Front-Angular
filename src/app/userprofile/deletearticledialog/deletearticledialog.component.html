@@ -1,1 +1,20 @@
-<p>deletearticledialog works!</p>
+<p align="end" style="margin-top: -20px;margin-right: -1rem;">
+    <mat-icon mat-dialog-close matSuffix>
+        close
+    </mat-icon>
+</p>
+
+ <!-- <pre>
+    {{data | json}}
+    </pre> -->
+<div style="color: #438C9F;"> {{data.article_title}}</div>
+<br>
+<div class="uf-delete-user-modal">
+    <b> Delete the article? </b> <br>
+    Everything related to this article will be deleted!
+    <br>
+    <br><br><br>
+    <button style="float: right;" mat-raised-button color="warn" (click)=deleteArticle()>delete</button>
+    <button style="float: right;" mat-dialog-close mat-button color="primary">cancel</button>
+
+</div>

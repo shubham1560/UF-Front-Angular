@@ -47,7 +47,7 @@ export class ArticleNewComponent implements OnInit {
   owner = false
   isLoading = true;
   title;
-  description;
+  description = '';
 
   ngOnInit() {
     // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
@@ -105,6 +105,9 @@ export class ArticleNewComponent implements OnInit {
               }
 
             }, error => {
+              // console.log(error);
+              this.route.navigateByUrl('courses/article/1');
+              
             }
           )
           // var a = setInterval(()=>{
@@ -184,6 +187,10 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.operateArticles(outputData, this.id, this.title, this.description).subscribe(
             (response: any) => {
               this.id = response;
+              if(this.id == '1'){
+                this.openSnackBar("This article no longer exists, you may have deleted it!", '');
+                window.location.reload()
+              }
               this.route.navigateByUrl('courses/article/' + this.id);
               this.updatingData = false;
               this.openSnackBar("The progress has been saved", '');

@@ -182,4 +182,11 @@ export class DataService {
     this.called_url = `${this.base_knowledge_url}path_valid_user/${course}/`;
     return this.httpService.get(this.called_url, { headers: this.getHeader() });
   }
+
+  deleteArticle(id){
+    this.called_url = `${this.base_knowledge_url}kb_knowledge/delete/`;
+    const body = {'article_id': id};
+    this.cache.deleteContaining('user/kb_knowledge/author/');
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

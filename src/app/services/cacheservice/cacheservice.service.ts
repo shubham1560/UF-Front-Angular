@@ -23,10 +23,17 @@ export class CacheserviceService {
     this.requests[url] = undefined;
   }
 
+  deleteContaining(url){
+    for (var [key, value] of Object.entries(this.requests)) {
+      if (key.includes(url)){
+        this.requests[key] = undefined;
+      }
+    }
+  }
+
   delete(url: string) {
     setTimeout(() => {
       this.requests[url] = undefined;
-      // console.log("invalidated the url");
     }, 30*60*1000);
   }
 

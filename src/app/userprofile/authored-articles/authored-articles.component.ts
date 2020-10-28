@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Title } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+import { DeletearticledialogComponent } from '../deletearticledialog/deletearticledialog.component';
 
 
 @Component({
@@ -14,7 +16,8 @@ export class AuthoredArticlesComponent implements OnInit {
   constructor(
     private userProfile: UserprofileService,
     private loggerService: LoggerService,
-    private titleService: Title
+    private titleService: Title,
+    public dialog: MatDialog
   ) { }
 
 
@@ -42,9 +45,27 @@ export class AuthoredArticlesComponent implements OnInit {
     this.ngOnInit();
   }
 
-  deleteArticle(id){
-    console.log(id);
+  deleteArticle(id, title){
+    // console.log(id);
+    this.openDialog(id, title)
   }
+
+  openDialog(id, title): void {
+    const dialogRef = this.dialog.open(DeletearticledialogComponent, {
+      // width: '250px',
+      data: {article_id:  id, article_title: title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+      // console.log(result);
+      if (result.delete){
+        this.ngOnInit();
+      }
+      // this.animal = result;
+    });
+  }
+
 
   changeSort(sort: string) {
     if (this.articles_data.articles.length > 1) {
