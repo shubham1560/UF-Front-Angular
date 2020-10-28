@@ -20,18 +20,8 @@
                 <p style="height:1em; margin-bottom: 0.5em;" class="ghost"></p>
                 <p style="height:1em; margin-bottom: 0.5em; " class="ghost"></p>
                 <p style="height:1em; width: 200px;" class="ghost"></p>
-                
+
             </div>
-            <!-- <div class="col-md-12 uf-border">
-                <br>
-                <mat-tab-group animationDuration="0ms">
-                    <mat-tab label="Useful Articles">You found these articles useful</mat-tab>
-                    <mat-tab label="Bookmarked" class="ghost">
-                        <app-bookmarkedarticles></app-bookmarkedarticles>
-                    </mat-tab>
-                </mat-tab-group>
-                <br><br><br>
-            </div> -->
             <div class="col-md-12 uf-border" style="height: 40px">
                 <div style="float: right;">
                     <button mat-raised-button color="warn" class="ghost" (click)="deleteUser()">Delete account</button>
@@ -39,7 +29,6 @@
 
             </div>
         </div>
-
     </div>
 
 
@@ -48,12 +37,14 @@
 
         <div class="row uf-border">
             <div class="col-md-4 uf-border" style="padding:20px">
-                <div style="width:160px; height:160px;margin:auto; border-radius:100px; border: 2px solid #3f51b5; padding:3px;">
-                    
+                <div
+                    style="width:160px; height:160px;margin:auto; border-radius:100px; border: 2px solid #3f51b5; padding:3px;">
+
                     <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
                         style="width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
                         class="border">
-                        <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner>
+                        <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;">
+                        </mat-spinner>
                     </div>
                     <div *ngIf="!image" [ngStyle]="{background: 'url('+image+')'}"
                         style="background-color: black; color: white;text-align:center; font-size: 40px; padding-top:50px; width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
@@ -62,60 +53,73 @@
                         <!-- <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner> -->
                     </div>
                 </div>
-                
-                
+
+
                 <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;"
                     class="uf-border">
                     <button mat-raised-button>
                         <label for="file-upload" class="custom-file-upload">
                             {{buttonText}}
                         </label>
-                        <input id="file-upload" accept="image/png, image/jpeg" (change)="onImageChange($event)" type="file" />
+                        <input id="file-upload" accept="image/png, image/jpeg" (change)="onImageChange($event)"
+                            type="file" />
                         <!-- <input type="file" class="uf-file-upload" (change)="onImageChange($event)"> -->
                     </button>
                 </div>
             </div>
             <div class="col-md-8 uf-border" style="padding: 20px;">
-                <h3>{{name}}<mat-icon aria-hidden="false" style="padding-left: 20px; cursor: pointer;" (click)="editUser()" aria-label="Edit user details">edit</mat-icon></h3>
+                <h3>{{name}}<mat-icon aria-hidden="false" style="padding-left: 20px; cursor: pointer;"
+                        (click)="editUser()" aria-label="Edit user details">edit</mat-icon>
+                </h3>
                 <p>({{email}})</p>
                 <div style="padding-bottom: 20px;" *ngIf='response.author'>
-                    Roles: 
+                    Roles:
                     <span style="color: #3c869a;" #tooltip="matTooltip"
-                    matTooltip="Author has the priviledge to add article to existing paths">
+                        matTooltip="Author has the priviledge to add article to existing paths">
                         Author
-                    </span> 
+                    </span>
                     <span style="color: #3c869a;" #tooltip="matTooltip"
-                    matTooltip="Moderator has all the priviledge of author, and can also create branches and courses" *ngIf="response.moderator">
+                        matTooltip="Moderator has all the priviledge of author, and can also create branches and courses"
+                        *ngIf="response.moderator">
                         & Moderator
                     </span>
                 </div>
-                
+
                 <div style="color: #293e40; padding-bottom: 20px;">
-                    <a target="_blank" href="{{response.user.facebook_profile_link}}" *ngIf="response.user.facebook_profile_link" class="uf-social">
+                    <a target="_blank" href="{{response.user.facebook_profile_link}}"
+                        *ngIf="response.user.facebook_profile_link" class="uf-social">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.instagram_profile_link}}" class="uf-social" *ngIf="response.user.instagram_profile_link">
+                    <a target="_blank" href="{{response.user.instagram_profile_link}}" class="uf-social"
+                        *ngIf="response.user.instagram_profile_link">
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.linkedin_profile}}" class="uf-social" *ngIf="response.user.linkedin_profile">
+                    <a target="_blank" href="{{response.user.linkedin_profile}}" class="uf-social"
+                        *ngIf="response.user.linkedin_profile">
                         <i class="fa fa-linkedin" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.twitter_profile_link}}" class="uf-social" *ngIf="response.user.twitter_profile_link"> 
+                    <a target="_blank" href="{{response.user.twitter_profile_link}}" class="uf-social"
+                        *ngIf="response.user.twitter_profile_link">
                         <i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.external_website_link}}" class="uf-social" *ngIf="response.user.external_website_link">
+                    <a target="_blank" href="{{response.user.external_website_link}}" class="uf-social"
+                        *ngIf="response.user.external_website_link">
                         <i class="fa fa-globe" aria-hidden="true"></i>
                     </a>
                 </div>
                 <p style="font-weight: 200;"> {{about}}</p>
             </div>
-            <div class="col-md-12 uf-border" style="height: 40px">
-                <div style="float: right;">
-                    <button mat-raised-button color="warn" (click)="deleteUser()">Delete account</button>
-                </div>
-
+        </div>
+        <!-- <div class="col-md-6">
+            Feature request,
+        </div>
+        <div class="col-md-6">
+            Defect register
+        </div> -->
+        <div class="col-md-12 uf-border" style="height: 40px">
+            <div style="float: right;">
+                <button mat-raised-button color="warn" (click)="deleteUser()">Delete account</button>
             </div>
         </div>
-
     </div>
 </div>

@@ -12,11 +12,12 @@ import { UserprofileeditComponent } from './userprofileedit/userprofileedit.comp
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthoredArticlesComponent } from './authored-articles/authored-articles.component';
 import { DatesAgoDatePipe } from './pipes/dates-ago-date.pipe';
+import { DeletearticledialogComponent } from './deletearticledialog/deletearticledialog.component';
 
 
 
 @NgModule({
-  declarations: [ProfileComponent, BookmarkedarticlesComponent, DeleteusermodalComponent, UserprofileeditComponent, AuthoredArticlesComponent, DatesAgoDatePipe],
+  declarations: [ProfileComponent, BookmarkedarticlesComponent, DeleteusermodalComponent, UserprofileeditComponent, AuthoredArticlesComponent, DatesAgoDatePipe, DeletearticledialogComponent],
   imports: [
     CommonModule,
     UserprofileRoutingModule,

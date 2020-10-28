@@ -23,11 +23,10 @@ export class AuthoredArticlesComponent implements OnInit {
   all_articles;
   state = 'all';
   isLoading = false;
-  // start = 0;
+
   ngOnInit(): void {
     this.userProfile.getUserAuthoredArticles(this.sort_by, this.state).subscribe(
       (response: any) => {
-        // this.all_articles = response
         this.articles_data = response;
         this.isLoading = false;
       }
@@ -37,16 +36,14 @@ export class AuthoredArticlesComponent implements OnInit {
 
   }
 
-  // filterByState(state){
-  //   this.articles_data = this.all_articles[0]
-  // }  
-
   changeState(state_to_change: string) {
     this.state = state_to_change;
     this.isLoading = true;
     this.ngOnInit();
-    // console.log("called")
-    // console.log(this);
+  }
+
+  deleteArticle(id){
+    console.log(id);
   }
 
   changeSort(sort: string) {
