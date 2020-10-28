@@ -48,6 +48,7 @@ export class UserprofileService {
 
   getUserReadArticle(start, end){
     this.url = `${this.base_userprofile_url}get_user_activity/articles/${start}/${end}/`;
+
     return this.httpService.get(this.url, {headers: this.header});
   }
 

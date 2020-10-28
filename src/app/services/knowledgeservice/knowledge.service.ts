@@ -48,6 +48,7 @@ export class DataService {
   addBookmarkArticle(article_id: string) {
     this.called_url = `${this.base_knowledge_url}bookmark_this_article/`;
     const body = { "article_id": article_id };
+    this.cache.deleteContaining('bookmarked_articles/');
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
@@ -60,6 +61,8 @@ export class DataService {
   postUseArticle(article, useful) {
     this.called_url = `${this.base_knowledge_url}knowledge_view/`
     const body = { "article": article, 'useful': useful, 'viewed': 'true' }
+    // Hello
+    this.cache.deleteContaining("get_user_activity/articles/");
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
@@ -103,6 +106,7 @@ export class DataService {
   setCourseProgress(course, progress) {
     this.called_url = `${this.base_knowledge_url}course_progress/`
     const body = { 'course': course, 'progress': progress }
+    this.cache.deleteContaining('get_user_activity/courses/');
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
