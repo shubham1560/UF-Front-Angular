@@ -30,6 +30,12 @@ const routes: Routes = [
     loadChildren: () =>
       import("./userprofile/userprofile.module").then(up => up.UserprofileModule)
   },
+  {
+    path: "support",
+    canActivate: [ProfileGuard],
+    loadChildren: ()=>
+      import('./support/support.module').then(sp=>sp.SupportModule)
+  },
   { 
     path: "courses", 
     loadChildren: () =>
