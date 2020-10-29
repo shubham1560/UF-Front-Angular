@@ -1,0 +1,24 @@
+
+// .image-div{
+//     height: 60px;
+//     width: 60px;
+//     border-radius: 2px !important; 
+//     // margin: 10px;
+// }
+
+.uf-file-upload{
+    color: lightgray;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    // border: 1px solid #ccc;
+    // display: inline-block;
+    // padding: 6px 12px;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+}
+

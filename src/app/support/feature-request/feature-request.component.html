@@ -1,1 +1,100 @@
-<p>feature-request works!</p>
+<!-- <p>feature-request works!</p>
+Request feature -->
+<br>
+<div class="container" id="st-feature">
+    <div class="row">
+
+        <div class="col-md-8 ">
+            <div class="st-border support-page">
+                <h2 class="primary-text-color heading">Feature Request</h2>
+                <span class="primary-text-color-sub subheading">Please describe a little of the enhancement or feature
+                    you
+                    want</span>
+                <hr>
+                <div class="primary-text-color-sub message">
+                    Thank you for helping us out! Please describe the nature of your enhancement in the fields below.
+                    Upon receipt, the appropriate personnel will categorize and prioritize your
+                    enhancement at which time you will receive an automated email with the details of that update.
+                </div>
+                <hr>
+                <div class="form">
+                    <form novalidate (ngSubmit)="requestFeature()" [formGroup]="featureForm">
+                        <mat-form-field appearance="legacy" class="form-input-block">
+                            <mat-label>Short description</mat-label>
+                            <input matInput type="email" id="email" formControlName="short_description"
+                                placeholder="Enter short description">
+                            <mat-error>Short description is mandatory!!</mat-error>
+
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="form-input-block">
+                            <mat-label>Description</mat-label>
+                            <textarea rows="4" matInput formControlName="description"></textarea>
+                            <mat-error>Description is mandatory!!</mat-error>
+                        </mat-form-field>
+                        <hr>
+                        <button (click)="requestFeature()" class="primary-button-inverted" style="float:right"
+                            mat-button type="submit">
+                            Submit
+                        </button>
+
+                    </form>
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="st-border" style="padding: 10px;">
+                <div style="margin: auto; text-align: center;">
+                    <button mat-button style="outline: none;" class="primary-button">
+                        <label for="file-upload" class="custom-file-upload"
+                            style="padding: 0px 10px; border-radius: 5px;">
+                            Upload supporting Images
+                        </label>
+                        <input id="file-upload" multiple accept="image/png, image/jpeg" (change)="onImageChange($event)"
+                            [disabled]="!featureForm.valid" type="file" />
+                    </button><br>
+                    <span class="primary-text-color-sub">
+                        Please select all the images you want to upload!
+                    </span>
+                </div>
+                <hr>
+                <div class="attachment-section">
+                    <div *ngFor="let image of attachments" class="support-images">
+                        <mat-card class="image-card">
+                            <mat-card-header style="padding: 10px;">
+                                <div mat-card-avatar class="image-div"
+                                    [ngStyle]="{'background-image': 'url(' + image.file.url + ')'}"
+                                    style="background-size: cover;">
+                                </div>
+                                <!-- <h1 contentEditable="true">Your Name</h1> -->
+                                <mat-card-title class="image-title" contentEditable="true">
+                                    {{image.file.name}}
+                                    <!-- <input type="text" class="attachment-input"> -->
+                                </mat-card-title>
+                                <mat-card-subtitle style="margin-bottom: 0px !important;">
+                                    <button mat-icon-button matTooltip="Rename the file to something meaningful!"
+                                        (click)="editAttachment(88, 'shubham')" class="image-icon">
+                                        <mat-icon class="image-icon">
+                                            edit
+                                        </mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="image-icon" matTooltip="delete this image"
+                                        (click)="deleteAttachment(image.file.id)">
+                                        <mat-icon class="image-icon">
+                                            delete_outline
+                                        </mat-icon>
+                                    </button>
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            
+                        </mat-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

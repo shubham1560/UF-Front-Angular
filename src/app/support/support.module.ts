@@ -5,14 +5,23 @@ import { SupportRoutingModule } from './support-routing.module';
 import { FeatureRequestComponent } from './feature-request/feature-request.component';
 import { SupportComponent } from './support.component';
 import { MaterialModule } from '../shared/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteAttachmentComponent } from './delete-attachment/delete-attachment.component';
+
+// import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
+
 
 
 @NgModule({
-  declarations: [FeatureRequestComponent, SupportComponent],
+  declarations: [FeatureRequestComponent, 
+    SupportComponent, DeleteAttachmentComponent, 
+    // DateAgoPipe
+  ],
   imports: [
     CommonModule,
     SupportRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class SupportModule { }

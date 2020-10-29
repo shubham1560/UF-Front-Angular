@@ -243,3 +243,88 @@ button{
     border-radius: 3px !important;
     border: 1px solid rgba(201, 201, 204, 0.48) !important;
 }
+
+.primary-text-color{
+    color: #1F8476;
+}   
+
+.primary-text-color-sub{
+    color: rgba(0,0,0,.54);
+}
+
+.support-page{
+    padding: 20px;
+    // margin: 15px;
+
+    .heading{
+        font-weight: 200;
+    }
+
+    .subheading{
+        font-weight: 300;
+        font-size: 14px;
+    }
+
+    .message{
+        font-size: 14px;
+        font-weight: 300;
+    }
+
+    .form{
+        padding: 0px;
+        
+        .form-input-block{
+            width: 100%;
+        }
+    }
+
+    .attachments{
+        padding: 10px;
+    }
+
+    // .image-div{
+        
+    // }
+}
+.attachment-section{
+    // padding: 10px;   
+    .support-images{
+        // padding: 0px 10px;
+
+        .image-card{
+            border: none !important;
+            box-shadow: none;
+            padding: 0px !important;
+            background-color: #FCFCFC !important;
+        }
+
+        .image-div{
+            height: 60px;
+            width: 60px;
+            border-radius: 2px !important; 
+            // margin: 10px;
+        }
+
+        .image-title{
+            color: #1F8476;
+            font-weight: 200;
+            font-size: 16px;
+            margin-bottom: 0px;
+        }
+
+        .image-icon{
+            font-size: 20px;
+            color: #1F8476;
+            outline: #1F8476;
+        }
+
+        // .image-subtitle{
+        
+        // }
+        .attachment-input{
+            width: 100%;
+            outline-color: #1F8476;
+        }
+
+    }
+}
