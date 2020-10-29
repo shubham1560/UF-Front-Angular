@@ -1,1 +1,23 @@
-<p>shared-card works!</p>
+<!-- <p>shared-card works!</p> -->
+<!-- <pre>
+{{data | json}}
+</pre> -->
+
+<p align="end" class="shared-modal-close-button" style="margin-top: -20px;margin-right: -1rem;">
+    <mat-icon mat-dialog-close matSuffix>
+        close
+    </mat-icon>
+</p>
+
+<div class="shared-modal">
+    <b style="color: #1F8476;"> {{data.title}} </b> <br>
+    <!-- Everything related to you will be deleted! -->
+    <span style="color: rgba(0,0,0,.54);">
+        {{data.sub}}
+    </span>
+    <br>
+    <br><br><br>
+    <!-- <button style="float: right;" mat-raised-button color="warn" (click)=deleteUser()>delete</button> -->
+    <button style="float: right;" class="primary-button" mat-button mat-dialog-close>{{data.primaryButton}}</button>
+
+</div>

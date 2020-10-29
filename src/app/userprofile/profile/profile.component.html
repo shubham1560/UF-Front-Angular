@@ -116,13 +116,13 @@
         </h3> <br>  
 
         <div class="row">
-
-            
-            <div class="col-md-6">
+            <div class="col-md-6" *ngIf="!response.author">
                 <mat-card class="st-border m-10">
                     <mat-card-header>
                         <mat-card-title style="color:#1F8476">Become an author</mat-card-title>
-                        <mat-card-subtitle class="desc-text">Authors can publish articles to the already existing paths</mat-card-subtitle>
+                        <mat-card-subtitle class="desc-text">
+                            Authors can publish articles to the already existing paths, clicking on the submit button will grant you the role of author instantly!
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
                         <button mat-button class="primary-button" (click)='makeAuthor()'>Submit</button>
@@ -133,22 +133,30 @@
             <div class="col-md-6">
                 <mat-card class="st-border m-10">
                     <mat-card-header>
-                        <mat-card-title style="color:#1F8476">Become a moderator</mat-card-title>
-                        <mat-card-subtitle class="desc-text">Can do everything author can, but also can create new paths and request for a whole new root for themselves!</mat-card-subtitle>
+                        <mat-card-title style="color:#1F8476">Report a defect</mat-card-title>
+                        <mat-card-subtitle class="desc-text">
+                            Report a defect you see on the website, anything that looks like not working as it should!
+                        </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
-                        <button mat-button class="primary-button" >Take action</button>
-                        <!-- <button mat-button>SHARE</button> -->
+                        <button mat-button class="primary-button" >Report</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="col-md-6">
+                <mat-card class="st-border m-10">
+                    <mat-card-header>
+                        <mat-card-title style="color:#1F8476">Suggest Feature </mat-card-title>
+                        <mat-card-subtitle class="desc-text">
+                            Suggest for a feature that you want in this website!!
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button class="primary-button" >Suggest</button>
                     </mat-card-actions>
                 </mat-card>
             </div>
         </div>
-        <!-- <div class="col-md-6">
-            Feature request,
-        </div>
-        <div class="col-md-6">
-            Defect register
-        </div> -->
         <div class="col-md-12 uf-border" style="height: 40px">
             <div style="float: right;">
                 <button mat-raised-button color="warn" (click)="deleteUser()">Delete account</button>

@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import { UserprofileeditComponent } from 'src/app/userprofile/userprofileedit/userprofileedit.component';
 import { Title } from '@angular/platform-browser';
+import { SharedCardComponent } from 'src/app/shared/shared-card/shared-card.component';
 
 
 @Component({
@@ -100,6 +101,21 @@ export class ProfileComponent implements OnInit {
   makeAuthor(){
     this.profile.makeUserAuthor().subscribe(
       result=>{
+        const dialogRef = this.dialog.open(SharedCardComponent, {
+          data: {
+            title: "Congratulations!!", 
+            sub: "You are now an author, start by writing an article on any existing path!", 
+            reload: true,
+            primaryButton: 'Close',
+            secondaryButton: ''
+          },
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          // console.log("closed");
+          // this.ngOnInit();
+          window.location.reload();
+        });
         console.log(result);
       }, error =>{
         console.log(error);
