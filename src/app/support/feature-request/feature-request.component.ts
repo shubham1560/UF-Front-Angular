@@ -6,6 +6,8 @@ import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteAttachmentComponent } from '../delete-attachment/delete-attachment.component'
+import { EditNameComponent } from '../edit-name/edit-name.component'
+
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -127,6 +129,24 @@ export class FeatureRequestComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.attachments.splice(idx_to_delete, 1);
+      }
+    });
+  }
+
+  editAttachment(id, name) {
+
+    const dialogRef = this.dialog.open(EditNameComponent, {
+      data: { id: id, name: name },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result?.edit) {
+        this.attachments.forEach(element => {
+          if (element.file.id == id) {
+            element.file.name = result.new_name;
+          }
+        });
       }
     });
   }

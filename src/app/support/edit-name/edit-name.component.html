@@ -1,1 +1,21 @@
-<p>edit-name works!</p>
+<!-- <pre>
+{{data | json}}
+</pre> -->
+
+<p align="end" class="shared-modal-close-button" style="margin-top: -20px;margin-right: -1rem;">
+    <mat-icon mat-dialog-close matSuffix>
+        close
+    </mat-icon>
+</p>
+
+<div style="text-align: center;">
+<b style="color: #1F8476;"> You can give the images a meaningful name to get better gist of the image! </b>
+<br>
+<br>
+<input [(ngModel)]="name" class="form-control">
+</div>
+<br><br><br>
+<button mat-button style="float: right;" class="primary-button-inverted" align="end" (click)="editName()">Edit</button>
+
+
+
