@@ -110,6 +110,39 @@
                 <p style="font-weight: 200;"> {{about}}</p>
             </div>
         </div>
+        <hr>
+        <h3 style="color: #8dbcaa; margin: auto; text-align: center;">
+            User Services   
+        </h3> <br>  
+
+        <div class="row">
+
+            
+            <div class="col-md-6">
+                <mat-card class="st-border m-10">
+                    <mat-card-header>
+                        <mat-card-title style="color:#1F8476">Become an author</mat-card-title>
+                        <mat-card-subtitle class="desc-text">Authors can publish articles to the already existing paths</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button class="primary-button" (click)='makeAuthor()'>Submit</button>
+                        <!-- <button mat-button>SHARE</button> -->
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="col-md-6">
+                <mat-card class="st-border m-10">
+                    <mat-card-header>
+                        <mat-card-title style="color:#1F8476">Become a moderator</mat-card-title>
+                        <mat-card-subtitle class="desc-text">Can do everything author can, but also can create new paths and request for a whole new root for themselves!</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button mat-button class="primary-button" >Take action</button>
+                        <!-- <button mat-button>SHARE</button> -->
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
         <!-- <div class="col-md-6">
             Feature request,
         </div>

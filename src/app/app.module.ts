@@ -22,7 +22,8 @@ import {
 } from 'angularx-social-login';
 import { SearchResultsComponent } from './shared/search-results/search-results.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { CacheInterceptor } from "./shared/interceptors/cache.interceptor"
+import { CacheInterceptor } from "./shared/interceptors/cache.interceptor";
+import { SharedCardComponent } from './shared/shared-card/shared-card.component'
 // import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
@@ -47,6 +48,7 @@ import { CacheInterceptor } from "./shared/interceptors/cache.interceptor"
     HeaderComponent,
     SearchResultsComponent,
     FooterComponent,
+    SharedCardComponent,
     // DateAgoPipe,
     // RootComponent,
     // BreadcrumbsComponent,

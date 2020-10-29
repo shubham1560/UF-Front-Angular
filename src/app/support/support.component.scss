@@ -1,0 +1,13 @@
+
+.desc-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 60px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+ }
+
+ .m-10{
+    margin-bottom: 20px;
+ }

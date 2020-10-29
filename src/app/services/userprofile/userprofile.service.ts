@@ -74,4 +74,10 @@ export class UserprofileService {
     this.url = `${this.base_userprofile_url}group/${group}/`;
     return this.httpService.get(this.url, {headers: this.header});
   }
+
+  makeUserAuthor(){
+    this.url = `${this.base_userprofile_url}sys_user/author_request/`;
+    const body ={};
+    return this.httpService.post(this.url, body, {headers: this.header});
+  }
 }

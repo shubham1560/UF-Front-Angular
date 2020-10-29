@@ -96,4 +96,16 @@ export class ProfileComponent implements OnInit {
   deleteUser() {
     this.dialog.open(DeleteusermodalComponent);
   }
+
+  makeAuthor(){
+    this.profile.makeUserAuthor().subscribe(
+      result=>{
+        console.log(result);
+      }, error =>{
+        console.log(error);
+        
+      }
+
+    )
+  }
 }
