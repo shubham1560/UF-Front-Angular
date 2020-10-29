@@ -44,7 +44,7 @@ export class FeatureRequestComponent implements OnInit {
       "file": {
         "url": "https://sortedtree-test.s3.amazonaws.com/articleimages/compressed/download_p2cspYW.jpeg",
         "real_url": "https://sortedtree-test.s3.amazonaws.com/articleimages/real_image/download_IR91Hjq.jpeg",
-        "name": "download.jpeg",
+        "name": "well hello there.jpeg",
         "id": 107,
         "sys_created_on": "2020-10-29T20:33:16.135554Z"
       }
@@ -54,7 +54,7 @@ export class FeatureRequestComponent implements OnInit {
       "file": {
         "url": "https://sortedtree-test.s3.amazonaws.com/articleimages/compressed/download_1_zCTFaP2.jpeg",
         "real_url": "https://sortedtree-test.s3.amazonaws.com/articleimages/real_image/download_1_SGiUcAH.jpeg",
-        "name": "download (1).jpeg",
+        "name": "this is what it should look like.jpeg",
         "id": 108,
         "sys_created_on": "2020-10-29T20:33:24.685888Z"
       }
@@ -64,7 +64,7 @@ export class FeatureRequestComponent implements OnInit {
       "file": {
         "url": "https://sortedtree-test.s3.amazonaws.com/articleimages/compressed/download_1_REl5Fpu.jpeg",
         "real_url": "https://sortedtree-test.s3.amazonaws.com/articleimages/real_image/download_1_2i8K75m.jpeg",
-        "name": "download (1).jpeg",
+        "name": "this is failing.jpeg",
         "id": 109,
         "sys_created_on": "2020-10-29T20:33:40.219415Z"
       }
