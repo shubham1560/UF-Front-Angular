@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteAttachmentComponent } from '../delete-attachment/delete-attachment.component'
 
 @Component({
   selector: 'app-feature-request',
@@ -22,10 +23,10 @@ export class FeatureRequestComponent implements OnInit {
     public dialog: MatDialog
   ) { }
 
-  featureForm: FormGroup;
+  supportForm: FormGroup;
 
   ngOnInit(): void {
-    this.featureForm = this.fb.group({
+    this.supportForm = this.fb.group({
       short_description: ['', [Validators.required]],
       description: ['', [Validators.required]],
     })
@@ -64,66 +65,53 @@ export class FeatureRequestComponent implements OnInit {
   ];
 
   requestFeature() {
-    console.log(this.featureForm);
-    console.log("calling");
-    
+    console.log(this.supportForm);
+    // console.log("calling");
+
   }
 
 
   onImageChange(event) {
-    // console.log(event);
-    for (var i = 0; i < event.target.files.length; i++) {
-      // console.log(event.target.files[i]);
-      if (event.target.files[i]) {
-        const uploadImage = new FormData();
-        uploadImage.append('image', event.target.files[i], event.target.files[i].name);
-        uploadImage.append('token', this.authService.getToken());
-        const url = `${this.url.base_url}attachment/general_add_image/`;
-        this.http.post(url, uploadImage).subscribe(
-          (result: any) => {
-            console.log(result);
-            this.featureForm.get('attachments');
-            this.attachments.push(result);
-            console.log(this.attachments);
-          },
-          error => {
-            // console.log(error) 
-          }
-        )
-      }
-      else {
-        // console.log("hawabaazi");
+    if (this.authService.isLoggedIn()) {
+      for (var i = 0; i < event.target.files.length; i++) {
+        if (event.target.files[i]) {
+          const uploadImage = new FormData();
+          uploadImage.append('image', event.target.files[i], event.target.files[i].name);
+          uploadImage.append('token', this.authService.getToken());
+          const url = `${this.url.base_url}attachment/general_add_image/`;
+          this.http.post(url, uploadImage).subscribe(
+            (result: any) => {
+              console.log(result);
+              this.supportForm.get('attachments');
+              this.attachments.push(result);
+              console.log(this.attachments);
+            },
+            error => {
+              // console.log(error) 
+            }
+          )
+        }
+        else {
+          // console.log("hawabaazi");
+        }
 
       }
-
     }
   }
 
-  deleteAttachment(id){
-    console.log(id);
-    this.attachments.forEach(element => {
-      console.log(element)
-    });
-
-    const dialogRef = this.dialog.open(DeleteAttachmentComponent, {
-      width: '250px',
-      // data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
-    });
-
-  }
-
-  editAttachment(id, name){
-    this.attachments.forEach(element => {
-      if(element.file.id == id){
-        element.file.name = name;
+  deleteAttachment(id) {
+    var idx_to_delete;
+    this.attachments.forEach(function (value, i) {
+      if (value.file.id == id) {
+        idx_to_delete = i
       }
     });
-    console.log(this.attachments);
+    const dialogRef = this.dialog.open(DeleteAttachmentComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.attachments.splice(idx_to_delete, 1);
+      }
+    });
   }
-
 }

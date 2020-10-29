@@ -1,1 +1,25 @@
-<p>delete-attachment works!</p>
+<!-- <p>delete-attachment works!</p> -->
+<!-- <p>shared-card works!</p> -->
+<!-- <pre>
+{{data | json}}
+</pre> -->
+
+<p align="end" class="shared-modal-close-button" style="margin-top: -20px;margin-right: -1rem;">
+    <mat-icon mat-dialog-close matSuffix>
+        close
+    </mat-icon>
+</p>
+
+<div class="shared-modal">
+    <b style="color: #1F8476;"> Delete the attachment </b> <br>
+    <!-- Everything related to you will be deleted! -->
+    <span style="color: rgba(0,0,0,.54);">
+        <!-- {{data.sub}} -->
+        Are you sure you want to delete this attachment!
+    </span>
+    <br>
+    <br> <br>
+    <button style="float: right; margin: 0px 10px;" mat-flat-button color="warn" (click)=deleteId()>Delete</button>
+    <button style="float: right;" class="primary-button" mat-button mat-dialog-close>close</button>
+
+</div>

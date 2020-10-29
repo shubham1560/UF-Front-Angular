@@ -18,7 +18,7 @@ Request feature -->
                 </div>
                 <hr>
                 <div class="form">
-                    <form novalidate (ngSubmit)="requestFeature()" [formGroup]="featureForm">
+                    <form novalidate (ngSubmit)="requestFeature()" [formGroup]="supportForm">
                         <mat-form-field appearance="legacy" class="form-input-block">
                             <mat-label>Short description</mat-label>
                             <input matInput type="email" id="email" formControlName="short_description"
@@ -53,12 +53,15 @@ Request feature -->
                         <label for="file-upload" class="custom-file-upload"
                             style="padding: 0px 10px; border-radius: 5px;">
                             Upload supporting Images
+                            <!-- <mat-icon class="image-icon" style="padding-top: 5px;">
+                                attachment
+                            </mat-icon> -->
                         </label>
                         <input id="file-upload" multiple accept="image/png, image/jpeg" (change)="onImageChange($event)"
-                            [disabled]="!featureForm.valid" type="file" />
+                            [disabled]="!supportForm.valid" type="file" />
                     </button><br>
                     <span class="primary-text-color-sub">
-                        Please select all the images you want to upload!
+                        
                     </span>
                 </div>
                 <hr>
@@ -76,12 +79,12 @@ Request feature -->
                                     <!-- <input type="text" class="attachment-input"> -->
                                 </mat-card-title>
                                 <mat-card-subtitle style="margin-bottom: 0px !important;">
-                                    <button mat-icon-button matTooltip="Rename the file to something meaningful!"
+                                    <!-- <button mat-icon-button matTooltip="Rename the file to something meaningful!"
                                         (click)="editAttachment(88, 'shubham')" class="image-icon">
                                         <mat-icon class="image-icon">
                                             edit
                                         </mat-icon>
-                                    </button>
+                                    </button> -->
                                     <button mat-icon-button class="image-icon" matTooltip="delete this image"
                                         (click)="deleteAttachment(image.file.id)">
                                         <mat-icon class="image-icon">
