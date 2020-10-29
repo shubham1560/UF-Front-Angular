@@ -17,6 +17,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class ArticleNewComponent implements OnInit {
     private loggerService: LoggerService,
     private titleService: Title,
     public dialog: MatDialog,
+    private authService: AuthService,
 
   ) { }
 
@@ -123,6 +125,9 @@ export class ArticleNewComponent implements OnInit {
   }
 
   id = '';  // if id =0, first save, otherwise populating the id from response
+  headers = {
+    'authorization': 'Token ' +this.authService.getToken(),
+  }
 
   initializeEditor() {
     this.editor = new EditorJS({
@@ -146,7 +151,8 @@ export class ArticleNewComponent implements OnInit {
           config: {
             endpoints: {
               byFile: `${this.url.base_url}attachment/add_image/`, // Your backend file uploader endpoint
-            }
+            },
+            additionalRequestHeaders: this.headers
           }
         },
         list: {

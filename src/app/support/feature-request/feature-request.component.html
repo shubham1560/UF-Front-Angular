@@ -1,5 +1,8 @@
 <!-- <p>feature-request works!</p>
 Request feature -->
+<mat-progress-bar mode="query" *ngIf="uploadingImage" color="accent"></mat-progress-bar>
+<mat-progress-bar mode="determinate" value="100" *ngIf="!uploadingImage" color="accent"></mat-progress-bar>
+
 <br>
 <div class="container" id="st-feature">
     <div class="row">
@@ -29,7 +32,7 @@ Request feature -->
 
                         <mat-form-field appearance="legacy" class="form-input-block">
                             <mat-label>Description</mat-label>
-                            <textarea rows="4" matInput formControlName="description"></textarea>
+                            <textarea rows="2" matInput formControlName="description"></textarea>
                             <mat-error>Description is mandatory!!</mat-error>
                         </mat-form-field>
                         <hr>
@@ -47,55 +50,59 @@ Request feature -->
         </div>
 
         <div class="col-md-4">
-            <div class="st-border" style="padding: 10px;">
+            <div class="st-border" style="padding: 20px 0px;">
                 <div style="margin: auto; text-align: center;">
-                    <button mat-button style="outline: none;" class="primary-button">
+                    <button mat-button style="outline: none;" (click)="checkValidForm()" class="primary-button-inverted">
                         <label for="file-upload" class="custom-file-upload"
                             style="padding: 0px 10px; border-radius: 5px;">
-                            Upload supporting Images
+                            {{buttonText}}
                             <!-- <mat-icon class="image-icon" style="padding-top: 5px;">
                                 attachment
                             </mat-icon> -->
                         </label>
                         <input id="file-upload" multiple accept="image/png, image/jpeg" (change)="onImageChange($event)"
                             [disabled]="!supportForm.valid" type="file" />
-                    </button><br>
-                    <span class="primary-text-color-sub">
-                        
+                    </button>
+                    <hr>
+                    <span style="text-align: center;" class="primary-text-color-sub">
+                    You can upload the supporting images for better understading!
                     </span>
                 </div>
-                <hr>
-                <div class="attachment-section">
-                    <div *ngFor="let image of attachments" class="support-images">
-                        <mat-card class="image-card">
-                            <mat-card-header style="padding: 10px;">
-                                <div mat-card-avatar class="image-div"
-                                    [ngStyle]="{'background-image': 'url(' + image.file.url + ')'}"
-                                    style="background-size: cover;">
-                                </div>
-                                <!-- <h1 contentEditable="true">Your Name</h1> -->
-                                <mat-card-title class="image-title" contentEditable="true">
-                                    {{image.file.name}}
-                                    <!-- <input type="text" class="attachment-input"> -->
-                                </mat-card-title>
-                                <mat-card-subtitle style="margin-bottom: 0px !important;">
-                                    <!-- <button mat-icon-button matTooltip="Rename the file to something meaningful!"
-                                        (click)="editAttachment(88, 'shubham')" class="image-icon">
-                                        <mat-icon class="image-icon">
-                                            edit
-                                        </mat-icon>
-                                    </button> -->
-                                    <button mat-icon-button class="image-icon" matTooltip="delete this image"
-                                        (click)="deleteAttachment(image.file.id)">
-                                        <mat-icon class="image-icon">
-                                            delete_outline
-                                        </mat-icon>
-                                    </button>
-                                </mat-card-subtitle>
-                            </mat-card-header>
-                            
-                        </mat-card>
-                    </div>
+
+                
+            </div>
+            <br>
+            <div class="attachment-section">
+                <!-- <pre>
+                {{attachments | json}}
+            </pre> -->
+                <div *ngFor="let image of attachments" class="support-images">
+                    <mat-card class="image-card">
+                        <mat-card-header style="padding: 10px;">
+                            <div mat-card-avatar class="image-div"
+                                [ngStyle]="{'background-image': 'url(' + image.file.url + ')'}"
+                                style="background-size: cover;">
+                            </div>
+                            <mat-card-title class="image-title">
+                                <a class="image-title" href="{{image.file.real_url}}"
+                                    target="_blank">{{image.file.name}}</a>
+                            </mat-card-title>
+                            <mat-card-subtitle style="margin-bottom: 0px !important;">
+                                <!-- <button mat-icon-button matTooltip="Rename the file to something meaningful!"
+                                    (click)="editAttachment(88, 'shubham')" class="image-icon">
+                                    <mat-icon class="image-icon">
+                                        edit
+                                    </mat-icon>
+                                </button> -->
+                                <button mat-icon-button class="image-icon" matTooltip="delete this image"
+                                    (click)="deleteAttachment(image.file.id)">
+                                    <mat-icon class="image-icon">
+                                        delete_outline
+                                    </mat-icon>
+                                </button>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                    </mat-card>
                 </div>
             </div>
         </div>
