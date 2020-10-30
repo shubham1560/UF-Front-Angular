@@ -51,13 +51,24 @@ export class LoginpromptComponent implements OnInit {
       var access_token = user.authToken;
       this.authService.login_facebook(access_token).subscribe(
         (result: any) => {
+
           this.cookieService.set('token', result.token);
-          // this.router.navigate(['/welcome']);
-          // window.location.href = "welcome";
-          window.location.href = localStorage.getItem("redirect_url");
-          window.location.reload();
-          localStorage.clear();
+          localStorage.setItem('token', result.token);
+          if (localStorage.getItem("redirect_url")) {
+            window.location.href = localStorage.getItem("redirect_url");
+            window.location.reload();
+          }else{
+            window.location.href = "welcome";
+          }
           this.signingIn = false;
+
+          // this.cookieService.set('token', result.token);
+          // // this.router.navigate(['/welcome']);
+          // // window.location.href = "welcome";
+          // window.location.href = localStorage.getItem("redirect_url");
+          // window.location.reload();
+          // localStorage.clear();
+          // this.signingIn = false;
         },
         error => {
           this.signingIn = false;
@@ -87,11 +98,23 @@ export class LoginpromptComponent implements OnInit {
           this.response = response;
           this.signingIn = false;
           this.cookieService.set('token', response.token);
+          localStorage.setItem('token', response.token);
+          if (localStorage.getItem("redirect_url")) {
+            window.location.href = localStorage.getItem("redirect_url");
+            window.location.reload();
+            // window.location.href = "welcome";
+          }
+          // console.log("successfull");
+          // window.location.href = "welcome"
+
+          // this.response = response;
+          // this.signingIn = false;
+          // this.cookieService.set('token', response.token);
           // this.router.navigate(['/welcome']);
           // window.location.href = "welcome"
-          window.location.href = localStorage.getItem("redirect_url");
-          window.location.reload()
-          localStorage.clear()
+          // window.location.href = localStorage.getItem("redirect_url");
+          // window.location.reload()
+          // localStorage.clear()
         },
         error => {
           this.errorMessage = error.error.message;
@@ -132,13 +155,17 @@ export class LoginpromptComponent implements OnInit {
         var access_token = googleUser.getAuthResponse().access_token;
         this.authService.login_google(access_token).subscribe(
           (response: TokenObj) => {
-            this.cookieService.set('token', response.token);
-            // this.router.navigate(['/welcome']);
-            // window.location.href = "welcome";
-            window.location.href = localStorage.getItem("redirect_url");
-            window.location.reload()
-            localStorage.clear()
+            this.response = response;
             this.signingIn = false;
+            this.cookieService.set('token', response.token);
+            localStorage.setItem('token', response.token);
+            if (localStorage.getItem("redirect_url")) {
+              window.location.href = localStorage.getItem("redirect_url");
+              window.location.reload();
+              // window.location.href = "welcome";
+            }
+            // console.log("successfull");
+            // window.location.href = "welcome"
           },
           error => {
             this.signingIn = false;

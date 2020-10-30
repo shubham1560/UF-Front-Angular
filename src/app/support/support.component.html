@@ -15,7 +15,7 @@
                         <mat-card-subtitle class="desc-text">Please describe the enhancement </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
-                        <a routerLink="/support/feature_request" mat-button class="primary-button">View Details</a>
+                        <button (click)="navigate('feature_request')" mat-button class="primary-button">View Details</button>
                         <!-- <button mat-button>SHARE</button> -->
                     </mat-card-actions>
                 </mat-card>
@@ -28,7 +28,7 @@
                         <mat-card-subtitle class="desc-text">Describe a defect </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
-                        <a routerLink="/support/report_defect" mat-button class="primary-button">View Details</a>
+                        <button (click)="navigate('feature_request')" mat-button class="primary-button">View Details</button>
                         <!-- <button mat-button>SHARE</button> -->
                     </mat-card-actions>
                 </mat-card>
