@@ -32,7 +32,6 @@ const routes: Routes = [
   },
   {
     path: "support",
-    canActivate: [ProfileGuard],
     loadChildren: ()=>
       import('./support/support.module').then(sp=>sp.SupportModule)
   },

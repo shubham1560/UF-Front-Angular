@@ -14,6 +14,7 @@ export class DeleteAttachmentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    
   }
 
   deleteId(){

@@ -11,6 +11,7 @@ import { EditNameComponent } from '../edit-name/edit-name.component'
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class ReportDefectComponent implements OnInit {
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private supportService: SupportService,
-    private route: Router
+    private route: Router,
+    private titleService: Title,
   ) { }
 
   supportForm: FormGroup;
@@ -38,6 +40,7 @@ export class ReportDefectComponent implements OnInit {
   formSubmit;
 
   ngOnInit(): void {
+    this.titleService.setTitle("Feature - SortedTree")
     this.supportForm = this.fb.group({
       short_description: ['', [Validators.required]],
       description: ['', [Validators.required]],

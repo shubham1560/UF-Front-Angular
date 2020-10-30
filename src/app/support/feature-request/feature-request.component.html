@@ -67,9 +67,7 @@
             </div>
             <br>
             <div class="attachment-section">
-                <!-- <pre>
-                {{attachments | json}}
-            </pre> -->
+                
                 <div *ngFor="let image of attachments" class="support-images">
                     <mat-card class="image-card">
                         <mat-card-header style="padding: 10px;">
@@ -99,6 +97,8 @@
                     </mat-card>
                 </div>
             </div>
+            <div *ngIf="uploadingImage" class="loader"></div>
+            
         </div>
     </div>
 </div>
