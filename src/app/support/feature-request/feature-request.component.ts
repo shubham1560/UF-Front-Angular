@@ -10,6 +10,7 @@ import { DeleteAttachmentComponent } from '../delete-attachment/delete-attachmen
 import { EditNameComponent } from '../edit-name/edit-name.component'
 
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feature-request',
@@ -26,7 +27,9 @@ export class FeatureRequestComponent implements OnInit {
     private log: LoggerService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
-    private supportService: SupportService
+    private supportService: SupportService,
+    private route: Router
+
   ) { }
 
   supportForm: FormGroup;
@@ -60,6 +63,12 @@ export class FeatureRequestComponent implements OnInit {
       result => {
         // console.log(result);
         this.formSubmit = false;
+        this._snackBar.open("Defect has been registered. you can check the status in tickets view!", '', {
+          duration: 2000,
+          horizontalPosition: "right",
+          verticalPosition: "top",
+        });
+        this.route.navigate(["/support"]);
 
       }, error => {
         console.log(error);
