@@ -1,7 +1,7 @@
 <!-- <p>feature-request works!</p>
 Request feature -->
-<mat-progress-bar mode="query" *ngIf="uploadingImage" color="accent"></mat-progress-bar>
-<mat-progress-bar mode="determinate" value="100" *ngIf="!uploadingImage" color="accent"></mat-progress-bar>
+<mat-progress-bar mode="query" *ngIf="uploadingImage || formSubmit" color="accent"></mat-progress-bar>
+<mat-progress-bar mode="determinate" value="100" *ngIf="!uploadingImage && !formSubmit" color="accent"></mat-progress-bar>
 
 <br>
 <div class="container" id="st-feature">
@@ -36,8 +36,8 @@ Request feature -->
                             <mat-error>Description is mandatory!!</mat-error>
                         </mat-form-field>
                         <hr>
-                        <button (click)="requestFeature()" class="primary-button-inverted" style="float:right"
-                            mat-button type="submit">
+                        <button class="primary-button-inverted" style="float:right"
+                            mat-button [disabled]="!supportForm.valid || formSubmit" type="submit">
                             Submit
                         </button>
 

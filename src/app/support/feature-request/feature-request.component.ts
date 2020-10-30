@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
+import { SupportService } from 'src/app/services/support/support.service'
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteAttachmentComponent } from '../delete-attachment/delete-attachment.component'
@@ -24,12 +25,14 @@ export class FeatureRequestComponent implements OnInit {
     private url: UrlconfigService,
     private log: LoggerService,
     public dialog: MatDialog,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private supportService: SupportService
   ) { }
 
   supportForm: FormGroup;
   uploadingImage = false;
   buttonText = "Upload images/screenshots"
+  formSubmit;
 
   ngOnInit(): void {
     this.supportForm = this.fb.group({
@@ -40,42 +43,29 @@ export class FeatureRequestComponent implements OnInit {
     this.log.logData("st-feature", this);
   }
 
-  attachments = [
-    {
-      "success": 1,
-      "file": {
-        "url": "https://sortedtree-test.s3.amazonaws.com/articleimages/compressed/download_p2cspYW.jpeg",
-        "real_url": "https://sortedtree-test.s3.amazonaws.com/articleimages/real_image/download_IR91Hjq.jpeg",
-        "name": "well hello there.jpeg",
-        "id": 107,
-        "sys_created_on": "2020-10-29T20:33:16.135554Z"
-      }
-    },
-    {
-      "success": 1,
-      "file": {
-        "url": "https://sortedtree-test.s3.amazonaws.com/articleimages/compressed/download_1_zCTFaP2.jpeg",
-        "real_url": "https://sortedtree-test.s3.amazonaws.com/articleimages/real_image/download_1_SGiUcAH.jpeg",
-        "name": "this is what it should look like.jpeg",
-        "id": 108,
-        "sys_created_on": "2020-10-29T20:33:24.685888Z"
-      }
-    },
-    {
-      "success": 1,
-      "file": {
-        "url": "https://sortedtree-test.s3.amazonaws.com/articleimages/compressed/download_1_REl5Fpu.jpeg",
-        "real_url": "https://sortedtree-test.s3.amazonaws.com/articleimages/real_image/download_1_2i8K75m.jpeg",
-        "name": "this is failing.jpeg",
-        "id": 109,
-        "sys_created_on": "2020-10-29T20:33:40.219415Z"
-      }
-    }
-  ];
+  attachments = [];
+
+  finalData;
 
   requestFeature() {
-    console.log(this.supportForm);
-    // console.log("calling");
+    this.finalData = {
+      "formdata": {
+        "short_description": this.supportForm.get('short_description').value,
+        "description": this.supportForm.get('description').value
+      },
+      "attachments": this.attachments
+    };
+    this.formSubmit = true;
+    this.supportService.createFeatureRequest(this.finalData).subscribe(
+      result => {
+        // console.log(result);
+        this.formSubmit = false;
+
+      }, error => {
+        console.log(error);
+        this.formSubmit = false;
+      }
+    )
 
   }
 
@@ -93,7 +83,6 @@ export class FeatureRequestComponent implements OnInit {
           const url = `${this.url.base_url}attachment/general_add_image/`;
           this.http.post(url, uploadImage).subscribe(
             (result: any) => {
-              // console.log(result);
               this.supportForm.get('attachments');
               this.attachments.push(result);
               this.uploadingImage = false;
@@ -134,11 +123,9 @@ export class FeatureRequestComponent implements OnInit {
   }
 
   editAttachment(id, name) {
-
     const dialogRef = this.dialog.open(EditNameComponent, {
       data: { id: id, name: name },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if (result?.edit) {
