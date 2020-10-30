@@ -1,1 +1,46 @@
-<p>tickets works!</p>
+<!-- <p>tickets works!</p> -->
+
+<div class="container">
+    <br>
+    <h3 style="color: #8dbcaa;">
+        Requests
+    </h3>
+    <div class="row">
+        <div class="col-md-6">
+            Feature Request
+            <mat-list>
+                <div mat-subheader>Folders</div>
+                <mat-list-item *ngFor="let folder of folders">
+                  <mat-icon mat-list-icon>folder</mat-icon>
+                  <div mat-line>{{folder.name}}</div>
+                  <div mat-line> {{folder.updated | date}} </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <div mat-subheader>Notes</div>
+                <mat-list-item *ngFor="let note of notes">
+                  <mat-icon mat-list-icon>note</mat-icon>
+                  <div mat-line>{{note.name}}</div>
+                  <div mat-line> {{note.updated | date}} </div>
+                </mat-list-item>
+              </mat-list>
+        </div>
+        <div class="col-md-6">
+            Defects
+            <mat-list>
+                <div mat-subheader>Folders</div>
+                <mat-list-item *ngFor="let folder of folders">
+                  <mat-icon mat-list-icon>folder</mat-icon>
+                  <div mat-line>{{folder.name}}</div>
+                  <div mat-line> {{folder.updated | date}} </div>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <div mat-subheader>Notes</div>
+                <mat-list-item *ngFor="let note of notes">
+                  <mat-icon mat-list-icon>note</mat-icon>
+                  <div mat-line>{{note.name}}</div>
+                  <div mat-line> {{note.updated | date}} </div>
+                </mat-list-item>
+              </mat-list>
+        </div>
+    </div>
+</div>

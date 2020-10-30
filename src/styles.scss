@@ -332,3 +332,11 @@ button{
 
     }
 }
+
+.flex-wrapper {
+    display: flex;
+    min-height: 60vh;
+    flex-direction: column;
+    justify-content: space-between
+  }
+  

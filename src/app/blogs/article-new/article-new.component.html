@@ -1,94 +1,96 @@
 <mat-progress-bar mode="query" color="primary" *ngIf="updatingData"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
 
-<div style="background-color: white;" id="uf-new-article">
-    <div class="container-fluid">
-        <div class="row">
+<div class="flex-wrapper">
+    <div style="background-color: white;" id="uf-new-article">
+        <div class="container-fluid">
+            <div class="row">
 
-            <div class="col-lg-9">
+                <div class="col-lg-9">
 
-                <div style="max-width: 650px; margin: auto;">
-                    <br>
-                    <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
-                        Last updated on: {{this.article?.data.sys_updated_on | date: 'medium'}}
-                    </span>
-                    <br>
-                    <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
-                    <br>
-                </div>
-                <div id="editorjs">
-                </div>
-            </div>
-            <div class="col-lg-3" style='background-color: #FCFCFC; border-left: 3px solid #f1f1f1;'>
-
-                <div id="uf-new-article">
-                    <br>
-                    <h5 style="color: #516264;" *ngIf="state">State: {{state}}</h5>
-                    <h5 style="color: #516264;" *ngIf="!state">State: New</h5>
-                    <br>
-                    <h4 style="color: #4f9aab;" *ngIf="title">
-                        {{title}}
-                        <a target="_blank" style="color: #4f9aab; font-size: 18px; text-decoration: underline;"
-                            *ngIf="id" routerLink="/courses/article_preview/{{id}}">
-                            <br>
-                            Preview<mat-icon>open_in_new</mat-icon>
-                        </a>
-                    </h4>
-
-                    <h4 style="color: #4f9aab;" *ngIf="!title">Start by giving it a title!</h4>
-                    <textarea class="desc-article" style="font-size: 12px;" rows='2' [(ngModel)]="description"
-                        placeholder="Add a short description to the article..... :-)" type="text">
-                        </textarea>
-                    <br>
-                    <span style="color: #4f9aab; font-size: 12px;">
-                        <b>Note:</b> This description helps the user to get the summary of the article in search
-                    </span>
-                    <br>
-                    <br>
-                    <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
-                        [disabled]="updatingData" (click)="updateArticle(true)">
-                        <span *ngIf="updatingData">
-                            Saving....
-                        </span>
-                        <span *ngIf="!updatingData">
-                            Save progress
-                        </span>
-                    </button>
-                    <button mat-button class="primary-button" (click)="addToCourse()">
-                        Publish to the path
-                    </button>
-
-                    <br>
-                    <hr>
-
-                    <div *ngIf="title && state=='published'">
-                        <span style="color: #4f9aab;">
-                            To unpublish this article, you can send it to review state
+                    <div style="max-width: 650px; margin: auto;">
+                        <br>
+                        <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
+                            Last updated on: {{this.article?.data.sys_updated_on | date: 'medium'}}
                         </span>
                         <br>
-                        <button mat-stroked-button color="accent" [disabled]='state=="review"'
-                            (click)="updateArticle(false)">
-                            Send to review state
+                        <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
+                        <br>
+                    </div>
+                    <div id="editorjs">
+                    </div>
+                </div>
+                <div class="col-lg-3" style='background-color: #FCFCFC; border-left: 3px solid #f1f1f1;'>
+
+                    <div id="uf-new-article">
+                        <br>
+                        <h5 style="color: #516264;" *ngIf="state">State: {{state}}</h5>
+                        <h5 style="color: #516264;" *ngIf="!state">State: New</h5>
+                        <br>
+                        <h4 style="color: #4f9aab;" *ngIf="title">
+                            {{title}}
+                            <a target="_blank" style="color: #4f9aab; font-size: 18px; text-decoration: underline;"
+                                *ngIf="id" routerLink="/courses/article_preview/{{id}}">
+                                <br>
+                                Preview<mat-icon>open_in_new</mat-icon>
+                            </a>
+                        </h4>
+
+                        <h4 style="color: #4f9aab;" *ngIf="!title">Start by giving it a title!</h4>
+                        <textarea class="desc-article" style="font-size: 12px;" rows='2' [(ngModel)]="description"
+                            placeholder="Add a short description to the article..... :-)" type="text">
+                        </textarea>
+                        <br>
+                        <span style="color: #4f9aab; font-size: 12px;">
+                            <b>Note:</b> This description helps the user to get the summary of the article in search
+                        </span>
+                        <br>
+                        <br>
+                        <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
+                            [disabled]="updatingData" (click)="updateArticle(true)">
+                            <span *ngIf="updatingData">
+                                Saving....
+                            </span>
+                            <span *ngIf="!updatingData">
+                                Save progress
+                            </span>
                         </button>
+                        <button mat-button class="primary-button" (click)="addToCourse()">
+                            Publish to the path
+                        </button>
+
+                        <br>
                         <hr>
+
+                        <div *ngIf="title && state=='published'">
+                            <span style="color: #4f9aab;">
+                                To unpublish this article, you can send it to review state
+                            </span>
+                            <br>
+                            <button mat-stroked-button color="accent" [disabled]='state=="review"'
+                                (click)="updateArticle(false)">
+                                Send to review state
+                            </button>
+                            <hr>
+
+                        </div>
 
                     </div>
 
+                    <div
+                        *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label">
+                        Path of the path:
+                        <a target="_blank" style="color: #4f9aab;"
+                            routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
+                            {{article?.data.get_category.category_label}}
+                            <mat-icon>open_in_new</mat-icon>
+                        </a>
+                    </div>
+                    <br>
+                    <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
+
+
                 </div>
-
-                <div
-                    *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label">
-                    Path of the path:
-                    <a target="_blank" style="color: #4f9aab;"
-                        routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
-                        {{article?.data.get_category.category_label}}
-                        <mat-icon>open_in_new</mat-icon>
-                    </a>
-                </div>
-                <br>
-                <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
-
-
             </div>
         </div>
     </div>

@@ -1,149 +1,157 @@
 <mat-progress-bar mode="indeterminate" color="warn" *ngIf="isLoading"></mat-progress-bar>
 <mat-progress-bar mode="determinate" value="100" color="accent" *ngIf="!isLoading"></mat-progress-bar>
+<div class="flex-wrapper">
+    <div class="wrapper" id="uf-roots">
+        <nav id="sidebar" style="background-color: white;">
+            <app-side-nav></app-side-nav>
 
-<div class="wrapper" id="uf-roots">
-    <nav id="sidebar" style="background-color: white;">
-        <app-side-nav></app-side-nav>
-
-    </nav>
-
-    <div id="content" style=" width: 100%;">
-        <nav class="navbar navbar-expand-lg navbar-light" *ngIf="mobileQuery.matches">
-            <button mat-raised-button color="primary" style="background-color: #4f9aab; color: white;"
-                id="sidebarCollapse" (click)="openNav()">
-                <mat-icon>{{icon}}</mat-icon>
-            </button>
         </nav>
-        <div style="padding: 20px 20px;">
-            <div class="row" style="padding: 20px;">
-                <span *ngIf="isModerator">
-                    <button style="margin-right: 30px;" class="primary-button" mat-raised-button [matMenuTriggerFor]="menu"
-                        aria-label="Example icon button with a home icon">
-                        <mat-icon>add</mat-icon>
-                    </button>
-                    <mat-menu #menu="matMenu">
-                        <button mat-menu-item class="st-menu" (click)="openDialog('course')"> Add course</button>
-                        <button mat-menu-item class="st-menu" (click)="openDialog('branch')">Add folder</button>
-                    </mat-menu>
-                </span>
-                <app-breadcrumbs></app-breadcrumbs>
-            </div>
-            <div class="row" *ngIf="!isLoading">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _courses">
-                    <mat-card *ngIf="product.course" style="margin-bottom: 20px; 
+
+        <div id="content" style=" width: 100%;">
+            <nav class="navbar navbar-expand-lg navbar-light" *ngIf="mobileQuery.matches">
+                <button mat-raised-button color="primary" style="background-color: #4f9aab; color: white;"
+                    id="sidebarCollapse" (click)="openNav()">
+                    <mat-icon>{{icon}}</mat-icon>
+                </button>
+            </nav>
+            <div style="padding: 20px 20px;">
+                <div class="row" style="padding: 20px;">
+                    <span *ngIf="isModerator">
+                        <button style="margin-right: 30px;" class="primary-button" mat-raised-button
+                            [matMenuTriggerFor]="menu" aria-label="Example icon button with a home icon">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <button mat-menu-item class="st-menu" (click)="openDialog('course')"> Add course</button>
+                            <button mat-menu-item class="st-menu" (click)="openDialog('branch')">Add folder</button>
+                        </mat-menu>
+                    </span>
+                    <app-breadcrumbs></app-breadcrumbs>
+                </div>
+                <div class="row" *ngIf="!isLoading">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _courses">
+                        <mat-card *ngIf="product.course" style="margin-bottom: 20px; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
                             border-radius: 6px;">
-                        <div>
-                            <span style="background-color: #81b5a1;
+                            <div>
+                                <span style="background-color: #81b5a1;
                                                 color: white;
                                                 width: fit-content;
                                                 padding: 2px 10px;
                                                 margin-left: -20px;">
-                                {{product.get_parent_knowledgebase.label}}
-                                <span *ngIf="product.get_parent_category.label != 'root' ">
-                                    -> {{product.get_parent_category.label}}
+                                    {{product.get_parent_knowledgebase.label}}
+                                    <span *ngIf="product.get_parent_category.label != 'root' ">
+                                        -> {{product.get_parent_category.label}}
+                                    </span>
                                 </span>
-                            </span>
-                        </div>
-                        <mat-card-header>
-
-                            <mat-card-title style="cursor:pointer; color: #566364;">
-                                <a routerLink="/courses/{{product.id}}/{{product.get_first_article?.first_article_id}}/">
-                                    {{product.label}}
-                                </a>
-                                <button mat-icon-button *ngIf="isModerator">
-                                    <mat-icon *ngIf="product.active" matTooltip="Visible to public"> visibility </mat-icon>
-                                    <mat-icon *ngIf="!product.active"  matTooltip="Not visible to public"> visibility_off </mat-icon>
-                                </button>
-                            </mat-card-title>
-                            <button mat-icon-button *ngIf="isModerator && moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'course')">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                            <mat-card-subtitle class="desc-text" style="color: #212121">
-                                {{product.description}} <br>
-                            </mat-card-subtitle>
-                            <div mat-card-avatar>
-                                <button mat-icon-button (click)="seeDetails(product.id)">
-                                    <mat-icon>info_outline</mat-icon>
-                                </button>
                             </div>
-                        </mat-card-header>
-                    </mat-card>
+                            <mat-card-header>
 
+                                <mat-card-title style="cursor:pointer; color: #566364;">
+                                    <a
+                                        routerLink="/courses/{{product.id}}/{{product.get_first_article?.first_article_id}}/">
+                                        {{product.label}}
+                                    </a>
+                                    <button mat-icon-button *ngIf="isModerator">
+                                        <mat-icon *ngIf="product.active" matTooltip="Visible to public"> visibility
+                                        </mat-icon>
+                                        <mat-icon *ngIf="!product.active" matTooltip="Not visible to public">
+                                            visibility_off </mat-icon>
+                                    </button>
+                                </mat-card-title>
+                                <button mat-icon-button
+                                    *ngIf="isModerator && moderator_email==product.get_created_by?.author"
+                                    (click)="editProduct(product, 'course')">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <mat-card-subtitle class="desc-text" style="color: #212121">
+                                    {{product.description}} <br>
+                                </mat-card-subtitle>
+                                <div mat-card-avatar>
+                                    <button mat-icon-button (click)="seeDetails(product.id)">
+                                        <mat-icon>info_outline</mat-icon>
+                                    </button>
+                                </div>
+                            </mat-card-header>
+                        </mat-card>
+
+                    </div>
                 </div>
-            </div>
-            <h3 *ngIf="_categories?.length>0">Explore further</h3>
-            <div class="row" *ngIf="!isLoading">
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
-                    <mat-card *ngIf="!product.course" style="margin-bottom: 20px;" class="st-border">
-                        <div>
-                            <span style="background-color: #81b5a1;
+                <h3 *ngIf="_categories?.length>0">Explore further</h3>
+                <div class="row" *ngIf="!isLoading">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
+                        <mat-card *ngIf="!product.course" style="margin-bottom: 20px;" class="st-border">
+                            <div>
+                                <span style="background-color: #81b5a1;
                                                 color: white;
                                                 width: fit-content;
                                                 padding: 0px 10px;
                                                 margin-left: -20px;">
-                                {{product.get_parent_knowledgebase.label}}
-                                <span *ngIf="product.get_parent_category.label != 'root' ">
-                                    -> {{product.get_parent_category.label}}
+                                    {{product.get_parent_knowledgebase.label}}
+                                    <span *ngIf="product.get_parent_category.label != 'root' ">
+                                        -> {{product.get_parent_category.label}}
+                                    </span>
                                 </span>
-                            </span>
-                        </div>
-                        <mat-card-header>
-                            
-                            <mat-card-title *ngIf="!product.course"
-                                routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}"
-                                style="cursor:pointer; color: #566364;">
-                                {{product.label}}
-                            </mat-card-title>
-                            
-                            <button mat-icon-button *ngIf="isModerator && moderator_email==product.get_created_by?.author" (click)="editProduct(product, 'category')">
-                                <mat-icon>edit</mat-icon>
-                            </button>
-                            <mat-card-subtitle class="desc-text" style="color: #212121">
-                                {{product.description}} <br>
-                            </mat-card-subtitle>
-                            <div mat-card-avatar>
-                                <button mat-icon-button *ngIf="!product.course"
-                                    routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
-                                    <mat-icon matSuffix>
-                                        account_tree
-                                    </mat-icon>
-                                </button>
                             </div>
-                        </mat-card-header>
-                    </mat-card>
+                            <mat-card-header>
 
+                                <mat-card-title *ngIf="!product.course"
+                                    routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}"
+                                    style="cursor:pointer; color: #566364;">
+                                    {{product.label}}
+                                </mat-card-title>
+
+                                <button mat-icon-button
+                                    *ngIf="isModerator && moderator_email==product.get_created_by?.author"
+                                    (click)="editProduct(product, 'category')">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <mat-card-subtitle class="desc-text" style="color: #212121">
+                                    {{product.description}} <br>
+                                </mat-card-subtitle>
+                                <div mat-card-avatar>
+                                    <button mat-icon-button *ngIf="!product.course"
+                                        routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
+                                        <mat-icon matSuffix>
+                                            account_tree
+                                        </mat-icon>
+                                    </button>
+                                </div>
+                            </mat-card-header>
+                        </mat-card>
+
+                    </div>
                 </div>
-            </div>
 
 
-            <div class="row" *ngIf="isLoading">
-            <!-- <div class="row"> -->
-                <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of [1,2]">
-                    <mat-card style="margin-bottom: 20px;" class="st-border" >
-                        <div style="background-color: #81b5a1;
+                <div class="row" *ngIf="isLoading">
+                    <!-- <div class="row"> -->
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of [1,2]">
+                        <mat-card style="margin-bottom: 20px;" class="st-border">
+                            <div style="background-color: #81b5a1;
                         color: white;
                         width: 100px;
                         padding: 0px 10px;
                         margin-left: -20px;">
+                                <br>
+                            </div>
                             <br>
-                        </div>
-                        <br>
-                        <mat-card-header>
-                            <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
-                            </mat-card-title>
-                            <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
-                            </mat-card-subtitle>
-                            <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
-                            </mat-card-subtitle>
-                            <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;"></div>
-                        </mat-card-header>
-                    </mat-card>
+                            <mat-card-header>
+                                <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
+                                </mat-card-title>
+                                <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
+                                </mat-card-subtitle>
+                                <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
+                                </mat-card-subtitle>
+                                <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;"></div>
+                            </mat-card-header>
+                        </mat-card>
+                    </div>
                 </div>
+
             </div>
 
         </div>
-
     </div>
 </div>
