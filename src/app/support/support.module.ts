@@ -8,6 +8,7 @@ import { MaterialModule } from '../shared/material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DeleteAttachmentComponent } from './delete-attachment/delete-attachment.component';
 import { EditNameComponent } from './edit-name/edit-name.component';
+import { ReportDefectComponent } from './report-defect/report-defect.component';
 
 // import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 
@@ -15,7 +16,7 @@ import { EditNameComponent } from './edit-name/edit-name.component';
 
 @NgModule({
   declarations: [FeatureRequestComponent, 
-    SupportComponent, DeleteAttachmentComponent, EditNameComponent, 
+    SupportComponent, DeleteAttachmentComponent, EditNameComponent, ReportDefectComponent, 
   ],
   imports: [
     CommonModule,
