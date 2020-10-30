@@ -22,7 +22,7 @@ export class FeatureRequestComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private http: HttpClient,
-    private url: UrlconfigService,
+    private url:  UrlconfigService,
     private log: LoggerService,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
@@ -56,7 +56,7 @@ export class FeatureRequestComponent implements OnInit {
       "attachments": this.attachments
     };
     this.formSubmit = true;
-    this.supportService.createFeatureRequest(this.finalData).subscribe(
+    this.supportService.createSupportRequest(this.finalData, "feature").subscribe(
       result => {
         // console.log(result);
         this.formSubmit = false;

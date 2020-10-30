@@ -1,1 +1,106 @@
-<p>report-defect works!</p>
+<mat-progress-bar mode="query" *ngIf="uploadingImage || formSubmit" color="accent"></mat-progress-bar>
+<mat-progress-bar mode="determinate" value="100" *ngIf="!uploadingImage && !formSubmit" color="accent"></mat-progress-bar>
+
+<br>
+<div class="container" id="st-feature">
+    <div class="row">
+
+        <div class="col-md-8 ">
+            <div class="st-border support-page">
+                <h2 class="primary-text-color heading">Report a Defect</h2>
+                <span class="primary-text-color-sub subheading">Describe the defect</span>
+                <hr>
+                <div class="primary-text-color-sub message">
+                    Thank you for letting us know! Please describe the nature of your defect in the 
+                    fields below. Upon receipt, the appropriate personnel will categorize and prioritize 
+                    your defect.
+                </div>
+                <hr>
+                <div class="form">
+                    <form novalidate (ngSubmit)="requestFeature()" [formGroup]="supportForm">
+                        <mat-form-field appearance="legacy" class="form-input-block">
+                            <mat-label>Short description</mat-label>
+                            <input matInput type="email" id="email" formControlName="short_description"
+                                placeholder="Enter short description">
+                            <mat-error>Short description is mandatory!!</mat-error>
+
+                        </mat-form-field>
+
+                        <mat-form-field appearance="legacy" class="form-input-block">
+                            <mat-label>Description</mat-label>
+                            <textarea rows="2" matInput formControlName="description"></textarea>
+                            <mat-error>Description is mandatory!!</mat-error>
+                        </mat-form-field>
+                        <hr>
+                        <button class="primary-button-inverted" style="float:right"
+                            mat-button [disabled]="!supportForm.valid || formSubmit" type="submit">
+                            Submit
+                        </button>
+
+                    </form>
+                    <br>
+                    <br>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="st-border" style="padding: 20px 10px;">
+                <div style="margin: auto; text-align: center;">
+                    <button mat-button style="outline: none;" (click)="checkValidForm()" class="primary-button-inverted">
+                        <label for="file-upload" class="custom-file-upload"
+                            style="padding: 0px 10px; border-radius: 5px;" [disabled]="uploadingImage">
+                            {{buttonText}}
+                            <!-- <mat-icon class="image-icon" style="padding-top: 5px;">
+                                attachment
+                            </mat-icon> -->
+                        </label>
+                        <input id="file-upload" multiple accept="image/png, image/jpeg" (change)="onImageChange($event)"
+                            [disabled]="!supportForm.valid" type="file" />
+                    </button>
+                    <hr>
+                    <span style="text-align: center;" class="primary-text-color-sub">
+                    You can upload the supporting images for better understading!
+                    </span>
+                </div>
+
+                
+            </div>
+            <br>
+            <div class="attachment-section">
+                <!-- <pre>
+                {{attachments | json}}
+            </pre> -->
+                <div *ngFor="let image of attachments" class="support-images">
+                    <mat-card class="image-card">
+                        <mat-card-header style="padding: 10px;">
+                            <div mat-card-avatar class="image-div"
+                                [ngStyle]="{'background-image': 'url(' + image.file.url + ')'}"
+                                style="background-size: cover;">
+                            </div>
+                            <mat-card-title class="image-title">
+                                <a class="image-title" href="{{image.file.real_url}}"
+                                    target="_blank">{{image.file.name}}</a>
+                            </mat-card-title>
+                            <mat-card-subtitle style="margin-bottom: 0px !important;">
+                                <button mat-icon-button matTooltip="Rename the file to something meaningful!"
+                                    (click)="editAttachment(image.file.id, image.file.name)" class="image-icon">
+                                    <mat-icon class="image-icon" style="color: green;">
+                                        edit
+                                    </mat-icon>
+                                </button>
+                                <button mat-icon-button class="image-icon" matTooltip="delete this image"
+                                    (click)="deleteAttachment(image.file.id)">
+                                    <mat-icon class="image-icon">
+                                        delete_outline
+                                    </mat-icon>
+                                </button>
+                            </mat-card-subtitle>
+                        </mat-card-header>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

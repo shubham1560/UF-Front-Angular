@@ -20,10 +20,10 @@ export class SupportService {
     return this.urlService.getHeader();
   }
 
-  createFeatureRequest(feature){
+  createSupportRequest(feature, type){
     // console.log(feature);
     this.called_url = `${this.base_support_url}feature/post/`;
-    const body = feature;
+    const body = {"feature": feature, record_type: type};
     // console.log(body);
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }

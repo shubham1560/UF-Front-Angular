@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SupportComponent } from './support.component';
 import { FeatureRequestComponent } from './feature-request/feature-request.component';
+import { ReportDefectComponent } from './report-defect/report-defect.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
     component: FeatureRequestComponent
   },
   {
-    
+    path: "report_defect",
+    component: ReportDefectComponent
   }
 ];
 
