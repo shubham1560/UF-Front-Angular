@@ -40,7 +40,7 @@ export class ReportDefectComponent implements OnInit {
   formSubmit;
 
   ngOnInit(): void {
-    this.titleService.setTitle("Feature - SortedTree")
+    this.titleService.setTitle("Report Defect - SortedTree")
     this.supportForm = this.fb.group({
       short_description: ['', [Validators.required]],
       description: ['', [Validators.required]],

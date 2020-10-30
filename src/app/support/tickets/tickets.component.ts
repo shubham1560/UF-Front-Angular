@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupportService } from 'src/app/services/support/support.service';
 
 export interface Section {
   name: string;
@@ -13,34 +14,21 @@ export interface Section {
 
 export class TicketsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private supportService: SupportService,
+  ) { }
 
-  folders: Section[] = [
-    {
-      name: 'Photos',
-      updated: new Date('1/1/16'),
-    },
-    {
-      name: 'Recipes',
-      updated: new Date('1/17/16'),
-    },
-    {
-      name: 'Work',
-      updated: new Date('1/28/16'),
-    }
-  ];
-  notes: Section[] = [
-    {
-      name: 'Vacation Itinerary',
-      updated: new Date('2/20/16'),
-    },
-    {
-      name: 'Kitchen Remodel',
-      updated: new Date('1/18/16'),
-    }
-  ];
+  defects;
+  features;
 
   ngOnInit(): void {
+    this.supportService.getSupportRequests().subscribe(
+      (result:any)=>{
+        console.log(result);
+        this.defects = result.defects;
+        this.features = result.features;
+      }
+    )
   }
 
 }

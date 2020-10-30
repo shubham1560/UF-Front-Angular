@@ -28,4 +28,9 @@ export class SupportService {
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
+  getSupportRequests(){
+    this.called_url = `${this.base_support_url}tickets/get/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
+
 }

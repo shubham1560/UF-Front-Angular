@@ -10,6 +10,7 @@ import { DeleteAttachmentComponent } from './delete-attachment/delete-attachment
 import { EditNameComponent } from './edit-name/edit-name.component';
 import { ReportDefectComponent } from './report-defect/report-defect.component';
 import { TicketsComponent } from './tickets/tickets.component';
+import { TimesAgoPipe } from './pipes/times-ago.pipe';
 
 // import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 
@@ -17,7 +18,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 
 @NgModule({
   declarations: [FeatureRequestComponent, 
-    SupportComponent, DeleteAttachmentComponent, EditNameComponent, ReportDefectComponent, TicketsComponent, 
+    SupportComponent, DeleteAttachmentComponent, EditNameComponent, ReportDefectComponent, TicketsComponent, TimesAgoPipe, 
   ],
   imports: [
     CommonModule,

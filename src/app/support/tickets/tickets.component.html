@@ -1,46 +1,37 @@
 <!-- <p>tickets works!</p> -->
-
-<div class="container">
+<div class="flex-wrapper">
+  <div class="container">
     <br>
     <h3 style="color: #8dbcaa;">
-        Requests
+      Requests
     </h3>
     <div class="row">
-        <div class="col-md-6">
-            Feature Request
-            <mat-list>
-                <div mat-subheader>Folders</div>
-                <mat-list-item *ngFor="let folder of folders">
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <div mat-line>{{folder.name}}</div>
-                  <div mat-line> {{folder.updated | date}} </div>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <div mat-subheader>Notes</div>
-                <mat-list-item *ngFor="let note of notes">
-                  <mat-icon mat-list-icon>note</mat-icon>
-                  <div mat-line>{{note.name}}</div>
-                  <div mat-line> {{note.updated | date}} </div>
-                </mat-list-item>
-              </mat-list>
-        </div>
-        <div class="col-md-6">
-            Defects
-            <mat-list>
-                <div mat-subheader>Folders</div>
-                <mat-list-item *ngFor="let folder of folders">
-                  <mat-icon mat-list-icon>folder</mat-icon>
-                  <div mat-line>{{folder.name}}</div>
-                  <div mat-line> {{folder.updated | date}} </div>
-                </mat-list-item>
-                <mat-divider></mat-divider>
-                <div mat-subheader>Notes</div>
-                <mat-list-item *ngFor="let note of notes">
-                  <mat-icon mat-list-icon>note</mat-icon>
-                  <div mat-line>{{note.name}}</div>
-                  <div mat-line> {{note.updated | date}} </div>
-                </mat-list-item>
-              </mat-list>
-        </div>
+      <div class="col-md-6">
+        <!-- <pre>
+              {{features | json}}
+            </pre> -->
+        <mat-list>
+          <div mat-subheader style="font-size: 18px;">Features</div>
+          <mat-list-item *ngFor="let feature of features" style="border: 1px solid #ddd;">
+            <mat-icon mat-list-icon style="color:  #1F8476; cursor: pointer;">open_in_new</mat-icon>
+            <div mat-line style="color: #1F8476; font-size: 14px;">{{feature.short_description}}</div>
+            <div mat-line style="color: #666666; font-size: 12px;"> {{feature.sys_created_on | timesAgo}} • {{feature.state}} </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="col-md-6">
+        <!-- <pre>
+              {{defects | json}}
+            </pre> -->
+        <mat-list>
+          <div mat-subheader style="font-size: 18px;">Defects</div>
+          <mat-list-item *ngFor="let defect of defects" style="border: 1px solid #ddd;">
+            <mat-icon mat-list-icon style="color:  #1F8476; cursor: pointer;">open_in_new</mat-icon>
+            <div mat-line style="color: #1F8476; font-size: 14px;">{{defect.short_description}}</div>
+            <div mat-line style="color: #666666; font-size: 12px;"> {{defect.sys_created_on | timesAgo}} • {{defect.state}}</div>
+          </mat-list-item>
+        </mat-list>
+      </div>
     </div>
+  </div>
 </div>
