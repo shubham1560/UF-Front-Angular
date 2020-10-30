@@ -5,6 +5,7 @@ import { FeatureRequestComponent } from './feature-request/feature-request.compo
 import { ReportDefectComponent } from './report-defect/report-defect.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { ProfileGuard } from '../userprofile/guard/profile.guard';
+import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,10 @@ const routes: Routes = [
     path: "tickets",
     // canActivate: [ProfileGuard],
     component: TicketsComponent
+  },
+  {
+    path: "tickets/:id/:type",
+    component: TicketDetailComponent
   }
 ];
 

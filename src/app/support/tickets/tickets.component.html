@@ -1,3 +1,5 @@
+<mat-progress-bar mode="determinate" value="100" color="accent"></mat-progress-bar>
+
 <!-- <p>tickets works!</p> -->
 <div class="flex-wrapper">
   <div class="container">
@@ -7,12 +9,21 @@
     </h3>
     <br>
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6" style="margin-bottom: 20px;">
         <mat-list>
           <div mat-subheader class="header">Features</div>
           <mat-list-item *ngFor="let feature of features" style="border: 1px solid #ddd;">
-            <mat-icon mat-list-icon class="list-icon">open_in_new</mat-icon>
-            <div mat-line class="list-title">{{feature.short_description}}</div>
+            <a target="_blank" routerLink="/support/tickets/{{feature.id}}/feature">
+              <mat-icon mat-list-icon class="list-icon">
+                open_in_new
+              </mat-icon>
+            </a>
+
+            <div mat-line class="list-title">
+              <a routerLink="/support/tickets/{{feature.id}}/feature" class="list-title">
+                {{feature.short_description}}
+              </a>
+            </div>
             <div mat-line class="list-sub"> {{feature.sys_created_on | timesAgo}} • {{feature.state}} </div>
           </mat-list-item>
         </mat-list>
@@ -21,8 +32,17 @@
         <mat-list>
           <div mat-subheader class="header">Defects</div>
           <mat-list-item *ngFor="let defect of defects" style="border: 1px solid #ddd;">
-            <mat-icon mat-list-icon class="list-icon">open_in_new</mat-icon>
-            <div mat-line class="list-title">{{defect.short_description}}</div>
+            <a target="_blank" routerLink="/support/tickets/{{defect.id}}/defect">
+              <mat-icon mat-list-icon class="list-icon">
+                open_in_new
+              </mat-icon>
+            </a>
+
+            <div mat-line class="list-title">
+              <a routerLink="/support/tickets/{{defect.id}}/defect" class="list-title">
+                {{defect.short_description}}
+              </a>
+            </div>
             <div mat-line class="list-sub"> {{defect.sys_created_on | timesAgo}} • {{defect.state}}</div>
           </mat-list-item>
         </mat-list>
