@@ -19,7 +19,7 @@
                 <div class="form">
                     <form novalidate (ngSubmit)="requestFeature()" [formGroup]="supportForm">
                         <mat-form-field appearance="legacy" class="form-input-block">
-                            <mat-label>Short description</mat-label>
+                            <mat-label><span style="color: red;">*</span>Short description</mat-label>
                             <input matInput type="email" id="email" formControlName="short_description"
                                 placeholder="Enter short description">
                             <mat-error>Short description is mandatory!!</mat-error>
@@ -27,7 +27,7 @@
                         </mat-form-field>
 
                         <mat-form-field appearance="legacy" class="form-input-block">
-                            <mat-label>Description</mat-label>
+                            <mat-label><span style="color: red;">*</span>Description</mat-label>
                             <textarea rows="2" matInput formControlName="description"></textarea>
                             <mat-error>Description is mandatory!!</mat-error>
                         </mat-form-field>
@@ -48,9 +48,9 @@
         <div class="col-lg-4">
             <div class="st-border" style="padding: 20px 10px;">
                 <div style="margin: auto; text-align: center;">
-                    <button mat-button style="outline: none;" (click)="checkValidForm()" class="primary-button-inverted">
+                    <button mat-button style="outline: none;" (click)="checkValidForm()" [disabled]="uploadingImage || !supportForm.valid" class="primary-button-inverted">
                         <label for="file-upload" class="custom-file-upload"
-                            style="padding: 0px 10px; border-radius: 5px;" [disabled]="uploadingImage">
+                            style="padding: 0px 10px; border-radius: 5px;" >
                             {{buttonText}}
                             <!-- <mat-icon class="image-icon" style="padding-top: 5px;">
                                 attachment
