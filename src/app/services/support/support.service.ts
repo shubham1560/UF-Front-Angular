@@ -33,4 +33,9 @@ export class SupportService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
+  getSupportTicketDetails(ticket_id, ticket_type){
+    this.called_url = `${this.base_support_url}ticket/${ticket_id}/${ticket_type}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
+
 }
