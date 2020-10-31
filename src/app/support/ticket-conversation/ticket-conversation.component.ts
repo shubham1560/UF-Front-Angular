@@ -19,6 +19,7 @@ export class TicketConversationComponent implements OnInit {
   comment;
   conversation = [];
   buttonText = "Send";
+  sendingMessage = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -34,7 +35,10 @@ export class TicketConversationComponent implements OnInit {
 
   sendMessage() {
     if (this.comment.length > 0) {
+      this.sendingMessage = true;
+      this.buttonText = "Sending....";
       this.postConversation(this.comment);
+      this.comment = ''
       this.ngOnInit();
     }
   }
@@ -43,9 +47,12 @@ export class TicketConversationComponent implements OnInit {
   postConversation(comment) {
     this.converse.postConverse(this.ticket_id, this.ticket_type, comment).subscribe(
       response => {
-        console.log(response);
+        this.sendingMessage = false;
+        this.buttonText = "Send";
+        
       }, error => {
-        console.log(error);
+        this.sendingMessage = false;
+        this.buttonText = "Send";
       }
     )
   }

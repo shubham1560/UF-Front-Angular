@@ -71,7 +71,9 @@ export class ReportDefectComponent implements OnInit {
           horizontalPosition: "right",
           verticalPosition: "top",
         });
-        this.route.navigate(["/support"]);
+        // this.route.navigate(["/support"]);
+        this.route.navigate(["support", "tickets", result, "defect"]);
+
         
       }, error => {
         console.log(error);

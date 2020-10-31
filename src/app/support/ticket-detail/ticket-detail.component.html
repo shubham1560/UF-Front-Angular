@@ -1,16 +1,12 @@
 <!-- Details -->
 
-<div id="st-ticket-detail">
+<div id="st-ticket-detail" class="st-border" style="padding: 10px; background-color: white;">
     <div style="padding: 0px 10px 10px 10px;"> Your request has been submitted!</div>
+    <hr>
     <div style="padding: 0px 10px 10px 10px;">
         <div class="title">{{ticketDetail?.short_description}}</div>
-
         <table class="table table-condensed" style="margin-bottom: 0px !important;">
             <tbody>
-                <!-- <tr class="trow">
-                    <td class="trow">State</td>
-                    <td class="trow"></td>
-                </tr> -->
                 <tr class="trow">
                     <td class="trow key">State</td>
                     <td class="trow">{{ticketDetail?.state}}</td>

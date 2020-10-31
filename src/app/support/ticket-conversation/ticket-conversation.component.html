@@ -1,29 +1,35 @@
 <!-- <p>ticket-conversation works!</p> -->
+<div class="message-wrapper st-border">
+    <form>
+        <div class="input-group">
+            <input type="text" class="form-control" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"
+                placeholder="Type your message here...">
+            <div class="input-group-btn">
+                <button mat-button style="border-radius:0px 4px 4px 0px;" class="primary-button-inverted"
+                    (click)="sendMessage()" [disabled]="sendingMessage" type="submit">
+                    <!-- <i class="glyphicon glyphicon-search"></i> -->
+                    {{buttonText}}
+                </button>
+            </div>
+        </div>
+    </form>
+    <!-- {{comment}} -->
+    <div *ngIf="conversation.length == 0" class="icon-div">
+        <mat-icon class="icon">
+            message
+        </mat-icon>
+    </div>
 
-<form>
-    <div class="input-group">
-        <input type="text" class="form-control" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"
-            placeholder="Type your message here...">
-        <div class="input-group-btn">
-            <button mat-button style="border-radius:0px 4px 4px 0px;" class="primary-button-inverted"
-                (click)="sendMessage()" type="submit">
-                <!-- <i class="glyphicon glyphicon-search"></i> -->
-                {{buttonText}}
-            </button>
+    <div *ngFor="let conversation of conversation" style="border-left: 2px solid #ddd;">
+        <div class="converse-card st-border">
+            <div mat-card-avatar class="author-image"
+                [ngStyle]="{'background-image': 'url(' + conversation.get_created_by.pic + ')'}"
+                style="background-size: cover; float: right;">
+            </div>
+            <div class="title-name">
+                {{conversation.get_created_by.first_name + " " + conversation.get_created_by.last_name}} </div>
+            <div class="subtitle">{{conversation.sys_created_on | timesAgo}}</div>
+            <div class="text">{{conversation.additional_comment}}</div>
         </div>
     </div>
-</form>
-{{comment}}
-
-
-<div *ngFor="let conversation of conversation" style="border-left: 2px solid black;">
-    <div>
-        <div mat-card-avatar class="author-image"
-            [ngStyle]="{'background-image': 'url(' + conversation.get_created_by.pic + ')'}"
-            style="background-size: cover;"></div>
-    </div>
 </div>
-
-<pre>
-{{conversation | json}}
-</pre>

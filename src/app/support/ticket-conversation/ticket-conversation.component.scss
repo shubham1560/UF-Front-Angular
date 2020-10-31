@@ -1,6 +1,42 @@
+.message-wrapper{
+    padding: 15px;
+    background-color: white;
+    .icon-div{
+        // margin: auto;
+        padding: 40px;
+        text-align: center;
+    }
 
-.author-image{
-    height: 40px;
-    width: 40px;
-    border-radius: 20px;
+    .converse-card{
+        padding: 10px;
+        margin: 10px 0px;
+
+        .author-image{
+            height: 50px;
+            width: 50px;
+            border-radius: 25px;
+        }
+
+        .title-name{
+            color: #165C53;
+            font-size: 16px;
+        }
+
+        .subtitle{
+            color: #2e778e;
+            font-size: 12px;
+        }
+
+        .text{
+            padding-top: 10px;
+            font-size: 14px;
+            color: #2E2E2E;
+        }
+    }
+
+}
+
+.icon{
+    font-size: 72px;
+    color: #165C53;
 }
