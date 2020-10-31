@@ -20,6 +20,10 @@ export class PasswordresetComponent implements OnInit {
   response;
   error;
   resetForm: FormGroup;
+  resendLinkButtonActive = false;
+
+  // message = "<b>shubhamsinha2050@gmail.com</b><br>We have e-mailed your password reset link!";
+
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -41,7 +45,7 @@ export class PasswordresetComponent implements OnInit {
     this.authService.sendResetPassowordLink(this.resetForm.value["email"]).subscribe(
       response => {
         this.response = response;
-        this.message = "Paswword reset link has been sent to this email id: " + this.resetForm.value["email"] + ". Please check your inbox for the link";
+        this.message = "<b>" + this.resetForm.value["email"] + "</b> <br>We have e-mailed your password reset link!";
         this.sendingLink = false;
         this.errorOccured = false;
         this.mailsent = true;
@@ -57,12 +61,32 @@ export class PasswordresetComponent implements OnInit {
         }
         else if (error.error.user_exist && !error.error.is_active){
           this.message = "Please activate your account using the link you received when you registered!";
+          this.resendLinkButtonActive = true;
         }
         else if(error.error["user_exist"] && !error.error["token_exist"]){
           this.message = "This is a server error, we are working on it!";
         }
+        this.message = error.error.message;
+
       }
     );
+  }
+  resendLink = false;
+  resendActivationLink(){
+    if(this.resetForm.valid){
+      this.resendLink = true;
+      this.authService.resendActivationLink(this.resetForm.get('email').value).subscribe(
+        (result:any) =>{
+          this.resendLink  = false;
+          console.log(result);
+          this.message = result.message;
+        }, error =>{
+          this.resendLink = false;
+          this.errorOccured = true;
+          this.message = error.error.message;
+        }
+      )
+    }
   }
 
 }

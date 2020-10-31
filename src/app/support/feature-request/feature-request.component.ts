@@ -89,7 +89,7 @@ export class FeatureRequestComponent implements OnInit {
           const uploadImage = new FormData();
           uploadImage.append('image', event.target.files[i], event.target.files[i].name);
           uploadImage.append('token', this.authService.getToken());
-          uploadImage.append('table', 'Feature');
+          uploadImage.append('table', 'Enhancement');
           const url = `${this.url.base_url}attachment/general_add_image/`;
           this.http.post(url, uploadImage).subscribe(
             (result: any) => {

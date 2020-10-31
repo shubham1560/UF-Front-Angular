@@ -52,8 +52,6 @@ export class ArticleNewComponent implements OnInit {
   description = '';
 
   ngOnInit() {
-    // this.a = '{"type":"header","data":{"text":"Testing the hell out of it","level":2}},{"type":"image","data":{"file":{"url":"https://urbanfraud-test.s3.amazonaws.com/articleimages/compressed/bg_ZrcEzzJ.JPG","stretched":false,"withBackground":false,"withBorder":false},"caption":"","withBorder":false,"stretched":false,"withBackground":false}},{"type":"paragraph","data":{"text":"Well hello sir"}}'
-    // this.replacement(this.a);
 
     this.userService.inGroup("Authors").subscribe(
       (response: Boolean) => {

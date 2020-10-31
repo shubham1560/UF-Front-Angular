@@ -52,7 +52,10 @@ export class RegisterComponent implements OnInit {
   errorMessage: string;
   error;
   response;
+  sendActivationLink = false;
   registering = false;
+  sendingLink = false;
+
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private loggerService: LoggerService,
@@ -65,10 +68,6 @@ export class RegisterComponent implements OnInit {
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      // passwordGroup: this.fb.group({
-      //   password: ['', [Validators.required]],
-      //   confirm_password: ['', [Validators.required]]
-      // }, {validators: passwordMatch}),
       full_name: ['', [Validators.required,]],
     },)
 
@@ -99,22 +98,35 @@ export class RegisterComponent implements OnInit {
         this.registrationDone = true;
         this.disableButton = true;
         this.response = response;
-        // console.log(response);
         this.registering = false;
       },
       error => {
         this.registering = false;
-        // console.log(error.error["message"]);
         if (error.error["ue"]==true){
           this.errorMessage = error.error["message"];
+          this.sendActivationLink = true;
         }else{
           this.errorMessage = "The email address is invalid";
         }
-        // this.errorMessage = error.error;
         this.error = error;
         this.disableButton = false;
       }
     )
+  }
+
+  resendActivationLink(){
+    this.sendingLink = true;
+    if(this.registrationForm.valid){
+      // this.resendLink = true;
+      this.authService.resendActivationLink(this.registrationForm.get('email').value).subscribe(
+        (result:any) =>{
+          this.sendingLink = false;
+          // console.log(result);
+        }, error =>{
+          this.errorMessage = error.error.message;
+        }
+      )
+    }
   }
 
 }

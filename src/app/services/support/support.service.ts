@@ -38,4 +38,8 @@ export class SupportService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
+  getAttachments(ticket_type, ticket_id){
+    this.called_url = `${this.base_url}attachment/get_image/${ticket_type}/${ticket_id}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

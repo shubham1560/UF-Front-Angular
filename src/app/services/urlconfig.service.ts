@@ -40,7 +40,8 @@ export class UrlconfigService {
   }
 
   getAuthenticationHeader() {
-    const token = this.cookieService.get('token');
+    // const token = this.cookieService.get('token');
+    const token = localStorage.getItem('token')
     return new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Token ${token}`,
@@ -48,10 +49,11 @@ export class UrlconfigService {
   }
 
   isLoggedIn(): boolean {
-    if (this.cookieService.get('token')) {
-      if (this.cookieService.get('token') == localStorage.getItem('token')) {
+    // if (this.cookieService.get('token')) {
+    if (localStorage.getItem('token')){
+      // if (this.cookieService.get('token') == localStorage.getItem('token')) {
         return true;
-      }
+      // }
     }
     return false;
   }

@@ -52,7 +52,7 @@ export class LoginpromptComponent implements OnInit {
       this.authService.login_facebook(access_token).subscribe(
         (result: any) => {
 
-          this.cookieService.set('token', result.token);
+          // this.cookieService.set('token', result.token);
           localStorage.setItem('token', result.token);
           if (localStorage.getItem("redirect_url")) {
             window.location.href = localStorage.getItem("redirect_url");
@@ -97,7 +97,7 @@ export class LoginpromptComponent implements OnInit {
         (response: TokenObj) => {
           this.response = response;
           this.signingIn = false;
-          this.cookieService.set('token', response.token);
+          // this.cookieService.set('token', response.token);
           localStorage.setItem('token', response.token);
           if (localStorage.getItem("redirect_url")) {
             window.location.href = localStorage.getItem("redirect_url");
@@ -157,7 +157,7 @@ export class LoginpromptComponent implements OnInit {
           (response: TokenObj) => {
             this.response = response;
             this.signingIn = false;
-            this.cookieService.set('token', response.token);
+            // this.cookieService.set('token', response.token);
             localStorage.setItem('token', response.token);
             if (localStorage.getItem("redirect_url")) {
               window.location.href = localStorage.getItem("redirect_url");

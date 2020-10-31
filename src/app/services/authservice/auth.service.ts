@@ -29,7 +29,8 @@ export class AuthService {
   header:{};
 
   getToken(){
-    return this.cookieService.get('token');
+    return localStorage.getItem('token');
+    // return this.cookieService.get('token');
   }
 
   getHeader() {
@@ -129,6 +130,11 @@ export class AuthService {
     this.url = url;
     // console.log(url, body);
     return this.httpService.post(url, body, { headers: this.getHeader() });
+  }
+
+  resendActivationLink(email){
+    const url = `${this.base_auth_url}resend_activation_link/${email}/`;
+    return this.httpService.get(url, {headers: this.getHeader()});
   }
 
 }

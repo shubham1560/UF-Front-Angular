@@ -6,9 +6,16 @@
     <div class="row">
         <div class="col-md-5">
             <div class="uf-auth-wrapper" id="auth-register">
+                
                 <div class="uf-auth-form">
                     <div class="uf-auth-logo-space"></div>
                     <div class="uf-auth-form-header">SIGN UP TO SORTEDTREE</div>
+                    <div *ngIf="sendActivationLink" style="text-align: center;" class="uf-auth-form-body">
+                        <button mat-button [disabled]="sendingLink" (click)="resendActivationLink()" class="primary-button-inverted">
+                            <span *ngIf="!sendingLink">Resend Activation Link</span> 
+                            <span *ngIf="sendingLink">Sending...</span> 
+                        </button>
+                    </div>
                     <div *ngIf="!registrationDone">
                         <form (ngSubmit)="register()" [formGroup]='registrationForm' class="uf-auth-form-body">
 
@@ -36,6 +43,7 @@
                                 </button>
                                 <mat-error>Password too short(minimum allowed length is 8)</mat-error>
                             </mat-form-field>
+                            
                             <div *ngIf="errorMessage" class="uf-auth-form-footer error" color="warn">
                                 {{errorMessage}}
                             </div>
@@ -52,6 +60,9 @@
                             </div>
                             <br>
                         </form>
+
+                        
+
                     </div>
                     <div *ngIf="registrationDone" class="uf-auth-form-body">
                         <!-- <div> -->
