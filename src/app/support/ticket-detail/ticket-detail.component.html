@@ -1,7 +1,8 @@
 <!-- Details -->
 
 <div id="st-ticket-detail">
-    <div style="padding: 10px;">
+    <div style="padding: 0px 10px 10px 10px;"> Your request has been submitted!</div>
+    <div style="padding: 0px 10px 10px 10px;">
         <div class="title">{{ticketDetail?.short_description}}</div>
 
         <table class="table table-condensed" style="margin-bottom: 0px !important;">
@@ -15,11 +16,11 @@
                     <td class="trow">{{ticketDetail?.state}}</td>
                 </tr>
                 <tr class="trow">
-                    <td class="trow key">Created On</td>
+                    <td class="trow key">Created</td>
                     <td class="trow">{{ticketDetail?.sys_created_on | timesAgo}}</td>
                 </tr>
                 <tr class="trow">
-                    <td class="trow key">Updated on</td>
+                    <td class="trow key">Updated</td>
                     <td class="trow">{{ticketDetail?.sys_created_on | timesAgo}}</td>
                 </tr>
                 <!-- <tr class="trow">
@@ -33,19 +34,20 @@
 
     <hr>
 
-    <div style='padding: 10px;'>
+    <div style='padding: 0px 10px 10px 10px;'>
         <div class="title">
             Work notes
         </div>
         <div class="trow">
-            {{ticketDetail?.work_notes}}
+            {{ticketDetail?.work_notes?ticketDetail.work_notes : "Not any work notes yet, we will update it shortly!"}}
+
         </div>
 
         <div class="title">
             Additional Comments
         </div>
         <div class="trow">
-            {{ticketDetail?.additional_comments}}
+            {{ticketDetail?.addtional_comments?ticketDetail.addtional_comments: "No comments yet, we will update it shortly!"}}
         </div>
     </div>
 </div>
