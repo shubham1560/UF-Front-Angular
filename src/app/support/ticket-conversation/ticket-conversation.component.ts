@@ -39,7 +39,7 @@ export class TicketConversationComponent implements OnInit {
       this.buttonText = "Sending....";
       this.postConversation(this.comment);
       this.comment = ''
-      this.ngOnInit();
+      // this.ngOnInit();
     }
   }
 
@@ -47,12 +47,10 @@ export class TicketConversationComponent implements OnInit {
   postConversation(comment) {
     this.converse.postConverse(this.ticket_id, this.ticket_type, comment).subscribe(
       response => {
-        this.sendingMessage = false;
-        this.buttonText = "Send";
-        
+        this.getConversation();
       }, error => {
-        this.sendingMessage = false;
-        this.buttonText = "Send";
+        // this.sendingMessage = false;
+        // this.buttonText = "Send";
       }
     )
   }
@@ -62,8 +60,12 @@ export class TicketConversationComponent implements OnInit {
       (response: any) => {
         // console.log(response);
         this.conversation = response;
+        this.sendingMessage = false;
+        this.buttonText = "Send";
       }, error => {
         console.log(error);
+        this.sendingMessage = false;
+        this.buttonText = "Send";
       }
     )
   }

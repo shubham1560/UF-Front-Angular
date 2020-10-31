@@ -12,6 +12,9 @@
       <div class="col-md-6" style="margin-bottom: 20px;">
         <mat-list>
           <div mat-subheader class="header">Features</div>
+          <div *ngIf="features?.length==0" style="padding: 20px;" class="st-border">
+            No Features Suggested!
+          </div>
           <mat-list-item *ngFor="let feature of features" style="border: 1px solid #ddd;">
             <a target="_blank" routerLink="/support/tickets/{{feature.id}}/feature">
               <mat-icon mat-list-icon class="list-icon">
@@ -31,6 +34,9 @@
       <div class="col-md-6">
         <mat-list>
           <div mat-subheader class="header">Defects</div>
+          <div *ngIf="defects?.length==0" style="padding: 20px;" class="st-border">
+            No defects reported!
+          </div>
           <mat-list-item *ngFor="let defect of defects" style="border: 1px solid #ddd;">
             <a target="_blank" routerLink="/support/tickets/{{defect.id}}/defect">
               <mat-icon mat-list-icon class="list-icon">
