@@ -1,1 +1,29 @@
-<p>ticket-conversation works!</p>
+<!-- <p>ticket-conversation works!</p> -->
+
+<form>
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"
+            placeholder="Type your message here...">
+        <div class="input-group-btn">
+            <button mat-button style="border-radius:0px 4px 4px 0px;" class="primary-button-inverted"
+                (click)="sendMessage()" type="submit">
+                <!-- <i class="glyphicon glyphicon-search"></i> -->
+                {{buttonText}}
+            </button>
+        </div>
+    </div>
+</form>
+{{comment}}
+
+
+<div *ngFor="let conversation of conversation" style="border-left: 2px solid black;">
+    <div>
+        <div mat-card-avatar class="author-image"
+            [ngStyle]="{'background-image': 'url(' + conversation.get_created_by.pic + ')'}"
+            style="background-size: cover;"></div>
+    </div>
+</div>
+
+<pre>
+{{conversation | json}}
+</pre>

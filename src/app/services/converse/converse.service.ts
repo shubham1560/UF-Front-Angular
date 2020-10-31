@@ -20,6 +20,7 @@ export class ConverseService {
     return this.urlService.getHeader();
   }
 
+
   postConverse(record_id, record_table, comment){
     this.called_url = `${this.base_support_url}post/`;
     const body = {
@@ -28,5 +29,10 @@ export class ConverseService {
       comment: comment
     }
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  getConverse(record_id, record_table){
+    this.called_url = `${this.base_support_url}get/${record_id}/${record_table}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 }

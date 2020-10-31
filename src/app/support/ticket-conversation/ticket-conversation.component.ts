@@ -14,32 +14,51 @@ export class TicketConversationComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  ticket_id
-    ticket_type
+  ticket_id;
+  ticket_type;
+  comment;
+  conversation = [];
+  buttonText = "Send";
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(
-      params =>{
+      params => {
         this.ticket_id = params.get('id');
         this.ticket_type = params.get('type');
-        this.converse.postConverse(this.ticket_id, this.ticket_type, 'well it works somehow').subscribe(
-          response =>{
-            console.log(response);
-          }, error =>{
-            console.log(error);
-          }
-        )
-        // console.log(params)
-        // this.support.getSupportTicketDetails(this.ticket_id, this.ticket_type).subscribe(
-        //   result=>{
-        //     this.ticketDetail = result;
-            
-        //   }, error =>{
-        //     console.log(error);
-        //   }
-        // )
+        // this.postConversation("yolo maan, why is it taking so long!")
+        this.getConversation();
       }
     )
-    
+
+  }
+
+  sendMessage() {
+    if (this.comment.length > 0) {
+      this.postConversation(this.comment);
+      this.ngOnInit();
+    }
+  }
+
+
+  postConversation(comment) {
+    this.converse.postConverse(this.ticket_id, this.ticket_type, comment).subscribe(
+      response => {
+        console.log(response);
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
+
+  getConversation() {
+    this.converse.getConverse(this.ticket_id, this.ticket_type).subscribe(
+      (response: any) => {
+        // console.log(response);
+        this.conversation = response;
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 
 }
