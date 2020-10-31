@@ -6,6 +6,7 @@ import { ReportDefectComponent } from './report-defect/report-defect.component';
 import { TicketsComponent } from './tickets/tickets.component';
 import { ProfileGuard } from '../userprofile/guard/profile.guard';
 import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
+import { TicketFormComponent } from './ticket-form/ticket-form.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: "tickets/:id/:type",
-    component: TicketDetailComponent
+    component: TicketFormComponent
   }
 ];
 
