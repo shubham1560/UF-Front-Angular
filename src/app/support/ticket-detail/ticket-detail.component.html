@@ -23,13 +23,16 @@
                     <td class="trow key">Updated</td>
                     <td class="trow">{{ticketDetail?.sys_created_on | timesAgo}}</td>
                 </tr>
-                <!-- <tr class="trow">
-                    <td class="trow">John</td>
-                    <td class="trow">{{ticketDetail?.}}</td>
-                </tr> -->
-
+                <tr class="trow" *ngIf="ticketDetail?.get_created_by">
+                    <td class="trow key">Created By</td>
+                    <td class="trow">
+                        {{ticketDetail?.get_created_by.first_name + " " + ticketDetail?.get_created_by.last_name}} <br>
+                        {{ticketDetail?.get_created_by.email}}
+                    </td>
+                </tr>
             </tbody>
         </table>
+        <div class="trow"></div>
     </div>
 
     <hr>

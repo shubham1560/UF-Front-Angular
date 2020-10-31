@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SupportService } from 'src/app/services/support/support.service';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 export interface Section {
   name: string;
@@ -16,6 +17,7 @@ export class TicketsComponent implements OnInit {
 
   constructor(
     private supportService: SupportService,
+    private log: LoggerService
   ) { }
 
   defects;
@@ -29,6 +31,7 @@ export class TicketsComponent implements OnInit {
         this.features = result.features;
       }
     )
+    this.log.logData('st-tickets', this);
   }
 
 }

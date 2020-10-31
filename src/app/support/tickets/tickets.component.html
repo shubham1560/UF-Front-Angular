@@ -2,7 +2,7 @@
 
 <!-- <p>tickets works!</p> -->
 <div class="flex-wrapper">
-  <div class="container">
+  <div class="container" id="st-tickets">
     <br>
     <h3 style="color: #8dbcaa;">
       Requests
@@ -24,7 +24,7 @@
                 {{feature.short_description}}
               </a>
             </div>
-            <div mat-line class="list-sub"> {{feature.sys_created_on | timesAgo}} • {{feature.state}} </div>
+            <div mat-line class="list-sub"> {{feature.sys_created_on | timesAgo}} • {{feature.state}} • {{feature.get_created_by?.email}} </div>
           </mat-list-item>
         </mat-list>
       </div>
@@ -43,7 +43,7 @@
                 {{defect.short_description}}
               </a>
             </div>
-            <div mat-line class="list-sub"> {{defect.sys_created_on | timesAgo}} • {{defect.state}}</div>
+            <div mat-line class="list-sub"> {{defect.sys_created_on | timesAgo}} • {{defect.state}} • {{defect.get_created_by?.email}}</div>
           </mat-list-item>
         </mat-list>
       </div>
