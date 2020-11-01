@@ -83,4 +83,8 @@ export class TicketConversationComponent implements OnInit {
     )
   }
 
+  reloadConverse(){
+    this.getConversation();
+  }
+
 }

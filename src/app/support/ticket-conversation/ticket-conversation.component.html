@@ -14,12 +14,19 @@
         </div>
     </form>
     <!-- {{comment}} -->
+    <div style="height: 50px;">
+        <button mat-icon-button (click)="reloadConverse()" style="float:right; outline: none;margin-right: 20px;margin-top: 20px;">
+            <mat-icon>
+                refresh
+            </mat-icon>
+        </button>
+    </div>
     <div *ngIf="conversation.length == 0" class="icon-div">
         <mat-icon class="icon">
             message
         </mat-icon>
     </div>
-
+    
     <div *ngFor="let conversation of conversation" style="border-left: 2px solid #ddd;">
         <div class="converse-card st-border">
             <div mat-card-avatar class="author-image"
