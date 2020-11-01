@@ -13,6 +13,9 @@
         <!-- <pre>
             {{attachments | json}}
         </pre> -->
+        <div *ngIf="attachments?.length==0" style="font-size: 12px;">
+            No attached Images!
+        </div>
         <div *ngFor="let image of attachments" class="support-images">
             <mat-card class="image-card">
                 <mat-card-header style="padding: 10px;">
