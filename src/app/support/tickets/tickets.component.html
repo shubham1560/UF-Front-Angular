@@ -4,14 +4,19 @@
 <div class="flex-wrapper">
   <div class="container" id="st-tickets">
     <br>
-    <h3 style="color: #8dbcaa;">
+    <button mat-button routerLink="/support/tickets" style="color: #1F8476;"> <mat-icon>keyboard_backspace</mat-icon> Back</button>
+    <h3 style="color: #8dbcaa; text-align: center;">
       Requests
     </h3>
     <br>
     <div class="row">
       <div class="col-md-6" style="margin-bottom: 20px;">
         <mat-list>
-          <div mat-subheader class="header">Features</div>
+          <div mat-subheader class="header">
+            Features 
+            <button mat-button routerLink="/support/feature_request" style="color: #1F8476; float: right;"> Suggest feature</button>
+
+          </div>
           <div *ngIf="features?.length==0" style="padding: 20px;" class="st-border">
             No Features Suggested!
           </div>
@@ -33,7 +38,11 @@
       </div>
       <div class="col-md-6">
         <mat-list>
-          <div mat-subheader class="header">Defects</div>
+          <div mat-subheader class="header">
+            Defects
+            <button mat-button routerLink="/support/report_defect" style="color: #1F8476; float: right;"> Report defect</button>
+
+          </div>
           <div *ngIf="defects?.length==0" style="padding: 20px;" class="st-border">
             No defects reported!
           </div>

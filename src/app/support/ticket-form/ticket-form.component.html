@@ -3,14 +3,23 @@
 <br>
 <div class="flex-wrapper">
     <div class="container">
+    <button mat-button routerLink="/support/tickets" style="color: #1F8476;"> <mat-icon>keyboard_backspace</mat-icon> Back</button>
+
         <div class="row">
             <br>
+
+            <!-- <div *ngIf="!valid">  -->
+
+                <!-- <h3>Unauthorized</h3> -->
+
+            <!-- </div> -->
+
             <div class="col-md-8">
-                <app-ticket-conversation></app-ticket-conversation>
+                <app-ticket-conversation *ngIf="valid"></app-ticket-conversation>
             </div>
             <div class="col-md-4">
-                <app-ticket-detail></app-ticket-detail>
-                <app-attachments></app-attachments>
+                <app-ticket-detail (notify)='onNotify($event)'></app-ticket-detail>
+                <app-attachments *ngIf="valid"></app-attachments>
             </div>
         </div>
     </div>

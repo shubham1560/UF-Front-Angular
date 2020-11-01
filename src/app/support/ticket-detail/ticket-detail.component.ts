@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SupportService } from 'src/app/services/support/support.service';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
@@ -21,6 +21,8 @@ export class TicketDetailComponent implements OnInit {
   ticketDetail;
   ticket_id;
   ticket_type;
+
+  @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>()
   
 
   ngOnInit(): void {
@@ -32,9 +34,10 @@ export class TicketDetailComponent implements OnInit {
         this.support.getSupportTicketDetails(this.ticket_id, this.ticket_type).subscribe(
           result=>{
             this.ticketDetail = result;
-            
+            this.notify.emit(true);
           }, error =>{
             console.log(error);
+            this.notify.emit(false);
           }
         )
       }

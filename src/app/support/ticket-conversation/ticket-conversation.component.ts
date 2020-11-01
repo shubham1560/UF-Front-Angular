@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { ConverseService } from 'src/app/services/converse/converse.service'
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,6 +14,9 @@ export class TicketConversationComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  @Input() valid;
+
+
   ticket_id;
   ticket_type;
   comment;
@@ -21,12 +24,19 @@ export class TicketConversationComponent implements OnInit {
   buttonText = "Send";
   sendingMessage = false;
 
+  // @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>()
+
+  ngOnChanges(){
+
+
+  }
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
         this.ticket_id = params.get('id');
         this.ticket_type = params.get('type');
-        // this.postConversation("yolo maan, why is it taking so long!")
+        console.log(this.valid);
         this.getConversation();
       }
     )
@@ -49,6 +59,9 @@ export class TicketConversationComponent implements OnInit {
       response => {
         this.getConversation();
       }, error => {
+        this.sendingMessage = false;
+        alert("unauthorized");
+        this.buttonText = "can't send";
         // this.sendingMessage = false;
         // this.buttonText = "Send";
       }

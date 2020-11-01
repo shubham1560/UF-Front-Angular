@@ -42,4 +42,13 @@ export class SupportService {
     this.called_url = `${this.base_url}attachment/get_image/${ticket_type}/${ticket_id}/`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  postAttachmentAction(action, action_config){
+    this.called_url = `${this.base_url}attachment/attachment/post/`;
+    const body = {
+      action: action,
+      config: action_config
+    }
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

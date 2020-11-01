@@ -51,24 +51,43 @@ export class AttachmentsComponent implements OnInit {
   }
 
   attachments = [];
+  buttonText = "upload more";
+  
+  getTableType(){
+    if(this.ticket_type == 'defect'){
+      return 'Defect';
+    }
+    if(this.ticket_type == 'feature'){
+      return 'Enhancement';
+    }
+  }
 
-
+  uploadingImage=false;
   onImageChange(event) {
     if (this.authService.isLoggedIn()) {
       for (var i = 0; i < event.target.files.length; i++) {
-        // this.uploadingImage = true;
-        // this.buttonText = "Uploading..."
+        this.uploadingImage = true;
+        this.buttonText = "Uploading..."
         if (event.target.files[i]) {
           const uploadImage = new FormData();
           uploadImage.append('image', event.target.files[i], event.target.files[i].name);
           uploadImage.append('token', this.authService.getToken());
-          uploadImage.append('table', 'Feature');
+          uploadImage.append('table', this.getTableType());
+          uploadImage.append('id', this.ticket_id);
           const url = `${this.url.base_url}attachment/general_add_image/`;
           this.http.post(url, uploadImage).subscribe(
             (result: any) => {
               // this.supportForm.get('attachments');
-              this.attachments.push(result);
-              // this.uploadingImage = false;
+              var attachment = {
+                "id":result.file.id,
+                "image_caption" : result.file.name,
+                "compressed": result.file.url,
+                "real_image": result.file.real_url,
+                "real_image_size": result.file.size,
+                "sys_created_on": result.file.sys_created_on
+              }
+              this.attachments.unshift(attachment);
+              this.uploadingImage = false;
               // this.buttonText = "Upload images/screenshots"
             },
             error => {
@@ -92,7 +111,7 @@ export class AttachmentsComponent implements OnInit {
   deleteAttachment(id) {
     var idx_to_delete;
     this.attachments.forEach(function (value, i) {
-      if (value.file.id == id) {
+      if (value.id == id) {
         idx_to_delete = i
       }
     });
@@ -101,8 +120,25 @@ export class AttachmentsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.attachments.splice(idx_to_delete, 1);
+
+        this.support.postAttachmentAction('delete', {"id": id}).subscribe(
+          result=>{
+            console.log(result);
+            this._snackBar.open("Deleted successfully!", '', {
+              duration: 3000
+            })
+          },error =>{
+            this._snackBar.open("Deleted unsuccessfully!", '', {
+              duration: 3000
+            })
+          }
+        )
+
       }
     });
+
+
+
   }
 
   editAttachment(id, name) {
@@ -113,11 +149,28 @@ export class AttachmentsComponent implements OnInit {
       console.log(result);
       if (result?.edit) {
         this.attachments.forEach(element => {
-          if (element.file.id == id) {
-            element.file.name = result.new_name;
+          if (element.id == id) {
+            element.image_caption = result.new_name;
           }
         });
+        this.support.postAttachmentAction('edit', {"id": id, "new_name": result.new_name}).subscribe(
+          result=>{
+            // console.log(result);
+            this._snackBar.open("Edited successfully!", '', {
+              duration: 3000
+            })
+          },
+          error=>{
+            this._snackBar.open("Could not edit!", '', {
+              duration: 3000
+            })
+          }
+        )
       }
     });
+
+    
+
+
   }
 }

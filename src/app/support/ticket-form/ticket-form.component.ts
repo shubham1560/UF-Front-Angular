@@ -12,4 +12,8 @@ export class TicketFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  valid = false;
+  onNotify(message){
+    this.valid = message
+  }
 }

@@ -1,0 +1,23 @@
+.wrapper{
+    padding: 15px;
+    background-color: white;
+    margin-top: 20px;
+}
+
+
+
+.uf-file-upload{
+    color: lightgray;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    // border: 1px solid #ccc;
+    // display: inline-block;
+    // padding: 6px 12px;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+}
