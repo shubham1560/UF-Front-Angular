@@ -87,6 +87,10 @@
                 style="line-height: 30px; outline: none; height: auto;">
                 Authored Articles
             </a>
+            <a mat-menu-item routerLink="/support" *ngIf="isAuthor"
+            style="line-height: 30px; outline: none; height: auto;">
+                Support
+            </a>
             <a mat-menu-item routerLink="/user_profile" style="line-height: 30px; outline: none; height: auto;"> My
                 Profile</a>
             <button mat-menu-item (click)="logout()" style="line-height: 30px; outline: none; height: auto;">
