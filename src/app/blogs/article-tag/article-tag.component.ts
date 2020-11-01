@@ -9,12 +9,14 @@ export class ArticleTagComponent implements OnInit {
 
   constructor() { }
 
-  articleTags = [];
-  fetchedTags = [{ "label": "Angular", "id": 1 }, { "label": "django", "id": 2 }, { "label": "digitalocean", "id": 3 }]
+  article_id = "hello-6cceef16";
+  articleTags;
+  fetchedTags;
   ngOnInit(): void {
     // request to fetch all the tags from tag table
     // getting all tags
-
+    this.fetchAllTags();
+    this.fetchRelatedTags(this.article_id);
     // request to get all the tags of the article if have any
     // getting all the tags already wth article
   }
@@ -24,10 +26,19 @@ export class ArticleTagComponent implements OnInit {
     if (event.keyCode == 13) {
       this.findTag(inputTag);
     }
+  }
+
+  fetchAllTags(){
+    // fetch all the tags from tag table
+    this.fetchedTags = [{ "label": "Angular", "id": 1 }, { "label": "django", "id": 2 }, { "label": "digitalocean", "id": 3 }];
+  }
+  
+  fetchRelatedTags(article_id){
+    this.articleTags = []
 
   }
 
-  article_id = "hello-6cceef16";
+  
 
   findTag(tag) {
     var found = false;
