@@ -11,13 +11,18 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <mat-card class="st-border m-10">
                     <mat-card-header>
-                        <mat-card-title style="color:#1F8476; font-size: 20px; font-weight: 400;">Suggest Enhancement
+                        <mat-card-title>
+                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
+                                routerLink="support/feature_request">
+                                Suggest Enhancement
+                            </a>
                         </mat-card-title>
                         <mat-card-subtitle class="desc-text">Please describe the enhancement </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
-                        <button (click)="navigate('feature_request')" mat-button class="primary-button">View
-                            Details</button>
+                        <button (click)="navigate('feature_request')" mat-button class="primary-button">
+                            Suggest
+                        </button>
                         <!-- <button mat-button>SHARE</button> -->
                     </mat-card-actions>
                 </mat-card>
@@ -25,13 +30,17 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <mat-card class="st-border m-10">
                     <mat-card-header>
-                        <mat-card-title style="color:#1F8476; font-size: 20px; font-weight: 400">Report a Defect
+                        <mat-card-title>
+                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
+                                routerLink="support/report_defect">
+                            Report a Defect
+                            </a>
                         </mat-card-title>
                         <mat-card-subtitle class="desc-text">Describe a defect </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
-                        <button (click)="navigate('report_defect')" mat-button class="primary-button">View
-                            Details</button>
+                        <button (click)="navigate('report_defect')" mat-button class="primary-button">
+                            Report</button>
                         <!-- <button mat-button>SHARE</button> -->
                     </mat-card-actions>
                 </mat-card>
@@ -61,14 +70,18 @@
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <mat-card class="st-border m-10">
                     <mat-card-header>
-                        <mat-card-title style="color:#1F8476; font-size: 20px; font-weight: 400">Track my requests
+                        <mat-card-title>
+                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
+                                routerLink="support/tickets">
+                            Track requests
+                            </a>
                         </mat-card-title>
                         <mat-card-subtitle class="desc-text">All the requests made on this page is here, you can check
                             their status</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-actions align="end">
                         <button (click)="navigate('tickets')" mat-button class="primary-button">View
-                            Details</button>
+                            See all</button>
                     </mat-card-actions>
                 </mat-card>
             </div>
