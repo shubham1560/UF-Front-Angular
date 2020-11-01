@@ -19,6 +19,7 @@ import { SafeurlPipe } from './pipes/safeurl.pipe';
 import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
 import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
+import { ArticleTagComponent } from './article-tag/article-tag.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
     SafeurlPipe,
     CoursesComponent,
     PathbuilderComponent,
+    ArticleTagComponent,
     ],
   imports: [
     CommonModule,
