@@ -1,1 +1,32 @@
-<p>article-tag works!</p>
+<div class="flex-wrapper">
+    <div class="container">
+        <br><br><br>
+        <div class="row">
+            <div class="col-md-4">
+                fetched
+                <pre>
+                    {{fetchedTags | json}}
+                </pre>
+            </div>
+            <div class="col-md-4" style="text-align: center;">
+                Well article tags
+                <div class="st-border" style="height: 100px;width: 100%;">
+                    <!-- <input type="text" placeholder="Add tag..."> -->
+                    <input type="text" name="selectedTag" list="cityname" (keydown)="addToTags($event, selectedTag)"
+                        [(ngModel)]="selectedTag">
+                    <!-- {{city}} -->
+                    
+                    <datalist id="cityname">
+                        <option *ngFor="let tag of fetchedTags" [value]="tag.label">
+                    </datalist>
+                </div>
+            </div>
+            <div class="col-md-4">
+                selected
+                <pre>
+                    {{tags | json}}
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>

@@ -5,11 +5,16 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { BlogsComponent } from './blogs.component';
 import { AuthorGuard } from './guard/author.guard'
 import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
+import { ArticleTagComponent } from './article-tag/article-tag.component';
 
 const routes: Routes = [
     {
         path: '', 
         component: ArticleListComponent
+    },
+    {
+        path: 'article_tags',
+        component: ArticleTagComponent
     },
     {
         path: 'article/:id',
