@@ -94,6 +94,9 @@ export class HeaderComponent implements OnInit {
           query: queryParm.value
         }
       });
+      dialogRef.afterClosed().subscribe(result=>{
+        this.searchQueryForm.setValue({"query":''})
+      })
     }
 
 

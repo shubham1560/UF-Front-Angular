@@ -24,6 +24,7 @@ export class TicketsComponent implements OnInit {
 
   defects;
   features;
+  isLoading = true;
 
   ngOnInit(): void {
     if(this.AuthService.isLoggedIn()){
@@ -32,6 +33,9 @@ export class TicketsComponent implements OnInit {
           // console.log(result);
           this.defects = result.defects;
           this.features = result.features;
+          this.isLoading = false
+        }, error =>{
+          this.isLoading = false;
         }
       )
       this.log.logData('st-tickets', this);

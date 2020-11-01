@@ -95,7 +95,7 @@ export class KbuseComponent implements OnInit {
           data => {
             // console.log(data);
             this.found_useful = false;
-            this.showSnackBar("we will working on improving the article");
+            this.showSnackBar("we will work on improving the article");
             this.openDialog();
           }
         )

@@ -15,6 +15,7 @@
     </form>
     <!-- {{comment}} -->
     <div style="height: 50px;">
+        <span *ngIf="isLoading" style="margin-top: 20px;">Loading...</span>
         <button mat-icon-button (click)="reloadConverse()" style="float:right; outline: none;margin-right: 20px;margin-top: 20px;">
             <mat-icon>
                 refresh

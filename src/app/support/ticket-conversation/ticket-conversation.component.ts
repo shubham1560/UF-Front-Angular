@@ -69,21 +69,25 @@ export class TicketConversationComponent implements OnInit {
   }
 
   getConversation() {
+
     this.converse.getConverse(this.ticket_id, this.ticket_type).subscribe(
       (response: any) => {
         // console.log(response);
         this.conversation = response;
         this.sendingMessage = false;
         this.buttonText = "Send";
+        this.isLoading = false;
       }, error => {
         console.log(error);
+        this.isLoading = false;
         this.sendingMessage = false;
         this.buttonText = "Send";
       }
     )
   }
-
+  isLoading;
   reloadConverse(){
+    this.isLoading = true;
     this.getConversation();
   }
 
