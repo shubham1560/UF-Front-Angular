@@ -16,10 +16,16 @@
 
             <div class="col-md-8">
                 <app-ticket-conversation *ngIf="valid"></app-ticket-conversation>
+                <div *ngIf="!valid" class="loader">
+
+                </div>
             </div>
             <div class="col-md-4">
                 <app-ticket-detail (notify)='onNotify($event)'></app-ticket-detail>
                 <app-attachments *ngIf="valid"></app-attachments>
+                <div *ngIf="!valid" class="loader">
+
+                </div>
             </div>
         </div>
     </div>
