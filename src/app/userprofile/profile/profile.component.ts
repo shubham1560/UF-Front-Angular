@@ -116,9 +116,9 @@ export class ProfileComponent implements OnInit {
           // this.ngOnInit();
           window.location.reload();
         });
-        console.log(result);
+        // console.log(result);
       }, error =>{
-        console.log(error);
+        // console.log(error);
         
       }
 

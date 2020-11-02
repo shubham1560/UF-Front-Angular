@@ -76,7 +76,7 @@ export class ReportDefectComponent implements OnInit {
 
         
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.formSubmit = false;
       }
     )
@@ -141,7 +141,7 @@ export class ReportDefectComponent implements OnInit {
       data: { id: id, name: name },
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       if (result?.edit) {
         this.attachments.forEach(element => {
           if (element.file.id == id) {

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SupportService } from 'src/app/services/support/support.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Title } from '@angular/platform-browser';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,7 +20,8 @@ export class TicketDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private log: LoggerService,
     private title: Title,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router
   ) { }
 
   ticketDetail;
@@ -44,13 +45,14 @@ export class TicketDetailComponent implements OnInit {
             this.notify.emit(true);
             this.title.setTitle(this.ticketDetail.short_description +" - "+ this.ticket_type+ " - SortedTree");
           }, error =>{
-            console.log(error);
+            // console.log(error);
             this.notify.emit(false);
+            this.router.navigate(['support', 'tickets']);
           }
         )
       }
     )
-    console.log(this);
+    // console.log(this);
     
     this.log.logData('st-ticket-detail', this);
   }
@@ -62,9 +64,9 @@ export class TicketDetailComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      console.log(this.ticketDetail);
+      // console.log('The dialog was closed');
+      // console.log(result);
+      // console.log(this.ticketDetail);
       
       // this.ticketDetail = result.data;
         // this.animal = result;

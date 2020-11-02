@@ -39,9 +39,9 @@ export class AttachmentsComponent implements OnInit {
           (response:any)=>{
             // console.log(response);
             this.attachments = response
-            console.log(this.attachments)
+            // console.log(this.attachments)
           }, error =>{
-            console.log(error);
+            // console.log(error);
           }
         )
 
@@ -123,7 +123,7 @@ export class AttachmentsComponent implements OnInit {
 
         this.support.postAttachmentAction('delete', {"id": id}).subscribe(
           result=>{
-            console.log(result);
+            // console.log(result);
             this._snackBar.open("Deleted successfully!", '', {
               duration: 3000
             })
@@ -146,7 +146,7 @@ export class AttachmentsComponent implements OnInit {
       data: { id: id, name: name },
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       if (result?.edit) {
         this.attachments.forEach(element => {
           if (element.id == id) {

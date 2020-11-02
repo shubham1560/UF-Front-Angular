@@ -22,7 +22,7 @@ export class ArticleTagComponent implements OnInit {
   }
   selectedTag;
   addToTags(event, inputTag) {
-    console.log(inputTag);
+    // console.log(inputTag);
     if (event.keyCode == 13) {
       this.findTag(inputTag);
     }
@@ -51,13 +51,13 @@ export class ArticleTagComponent implements OnInit {
       }
     });
     if (!found) {
-      console.log("not found, make a new one!");
+      // console.log("not found, make a new one!");
       this.createAndAdd(tag);
     }
   }
 
   createAndAdd(tag){
-    console.log("create and add the tag to tags");
+    // console.log("create and add the tag to tags");
     var sel_tag = {
       "label": tag,
       "id": 12

@@ -72,7 +72,7 @@ export class FeatureRequestComponent implements OnInit {
         this.route.navigate(["support", "tickets", result, "feature"]);
 
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.formSubmit = false;
       }
     )
@@ -137,7 +137,7 @@ export class FeatureRequestComponent implements OnInit {
       data: { id: id, name: name },
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       if (result?.edit) {
         this.attachments.forEach(element => {
           if (element.file.id == id) {

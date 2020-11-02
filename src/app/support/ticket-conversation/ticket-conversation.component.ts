@@ -36,7 +36,7 @@ export class TicketConversationComponent implements OnInit {
       params => {
         this.ticket_id = params.get('id');
         this.ticket_type = params.get('type');
-        console.log(this.valid);
+        // console.log(this.valid);
         this.getConversation();
       }
     )
@@ -78,7 +78,7 @@ export class TicketConversationComponent implements OnInit {
         this.buttonText = "Send";
         this.isLoading = false;
       }, error => {
-        console.log(error);
+        // console.log(error);
         this.isLoading = false;
         this.sendingMessage = false;
         this.buttonText = "Send";
