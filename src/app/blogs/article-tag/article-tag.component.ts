@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 
 @Component({
   selector: 'app-article-tag',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleTagComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private knowledge: DataService
+  ) { }
 
   article_id = "hello-6cceef16";
   articleTags;
@@ -30,11 +33,27 @@ export class ArticleTagComponent implements OnInit {
 
   fetchAllTags(){
     // fetch all the tags from tag table
-    this.fetchedTags = [{ "label": "Angular", "id": 1 }, { "label": "django", "id": 2 }, { "label": "digitalocean", "id": 3 }];
+    this.knowledge.getAllTags().subscribe(
+      result=>{
+        this.fetchedTags = result;
+      }, error =>{
+        this.fetchedTags = [];
+      }
+    )
+    // this.fetchedTags = [{ "label": "Angular", "id": 1 }, { "label": "django", "id": 2 }, { "label": "digitalocean", "id": 3 }];
   }
   
   fetchRelatedTags(article_id){
     this.articleTags = []
+    this.knowledge.getArticleTags(this.article_id).subscribe(
+      (result:any)=>{
+        console.log(result);
+        result.forEach(element => {
+          this.articleTags.push(element.get_tag);   
+        });
+      }
+    )
+    // conso
 
   }
 
@@ -52,23 +71,32 @@ export class ArticleTagComponent implements OnInit {
     });
     if (!found) {
       // console.log("not found, make a new one!");
-      this.createAndAdd(tag);
+      this.knowledge.postTag(tag).subscribe(
+        result=>{
+          console.log(result);
+          this.createAndAdd(result);
+        }
+      )
+      
     }
   }
 
   createAndAdd(tag){
     // console.log("create and add the tag to tags");
-    var sel_tag = {
-      "label": tag,
-      "id": 12
-    }
-    this.articleTags.push(sel_tag);
+    this.articleTags.push(tag);
+    this.fetchedTags.push(tag);
     
+
     //request to create a tag in tag table and also add it to article
     //create tag
     //create articletag with article and tag
+    this.knowledge.postArticleTag(this.article_id, tag.id).subscribe(
+      result=>{
+        console.log(result);
+      }
+    )
+    // make artilce
 
-    this.fetchedTags.push(sel_tag);
   }
 
   alreadyInTagsNotPush(selectedTag) {

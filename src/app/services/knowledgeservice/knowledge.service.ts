@@ -193,4 +193,32 @@ export class DataService {
     this.cache.deleteContaining('user/kb_knowledge/author/');
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  getAllTags(){
+    this.called_url = `${this.base_knowledge_url}tag/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
+
+  getArticleTags(article_id){
+    this.called_url = `${this.base_knowledge_url}tag/${article_id}/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
+
+  postTag(label){
+    this.called_url = `${this.base_knowledge_url}tag/`;
+    const body = {
+      "label": label
+    }
+    this.cache.deleteContaining('tag/');
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  postArticleTag(article_id, tag_id){
+    this.called_url = `${this.base_knowledge_url}tag/${article_id}/`;
+    const body = {
+      "tag_id": tag_id
+    }
+    this.cache.deleteContaining('tag/'+article_id+'/');
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }
