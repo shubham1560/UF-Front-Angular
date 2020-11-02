@@ -57,13 +57,17 @@ export class TicketDetailComponent implements OnInit {
   
   openDialog(): void {
     const dialogRef = this.dialog.open(UpdateTicketDetailsComponent, {
-      // width: '250px',
-      data: {ticket: this.ticketDetail}
+      minWidth: '280px',
+      data: {ticket: this.ticketDetail, type:this.ticket_type}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
+      console.log(result);
+      console.log(this.ticketDetail);
+      
+      // this.ticketDetail = result.data;
+        // this.animal = result;
     });
   }
 

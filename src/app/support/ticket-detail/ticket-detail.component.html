@@ -4,7 +4,7 @@
     <div style="padding: 0px 10px 10px 10px;"> The request has been submitted!</div>
     <hr>
     <div *ngIf="staff">
-        <button mat-button class="trow">
+        <button (click)="openDialog()" mat-button class="trow">
             <mat-icon class="trow" style="font-size: 18px;">
                 edit
             </mat-icon>
@@ -59,7 +59,7 @@
             Additional Comments
         </div>
         <div class="trow">
-            {{ticketDetail?.addtional_comments?ticketDetail.addtional_comments: "No comments yet, we will update it shortly!"}}
+            {{ticketDetail?.additional_comments?ticketDetail.additional_comments: "No comments yet, we will update it shortly!"}}
         </div>
     </div>
 </div>

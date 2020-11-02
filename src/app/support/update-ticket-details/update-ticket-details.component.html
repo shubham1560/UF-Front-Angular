@@ -1,1 +1,33 @@
-<p>update-ticket-details works!</p>
+<div style="color: #2e778e; font-size: 14px;">
+    {{data.ticket.short_description}}
+    <br> <br>
+    <form (ngSubmit)="updateDetail()" [formGroup]='ticketDetail'>
+        <mat-form-field appearance="legacy" style="width: 100%; font-size: 14px;">
+            <mat-label>State</mat-label>
+            <mat-select formControlName="state">
+                <mat-option value="draft">Draft</mat-option>
+                <mat-option value="ready">Ready</mat-option>
+                <mat-option value="work in progress">Work in progress</mat-option>
+                <mat-option value="ready for test">Ready for testing</mat-option>
+                <mat-option value="complete">Complete</mat-option>
+                <mat-option value="cancelled">Cancelled</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 100%; font-size: 14px;">
+            <mat-label>Work Notes</mat-label>
+            <textarea rows="4" matInput type="email" id="email" formControlName="work_notes" placeholder="Work notes">
+            </textarea>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width: 100%; font-size: 14px;">
+            <mat-label>Additional comments</mat-label>
+            <textarea rows="4" matInput formControlName="additional_comments"
+                placeholder="Additional Comments"></textarea>
+        </mat-form-field>
+        <div>
+            <button class="primary-button-inverted" style="float: right;" mat-raised-button type="submit">
+                Edit<mat-icon matSuffix style="margin: 0px 8px;">login</mat-icon>
+            </button>
+        </div>
+
+    </form>
+</div>

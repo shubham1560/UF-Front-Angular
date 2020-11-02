@@ -20,10 +20,17 @@ export class SupportService {
     return this.urlService.getHeader();
   }
 
-  createSupportRequest(feature, type){
+  createSupportRequest(support_data, type){
     // console.log(feature);
-    this.called_url = `${this.base_support_url}feature/post/`;
-    const body = {"feature": feature, record_type: type};
+    this.called_url = `${this.base_support_url}support/post/`;
+    const body = {"data": support_data, record_type: type};
+    // console.log(body);
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  editSupportRequest(support_data, type){
+    this.called_url = `${this.base_support_url}support/edit/`;
+    const body = {"data": support_data, record_type: type};
     // console.log(body);
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }

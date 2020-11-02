@@ -19,11 +19,13 @@ import {MatTreeModule} from '@angular/material/tree';
 import {MatListModule} from '@angular/material/list';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
   declarations: [],
   imports: [
+    MatSelectModule,
     DragDropModule,
     MatTreeModule,
     MatTooltipModule,
@@ -48,6 +50,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatCheckboxModule,
   ],
   exports:[
+    MatSelectModule,
     DragDropModule,
     MatCheckboxModule,
     MatListModule,
