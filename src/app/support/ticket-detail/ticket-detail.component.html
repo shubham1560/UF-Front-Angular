@@ -7,6 +7,12 @@
         <div class="title">{{ticketDetail?.short_description}}</div>
         <table class="table table-condensed" style="margin-bottom: 0px !important;">
             <tbody>
+                <tr class="trow" *ngIf="ticketDetail?.priority">
+                    <td class="trow key">Priority</td>
+                    <td class="trow">
+                        {{ticketDetail?.priority}}
+                    </td>
+                </tr>
                 <tr class="trow">
                     <td class="trow key">State</td>
                     <td class="trow">{{ticketDetail?.state}}</td>
@@ -17,7 +23,7 @@
                 </tr>
                 <tr class="trow">
                     <td class="trow key">Updated</td>
-                    <td class="trow">{{ticketDetail?.sys_created_on | timesAgo}}</td>
+                    <td class="trow">{{ticketDetail?.sys_updated_on | timesAgo}}</td>
                 </tr>
                 <tr class="trow" *ngIf="ticketDetail?.get_created_by">
                     <td class="trow key">Created By</td>

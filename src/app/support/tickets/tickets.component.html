@@ -14,7 +14,7 @@
         <mat-list>
           <div mat-subheader class="header">
             Features 
-            <button mat-button routerLink="/support/feature_request" style="color: #1F8476; float: right;"> Suggest feature</button>
+            <button mat-button routerLink="/support/feature_request" style="color: #1F8476; margin-left: auto;"> Suggest feature</button>
 
           </div>
           <div *ngIf="features?.length==0" style="padding: 20px;" class="st-border">
@@ -36,7 +36,9 @@
                 {{feature.short_description}}
               </a>
             </div>
-            <div mat-line class="list-sub"> {{feature.sys_created_on | timesAgo}} • {{feature.state}} • {{feature.get_created_by?.email}} </div>
+            <div mat-line class="list-sub" *ngIf="feature.get_created_by">Priority: {{feature?.priority}} • {{feature.get_created_by?.email}}</div>
+            <div mat-line class="list-sub">updated {{feature.sys_updated_on | timesAgo}} • created {{feature.sys_created_on | timesAgo}} • <span style="color: #1F8476;">{{feature.state}}</span> </div>
+
           </mat-list-item>
         </mat-list>
       </div>
@@ -44,7 +46,7 @@
         <mat-list>
           <div mat-subheader class="header">
             Defects
-            <button mat-button routerLink="/support/report_defect" style="color: #1F8476; float: right;"> Report defect</button>
+            <button mat-button routerLink="/support/report_defect" style="color: #1F8476; margin-left: auto;"> Report defect</button>
 
           </div>
           <div *ngIf="defects?.length==0" style="padding: 20px;" class="st-border">
@@ -66,8 +68,9 @@
                 {{defect.short_description}}
               </a>
             </div>
-            <div mat-line class="list-sub"> {{defect.sys_created_on | timesAgo}} • {{defect.state}} • {{defect.get_created_by?.email}}</div>
-          </mat-list-item>
+            <div mat-line class="list-sub" *ngIf="defect.get_created_by">{{defect?.priority}} • {{defect.get_created_by?.email}}</div>
+            <div mat-line class="list-sub">updated {{defect.sys_updated_on | timesAgo}} • created {{defect.sys_created_on | timesAgo}} • <span style="color: #1F8476;"> {{defect.state}} </span></div>
+        </mat-list-item>
         </mat-list>
       </div>
     </div>

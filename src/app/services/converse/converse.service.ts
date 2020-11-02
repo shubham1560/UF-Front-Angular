@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UrlconfigService } from '../urlconfig.service';
 import { HttpClient } from '@angular/common/http';
+import { CacheserviceService } from '../cacheservice/cacheservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class ConverseService {
   constructor(
     private urlService: UrlconfigService,
     private httpService: HttpClient,
+    private cacheService: CacheserviceService,
   ) { }
 
   base_url = this.urlService.getUrl();
@@ -28,6 +30,8 @@ export class ConverseService {
       record_table: record_table,
       comment: comment
     }
+    this.cacheService.deleteContaining("tickets/get/");
+    this.cacheService.deleteContaining("ticket/");
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 

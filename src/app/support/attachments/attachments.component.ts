@@ -51,7 +51,7 @@ export class AttachmentsComponent implements OnInit {
   }
 
   attachments = [];
-  buttonText = "upload more";
+  buttonText = "upload images";
   
   getTableType(){
     if(this.ticket_type == 'defect'){
@@ -88,7 +88,7 @@ export class AttachmentsComponent implements OnInit {
               }
               this.attachments.unshift(attachment);
               this.uploadingImage = false;
-              // this.buttonText = "Upload images/screenshots"
+              this.buttonText = "Upload more"
             },
             error => {
               this._snackBar.open(error.error, '', {
@@ -97,7 +97,7 @@ export class AttachmentsComponent implements OnInit {
                 verticalPosition: "top",
               });
               // this.uploadingImage = false;
-              // this.buttonText = "Upload images/screenshots"
+              this.buttonText = "Upload more"
             }
           )
         }
