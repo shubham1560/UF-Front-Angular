@@ -78,7 +78,7 @@ export class PasswordresetComponent implements OnInit {
       this.authService.resendActivationLink(this.resetForm.get('email').value).subscribe(
         (result:any) =>{
           this.resendLink  = false;
-          console.log(result);
+          // console.log(result);
           this.message = result.message;
         }, error =>{
           this.resendLink = false;
