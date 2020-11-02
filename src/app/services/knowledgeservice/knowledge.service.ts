@@ -216,9 +216,30 @@ export class DataService {
   postArticleTag(article_id, tag_id){
     this.called_url = `${this.base_knowledge_url}tag/${article_id}/`;
     const body = {
-      "tag_id": tag_id
+      "tag_id": tag_id,
+      "action": 'insert'
     }
     this.cache.deleteContaining('tag/'+article_id+'/');
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  delArticleTag(article_id, tag_id){
+    this.called_url = `${this.base_knowledge_url}tag/${article_id}/`;
+    const body = {
+      "tag_id": tag_id,
+      "action": 'delete'
+    }
+    // this.cache.deleteContaining('tag/'+article_id+'/');
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  editArticleTag(article_id, tag_id, relevance){
+    this.called_url = `${this.base_knowledge_url}tag/${article_id}/`;
+    const body = {
+      "tag_id": tag_id,
+      "action": "edit",
+      "relevance": relevance
+    }
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 }

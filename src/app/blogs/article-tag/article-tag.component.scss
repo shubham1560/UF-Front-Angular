@@ -1,0 +1,25 @@
+.tag-input{
+    border: none;
+    width: 100%;
+    height: 30px;
+    outline: none;
+    font-size: 14px;
+}
+
+.tags-div{
+    font-size: 14px;
+}
+
+a{
+    color: white;
+
+    &:hover{
+        color: black;
+    }
+}
+
+.tag-menu{
+    // padding: 3px !important;
+    height: 25px !important;
+    line-height: 25px !important;
+}

@@ -3,29 +3,43 @@
         <br><br><br>
         <div class="row">
             <div class="col-md-4">
-                fetched
-                <pre>
-                    {{fetchedTags | json}}
-                </pre>
             </div>
-            <div class="col-md-4" style="text-align: center;">
-                Well article tags
-                <div class="st-border" style="height: 100px;width: 100%;">
-                    <!-- <input type="text" placeholder="Add tag..."> -->
-                    <input type="text" name="selectedTag" list="cityname" (keydown)="addToTags($event, selectedTag)"
+            <div class="col-md-4">
+                Tags
+                <hr>
+                <span *ngFor="let tag of articleTags">
+                    <a mat-button class="primary-button-inverted"
+                        style="margin: 5px; padding-left:5px; padding-right:5px ;">
+                        <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
+                        <mat-menu #menu="matMenu">
+                            <!-- <button mat-menu-item class="tag-menu" style="color: #3c869a;" >Relevance</button> -->
+                            <button mat-menu-item class="tag-menu" (click)="changeRelevance('1', tag.id)">High</button>
+                            <button mat-menu-item class="tag-menu" (click)="changeRelevance('2', tag.id)">Moderate</button>
+                            <button mat-menu-item class="tag-menu" (click)="changeRelevance('3', tag.id)">Low</button>
+
+                        </mat-menu>
+                        <mat-icon [matMenuTriggerFor]="menu">
+                            arrow_drop_down
+                        </mat-icon>
+                        {{tag.label}}
+                        <mat-icon style="font-size: 20px; cursor: pointer;" (click)="deleteFromTags(tag.id)">
+                            close
+                        </mat-icon>
+                    </a>
+                </span>
+                <hr>
+                <div class="st-border">
+                    <input type="text" placeholder="Add a tag and press enter..." class="tag-input st-border"
+                        name="selectedTag" list="cityname" (keydown)="addToTags($event, selectedTag)"
                         [(ngModel)]="selectedTag">
-                    <!-- {{city}} -->
-                    
                     <datalist id="cityname">
                         <option *ngFor="let tag of fetchedTags" [value]="tag.label">
                     </datalist>
+
                 </div>
+
             </div>
             <div class="col-md-4">
-                selected
-                <pre>
-                    {{articleTags | json}}
-                </pre>
             </div>
         </div>
     </div>

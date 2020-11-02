@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-article-tag',
@@ -9,12 +10,16 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 export class ArticleTagComponent implements OnInit {
 
   constructor(
-    private knowledge: DataService
+    private knowledge: DataService,
+    private _snackBar: MatSnackBar
   ) { }
 
   article_id = "hello-6cceef16";
   articleTags;
   fetchedTags;
+  loadingAllTags = true;
+  fetchingRelatedTags = true;
+
   ngOnInit(): void {
     // request to fetch all the tags from tag table
     // getting all tags
@@ -27,7 +32,10 @@ export class ArticleTagComponent implements OnInit {
   addToTags(event, inputTag) {
     // console.log(inputTag);
     if (event.keyCode == 13) {
-      this.findTag(inputTag);
+      if(inputTag != ''){
+        this.findTag(inputTag);
+      }
+      this.selectedTag = '';
     }
   }
 
@@ -36,8 +44,11 @@ export class ArticleTagComponent implements OnInit {
     this.knowledge.getAllTags().subscribe(
       result=>{
         this.fetchedTags = result;
+        this.loadingAllTags = false;
       }, error =>{
+        this.loadingAllTags = false;
         this.fetchedTags = [];
+        this.openSnackBar("Error occured while fetching the tags");
       }
     )
     // this.fetchedTags = [{ "label": "Angular", "id": 1 }, { "label": "django", "id": 2 }, { "label": "digitalocean", "id": 3 }];
@@ -47,23 +58,26 @@ export class ArticleTagComponent implements OnInit {
     this.articleTags = []
     this.knowledge.getArticleTags(this.article_id).subscribe(
       (result:any)=>{
-        console.log(result);
+        // console.log(result);
         result.forEach(element => {
           this.articleTags.push(element.get_tag);   
         });
+        this.fetchingRelatedTags = false;
+      }, error=>{
+        this.fetchingRelatedTags = false;
+        this.openSnackBar("Error occured while fetching the article tags");
       }
     )
     // conso
 
   }
 
-  
-
   findTag(tag) {
     var found = false;
     this.fetchedTags.forEach(element => {
       if (element.label.toUpperCase() == tag.toUpperCase()) {
         if (!this.alreadyInTagsNotPush(element)) {
+          this.addArticleTag(element.id)
           this.articleTags.push(element);
         }
         found = true;
@@ -73,12 +87,12 @@ export class ArticleTagComponent implements OnInit {
       // console.log("not found, make a new one!");
       this.knowledge.postTag(tag).subscribe(
         result=>{
-          console.log(result);
+          // console.log(result);
           this.createAndAdd(result);
         }
       )
-      
     }
+    
   }
 
   createAndAdd(tag){
@@ -90,13 +104,22 @@ export class ArticleTagComponent implements OnInit {
     //request to create a tag in tag table and also add it to article
     //create tag
     //create articletag with article and tag
-    this.knowledge.postArticleTag(this.article_id, tag.id).subscribe(
-      result=>{
-        console.log(result);
-      }
-    )
+    this.addArticleTag(tag.id)
+    // this.knowledge.postArticleTag(this.article_id, tag.id).subscribe(
+    //   result=>{
+    //     console.log(result);
+    //   }
+    // )
     // make artilce
 
+  }
+
+  addArticleTag(tag_id){
+    this.knowledge.postArticleTag(this.article_id, tag_id).subscribe(
+      result=>{
+        // console.log(result);
+      }
+    )
   }
 
   alreadyInTagsNotPush(selectedTag) {
@@ -109,14 +132,43 @@ export class ArticleTagComponent implements OnInit {
     return already_in;
   }
 
+  deleteArticleTag(tag_id){
+    this.knowledge.delArticleTag(this.article_id, tag_id).subscribe(
+      result=>{
+        // console.log(result);
+      }
+    )
+  }
+
+
   deleteFromTags(id){
+    // console.log(id);
     this.articleTags.forEach((element, index) => {
       if (element.id == id) {
         this.articleTags.splice(index, 1);
-        
         // request to delete the record from table for corresponding tag and article id
         //delete articletag with tag and article
+        this.deleteArticleTag(id);
       }
+    });
+  }
+
+  changeRelevance(relevance, tag_id){
+    // console.log(relevance)
+    // console.log(tag_id);
+    this.knowledge.editArticleTag(this.article_id, tag_id, relevance).subscribe(
+      result=>{
+        // console.log(result);
+        this.openSnackBar("Relevance updated!")
+      },error=>{
+        // console.log(error);
+      }
+    )
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, '', {
+      duration: 2000,
     });
   }
 }
