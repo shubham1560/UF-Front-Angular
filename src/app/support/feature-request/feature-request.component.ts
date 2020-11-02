@@ -64,7 +64,7 @@ export class FeatureRequestComponent implements OnInit {
       result => {
         // console.log(result);
         this.formSubmit = false;
-        this._snackBar.open("Fefect has been registered. you can check the status in tickets view!", '', {
+        this._snackBar.open("Defect has been registered. you can check the status in tickets view!", '', {
           duration: 2000,
           horizontalPosition: "right",
           verticalPosition: "top",

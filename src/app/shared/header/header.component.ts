@@ -38,7 +38,6 @@ export class HeaderComponent implements OnInit {
       this.authService.getLoggedInUserDetail().subscribe(
         (response: any) => {
           this.user = response.user;
-          // console.log(this.user);
           if (this.user.profile_pic) {
             this.image = this.user.profile_pic;
           }
@@ -69,14 +68,17 @@ export class HeaderComponent implements OnInit {
   }
 
 
+  loading_root=false;
   getKnowledgeBases() {
     // console.log("getting knowledge bases");
-    
+    this.loading_root = true;
     this.knowledgeService.getKnowledgeBases().subscribe(
       (result: any) => {
-        this.roots = (result.bases);
+        this.roots = result.bases;
+        this.loading_root =false;
       },
       error => {
+        this.loading_root = false;
         // console.log(error);
       }
 

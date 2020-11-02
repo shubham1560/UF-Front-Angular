@@ -35,7 +35,7 @@
                         </mat-form-field>
                         <hr>
                         <button class="primary-button-inverted" style="float:right"
-                            mat-button [disabled]="!supportForm.valid || formSubmit" type="submit">
+                            mat-button [disabled]="!supportForm.valid || formSubmit || uploadingImage" type="submit">
                             Submit
                         </button>
 
