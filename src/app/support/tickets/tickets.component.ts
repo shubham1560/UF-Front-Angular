@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SupportService } from 'src/app/services/support/support.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { Title } from '@angular/platform-browser';
 
 export interface Section {
   name: string;
@@ -19,7 +20,8 @@ export class TicketsComponent implements OnInit {
   constructor(
     private supportService: SupportService,
     private log: LoggerService,
-    private AuthService: AuthService
+    private AuthService: AuthService,
+    private title: Title,
   ) { }
 
   defects;
@@ -27,6 +29,7 @@ export class TicketsComponent implements OnInit {
   isLoading = true;
 
   ngOnInit(): void {
+    this.title.setTitle("Requests - SortedTree");
     if(this.AuthService.isLoggedIn()){
       this.supportService.getSupportRequests().subscribe(
         (result: any) => {

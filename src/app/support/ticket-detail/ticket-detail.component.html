@@ -3,6 +3,14 @@
 <div id="st-ticket-detail" class="st-border" style="padding: 10px; background-color: white;">
     <div style="padding: 0px 10px 10px 10px;"> The request has been submitted!</div>
     <hr>
+    <div *ngIf="staff">
+        <button mat-button class="trow">
+            <mat-icon class="trow" style="font-size: 18px;">
+                edit
+            </mat-icon>
+            Update details
+        </button>
+    </div>
     <div style="padding: 0px 10px 10px 10px;">
         <div class="title">{{ticketDetail?.short_description}}</div>
         <table class="table table-condensed" style="margin-bottom: 0px !important;">
@@ -37,15 +45,14 @@
         <div class="trow"></div>
     </div>
 
-    <div style='padding: 0px 10px 10px 10px;' *ngIf="ticketDetail?.work_notes">
+    <div style='padding: 0px 10px 10px 10px;' *ngIf="ticketDetail?.work_notes || staff">
         <hr>
-
+        
         <div class="title" >
             Work notes
         </div>
         <div class="trow">
             {{ticketDetail?.work_notes?ticketDetail.work_notes : "Not any work notes yet, we will update it shortly!"}}
-
         </div>
 
         <div class="title">
