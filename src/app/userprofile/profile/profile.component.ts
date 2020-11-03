@@ -46,7 +46,10 @@ export class ProfileComponent implements OnInit {
         this.isLoading = false;
         this.image = this.response.user.header_image ? this.response.user.header_image : this.response.user.profile_pic;
         this.name = this.response.user.first_name + " " + this.response.user.last_name;
-        this.display_name = this.response.user.first_name[0]+this.response.user.last_name[0]
+        this.display_name = this.response?.user.first_name[0];
+        if (this.response.user.last_name){
+          this.display_name += this.response.user?.last_name[0]
+        }
         this.email = this.response.user.email;
         this.about = this.response.user.about;
         this.titleService.setTitle(this.name + " - SortedTree");

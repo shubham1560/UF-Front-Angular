@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
   searchQueryForm: FormGroup;
   roots;
   isAuthor;
+  userDetailFetched = false;
 
   constructor(
     private authService: AuthService,
@@ -31,6 +32,9 @@ export class HeaderComponent implements OnInit {
     private userService: UserprofileService,
   ) { }
 
+  display_name;
+  full_name;
+
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
@@ -38,6 +42,13 @@ export class HeaderComponent implements OnInit {
       this.authService.getLoggedInUserDetail().subscribe(
         (response: any) => {
           this.user = response.user;
+          this.userDetailFetched =true;
+          this.display_name = this.user.first_name[0];
+          this.full_name = this.user.first_name;
+          if (this.user.last_name){
+            this.display_name += this.user.last_name[0]
+            this.full_name += this.user.last_name;
+          }
           if (this.user.profile_pic) {
             this.image = this.user.profile_pic;
           }
@@ -46,6 +57,7 @@ export class HeaderComponent implements OnInit {
           }
         },
         error => {
+          this.userDetailFetched = true;
           this.error = error;
         }
       )
