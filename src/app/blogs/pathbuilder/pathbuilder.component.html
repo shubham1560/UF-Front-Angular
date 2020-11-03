@@ -1,12 +1,14 @@
 <!-- <p>pathbuilder works!</p> -->
 <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
-<br><br>
+<br>
 
 <div class="container" id="uf-path">
     <!-- <pre>
         {{sectionAndArticles | json}}
     </pre> -->
+    <button mat-button class="primary-button" routerLink="/courses/{{course}}/"> <mat-icon>keyboard_backspace</mat-icon> Back </button>
+    <br> <br>
     <div class="row">
         <div class="col-md-6">
             <span style="color:#3c869a"> You are building the structure for
