@@ -47,7 +47,7 @@
                             </div>
                             <div *ngFor="let block of block.data.meta.result">
                                 <div *ngIf="block.type=='image'" style="padding: 40px;">
-                                    <img [src]="block.data.file?.url" alt="Nature" class="responsive">
+                                    <img [src]="block.data.file?.url" alt="Nature" loading="lazy" class="responsive">
                                     <div class="caption">
                                         {{block.data?.caption}}
                                     </div>
@@ -128,11 +128,11 @@
                         </div>
 
                         <div *ngIf="block.type=='image'" class="article-image">
-                            <img [src]="block.data.file?.url" *ngIf="!imageLoaded" (load)="onImageLoad()">
+                            <img loading="lazy" [src]="block.data.file?.url" *ngIf="!imageLoaded" (load)="onImageLoad()">
                             <div class="caption imageDiv" *ngIf="!imageLoaded">
                                 <div class="loader"></div>
                             </div>
-                            <img *ngIf="imageLoaded" [src]="block.data.file?.url" (load)="onImageLoad()" alt="Nature"
+                            <img loading="lazy" *ngIf="imageLoaded" [src]="block.data.file?.url" (load)="onImageLoad()" alt="Nature"
                                 class="responsive caption">
 
                             <div class="caption" style="margin-top: 10px;">
