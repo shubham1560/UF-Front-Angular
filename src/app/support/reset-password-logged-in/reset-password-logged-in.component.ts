@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
 
 function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
   const p1 = c.get('password');
@@ -34,12 +35,13 @@ export class ResetPasswordLoggedInComponent implements OnInit {
     private authService: AuthService,
     private route: Router,
     private _snackBar: MatSnackBar,
-
+    private title: Title
   ) { }
 
   submitting = false;
 
   ngOnInit(): void {
+    this.title.setTitle("Reset password - SortedTree")
     if (this.authService.isLoggedIn()) {
       this.passwordResetForm = this.fb.group({
         old_password: ['', [Validators.required, Validators.minLength(8)]],
