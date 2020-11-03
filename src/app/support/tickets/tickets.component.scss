@@ -23,3 +23,15 @@
   color: #666666; 
   font-size: 12px !important;
 }
+
+.read{
+  border-left: 1px solid #ddd !important;
+}
+
+.unread{
+  border-left: 1px solid #1F8476;
+}
+
+.unread-staff{
+  border-left: 3px solid #1F8476 !important;
+}

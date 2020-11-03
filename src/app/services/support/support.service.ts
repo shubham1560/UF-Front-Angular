@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UrlconfigService } from '../urlconfig.service';
 import { HttpClient } from '@angular/common/http';
+import { CacheserviceService } from '../cacheservice/cacheservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class SupportService {
   constructor(
     private urlService: UrlconfigService,
     private httpService: HttpClient,
+    private cache: CacheserviceService
   ) { }
 
   base_url = this.urlService.getUrl();
@@ -42,6 +44,7 @@ export class SupportService {
 
   getSupportTicketDetails(ticket_id, ticket_type){
     this.called_url = `${this.base_support_url}ticket/${ticket_id}/${ticket_type}/`;
+    this.cache.deleteContaining('tickets/get/');
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
