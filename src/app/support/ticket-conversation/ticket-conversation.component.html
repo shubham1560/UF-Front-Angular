@@ -1,5 +1,12 @@
 <!-- <p>ticket-conversation works!</p> -->
+<div class="st-border" style="padding: 10px 15px; background-color: #f9f9f9; color: #165C53;">{{ticket.short_description}} </div>
+
 <div class="message-wrapper st-border">
+    <span style="font-size: 14px; color: #2e778e;">
+        {{ticket.description}}
+    </span>
+    <br>
+    <br>
     <form>
         <div class="input-group">
             <input type="text" class="form-control" [(ngModel)]="comment" [ngModelOptions]="{standalone: true}"

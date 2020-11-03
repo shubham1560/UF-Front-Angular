@@ -30,7 +30,7 @@ export class TicketDetailComponent implements OnInit {
   staff = false;
 
   @Output() notify: EventEmitter<boolean> = new EventEmitter<boolean>()
-  
+  @Output() ticket: EventEmitter<any> = new EventEmitter<any>()
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -43,6 +43,7 @@ export class TicketDetailComponent implements OnInit {
             this.ticketDetail = result.data;
             this.staff = result.staff;
             this.notify.emit(true);
+            this.ticket.emit(this.ticketDetail);
             this.title.setTitle(this.ticketDetail.short_description +" - "+ this.ticket_type+ " - SortedTree");
           }, error =>{
             // console.log(error);

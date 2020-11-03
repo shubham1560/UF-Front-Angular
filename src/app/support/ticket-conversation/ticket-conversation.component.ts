@@ -15,6 +15,7 @@ export class TicketConversationComponent implements OnInit {
   ) { }
 
   @Input() valid;
+  @Input() ticket: any;
 
 
   ticket_id;
@@ -32,6 +33,7 @@ export class TicketConversationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // console.log(this.valid);
     this.route.paramMap.subscribe(
       params => {
         this.ticket_id = params.get('id');
@@ -40,6 +42,7 @@ export class TicketConversationComponent implements OnInit {
         this.getConversation();
       }
     )
+    // console.log(this.ticket)
 
   }
 

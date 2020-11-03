@@ -15,6 +15,24 @@
                     <mat-card-header>
                         <mat-card-title>
                             <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
+                                routerLink="support/tickets">
+                            Track requests
+                            </a>
+                        </mat-card-title>
+                        <mat-card-subtitle class="desc-text">All the requests made on this page is here, you can check
+                            their status</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button (click)="navigate('tickets')" mat-button class="primary-button">
+                            See all</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <mat-card class="st-border m-10">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
                                 routerLink="support/feature_request">
                                 Suggest Enhancement
                             </a>
@@ -69,24 +87,7 @@
                 </mat-card-actions>
             </mat-card>
         </div> -->
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <mat-card class="st-border m-10">
-                    <mat-card-header>
-                        <mat-card-title>
-                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
-                                routerLink="support/tickets">
-                            Track requests
-                            </a>
-                        </mat-card-title>
-                        <mat-card-subtitle class="desc-text">All the requests made on this page is here, you can check
-                            their status</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-actions align="end">
-                        <button (click)="navigate('tickets')" mat-button class="primary-button">
-                            See all</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
+            
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <mat-card class="st-border m-10">
                     <mat-card-header>

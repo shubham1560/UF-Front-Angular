@@ -120,6 +120,24 @@
                 </h3> <br>
 
                 <div class="row">
+                    <div class="col-md-6">
+                        <mat-card class="st-border m-10">
+                            <mat-card-header>
+                                <mat-card-title >
+                                    <a routerLink="/support/feature_request" style="color:#1F8476">
+                                        Reset Password
+                                    </a>
+                                </mat-card-title>
+                                <mat-card-subtitle class="desc-text">
+                                    Reset the password for logging in to your account
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-actions align="end">
+                                <button mat-button class="primary-button"
+                                    routerLink="/support/reset_password">Reset</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
                     <div class="col-md-6" *ngIf="!response.author">
                         <mat-card class="st-border m-10">
                             <mat-card-header>
