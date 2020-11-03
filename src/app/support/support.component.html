@@ -87,6 +87,26 @@
                     </mat-card-actions>
                 </mat-card>
             </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <mat-card class="st-border m-10">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
+                                routerLink="support/tickets">
+                            Reset Password
+                            </a>
+                        </mat-card-title>
+                        <mat-card-subtitle class="desc-text">
+                            Reset the password    
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button (click)="navigate('reset_password')" mat-button class="primary-button">
+                            Reset    
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
 
         </div>
     </div>

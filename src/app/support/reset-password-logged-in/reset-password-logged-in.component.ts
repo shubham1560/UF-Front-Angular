@@ -37,6 +37,8 @@ export class ResetPasswordLoggedInComponent implements OnInit {
 
   ) { }
 
+  submitting = false;
+
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.passwordResetForm = this.fb.group({
@@ -54,6 +56,7 @@ export class ResetPasswordLoggedInComponent implements OnInit {
 
   message;
   resetPassword() {
+    this.submitting = true
     console.log(this.passwordResetForm);
     var user_data = {
       "password": this.passwordResetForm.get("old_password").value,
@@ -64,9 +67,12 @@ export class ResetPasswordLoggedInComponent implements OnInit {
         console.log(result);
         // this.message = result;
         this.openSnackBar(result);
+        this.route.navigate(["support"])
+        this.submitting = false;
       }, (error:any)=>{
         console.log(error);
         // this.message = error;
+        this.submitting = false;
         this.openSnackBar(error.error);
       }
     )
