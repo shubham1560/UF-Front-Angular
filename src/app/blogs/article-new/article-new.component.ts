@@ -18,6 +18,7 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { ArticleTagComponent } from '../article-tag/article-tag.component';
 
 
 @Component({
@@ -287,5 +288,12 @@ export class ArticleNewComponent implements OnInit {
         window.location.reload();
       }
     });
+  }
+
+  openTagDialog(){
+    const dialogRef = this.dialog.open(ArticleTagComponent, {
+      minWidth: 280, 
+      data: {article_id: this.id}
+    })
   }
 }

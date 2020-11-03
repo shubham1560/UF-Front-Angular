@@ -24,27 +24,37 @@
 
                     <div id="uf-new-article">
                         <br>
-                        <h5 style="color: #516264;" *ngIf="state">State: {{state}}</h5>
-                        <h5 style="color: #516264;" *ngIf="!state">State: New</h5>
-                        <br>
-                        <h4 style="color: #4f9aab;" *ngIf="title">
-                            {{title}}
-                            <a target="_blank" style="color: #4f9aab; font-size: 18px; text-decoration: underline;"
-                                *ngIf="id" routerLink="/courses/article_preview/{{id}}">
-                                <br>
-                                Preview<mat-icon>open_in_new</mat-icon>
+                        <h6 style="color: #516264;" *ngIf="state">State: {{state}}</h6>
+                        <h6 style="color: #516264;" *ngIf="!state">State: New</h6>
+                        <div *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label"
+                            style="font-size: 14px;">
+                            Published to the path:
+                            <a target="_blank" style="color: #4f9aab;"
+                                routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
+                                {{article?.data.get_category.category_label}}
+                                <mat-icon style="font-size: 14px;">open_in_new</mat-icon>
                             </a>
-                        </h4>
+                        </div>
+                        <br>
+                        <h5 style="color: #4f9aab; " *ngIf="title">
+                            {{title}}
+                            <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
+                                *ngIf="id" routerLink="/courses/article_preview/{{id}}">
+                                <mat-icon style="font-size: 16px;">open_in_new</mat-icon>
+                            </a>
 
+
+                        </h5>
                         <h4 style="color: #4f9aab;" *ngIf="!title">Start by giving it a title!</h4>
-                        <textarea class="desc-article" style="font-size: 12px;" rows='2' [(ngModel)]="description"
-                            placeholder="Add a short description to the article..... :-)" type="text">
+                        <textarea class="desc-article st-border" style="font-size: 12px;" rows='2'
+                            [(ngModel)]="description" placeholder="Add a short description to the article....."
+                            type="text">
                         </textarea>
-                        <br>
-                        <span style="color: #4f9aab; font-size: 12px;">
+                        <!-- <br> -->
+                        <!-- <span style="color: #4f9aab; font-size: 12px;">
                             <b>Note:</b> This description helps the user to get the summary of the article in search
-                        </span>
-                        <br>
+                        </span> -->
+                        <!-- <br> -->
                         <br>
                         <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
                             [disabled]="updatingData" (click)="updateArticle(true)">
@@ -63,7 +73,7 @@
                         <hr>
 
                         <div *ngIf="title && state=='published'">
-                            <span style="color: #4f9aab;">
+                            <span style="color: #4f9aab; font-size: 12px;">
                                 To unpublish this article, you can send it to review state
                             </span>
                             <br>
@@ -71,21 +81,24 @@
                                 (click)="updateArticle(false)">
                                 Send to review state
                             </button>
+
                             <hr>
 
                         </div>
+                        <span style="color: #4f9aab; font-size: 12px;">
+                            Adding article tags can help find the user other related articles, you can even set relevance in the tags!
+                        </span>
+                        <button *ngIf="title && state!='new'" (click)="openTagDialog()" mat-button
+                            class="primary-button-inverted">
+                            Add artilce tags
+                            <mat-icon>
+                                local_offer
+                            </mat-icon>
+                        </button>
 
                     </div>
 
-                    <div
-                        *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label">
-                        Path of the path:
-                        <a target="_blank" style="color: #4f9aab;"
-                            routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
-                            {{article?.data.get_category.category_label}}
-                            <mat-icon>open_in_new</mat-icon>
-                        </a>
-                    </div>
+
                     <br>
                     <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
 

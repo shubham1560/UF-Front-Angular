@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-article-tag',
@@ -11,7 +13,10 @@ export class ArticleTagComponent implements OnInit {
 
   constructor(
     private knowledge: DataService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    public dialogRef: MatDialogRef<ArticleTagComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   article_id = "hello-6cceef16";
@@ -21,10 +26,13 @@ export class ArticleTagComponent implements OnInit {
   fetchingRelatedTags = true;
 
   ngOnInit(): void {
-    // request to fetch all the tags from tag table
-    // getting all tags
+    this.article_id = this.data.article_id;
     this.fetchAllTags();
     this.fetchRelatedTags(this.article_id);
+
+    // request to fetch all the tags from tag table
+    // getting all tags
+
     // request to get all the tags of the article if have any
     // getting all the tags already wth article
   }
@@ -32,20 +40,20 @@ export class ArticleTagComponent implements OnInit {
   addToTags(event, inputTag) {
     // console.log(inputTag);
     if (event.keyCode == 13) {
-      if(inputTag != ''){
+      if (inputTag != '') {
         this.findTag(inputTag);
       }
       this.selectedTag = '';
     }
   }
 
-  fetchAllTags(){
+  fetchAllTags() {
     // fetch all the tags from tag table
     this.knowledge.getAllTags().subscribe(
-      result=>{
+      result => {
         this.fetchedTags = result;
         this.loadingAllTags = false;
-      }, error =>{
+      }, error => {
         this.loadingAllTags = false;
         this.fetchedTags = [];
         this.openSnackBar("Error occured while fetching the tags");
@@ -53,17 +61,17 @@ export class ArticleTagComponent implements OnInit {
     )
     // this.fetchedTags = [{ "label": "Angular", "id": 1 }, { "label": "django", "id": 2 }, { "label": "digitalocean", "id": 3 }];
   }
-  
-  fetchRelatedTags(article_id){
+
+  fetchRelatedTags(article_id) {
     this.articleTags = []
     this.knowledge.getArticleTags(this.article_id).subscribe(
-      (result:any)=>{
+      (result: any) => {
         // console.log(result);
         result.forEach(element => {
-          this.articleTags.push(element.get_tag);   
+          this.articleTags.push(element.get_tag);
         });
         this.fetchingRelatedTags = false;
-      }, error=>{
+      }, error => {
         this.fetchingRelatedTags = false;
         this.openSnackBar("Error occured while fetching the article tags");
       }
@@ -86,20 +94,20 @@ export class ArticleTagComponent implements OnInit {
     if (!found) {
       // console.log("not found, make a new one!");
       this.knowledge.postTag(tag).subscribe(
-        result=>{
+        result => {
           // console.log(result);
           this.createAndAdd(result);
         }
       )
     }
-    
+
   }
 
-  createAndAdd(tag){
+  createAndAdd(tag) {
     // console.log("create and add the tag to tags");
     this.articleTags.push(tag);
     this.fetchedTags.push(tag);
-    
+
 
     //request to create a tag in tag table and also add it to article
     //create tag
@@ -114,9 +122,9 @@ export class ArticleTagComponent implements OnInit {
 
   }
 
-  addArticleTag(tag_id){
+  addArticleTag(tag_id) {
     this.knowledge.postArticleTag(this.article_id, tag_id).subscribe(
-      result=>{
+      result => {
         // console.log(result);
       }
     )
@@ -132,16 +140,18 @@ export class ArticleTagComponent implements OnInit {
     return already_in;
   }
 
-  deleteArticleTag(tag_id){
+  deleteArticleTag(tag_id) {
     this.knowledge.delArticleTag(this.article_id, tag_id).subscribe(
-      result=>{
-        // console.log(result);
+      result => {
+        this.openSnackBar("tag deleted successfully!");
+      }, error =>{
+        this.openSnackBar("tag deleted unsuccessfully!");
       }
     )
   }
 
 
-  deleteFromTags(id){
+  deleteFromTags(id) {
     // console.log(id);
     this.articleTags.forEach((element, index) => {
       if (element.id == id) {
@@ -153,14 +163,14 @@ export class ArticleTagComponent implements OnInit {
     });
   }
 
-  changeRelevance(relevance, tag_id){
+  changeRelevance(relevance, tag_id) {
     // console.log(relevance)
     // console.log(tag_id);
     this.knowledge.editArticleTag(this.article_id, tag_id, relevance).subscribe(
-      result=>{
+      result => {
         // console.log(result);
         this.openSnackBar("Relevance updated!")
-      },error=>{
+      }, error => {
         // console.log(error);
       }
     )
