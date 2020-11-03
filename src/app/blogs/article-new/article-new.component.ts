@@ -61,7 +61,7 @@ export class ArticleNewComponent implements OnInit {
           return true;
         }
         else {
-          window.location.href = "welcome";
+          this.route.navigate(["welcome"]);
           return false;
         }
       }, error => {
@@ -72,51 +72,56 @@ export class ArticleNewComponent implements OnInit {
     this.routerService.paramMap.subscribe(
       params => {
         var article_id = params.get("id");
-        if (article_id == '1') {
-          this.titleService.setTitle("Add new article - SortedTree")
-          this.data = {};
-          this.owner = true;
-          this.isLoading = true;
-          this.initializeEditor();
-          this.editorInitilized = true;
-        }
-        else {
-          this.knowledgeService.getArticleById(article_id).subscribe(
-            (response: any) => {
-              this.article = response;
-              this.description = this.article.data.description;
-              this.title = this.article.data.title;
-              this.titleService.setTitle("Editing: "+ this.article.data.title +" - SortedTree")
-              this.owner = response.owner;
-              if (!this.owner) {
-                window.location.href = "";
-              } else {
-                this.isLoading = false;
-              }
-              this.state = this.article.data.workflow
-              this.id = article_id;
-              var len = response.data.article_body.length - 1;
-              this.data = {
-                time: 1552744582955,
-                blocks: this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
-                version: "2.11.10"
-              };
-              if (!this.editorInitilized) {
-                this.initializeEditor();
-              }
+        if (this.authService.isLoggedIn()) {
+          if (article_id == '1') {
+            this.titleService.setTitle("Add new article - SortedTree")
+            this.data = {};
+            this.owner = true;
+            this.isLoading = true;
+            this.initializeEditor();
+            this.editorInitilized = true;
+          }
+          else {
+            this.knowledgeService.getArticleById(article_id).subscribe(
+              (response: any) => {
+                this.article = response;
+                this.description = this.article.data.description;
+                this.title = this.article.data.title;
+                this.titleService.setTitle("Editing: " + this.article.data.title + " - SortedTree")
+                this.owner = response.owner;
+                if (!this.owner) {
+                  window.location.href = "";
+                } else {
+                  this.isLoading = false;
+                }
+                this.state = this.article.data.workflow
+                this.id = article_id;
+                var len = response.data.article_body.length - 1;
+                this.data = {
+                  time: 1552744582955,
+                  blocks: this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
+                  version: "2.11.10"
+                };
+                if (!this.editorInitilized) {
+                  this.initializeEditor();
+                }
 
-            }, error => {
-              // console.log(error);
-              this.route.navigateByUrl('courses/article/1');
-              
-            }
-          )
-          // var a = setInterval(()=>{
-          //   // if (this.arrayEqual(this.prevData, outputData.blocks)){
-          //   this.updateArticle(true);
-          //   // }
-          // }, 60*1000)
-          // clearInterval(a);
+              }, error => {
+                // console.log(error);
+                this.route.navigateByUrl('courses/article/1');
+
+              }
+            )
+            // var a = setInterval(()=>{
+            //   // if (this.arrayEqual(this.prevData, outputData.blocks)){
+            //   this.updateArticle(true);
+            //   // }
+            // }, 60*1000)
+            // clearInterval(a);
+          }
+        }
+        else{
+          this.route.navigate(["welcome"]);
         }
       }
     )
@@ -125,7 +130,7 @@ export class ArticleNewComponent implements OnInit {
 
   id = '';  // if id =0, first save, otherwise populating the id from response
   headers = {
-    'authorization': 'Token ' +this.authService.getToken(),
+    'authorization': 'Token ' + this.authService.getToken(),
   }
 
   initializeEditor() {
@@ -192,7 +197,7 @@ export class ArticleNewComponent implements OnInit {
           this.knowledgeService.operateArticles(outputData, this.id, this.title, this.description).subscribe(
             (response: any) => {
               this.id = response;
-              if(this.id == '1'){
+              if (this.id == '1') {
                 this.openSnackBar("This article no longer exists, you may have deleted it!", '');
                 window.location.reload()
               }
@@ -290,10 +295,10 @@ export class ArticleNewComponent implements OnInit {
     });
   }
 
-  openTagDialog(){
+  openTagDialog() {
     const dialogRef = this.dialog.open(ArticleTagComponent, {
-      minWidth: 280, 
-      data: {article_id: this.id}
+      minWidth: 280,
+      data: { article_id: this.id }
     })
   }
 }
