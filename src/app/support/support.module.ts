@@ -16,6 +16,7 @@ import { TicketConversationComponent } from './ticket-conversation/ticket-conver
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
 import { AttachmentsComponent } from './attachments/attachments.component';
 import { UpdateTicketDetailsComponent } from './update-ticket-details/update-ticket-details.component';
+import { ResetPasswordLoggedInComponent } from './reset-password-logged-in/reset-password-logged-in.component';
 
 // import { DateAgoPipe } from '../shared/pipes/date-ago.pipe';
 
@@ -23,7 +24,7 @@ import { UpdateTicketDetailsComponent } from './update-ticket-details/update-tic
 
 @NgModule({
   declarations: [FeatureRequestComponent, 
-    SupportComponent, DeleteAttachmentComponent, EditNameComponent, ReportDefectComponent, TicketsComponent, TimesAgoPipe, TicketDetailComponent, TicketConversationComponent, TicketFormComponent, AttachmentsComponent, UpdateTicketDetailsComponent, 
+    SupportComponent, DeleteAttachmentComponent, EditNameComponent, ReportDefectComponent, TicketsComponent, TimesAgoPipe, TicketDetailComponent, TicketConversationComponent, TicketFormComponent, AttachmentsComponent, UpdateTicketDetailsComponent, ResetPasswordLoggedInComponent, 
   ],
   imports: [
     CommonModule,

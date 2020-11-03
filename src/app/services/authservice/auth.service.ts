@@ -137,4 +137,10 @@ export class AuthService {
     return this.httpService.get(url, {headers: this.getHeader()});
   }
 
+  resetPaswordLoggedIn(userdata){
+    const url = `${this.base_auth_url}sys_user/reset_password_logged_in/`;
+    const body = userdata;
+    return this.httpService.post(url, body, {headers: this.getHeader()});
+  }
+
 }
