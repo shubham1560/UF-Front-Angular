@@ -2,8 +2,12 @@
 <h5 mat-dialog-title>
     Article Tags
 </h5>
+
 <mat-dialog-content class="mat-typography">
-    <div>
+    <div style="min-height: 100px;">
+        <span style="color: #4f9aab; font-size: 12px;">
+            You can set how relevanct is the tag to article!
+        </span> <br>
         <span *ngFor="let tag of articleTags">
             <a mat-button class="primary-button-inverted" style="margin: 5px; padding-left:5px; padding-right:5px;">
                 <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
@@ -25,7 +29,7 @@
         </span>
     </div>
 </mat-dialog-content>
-<mat-dialog-actions>
+<mat-dialog-actions style="margin-bottom: 10px;">
     <div class="st-border" style="width: 100%;">
         <input type="text" placeholder="Add a tag and press enter..." class="tag-input st-border" name="selectedTag"
             list="cityname" (keydown)="addToTags($event, selectedTag)" [(ngModel)]="selectedTag">

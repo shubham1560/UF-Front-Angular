@@ -41,7 +41,7 @@ export class ArticleTagComponent implements OnInit {
     // console.log(inputTag);
     if (event.keyCode == 13) {
       if (inputTag != '') {
-        this.findTag(inputTag);
+        this.findTag(inputTag.toLowerCase());
       }
       this.selectedTag = '';
     }
