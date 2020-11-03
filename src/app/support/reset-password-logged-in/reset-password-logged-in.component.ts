@@ -1,4 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/authservice/auth.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+function passwordMatch(c: AbstractControl): { [key: string]: boolean } | null {
+  const p1 = c.get('password');
+  const p2 = c.get('confirm_password');
+
+  if (p1.pristine || p2.pristine) {
+    return null;
+  }
+
+  if (p1.value === p2.value) {
+    return null;
+  }
+
+  return { 'match': true }
+}
 
 @Component({
   selector: 'app-reset-password-logged-in',
@@ -7,9 +26,58 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPasswordLoggedInComponent implements OnInit {
 
-  constructor() { }
+
+  passwordResetForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private route: Router,
+    private _snackBar: MatSnackBar,
+
+  ) { }
 
   ngOnInit(): void {
+    if (this.authService.isLoggedIn()) {
+      this.passwordResetForm = this.fb.group({
+        old_password: ['', [Validators.required, Validators.minLength(8)]],
+        passwordGroup: this.fb.group({
+          password: ['', [Validators.required, Validators.minLength(8)]],
+          confirm_password: ['', [Validators.required, Validators.minLength(8)]]
+        }, { validators: passwordMatch }),
+      })
+    }
+    else{
+      this.route.navigate(["support"]);
+    }
   }
 
+  message;
+  resetPassword() {
+    console.log(this.passwordResetForm);
+    var user_data = {
+      "password": this.passwordResetForm.get("old_password").value,
+      "new_password": this.passwordResetForm.get("passwordGroup").get("password").value
+    }
+    this.authService.resetPaswordLoggedIn(user_data).subscribe(
+      (result:any)=>{
+        console.log(result);
+        // this.message = result;
+        this.openSnackBar(result);
+      }, (error:any)=>{
+        console.log(error);
+        // this.message = error;
+        this.openSnackBar(error.error);
+      }
+    )
+  }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message,'', {
+      duration: 2000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+    });
+  }
 }
+

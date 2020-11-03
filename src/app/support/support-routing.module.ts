@@ -7,6 +7,7 @@ import { TicketsComponent } from './tickets/tickets.component';
 import { ProfileGuard } from '../userprofile/guard/profile.guard';
 import { TicketDetailComponent } from './ticket-detail/ticket-detail.component';
 import { TicketFormComponent } from './ticket-form/ticket-form.component';
+import { ResetPasswordLoggedInComponent } from './reset-password-logged-in/reset-password-logged-in.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: "tickets/:id/:type",
     component: TicketFormComponent
+  },
+  {
+    path: "reset_password",
+    component: ResetPasswordLoggedInComponent
   }
 ];
 
