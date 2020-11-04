@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UrlconfigService } from '../urlconfig.service';
 import { CacheserviceService } from '../../services/cacheservice/cacheservice.service';
 
@@ -142,11 +142,14 @@ export class DataService {
   }
 
   checkProfanity(article){
-    this.called_url = `${this.base_knowledge_url}kb_knowledge/check_profanity/`;
+    // this.called_url = `${this.base_knowledge_url}kb_knowledge/check_profanity/`;
+    this.called_url = `https://services-django.herokuapp.com/profanity/check/`;
     const body = {
       "data": article["blocks"]
     }
-    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+    return this.httpService.post(this.called_url, body, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    })});
   }
 
   publishArticles(article, id, title, description) {
