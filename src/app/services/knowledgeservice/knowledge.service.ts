@@ -141,6 +141,13 @@ export class DataService {
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
+  checkProfanity(article){
+    this.called_url = `${this.base_knowledge_url}kb_knowledge/check_profanity/`;
+    const body = {
+      "data": article["blocks"]
+    }
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 
   publishArticles(article, id, title, description) {
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;

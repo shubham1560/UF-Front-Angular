@@ -19,6 +19,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { ArticleTagComponent } from '../article-tag/article-tag.component';
+import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
 
 
 @Component({
@@ -105,7 +106,6 @@ export class ArticleNewComponent implements OnInit {
                 if (!this.editorInitilized) {
                   this.initializeEditor();
                 }
-
               }, error => {
                 // console.log(error);
                 this.route.navigateByUrl('courses/article/1');
@@ -188,6 +188,17 @@ export class ArticleNewComponent implements OnInit {
 
   updatingData;
   prevData = [];
+
+
+  checkProfanity(data){
+      this.knowledgeService.checkProfanity(data).subscribe(
+        result=>{
+          console.log(result);
+        }
+      )
+  }
+
+
   updateArticle(update) {
     this.editor.save().then((outputData: any) => {
       this.updatingData = true;
@@ -283,16 +294,31 @@ export class ArticleNewComponent implements OnInit {
 
 
   addToCourse() {
-    this.updateArticle(true);
-    const dialogRef = this.dialog.open(CoursesComponent, {
-      data: { article_id: this.id, current_course: this.article.data.get_category.id }
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result?.reload) {
-        window.location.reload();
-      }
-    });
+    this.editor.save().then(data=>{
+      this.knowledgeService.checkProfanity(data).subscribe(
+        result=>{
+          console.log(result);
+          this.dialog.open(ProfanityComponent, {
+            data: {data: result}
+          })
+
+        }, error=>{
+          console.log(error);
+        }
+      )
+    })
+
+    // this.updateArticle(true);
+    // const dialogRef = this.dialog.open(CoursesComponent, {
+    //   data: { article_id: this.id, current_course: this.article.data.get_category.id }
+    // });
+
+    // dialogRef.afterClosed().subscribe(result => {
+    //   if (result?.reload) {
+    //     window.location.reload();
+    //   }
+    // });
   }
 
   openTagDialog() {

@@ -23,7 +23,8 @@ import {
 import { SearchResultsComponent } from './shared/search-results/search-results.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { CacheInterceptor } from "./shared/interceptors/cache.interceptor";
-import { SharedCardComponent } from './shared/shared-card/shared-card.component'
+import { SharedCardComponent } from './shared/shared-card/shared-card.component';
+import { ProfanityComponent } from './shared/profanity/profanity.component'
 // import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
@@ -49,6 +50,7 @@ import { SharedCardComponent } from './shared/shared-card/shared-card.component'
     SearchResultsComponent,
     FooterComponent,
     SharedCardComponent,
+    ProfanityComponent,
     // DateAgoPipe,
     // RootComponent,
     // BreadcrumbsComponent,
