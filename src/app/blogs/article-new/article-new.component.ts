@@ -112,12 +112,6 @@ export class ArticleNewComponent implements OnInit {
 
               }
             )
-            // var a = setInterval(()=>{
-            //   // if (this.arrayEqual(this.prevData, outputData.blocks)){
-            //   this.updateArticle(true);
-            //   // }
-            // }, 60*1000)
-            // clearInterval(a);
           }
         }
         else{
@@ -292,10 +286,12 @@ export class ArticleNewComponent implements OnInit {
     return (new_ary1.join('') == new_ary2.join(''));
   }
 
+  startedProfanityCheck= false;
 
   addToCourse() {
 
     this.editor.save().then(data=>{
+      this.startedProfanityCheck = true;
       this.knowledgeService.checkProfanity(data).subscribe(
         (result:any)=>{
           console.log(result);
@@ -303,28 +299,20 @@ export class ArticleNewComponent implements OnInit {
             this.dialog.open(ProfanityComponent, {
               data: {data: result}
             })
+            this.startedProfanityCheck = false;
             this.openSnackBar("This article couldn't pass the profanity check", '');
           }
           else{
             this.publishArticle()
-            this.openSnackBar("This article passed the profanity check!", '');
+            this.startedProfanityCheck = false;
+            // this.openSnackBar("This article passed the profanity check!", '');
           }
         }, error=>{
           console.log(error);
+          this.startedProfanityCheck = false;
         }
       )
     })
-
-    // this.updateArticle(true);
-    // const dialogRef = this.dialog.open(CoursesComponent, {
-    //   data: { article_id: this.id, current_course: this.article.data.get_category.id }
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result?.reload) {
-    //     window.location.reload();
-    //   }
-    // });
   }
 
   publishArticle(){

@@ -20,6 +20,7 @@ import { CoursesComponent } from './courses/courses.component';
 import { FormsModule } from '@angular/forms';
 import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
 import { ArticleTagComponent } from './article-tag/article-tag.component';
+import { StriphtmlPipe } from './pipes/strip/striphtml.pipe';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import { ArticleTagComponent } from './article-tag/article-tag.component';
     CoursesComponent,
     PathbuilderComponent,
     ArticleTagComponent,
+    StriphtmlPipe,
     ],
   imports: [
     CommonModule,

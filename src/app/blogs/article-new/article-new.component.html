@@ -65,7 +65,7 @@
                                 Save progress
                             </span>
                         </button>
-                        <button mat-button class="primary-button" (click)="addToCourse()">
+                        <button mat-button [disabled]="startedProfanityCheck" class="primary-button" (click)="addToCourse()">
                             Publish to the path
                         </button>
 
