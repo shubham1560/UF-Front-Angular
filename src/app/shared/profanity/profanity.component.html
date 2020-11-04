@@ -3,7 +3,8 @@
 <mat-dialog-content class="mat-typography">
 
     <ul>
-        <li *ngFor="let text of text_array" [ngClass]="{'profane' : text.profanity[0]==1, 'good': text.profanity[0]==0}">
+        <li *ngFor="let text of text_array"  [ngClass]="{'profane' : text.profanity[0]==1, 'good': text.profanity[0]==0}">
+            <!-- <span *ngIf="text.profanity[0]==1">{{text.string}}</span> -->
             {{text.string}}
         </li>
     </ul>

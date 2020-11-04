@@ -114,7 +114,7 @@ export class ArticleNewComponent implements OnInit {
             )
           }
         }
-        else{
+        else {
           this.route.navigate(["welcome"]);
         }
       }
@@ -184,12 +184,12 @@ export class ArticleNewComponent implements OnInit {
   prevData = [];
 
 
-  checkProfanity(data){
-      this.knowledgeService.checkProfanity(data).subscribe(
-        result=>{
-          console.log(result);
-        }
-      )
+  checkProfanity(data) {
+    this.knowledgeService.checkProfanity(data).subscribe(
+      result => {
+        console.log(result);
+      }
+    )
   }
 
 
@@ -286,28 +286,31 @@ export class ArticleNewComponent implements OnInit {
     return (new_ary1.join('') == new_ary2.join(''));
   }
 
-  startedProfanityCheck= false;
+  startedProfanityCheck = false;
 
   addToCourse() {
 
-    this.editor.save().then(data=>{
+    this.editor.save().then(data => {
       this.startedProfanityCheck = true;
-      this.knowledgeService.checkProfanity(data).subscribe(
-        (result:any)=>{
+
+      var stripped_data = this.htmlStrip(data);
+
+      this.knowledgeService.checkProfanity(stripped_data).subscribe(
+        (result: any) => {
           console.log(result);
-          if (result.profane){
+          if (result.profane) {
             this.dialog.open(ProfanityComponent, {
-              data: {data: result}
+              data: { data: result }
             })
             this.startedProfanityCheck = false;
             this.openSnackBar("This article couldn't pass the profanity check", '');
           }
-          else{
+          else {
             this.publishArticle()
             this.startedProfanityCheck = false;
             // this.openSnackBar("This article passed the profanity check!", '');
           }
-        }, error=>{
+        }, error => {
           console.log(error);
           this.startedProfanityCheck = false;
         }
@@ -315,7 +318,7 @@ export class ArticleNewComponent implements OnInit {
     })
   }
 
-  publishArticle(){
+  publishArticle() {
 
     this.updateArticle(true);
     const dialogRef = this.dialog.open(CoursesComponent, {
@@ -334,5 +337,50 @@ export class ArticleNewComponent implements OnInit {
       minWidth: 280,
       data: { article_id: this.id }
     })
+  }
+
+  htmlStrip(data) {
+    var data_to_check = {};
+    var changedData = []
+    console.log(data);
+
+    data.blocks.forEach(element => {
+      // console.log(element);
+      if (element.type == 'header') {
+        changedData.push(
+          {
+            "data": { "level": element.data.level, "text": element.data.text.replace(/<[^>]*>?/gm, '').replace("nbsp", " ") },
+            "type": element.type
+          }
+        )
+      }
+      else if (element.type == 'paragraph') {
+        changedData.push(
+          {
+            "data": { "text": element.data.text.replace(/<[^>]*>?/gm, ' ').replace("nbsp", " ") },
+            "type": element.type
+          }
+        )
+      }
+      else if (element.type == 'list') {
+        changedData.push(
+          {
+            "data": { "items": [element.data.items[0].replace(/<[^>]*>?/gm, ' ').replace("nbsp", " ")], "style": element.style },
+            "type": element.type
+          }
+        )
+      }
+      else{
+        changedData.push(element);
+      }
+    });
+
+    data_to_check = {
+      "time": "1604520019453",
+      "blocks": changedData,
+      "version": "2.18.0"
+    }
+    console.log(changedData);
+    return data_to_check;
   }
 }
