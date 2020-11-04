@@ -297,12 +297,18 @@ export class ArticleNewComponent implements OnInit {
 
     this.editor.save().then(data=>{
       this.knowledgeService.checkProfanity(data).subscribe(
-        result=>{
+        (result:any)=>{
           console.log(result);
-          this.dialog.open(ProfanityComponent, {
-            data: {data: result}
-          })
-
+          if (result.profane){
+            this.dialog.open(ProfanityComponent, {
+              data: {data: result}
+            })
+            this.openSnackBar("This article couldn't pass the profanity check", '');
+          }
+          else{
+            this.publishArticle()
+            this.openSnackBar("This article passed the profanity check!", '');
+          }
         }, error=>{
           console.log(error);
         }
@@ -319,6 +325,20 @@ export class ArticleNewComponent implements OnInit {
     //     window.location.reload();
     //   }
     // });
+  }
+
+  publishArticle(){
+
+    this.updateArticle(true);
+    const dialogRef = this.dialog.open(CoursesComponent, {
+      data: { article_id: this.id, current_course: this.article.data.get_category.id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.reload) {
+        window.location.reload();
+      }
+    });
   }
 
   openTagDialog() {

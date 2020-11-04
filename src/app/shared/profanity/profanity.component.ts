@@ -14,8 +14,11 @@ export class ProfanityComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
-  ngOnInit(): void {
+  text_array;
 
+  ngOnInit(): void {  
+    this.text_array = this.data.data.result;
+    // console.log(this.data.data.result);
   }
 
 }
