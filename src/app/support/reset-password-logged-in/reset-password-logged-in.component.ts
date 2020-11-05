@@ -59,20 +59,20 @@ export class ResetPasswordLoggedInComponent implements OnInit {
   message;
   resetPassword() {
     this.submitting = true
-    console.log(this.passwordResetForm);
+    // console.log(this.passwordResetForm);
     var user_data = {
       "password": this.passwordResetForm.get("old_password").value,
       "new_password": this.passwordResetForm.get("passwordGroup").get("password").value
     }
     this.authService.resetPaswordLoggedIn(user_data).subscribe(
       (result:any)=>{
-        console.log(result);
+        // console.log(result);
         // this.message = result;
         this.openSnackBar(result);
         this.route.navigate(["support"])
         this.submitting = false;
       }, (error:any)=>{
-        console.log(error);
+        // console.log(error);
         // this.message = error;
         this.submitting = false;
         this.openSnackBar(error.error);

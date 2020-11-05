@@ -21,6 +21,6 @@ export class TicketFormComponent implements OnInit {
 
   onTicket(message){
     this.ticket =message;
-    console.log(message);
+    // console.log(message);
   }
 }

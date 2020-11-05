@@ -187,7 +187,10 @@ export class ArticleNewComponent implements OnInit {
   checkProfanity(data) {
     this.knowledgeService.checkProfanity(data).subscribe(
       result => {
-        console.log(result);
+        // console.log(result);
+      },
+      error => {
+
       }
     )
   }
@@ -297,7 +300,7 @@ export class ArticleNewComponent implements OnInit {
 
       this.knowledgeService.checkProfanity(stripped_data).subscribe(
         (result: any) => {
-          console.log(result);
+          // console.log(result);
           if (result.profane) {
             this.dialog.open(ProfanityComponent, {
               data: { data: result }
@@ -313,7 +316,8 @@ export class ArticleNewComponent implements OnInit {
             // this.openSnackBar("This article passed the profanity check!", '');
           }
         }, error => {
-          console.log(error);
+          // console.log(error);
+          this.publishArticle()
           this.updatingData = false;
           this.startedProfanityCheck = false;
         }
@@ -347,7 +351,7 @@ export class ArticleNewComponent implements OnInit {
   htmlStrip(data) {
     var data_to_check = {};
     var changedData = []
-    console.log(data);
+    // console.log(data);
 
     data.blocks.forEach(element => {
       // console.log(element);
@@ -385,7 +389,7 @@ export class ArticleNewComponent implements OnInit {
       "blocks": changedData,
       "version": "2.18.0"
     }
-    console.log(changedData);
+    // console.log(changedData);
     return data_to_check;
   }
 }
