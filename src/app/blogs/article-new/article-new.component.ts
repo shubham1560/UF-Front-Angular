@@ -289,7 +289,7 @@ export class ArticleNewComponent implements OnInit {
   startedProfanityCheck = false;
 
   addToCourse() {
-
+    this.updatingData = true;
     this.editor.save().then(data => {
       this.startedProfanityCheck = true;
 
@@ -303,15 +303,18 @@ export class ArticleNewComponent implements OnInit {
               data: { data: result }
             })
             this.startedProfanityCheck = false;
+            this.updatingData = false;
             this.openSnackBar("This article couldn't pass the profanity check", '');
           }
           else {
             this.publishArticle()
+            this.updatingData = false;
             this.startedProfanityCheck = false;
             // this.openSnackBar("This article passed the profanity check!", '');
           }
         }, error => {
           console.log(error);
+          this.updatingData = false;
           this.startedProfanityCheck = false;
         }
       )
@@ -326,8 +329,10 @@ export class ArticleNewComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.updatingData = false;
       if (result?.reload) {
         window.location.reload();
+
       }
     });
   }

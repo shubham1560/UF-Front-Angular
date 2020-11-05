@@ -2,17 +2,20 @@
 <h2 mat-dialog-title class="good">Your article didn't pass the profanity check!</h2>
 <mat-dialog-content class="mat-typography">
 
-    <ul>
-        <li *ngFor="let text of text_array"  [ngClass]="{'profane' : text.profanity[0]==1, 'good': text.profanity[0]==0}">
-            <!-- <span *ngIf="text.profanity[0]==1">{{text.string}}</span> -->
-            {{text.string}}
+    <!-- <ul>
+        <li *ngFor="let text of text_array"
+            [ngClass]="{'profane' : text.profanity[0]==1, 'good': text.profanity[0]==0}">
         </li>
-    </ul>
-<!-- 
+    </ul> -->
+    <div *ngFor="let text of text_array" [ngClass]="{'profane' : text.profanity[0]==1, 'good': text.profanity[0]==0}">
+        <li *ngIf="text.profanity[0]==1"> {{text.string}} </li>
+        <li *ngIf="text.profanity[0]==0" class="full-screen-display"> {{text.string}}  </li>
+    </div>
+    <!-- 
 <pre>
     {{text_array | json}}
 </pre> -->
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-  </mat-dialog-actions>
+</mat-dialog-actions>

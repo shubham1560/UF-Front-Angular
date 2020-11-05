@@ -5,3 +5,10 @@
 .good{
     color: #4f9aab;
 }
+
+
+@media(max-width:768px){
+    .full-screen-display{
+        display: none;
+    }
+}
