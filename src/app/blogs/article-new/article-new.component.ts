@@ -333,6 +333,9 @@ export class ArticleNewComponent implements OnInit {
         )
       })
     }
+    else{
+      this.openSnackBar("Please save the article first!", '');
+    }
   }
 
   publishArticle() {
@@ -350,6 +353,9 @@ export class ArticleNewComponent implements OnInit {
 
         }
       });
+    }
+    else{
+      this.openSnackBar("Please save the article first!", '');
     }
   }
 
