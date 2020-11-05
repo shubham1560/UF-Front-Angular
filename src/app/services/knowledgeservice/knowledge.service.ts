@@ -152,6 +152,11 @@ export class DataService {
     })});
   }
 
+  wakeUpCall(){
+    this.called_url = `https://services-django.herokuapp.com/profanity/wake/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
+
   publishArticles(article, id, title, description) {
     this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
     const body = {

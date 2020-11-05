@@ -9,9 +9,15 @@
                 <div class="col-lg-9">
 
                     <div style="max-width: 650px; margin: auto;">
+                        <a routerLink="/user_profile/authored_articles" style="margin: 10px 0px;" mat-button class="primary-button-inverted"> 
+                            <mat-icon>
+                                arrow_back
+                            </mat-icon>    
+                            View all articles 
+                        </a>
                         <br>
                         <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
-                            Last updated on: {{this.article?.data.sys_updated_on | date: 'medium'}}
+                            Last updated on: {{this.article?.data.sys_updated_on | date: "medium"}}
                         </span>
                         <br>
                         <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
@@ -62,7 +68,7 @@
                                 Saving....
                             </span>
                             <span *ngIf="!updatingData">
-                                Save progress
+                                Save
                             </span>
                         </button>
                         <button mat-button [disabled]="startedProfanityCheck" class="primary-button" (click)="addToCourse()">

@@ -60,6 +60,9 @@ export class ArticleNewComponent implements OnInit {
         // console.log(response);
         if (response) {
           return true;
+          this.knowledgeService.wakeUpCall().subscribe(
+            result=>{}
+          )
         }
         else {
           this.route.navigate(["welcome"]);
