@@ -2,14 +2,35 @@
 
 <div class="flex-wrapper">
     <div class="container">
+        <button mat-button routerLink="/welcome" class="primary-button-inverted" style="margin-top: 10px;"> <mat-icon>keyboard_backspace</mat-icon> Back</button>
+
         <br>
-        <h3 style="color: #8dbcaa;">
+        <h3  style="color: #8dbcaa; text-align: center;">
             Support
         </h3>
         <br>
-        <button mat-button routerLink="/welcome" style="color: #1F8476;"> <mat-icon>keyboard_backspace</mat-icon> Back</button>
-
+        
         <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <mat-card class="st-border m-10">
+                    <mat-card-header>
+                        <mat-card-title>
+                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
+                                routerLink="support/tickets">
+                            Reset Password
+                            </a>
+                        </mat-card-title>
+                        <mat-card-subtitle class="desc-text">
+                            Reset the password    
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-actions align="end">
+                        <button (click)="navigate('reset_password')" mat-button class="primary-button">
+                            Reset    
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
             <div class="col-lg-4 col-md-6 col-sm-12">
                 <mat-card class="st-border m-10">
                     <mat-card-header>
@@ -39,6 +60,9 @@
                         </mat-card-title>
                         <mat-card-subtitle class="desc-text">Please describe the enhancement </mat-card-subtitle>
                     </mat-card-header>
+                    <mat-icon style="float: left; font-size: 35px;padding-left: 20px;color:#1F8476">
+                        build
+                    </mat-icon>
                     <mat-card-actions align="end">
                         <button (click)="navigate('feature_request')" mat-button class="primary-button">
                             Suggest
@@ -55,9 +79,14 @@
                                 routerLink="support/report_defect">
                             Report a Defect
                             </a>
+                            
                         </mat-card-title>
                         <mat-card-subtitle class="desc-text">Describe a defect </mat-card-subtitle>
                     </mat-card-header>
+                    <mat-icon style="float: left; font-size: 40px;padding-left: 20px;color:red">
+                        bug_report
+                    </mat-icon>
+                    
                     <mat-card-actions align="end">
                         <button (click)="navigate('report_defect')" mat-button class="primary-button">
                             Report</button>
@@ -88,26 +117,7 @@
             </mat-card>
         </div> -->
             
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <mat-card class="st-border m-10">
-                    <mat-card-header>
-                        <mat-card-title>
-                            <a style="color:#1F8476; font-size: 20px; font-weight: 400;"
-                                routerLink="support/tickets">
-                            Reset Password
-                            </a>
-                        </mat-card-title>
-                        <mat-card-subtitle class="desc-text">
-                            Reset the password    
-                        </mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-actions align="end">
-                        <button (click)="navigate('reset_password')" mat-button class="primary-button">
-                            Reset    
-                        </button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
+            
 
         </div>
     </div>

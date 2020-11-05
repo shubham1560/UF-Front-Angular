@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div style="text-align: right;" *ngIf="showButton">
+        <div style="text-align: right;" *ngIf="showButton && bookmarkedArticles.length>4">
             <button class="landing-view-all-button" mat-button class="recently-viewed-all-button" (click)="openAllBookmarkedArticles()">
                 View all
                 <mat-icon style="font-size: 20px;">

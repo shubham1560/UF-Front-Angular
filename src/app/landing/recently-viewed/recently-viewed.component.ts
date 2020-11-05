@@ -39,6 +39,7 @@ export class RecentlyViewedComponent implements OnInit {
   openAllReadArticles(){
     this.dialog.open(ReadArticlesComponent, 
       {
+        minWidth: 280
       }
       );
   }

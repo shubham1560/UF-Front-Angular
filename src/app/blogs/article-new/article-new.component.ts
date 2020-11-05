@@ -53,6 +53,8 @@ export class ArticleNewComponent implements OnInit {
   title;
   description = '';
   showArticleTags = false;
+  param_article = '';
+
   ngOnInit() {
 
     this.userService.inGroup("Authors").subscribe(
@@ -61,7 +63,7 @@ export class ArticleNewComponent implements OnInit {
         if (response) {
           return true;
           this.knowledgeService.wakeUpCall().subscribe(
-            result=>{}
+            result => { }
           )
         }
         else {
@@ -76,6 +78,7 @@ export class ArticleNewComponent implements OnInit {
     this.routerService.paramMap.subscribe(
       params => {
         var article_id = params.get("id");
+        this.param_article = article_id;
         if (this.authService.isLoggedIn()) {
           if (article_id == '1') {
             this.titleService.setTitle("Add new article - SortedTree")
@@ -297,53 +300,57 @@ export class ArticleNewComponent implements OnInit {
   startedProfanityCheck = false;
 
   addToCourse() {
-    this.updatingData = true;
-    this.editor.save().then(data => {
-      this.startedProfanityCheck = true;
+    if (this.param_article != '1') {
+      this.updatingData = true;
+      this.editor.save().then(data => {
+        this.startedProfanityCheck = true;
 
-      var stripped_data = this.htmlStrip(data);
+        var stripped_data = this.htmlStrip(data);
 
-      this.knowledgeService.checkProfanity(stripped_data).subscribe(
-        (result: any) => {
-          // console.log(result);
-          if (result.profane) {
-            this.dialog.open(ProfanityComponent, {
-              data: { data: result }
-            })
-            this.startedProfanityCheck = false;
-            this.updatingData = false;
-            this.openSnackBar("This article couldn't pass the profanity check", '');
-          }
-          else {
+        this.knowledgeService.checkProfanity(stripped_data).subscribe(
+          (result: any) => {
+            // console.log(result);
+            if (result.profane) {
+              this.dialog.open(ProfanityComponent, {
+                data: { data: result }
+              })
+              this.startedProfanityCheck = false;
+              this.updatingData = false;
+              this.openSnackBar("This article couldn't pass the profanity check", '');
+            }
+            else {
+              this.publishArticle()
+              this.updatingData = false;
+              this.startedProfanityCheck = false;
+              // this.openSnackBar("This article passed the profanity check!", '');
+            }
+          }, error => {
+            // console.log(error);
             this.publishArticle()
             this.updatingData = false;
             this.startedProfanityCheck = false;
-            // this.openSnackBar("This article passed the profanity check!", '');
           }
-        }, error => {
-          // console.log(error);
-          this.publishArticle()
-          this.updatingData = false;
-          this.startedProfanityCheck = false;
-        }
-      )
-    })
+        )
+      })
+    }
   }
 
   publishArticle() {
 
-    this.updateArticle(true);
-    const dialogRef = this.dialog.open(CoursesComponent, {
-      data: { article_id: this.id, current_course: this.article.data.get_category.id }
-    });
+    if (this.param_article != '1') {
+      this.updateArticle(true);
+      const dialogRef = this.dialog.open(CoursesComponent, {
+        data: { article_id: this.id, current_course: this.article.data?.get_category.id }
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.updatingData = false;
-      if (result?.reload) {
-        window.location.reload();
+      dialogRef.afterClosed().subscribe(result => {
+        this.updatingData = false;
+        if (result?.reload) {
+          window.location.reload();
 
-      }
-    });
+        }
+      });
+    }
   }
 
   openTagDialog() {
@@ -358,7 +365,7 @@ export class ArticleNewComponent implements OnInit {
     var changedData = []
     // console.log(data);
     changedData.push({
-      "data": {"level": 2, "text": this.title},
+      "data": { "level": 2, "text": this.title },
       "type": "header"
     })
     data.blocks.forEach(element => {
@@ -387,7 +394,7 @@ export class ArticleNewComponent implements OnInit {
           }
         )
       }
-      else{
+      else {
         changedData.push(element);
       }
     });
