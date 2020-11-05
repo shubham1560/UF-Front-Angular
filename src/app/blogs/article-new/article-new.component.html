@@ -89,7 +89,7 @@
                             Add article tags can help find the user other related articles!
                         </span>
                         <br>
-                        <button *ngIf="title && state!='new'" (click)="openTagDialog()" mat-button
+                        <button *ngIf="showArticleTags" (click)="openTagDialog()" mat-button
                             class="primary-button-inverted">
                             Add artilce tags
                             <mat-icon>

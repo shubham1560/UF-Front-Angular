@@ -52,7 +52,7 @@ export class ArticleNewComponent implements OnInit {
   isLoading = true;
   title;
   description = '';
-
+  showArticleTags = false;
   ngOnInit() {
 
     this.userService.inGroup("Authors").subscribe(
@@ -85,6 +85,7 @@ export class ArticleNewComponent implements OnInit {
           else {
             this.knowledgeService.getArticleById(article_id).subscribe(
               (response: any) => {
+                this.showArticleTags = true;
                 this.article = response;
                 this.description = this.article.data.description;
                 this.title = this.article.data.title;
@@ -216,6 +217,7 @@ export class ArticleNewComponent implements OnInit {
             (error) => {
               this.updatingData = false;
               this.openSnackBar("Please give a heading or title to the article, and try again", '');
+              this.startedProfanityCheck = false;
             }
           )
         }
@@ -352,7 +354,10 @@ export class ArticleNewComponent implements OnInit {
     var data_to_check = {};
     var changedData = []
     // console.log(data);
-
+    changedData.push({
+      "data": {"level": 2, "text": this.title},
+      "type": "header"
+    })
     data.blocks.forEach(element => {
       // console.log(element);
       if (element.type == 'header') {
