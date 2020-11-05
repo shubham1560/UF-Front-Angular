@@ -2,16 +2,16 @@
 
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
 <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
-<br>
-
 <div class="flex-wrapper">
     <div class="container" id="uf-authored-articles">
+    
+        <button mat-button routerLink="/welcome" class="primary-button-inverted" style="margin-top: 10px;"> <mat-icon>keyboard_backspace</mat-icon> Home</button>
+
         <div class="row">
             <h2 style="color: #8dbcaa; margin: auto;">Authored articles</h2>
             <br> <br>
         </div>
         <div class="row">
-
             <div class="col-md-3">
                 State
                 <br> <br>
@@ -85,30 +85,32 @@
                     </button>
                 </div>
                 <br>
-                <div *ngFor="let article of articles_data?.articles">
+                <span *ngIf="isLoading">Loading...</span>
+                <div *ngIf="!isLoading">
+                    <div *ngFor="let article of articles_data?.articles">
 
-                    <mat-card class="st-border">
-                        <!-- <a mat-button style="float: right;">Created: {{article.sys_created_on | datesAgoDate}}</a> -->
-                        <mat-card-header>
-                            <mat-card-title><a style="color: #293E40;"
-                                    href="courses/article/{{article.id}}">{{article.title}}</a></mat-card-title>
-                            <mat-card-subtitle>Updated: {{article.sys_updated_on | datesAgoDate}}
-                                <br>
-                                Created: {{article.sys_created_on | datesAgoDate}}
-                            </mat-card-subtitle>
-                        </mat-card-header>
-                        <mat-card-actions>
-                            <button mat-button style="outline: none;"
-                                (click)="deleteArticle(article.id, article.title)">
-                                <mat-icon style="color: red;">
-                                    delete
-                                </mat-icon>
-                            </button>
+                        <mat-card class="st-border">
+                            <!-- <a mat-button style="float: right;">Created: {{article.sys_created_on | datesAgoDate}}</a> -->
+                            <mat-card-header>
+                                <mat-card-title><a style="color: #293E40;"
+                                        href="courses/article/{{article.id}}">{{article.title}}</a></mat-card-title>
+                                <mat-card-subtitle>Updated: {{article.sys_updated_on | datesAgoDate}}
+                                    <br>
+                                    Created: {{article.sys_created_on | datesAgoDate}}
+                                </mat-card-subtitle>
+                            </mat-card-header>
+                            <mat-card-actions>
+                                <button mat-button style="outline: none;"
+                                    (click)="deleteArticle(article.id, article.title)">
+                                    <mat-icon style="color: red;">
+                                        delete
+                                    </mat-icon>
+                                </button>
 
-                            <button mat-button style="outline: none; color:#438C9F">
-                                {{article.workflow}}
-                            </button>
-                            <!-- <span style="color: #438C9F;">>>>></span>
+                                <button mat-button style="outline: none; color:#438C9F">
+                                    {{article.workflow}}
+                                </button>
+                                <!-- <span style="color: #438C9F;">>>>></span>
                         <button *ngIf="article.workflow!='draft'" mat-button style="outline: none;color:#438C9F">
 
                             Sent for review
@@ -127,14 +129,15 @@
                         </button>
  -->
 
-                            <!-- <a href="courses/article/{{article.id}}" mat-button style="outline: none;float: right;">
+                                <!-- <a href="courses/article/{{article.id}}" mat-button style="outline: none;float: right;">
                         <mat-icon>
                             edit
                         </mat-icon>
                     </a> -->
-                        </mat-card-actions>
-                    </mat-card>
-                    <br>
+                            </mat-card-actions>
+                        </mat-card>
+                        <br>
+                    </div>
                 </div>
             </div>
         </div>
