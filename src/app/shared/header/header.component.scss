@@ -125,3 +125,13 @@ a{
         cursor: pointer;
     } 
   }
+
+  .logo{
+    color: white; 
+    font-size: 16px;
+    outline: none;
+
+    &:hover{
+        cursor: pointer;
+    }
+  }

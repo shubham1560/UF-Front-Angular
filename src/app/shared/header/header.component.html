@@ -1,6 +1,9 @@
 <mat-toolbar id="uf-header" class="uf-header">
 
-    <a mat-button routerLink="/welcome/" style="color: #f8f7f7;">SortedTree</a>
+    <!-- <a mat-button routerLink="/welcome/" style="color: #8dbcaa;">SortedTree</a> -->
+    <span routerLink="/welcome/" class="logo" style="color: white; font-size: 16px;">sorted</span>
+    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
+    <span routerLink="/welcome/" class="logo" style="color: white; font-size: 16px;"> ree</span>
     <button mat-button class="d-none d-md-block d-lg-block" (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
         style="outline: none; height: 48px; color: white; border-radius: 0px;">
         Roots
@@ -26,17 +29,15 @@
     </mat-menu>
     <span class="fillspace"></span>
 
-    
-    <form novalidate (ngSubmit)="searchResults()" class="d-none d-md-block d-lg-block" [formGroup]="searchQueryForm" >
-        <input type="text"
-            class='search-button'
-            placeholder="Search..." formControlName="query">
+
+    <form novalidate (ngSubmit)="searchResults()" class="d-none d-md-block d-lg-block" [formGroup]="searchQueryForm">
+        <input type="text" class='search-button' placeholder="Search..." formControlName="query">
         <button type="submit" mat-icon-button style="background-color: #293E40;outline: none; margin-right: 15px;">
             <mat-icon class="uf-search-icon">search</mat-icon>
         </button>
     </form>
-    
-    
+
+
 
     <!-- <span *ngIf="isLoggedIn" style="margin-right: 10px;">
         <button mat-button class="uf-dashboard" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
@@ -50,8 +51,8 @@
 
     </span>
 
-    <a mat-button class="add-article-button" target="_blank" href="/courses/article/1" *ngIf="isAuthor && userDetailFetched"
-        style="line-height: 30px; outline: none; height: auto;">
+    <a mat-button class="add-article-button" target="_blank" href="/courses/article/1"
+        *ngIf="isAuthor && userDetailFetched" style="line-height: 30px; outline: none; height: auto;">
         <mat-icon>
             add
         </mat-icon> new article
@@ -59,7 +60,7 @@
 
     <span class="sign-in" *ngIf="isLoggedIn && userDetailFetched">
 
-        
+
         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
             style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(131, 137, 139);"
             [matMenuTriggerFor]="beforeMenu">
@@ -75,8 +76,7 @@
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
             <div mat-menu-item style="line-height: initial; height: auto;cursor: default;">
-                <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
-                    style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #8dbcaa;
+                <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #8dbcaa;
                     color: white;">
                 </div>
 
@@ -99,7 +99,7 @@
                 Authored Articles
             </a>
             <a mat-menu-item routerLink="/support" *ngIf="isAuthor"
-            style="line-height: 30px; outline: none; height: auto;">
+                style="line-height: 30px; outline: none; height: auto;">
                 Support
             </a>
             <a mat-menu-item routerLink="/user_profile" style="line-height: 30px; outline: none; height: auto;"> My
@@ -119,7 +119,7 @@
         <div class="col-md-8  d-none d-md-block d-lg-block" style="padding: 0px;">
             <mat-toolbar class="uf-header"
                 style="background-color: #3e5153; color: white; font-weight: 100; font-size: 16px;border-radius: 0px;">
-                
+
             </mat-toolbar>
         </div>
         <div class="col-md-4" style="padding: 0px;">
