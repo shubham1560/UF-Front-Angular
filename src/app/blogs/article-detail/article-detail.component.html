@@ -234,7 +234,7 @@
                         </div>
                     </div>
                     <br>
-                    <mat-card class="author-card">
+                    <mat-card class="author-card" *ngIf="article.getAuthor?.first_name">
                         <mat-card-header>
 
                             <div mat-card-avatar class="author-image" *ngIf="!authorImage"
