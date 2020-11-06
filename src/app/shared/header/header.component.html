@@ -96,14 +96,18 @@
             </a>
             <a mat-menu-item routerLink="/user_profile/authored_articles" *ngIf="isAuthor"
                 style="line-height: 30px; outline: none; height: auto;">
-                Authored Articles
+                My Articles
             </a>
+            <hr>
             <a mat-menu-item routerLink="/support" *ngIf="isAuthor"
                 style="line-height: 30px; outline: none; height: auto;">
                 Support
             </a>
+            <hr>
             <a mat-menu-item routerLink="/user_profile" style="line-height: 30px; outline: none; height: auto;"> My
-                Profile</a>
+                Profile
+            </a>
+        
             <button mat-menu-item (click)="logout()" style="line-height: 30px; outline: none; height: auto;">
                 Sign out
                 <mat-icon matSuffix style="margin: 0px 2px;">login</mat-icon>
