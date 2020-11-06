@@ -5,7 +5,6 @@
     <div style="background-color: white;" id="uf-new-article">
         <div class="container-fluid">
             <div class="row">
-
                 <div class="col-lg-9">
 
                     <div style="max-width: 650px; margin: auto;">
@@ -91,18 +90,19 @@
                             <hr>
 
                         </div>
+                        <div *ngIf="showArticleTags">
                         <span style="color: #4f9aab; font-size: 12px;">
                             Add article tags can help find the user other related articles!
                         </span>
                         <br>
-                        <button *ngIf="showArticleTags" (click)="openTagDialog()" mat-button
+                        <button  (click)="openTagDialog()" mat-button
                             class="primary-button-inverted">
                             Add artilce tags
                             <mat-icon>
                                 local_offer
                             </mat-icon>
                         </button>
-
+                    </div>
                     </div>
 
 

@@ -61,10 +61,10 @@ export class ArticleNewComponent implements OnInit {
       (response: Boolean) => {
         // console.log(response);
         if (response) {
-          return true;
           this.knowledgeService.wakeUpCall().subscribe(
             result => { }
           )
+          return true;
         }
         else {
           this.route.navigate(["welcome"]);
