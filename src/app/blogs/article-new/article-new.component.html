@@ -5,6 +5,20 @@
     <div style="background-color: white;" id="uf-new-article">
         <div class="container-fluid">
             <div class="row">
+                <mat-toolbar>
+                    <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
+                            [disabled]="updatingData" (click)="updateArticle(true)">
+                            <span *ngIf="updatingData">
+                                Saving....
+                            </span>
+                            <span *ngIf="!updatingData">
+                                Save
+                            </span>
+                        </button>
+                        <button mat-button [disabled]="startedProfanityCheck || param_article != '1'" class="primary-button" (click)="addToCourse()">
+                            Publish to the path
+                        </button>
+                </mat-toolbar>
                 <div class="col-lg-9">
 
                     <div style="max-width: 650px; margin: auto;">
@@ -14,7 +28,6 @@
                             </mat-icon>    
                             View all articles 
                         </a>
-                        <br>
                         <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
                             Last updated on: {{this.article?.data.sys_updated_on | date: "medium"}}
                         </span>
@@ -70,7 +83,7 @@
                                 Save
                             </span>
                         </button>
-                        <button mat-button [disabled]="startedProfanityCheck" class="primary-button" (click)="addToCourse()">
+                        <button mat-button [disabled]="startedProfanityCheck || param_article != '1'" class="primary-button" (click)="addToCourse()">
                             Publish to the path
                         </button>
 
@@ -90,19 +103,18 @@
                             <hr>
 
                         </div>
-                        <div *ngIf="showArticleTags">
                         <span style="color: #4f9aab; font-size: 12px;">
                             Add article tags can help find the user other related articles!
                         </span>
                         <br>
-                        <button  (click)="openTagDialog()" mat-button
+                        <button *ngIf="showArticleTags" (click)="openTagDialog()" mat-button
                             class="primary-button-inverted">
                             Add artilce tags
                             <mat-icon>
                                 local_offer
                             </mat-icon>
                         </button>
-                    </div>
+
                     </div>
 
 

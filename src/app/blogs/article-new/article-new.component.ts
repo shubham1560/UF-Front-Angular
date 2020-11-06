@@ -11,7 +11,7 @@ import Link from '@editorjs/link';
 import delimiter from '@editorjs/delimiter';
 import CodeTool from '@editorjs/code';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
@@ -20,7 +20,6 @@ import { CoursesComponent } from '../courses/courses.component';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { ArticleTagComponent } from '../article-tag/article-tag.component';
 import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
-
 
 @Component({
   selector: 'app-article-new',
@@ -40,7 +39,6 @@ export class ArticleNewComponent implements OnInit {
     private titleService: Title,
     public dialog: MatDialog,
     private authService: AuthService,
-
   ) { }
 
   editor: EditorJS
@@ -55,7 +53,21 @@ export class ArticleNewComponent implements OnInit {
   showArticleTags = false;
   param_article = '';
 
+  private routeSub: any;
+
   ngOnInit() {
+
+    (document.querySelector('app-header') as HTMLElement).style.display = 'none';
+    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
+    this.routeSub = this.route.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+
+      }
+    });
+
 
     this.userService.inGroup("Authors").subscribe(
       (response: Boolean) => {
@@ -128,6 +140,13 @@ export class ArticleNewComponent implements OnInit {
     )
     this.loggerService.logData('uf-new-article', this);
   }
+
+
+  // ngAfterViewInit() {
+  //   // (document.querySelector('app-header') as HTMLElement).style.display = 'none';
+  //   // (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
+  // }
 
   id = '';  // if id =0, first save, otherwise populating the id from response
   headers = {
@@ -333,7 +352,7 @@ export class ArticleNewComponent implements OnInit {
         )
       })
     }
-    else{
+    else {
       this.openSnackBar("Please save the article first!", '');
     }
   }
@@ -354,7 +373,7 @@ export class ArticleNewComponent implements OnInit {
         }
       });
     }
-    else{
+    else {
       this.openSnackBar("Please save the article first!", '');
     }
   }
@@ -413,4 +432,9 @@ export class ArticleNewComponent implements OnInit {
     // console.log(changedData);
     return data_to_check;
   }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
+  }
+
 }

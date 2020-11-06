@@ -76,7 +76,7 @@ export class HeaderComponent implements OnInit {
       // confirm_password: ['', [Validators.required, Validators.minLength(8)]]
     })
 
-    this.loggerService.logData("uf-header", this);
+    this.loggerService.logData("st-header", this);
   }
 
 
