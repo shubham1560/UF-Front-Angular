@@ -75,14 +75,13 @@
         </div>
 
         <mat-menu #beforeMenu="matMenu" xPosition="before">
-            <div mat-menu-item style="line-height: initial; height: auto;cursor: default;">
+            <div routerLink="/user_profile" mat-menu-item style="line-height: initial; height: auto;cursor: default;">
                 <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #8dbcaa;
                     color: white;">
                 </div>
 
                 <span style="display: inline-block;padding-left: 10px;">
                     <b>
-                        <!-- {{user?.first_name+" "+user?.last_name}} -->
                         {{full_name}}
                     </b>
                     <br>
@@ -98,12 +97,15 @@
                 style="line-height: 30px; outline: none; height: auto;">
                 My Articles
             </a>
-            <hr>
-            <a mat-menu-item routerLink="/support" *ngIf="isAuthor"
+            <hr *ngIf="isAuthor">
+
+            <a mat-menu-item routerLink="/support" *ngIf="isLoggedIn"
                 style="line-height: 30px; outline: none; height: auto;">
                 Support
             </a>
-            <hr>
+            <hr *ngIf="isLoggedIn">
+
+            <!-- <hr> -->
             <a mat-menu-item routerLink="/user_profile" style="line-height: 30px; outline: none; height: auto;"> My
                 Profile
             </a>
