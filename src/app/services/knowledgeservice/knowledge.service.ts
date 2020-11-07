@@ -135,9 +135,21 @@ export class DataService {
       "publish_ready": false,
       "body_data": JSON.stringify(article["blocks"])
     };
-    // console.log(body);
     this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
-    // console.log(`${this.base_knowledge_url}articles/${id}/`);
+    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
+  }
+  
+  publishArticles(article, id, title, description) {
+    this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
+    const body = {
+      "article": article,
+      "title": title,
+      "id": id,
+      "publish_ready": true,
+      "body_data": JSON.stringify(article["blocks"]),
+      "description": description
+    };
+    this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
@@ -157,21 +169,6 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
-  publishArticles(article, id, title, description) {
-    this.called_url = `${this.base_knowledge_url}kb_knowledge/article/`;
-    const body = {
-      "article": article,
-      "title": title,
-      "id": id,
-      "publish_ready": true,
-      "body_data": JSON.stringify(article["blocks"]),
-      "description": description
-    };
-    // console.log(body);
-    this.cache.deleteInstant(`${this.base_knowledge_url}articles/${id}/`);
-    // console.log(`${this.base_knowledge_url}articles/${id}/`);
-    return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
-  }
 
   getAllCourses() {
     this.called_url = `${this.base_knowledge_url}kb_category/courses/`;

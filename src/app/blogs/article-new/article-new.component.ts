@@ -22,7 +22,7 @@ import { ArticleTagComponent } from '../article-tag/article-tag.component';
 // import {LayoutModule} from '@angular/cdk/layout';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
-import { Observable } from 'rxjs';
+import { Observable, async } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 
 @Component({
@@ -32,7 +32,7 @@ import { map } from 'rxjs/internal/operators/map';
 })
 export class ArticleNewComponent implements OnInit {
 
-  greaterThanMedium:Observable<boolean>;
+  greaterThanMedium: Observable<boolean>;
 
   constructor(
     private url: UrlconfigService,
@@ -46,9 +46,9 @@ export class ArticleNewComponent implements OnInit {
     public dialog: MatDialog,
     private authService: AuthService,
     public breakpointObserver: BreakpointObserver,
-  ) {}
+  ) { }
 
-  showsmallscreen=true;
+  showsmallscreen = true;
   editor: EditorJS
   data: any;
   article;
@@ -66,8 +66,8 @@ export class ArticleNewComponent implements OnInit {
   ngOnInit() {
 
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
-      result=>{
-        console.log(result);
+      result => {
+        // console.log(result);
         this.showsmallscreen = result.matches;
       }
     )
@@ -76,7 +76,6 @@ export class ArticleNewComponent implements OnInit {
       if (event instanceof NavigationStart) {
         (document.querySelector('app-header') as HTMLElement).style.display = 'block';
         (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
-
       }
     });
 
@@ -126,7 +125,6 @@ export class ArticleNewComponent implements OnInit {
                   this.initializeEditor();
                 }
               }, error => {
-                // console.log(error);
                 this.route.navigateByUrl('courses/article/1');
 
               }
@@ -153,7 +151,7 @@ export class ArticleNewComponent implements OnInit {
 
       data: this.data,
 
-      placeholder: 'Let`s do some good together, type away!',
+      placeholder: 'Let`s do some good',
 
       // autofocus: true,
 
@@ -203,59 +201,92 @@ export class ArticleNewComponent implements OnInit {
   prevData = [];
 
 
-  checkProfanity(data) {
-    this.knowledgeService.checkProfanity(data).subscribe(
-      result => {
-        // console.log(result);
-      },
-      error => {
+  // checkProfanity(data) {
+  //   this.knowledgeService.checkProfanity(data).subscribe(
+  //     result => {
+  //       // console.log(result);
+  //     },
+  //     error => {
 
-      }
-    )
-  }
-
+  //     }
+  //   )
+  // }
 
   updateArticle(update) {
     this.editor.save().then((outputData: any) => {
       this.updatingData = true;
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks) && this.title != '') {
         this.prevData = outputData.blocks;
-        if (update) {
-          this.knowledgeService.operateArticles(outputData, this.id, this.title, this.description).subscribe(
-            (response: any) => {
-              this.id = response;
-              if (this.id == '1') {
-                this.openSnackBar("This article no longer exists, you may have deleted it!", '');
-                window.location.reload()
+        if (this.state == 'published') {
+          this.startedProfanityCheck = true;
+
+          var stripped_data = this.htmlStrip(outputData);
+
+          this.knowledgeService.checkProfanity(stripped_data).subscribe(
+            (result: any) => {
+              if (result.profane) {
+                this.dialog.open(ProfanityComponent, {
+                  data: { data: result }
+                })
+                this.startedProfanityCheck = false;
+                this.updatingData = false;
+                this.openSnackBar("This article couldn't pass the profanity check", '');
               }
-              this.route.navigateByUrl('courses/article/' + this.id);
+              else {
+                // this.publishArticle()
+                this.save_or_send_to_review(update, outputData);
+                this.updatingData = false;
+                this.startedProfanityCheck = false;
+              }
+            }, error => {
+              // this.publishArticle()
+              this.save_or_send_to_review(update, outputData);
               this.updatingData = false;
-              this.openSnackBar("The progress has been saved", '');
-            },
-            (error) => {
-              this.updatingData = false;
-              this.openSnackBar("Please give a heading or title to the article, and try again", '');
               this.startedProfanityCheck = false;
             }
           )
         }
         else {
-          this.knowledgeService.publishArticles(outputData, this.id, this.title, this.description).subscribe(
-            (response: any) => {
-              this.updatingData = false;
-              this.state = 'review';
-              this.openSnackBar("The article has been sent for review!!", '');
-            },
-            (error) => {
-              this.updatingData = false;
-              this.openSnackBar("There seems to be a problem, please try again!", '');
-            }
-          )
+          this.save_or_send_to_review(update, outputData);
         }
+
+        // if (update) {
+        //   this.knowledgeService.operateArticles(outputData, this.id, this.title, this.description).subscribe(
+        //     (response: any) => {
+        //       this.id = response;
+        //       if (this.id == '1') {
+        //         this.openSnackBar("This article no longer exists, you may have deleted it!", '');
+        //         window.location.reload()
+        //       }
+        //       this.route.navigateByUrl('courses/article/' + this.id);
+        //       this.updatingData = false;
+        //       this.openSnackBar("The progress has been saved", '');
+        //     },
+        //     (error) => {
+        //       this.updatingData = false;
+        //       this.openSnackBar("Please give a heading or title to the article, and try again", '');
+        //       this.startedProfanityCheck = false;
+        //     }
+        //   )
+        // }
+        // else {
+        //   this.knowledgeService.publishArticles(outputData, this.id, this.title, this.description).subscribe(
+        //     (response: any) => {
+        //       this.updatingData = false;
+        //       this.state = 'review';
+        //       this.openSnackBar("The article has been sent for review!!", '');
+        //     },
+        //     (error) => {
+        //       this.updatingData = false;
+        //       this.openSnackBar("There seems to be a problem, please try again!", '');
+        //     }
+        //   )
+        // }
+
       }
       else if (outputData.blocks.length == 0 || this.title == '') {
         this.updatingData = false;
-        this.openSnackBar("Please add something title and paragraph to the article to save!", "");
+        this.openSnackBar("Please add title and paragraph to the article to save!", "");
       }
       else if (this.arrayEqual(this.prevData, outputData.blocks)) {
         this.openSnackBar("No change in article detected", '')
@@ -265,6 +296,43 @@ export class ArticleNewComponent implements OnInit {
       this.updatingData = false;
     });
   }
+
+
+  save_or_send_to_review(update, outputData) {
+    if (update) {
+      this.knowledgeService.operateArticles(outputData, this.id, this.title, this.description).subscribe(
+        (response: any) => {
+          this.id = response;
+          if (this.id == '1') {
+            this.openSnackBar("This article no longer exists, you may have deleted it!", '');
+            window.location.reload()
+          }
+          this.route.navigateByUrl('courses/article/' + this.id);
+          this.updatingData = false;
+          this.openSnackBar("The progress has been saved", '');
+        },
+        (error) => {
+          this.updatingData = false;
+          this.openSnackBar("Please give a heading or title to the article, and try again", '');
+          this.startedProfanityCheck = false;
+        }
+      )
+    }
+    else {
+      this.knowledgeService.publishArticles(outputData, this.id, this.title, this.description).subscribe(
+        (response: any) => {
+          this.updatingData = false;
+          this.state = 'review';
+          this.openSnackBar("The article has been sent for review!!", '');
+        },
+        (error) => {
+          this.updatingData = false;
+          this.openSnackBar("There seems to be a problem, please try again!", '');
+        }
+      )
+    }
+  }
+
 
   replacement = function (a) {
     let b = []
@@ -351,8 +419,6 @@ export class ArticleNewComponent implements OnInit {
       this.openSnackBar("Please save the article first!", '');
     }
   }
-
-
 
   publishArticle() {
     if (this.param_article != '1') {

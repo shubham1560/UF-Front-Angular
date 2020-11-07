@@ -9,9 +9,7 @@
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
-                    
                     <span class="fillspace"></span>
-
                     <div *ngIf="showsmallscreen">
                         <h5 style="color: #4f9aab; " *ngIf="title">
                             {{title}}
@@ -27,8 +25,8 @@
                     <span style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
                         {{state?state:"new"}}
                     </span>
-                    <button mat-button style="margin-right: 10px;" class="primary-button"
-                        [disabled]="updatingData" (click)="updateArticle(true)">
+                    <button mat-button style="margin-right: 10px;" class="primary-button" [disabled]="updatingData"
+                        (click)="updateArticle(true)">
                         <span *ngIf="updatingData">
                             Saving....
                         </span>
@@ -36,8 +34,8 @@
                             Save
                         </span>
                     </button>
-                    <button mat-button [disabled]="startedProfanityCheck || param_article == '1'" class="primary-button-inverted"
-                        (click)="addToCourse()">
+                    <button mat-button [disabled]="startedProfanityCheck || param_article == '1'"
+                        class="primary-button-inverted" (click)="addToCourse()">
                         Publish
                     </button>
                     <button mat-icon-button [matMenuTriggerFor]="beforeMenu"
@@ -46,7 +44,8 @@
                     </button>
                     <mat-menu #beforeMenu="matMenu" xPosition="before">
 
-                        <a mat-menu-item target="_blank" routerLink="/courses/article/1" style="line-height: 30px; outline: none; height: auto;">
+                        <a mat-menu-item target="_blank" routerLink="/courses/article/1"
+                            style="line-height: 30px; outline: none; height: auto;">
                             + new article
                         </a>
                         <a mat-menu-item routerLink="/user_profile/authored_articles"
@@ -86,7 +85,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3" style='border-left: 3px solid #f1f1f1; '>
-                    
+
                     <div id="uf-new-article">
                         <br>
 
@@ -121,17 +120,18 @@
                             </button>
                             <hr>
                         </div>
-                        <span style="color: #4f9aab; font-size: 12px;">
-                            Adding article tags can help find the user other related articles!
-                        </span>
-                        <br>
-                        <button *ngIf="showArticleTags" (click)="openTagDialog()" mat-button
-                            class="primary-button-inverted">
-                            Add tags
-                            <mat-icon>
-                                local_offer
-                            </mat-icon>
-                        </button>
+                        <div *ngIf="showArticleTags">
+                            <span style="color: #4f9aab; font-size: 12px;">
+                                Adding article tags can help find the user other related articles!
+                            </span>
+                            <br>
+                            <button (click)="openTagDialog()" mat-button class="primary-button-inverted">
+                                Add tags
+                                <mat-icon>
+                                    local_offer
+                                </mat-icon>
+                            </button>
+                        </div>
                     </div>
                     <br>
                     <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
