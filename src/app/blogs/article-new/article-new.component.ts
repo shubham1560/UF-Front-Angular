@@ -19,6 +19,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CoursesComponent } from '../courses/courses.component';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { ArticleTagComponent } from '../article-tag/article-tag.component';
+// import {LayoutModule} from '@angular/cdk/layout';
 import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
 
 @Component({
@@ -39,6 +40,7 @@ export class ArticleNewComponent implements OnInit {
     private titleService: Title,
     public dialog: MatDialog,
     private authService: AuthService,
+    
   ) { }
 
   editor: EditorJS
@@ -57,7 +59,7 @@ export class ArticleNewComponent implements OnInit {
 
   ngOnInit() {
 
-
+    //to show header and footer when the route changes
     this.routeSub = this.route.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         (document.querySelector('app-header') as HTMLElement).style.display = 'block';
@@ -67,7 +69,6 @@ export class ArticleNewComponent implements OnInit {
     });
 
     this.checkForAuthor();
-
 
     this.routerService.paramMap.subscribe(
       params => {
@@ -284,6 +285,8 @@ export class ArticleNewComponent implements OnInit {
   }
 
 
+
+  // To check if there are any changes made in the new and previous one
   arrayEqual(ary1: any[], ary2: any[]) {
     var new_ary2 = [];
     var new_ary1 = [];
@@ -298,6 +301,9 @@ export class ArticleNewComponent implements OnInit {
 
   startedProfanityCheck = false;
 
+
+
+  // To add the article to course, when we publish it to the path
   addToCourse() {
     if (this.param_article != '1') {
       this.updatingData = true;
@@ -308,7 +314,6 @@ export class ArticleNewComponent implements OnInit {
 
         this.knowledgeService.checkProfanity(stripped_data).subscribe(
           (result: any) => {
-            // console.log(result);
             if (result.profane) {
               this.dialog.open(ProfanityComponent, {
                 data: { data: result }
@@ -321,10 +326,8 @@ export class ArticleNewComponent implements OnInit {
               this.publishArticle()
               this.updatingData = false;
               this.startedProfanityCheck = false;
-              // this.openSnackBar("This article passed the profanity check!", '');
             }
           }, error => {
-            // console.log(error);
             this.publishArticle()
             this.updatingData = false;
             this.startedProfanityCheck = false;
@@ -337,8 +340,9 @@ export class ArticleNewComponent implements OnInit {
     }
   }
 
-  publishArticle() {
 
+
+  publishArticle() {
     if (this.param_article != '1') {
       this.updateArticle(true);
       const dialogRef = this.dialog.open(CoursesComponent, {
@@ -358,6 +362,9 @@ export class ArticleNewComponent implements OnInit {
     }
   }
 
+
+  // To create tags for the article
+  //Some changes have to be made to get it running
   openTagDialog() {
     const dialogRef = this.dialog.open(ArticleTagComponent, {
       minWidth: 280,
@@ -365,6 +372,8 @@ export class ArticleNewComponent implements OnInit {
     })
   }
 
+
+  // to strip the html from the data, which is sent to the microservice for checking for profanity
   htmlStrip(data) {
     var data_to_check = {};
     var changedData = []
@@ -440,4 +449,5 @@ export class ArticleNewComponent implements OnInit {
   logout() {
     this.authService.logoutUser();
   }
+
 }

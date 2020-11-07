@@ -244,7 +244,7 @@ export class DataService {
       "tag_id": tag_id,
       "action": 'delete'
     }
-    // this.cache.deleteContaining('tag/'+article_id+'/');
+    this.cache.deleteContaining('tag/'+article_id+'/');
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
