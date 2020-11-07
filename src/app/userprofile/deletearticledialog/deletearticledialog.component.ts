@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-deletearticledialog',
@@ -13,6 +14,7 @@ export class DeletearticledialogComponent implements OnInit {
     public dialogRef: MatDialogRef<DeletearticledialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private knowledge: DataService,
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -24,9 +26,11 @@ export class DeletearticledialogComponent implements OnInit {
       (response: any) => {
         // console.log(response);
         if (response.deleted) {
+          this.openSnackBar("Deleted successfully!", '')
           this.dialogRef.close({ delete: true, article: this.data.article_id });
         }
         else {
+          // this.openSnackBar("Deleted successfully!", '')
           this.dialogRef.close({ delete: false, article: this.data.article_id });
         }
       },
@@ -36,6 +40,14 @@ export class DeletearticledialogComponent implements OnInit {
 
       }
     )
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+    });
   }
 
 }
