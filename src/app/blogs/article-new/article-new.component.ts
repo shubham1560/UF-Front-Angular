@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, HostListener } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import EditorJS from '@editorjs/editorjs';
@@ -64,6 +64,8 @@ export class ArticleNewComponent implements OnInit {
   private routeSub: any;
 
   ngOnInit() {
+
+    console.log(ArticleNewComponent.prototype);
 
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
       result => {
@@ -213,6 +215,7 @@ export class ArticleNewComponent implements OnInit {
   // }
 
   updateArticle(update) {
+    // console.log(this);
     this.editor.save().then((outputData: any) => {
       this.updatingData = true;
       if (outputData.blocks.length > 0 && !this.arrayEqual(this.prevData, outputData.blocks) && this.title != '') {
@@ -528,4 +531,13 @@ export class ArticleNewComponent implements OnInit {
     this.authService.logoutUser();
   }
 
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if ((event.metaKey || event.ctrlKey) && event.key === 's') {
+      this.updateArticle(true);
+      event.preventDefault();
+    }
+  }
+  
 }

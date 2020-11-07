@@ -1,11 +1,10 @@
 <mat-progress-bar mode="query" color="primary" *ngIf="updatingData"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
-
 <div class="flex-wrapper">
     <div style="background-color: white;" id="uf-new-article">
         <div class="container-fluid">
             <div class="row">
-                <mat-toolbar style="background-color: white; border-bottom: 3px solid #f1f1f1;">
+                <mat-toolbar [ngStyle]="{'position':showsmallscreen ? 'fixed' : ''}" style=" border-bottom: 3px solid #f1f1f1; z-index: 2; background-color: white;">
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
@@ -30,8 +29,9 @@
                         <span *ngIf="updatingData">
                             Saving....
                         </span>
-                        <span *ngIf="!updatingData">
+                        <span style="font-size: 12px;" *ngIf="!updatingData">
                             Save
+                            <span *ngIf="showsmallscreen">(ctrl + s)</span>
                         </span>
                     </button>
                     <button mat-button [disabled]="startedProfanityCheck || param_article == '1'"
@@ -68,10 +68,11 @@
                         </a>
 
                     </mat-menu>
-
-
+                    
+                    
                 </mat-toolbar>
-                <div class="col-lg-9" style="height: 90vh;">
+                     
+                <div class="col-lg-9" [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}" style="height: max-content; min-height: 98vh;">
                     <br>
                     <div style="max-width: 650px; margin: auto;">
                         <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
@@ -84,7 +85,7 @@
                     <div id="editorjs">
                     </div>
                 </div>
-                <div class="col-lg-3" style='border-left: 3px solid #f1f1f1; '>
+                <div class="col-lg-3"  [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}" style='border-left: 3px solid #f1f1f1; '>
 
                     <div id="uf-new-article">
                         <br>
