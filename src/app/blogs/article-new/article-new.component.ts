@@ -57,8 +57,6 @@ export class ArticleNewComponent implements OnInit {
 
   ngOnInit() {
 
-    (document.querySelector('app-header') as HTMLElement).style.display = 'none';
-    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
 
     this.routeSub = this.route.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
@@ -68,27 +66,16 @@ export class ArticleNewComponent implements OnInit {
       }
     });
 
+    this.checkForAuthor();
 
-    this.userService.inGroup("Authors").subscribe(
-      (response: Boolean) => {
-        // console.log(response);
-        if (response) {
-          this.knowledgeService.wakeUpCall().subscribe(
-            result => { }
-          )
-          return true;
-        }
-        else {
-          this.route.navigate(["welcome"]);
-          return false;
-        }
-      }, error => {
-        return false;
-      }
-    )
 
     this.routerService.paramMap.subscribe(
       params => {
+
+        (document.querySelector('app-header') as HTMLElement).style.display = 'none';
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
+
         var article_id = params.get("id");
         this.param_article = article_id;
         if (this.authService.isLoggedIn()) {
@@ -140,13 +127,6 @@ export class ArticleNewComponent implements OnInit {
     )
     this.loggerService.logData('uf-new-article', this);
   }
-
-
-  // ngAfterViewInit() {
-  //   // (document.querySelector('app-header') as HTMLElement).style.display = 'none';
-  //   // (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
-
-  // }
 
   id = '';  // if id =0, first save, otherwise populating the id from response
   headers = {
@@ -437,4 +417,27 @@ export class ArticleNewComponent implements OnInit {
     this.routeSub.unsubscribe();
   }
 
+
+  checkForAuthor() {
+    this.userService.inGroup("Authors").subscribe(
+      (response: Boolean) => {
+        if (response) {
+          this.knowledgeService.wakeUpCall().subscribe(
+            result => { }
+          )
+          return true;
+        }
+        else {
+          this.route.navigate(["welcome"]);
+          return false;
+        }
+      }, error => {
+        return false;
+      }
+    )
+  }
+
+  logout() {
+    this.authService.logoutUser();
+  }
 }

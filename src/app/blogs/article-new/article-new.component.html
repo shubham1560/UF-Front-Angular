@@ -5,31 +5,92 @@
     <div style="background-color: white;" id="uf-new-article">
         <div class="container-fluid">
             <div class="row">
-                <mat-toolbar>
-                    <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
-                            [disabled]="updatingData" (click)="updateArticle(true)">
-                            <span *ngIf="updatingData">
-                                Saving....
-                            </span>
-                            <span *ngIf="!updatingData">
-                                Save
-                            </span>
-                        </button>
-                        <button mat-button [disabled]="startedProfanityCheck || param_article != '1'" class="primary-button" (click)="addToCourse()">
-                            Publish to the path
-                        </button>
-                </mat-toolbar>
-                <div class="col-lg-9">
+                <mat-toolbar style="background-color: white; border-bottom: 3px solid #f1f1f1;">
+                    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
+                    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
+                    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
+                    <!-- <a routerLink="/user_profile/authored_articles" style="margin: 10px 0px;" mat-button
+                        class="primary-button-inverted">
+                        <mat-icon>
+                            arrow_back
+                        </mat-icon>
+                        View all articles
+                    </a> -->
+                    <span class="fillspace"></span>
 
+                    <h5 style="color: #4f9aab; " *ngIf="title">
+                        {{title}}
+                        <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
+                            *ngIf="id" routerLink="/courses/article_preview/{{id}}">
+                            <mat-icon style="font-size: 16px;" matTooltip="preview the article in new window">
+                                open_in_new
+                            </mat-icon>
+                        </a>
+                    </h5>
+                    <span class="fillspace"></span>
+                    <span style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 30px;">
+                        {{state?state:"new"}}
+                    </span>
+
+
+                    <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
+                        [disabled]="updatingData" (click)="updateArticle(true)">
+                        <span *ngIf="updatingData">
+                            Saving....
+                        </span>
+                        <span *ngIf="!updatingData">
+                            Save
+                        </span>
+                    </button>
+                    <button mat-button [disabled]="startedProfanityCheck || param_article == '1'" class="primary-button"
+                        (click)="addToCourse()">
+                        Publish
+                    </button>
+                    <button mat-icon-button [matMenuTriggerFor]="beforeMenu"
+                        aria-label="Example icon-button with a menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <mat-menu #beforeMenu="matMenu" xPosition="before">
+
+                        <a mat-menu-item target="_blank" style="line-height: 30px; outline: none; height: auto;">
+                            + new article
+                        </a>
+                        <a mat-menu-item routerLink="/user_profile/authored_articles"
+                            style="line-height: 30px; outline: none; height: auto;">
+                            My Articles
+                        </a>
+                        <hr>
+
+                        <a mat-menu-item routerLink="/support" style="line-height: 30px; outline: none; height: auto;">
+                            Support
+                        </a>
+                        <hr>
+                        <!-- <hr> -->
+                        <a mat-menu-item routerLink="/user_profile"
+                            style="line-height: 30px; outline: none; height: auto;"> 
+                            My
+                            Profile
+                        </a>
+                        <a mat-menu-item (click)="logout()" style="line-height: 30px; outline: none; height: auto;">
+                            logout
+                        </a>
+
+                    </mat-menu>
+
+
+                </mat-toolbar>
+                <div class="col-lg-9" style="height: 90vh;">
+                    <br>
                     <div style="max-width: 650px; margin: auto;">
-                        <a routerLink="/user_profile/authored_articles" style="margin: 10px 0px;" mat-button class="primary-button-inverted"> 
+                        <!-- <a routerLink="/user_profile/authored_articles" style="margin: 10px 0px;" mat-button
+                            class="primary-button-inverted">
                             <mat-icon>
                                 arrow_back
-                            </mat-icon>    
-                            View all articles 
-                        </a>
+                            </mat-icon>
+                            View all articles
+                        </a> -->
                         <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
-                            Last updated on: {{this.article?.data.sys_updated_on | date: "medium"}}
+                            Last updated: {{this.article?.data.sys_updated_on | date: "medium"}}
                         </span>
                         <br>
                         <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
@@ -38,12 +99,13 @@
                     <div id="editorjs">
                     </div>
                 </div>
-                <div class="col-lg-3" style='background-color: #FCFCFC; border-left: 3px solid #f1f1f1;'>
+                <div class="col-lg-3" style='border-left: 3px solid #f1f1f1; '>
 
                     <div id="uf-new-article">
                         <br>
-                        <h6 style="color: #516264;" *ngIf="state">State: {{state}}</h6>
-                        <h6 style="color: #516264;" *ngIf="!state">State: New</h6>
+                        <!-- <h6 style="color: #516264;" *ngIf="state">State: {{state}}</h6> -->
+                        <!-- <h6 style="color: #516264;" *ngIf="!state">State: New</h6> -->
+
                         <div *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label"
                             style="font-size: 14px;">
                             Published to the path:
@@ -54,7 +116,7 @@
                             </a>
                         </div>
                         <br>
-                        <h5 style="color: #4f9aab; " *ngIf="title">
+                        <!-- <h5 style="color: #4f9aab; " *ngIf="title">
                             {{title}}
                             <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
                                 *ngIf="id" routerLink="/courses/article_preview/{{id}}">
@@ -62,8 +124,8 @@
                             </a>
 
 
-                        </h5>
-                        <h4 style="color: #4f9aab;" *ngIf="!title">Start by giving it a title!</h4>
+                        </h5> -->
+                        <!-- <h4 style="color: #4f9aab;" *ngIf="!title">Start by giving it a title!</h4> -->
                         <textarea class="desc-article st-border" style="font-size: 12px;" rows='2'
                             [(ngModel)]="description" placeholder="Add a short description to the article....."
                             type="text">
@@ -73,8 +135,8 @@
                             <b>Note:</b> This description helps the user to get the summary of the article in search
                         </span> -->
                         <!-- <br> -->
-                        <br>
-                        <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
+                        <!-- <br> -->
+                        <!-- <button mat-button style="margin-right: 20px;" class="primary-button-inverted"
                             [disabled]="updatingData" (click)="updateArticle(true)">
                             <span *ngIf="updatingData">
                                 Saving....
@@ -82,14 +144,13 @@
                             <span *ngIf="!updatingData">
                                 Save
                             </span>
-                        </button>
-                        <button mat-button [disabled]="startedProfanityCheck || param_article != '1'" class="primary-button" (click)="addToCourse()">
+                        </button> -->
+                        <!-- <button mat-button [disabled]="startedProfanityCheck || param_article != '1'"
+                            class="primary-button" (click)="addToCourse()">
                             Publish to the path
-                        </button>
+                        </button> -->
 
-                        <br>
                         <hr>
-
                         <div *ngIf="title && state=='published'">
                             <span style="color: #4f9aab; font-size: 12px;">
                                 To unpublish this article, you can send it to review state
@@ -109,11 +170,13 @@
                         <br>
                         <button *ngIf="showArticleTags" (click)="openTagDialog()" mat-button
                             class="primary-button-inverted">
-                            Add artilce tags
+                            Add tags
                             <mat-icon>
                                 local_offer
                             </mat-icon>
                         </button>
+
+
 
                     </div>
 
