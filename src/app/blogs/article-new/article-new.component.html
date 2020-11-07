@@ -12,7 +12,7 @@
                     
                     <span class="fillspace"></span>
 
-                    <div>
+                    <div *ngIf="showsmallscreen">
                         <h5 style="color: #4f9aab; " *ngIf="title">
                             {{title}}
                             <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
@@ -24,10 +24,10 @@
                         </h5>
                     </div>
                     <span class="fillspace"></span>
-                    <span style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 30px;">
+                    <span style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
                         {{state?state:"new"}}
                     </span>
-                    <button mat-button style="margin-right: 20px;" class="primary-button"
+                    <button mat-button style="margin-right: 10px;" class="primary-button"
                         [disabled]="updatingData" (click)="updateArticle(true)">
                         <span *ngIf="updatingData">
                             Saving....
@@ -59,7 +59,6 @@
                             Support
                         </a>
                         <hr>
-                        <!-- <hr> -->
                         <a mat-menu-item routerLink="/user_profile"
                             style="line-height: 30px; outline: none; height: auto;">
                             My

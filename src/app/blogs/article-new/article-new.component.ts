@@ -20,7 +20,10 @@ import { CoursesComponent } from '../courses/courses.component';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { ArticleTagComponent } from '../article-tag/article-tag.component';
 // import {LayoutModule} from '@angular/cdk/layout';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/internal/operators/map';
 
 @Component({
   selector: 'app-article-new',
@@ -28,6 +31,8 @@ import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component
   styleUrls: ['./article-new.component.scss']
 })
 export class ArticleNewComponent implements OnInit {
+
+  greaterThanMedium:Observable<boolean>;
 
   constructor(
     private url: UrlconfigService,
@@ -40,9 +45,10 @@ export class ArticleNewComponent implements OnInit {
     private titleService: Title,
     public dialog: MatDialog,
     private authService: AuthService,
-    
-  ) { }
+    public breakpointObserver: BreakpointObserver,
+  ) {}
 
+  showsmallscreen=true;
   editor: EditorJS
   data: any;
   article;
@@ -59,6 +65,12 @@ export class ArticleNewComponent implements OnInit {
 
   ngOnInit() {
 
+    this.breakpointObserver.observe('(min-width: 768px)').subscribe(
+      result=>{
+        console.log(result);
+        this.showsmallscreen = result.matches;
+      }
+    )
     //to show header and footer when the route changes
     this.routeSub = this.route.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
