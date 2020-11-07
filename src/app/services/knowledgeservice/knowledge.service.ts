@@ -257,4 +257,10 @@ export class DataService {
     }
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  stripIdFromUrl(article_id: string){
+    var url_arr = article_id.split("-")
+    console.log(url_arr);
+  }
+
 }

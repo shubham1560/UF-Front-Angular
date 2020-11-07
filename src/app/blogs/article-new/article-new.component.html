@@ -46,7 +46,7 @@
                     </button>
                     <mat-menu #beforeMenu="matMenu" xPosition="before">
 
-                        <a mat-menu-item target="_blank" style="line-height: 30px; outline: none; height: auto;">
+                        <a mat-menu-item target="_blank" routerLink="/courses/article/1" style="line-height: 30px; outline: none; height: auto;">
                             + new article
                         </a>
                         <a mat-menu-item routerLink="/user_profile/authored_articles"
@@ -86,9 +86,15 @@
                     </div>
                 </div>
                 <div class="col-lg-3" style='border-left: 3px solid #f1f1f1; '>
-
+                    
                     <div id="uf-new-article">
                         <br>
+
+                        <span *ngIf="param_article == '1'" style="color: #4f9aab; font-size: 14px;">
+                            You can publish the article after saving it!!
+                            <hr>
+                        </span>
+                        <!-- <br> -->
                         <div *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label"
                             style="font-size: 14px;">
                             Published to the path:
@@ -116,7 +122,7 @@
                             <hr>
                         </div>
                         <span style="color: #4f9aab; font-size: 12px;">
-                            Add article tags can help find the user other related articles!
+                            Adding article tags can help find the user other related articles!
                         </span>
                         <br>
                         <button *ngIf="showArticleTags" (click)="openTagDialog()" mat-button
