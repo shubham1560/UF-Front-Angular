@@ -36,7 +36,9 @@
                     </button>
                     <button mat-button [disabled]="startedProfanityCheck || param_article == '1'"
                         class="primary-button-inverted" (click)="addToCourse()">
-                        Publish
+                        Publish 
+                        <span *ngIf="showsmallscreen">(ctrl + i)</span>
+
                     </button>
                     <button mat-icon-button [matMenuTriggerFor]="beforeMenu"
                         aria-label="Example icon-button with a menu">

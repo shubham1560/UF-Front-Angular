@@ -531,11 +531,15 @@ export class ArticleNewComponent implements OnInit {
     this.authService.logoutUser();
   }
 
-
   @HostListener('window:keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
     if ((event.metaKey || event.ctrlKey) && event.key === 's') {
       this.updateArticle(true);
+      event.preventDefault();
+    }
+    if ((event.metaKey || event.ctrlKey) && event.key === 'i') {
+      // this.updateArticle(true);
+      this.addToCourse();
       event.preventDefault();
     }
   }
