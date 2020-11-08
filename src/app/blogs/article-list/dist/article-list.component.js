@@ -76,7 +76,7 @@ var ArticleListComponent = /** @class */ (function () {
     };
     ArticleListComponent.prototype.navigate = function (article_id) {
         // console.log("navigation called -----------------------");
-        var url = "courses/" + this.course + "/" + article_id;
+        var url = "path/" + this.course + "/" + article_id;
         this.markViewed(article_id);
         if (this.course_for_modal.category) {
             window.open("#/" + url);

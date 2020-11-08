@@ -1,1 +1,12 @@
-<p>authored-articles works!</p>
+<!-- 
+<pre>
+    {{articles | json}}
+</pre> -->
+
+Authored Articles:
+
+<div *ngFor="let article of articles">
+    <a href="">{{article?.title}} <br></a>
+    {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
+
+</div>

@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-12" *ngFor="let article of bookmarkedArticles">
 
-                <a routerLink="courses/{{article.get_article.course_id}}/{{article.article}}" class="landing-title-color">
+                <a routerLink="path/{{article.get_article.course_id}}/{{article.article}}" class="landing-title-color">
                     {{article.get_article.title}}
                 </a>
 

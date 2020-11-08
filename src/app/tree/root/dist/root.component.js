@@ -75,8 +75,8 @@ var RootComponent = /** @class */ (function () {
         });
     };
     RootComponent.prototype.navigate = function (url) {
-        this.router.navigateByUrl("/courses/" + url);
-        // window.open("#/courses/" + url)
+        this.router.navigateByUrl("/path/" + url);
+        // window.open("#/path/" + url)
     };
     RootComponent.prototype.openNav = function () {
         this.icon = "menu";

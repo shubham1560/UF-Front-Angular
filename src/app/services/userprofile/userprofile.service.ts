@@ -75,6 +75,11 @@ export class UserprofileService {
     return this.httpService.get(this.url, {headers: this.header});
   }
 
+  getPublicUserAuthoredArticles(sort_by, user_id){
+    this.url = `${this.base_userprofile_url}${user_id}/articles/${sort_by}/`;
+    return this.httpService.get(this.url, {headers: this.header});
+  }
+
   inGroup(group){
     this.url = `${this.base_userprofile_url}group/${group}/`;
     return this.httpService.get(this.url, {headers: this.header});

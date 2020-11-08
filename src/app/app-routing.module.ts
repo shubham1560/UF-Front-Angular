@@ -36,7 +36,7 @@ const routes: Routes = [
       import('./support/support.module').then(sp=>sp.SupportModule)
   },
   { 
-    path: "courses", 
+    path: "path", 
     loadChildren: () =>
       import("./blogs/blogs.module").then(bm=>bm.BlogsModule) 
   },

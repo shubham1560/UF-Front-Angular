@@ -7,7 +7,7 @@
                 <div *ngIf="!isLoading">
                     <div *ngIf="owner" id="owner-box">
                         Article Options :
-                        <a mat-icon-button routerLink="/courses/article/{{article.id}}">
+                        <a mat-icon-button routerLink="/path/article/{{article.id}}">
                             <mat-icon>
                                 edit
                             </mat-icon>
@@ -204,7 +204,7 @@
                     <div class="row">
                         <div class="col-lg-6" style="text-align: left;">
                             <!-- {{previousArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{previousArticle.id}}"
+                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{previousArticle.id}}"
                                 *ngIf="previousArticle">
                                 <!-- <mat-icon>
                                     navigate_before
@@ -220,7 +220,7 @@
                         </div> -->
                         <div class="col-lg-6" style="text-align: right;">
                             <!-- {{nextArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/courses/{{category}}/{{nextArticle.id}}"
+                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{nextArticle.id}}"
                                 *ngIf="nextArticle">
                                 <!-- <mat-icon>
                                     navigate_next
@@ -245,7 +245,7 @@
                                 style="background-size: cover;"></div>
 
                             <mat-card-title *ngIf="article.getAuthor.first_name">
-                                {{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}
+                                <a routerLink="/user/{{article.getAuthor?.id}}">{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}</a>
                             </mat-card-title>
                             <mat-card-title *ngIf="!article.getAuthor.first_name">The author has decided to keep the
                                 profile private</mat-card-title>

@@ -75,7 +75,7 @@
                             (click)="editUser()" aria-label="Edit user details">edit</mat-icon>
                     </h3>
                     <p>({{email}})</p>
-                    <div style="padding-bottom: 20px;" *ngIf='response.author'>
+                    <div style="padding-bottom: 20px;" *ngIf='response?.author'>
                         Roles:
                         <span style="color: #3c869a;" #tooltip="matTooltip"
                             matTooltip="Author has the priviledge to add article to existing paths">

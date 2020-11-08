@@ -1,3 +1,5 @@
+<mat-progress-bar mode="determinate" value="100" color="accent"></mat-progress-bar>
+
 <div class="flex-wrapper">
     <div class="container">
         <div class="row uf-border">
@@ -19,7 +21,7 @@
             </div>
             <div class="col-md-8 uf-border" style="padding: 20px;">
                 <h3>{{name}}</h3>
-                <div style="padding-bottom: 20px;" *ngIf='response.author'>
+                <div style="padding-bottom: 20px;" *ngIf='response?.author'>
                     Roles:
                     <span style="color: #3c869a;" #tooltip="matTooltip"
                         matTooltip="Author has the priviledge to add article to existing paths">
@@ -33,24 +35,24 @@
                 </div>
 
                 <div style="color: #293e40; padding-bottom: 20px;">
-                    <a target="_blank" href="{{response.user.facebook_profile_link}}"
-                        *ngIf="response.user.facebook_profile_link" class="uf-social">
+                    <a target="_blank" href="{{response?.user.facebook_profile_link}}"
+                        *ngIf="response?.user.facebook_profile_link" class="uf-social">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.instagram_profile_link}}" class="uf-social"
-                        *ngIf="response.user.instagram_profile_link">
+                    <a target="_blank" href="{{response?.user.instagram_profile_link}}" class="uf-social"
+                        *ngIf="response?.user.instagram_profile_link">
                         <i class="fa fa-instagram" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.linkedin_profile}}" class="uf-social"
-                        *ngIf="response.user.linkedin_profile">
+                    <a target="_blank" href="{{response?.user.linkedin_profile}}" class="uf-social"
+                        *ngIf="response?.user.linkedin_profile">
                         <i class="fa fa-linkedin" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.twitter_profile_link}}" class="uf-social"
-                        *ngIf="response.user.twitter_profile_link">
+                    <a target="_blank" href="{{response?.user.twitter_profile_link}}" class="uf-social"
+                        *ngIf="response?.user.twitter_profile_link">
                         <i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
-                    <a target="_blank" href="{{response.user.external_website_link}}" class="uf-social"
-                        *ngIf="response.user.external_website_link">
+                    <a target="_blank" href="{{response?.user.external_website_link}}" class="uf-social"
+                        *ngIf="response?.user.external_website_link">
                         <i class="fa fa-globe" aria-hidden="true"></i>
                     </a>
                 </div>

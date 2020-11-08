@@ -11,11 +11,11 @@
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
                     <span class="fillspace"></span>
                     <div *ngIf="showsmallscreen">
-                        <a routerLink="/courses/article_preview/{{id}}">
+                        <a routerLink="/path/article_preview/{{id}}">
                             <h5 style="color: #4f9aab; " *ngIf="title">
                                 {{title}}
                                 <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
-                                    *ngIf="id" routerLink="/courses/article_preview/{{id}}">
+                                    *ngIf="id" routerLink="/path/article_preview/{{id}}">
                                     <mat-icon style="font-size: 16px;" matTooltip="preview the article in new window">
                                         open_in_new
                                     </mat-icon>
@@ -50,7 +50,7 @@
                     </button>
                     <mat-menu #beforeMenu="matMenu" xPosition="before">
 
-                        <a mat-menu-item target="_blank" routerLink="/courses/article/1"
+                        <a mat-menu-item target="_blank" routerLink="/path/article/1"
                             style="line-height: 30px; outline: none; height: auto;">
                             + new article
                         </a>
@@ -113,7 +113,7 @@
                             style="font-size: 14px;">
                             Published to the path:
                             <a target="_blank" style="color: #4f9aab;"
-                                routerLink="/courses/{{article?.data.get_category.id}}/{{article?.data.id}}">
+                                routerLink="/path/{{article?.data.get_category.id}}/{{article?.data.id}}">
                                 {{article?.data.get_category.category_label}}
                                 <mat-icon style="font-size: 14px;">open_in_new</mat-icon>
                             </a>

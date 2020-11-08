@@ -127,7 +127,7 @@ export class ArticleNewComponent implements OnInit {
                   this.initializeEditor();
                 }
               }, error => {
-                this.route.navigateByUrl('courses/article/1');
+                this.route.navigateByUrl('path/article/1');
 
               }
             )
@@ -261,7 +261,7 @@ export class ArticleNewComponent implements OnInit {
         //         this.openSnackBar("This article no longer exists, you may have deleted it!", '');
         //         window.location.reload()
         //       }
-        //       this.route.navigateByUrl('courses/article/' + this.id);
+        //       this.route.navigateByUrl('path/article/' + this.id);
         //       this.updatingData = false;
         //       this.openSnackBar("The progress has been saved", '');
         //     },
@@ -310,7 +310,7 @@ export class ArticleNewComponent implements OnInit {
             this.openSnackBar("This article no longer exists, you may have deleted it!", '');
             window.location.reload()
           }
-          this.route.navigateByUrl('courses/article/' + this.id);
+          this.route.navigateByUrl('path/article/' + this.id);
           this.updatingData = false;
           this.openSnackBar("The progress has been saved", '');
         },

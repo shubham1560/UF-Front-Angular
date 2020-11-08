@@ -167,7 +167,7 @@ export class RootComponent implements OnInit {
   }
 
   navigate(url) {
-    this.router.navigateByUrl("/courses/" + url);
+    this.router.navigateByUrl("/path/" + url);
   }
 
   openNav() {

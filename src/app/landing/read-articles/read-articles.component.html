@@ -4,8 +4,8 @@
         <div *ngFor="let article of articles">
             <!-- <mat-card class="uf-recently-viewed-card" -->
             <div
-                routerLink="courses/{{article.article.course_id}}/{{article.article.id}}">
-                <a href="courses/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color">
+                routerLink="path/{{article.article.course_id}}/{{article.article.id}}">
+                <a href="path/{{article.article.course_id}}/{{article.article.id}}" class="landing-title-color">
                     {{article.article.title}}
                 </a>
                 <div class="landing-breadcrumb">

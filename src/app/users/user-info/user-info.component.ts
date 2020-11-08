@@ -29,7 +29,7 @@ export class UserInfoComponent implements OnInit {
 
     this.route.paramMap.subscribe(
       result=>{
-        console.log(result);
+        // console.log(result);
         var user_id = result.get("user_id");
         this.profile.getUserDataPublic(user_id).subscribe(
           result => {

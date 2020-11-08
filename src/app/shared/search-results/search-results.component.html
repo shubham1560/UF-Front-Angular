@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-12" *ngFor="let course of searchResults.courses">
 
-                            <a [mat-dialog-close]="true" routerLink="courses/{{course.id}}/" class="anchor">
+                            <a [mat-dialog-close]="true" routerLink="path/{{course.id}}/" class="anchor">
                                 {{course.label}}
                             </a>
 
@@ -43,7 +43,7 @@
                         <div class="col-12" *ngFor="let article of searchResults.articles"
                             style="padding-bottom: 10px;">
 
-                            <a [mat-dialog-close]="true" routerLink="courses/{{article.category}}/{{article.id}}" class="anchor">
+                            <a [mat-dialog-close]="true" routerLink="path/{{article.category}}/{{article.id}}" class="anchor">
                                 {{article.title}}
                             </a>
 

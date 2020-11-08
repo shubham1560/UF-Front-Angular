@@ -118,12 +118,12 @@ export class ArticleListComponent implements OnInit {
     // console.log("navigation called -----------------------");
 
 
-    var url = `courses/${this.course}/${article_id}`
+    var url = `path/${this.course}/${article_id}`
     this.markViewed(article_id)
     if (this.course_for_modal.category) {
       window.open(url);
     } else {
-      this.router.navigate(['courses', this.course, article_id])
+      this.router.navigate(['path', this.course, article_id])
     }
   }
 

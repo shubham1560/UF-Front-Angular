@@ -7,7 +7,7 @@
     <!-- <pre>
         {{sectionAndArticles | json}}
     </pre> -->
-    <button mat-button class="primary-button" routerLink="/courses/{{course}}/"> <mat-icon>keyboard_backspace</mat-icon> Back </button>
+    <button mat-button class="primary-button" routerLink="/path/{{course}}/"> <mat-icon>keyboard_backspace</mat-icon> Back </button>
     <br> <br>
     <div class="row">
         <div class="col-md-6">
@@ -15,7 +15,7 @@
             </span>
             <br>
             {{courseName}}
-            <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/courses/{{course}}/">
+            <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/path/{{course}}/">
 
                 <mat-icon>
                     open_in_new
@@ -46,7 +46,7 @@
             <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
                 <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
                     <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">
-                        <a target="_blank" routerLink="/courses/article_preview/{{element.id}}" mat-icon-button>
+                        <a target="_blank" routerLink="/path/article_preview/{{element.id}}" mat-icon-button>
                             <mat-icon style="color: #3c869a;" matTooltip="See the article preview">
                                 open_in_new
                             </mat-icon>
