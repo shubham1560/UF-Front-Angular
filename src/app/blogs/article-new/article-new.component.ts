@@ -292,7 +292,7 @@ export class ArticleNewComponent implements OnInit {
         this.openSnackBar("Please add title and paragraph to the article to save!", "");
       }
       else if (this.arrayEqual(this.prevData, outputData.blocks)) {
-        this.openSnackBar("No change in article detected", '')
+        this.openSnackBar("No change in article body detected!", '')
         this.updatingData = false;
       }
     }).catch((error) => {

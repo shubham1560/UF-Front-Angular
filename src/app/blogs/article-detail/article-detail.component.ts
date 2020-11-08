@@ -44,7 +44,6 @@ export class ArticleDetailComponent implements OnInit {
     this.imageLoaded = false;
     this.route.paramMap.subscribe(
       params => {
-        // console.log(params);
         if (window.location.hash == "") {
           let scrollToTop = window.setInterval(() => {
             let pos = window.pageYOffset;
@@ -55,7 +54,6 @@ export class ArticleDetailComponent implements OnInit {
             }
           }, 16);
         }
-        // console.log("changed");
         this.isLoading = true;
         this.article_id = params.get('article');
         this.category = params.get("category");
@@ -64,27 +62,24 @@ export class ArticleDetailComponent implements OnInit {
             (result: any) => {
               this.article = result.data;
               this.title = this.article.title;
-              // if(result.owner){
               this.owner = result.owner;
-              // }
               this.isLoading = false;
               var len = this.article.article_body.length - 1;
               this.article_body = this.replacement(this.article.article_body.substring(1, len));
               this.fetchEmbedDetails();
               this.current_url = window.location.href;
               this.titleService.setTitle(this.title + " - SortedTree");
-              // console.log(this.article.getAuthor.header_image);
-              // console.log(this.article.getAuthor.google_pic);
-              // console.log(result);
-                this.authorImage = this.article.getAuthor.header_image || this.article.getAuthor.google_pic ;
-                
+              if (this.article.getAuthor.google_pic) {
+                this.authorImage = this.article.getAuthor.google_pic;
+              }
+              else {
+                this.authorImage = this.article.getAuthor.header_image
+              }
             }, error => {
               this.article = {};
-              // console.log(error);
             }
           )
         }
-        // params.get("").
         setTimeout(() => {
           if (this.category != this.initCourse) {
             if (this.category != "article_preview") {
