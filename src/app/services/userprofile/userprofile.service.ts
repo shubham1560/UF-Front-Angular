@@ -25,6 +25,11 @@ export class UserprofileService {
     return this.httpService.get(this.url, {headers: this.header});
   }
 
+  getUserDataPublic(id){
+    this.url = `${this.base_userprofile_url}sys_user/${id}`;
+    return this.httpService.get(this.url, {headers: this.header});
+  }
+
   deleteUser(){
     this.url = `${this.base_userprofile_url}get_user_data/`
     this.body = {"delete": "true"};

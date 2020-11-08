@@ -55,6 +55,11 @@ const routes: Routes = [
     loadChildren: ()=>
       import("./about/about.module").then(about=>about.AboutModule)
   },
+  {
+    path: "user",
+    loadChildren: ()=>
+      import("./users/users.module").then(users=>users.UsersModule)
+  },
   { 
     path: "**", 
     component: NotFoundComponent 
