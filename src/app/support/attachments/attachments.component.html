@@ -1,7 +1,7 @@
 <div id="st-attachments">
-    <div class="attachment-section st-border wrapper">
+    <div class="attachment-section st-border wrapper" style="margin-top: 0px !important;">
         
-        <span> Attached Images </span>
+        <span> <button mat-icon-button> <mat-icon>attach_file</mat-icon> </button>Images </span>
         <button mat-button style="outline: none; float: right;" [disabled]="uploadingImage" class="primary-button-inverted">
             <label for="file-upload" class="custom-file-upload" style="padding: 0px 10px; border-radius: 5px;">
                 {{buttonText}}
@@ -46,3 +46,5 @@
         </div>
     </div>
 </div>
+
+<br>

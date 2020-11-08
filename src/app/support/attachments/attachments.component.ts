@@ -51,7 +51,7 @@ export class AttachmentsComponent implements OnInit {
   }
 
   attachments = [];
-  buttonText = "upload images";
+  buttonText = "upload";
   
   getTableType(){
     if(this.ticket_type == 'defect'){

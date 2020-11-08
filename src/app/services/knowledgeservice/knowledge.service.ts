@@ -159,6 +159,7 @@ export class DataService {
     const body = {
       "data": article["blocks"]
     }
+        
     return this.httpService.post(this.called_url, body, {headers: new HttpHeaders({
       'Content-Type': 'application/json',
     })});

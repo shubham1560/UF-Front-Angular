@@ -1,10 +1,9 @@
 <mat-progress-bar mode="determinate" value="100" color="accent"></mat-progress-bar>
 
-<br>
 <div class="flex-wrapper">
     <div class="container">
         <div>
-            <button mat-button routerLink="/support/tickets" class="primary-button-inverted">
+            <button mat-button routerLink="/support/tickets" style="margin-top: 10px;" class="primary-button-inverted">
                 <mat-icon>keyboard_backspace</mat-icon> Back
             </button>
         </div>
@@ -25,11 +24,14 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <app-ticket-detail (notify)='onNotify($event)' (ticket)="onTicket($event)"></app-ticket-detail>
-                <app-attachments *ngIf="valid"></app-attachments>
                 <div *ngIf="!valid" class="loader">
-
                 </div>
+
+                <app-attachments *ngIf="valid"></app-attachments>
+
+                <app-ticket-detail (notify)='onNotify($event)' (ticket)="onTicket($event)"></app-ticket-detail>
+                
+
             </div>
         </div>
     </div>

@@ -1,27 +1,31 @@
 <mat-progress-bar mode="query" color="primary" *ngIf="updatingData"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
-<div class="flex-wrapper">
+<div class="flex-wrapper" style="margin-top: 0px !important;">
     <div style="background-color: white;" id="uf-new-article">
         <div class="container-fluid">
             <div class="row">
-                <mat-toolbar [ngStyle]="{'position':showsmallscreen ? 'fixed' : ''}" style=" border-bottom: 3px solid #f1f1f1; z-index: 2; background-color: white;">
+                <mat-toolbar [ngStyle]="{'position':showsmallscreen ? 'fixed' : ''}"
+                    style=" border-bottom: 3px solid #f1f1f1; z-index: 2; background-color: white;">
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
                     <span class="fillspace"></span>
                     <div *ngIf="showsmallscreen">
-                        <h5 style="color: #4f9aab; " *ngIf="title">
-                            {{title}}
-                            <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
-                                *ngIf="id" routerLink="/courses/article_preview/{{id}}">
-                                <mat-icon style="font-size: 16px;" matTooltip="preview the article in new window">
-                                    open_in_new
-                                </mat-icon>
-                            </a>
-                        </h5>
+                        <a routerLink="/courses/article_preview/{{id}}">
+                            <h5 style="color: #4f9aab; " *ngIf="title">
+                                {{title}}
+                                <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
+                                    *ngIf="id" routerLink="/courses/article_preview/{{id}}">
+                                    <mat-icon style="font-size: 16px;" matTooltip="preview the article in new window">
+                                        open_in_new
+                                    </mat-icon>
+                                </a>
+                            </h5>
+                        </a>
                     </div>
                     <span class="fillspace"></span>
-                    <span *ngIf="showsmallscreen" style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
+                    <span *ngIf="showsmallscreen"
+                        style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px; border-right: 2px solid #ddd; margin-right: 10px; ">
                         {{state?state:"new"}}
                     </span>
                     <button mat-button style="margin-right: 10px;" class="primary-button" [disabled]="updatingData"
@@ -36,7 +40,7 @@
                     </button>
                     <button mat-button [disabled]="startedProfanityCheck || param_article == '1'"
                         class="primary-button-inverted" (click)="addToCourse()">
-                        Publish 
+                        Publish
                         <span *ngIf="showsmallscreen">(ctrl + i)</span>
 
                     </button>
@@ -70,16 +74,18 @@
                         </a>
 
                     </mat-menu>
-                    
-                    
+
+
                 </mat-toolbar>
-                     
-                <div class="col-lg-9" [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}" style="height: max-content; min-height: 98vh;">
+
+                <div class="col-lg-9" [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}"
+                    style="height: max-content; min-height: 98vh;">
                     <br>
-                    <span *ngIf="!showsmallscreen" style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
+                    <span *ngIf="!showsmallscreen"
+                        style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
                         {{state?state:"new"}}
                     </span>
-                    
+
                     <div style="max-width: 650px; margin: auto;">
                         <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
                             Last updated: {{this.article?.data.sys_updated_on | date: "medium"}}
@@ -92,7 +98,8 @@
                     <div id="editorjs">
                     </div>
                 </div>
-                <div class="col-lg-3"  [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}" style='border-left: 3px solid #f1f1f1; '>
+                <div class="col-lg-3" [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}"
+                    style='border-left: 3px solid #f1f1f1; '>
 
                     <div id="uf-new-article">
                         <br>
