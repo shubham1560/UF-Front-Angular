@@ -21,7 +21,7 @@
                         </h5>
                     </div>
                     <span class="fillspace"></span>
-                    <span style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
+                    <span *ngIf="showsmallscreen" style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
                         {{state?state:"new"}}
                     </span>
                     <button mat-button style="margin-right: 10px;" class="primary-button" [disabled]="updatingData"
@@ -76,11 +76,16 @@
                      
                 <div class="col-lg-9" [ngStyle]="{'padding-top':showsmallscreen ? '60px' : '0px'}" style="height: max-content; min-height: 98vh;">
                     <br>
+                    <span *ngIf="!showsmallscreen" style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
+                        {{state?state:"new"}}
+                    </span>
+                    
                     <div style="max-width: 650px; margin: auto;">
                         <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
                             Last updated: {{this.article?.data.sys_updated_on | date: "medium"}}
                         </span>
                         <br>
+
                         <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
                         <br>
                     </div>
