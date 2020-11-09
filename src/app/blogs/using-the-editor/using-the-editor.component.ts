@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-interface Tuts{
+interface Tuts {
   heading: string,
   imageUrl: string,
   text: string,
@@ -14,13 +15,31 @@ interface Tuts{
 })
 export class UsingTheEditorComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<UsingTheEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   selectedFeature
 
   ngOnInit(): void {
     this.editorFeatures = this.sortedFeatures();
-    this.selectedFeature = this.editorFeatures[0]
+    if (this.data.dialog) {
+      this.becomeAnAuthor()
+    }
+    else {
+      this.selectedFeature = this.editorFeatures[0]
+    }
+  }
+
+
+  becomeAnAuthor() {
+    this.selectedFeature = {
+      id: 1,
+      heading: "Becoming an author",
+      imageUrl: "https://sortedtree.s3.ap-south-1.amazonaws.com/gifs-editor-tutorial/become-author.gif",
+      text: "To become an author: <ul><li> Profile -> My Profile -> Become an author</li><ul>"
+    }
   }
 
 
@@ -75,7 +94,7 @@ export class UsingTheEditorComponent implements OnInit {
     },
     {
       id: 10,
-      heading:"Previewing the article",
+      heading: "Previewing the article",
       imageUrl: "https://sortedtree.s3.ap-south-1.amazonaws.com/gifs-editor-tutorial/preview-article.gif",
       text: "You can always preview how the article will look to the user by clicking in the title in header!"
     },
@@ -88,13 +107,13 @@ export class UsingTheEditorComponent implements OnInit {
 
   ]
 
-  sortedFeatures(){
-    return this.editorFeatures.sort(function(a, b){return a.id - b.id});
+  sortedFeatures() {
+    return this.editorFeatures.sort(function (a, b) { return a.id - b.id });
   }
 
-  selectFeature(id){
+  selectFeature(id) {
     this.editorFeatures.forEach(element => {
-      if(element.id == id){
+      if (element.id == id) {
         this.selectedFeature = element;
       }
     });

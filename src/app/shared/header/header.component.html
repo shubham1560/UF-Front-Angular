@@ -59,6 +59,14 @@
         </mat-icon> new article
     </a>
 
+    <a mat-button class="add-article-button" (click)="becomeAuthor()"
+        *ngIf="!isAuthor && userDetailFetched" style="line-height: 30px; outline: none; height: auto;">
+        <!-- <mat-icon style="font-size: 16px;"> -->
+            <!-- edit -->
+        <!-- </mat-icon>  -->
+        Become an author
+    </a>
+
     <span class="sign-in" *ngIf="isLoggedIn && userDetailFetched">
 
 

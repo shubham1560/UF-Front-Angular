@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { ImpersonateDialogComponent } from '../impersonate-dialog/impersonate-dialog.component';
+import { UsingTheEditorComponent } from 'src/app/blogs/using-the-editor/using-the-editor.component';
 
 
 @Component({
@@ -154,5 +155,10 @@ export class HeaderComponent implements OnInit {
     window.location.reload()
   }
 
+  becomeAuthor(){
+    const dialogRef = this.dialog.open(UsingTheEditorComponent, {
+      data: {"dialog": true}
+    })
+  }
 
 }
