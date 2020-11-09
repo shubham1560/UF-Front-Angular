@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
 import { ArticleTagComponent } from './article-tag/article-tag.component';
 import { StriphtmlPipe } from './pipes/strip/striphtml.pipe';
+import { UsingTheEditorComponent } from './using-the-editor/using-the-editor.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { StriphtmlPipe } from './pipes/strip/striphtml.pipe';
     PathbuilderComponent,
     ArticleTagComponent,
     StriphtmlPipe,
+    UsingTheEditorComponent,
     ],
   imports: [
     CommonModule,

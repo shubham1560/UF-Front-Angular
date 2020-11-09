@@ -107,6 +107,7 @@ export class AuthService {
   logoutUser() {
     this.cookieService.delete('token');
     localStorage.removeItem("token");
+    localStorage.removeItem("t_token");
     window.window.location.href = "welcome";
   }
 
