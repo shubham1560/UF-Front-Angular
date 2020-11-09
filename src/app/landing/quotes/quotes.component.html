@@ -1,34 +1,36 @@
 <div id="uf-quotes">
 
+    When somebody shares, everybody wins!
+
+
     <div *ngIf="!isLoading">
 
-    <div style="width: 100%;">
-        <span class="q-refresh"> Quotes </span>
-        <button (click)=getNewQuotes() mat-icon-button class="q-refresh"
-            aria-label="Refresh button">
-            <mat-icon>refresh</mat-icon>
-        </button>
+        <div style="width: 100%;">
+            <span class="q-refresh"> Quotes </span>
+            <button (click)=getNewQuotes() mat-icon-button class="q-refresh" aria-label="Refresh button">
+                <mat-icon>refresh</mat-icon>
+            </button>
 
+        </div>
+        <br>
+        <div *ngFor="let quote of quotes">
+            <a>
+                <mat-card class="uf-course-card">
+                    <mat-card-header>
+                        <mat-card-subtitle class="uf-course-desc">
+                            "{{quote.text}}"
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <div class="q-author">
+                        - {{quote.author}}
+                    </div>
+                </mat-card>
+            </a>
+        </div>
     </div>
-    <br>
-    <div *ngFor="let quote of quotes">
-        <a>
-            <mat-card class="uf-course-card">
-                <mat-card-header>
-                    <mat-card-subtitle class="uf-course-desc">
-                        "{{quote.text}}"
-                    </mat-card-subtitle>
-                </mat-card-header>
-                <div class="q-author">
-                    - {{quote.author}}
-                </div>
-            </mat-card>
-        </a>
-    </div>
-</div>
 
-<div *ngIf="isLoading">
-    Loading...
-</div>
+    <div *ngIf="isLoading">
+        Loading...
+    </div>
 
 </div>
