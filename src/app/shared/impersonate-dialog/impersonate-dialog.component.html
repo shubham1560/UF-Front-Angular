@@ -1,1 +1,17 @@
-<p>impersonate-dialog works!</p>
+<!-- <p>impersonate-dialog works!</p> -->
+<h2 mat-dialog-title>Impersonate User</h2>
+<mat-dialog-content class="mat-typography">
+    <!-- <pre>
+    {{users | json}}
+</pre> -->
+<div class="card" style="width: 100%;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let user of users">
+        <span class="impersonate" (click)="startImpersonation(user.username)" >{{user?.username}} <br> </span>
+        <span style="color: #666666; font-size: 12px !important;">{{user?.first_name + " " + user?.last_name}} • {{user?.email}} </span>
+      </li>
+    </ul>
+  </div>
+
+
+</mat-dialog-content>

@@ -88,7 +88,7 @@
                     {{user?.email}}
                 </span>
             </div>
-            <hr>
+            <hr *ngIf="isAuthor">
             <a mat-menu-item target="_blank" href="/path/article/1" *ngIf="isAuthor"
                 style="line-height: 30px; outline: none; height: auto;">
                 Add new article
@@ -97,7 +97,13 @@
                 style="line-height: 30px; outline: none; height: auto;">
                 My Articles
             </a>
-            <hr *ngIf="superUser">
+            <hr *ngIf="superUser || impersonated">
+
+
+            <a mat-menu-item (click)="endImpersonation()" *ngIf="impersonated" style="line-height: 30px; outline: none; height: auto;"> 
+                End Impersonation
+            </a>
+
 
             <a mat-menu-item (click)="openImpersonation()" *ngIf="superUser" style="line-height: 30px; outline: none; height: auto;"> 
                 Impersonate User

@@ -148,4 +148,12 @@ export class AuthService {
     return this.httpService.get(url, {headers: this.getHeader()});
   }
 
+  getImpersonationToken(username){
+    const url = `${this.base_auth_url}get_impersonation_token/`;
+    const body = {
+      "username": username
+    }
+    return this.httpService.post(url, body, {headers: this.getHeader()});
+  }
+
 }

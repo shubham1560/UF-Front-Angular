@@ -6,6 +6,7 @@ import { SearchResultsComponent } from '../search-results/search-results.compone
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import { ImpersonateDialogComponent } from '../impersonate-dialog/impersonate-dialog.component';
 
 
 @Component({
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
           this.full_name = this.user.first_name;
           if (this.user.last_name){
             this.display_name += this.user.last_name[0]
-            this.full_name += this.user.last_name;
+            this.full_name += " "+this.user.last_name;
           }
           if (this.user.profile_pic) {
             this.image = this.user.profile_pic;
@@ -77,6 +78,8 @@ export class HeaderComponent implements OnInit {
       query: ['', [Validators.required, Validators.minLength(1)]],
       // confirm_password: ['', [Validators.required, Validators.minLength(8)]]
     })
+
+    this.ifImpersonated();
 
     this.loggerService.logData("st-header", this);
   }
@@ -128,7 +131,28 @@ export class HeaderComponent implements OnInit {
 
 
   openImpersonation(){
-    
+    const dialogRef = this.dialog.open(ImpersonateDialogComponent, {
+      // data: {
+        // query: queryParm.value
+      // }
+    });
   }
+
+  impersonated;
+
+  ifImpersonated(){
+    if(localStorage.getItem("t_token")){
+      if(localStorage.getItem("t_token") != localStorage.getItem("token")){
+        this.impersonated = true;
+      }
+    }
+  }
+
+  endImpersonation(){
+    localStorage.setItem("token", localStorage.getItem("t_token"));
+    localStorage.removeItem("t_token");
+    window.location.reload()
+  }
+
 
 }
