@@ -143,4 +143,9 @@ export class AuthService {
     return this.httpService.post(url, body, {headers: this.getHeader()});
   }
 
+  getUsers(){
+    const url = `${this.base_auth_url}users/`;
+    return this.httpService.get(url, {headers: this.getHeader()});
+  }
+
 }

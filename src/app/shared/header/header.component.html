@@ -97,6 +97,12 @@
                 style="line-height: 30px; outline: none; height: auto;">
                 My Articles
             </a>
+            <hr *ngIf="superUser">
+
+            <a mat-menu-item (click)="openImpersonation()" *ngIf="superUser" style="line-height: 30px; outline: none; height: auto;"> 
+                Impersonate User
+            </a>
+
             <hr *ngIf="isAuthor">
 
             <a mat-menu-item routerLink="/support" *ngIf="isLoggedIn"

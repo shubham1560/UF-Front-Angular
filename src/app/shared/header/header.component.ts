@@ -34,6 +34,7 @@ export class HeaderComponent implements OnInit {
 
   display_name;
   full_name;
+  superUser;
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit {
       // console.log("calling func");
       this.authService.getLoggedInUserDetail().subscribe(
         (response: any) => {
+          this.superUser = response.gtg;
           this.user = response.user;
           this.userDetailFetched =true;
           this.display_name = this.user.first_name[0];
@@ -122,6 +124,11 @@ export class HeaderComponent implements OnInit {
 
   sendToLoginPage() {
     localStorage.setItem("redirect_url", window.location.href);
+  }
+
+
+  openImpersonation(){
+    
   }
 
 }
