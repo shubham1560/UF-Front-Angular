@@ -24,11 +24,9 @@ export class UsingTheEditorComponent implements OnInit {
 
   ngOnInit(): void {
     this.editorFeatures = this.sortedFeatures();
-    if (this.data.dialog) {
+    this.selectedFeature = this.editorFeatures[0]
+    if (this.data?.dialog) {
       this.becomeAnAuthor()
-    }
-    else {
-      this.selectedFeature = this.editorFeatures[0]
     }
   }
 
