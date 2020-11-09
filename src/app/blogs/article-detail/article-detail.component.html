@@ -27,6 +27,10 @@
                             <h6 id={{block.data.text}} *ngIf="block.data.level==6">{{block.data.text}}</h6>
                         </div>
 
+                        <div *ngIf="block.type=='raw'">
+                            <div [innerHTML]="block.data.html"></div>
+                        </div>
+
                         <div *ngIf="block.type=='linkTool'" class="link-embed">
                             <div>
                                 See the full

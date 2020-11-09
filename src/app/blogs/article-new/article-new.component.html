@@ -150,6 +150,13 @@
                     </div>
                     <br>
                     <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
+                    <hr *ngIf="state!='review'">
+                    <div>
+                        <span style="font-size: 12px;"> Need help regarding the editor, watch short gifs to get the idea!</span><br>
+                        <button mat-button (click)="openEditorTutorial()" class="primary-button-inverted">
+                            Open the editor tutorial
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

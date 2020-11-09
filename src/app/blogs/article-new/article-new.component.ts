@@ -24,6 +24,7 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
 import { Observable, async } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
+import { UsingTheEditorComponent } from '../using-the-editor/using-the-editor.component';
 
 @Component({
   selector: 'app-article-new',
@@ -544,5 +545,10 @@ export class ArticleNewComponent implements OnInit {
     }
   }
 
+  openEditorTutorial(){
+    const dialogRef = this.dialog.open(UsingTheEditorComponent)
+      // minWidth: 280,
+      // data: { article_id: this.id }
+  }
   
 }
