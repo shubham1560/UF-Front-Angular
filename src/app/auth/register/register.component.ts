@@ -71,10 +71,13 @@ export class RegisterComponent implements OnInit {
     this.routeSub = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+
       }
     });
 
     (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+    (document.querySelector('app-header') as HTMLElement).style.display = 'none';
 
     this.titleService.setTitle("Sign up to SortedTree");
     this.registrationForm = this.fb.group({

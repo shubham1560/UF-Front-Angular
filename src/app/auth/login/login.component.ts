@@ -58,10 +58,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.routeSub = this.route.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+
       }
     });
 
     (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+    (document.querySelector('app-header') as HTMLElement).style.display = 'none';
 
 
     this.titleService.setTitle("Sign in to SortedTree - SortedTree")
