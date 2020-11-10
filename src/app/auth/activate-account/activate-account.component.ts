@@ -43,8 +43,8 @@ export class ActivateAccountComponent implements OnInit {
       }
     )
     this.authService.activate_account(this.data["token"]).subscribe(
-      response =>{
-        this.data["message"] = "Your account has been activated, you can Sign in now";
+      (response:any)=>{
+        this.data["message"] = 'Hi, '+ response.user.name+" <br> ("+response.user.email+") <br><br>"+ 'Your account has been activated. <br> You can <b> Sign in </b> now.';
         this.data["activated"] = true;
         this.data["icon"] = "verified_user";
         this.data["response"] = response;
@@ -52,7 +52,7 @@ export class ActivateAccountComponent implements OnInit {
         // console.log(response);
       },
       error => {
-        this.data["message"] = 'There seems to be an error in the url';
+        this.data["message"] = 'This is an invalid url.';
         this.data["activated"] = false;
         this.data["icon"] = "report_problem";
         this.data["error"] = error;
