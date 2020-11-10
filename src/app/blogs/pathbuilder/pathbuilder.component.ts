@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -209,5 +209,20 @@ export class PathbuilderComponent implements OnInit {
   resetStructure(){
     this.getSectionAndArticles();
   }
+
+
+  @HostListener('window:keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent) {
+    if ((event.metaKey || event.ctrlKey) && event.key === 's') {
+      this.finalPathStructure();
+      event.preventDefault();
+    }
+    // if ((event.metaKey || event.ctrlKey) && event.key === 'i') {
+    //   // this.updateArticle(true);
+    //   this.addToCourse();
+    //   event.preventDefault();
+    // }
+  }
+
 
 }

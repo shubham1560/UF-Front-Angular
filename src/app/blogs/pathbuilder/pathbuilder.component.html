@@ -1,38 +1,36 @@
-<!-- <p>pathbuilder works!</p> -->
 <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
-<br>
+<div class="flex-wrapper">
+    <div class="container" id="uf-path">
+       
+        <button mat-button style="margin-top: 10px;" class="primary-button-inverted" routerLink="/path/{{course}}/">
+            <mat-icon>keyboard_backspace</mat-icon> Back
+        </button>
+        <br> <br>
+        <div class="row">
+            <div class="col-md-6">
+                <span style="color:#3c869a"> You are building the structure for
+                </span>
+                <br>
+                {{courseName}}
+                <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/path/{{course}}/">
 
-<div class="container" id="uf-path">
-    <!-- <pre>
-        {{sectionAndArticles | json}}
-    </pre> -->
-    <button mat-button class="primary-button" routerLink="/path/{{course}}/"> <mat-icon>keyboard_backspace</mat-icon> Back </button>
-    <br> <br>
-    <div class="row">
-        <div class="col-md-6">
-            <span style="color:#3c869a"> You are building the structure for
-            </span>
-            <br>
-            {{courseName}}
-            <a target="_blank" matTooltip="See the course" style="color: #3c869a;" routerLink="/path/{{course}}/">
+                    <mat-icon>
+                        open_in_new
+                    </mat-icon>
+                </a>
+                <br>
+                <br>
+                Add section <br>
+                <mat-form-field class="pathbuild-full-width">
+                    <mat-label>Add New Section</mat-label>
+                    <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
+                </mat-form-field>
+                <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
+                <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
+            </div>
 
-                <mat-icon>
-                    open_in_new
-                </mat-icon>
-            </a>
-            <br>
-            <br>
-            Add section <br>
-            <mat-form-field class="pathbuild-full-width">
-                <mat-label>Add New Section</mat-label>
-                <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
-            </mat-form-field>
-            <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
-            <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
-        </div>
-
-        <!-- <div class="col-md-6">
+            <!-- <div class="col-md-6">
             Add section <br>
             <br>
             <mat-form-field class="pathbuild-full-width">
@@ -42,39 +40,40 @@
             <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
             <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
         </div> -->
-        <div class="col-md-6">
-            <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
-                <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
-                    <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">
-                        <a target="_blank" routerLink="/path/article_preview/{{element.id}}" mat-icon-button>
-                            <mat-icon style="color: #3c869a;" matTooltip="See the article preview">
-                                open_in_new
-                            </mat-icon>
-                        </a>
-                        {{element.label}}
-                    </div>
-                    <div style="color: #3c869a;" *ngIf="element.type=='section'">
-                        <button *ngIf="element.label != 'Individual Articles'" mat-icon-button
-                            (click)="deleteSection(element, i)" style="color: #EC407F">
-                            <mat-icon>
-                                delete
-                            </mat-icon>
-                        </button>
-                        {{element.label}}
+            <div class="col-md-6">
+                <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
+                    <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
+                        <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">
+                            <a target="_blank" routerLink="/path/article_preview/{{element.id}}" mat-icon-button>
+                                <mat-icon style="color: #3c869a;" matTooltip="See the article preview">
+                                    open_in_new
+                                </mat-icon>
+                            </a>
+                            {{element.label}}
+                        </div>
+                        <div style="color: #3c869a;" *ngIf="element.type=='section'">
+                            <button *ngIf="element.label != 'Individual Articles'" mat-icon-button
+                                (click)="deleteSection(element, i)" style="color: #EC407F">
+                                <mat-icon>
+                                    delete
+                                </mat-icon>
+                            </button>
+                            {{element.label}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
-            <div>
-                <button mat-flat-button class="save-button" [disabled]="isLoading" (click)="finalPathStructure()">
-                    <span *ngIf="!isLoading"> Save the path </span>
-                    <span *ngIf="isLoading"> Saving... </span>
-                    <mat-icon>publish</mat-icon>
-                </button>
-                <button style="margin-left: 20px;" mat-flat-button class="save-button" [disabled]="isLoading"
-                    (click)="resetStructure()">
-                    Reset <mat-icon>refresh</mat-icon>
-                </button>
+                <br>
+                <div>
+                    <button mat-flat-button class="save-button" [disabled]="isLoading" (click)="finalPathStructure()">
+                        <span *ngIf="!isLoading" style="font-size: 14px;"> Save the path (ctrl + s) </span>
+                        <span *ngIf="isLoading" style="font-size: 14px;"> Saving... </span>
+                        <mat-icon>publish</mat-icon>
+                    </button>
+                    <button style="margin-left: 20px;" mat-flat-button class="save-button" [disabled]="isLoading"
+                        (click)="resetStructure()">
+                        Reset <mat-icon>refresh</mat-icon>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

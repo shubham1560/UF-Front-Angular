@@ -2,11 +2,17 @@
 <pre>
     {{articles | json}}
 </pre> -->
+<div id="uf-user-info">
+    <div *ngIf="articles?.length > 0">
+        Authored Articles:
 
-Authored Articles:
+        <div *ngFor="let article of articles">
+            <a routerLink="/path/{{article.get_category.id}}/{{article.id}}">{{article?.title}} <br></a>
+            {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
 
-<div *ngFor="let article of articles">
-    <a href="">{{article?.title}} <br></a>
-    {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
-
+        </div>
+    </div>
+    <div *ngIf="articles?.length==0">
+        No articles yet
+    </div>
 </div>

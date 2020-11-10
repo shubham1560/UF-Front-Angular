@@ -4,37 +4,39 @@
     <div class="container">
         <div class="row uf-border">
             <div class="col-md-4 uf-border" style="padding:20px">
+                <div style="text-align: center;">
+                    <br>
+                    <h3>{{name}}</h3>
+                    <div style="padding-bottom: 20px;" *ngIf='response?.author'>
+                        Roles:
+                        <span style="color: #3c869a;" #tooltip="matTooltip"
+                            matTooltip="Author has the priviledge to add article to existing paths">
+                            Author
+                        </span>
+                        <span style="color: #3c869a;" #tooltip="matTooltip"
+                            matTooltip="Moderator has all the priviledge of author, and can also create branches and courses"
+                            *ngIf="response.moderator">
+                            & Moderator
+                        </span>
+                    </div>
+                </div>
+
                 <div
-                    style="width:160px; height:160px;margin:auto; border-radius:100px; border: 2px solid #3f51b5; padding:3px;">
+                    style="width:260px; height:260px;margin:auto; border-radius:130px; border: 2px solid #3f51b5; padding:3px;">
 
                     <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
-                        style="width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
+                        style="width: 250px; height: 250px; margin:auto; border-radius:130px; background-size: 100% 100%;"
                         class="border">
                     </div>
                     <div *ngIf="!image" [ngStyle]="{background: 'url('+image+')'}"
-                        style="background-color: #8dbcaa; color: white;text-align:center; font-size: 45px; padding-top:40px; width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
+                        style="background-color: #8dbcaa; color: white;text-align:center; font-size: 45px; padding-top:40px; width: 250px; height: 250px; margin:auto; border-radius:130px; background-size: 100% 100%;"
                         class="border">
                         {{display_name}}
                         <!-- <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner> -->
                     </div>
                 </div>
-            </div>
-            <div class="col-md-8 uf-border" style="padding: 20px;">
-                <h3>{{name}}</h3>
-                <div style="padding-bottom: 20px;" *ngIf='response?.author'>
-                    Roles:
-                    <span style="color: #3c869a;" #tooltip="matTooltip"
-                        matTooltip="Author has the priviledge to add article to existing paths">
-                        Author
-                    </span>
-                    <span style="color: #3c869a;" #tooltip="matTooltip"
-                        matTooltip="Moderator has all the priviledge of author, and can also create branches and courses"
-                        *ngIf="response.moderator">
-                        & Moderator
-                    </span>
-                </div>
-
-                <div style="color: #293e40; padding-bottom: 20px;">
+                <br>
+                <div style="color: #293e40; padding-bottom: 20px; text-align: center;">
                     <a target="_blank" href="{{response?.user.facebook_profile_link}}"
                         *ngIf="response?.user.facebook_profile_link" class="uf-social">
                         <i class="fa fa-facebook" aria-hidden="true"></i>
@@ -56,13 +58,13 @@
                         <i class="fa fa-globe" aria-hidden="true"></i>
                     </a>
                 </div>
-                <p style="font-weight: 200;"> {{about}}</p>
+
+            </div>
+            <div class="col-md-8">
+                <br><br>
+                <p style="font-weight: 300;"> {{about}}</p>
+                <app-authored-articles></app-authored-articles>
             </div>
         </div>
-        <div class="row">
-
-            <app-authored-articles></app-authored-articles>
-        </div>
     </div>
-
 </div>

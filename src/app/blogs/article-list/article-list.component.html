@@ -1,18 +1,10 @@
 <div id="articlelist">
 
-    <!-- <div class="go-back" (click)="goBack()">
-        Go Back
-    </div> -->
     <div *ngIf="isLoading">
-        <!-- <div> -->
         <div class="heading" *ngIf="!openInModal">
             <div style="width: 200px; height: 30px; background-color: white;"></div>
-            <!-- Loading.... -->
             <div style="width: 220px; height: 20px; margin-top: 10px; background-color: white;"></div>
-            <!-- Loading.... -->
             <div style="width: 120px; height: 20px; margin-top: 10px; background-color: white;"></div>
-            <!-- Loading.... -->
-
         </div>
         <div class="heading" *ngIf="openInModal">
             <div style="width: 200px; height: 30px; background-color: #f7f7f7;"></div>
@@ -30,8 +22,6 @@
                     </div>
                     <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
                     </div>
-                    <!-- <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                    </div> -->
                 </div>
             </div>
             <div class="section-ghost">
@@ -40,73 +30,46 @@
                 <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
                 </div>
             </div>
-
-            <!-- <div class="section-ghost">
-                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
-                </div>
-                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                </div>
-            </div> -->
-            <!-- <div class="section-ghost">
-                <div style="height: 15px; width: 120px; background-color: #f7f7f7;">
-                </div>
-                <div style="height: 15px; margin-top: 10px; background-color: #f7f7f7;">
-                </div>
-            </div> -->
-
         </div>
     </div>
 
     <div *ngIf="openInModal">
         <mat-dialog-content class="mat-typography">
             <div class="" mat-dialog-title>
-                <span style="color: #4f9aab; font-size: 16px;">{{courseName}}</span> <br>
+                <a style="float: right;" class="primary-button" routerLink="/path/{{course}}/pathbuild" *ngIf="owner" mat-icon-button>
+                    <mat-icon>
+                        edit
+                    </mat-icon>
+                </a>  
+                <span style="color: #4f9aab; font-size: 16px;">{{courseName}}</span> 
+                <!-- <span style="flex: 1 1 auto;"></span> -->
+                
+                <br>
                 <span style="color: #3c869a; font-size: 14px; text-align: justify;">{{courseDescription}}</span>
                 <div *ngIf="progress">
                     <b>Progress: </b>{{progress}} %
                 </div>
-                
-                
-                <!-- <div *ngIf="!signedIn">
-                You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
-                your
-                progress!
-            </div> -->
-
             </div>
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
             </mat-progress-bar>
 
-            <div *ngIf="owner">
+            <!-- <div *ngIf="owner">
                 Edit Section 
                 <a routerLink="/path/{{course}}/pathbuild" mat-icon-button>
                     <mat-icon>
                         edit
                     </mat-icon>
                 </a>         
-            </div>
-            <!-- <div style="height: 500px;"></div> -->
+            </div> -->
             <div class="left-widget-wrapper">
                 <mat-accordion color="primary">
                     <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
                         style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
                         (closed)="panelOpenState = false">
-                        <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
                         <mat-expansion-panel-header style="height: 70px" [ngClass]="{'active' : section.active}">
                             <mat-panel-title [ngClass]="{'active' : section.active}">
 
                                 <b>
-                                    <!-- <div *ngIf="!section.doneAll || !progress"
-                                    style="margin-right: 10px; padding: 3px 10px; border: 3px solid lightgray; border-radius: 20px;display: inline-block;">
-                                    {{i+1}}
-                                </div>
-                                <div *ngIf="section.doneAll && progress"
-                                    style="margin-right: 10px; padding: 3px 10px; border: 3px solid green; border-radius: 20px;display: inline-block;">
-                                    {{i+1}}
-                                </div> -->
-
-
-
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
@@ -145,53 +108,39 @@
 
         <div *ngIf="!isLoading">
             <div class="heading">
-                <h4 style="color: #4f9aab">{{courseName}}</h4>
+                <h4 style="color: #4f9aab">{{courseName}} 
+                <a class="primary-button" routerLink="/path/{{course}}/pathbuild" *ngIf="owner" style="float: right;" mat-icon-button>
+                    <mat-icon>
+                        edit
+                    </mat-icon>
+                </a>       
+             </h4>
                 <span style="color: #3c869a; font-size: smaller; font-size: smaller;">{{courseDescription}}</span>
                 <div *ngIf="progress">
                     <b>Progress: </b>{{progress}} %
                 </div>
-                
-                
-                <!-- <div *ngIf="!signedIn">
-                    You can <a (click)="openLoginPrompt()" style="color: #4f9aab; cursor: pointer;">sign in</a> and track
-                    your
-                    progress!
-                </div> -->
-
             </div>
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
             </mat-progress-bar>
             <br>
-            <div *ngIf="owner" style="padding-left: 20px; color: #3c869a;">
+            <!-- <div *ngIf="owner" style="padding-left: 20px; color: #3c869a;">
                 Edit Sections
                 <a routerLink="/path/{{course}}/pathbuild" mat-icon-button>
                     <mat-icon>
                         edit
                     </mat-icon>
                 </a>         
-            </div>
+            </div> -->
             <br>
             <div class="left-widget-wrapper">
                 <mat-accordion color="primary">
                     <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
                         style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
                         (closed)="panelOpenState = false">
-                        <!-- <mat-progress-bar *ngIf="progress" mode="determinate" [value]="section.progress"></mat-progress-bar> -->
                         <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
                             <mat-panel-title [ngClass]="{'active' : section.active}">
 
                                 <b>
-                                    <!-- <div *ngIf="!section.doneAll || !progress"
-                                    style="margin-right: 10px; padding: 3px 10px; border: 3px solid lightgray; border-radius: 20px;display: inline-block;">
-                                    {{i+1}}
-                                </div>
-                                <div *ngIf="section.doneAll && progress"
-                                    style="margin-right: 10px; padding: 3px 10px; border: 3px solid green; border-radius: 20px;display: inline-block;">
-                                    {{i+1}}
-                                </div> -->
-
-
-                                    
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
@@ -201,7 +150,6 @@
 
                             </mat-panel-title>
                             <br>
-                            <!-- <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span> -->
                         </mat-expansion-panel-header>
                         
 

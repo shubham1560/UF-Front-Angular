@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import { ActivatedRoute } from '@angular/router';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-authored-articles',
@@ -9,17 +11,25 @@ import { UserprofileService } from 'src/app/services/userprofile/userprofile.ser
 export class AuthoredArticlesComponent implements OnInit {
 
   constructor(
-    private profileService: UserprofileService
+    private profileService: UserprofileService,
+    private route: ActivatedRoute,
+    private logger: LoggerService
   ) { }
 
   articles;
 
   ngOnInit(): void {
-    this.profileService.getPublicUserAuthoredArticles('title', 'shubhamsinha2050').subscribe(
-      (result:any)=>{
-        this.articles = result.articles;
+    this.route.paramMap.subscribe(
+      params => {
+        // console.log(params);
+        this.profileService.getPublicUserAuthoredArticles('title', params.get("user_id")).subscribe(
+          (result: any) => {
+            this.articles = result.articles;
+          }
+        )
       }
     )
+    this.logger.logData("uf-user-info", this);
   }
 
 }
