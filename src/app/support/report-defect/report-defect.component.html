@@ -1,9 +1,14 @@
 <mat-progress-bar mode="query" *ngIf="uploadingImage || formSubmit" color="accent"></mat-progress-bar>
 <mat-progress-bar mode="determinate" value="100" *ngIf="!uploadingImage && !formSubmit" color="accent"></mat-progress-bar>
 
-<br>
 <div class="container" id="st-feature">
-    <button mat-button routerLink="/support" style="color: #1F8476;"> <mat-icon>keyboard_backspace</mat-icon> Back</button>
+    <button mat-button routerLink="/support" class="primary-button-inverted" style="margin-top: 10px;" > 
+        <mat-icon>keyboard_backspace</mat-icon> 
+        Back
+    </button>
+
+    <br>   
+    <br>
 
     <div class="row">
 
