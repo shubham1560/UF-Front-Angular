@@ -4,6 +4,20 @@
     <div class="container">
         <div class="row uf-border">
             <div class="col-md-4 uf-border" style="padding:20px">
+                
+                <br>
+                <div
+                    style="width:160px; height:160px;margin:auto; border-radius:130px; border: 2px solid #3f51b5; padding:3px;">
+
+                    <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" 
+                        style="width: 150px; height: 150px; margin:auto; border-radius:75px; background-size: 100% 100%;">
+                    </div>
+                    <div *ngIf="!image" [ngStyle]="{background: 'url('+image+')'}"
+                        style="background-color: #8dbcaa; color: white;text-align:center; font-size: 45px; padding-top:40px; width: 150px; height: 150px; margin:auto; border-radius:130px; background-size: 100% 100%;">
+                        {{display_name}}
+                        <!-- <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner> -->
+                    </div>
+                </div>
                 <div style="text-align: center;">
                     <br>
                     <h3>{{name}}</h3>
@@ -20,22 +34,6 @@
                         </span>
                     </div>
                 </div>
-
-                <div
-                    style="width:260px; height:260px;margin:auto; border-radius:130px; border: 2px solid #3f51b5; padding:3px;">
-
-                    <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
-                        style="width: 250px; height: 250px; margin:auto; border-radius:130px; background-size: 100% 100%;"
-                        class="border">
-                    </div>
-                    <div *ngIf="!image" [ngStyle]="{background: 'url('+image+')'}"
-                        style="background-color: #8dbcaa; color: white;text-align:center; font-size: 45px; padding-top:40px; width: 250px; height: 250px; margin:auto; border-radius:130px; background-size: 100% 100%;"
-                        class="border">
-                        {{display_name}}
-                        <!-- <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner> -->
-                    </div>
-                </div>
-                <br>
                 <div style="color: #293e40; padding-bottom: 20px; text-align: center;">
                     <a target="_blank" href="{{response?.user.facebook_profile_link}}"
                         *ngIf="response?.user.facebook_profile_link" class="uf-social">
