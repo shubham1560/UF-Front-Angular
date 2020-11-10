@@ -9,7 +9,14 @@
                 
                 <div class="uf-auth-form">
                     <div class="uf-auth-logo-space"></div>
-                    <div class="uf-auth-form-header">SIGN UP TO SORTEDTREE</div>
+                    <!-- <div class="uf-auth-form-header">SIGN UP TO SORTEDTREE</div> -->
+                    <mat-toolbar style="text-align: center;">
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">ree</span>
+
+                        <span style="margin-left: auto; font-size: 14px; color: #2e778e;">SIGN UP</span>
+                    </mat-toolbar>
                     <div *ngIf="sendActivationLink" style="text-align: center;" class="uf-auth-form-body">
                         <button mat-button [disabled]="sendingLink" (click)="resendActivationLink()" class="primary-button-inverted">
                             <span *ngIf="!sendingLink">Resend Activation Link</span> 

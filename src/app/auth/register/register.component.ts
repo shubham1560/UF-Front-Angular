@@ -4,6 +4,7 @@ import { debounceTime } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Title } from '@angular/platform-browser';
+import { Router, NavigationStart } from '@angular/router';
 
 
 // function passwordMatch(c: AbstractControl): {[key: string]: boolean} | null{
@@ -55,15 +56,26 @@ export class RegisterComponent implements OnInit {
   sendActivationLink = false;
   registering = false;
   sendingLink = false;
+  routeSub: any;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
+    private router: Router,
     private loggerService: LoggerService,
     private titleService: Title
     ) { }
 
 
   ngOnInit() {
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+      }
+    });
+
+    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
     this.titleService.setTitle("Sign up to SortedTree");
     this.registrationForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],

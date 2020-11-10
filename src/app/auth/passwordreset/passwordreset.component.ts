@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { Title } from '@angular/platform-browser';
+import { Router, NavigationStart } from '@angular/router';
 
 
 @Component({
@@ -21,17 +22,29 @@ export class PasswordresetComponent implements OnInit {
   error;
   resetForm: FormGroup;
   resendLinkButtonActive = false;
+  routeSub: any;
 
   // message = "<b>shubhamsinha2050@gmail.com</b><br>We have e-mailed your password reset link!";
 
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
+    private router: Router,
     private loggerService: LoggerService,
     private titleService: Title
     ) { }
 
   ngOnInit() {
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+      }
+    });
+
+    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
+
     this.resetForm = this.fb.group({
       email: ['', [Validators.email, Validators.required]],
     })

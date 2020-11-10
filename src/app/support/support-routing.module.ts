@@ -17,17 +17,17 @@ const routes: Routes = [
   },
   {
     path: "feature_request",
-    // canActivate: [ProfileGuard],
+    canActivate: [ProfileGuard],
     component: FeatureRequestComponent
   },
   {
     path: "report_defect",
-    // canActivate: [ProfileGuard],
+    canActivate: [ProfileGuard],
     component: ReportDefectComponent
   },
   {
     path: "tickets",
-    // canActivate: [ProfileGuard],
+    canActivate: [ProfileGuard],
     component: TicketsComponent
   },
   {
@@ -36,6 +36,7 @@ const routes: Routes = [
   },
   {
     path: "reset_password",
+    canActivate: [ProfileGuard],
     component: ResetPasswordLoggedInComponent
   }
 ];

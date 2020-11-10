@@ -8,8 +8,14 @@
             <div class="uf-auth-wrapper" id="auth-login">
                 <div class="uf-auth-form">
                     <div class="uf-auth-logo-space"></div>
-                    <div class="uf-auth-form-header">SIGN IN TO SORTEDTREE</div>
+                    <!-- <div class="uf-auth-form-header">TO SORTEDTREE <br> </div> -->
+                    <mat-toolbar style="text-align: center;">
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">ree</span>
 
+                        <span style="margin-left: auto; font-size: 14px; color: #2e778e;"> SIGN IN </span>
+                    </mat-toolbar>
                     <div class="uf-auth-form-body" *ngIf="isLoggedIn">
                         <p style="text-align: center;">
                             Already Logged in

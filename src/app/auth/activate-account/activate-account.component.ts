@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
@@ -11,18 +11,26 @@ import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 export class ActivateAccountComponent implements OnInit {
 
   data = {}
-  // activated: boolean;
-  // token: string;
-  // message: string;
-  // icon: string;
   isAuthorised = false;
+  routeSub: any;
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private authService: AuthService,
               private loggerService: LoggerService) {
   }
 
   ngOnInit() {
+
+    //to show header and footer when the route changes
+    this.routeSub = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+      }
+    });
+
+    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
     var a = this.data;
 
     this.route.paramMap.subscribe(

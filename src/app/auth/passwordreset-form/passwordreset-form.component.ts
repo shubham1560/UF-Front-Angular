@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
@@ -36,13 +36,24 @@ export class PasswordresetFormComponent implements OnInit {
   error;
   reseting = false;
   username: string;
+  routeSub: any;
   constructor(private route: ActivatedRoute,
     private fb: FormBuilder,
+    private router: Router, 
     private authService: AuthService,
     private loggerService: LoggerService
   ) { }
 
   ngOnInit() {
+
+    this.routeSub = this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+      }
+    });
+
+    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
 
     this.route.paramMap.subscribe(
       params => {

@@ -27,6 +27,7 @@ export class UsingTheEditorComponent implements OnInit {
     this.selectedFeature = this.editorFeatures[0]
     if (this.data?.dialog) {
       this.becomeAnAuthor()
+      this.editorFeatures = undefined;
     }
   }
 

@@ -4,7 +4,7 @@ import { TokenObj } from '../data-models/Login'
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { CookieService } from 'ngx-cookie-service'
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { Title } from '@angular/platform-browser';
@@ -30,10 +30,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
   error;
   errorMessage;
   isLoggedIn: boolean;
+  routeSub: any;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private cookieService: CookieService,
+    private route: Router,
     private loggerService: LoggerService,
     private socialService: SocialAuthService,
     private titleService: Title
@@ -50,6 +52,18 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
+
+    //to show header and footer when the route changes
+    this.routeSub = this.route.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+      }
+    });
+
+    (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+
+
     this.titleService.setTitle("Sign in to SortedTree - SortedTree")
     this.socialService.authState.subscribe((user) => {
       var access_token = user.authToken;

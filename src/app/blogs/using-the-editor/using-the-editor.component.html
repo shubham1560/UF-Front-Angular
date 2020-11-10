@@ -9,21 +9,22 @@
 
 <h2 mat-dialog-title style="color: #3C869A;">
 
-    <mat-menu #menu="matMenu" xPosition="before">
+    <mat-menu #menu="matMenu" xPosition="before" >
         <button mat-menu-item *ngFor="let feature of editorFeatures" (click)="selectFeature(feature?.id)" 
         class="menu-item"> {{feature?.id}}. {{feature?.heading}}</button>
         <!-- <button mat-menu-item>Item 2</button> -->
     </mat-menu>
 
     {{selectedFeature?.id}}. {{selectedFeature?.heading}}
-    <button style="float: right" class="primary-button-inverted" mat-icon-button [matMenuTriggerFor]="menu">
+    <button style="float: right" class="primary-button-inverted" *ngIf="editorFeatures" 
+    mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>
             menu
         </mat-icon>
     </button>
 </h2>
 <mat-dialog-content class="mat-typography">
-<img [src]="selectedFeature?.imageUrl" style="max-width: 800px;" height="auto" width="100%"
+<img [src]="selectedFeature?.imageUrl" style="max-width: 600px;" height="auto" width="100%"
     alt="selectedFeature?.heading">
     <div [innerHTML]="selectedFeature?.text" style="color: #4f9aab; padding-top: 20px;" ></div>
 
