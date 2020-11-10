@@ -7,7 +7,12 @@
 
         </div>
         <div class="col-sm-4" style="text-align: center;">
-            <h3 style="color: #3E5153;">SortedTree</h3>
+            <!-- <h3 style="color: #3E5153;">SortedTree</h3> -->
+            <mat-toolbar style="width: fit-content; margin: auto; background-color: #FCFCFC;">
+                <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 24px;">sorted</span>
+                <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 45px;">T</span>
+                <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 24px;">ree</span>
+            </mat-toolbar>
             <!-- <p> Connect with us </p> -->
             <br>
 
@@ -19,8 +24,9 @@
 
     <div class="row">
         <div class="col-md-4" style="text-align: center; padding-top: 20px; color: #2e778e;">
-            <a routerLink="/support"> Support </a> <br>
-            We are here for you <br>
+            <a routerLink="/support" style="color: #2e778e; text-decoration: underline;"> Support </a> <br>
+            <!-- We are here for you <br> -->
+            <br>
             Enjoy and keep learning <br>
             <!-- <a routerLink="about_us" class="footerLink"> About </a>
             <br>
@@ -68,8 +74,8 @@
 
         </div>
 
-        <div class="col-md-4" style="color: #293e40; padding-top: 30px; padding-bottom: 30px; text-align: center;" *ngIf="subscribed"
-            [innerHtml]="message">
+        <div class="col-md-4" style="color: #293e40; padding-top: 30px; padding-bottom: 30px; text-align: center;"
+            *ngIf="subscribed" [innerHtml]="message">
         </div>
     </div>
 
