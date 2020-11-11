@@ -66,10 +66,10 @@
                                 {{errorMessage}}
                             </div>
                             <div class="uf-auth-buttons-div">
-                                <button class="uf-auth-left-button" mat-button color="primary"
+                                <button class="uf-auth-left-button" mat-button style="color: #3c869a"
                                     routerLink="/auth/passwordreset">Forgot
                                     Password</button>
-                                <button class="uf-auth-right-button" mat-raised-button color="primary" type="submit"
+                                <button class="uf-auth-right-button primary-button-inverted" mat-raised-button  type="submit"
                                     [title]="loginForm.valid?'login': 'Please enter a valid email and password'"
                                     [disabled]='!loginForm.valid || signingIn'>
 
