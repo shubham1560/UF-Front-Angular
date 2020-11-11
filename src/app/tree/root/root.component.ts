@@ -113,6 +113,7 @@ export class RootComponent implements OnInit {
 
   editProduct(product, type){
     const dialogRef = this.dialog.open(AddpathorbranchComponent, {
+      minWidth: '280px',
       data: { add: type, product: product },
     });
 
@@ -129,6 +130,7 @@ export class RootComponent implements OnInit {
 
   openDialog(type) {
     const dialogRef = this.dialog.open(AddpathorbranchComponent, {
+      minWidth: '280px',
       data: { add: type, kb_base: this.kb_base, kb_category: this.kb_category },
     });
 
