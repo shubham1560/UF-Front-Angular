@@ -6,6 +6,7 @@ import { LandingComponent } from './landing/landing.component';
 import { AuthGuard } from './auth/guard/auth.guard';
 import { ProfileGuard } from './userprofile/guard/profile.guard'
 import { ExplorerootsComponent } from './landing/exploreroots/exploreroots.component';
+import { ClearCacheComponent } from './shared/clear-cache/clear-cache.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
     path: "user",
     loadChildren: ()=>
       import("./users/users.module").then(users=>users.UsersModule)
+  },
+  {
+    path:"cache",
+    component: ClearCacheComponent
   },
   { 
     path: "**", 
