@@ -66,8 +66,9 @@ export class PasswordresetFormComponent implements OnInit {
     )
     this.authService.token_valid(this.token).subscribe(
       (response:any) => {
-        // console.log(response);
+        console.log(response);
         this.username = response.username;
+
         this.response = response;
       }, error => {
         // console.log(error);
@@ -76,12 +77,12 @@ export class PasswordresetFormComponent implements OnInit {
         this.reset = false;
         this.icon = "report_problem"
         if (!this.error.error["user_exist"]) {
-          this.message = "This url is not valid for any user";
+          this.message = " <div style='color:indianred;'> This url is not valid for any user</div>";
         }
         else if (!this.error.error["is_active"]) {
-          this.message = "The user with this link has not yet activated their account. Please activate your account first";
+          this.message = " <div style='color:indianred;'> The user has not yet activated their account. <br> Please activate the account first</div>";
         } else {
-          this.message = "the url is invalid";
+          this.message = " <div style='color:indianred;'>The url is invalid </div>";
         }
       }
     )
@@ -100,10 +101,10 @@ export class PasswordresetFormComponent implements OnInit {
   resetPassword() {
     this.reseting = true;
     this.authService.resetPassword(this.token, this.passwordResetForm.get('passwordGroup.password').value).subscribe(
-      response => {
+      (response:any) => {
         // console.log(response);
         this.icon = "verified_user";
-        this.message = "the password has been changed for the user";
+        this.message = "Hi, " + this.username + "<br> You password reset has been done succesfully! <br> You can <b>Sign in</b> now.";
         this.reset = true;
         this.attempt = true;
         this.reseting = false;
@@ -111,7 +112,7 @@ export class PasswordresetFormComponent implements OnInit {
       error => {
         // console.log(error);
         this.icon = "report_problem"
-        this.message = "the url is invalid"
+        this.message = "The url is invalid"
         this.reset = false;
         this.attempt = true;
         this.reseting = false;
