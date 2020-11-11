@@ -25,7 +25,7 @@
             </mat-form-field>
             <br>
             <div class="uf-auth-buttons-div">
-                <button style="float: right;" mat-raised-button color="primary" type="submit">
+                <button style="float: right;" mat-raised-button class="primary-button-inverted" type="submit">
                     <span *ngIf="!isLoading">Add</span>
                     <span *ngIf="isLoading">Adding...</span>
                 </button>
@@ -52,14 +52,14 @@
             <!-- <mat-checkbox > -->
             <label *ngIf="data.add == 'course'">
                 <input type="checkbox" formControlName="active">
-                Active
+                Visible to public
             </label>
             <!-- Hide required marker</mat-checkbox> -->
             <br>
             <div class="uf-auth-buttons-div">
-                <button style="float: right;" mat-raised-button color="primary" type="submit">
+                <button style="float: right;" mat-raised-button class="primary-button-inverted" type="submit">
                     <span *ngIf="!isLoading">Edit</span>
-                    <span *ngIf="isLoading">Saving changes...</span>
+                    <span *ngIf="isLoading">Saving...</span>
                 </button>
             </div>
         </form>

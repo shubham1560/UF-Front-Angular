@@ -34,7 +34,7 @@
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
                             border-radius: 6px;">
-                            <div>
+                            <div style="font-size: 12px;">
                                 <span style="background-color: #81b5a1;
                                                 color: white;
                                                 width: fit-content;
@@ -50,39 +50,44 @@
 
                                 <mat-card-title style="cursor:pointer; color: #566364;">
                                     <a
-                                        routerLink="/path/{{product.id}}/{{product.get_first_article?.first_article_id}}/">
+                                        routerLink="/path/{{product.id}}/{{product.get_first_article?.first_article_id}}/" style="font-size: 16px;">
                                         {{product.label}}
                                     </a>
-                                    <button mat-icon-button *ngIf="isModerator">
-                                        <mat-icon *ngIf="product.active" matTooltip="Visible to public"> visibility
-                                        </mat-icon>
-                                        <mat-icon *ngIf="!product.active" matTooltip="Not visible to public">
-                                            visibility_off </mat-icon>
-                                    </button>
+                                    
                                 </mat-card-title>
-                                <button mat-icon-button
-                                    *ngIf="isModerator && moderator_email==product.get_created_by?.author"
-                                    (click)="editProduct(product, 'course')">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                                <mat-card-subtitle class="desc-text" style="color: #212121">
+                                
+                                <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 14px;">
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
                                 <div mat-card-avatar>
-                                    <button mat-icon-button (click)="seeDetails(product.id)">
+                                    <button mat-icon-button style="outline: none;" (click)="seeDetails(product.id)">
                                         <mat-icon>info_outline</mat-icon>
                                     </button>
                                 </div>
                             </mat-card-header>
+                            <mat-card-actions align="end" *ngIf="isModerator">
+                                <button mat-icon-button class="primary-button" style="margin-right: 10px;" >
+                                    <mat-icon *ngIf="product.active" matTooltip="Visible to public"> visibility
+                                    </mat-icon>
+                                    <mat-icon *ngIf="!product.active" matTooltip="Not visible to public">
+                                        visibility_off </mat-icon>
+                                </button>
+                                <button mat-icon-button class="primary-button"
+                                    *ngIf="moderator_email==product.get_created_by?.author"
+                                    (click)="editProduct(product, 'course')">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                              </mat-card-actions>
                         </mat-card>
 
                     </div>
                 </div>
+                <br><br>
                 <h3 *ngIf="_categories?.length>0">Explore further</h3>
                 <div class="row" *ngIf="!isLoading">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
                         <mat-card *ngIf="!product.course" style="margin-bottom: 20px;" class="st-border">
-                            <div>
+                            <div style="font-size: 12px;">
                                 <span style="background-color: #81b5a1;
                                                 color: white;
                                                 width: fit-content;
@@ -98,16 +103,12 @@
 
                                 <mat-card-title *ngIf="!product.course"
                                     routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}"
-                                    style="cursor:pointer; color: #566364;">
+                                    style="cursor:pointer; color: #566364; font-size: 16px;">
                                     {{product.label}}
                                 </mat-card-title>
 
-                                <button mat-icon-button
-                                    *ngIf="isModerator && moderator_email==product.get_created_by?.author"
-                                    (click)="editProduct(product, 'category')">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                                <mat-card-subtitle class="desc-text" style="color: #212121">
+                                
+                                <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 12px;">
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
                                 <div mat-card-avatar>
@@ -119,6 +120,13 @@
                                     </button>
                                 </div>
                             </mat-card-header>
+                            <mat-card-actions align="end" *ngIf="isModerator">
+                                <button mat-icon-button class="primary-button-inverted"
+                                    *ngIf="moderator_email==product.get_created_by?.author"
+                                    (click)="editProduct(product, 'category')">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </mat-card-actions>
                         </mat-card>
 
                     </div>
