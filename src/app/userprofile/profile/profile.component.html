@@ -45,7 +45,7 @@
 
                         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
                             style="width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
-                            class="border"> 
+                            class="border">
                             <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;">
                             </mat-spinner>
                         </div>
@@ -58,7 +58,7 @@
                     </div>
 
 
-                    <div style="width: 200px; height: 40px; margin:auto;margin-top: 20px; padding-left:40px;"
+                    <div style="width: 200px; height: auto; margin:auto;margin-top: 20px; padding-left:40px;"
                         class="uf-border">
                         <button mat-raised-button class="primary-button-inverted">
                             <label for="file-upload" class="custom-file-upload">
@@ -68,11 +68,15 @@
                                 type="file" />
                             <!-- <input type="file" class="uf-file-upload" (change)="onImageChange($event)"> -->
                         </button>
+                        <br><br>
+                        
                     </div>
                 </div>
                 <div class="col-md-8 uf-border" style="padding: 20px;">
-                    <h3>{{name}}<mat-icon aria-hidden="false" style="padding-left: 20px; cursor: pointer;"
-                            (click)="editUser()" aria-label="Edit user details">edit</mat-icon>
+                    <h3>{{name}}
+
+                        <!-- <mat-icon aria-hidden="false" style="padding-left: 20px; cursor: pointer;" (click)="editUser()"
+                            aria-label="Edit user details">edit</mat-icon> -->
                     </h3>
                     <p>({{email}})</p>
                     <div style="padding-bottom: 20px;" *ngIf='response?.author'>
@@ -111,6 +115,16 @@
                         </a>
                     </div>
                     <p style="font-weight: 200;"> {{about}}</p>
+                    <br>
+                    <div style="height: 40px;">
+                        <button mat-button class="primary-button-inverted" style="float: right;" (click)="editUser()">
+                            <mat-icon style="font-size: 18px;padding-right: 5px;">edit</mat-icon>Edit profile 
+                            <!-- <mat-icon aria-hidden="false" aria-label="Edit user details">
+                                edit
+                            </mat-icon> -->
+                        </button>
+                        
+                    </div>
                 </div>
             </div>
             <hr>
@@ -123,7 +137,7 @@
                     <div class="col-md-6">
                         <mat-card class="st-border m-10">
                             <mat-card-header>
-                                <mat-card-title >
+                                <mat-card-title>
                                     <a routerLink="/support/reset_password" style="color:#1F8476">
                                         Reset Password
                                     </a>
@@ -192,8 +206,9 @@
                     </div> -->
                 </div>
                 <div style="height: 60px;">
-                    <a mat-button class="primary-button-inverted" routerLink="/support" style="float: right;">Go to
-                        support page</a>
+                    <a mat-button class="primary-button-inverted" routerLink="/support" style="float: right;">
+                        Go to support page
+                    </a>
                 </div>
             </div>
             <hr>
