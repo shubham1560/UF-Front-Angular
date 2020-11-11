@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SupportService } from 'src/app/services/support/support.service';
 
 @Component({
   selector: 'app-clear-cache',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClearCacheComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private support: SupportService
+  ) { }
 
+  message
   ngOnInit(): void {
+    this.support.clearCache().subscribe(
+      (response:any)=>{
+        this.message = response.detail;
+      },
+      error=>{
+        this.message = error.error.detail;
+      }
+    )
   }
 
 }
