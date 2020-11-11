@@ -41,26 +41,17 @@
                         edit
                     </mat-icon>
                 </a>  
-                <span style="color: #4f9aab; font-size: 16px;">{{courseName}}</span> 
-                <!-- <span style="flex: 1 1 auto;"></span> -->
+                <span style="color: #4f9aab; font-size: 18px;">{{courseName}}</span> 
                 
                 <br>
-                <span style="color: #3c869a; font-size: 14px; text-align: justify;">{{courseDescription}}</span>
-                <div *ngIf="progress">
+                <p style="color: #3c869a; font-size: 14px; text-align: justify; line-height: initial;">{{courseDescription}}</p>
+                <div *ngIf="progress" style="font-size: 14px;">
                     <b>Progress: </b>{{progress}} %
                 </div>
             </div>
             <mat-progress-bar *ngIf="progress" style="color: #4f9aab" mode="determinate" [value]="progress">
             </mat-progress-bar>
 
-            <!-- <div *ngIf="owner">
-                Edit Section 
-                <a routerLink="/path/{{course}}/pathbuild" mat-icon-button>
-                    <mat-icon>
-                        edit
-                    </mat-icon>
-                </a>         
-            </div> -->
             <div class="left-widget-wrapper">
                 <mat-accordion color="primary">
                     <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
@@ -69,6 +60,7 @@
                         <mat-expansion-panel-header style="height: 70px" [ngClass]="{'active' : section.active}">
                             <mat-panel-title [ngClass]="{'active' : section.active}">
 
+                                <span  style="font-size: 14px;">
                                 <b>
                                     {{i+1}}.
                                     {{section.label}}
@@ -76,22 +68,23 @@
                                     <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
                                 </b>
+                                </span>
 
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div *ngFor="let article of section.articles; let j = index">
-                            <div (click)="navigate(article.id)" class="uf-article">
+                            <div (click)="navigate(article.id)" class="uf-article" style="padding: 5px !important;">
                                 <div class="d-inline" *ngIf="!article.viewed">
-                                    <mat-icon style="vertical-align: middle;" matSuffix>
+                                    <mat-icon style="vertical-align: middle;  font-size: 20px;" matSuffix>
                                         panorama_fish_eye
                                     </mat-icon>
 
                                 </div>
                                 <div class="d-inline" *ngIf="article.viewed">
-                                    <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
+                                    <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7); font-size: 20px;" matSuffix>
                                         check_circle</mat-icon>
                                 </div>
-                                <div class="d-inline" [ngClass]="{'active' : article.active}">
+                                <div class="d-inline" style="font-size: 14px;" [ngClass]="{'active' : article.active}">
                                     {{article.title}}
                                 </div>
 
