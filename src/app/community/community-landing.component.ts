@@ -22,7 +22,7 @@ export class CommunityLandingComponent implements OnInit {
   routeSub;
   isLoggedIn;
   showsmallscreen;
-  
+
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.title.setTitle("Community - SortedTree");
@@ -33,9 +33,14 @@ export class CommunityLandingComponent implements OnInit {
       }
     )
     this.routeSub = this.route.events.subscribe((event) => {
+      // console.log(event);
+
       if (event instanceof NavigationStart) {
-        (document.querySelector('app-header') as HTMLElement).style.display = 'block';
-        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        if (!event.url.startsWith("/community")) {
+          // console.log("starts with community");
+          (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+          (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        }
       }
     });
 
@@ -48,7 +53,7 @@ export class CommunityLandingComponent implements OnInit {
   }
 
 
-  logout(){
+  logout() {
     this.authService.logoutUser();
   }
 }

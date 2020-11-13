@@ -1,1 +1,27 @@
-<p>browse-by-roots works!</p>
+<!-- <p>browse-by-roots works!</p> -->
+
+<div id="comm-explore-roots"> 
+<mat-accordion multi (click)="fetchData()" >
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Explore questions by root
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ng-template matExpansionPanelContent>
+            <div class="loader" *ngIf="loading" style="margin: 30px auto !important ;"></div>
+            <div *ngIf="!loading">
+            <h3>Roots</h3>
+            <div class="row">
+                <a routerLink="/community" [queryParams] = "{root: root.id}" *ngFor="let root of roots?.bases" class="col-md-3">
+                    <div class="st-border card">
+                        <div class="title">{{root?.title}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        </ng-template>
+
+    </mat-expansion-panel>
+</mat-accordion>
+</div>

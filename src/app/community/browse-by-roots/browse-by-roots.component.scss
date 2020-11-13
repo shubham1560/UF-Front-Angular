@@ -1,0 +1,48 @@
+#comm-explore-roots{
+  margin-top: 20px;
+}
+
+.card {
+  padding: 10px;
+  margin: 5px 5px;
+  width: 100%;
+  height: 70px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  .title {
+    // color: blue;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 24px;
+    color: #303A46;
+    max-height: 48px;
+    word-wrap: break-word;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+  }
+
+  // .description {
+  //   color: green;
+  //   font-weight: 300;
+  //   font-size: 14px;
+  //   line-height: 16px;
+  //   color: #4A4A4A;
+  //   max-height: 32px;
+  //   word-wrap: break-word;
+  //   overflow: hidden;
+  //   display: -webkit-box;
+  //   -webkit-line-clamp: 2;
+  //   -webkit-box-orient: vertical;
+  // }
+}
+
+
+a{
+  text-decoration: none;
+}
