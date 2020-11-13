@@ -101,42 +101,42 @@
             </div>
             <hr *ngIf="isAuthor">
             <a mat-menu-item target="_blank" href="/path/article/1" *ngIf="isAuthor"
-                style="line-height: 30px; outline: none; height: auto;">
+                class="menu-item-header">
                 Add new article
             </a>
             <a mat-menu-item routerLink="/user_profile/authored_articles" *ngIf="isAuthor"
-                style="line-height: 30px; outline: none; height: auto;">
+                class="menu-item-header">
                 My Articles
             </a>
             <hr *ngIf="superUser || impersonated">
 
 
-            <a mat-menu-item (click)="endImpersonation()" *ngIf="impersonated" style="line-height: 30px; outline: none; height: auto;"> 
+            <a mat-menu-item (click)="endImpersonation()" *ngIf="impersonated" class="menu-item-header"> 
                 End Impersonation
             </a>
 
 
-            <a mat-menu-item (click)="openImpersonation()" *ngIf="superUser" style="line-height: 30px; outline: none; height: auto;"> 
+            <a mat-menu-item (click)="openImpersonation()" *ngIf="superUser" class="menu-item-header"> 
                 Impersonate User
             </a>
 
             <hr *ngIf="isAuthor">
 
             <a mat-menu-item routerLink="/support" *ngIf="isLoggedIn"
-                style="line-height: 30px; outline: none; height: auto;">
+                class="menu-item-header">
                 Support
             </a>
-            <a mat-menu-item style="line-height: 30px; outline: none; height: auto;" routerLink="/community"> 
+            <a mat-menu-item class="menu-item-header" routerLink="/community"> 
                 Explore community
             </a>
             <hr *ngIf="isLoggedIn">
 
             <!-- <hr> -->
-            <a mat-menu-item routerLink="/user_profile" style="line-height: 30px; outline: none; height: auto;"> My
+            <a mat-menu-item routerLink="/user_profile" class="menu-item-header"> My
                 Profile
             </a>
         
-            <button mat-menu-item (click)="logout()" style="line-height: 30px; outline: none; height: auto;">
+            <button mat-menu-item (click)="logout()" class="menu-item-header">
                 Sign out
                 <mat-icon matSuffix style="margin: 0px 2px;">login</mat-icon>
             </button>

@@ -53,25 +53,25 @@
                     <mat-menu #beforeMenu="matMenu" xPosition="before">
 
                         <a mat-menu-item target="_blank" routerLink="/path/article/1"
-                            style="line-height: 30px; outline: none; height: auto;">
+                            class="menu-item-header">
                             + new article
                         </a>
                         <a mat-menu-item routerLink="/user_profile/authored_articles"
-                            style="line-height: 30px; outline: none; height: auto;">
+                            class="menu-item-header">
                             My Articles
                         </a>
                         <hr>
 
-                        <a mat-menu-item routerLink="/support" style="line-height: 30px; outline: none; height: auto;">
+                        <a mat-menu-item routerLink="/support" class="menu-item-header">
                             Support
                         </a>
                         <hr>
                         <a mat-menu-item routerLink="/user_profile"
-                            style="line-height: 30px; outline: none; height: auto;">
+                            class="menu-item-header">
                             My
                             Profile
                         </a>
-                        <a mat-menu-item (click)="logout()" style="line-height: 30px; outline: none; height: auto;">
+                        <a mat-menu-item (click)="logout()" class="menu-item-header">
                             logout
                         </a>
 

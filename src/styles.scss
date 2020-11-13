@@ -380,3 +380,13 @@ button{
         cursor: pointer;
     }
   }
+
+.menu-item-header{
+    line-height: 30px !important ; 
+    outline: none !important; 
+    height: auto !important;
+    
+    &:hover{
+        text-decoration: none;
+    }
+}
