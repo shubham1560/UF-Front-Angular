@@ -6,6 +6,7 @@ import { BlogsComponent } from './blogs.component';
 import { AuthorGuard } from './guard/author.guard'
 import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
 import { ArticleTagComponent } from './article-tag/article-tag.component';
+import { AuthGuard } from '../auth/guard/auth.guard';
 
 const routes: Routes = [
     {
@@ -18,7 +19,7 @@ const routes: Routes = [
     },
     {
         path: 'article/:id',
-        // canActivate: [AuthorGuard],
+        canActivate: [AuthGuard],
         component: ArticleNewComponent
     },
     {

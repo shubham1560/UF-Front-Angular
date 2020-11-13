@@ -133,7 +133,7 @@ export class ArticleNewComponent implements OnInit {
           }
         }
         else {
-          this.route.navigate(["welcome"]);
+          this.route.navigate(["auth"]);
         }
       }
     )
