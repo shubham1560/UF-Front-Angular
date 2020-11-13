@@ -9,6 +9,10 @@
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
                     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
+                    <span *ngIf="showsmallscreen"
+                        style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-left: 10px; border-left: 2px solid #ddd; margin-left: 10px; ">
+                        {{state?state:"new"}}
+                    </span>
                     <span class="fillspace"></span>
                     <div *ngIf="showsmallscreen">
                         <a routerLink="/path/article_preview/{{id}}">
@@ -23,11 +27,9 @@
                             </h5>
                         </a>
                     </div>
+                    
                     <span class="fillspace"></span>
-                    <span *ngIf="showsmallscreen"
-                        style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px; border-right: 2px solid #ddd; margin-right: 10px; ">
-                        {{state?state:"new"}}
-                    </span>
+                    
                     <button mat-button style="margin-right: 10px;" class="primary-button" [disabled]="updatingData"
                         (click)="updateArticle(true)">
                         <span *ngIf="updatingData">

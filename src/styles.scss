@@ -212,10 +212,12 @@ button{
     // border-radius: 0px !important;
     background-color: white;
     outline: none !important;
-    
+    text-decoration: none;
+
     &:hover{
       background-color: #3c869a;
       color: white;
+      text-decoration: none;
     }
 }
 
@@ -230,6 +232,7 @@ button{
     &:hover{
         background-color: white;
         color: #3c869a;
+        text-decoration: none;
     }
 }
 

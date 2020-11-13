@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
+import { AuthService } from '../services/authservice/auth.service';
 
 @Component({
   selector: 'app-community-landing',
@@ -14,14 +15,16 @@ export class CommunityLandingComponent implements OnInit {
     private title: Title,
     private breakpointObserver: BreakpointObserver,
     private route: Router,
-    private routerService: ActivatedRoute
+    private routerService: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   routeSub;
-
+  isLoggedIn;
   showsmallscreen;
   
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
     this.title.setTitle("Community - SortedTree");
 
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
@@ -44,4 +47,8 @@ export class CommunityLandingComponent implements OnInit {
     );
   }
 
+
+  logout(){
+    this.authService.logoutUser();
+  }
 }
