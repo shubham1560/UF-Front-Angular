@@ -1,55 +1,43 @@
-<div class="flex-wrapper">
-    <mat-toolbar [ngStyle]="{'position':showsmallscreen ? 'fixed' : ''}"
-        style=" border-bottom: 3px solid #f1f1f1; z-index: 2; background-color: white;">
-        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
-        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
-        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">ree</span>
-        <span *ngIf="showsmallscreen" routerLink="/community" class="comm-button">
-            Community
-        </span>
-        <span class="fillspace"></span>
-        <a mat-flat-button *ngIf="!isLoggedIn" class="primary-button" routerLink="/auth/register"
-            routerLinkActive="active" style="margin-right: 10px;">
-            Sign up
+<mat-toolbar style="z-index: 2; background-color: white;">
+    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
+    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
+    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">ree</span>
+    <span *ngIf="showsmallscreen" routerLink="/community" class="comm-button">
+        Community
+    </span>
+    <span class="fillspace"></span>
+    <a mat-flat-button *ngIf="!isLoggedIn" class="primary-button" routerLink="/auth/register" routerLinkActive="active"
+        style="margin-right: 10px;">
+        Sign up
+    </a>
+    <a mat-flat-button *ngIf="!isLoggedIn" class="primary-button-inverted" routerLink="/auth/"
+        routerLinkActive="active">
+        Sign in
+    </a>
+    <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="beforeMenu"
+        aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #beforeMenu="matMenu" xPosition="before">
+        <a mat-menu-item target="_blank" routerLink="/path/article/1" class="menu-item-header">
+            + new article
         </a>
-        <a mat-flat-button *ngIf="!isLoggedIn" class="primary-button-inverted" routerLink="/auth/"
-            routerLinkActive="active">
-            Sign in
+        <a mat-menu-item routerLink="/user_profile/authored_articles" class="menu-item-header">
+            My Articles
         </a>
-        <button *ngIf="isLoggedIn" mat-icon-button [matMenuTriggerFor]="beforeMenu"
-            aria-label="Example icon-button with a menu">
-            <mat-icon>more_vert</mat-icon>
-        </button>
-        <mat-menu #beforeMenu="matMenu" xPosition="before">
-            <a mat-menu-item target="_blank" routerLink="/path/article/1"
-                class="menu-item-header">
-                + new article
-            </a>
-            <a mat-menu-item routerLink="/user_profile/authored_articles"
-                class="menu-item-header">
-                My Articles
-            </a>
-            <hr>
-            <a mat-menu-item routerLink="/support" class="menu-item-header">
-                Support
-            </a>
-            <hr>
-            <a mat-menu-item routerLink="/user_profile" class="menu-item-header">
-                My
-                Profile
-            </a>
-            <a mat-menu-item (click)="logout()" class="menu-item-header">
-                logout
-            </a>
-        </mat-menu>
-    </mat-toolbar>
-    <div class="container">
+        <hr>
+        <a mat-menu-item routerLink="/support" class="menu-item-header">
+            Support
+        </a>
+        <hr>
+        <a mat-menu-item routerLink="/user_profile" class="menu-item-header">
+            My
+            Profile
+        </a>
+        <a mat-menu-item (click)="logout()" class="menu-item-header">
+            logout
+        </a>
+    </mat-menu>
+</mat-toolbar>
 
-        <div class="row">
-            <div class="col-md-9">
-                community Questions
-            </div>
-        </div>
-    </div>
-
-</div>
+<app-browse-questions></app-browse-questions>
