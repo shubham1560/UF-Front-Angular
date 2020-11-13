@@ -508,6 +508,7 @@ export class ArticleNewComponent implements OnInit {
 
 
   checkForAuthor() {
+    if(this.authService.isLoggedIn()){
     this.userService.inGroup("Authors").subscribe(
       (response: Boolean) => {
         if (response) {
@@ -524,6 +525,10 @@ export class ArticleNewComponent implements OnInit {
         return false;
       }
     )
+    }
+    else{
+      this.route.navigate['auth']
+    }
   }
 
   logout() {
