@@ -26,6 +26,11 @@ const routes: Routes = [
       import('././auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'community', 
+    loadChildren: ()=>
+      import('././community/community.module').then(com => com.CommunityModule)
+  },
+  {
     path: "user_profile",
     canActivate: [ProfileGuard],
     loadChildren: () =>
