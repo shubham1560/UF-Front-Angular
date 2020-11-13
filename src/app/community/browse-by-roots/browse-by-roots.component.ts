@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { merge } from 'rxjs';
 
 @Component({
   selector: 'app-browse-by-roots',
@@ -11,36 +12,63 @@ export class BrowseByRootsComponent implements OnInit {
 
   constructor(
     private knowledge: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   roots;
   loading = false;
-
+  paths
+  articles
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(
-      params =>{
-        // console.log(params);
-        
+      params => {
+
+        // if (params.get('path')) {
+        //   this.knowledge.getArticlesInPath(params.get('path')).subscribe(
+        //     result => {
+        //       this.articles = result
+        //     }
+        //   )
+        // }
+        // else {
+        //   this.articles = [];
+        // }
+
+        // if (params.get('path').)
+
+
+        if (params.get('root')) {
+          this.knowledge.getRelatedCategories(params.get('root'), 'root', 'course').subscribe(
+            result => {
+              this.paths = result;
+            }
+          )
+        }
+        else {
+          this.paths = [];
+        }
+
       }
     )
   }
 
-  fetchData(){
+  fetchData() {
     this.loading = true;
     // console.log("fetch kr na bhai data!");
     this.getBases();
   }
 
-  getBases(){
+  getBases() {
     this.knowledge.getKnowledgeBases().subscribe(
-      result=>{
+      result => {
         this.loading = false;
         this.roots = result;
       },
-      error=>{
+      error => {
         this.loading = false;
       }
     )
   }
+
 }

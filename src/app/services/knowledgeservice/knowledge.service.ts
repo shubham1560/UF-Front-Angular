@@ -261,4 +261,9 @@ export class DataService {
     console.log(url_arr);
   }
 
+  getArticlesInPath(path){
+    this.called_url = `${this.base_knowledge_url}kb_knowledge/${path}/get/`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
+
 }
