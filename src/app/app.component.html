@@ -1,4 +1,5 @@
-<app-header></app-header>
+<app-header *ngIf="mainHeader"></app-header>
+<app-comm-header *ngIf="commHeader"></app-comm-header>
 <div [@slideInAnimation]="o.isActivated? o.activatedRoute: ''"></div>
 <div>
     <router-outlet #o="outlet" (activate)="onActivate($event)">

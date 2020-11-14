@@ -26,7 +26,8 @@ import { CacheInterceptor } from "./shared/interceptors/cache.interceptor";
 import { SharedCardComponent } from './shared/shared-card/shared-card.component';
 import { ProfanityComponent } from './shared/profanity/profanity.component';
 import { ImpersonateDialogComponent } from './shared/impersonate-dialog/impersonate-dialog.component';
-import { ClearCacheComponent } from './shared/clear-cache/clear-cache.component'
+import { ClearCacheComponent } from './shared/clear-cache/clear-cache.component';
+import { CommHeaderComponent } from './shared/comm-header/comm-header.component'
 // import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
@@ -55,6 +56,7 @@ import { ClearCacheComponent } from './shared/clear-cache/clear-cache.component'
     ProfanityComponent,
     ImpersonateDialogComponent,
     ClearCacheComponent,
+    CommHeaderComponent,
     // DateAgoPipe,
     // RootComponent,
     // BreadcrumbsComponent,

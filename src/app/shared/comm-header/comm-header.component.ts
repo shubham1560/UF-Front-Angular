@@ -1,21 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart, Router, ActivatedRoute } from '@angular/router';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 @Component({
-  selector: 'app-comm-new-question',
-  templateUrl: './comm-new-question.component.html',
-  styleUrls: ['./comm-new-question.component.scss']
+  selector: 'app-comm-header',
+  templateUrl: './comm-header.component.html',
+  styleUrls: ['./comm-header.component.scss']
 })
-export class CommNewQuestionComponent implements OnInit {
-  routeSub: any;
+export class CommHeaderComponent implements OnInit {
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private route: Router,
     private routerService: ActivatedRoute,
-
+    private authService: AuthService
   ) { }
 
+  routeSub;
+  isLoggedIn;
+  hidesmallscreen;
+
   ngOnInit(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
+
+    this.breakpointObserver.observe('(min-width: 768px)').subscribe(
+      result => {
+        this.hidesmallscreen = result.matches;
+      }
+    )
     this.routeSub = this.route.events.subscribe((event) => {
       // console.log(event);
 
@@ -35,5 +48,11 @@ export class CommNewQuestionComponent implements OnInit {
       }
     );
   }
+
+
+  logout() {
+    this.authService.logoutUser();
+  }
+
 
 }

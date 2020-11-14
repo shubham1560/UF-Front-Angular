@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { AuthService } from './services/authservice/auth.service';
 import { Observable } from 'rxjs';
 import { slideInAnimation } from './app.animation';
@@ -13,8 +13,15 @@ import { LoggerService } from './services/cx-menu/realtimelogger.service';
 })
 export class AppComponent implements OnInit {
   title = 'uf-front';
+  routeSub: any;
 
-  constructor() { }
+  constructor(
+    private route: Router,
+    private routerService: ActivatedRoute,
+  ) { }
+
+  mainHeader = true;
+  commHeader = true;
 
   onActivate(event) {
     let scrollToTop = window.setInterval(() => {
@@ -28,6 +35,26 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.routeSub = this.route.events.subscribe((event) => {
+      // console.log(event);
+
+      if (event instanceof NavigationStart) {
+        if (!event.url.startsWith("/community")) {
+          // console.log("starts with community");
+
+          (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+          (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        }
+      }
+    });
+
+    this.routerService.paramMap.subscribe(
+      params => {
+        (document.querySelector('app-header') as HTMLElement).style.display = 'none';
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+      }
+    );
+
 
   }
 
