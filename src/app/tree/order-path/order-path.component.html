@@ -1,1 +1,53 @@
-<p>order-path works!</p>
+<!-- <p>browse-by-roots works!</p> -->
+<div id="st-order-root">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div id="comm-explore-roots">
+                    <mat-accordion multi (click)="fetchData()">
+                        <mat-expansion-panel>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Select Root to order
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div class="loader" *ngIf="loading" style="margin: 30px auto !important ;"></div>
+                                <div *ngIf="!loading">
+                                    <h3>Roots</h3>
+                                    <div class="row">
+                                        <a routerLink="/roots/path_order" [queryParams]="{root: root.id}"
+                                            *ngFor="let root of roots?.bases" class="col-md-3">
+                                            <div class="st-border card">
+                                                <div class="title">{{root?.title}}</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                    <!-- <div class="row">
+                        <a queryParamsHandling='merge' *ngFor="let path of paths?.categories" class="col-md-3">
+                            <div class="st-border card">
+                                <div class="title">{{path?.label}}</div>
+                            </div>
+                        </a>
+                    </div> -->
+                    <button mat-button class="primary-button" (click)="addOrder()">add order</button>
+                    <br>
+
+                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div class="example-box" *ngFor="let path of paths?.categories" cdkDrag>
+                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                            <pre>
+                                {{path | json}}
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
