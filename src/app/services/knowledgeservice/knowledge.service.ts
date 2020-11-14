@@ -266,4 +266,10 @@ export class DataService {
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 
+  orderCoursesCategory(path){
+    this.called_url = `${this.base_knowledge_url}kb_category/order/`;
+    const body = path;
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
 }

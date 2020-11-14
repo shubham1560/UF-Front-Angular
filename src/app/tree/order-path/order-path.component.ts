@@ -3,6 +3,7 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 import { ActivatedRoute, Router } from '@angular/router';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-order-path',
@@ -14,7 +15,8 @@ export class OrderPathComponent implements OnInit {
     private knowledge: DataService,
     private route: ActivatedRoute,
     private router: Router,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private _snackBar: MatSnackBar
   ) { }
 
 
@@ -77,6 +79,27 @@ export class OrderPathComponent implements OnInit {
       })
     });
     console.log(this.finalArray);
+  }
+
+  saveOrder(){
+    this.addOrder();
+    this.knowledge.orderCoursesCategory(this.finalArray).subscribe(
+      result=>{
+        console.log();
+        this.openSnackBar("Updated!")
+      },
+      error=>{
+        this.openSnackBar("Some error occured");
+      }
+    )
+  }
+
+  openSnackBar(message) {
+    this._snackBar.open(message, '', {
+      duration: 500,
+      horizontalPosition: "right",
+      verticalPosition: "top",
+    });
   }
 
 }

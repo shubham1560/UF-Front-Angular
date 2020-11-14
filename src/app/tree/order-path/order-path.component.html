@@ -1,8 +1,10 @@
 <!-- <p>browse-by-roots works!</p> -->
+<mat-progress-bar mode="determinate" value="100" color="accent"></mat-progress-bar>
+
 <div id="st-order-root">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col-md-12">
                 <div id="comm-explore-roots">
                     <mat-accordion multi (click)="fetchData()">
                         <mat-expansion-panel>
@@ -27,27 +29,28 @@
                             </ng-template>
                         </mat-expansion-panel>
                     </mat-accordion>
-
-                    <!-- <div class="row">
-                        <a queryParamsHandling='merge' *ngFor="let path of paths?.categories" class="col-md-3">
-                            <div class="st-border card">
-                                <div class="title">{{path?.label}}</div>
-                            </div>
-                        </a>
-                    </div> -->
-                    <button mat-button class="primary-button" (click)="addOrder()">add order</button>
-                    <br>
-
-                    <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let path of paths?.categories" cdkDrag>
-                            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
-                            <pre>
-                                {{path | json}}
-                            </pre>
-                        </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        Selected Root: {{paths.categories[0]?.get_parent_knowledgebase.label | json}}
+        <br>
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let path of paths?.categories" cdkDrag>
+                        <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+                        {{path.label}} <br>
+                        {{path.get_created_by.author}}
+                        <br>
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <button mat-button class="primary-button-inverted" (click)="saveOrder()">Save order</button>
+            </div>
+
         </div>
     </div>
 </div>
