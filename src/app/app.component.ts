@@ -36,22 +36,25 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.routeSub = this.route.events.subscribe((event) => {
-      // console.log(event);
 
       if (event instanceof NavigationStart) {
         if (!event.url.startsWith("/community")) {
-          // console.log("starts with community");
-
-          (document.querySelector('app-header') as HTMLElement).style.display = 'block';
-          (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+          this.mainHeader = true;
+          this.commHeader = false;
+          // (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+          // (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        }
+        else{
+          this.commHeader = true;
+          this.mainHeader = false;
         }
       }
     });
 
     this.routerService.paramMap.subscribe(
       params => {
-        (document.querySelector('app-header') as HTMLElement).style.display = 'none';
-        (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+        // (document.querySelector('app-header') as HTMLElement).style.display = 'none';
+        // (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
       }
     );
 

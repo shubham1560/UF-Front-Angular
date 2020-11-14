@@ -14,8 +14,6 @@ export class CommunityLandingComponent implements OnInit {
   constructor(
     private title: Title,
     private breakpointObserver: BreakpointObserver,
-    private route: Router,
-    private routerService: ActivatedRoute,
     private authService: AuthService
   ) { }
 
@@ -32,24 +30,6 @@ export class CommunityLandingComponent implements OnInit {
         this.hidesmallscreen = result.matches;
       }
     )
-    this.routeSub = this.route.events.subscribe((event) => {
-      // console.log(event);
-
-      if (event instanceof NavigationStart) {
-        if (!event.url.startsWith("/community")) {
-          // console.log("starts with community");
-          (document.querySelector('app-header') as HTMLElement).style.display = 'block';
-          (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
-        }
-      }
-    });
-
-    this.routerService.paramMap.subscribe(
-      params => {
-        (document.querySelector('app-header') as HTMLElement).style.display = 'none';
-        (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
-      }
-    );
   }
 
 
