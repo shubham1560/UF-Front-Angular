@@ -74,6 +74,9 @@ export class HeaderComponent implements OnInit {
       )
     }
 
+    window.addEventListener("offline", ()=>{
+      console.log("Seems like you are offline!");
+    })
 
     this.searchQueryForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(1)]],
@@ -160,5 +163,6 @@ export class HeaderComponent implements OnInit {
       data: {"dialog": true}
     })
   }
+
 
 }

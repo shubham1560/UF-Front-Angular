@@ -21,7 +21,7 @@ export class CommunityLandingComponent implements OnInit {
 
   routeSub;
   isLoggedIn;
-  showsmallscreen;
+  hidesmallscreen;
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -29,7 +29,7 @@ export class CommunityLandingComponent implements OnInit {
 
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
       result => {
-        this.showsmallscreen = result.matches;
+        this.hidesmallscreen = result.matches;
       }
     )
     this.routeSub = this.route.events.subscribe((event) => {

@@ -8,6 +8,7 @@ import { CourseviewComponent } from './courseview/courseview.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AddpathorbranchComponent } from './addpathorbranch/addpathorbranch.component'
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrderPathComponent } from './order-path/order-path.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CourseviewComponent,
     SideNavComponent,
     AddpathorbranchComponent,
+    OrderPathComponent,
   ],
   imports: [
     CommonModule,

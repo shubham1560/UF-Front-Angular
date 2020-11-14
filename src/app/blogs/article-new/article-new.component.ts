@@ -49,7 +49,7 @@ export class ArticleNewComponent implements OnInit {
     public breakpointObserver: BreakpointObserver,
   ) { }
 
-  showsmallscreen = true;
+  hidesmallscreen = true;
   editor: EditorJS
   data: any;
   article;
@@ -69,7 +69,7 @@ export class ArticleNewComponent implements OnInit {
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
       result => {
         // console.log(result);
-        this.showsmallscreen = result.matches;
+        this.hidesmallscreen = result.matches;
       }
     )
     //to show header and footer when the route changes

@@ -1,52 +1,50 @@
 <!-- <p>browse-by-roots works!</p> -->
-
-<div id="comm-explore-roots">
-    <mat-accordion multi (click)="fetchData()">
-        <mat-expansion-panel>
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    Explore questions by root
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <ng-template matExpansionPanelContent>
-                <div class="loader" *ngIf="loading" style="margin: 30px auto !important ;"></div>
-                <div *ngIf="!loading">
-                    <h3>Roots</h3>
-                    <div class="row">
-                        <a routerLink="/community" [queryParams]="{root: root.id}" *ngFor="let root of roots?.bases"
-                            class="col-md-3">
-                            <div class="st-border card">
-                                <div class="title">{{root?.title}}</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div id="comm-explore-roots">
+                <mat-accordion multi (click)="fetchData()">
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                Explore questions by root
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-template matExpansionPanelContent>
+                            <div class="loader" *ngIf="loading" style="margin: 30px auto !important ;"></div>
+                            <div *ngIf="!loading">
+                                <h3>Roots</h3>
+                                <div class="row">
+                                    <a routerLink="/community" [queryParams]="{root: root.id}"
+                                        *ngFor="let root of roots?.bases" class="col-md-3">
+                                        <div class="st-border card">
+                                            <div class="title">{{root?.title}}</div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
-                        </a>
+                        </ng-template>
+                    </mat-expansion-panel>
+                </mat-accordion>
+
+                Explore Further by paths
+                <div class="row">
+                    <a routerLink="/community" [queryParams]="{path: path.id}" queryParamsHandling='merge'
+                        *ngFor="let path of paths?.categories" class="col-md-3">
+                        <div class="st-border card">
+                            <div class="title">{{path?.label}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" *ngFor="let article of articles?.data">
+                        {{article.title}} <br>
+                        {{article.id}} <br>
                     </div>
                 </div>
-            </ng-template>
-
-        </mat-expansion-panel>
-    </mat-accordion>
-
-    Explore Further by paths
-    <div class="row">
-        <a routerLink="/community" (click)="removeArticle()" [queryParams]="{path: path.id}" queryParamsHandling='merge'
-            *ngFor="let path of paths?.categories" class="col-md-3">
-            <div class="st-border card">
-                <div class="title">{{path?.label}}</div>
+                <hr>
+                <hr>
             </div>
-        </a>
-    </div>
-    <!-- <pre>
-        {{articles | json}}
-    </pre> -->
-    <div class="row">
-        <div class="col-md-12" *ngFor="let article of articles.data">
-            {{article.title}} <br>
-            {{article.id}} <br>
-            <!-- <pre> -->
-            <!-- {{article | json}} -->
-        <!-- </pre> -->
         </div>
     </div>
-    <hr>
-    <hr>
 </div>
