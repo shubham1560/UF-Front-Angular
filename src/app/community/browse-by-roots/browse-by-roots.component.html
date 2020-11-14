@@ -1,11 +1,11 @@
 <!-- <p>browse-by-roots works!</p> -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-2"></div>
-        <div class="col-lg-8">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
             <div id="comm-explore-roots">
                 <mat-accordion multi (click)="fetchData()">
-                    <mat-expansion-panel style="box-shadow: none;">
+                    <mat-expansion-panel style="box-shadow: none;" class="st-border">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 Roots
@@ -20,8 +20,8 @@
                                 <h3>Roots</h3>
                                 <div class="row">
                                     <a routerLink="/community" [queryParams]="{root: root.id}"
-                                        *ngFor="let root of roots?.bases" class="col-md-4 col-6">
-                                        <div class="st-border card"   matTooltip="{{root?.title}}">
+                                        *ngFor="let root of roots?.bases" class="col-md-3 col-6">
+                                        <div class="st-border card" matTooltip="{{root?.title}}">
                                             <div class="title">{{root?.title}}</div>
                                         </div>
                                     </a>
@@ -29,22 +29,53 @@
                             </div>
                         </ng-template>
                     </mat-expansion-panel>
+
                 </mat-accordion>
+                <br>
+                <div style="text-align: center;" *ngIf="paths?.length > 0">
+                    <mat-accordion multi (click)="fetchData()">
+                        <mat-expansion-panel style="box-shadow: none;" class="st-border">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    Paths
+                                </mat-panel-title>
+                                <mat-panel-description>
+                                    Browse further by paths
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <ng-template matExpansionPanelContent>
+                                <div style="text-align: center;">
+                                    <h3>Paths inside</h3>
+                                    <div class="row">
+                                        <a routerLink="/community" [queryParams]="{path: path.id}"
+                                            queryParamsHandling='merge' *ngFor="let path of paths"
+                                            class="col-md-3 col-6">
+                                            <div class="st-border card" matTooltip="{{path?.label}}">
+                                                <div class="title">{{path?.label}}</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </mat-expansion-panel>
+
+                    </mat-accordion>
+                    <!-- Browse Further by paths
+                    <div class="row">
+                        <a routerLink="/community" [queryParams]="{path: path.id}" queryParamsHandling='merge'
+                            *ngFor="let path of paths" class="col-md-2 col-6">
+                            <div class="st-border card" matTooltip="{{path?.label}}">
+                                <div class="title">{{path?.label}}</div>
+                            </div>
+                        </a>
+                    </div> -->
+                </div>
             </div>
         </div>
-        <div class="col-lg-2"></div>
-        
-        <div class="col-md-12" style="text-align: center;" *ngIf="paths?.length > 0">
-            <br><br>
-            Browse Further by paths
-            <div class="row">
-                <a routerLink="/community" [queryParams]="{path: path.id}" queryParamsHandling='merge'
-                    *ngFor="let path of paths" class="col-md-2 col-6">
-                    <div class="st-border card"  matTooltip="{{path?.label}}">
-                        <div class="title">{{path?.label}}</div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <div class="col-lg-1"></div>
+        <!-- 
+        <div class="col-md-12" style="text-align: center;" >
+
+        </div> -->
     </div>
 </div>

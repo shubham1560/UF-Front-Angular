@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommunityService } from '../../services/community/community.service'
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-browse-questions',
@@ -11,7 +12,8 @@ export class BrowseQuestionsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private commService: CommunityService
+    private commService: CommunityService,
+    private loggerService: LoggerService,
   ) { }
 
   questions;
@@ -31,6 +33,7 @@ export class BrowseQuestionsComponent implements OnInit {
         )
       }
     )
+    this.loggerService.logData("st-question", this);
   }
 
 }
