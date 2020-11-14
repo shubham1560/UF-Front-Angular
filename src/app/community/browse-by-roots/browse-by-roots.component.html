@@ -1,23 +1,27 @@
 <!-- <p>browse-by-roots works!</p> -->
 <div class="container">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
             <div id="comm-explore-roots">
                 <mat-accordion multi (click)="fetchData()">
-                    <mat-expansion-panel>
+                    <mat-expansion-panel style="box-shadow: none;">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
-                                Explore questions by root
+                                Roots
                             </mat-panel-title>
+                            <mat-panel-description>
+                                Browse questions by root
+                            </mat-panel-description>
                         </mat-expansion-panel-header>
                         <ng-template matExpansionPanelContent>
                             <div class="loader" *ngIf="loading" style="margin: 30px auto !important ;"></div>
-                            <div *ngIf="!loading">
+                            <div *ngIf="!loading" style="text-align: center;">
                                 <h3>Roots</h3>
                                 <div class="row">
                                     <a routerLink="/community" [queryParams]="{root: root.id}"
-                                        *ngFor="let root of roots?.bases" class="col-md-3">
-                                        <div class="st-border card">
+                                        *ngFor="let root of roots?.bases" class="col-md-4 col-6">
+                                        <div class="st-border card"   matTooltip="{{root?.title}}">
                                             <div class="title">{{root?.title}}</div>
                                         </div>
                                     </a>
@@ -26,24 +30,20 @@
                         </ng-template>
                     </mat-expansion-panel>
                 </mat-accordion>
-
-                Explore Further by paths
-                <div class="row">
-                    <a routerLink="/community" [queryParams]="{path: path.id}" queryParamsHandling='merge'
-                        *ngFor="let path of paths?.categories" class="col-md-3">
-                        <div class="st-border card">
-                            <div class="title">{{path?.label}}</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="row">
-                    <div class="col-md-12" *ngFor="let article of articles?.data">
-                        {{article.title}} <br>
-                        {{article.id}} <br>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+        
+        <div class="col-md-12" style="text-align: center;" *ngIf="paths?.length > 0">
+            <br><br>
+            Browse Further by paths
+            <div class="row">
+                <a routerLink="/community" [queryParams]="{path: path.id}" queryParamsHandling='merge'
+                    *ngFor="let path of paths" class="col-md-2 col-6">
+                    <div class="st-border card"  matTooltip="{{path?.label}}">
+                        <div class="title">{{path?.label}}</div>
                     </div>
-                </div>
-                <hr>
-                <hr>
+                </a>
             </div>
         </div>
     </div>

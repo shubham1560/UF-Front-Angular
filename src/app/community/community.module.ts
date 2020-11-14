@@ -6,14 +6,15 @@ import { CommunityLandingComponent } from './community-landing.component';
 import { MaterialModule } from '../shared/material.module';
 import { BrowseQuestionsComponent } from './browse-questions/browse-questions.component';
 import { BrowseByRootsComponent } from './browse-by-roots/browse-by-roots.component';
+import { DateAgoQuesPipe } from './pipes/date-ago-ques.pipe';
 
 
 @NgModule({
-  declarations: [CommunityLandingComponent, BrowseQuestionsComponent, BrowseByRootsComponent],
+  declarations: [CommunityLandingComponent, BrowseQuestionsComponent, BrowseByRootsComponent, DateAgoQuesPipe],
   imports: [
     CommonModule,
     CommunityRoutingModule,
-    MaterialModule
+    MaterialModule,
   ]
 })
 export class CommunityModule { }

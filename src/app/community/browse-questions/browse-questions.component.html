@@ -5,15 +5,14 @@
             <div class="col-md-12">
                 <app-browse-by-roots></app-browse-by-roots>
             </div>
-            <div class="col-md-9">
-                <pre>
-                {{questions | json}}
-            </pre>
+            <div class="col-md-9" *ngIf="questions?.length>0">
+                <div *ngFor="let question of questions">
+                    <div mat-card-avatar class="example-header-image"></div>
+                    {{question.question}} <br>
+                    {{question.get_kb_base.label}} > {{question.get_kb_category?.label}} <br>
+                    asked by: {{question?.get_created_by.name}} on {{question.sys_created_on }}
+                </div>
             </div>
-
         </div>
     </div>
-
 </div>
-
-

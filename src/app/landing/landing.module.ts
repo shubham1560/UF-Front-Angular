@@ -26,7 +26,8 @@ import { QuotesComponent } from './quotes/quotes.component';
     ExplorerootsComponent, 
     ReadArticlesComponent, 
     RecentlyViewedComponent, 
-    DateAgoPipe, ContinueCoursesComponent, BookmarkedComponent, QuotesComponent,
+    DateAgoPipe, 
+    ContinueCoursesComponent, BookmarkedComponent, QuotesComponent,
   ],
   imports: [
     CommonModule,
