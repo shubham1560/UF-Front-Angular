@@ -1,39 +1,40 @@
 <mat-progress-bar mode="determinate" color="accent" value="100"></mat-progress-bar>
-<div class="flex-wrapper" id="st-question">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <app-browse-by-roots></app-browse-by-roots>
-            </div>
-            <div class="col-md-9" *ngIf="questions?.length>0">
-                <div *ngFor="let question of questions">
-                    <div class="card">
-                        <div class="card-body" style="padding: 10px !important;">
-                            <h6 class="card-title" style="font-size: 16px;">{{question.question}}</h6>
-                            <h6 class="card-subtitle mb-2 text-muted" style="font-size: 14px;">
-                                {{question.get_kb_base.label}} > {{question.get_kb_category?.label}}
-                            </h6>
-                            <span style="font-size: 12px;">
-                                asked by:
-                                <a routerLink="/user/{{question?.get_created_by.id}}">
-                                    {{question?.get_created_by.name}}
-                                </a>
-                                updated by:
-                                <a routerLink="/user/{{question?.get_updated_by.id}}">
-                                    {{question?.get_updated_by.name}}
-                                </a>
-                                {{question.sys_created_on | dateAgoQues}}
-                            </span>
+<div class="container-flex" id="st-question" style="background-color: white;" class="st-border">
+            <app-browse-by-roots></app-browse-by-roots>
+<br>
+</div>
+<br><br>
 
-                            <!-- <p class="card-text">
+<div class="container">
+    <div class="row">
+        <div class="col-md-9" *ngIf="questions?.length>0">
+            <div *ngFor="let question of questions">
+                <div class="card">
+                    <div class="card-body" style="padding: 10px !important;">
+                        <h6 class="card-title" style="font-size: 16px;">{{question.question}}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted" style="font-size: 14px;">
+                            {{question.get_kb_base.label}} > {{question.get_kb_category?.label}}
+                        </h6>
+                        <span style="font-size: 12px;">
+                            asked by:
+                            <a routerLink="/user/{{question?.get_created_by.id}}">
+                                {{question?.get_created_by.name}}
+                            </a>
+                            updated by:
+                            <a routerLink="/user/{{question?.get_updated_by.id}}">
+                                {{question?.get_updated_by.name}}
+                            </a>
+                            {{question.sys_created_on | dateAgoQues}}
+                        </span>
+
+                        <!-- <p class="card-text">
                                 .</p> -->
-                            <!-- <a href="#" class="card-link" style>Card link</a> -->
-                            <!-- <a href="#" class="card-link">Another link</a> -->
-                        </div>
+                        <!-- <a href="#" class="card-link" style>Card link</a> -->
+                        <!-- <a href="#" class="card-link">Another link</a> -->
                     </div>
-                    <!-- {{question.question}} <br> -->
-                    <!-- {{question.get_kb_base.label}} > {{question.get_kb_category?.label}} <br> -->
                 </div>
+                <!-- {{question.question}} <br> -->
+                <!-- {{question.get_kb_base.label}} > {{question.get_kb_category?.label}} <br> -->
             </div>
         </div>
     </div>

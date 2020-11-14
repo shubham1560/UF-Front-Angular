@@ -33,7 +33,7 @@
                 </mat-accordion>
                 <br>
                 <div style="text-align: center;" *ngIf="paths?.length > 0">
-                    <mat-accordion multi (click)="fetchData()">
+                    <mat-accordion multi>
                         <mat-expansion-panel style="box-shadow: none;" class="st-border">
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
@@ -58,24 +58,19 @@
                                 </div>
                             </ng-template>
                         </mat-expansion-panel>
-
                     </mat-accordion>
-                    <!-- Browse Further by paths
-                    <div class="row">
-                        <a routerLink="/community" [queryParams]="{path: path.id}" queryParamsHandling='merge'
-                            *ngFor="let path of paths" class="col-md-2 col-6">
-                            <div class="st-border card" matTooltip="{{path?.label}}">
-                                <div class="title">{{path?.label}}</div>
-                            </div>
-                        </a>
-                    </div> -->
+                </div>
+                <div style="text-align: center;" *ngIf="paths?.length == 0">
+                    <mat-expansion-panel disabled style="box-shadow: none;" class="st-border">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                No Paths in this root
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                    </mat-expansion-panel>
                 </div>
             </div>
         </div>
         <div class="col-lg-1"></div>
-        <!-- 
-        <div class="col-md-12" style="text-align: center;" >
-
-        </div> -->
     </div>
 </div>

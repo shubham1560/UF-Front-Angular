@@ -42,6 +42,8 @@ export class BrowseByRootsComponent implements OnInit {
           this.knowledge.getRelatedCategories(params.get('root'), 'root', 'course').subscribe(
             (result:any) => {
               this.paths = result.categories;
+              console.log(this.paths);
+              
             }
           )
         }
