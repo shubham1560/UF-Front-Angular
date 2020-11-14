@@ -10,10 +10,25 @@
             </button>
             <br><br>
         </div>
-        <div class="col-md-9">
-            Question form
+        <div class="col-md-8">
+            <mat-form-field appearance="legacy" style="width: 100%;">
+                <mat-label>Question</mat-label>
+                <input matInput placeholder="Placeholder" [(ngModel)]="question">
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                <mat-hint>Summary of what you wanna ask</mat-hint>
+            </mat-form-field>
+            {{question}}
+            <br><br>
+            <div>
+                Please add some detail so the person can get the context and setting 
+                <div id="editorjs">
+                </div>
+            </div>
+            <div style="height: 60px; width: 100%;">
+                <button mat-button class="primary-button-inverted" (click)="save()" style="float: right;">Submit</button>
+            </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             Instructions
         </div>
     </div>

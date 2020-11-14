@@ -7,6 +7,7 @@ import { BrowseQuestionsComponent } from './browse-questions/browse-questions.co
 import { BrowseByRootsComponent } from './browse-by-roots/browse-by-roots.component';
 import { DateAgoQuesPipe } from './pipes/date-ago-ques.pipe';
 import { CommNewQuestionComponent } from './comm-new-question/comm-new-question.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CommNewQuestionComponent } from './comm-new-question/comm-new-question.
     CommonModule,
     CommunityRoutingModule,
     MaterialModule,
+    FormsModule
   ]
 })
 export class CommunityModule { }

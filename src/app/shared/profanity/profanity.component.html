@@ -1,4 +1,4 @@
-<h2 mat-dialog-title class="good">Your article didn't pass the profanity check!</h2>
+<h2 mat-dialog-title class="good">The Text didn't pass the profanity check!</h2>
 <mat-dialog-content class="mat-typography">
     <div *ngFor="let text of text_array" [ngClass]="{'profane' : text.profanity[0]==1, 'good': text.profanity[0]==0}">
         <li *ngIf="text.profanity[0]==1"> {{text.string}} </li>
