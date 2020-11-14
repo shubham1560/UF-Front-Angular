@@ -18,7 +18,7 @@
                         <span style="font-size: 12px;">
                             asked by:
                             <a routerLink="/user/{{question?.get_created_by.id}}">
-                                {{question?.get_created_by.name}}
+                                {{question?.get_created_by.name.length>0 ? question?.get_created_by.name : "anonymous"}}
                             </a>
                             updated by:
                             <a routerLink="/user/{{question?.get_updated_by.id}}">

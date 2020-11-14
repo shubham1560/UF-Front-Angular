@@ -78,14 +78,14 @@ export class OrderPathComponent implements OnInit {
         "label": element.label
       })
     });
-    console.log(this.finalArray);
+    // console.log(this.finalArray);
   }
 
   saveOrder(){
     this.addOrder();
     this.knowledge.orderCoursesCategory(this.finalArray).subscribe(
       result=>{
-        console.log();
+        // console.log();
         this.openSnackBar("Updated!")
       },
       error=>{

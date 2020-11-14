@@ -66,7 +66,7 @@ export class PasswordresetFormComponent implements OnInit {
     )
     this.authService.token_valid(this.token).subscribe(
       (response:any) => {
-        console.log(response);
+        // console.log(response);
         this.username = response.username;
 
         this.response = response;

@@ -8,6 +8,7 @@ import { DataService } from 'src/app/services/knowledgeservice/knowledge.service
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { ImpersonateDialogComponent } from '../impersonate-dialog/impersonate-dialog.component';
 import { UsingTheEditorComponent } from 'src/app/blogs/using-the-editor/using-the-editor.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
   userDetailFetched = false;
 
   constructor(
+    private _snackBar: MatSnackBar,
     private authService: AuthService,
     private loggerService: LoggerService,
     public dialog: MatDialog,
@@ -75,8 +77,18 @@ export class HeaderComponent implements OnInit {
     }
 
     window.addEventListener("offline", ()=>{
-      console.log("Seems like you are offline!");
+      console.log();
+      this.openSnackBar("Seems like you are offline!");
+
     })
+
+    window.addEventListener("online", ()=>{
+      // console.log("Seems like you are online now!");
+      window.location.reload()
+      this.openSnackBar("you are online now!");
+
+    })
+
 
     this.searchQueryForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(1)]],
@@ -123,6 +135,14 @@ export class HeaderComponent implements OnInit {
     }
 
 
+  }
+
+  openSnackBar(message) {
+    this._snackBar.open(message,'', {
+      duration: 10 * 1000,
+      verticalPosition: "top",
+      horizontalPosition: "right"
+    });
   }
 
   logout() {
