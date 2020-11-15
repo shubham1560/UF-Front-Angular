@@ -44,7 +44,7 @@ export class CommHeaderComponent implements OnInit {
     this.routerService.paramMap.subscribe(
       params => {
         // (document.querySelector('app-header') as HTMLElement).style.display = 'none';
-        // (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
       }
     );
   }
