@@ -10,6 +10,7 @@ import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { MatDialog } from '@angular/material';
+import { NsfwJsService } from 'src/app/services/nsfw/nsfw-js.service'
 
 
 @Component({
@@ -24,7 +25,8 @@ export class CommNewQuestionComponent implements OnInit {
     private authService: AuthService,
     private knowledgeService: DataService,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private nsfw: NsfwJsService
   ) { }
 
   data;
@@ -51,6 +53,8 @@ export class CommNewQuestionComponent implements OnInit {
     //     (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
     //   }
     // );
+
+    this.nsfw.loadModel();
   }
 
 

@@ -8,6 +8,7 @@ import { Router, NavigationStart } from '@angular/router';
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider } from "angularx-social-login";
 import { Title } from '@angular/platform-browser';
+import { UrlconfigService } from 'src/app/services/urlconfig.service';
 
 
 declare const gapi: any;
@@ -38,7 +39,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private route: Router,
     private loggerService: LoggerService,
     private socialService: SocialAuthService,
-    private titleService: Title
+    private titleService: Title,
+    private url: UrlconfigService
   ) { }
 
   signInWithFB(): void {
@@ -77,7 +79,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           if (localStorage.getItem("redirect_url")) {
             window.location.href = localStorage.getItem("redirect_url");
             window.location.reload();
-          }else{
+          } else {
             window.location.href = "welcome";
           }
           this.signingIn = false;
@@ -106,18 +108,24 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (!this.isLoggedIn) {
       this.signingIn = true;
       this.authService.login_root(this.loginForm.value["email"], this.loginForm.value["password"]).subscribe(
-        (response: TokenObj) => {
+        (response: any) => {
           this.response = response;
           this.signingIn = false;
-          // this.cookieService.set('token', response.token);
+          localStorage.setItem("response", response.password_needs_reset);
           localStorage.setItem('token', response.token);
+          if (response.password_needs_reset == true) {
+            localStorage.setItem("redirect_url", "support/reset_password");
+          }
+          else{
+            localStorage.setItem("redirect_url", "/");
+          }
           if (localStorage.getItem("redirect_url")) {
             window.location.href = localStorage.getItem("redirect_url");
-            window.location.reload();
-            window.location.href = "welcome";
+            // window.location.reload();
           }
-          // console.log("successfull");
-          window.location.href = "welcome"
+          // else{
+          //   window.location.href = "welcome";
+          // }
         },
         error => {
           this.errorMessage = error.error.message;
