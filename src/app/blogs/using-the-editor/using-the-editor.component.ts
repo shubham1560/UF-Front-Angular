@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 interface Tuts {
   heading: string,
@@ -17,7 +18,8 @@ export class UsingTheEditorComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<UsingTheEditorComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private logger: LoggerService
   ) { }
 
   selectedFeature
@@ -29,6 +31,7 @@ export class UsingTheEditorComponent implements OnInit {
       this.becomeAnAuthor()
       this.editorFeatures = undefined;
     }
+    this.logger.logData("us-editor", this);
   }
 
 

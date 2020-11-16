@@ -1,166 +1,166 @@
-<mat-progress-bar mode="query" color="primary" *ngIf="updatingData"></mat-progress-bar>
-<mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
-<div class="flex-wrapper" style="margin-top: 0px !important;">
-    <div style="background-color: white;" id="uf-new-article">
-        <div class="container-fluid">
-            <div class="row">
-                <mat-toolbar [ngStyle]="{'position':hidesmallscreen ? 'fixed' : ''}"
-                    style=" border-bottom: 3px solid #f1f1f1; z-index: 2; background-color: white;">
-                    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
-                    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
-                    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
-                    <span *ngIf="hidesmallscreen"
-                        style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-left: 10px; border-left: 2px solid #ddd; margin-left: 10px; ">
-                        {{state?state:"new"}}
-                    </span>
-                    <span class="fillspace"></span>
-                    <div *ngIf="hidesmallscreen">
-                        <a routerLink="/path/article_preview/{{id}}/preview">
-                            <h5 style="color: #4f9aab; " *ngIf="title" matTooltip="preview the article">
-                                {{title}}
-                                <a target="_blank" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
+    <mat-progress-bar mode="query" color="primary" *ngIf="updatingData"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!updatingData"></mat-progress-bar>
+    <div class="flex-wrapper" style="margin-top: 0px !important;">
+        <div style="background-color: white;" id="uf-new-article">
+            <div class="container-fluid">
+                <div class="row">
+                    <mat-toolbar [ngStyle]="{'position':hidesmallscreen ? 'fixed' : ''}"
+                        style=" border-bottom: 3px solid #f1f1f1; z-index: 2; background-color: white;">
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
+                        <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
+                        <span *ngIf="hidesmallscreen"
+                            style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-left: 10px; border-left: 2px solid #ddd; margin-left: 10px; ">
+                            {{state?state:"new"}}
+                        </span>
+                        <span class="fillspace"></span>
+                        <div *ngIf="hidesmallscreen">
+                            <a routerLink="/path/article_preview/{{id}}/preview">
+                                <h5 style="color: #4f9aab; " *ngIf="title" matTooltip="preview the article">
+                                    {{title}}
+                                    <a target="_blank" rel="noopener noreferrer"  rel="noopener noreferrer" style="color: #4f9aab; font-size: 14px; text-decoration: underline;"
                                     *ngIf="id" routerLink="/path/article_preview/{{id}}/preview">
                                     <mat-icon style="font-size: 20px;">
                                         open_in_new
                                     </mat-icon>
                                 </a>
-                            </h5>
-                        </a>
-                    </div>
-                    
-                    <span class="fillspace"></span>
-                    
-                    <button mat-button style="margin-right: 10px;" class="primary-button" [disabled]="updatingData"
-                        (click)="updateArticle(true)">
-                        <span *ngIf="updatingData">
-                            Saving....
-                        </span>
-                        <span style="font-size: 12px;" *ngIf="!updatingData">
-                            Save
-                            <span *ngIf="hidesmallscreen">(ctrl + s)</span>
-                        </span>
-                    </button>
-                    <button mat-button [disabled]="startedProfanityCheck || param_article == '1'"
-                        class="primary-button-inverted" (click)="addToCourse()">
-                        Publish
-                        <span *ngIf="hidesmallscreen">(ctrl + i)</span>
 
-                    </button>
-                    <button mat-icon-button [matMenuTriggerFor]="beforeMenu"
-                        aria-label="Example icon-button with a menu">
-                        <mat-icon>more_vert</mat-icon>
-                    </button>
-                    <mat-menu #beforeMenu="matMenu" xPosition="before">
-
-                        <a mat-menu-item target="_blank" routerLink="/path/article/1"
-                            class="menu-item-header">
-                            + new article
-                        </a>
-                        <a mat-menu-item routerLink="/user_profile/authored_articles"
-                            class="menu-item-header">
-                            My Articles
-                        </a>
-                        <hr>
-
-                        <a mat-menu-item routerLink="/support" class="menu-item-header">
-                            Support
-                        </a>
-                        <hr>
-                        <a mat-menu-item routerLink="/user_profile"
-                            class="menu-item-header">
-                            My
-                            Profile
-                        </a>
-                        <a mat-menu-item (click)="logout()" class="menu-item-header">
-                            logout
-                        </a>
-
-                    </mat-menu>
-
-
-                </mat-toolbar>
-
-                <div class="col-lg-9" [ngStyle]="{'padding-top':hidesmallscreen ? '60px' : '0px'}"
-                    style="height: max-content; min-height: 98vh;">
-                    <br>
-                    <span *ngIf="!hidesmallscreen"
-                        style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
-                        {{state?state:"new"}}
-                    </span>
-
-                    <div style="max-width: 650px; margin: auto;">
-                        <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
-                            Last updated: {{this.article?.data.sys_updated_on | date: "medium"}}
-                        </span>
-                        <br>
-
-                        <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
-                        <br>
-                    </div>
-                    <div id="editorjs">
-                    </div>
-                </div>
-                <div class="col-lg-3" [ngStyle]="{'padding-top':hidesmallscreen ? '60px' : '0px'}"
-                    style='border-left: 3px solid #f1f1f1; '>
-
-                    <div id="uf-new-article">
-                        <br>
-
-                        <span *ngIf="param_article == '1'" style="color: #4f9aab; font-size: 14px;">
-                            You can publish the article after saving it!!
-                            <hr>
-                        </span>
-                        <!-- <br> -->
-                        <div *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label"
-                            style="font-size: 14px;">
-                            Published to the path:
-                            <a target="_blank" style="color: #4f9aab;"
-                                routerLink="/path/{{article?.data.get_category.id}}/{{article?.data.id}}/{{article?.data.article_url}}">
-                                {{article?.data.get_category.category_label}}
-                                <mat-icon style="font-size: 14px;">open_in_new</mat-icon>
+                                </h5>
+                                
                             </a>
                         </div>
-                        <br>
-                        <textarea class="desc-article st-border" style="font-size: 12px;" rows='2'
-                            [(ngModel)]="description" placeholder="Add a short description to the article....."
-                            type="text">
-                        </textarea>
-                        <hr>
-                        <div *ngIf="title && state=='published'">
-                            <span style="color: #4f9aab; font-size: 12px;">
-                                To unpublish this article, you can send it to review state
+
+                        <span class="fillspace"></span>
+
+                        <button mat-button style="margin-right: 10px;" class="primary-button" [disabled]="updatingData"
+                            (click)="updateArticle(true)">
+                            <span *ngIf="updatingData">
+                                Saving....
                             </span>
-                            <br>
-                            <button mat-stroked-button color="accent" [disabled]='state=="review"'
-                                (click)="updateArticle(false)">
-                                Send to review state
-                            </button>
+                            <span style="font-size: 12px;" *ngIf="!updatingData">
+                                Save
+                                <span *ngIf="hidesmallscreen">(ctrl + s)</span>
+                            </span>
+                        </button>
+                        <button mat-button [disabled]="startedProfanityCheck || param_article == '1'"
+                            class="primary-button-inverted" (click)="addToCourse()">
+                            Publish
+                            <span *ngIf="hidesmallscreen">(ctrl + i)</span>
+
+                        </button>
+                        <button mat-icon-button [matMenuTriggerFor]="beforeMenu"
+                            aria-label="Example icon-button with a menu">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #beforeMenu="matMenu" xPosition="before">
+
+                            <a mat-menu-item target="_blank" rel="noopener noreferrer"  routerLink="/path/article/1" class="menu-item-header">
+                                + new article
+                            </a>
+                            <a mat-menu-item routerLink="/user_profile/authored_articles" class="menu-item-header">
+                                My Articles
+                            </a>
                             <hr>
-                        </div>
-                        <div *ngIf="showArticleTags">
-                            <span style="color: #4f9aab; font-size: 12px;">
-                                Adding article tags can help find the user other related articles!
+
+                            <a mat-menu-item routerLink="/support" class="menu-item-header">
+                                Support
+                            </a>
+                            <hr>
+                            <a mat-menu-item routerLink="/user_profile" class="menu-item-header">
+                                My
+                                Profile
+                            </a>
+                            <a mat-menu-item (click)="logout()" class="menu-item-header">
+                                logout
+                            </a>
+
+                        </mat-menu>
+
+
+                    </mat-toolbar>
+
+                    <div class="col-lg-9" [ngStyle]="{'padding-top':hidesmallscreen ? '60px' : '0px'}"
+                        style="height: max-content; min-height: 98vh;">
+                        <br>
+                        <span *ngIf="!hidesmallscreen"
+                            style="font-size: 14px; color: #8dbcaa; font-weight: 200;padding-right: 10px;">
+                            {{state?state:"new"}}
+                        </span>
+
+                        <div style="max-width: 650px; margin: auto;">
+                            <span *ngIf="this.article?.data.sys_updated_on" style="color: #4f9aab;">
+                                Last updated: {{this.article?.data.sys_updated_on | date: "medium"}}
                             </span>
                             <br>
-                            <button (click)="openTagDialog()" mat-button class="primary-button-inverted">
-                                Add tags
-                                <mat-icon>
-                                    local_offer
-                                </mat-icon>
-                            </button>
+
+                            <input class="input-title" [(ngModel)]="title" placeholder="Add a title..." type="text">
+                            <br>
+                        </div>
+                        <div id="editorjs">
                         </div>
                     </div>
-                    <br>
-                    <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
-                    <hr *ngIf="state!='review'">
-                    <div style="padding-bottom: 100px;">
-                        <span style="font-size: 12px;"> Need help regarding the editor, watch short gifs to get the idea!</span><br>
-                        <button mat-button (click)="openEditorTutorial()" class="primary-button-inverted">
-                            Open the editor tutorial
-                        </button>
+                    <div class="col-lg-3" [ngStyle]="{'padding-top':hidesmallscreen ? '60px' : '0px'}"
+                        style='border-left: 3px solid #f1f1f1; '>
+
+                        <div id="uf-new-article">
+                            <br>
+
+                            <span *ngIf="param_article == '1'" style="color: #4f9aab; font-size: 14px;">
+                                You can publish the article after saving it!!
+                                <hr>
+                            </span>
+                            <!-- <br> -->
+                            <div *ngIf="article?.data.get_category.category_label != 'Testing' && article?.data.get_category.category_label"
+                                style="font-size: 14px;">
+                                Published to the path:
+                                <a target="_blank" rel="noopener noreferrer"  style="color: #4f9aab;"
+                                    routerLink="/path/{{article?.data.get_category.id}}/{{article?.data.id}}/{{article?.data.article_url}}">
+                                    {{article?.data.get_category.category_label}}
+                                    <mat-icon style="font-size: 14px;">open_in_new</mat-icon>
+                                </a>
+                            </div>
+                            <br>
+                            <textarea class="desc-article st-border" style="font-size: 12px;" rows='2'
+                                [(ngModel)]="description" placeholder="Add a short description to the article....."
+                                type="text">
+                            </textarea>
+                            <hr>
+                            <div *ngIf="title && state=='published'">
+                                <span style="color: #4f9aab; font-size: 12px;">
+                                    To unpublish this article, you can send it to review state
+                                </span>
+                                <br>
+                                <button mat-stroked-button color="accent" [disabled]='state=="review"'
+                                    (click)="updateArticle(false)">
+                                    Send to review state
+                                </button>
+                                <hr>
+                            </div>
+                            <div *ngIf="showArticleTags">
+                                <span style="color: #4f9aab; font-size: 12px;">
+                                    Adding article tags can help find the user other related articles!
+                                </span>
+                                <br>
+                                <button (click)="openTagDialog()" mat-button class="primary-button-inverted">
+                                    Add tags
+                                    <mat-icon>
+                                        local_offer
+                                    </mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngIf="state=='review'"> Article has to be published to be shown in the path!</div>
+                        <hr *ngIf="state!='review'">
+                        <div style="padding-bottom: 100px;">
+                            <span style="font-size: 12px;"> Need help regarding the editor, watch short gifs to get the
+                                idea!</span><br>
+                            <button mat-button (click)="openEditorTutorial()" class="primary-button-inverted">
+                                Open the editor tutorial
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

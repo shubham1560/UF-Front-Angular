@@ -24,7 +24,7 @@
           </div>
           
           <mat-list-item [ngClass]="{'read' : feature?.read_by_staff || feature?.read_by_user}" *ngFor="let feature of features" style="border: 1px solid #ddd; border-left: 5px solid #1F8476;">
-            <a target="_blank" routerLink="/support/tickets/{{feature.id}}/feature">
+            <a target="_blank" rel="noopener noreferrer"  routerLink="/support/tickets/{{feature.id}}/feature">
               <mat-icon mat-list-icon class="list-icon">
                 open_in_new
               </mat-icon>
@@ -60,7 +60,7 @@
           <!-- <mat-list-item [ngClass]="{'unread' : !defect?.read_by_staff || !defect?.read_by_user}" *ngFor="let defect of defects" style="border: 1px solid #ddd;"> -->
           <mat-list-item [ngClass]="{'read' : defect?.read_by_staff || defect?.read_by_user}" *ngFor="let defect of defects" style="border: 1px solid #ddd; border-left: 5px solid #1F8476;">
            
-            <a target="_blank" routerLink="/support/tickets/{{defect.id}}/defect">
+            <a target="_blank" rel="noopener noreferrer"  routerLink="/support/tickets/{{defect.id}}/defect">
               <mat-icon mat-list-icon class="list-icon">
                 open_in_new
               </mat-icon>

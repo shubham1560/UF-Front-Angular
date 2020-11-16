@@ -108,7 +108,7 @@
                         <div *ngIf="block.type=='linkTool'" class="link-embed">
                             <div class="text">
                                 See the full
-                                <a style="text-align: right;" target="_blank" href="{{block.data.link}}">
+                                <a style="text-align: right;" target="_blank" rel="noopener noreferrer"  href="{{block.data.link}}">
                                     article
                                     <mat-icon>open_in_new</mat-icon>
                                 </a>
@@ -253,23 +253,23 @@
                                 <!-- <pre>
                                     {{article.getAuthor | json }}
                                 </pre> -->
-                                <a target="_blank" href="{{article.getAuthor.facebook_link}}"
+                                <a target="_blank" rel="noopener noreferrer"  href="{{article.getAuthor.facebook_link}}"
                                     *ngIf="article.getAuthor.facebook_link" class="uf-social">
                                     <i class="fa fa-facebook" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.instagram_link}}" class="uf-social"
+                                <a target="_blank" rel="noopener noreferrer"  href="{{article.getAuthor.instagram_link}}" class="uf-social"
                                     *ngIf="article.getAuthor.instagram_link">
                                     <i class="fa fa-instagram" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.linkedin_link}}" class="uf-social"
+                                <a target="_blank" rel="noopener noreferrer"  href="{{article.getAuthor.linkedin_link}}" class="uf-social"
                                     *ngIf="article.getAuthor.linkedin_link">
                                     <i class="fa fa-linkedin" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.twitter_link}}" class="uf-social"
+                                <a target="_blank" rel="noopener noreferrer"  href="{{article.getAuthor.twitter_link}}" class="uf-social"
                                     *ngIf="article.getAuthor.twitter_link">
                                     <i class="fa fa-twitter" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="{{article.getAuthor.external_website_link}}" class="uf-social"
+                                <a target="_blank" rel="noopener noreferrer"  href="{{article.getAuthor.external_website_link}}" class="uf-social"
                                     *ngIf="article.getAuthor.external_website_link">
                                     <i class="fa fa-globe" aria-hidden="true"></i>
                                 </a>
