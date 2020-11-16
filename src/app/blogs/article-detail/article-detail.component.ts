@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
@@ -12,6 +12,8 @@ import { UrlconfigService } from 'src/app/services/urlconfig.service';
   styleUrls: ['./article-detail.component.scss']
 })
 export class ArticleDetailComponent implements OnInit {
+
+  @Input() list;
 
   constructor(
     private route: ActivatedRoute,
@@ -41,6 +43,8 @@ export class ArticleDetailComponent implements OnInit {
   
 
   ngOnInit() {
+    console.log(this.list);
+    
     this.imageLoaded = false;
     this.route.paramMap.subscribe(
       params => {

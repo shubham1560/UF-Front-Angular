@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,6 +17,10 @@ export class ArticleListComponent implements OnInit {
   data = {
     "addon": false
   };
+
+
+  @Output() articlesList: EventEmitter<any> = new EventEmitter<any>()
+
 
   constructor(private knowledgeService: DataService,
     private dataLogger: LoggerService,
@@ -90,7 +94,8 @@ export class ArticleListComponent implements OnInit {
     // this.isLoading = true;
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
-
+        // console.log("running");
+        this.articlesList.emit(response);
         this.courseName = response.course.label;
         this.courseDescription = response.course.description;
         this.sections = response.sections;

@@ -258,7 +258,7 @@ export class DataService {
 
   stripIdFromUrl(article_id: string){
     var url_arr = article_id.split("-")
-    console.log(url_arr);
+    // console.log(url_arr);
   }
 
   getArticlesInPath(path){

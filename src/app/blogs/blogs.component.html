@@ -2,7 +2,7 @@
 
 <div class="wrapper">
     <nav id="sidebar">
-        <app-article-list></app-article-list>
+        <app-article-list (articleList)="onGettingList($event)"></app-article-list>
     </nav>
 
     <div id="content" style=" background-color: white; width: 100%;">
@@ -15,7 +15,7 @@
 
         </nav>
         <div style="padding: 0px 20px; border-left: 2px solid #ddd;">
-            <app-article-detail></app-article-detail>
+            <app-article-detail [list]="well"></app-article-detail>
             <app-kbuse></app-kbuse>
         </div>
 

@@ -10,6 +10,8 @@ export class BlogsComponent implements OnInit {
 
   // constructor() { }
 
+  well
+
   icon = "menu";
   loadKbUse = false;
 
@@ -44,6 +46,11 @@ export class BlogsComponent implements OnInit {
     if (document.getElementById("sidebar").classList["value"] == "active") {
       this.icon = "close";
     }
+  }
+
+  onGettingList(list){
+    this.well = list
+    console.log(list);
   }
 
   // callback(entries) {

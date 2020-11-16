@@ -77,7 +77,7 @@ export class HeaderComponent implements OnInit {
     }
 
     window.addEventListener("offline", ()=>{
-      console.log();
+      // console.log();
       this.openSnackBar("Seems like you are offline!");
 
     })

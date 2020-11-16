@@ -91,7 +91,7 @@ export class CommNewQuestionComponent implements OnInit {
   save(){
     this.editor.save().then((outputData: any) => {
       var stripped_data = this.htmlStrip(outputData);
-      console.log(outputData, this.question);
+      // console.log(outputData, this.question);
       this.knowledgeService.checkProfanity(stripped_data).subscribe(
         (result: any) => {
           if (result.profane) {

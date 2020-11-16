@@ -202,7 +202,7 @@
                     <div class="row">
                         <div class="col-lg-6" style="text-align: left;">
                             <!-- {{previousArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{previousArticle.id}}"
+                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{previousArticle.id}}/{{previousArticle.article_url}}"
                                 *ngIf="previousArticle">
                                 <!-- <mat-icon>
                                     navigate_before
@@ -218,7 +218,7 @@
                         </div> -->
                         <div class="col-lg-6" style="text-align: right;">
                             <!-- {{nextArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{nextArticle.id}}"
+                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{nextArticle.id}}/{{nextArticle.article_url}}"
                                 *ngIf="nextArticle">
                                 <!-- <mat-icon>
                                     navigate_next
