@@ -30,7 +30,7 @@ const routes: Routes = [
         component: PathbuilderComponent
     },
     {
-        path: ':category/:article', 
+        path: ':category/:article/:title', 
         component: BlogsComponent
     },
     

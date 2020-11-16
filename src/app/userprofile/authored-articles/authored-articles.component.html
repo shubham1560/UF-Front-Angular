@@ -1,5 +1,3 @@
-<!-- <p>authored-articles works!</p> -->
-
 <mat-progress-bar mode="determinate" color="accent" value="100" *ngIf="!isLoading"></mat-progress-bar>
 <mat-progress-bar mode="query" color="accent" *ngIf="isLoading"></mat-progress-bar>
 <div class="flex-wrapper">
@@ -90,7 +88,6 @@
                     <div *ngFor="let article of articles_data?.articles">
 
                         <mat-card class="st-border">
-                            <!-- <a mat-button style="float: right;">Created: {{article.sys_created_on | datesAgoDate}}</a> -->
                             <mat-card-header>
                                 <mat-card-title><a style="color: #293E40;"
                                         href="path/article/{{article.id}}">{{article.title}}</a></mat-card-title>
@@ -110,30 +107,6 @@
                                 <button mat-button style="outline: none; color:#438C9F">
                                     {{article.workflow}}
                                 </button>
-                                <!-- <span style="color: #438C9F;">>>>></span>
-                        <button *ngIf="article.workflow!='draft'" mat-button style="outline: none;color:#438C9F">
-
-                            Sent for review
-                        </button>
-                        <button *ngIf="article.workflow=='draft'" disabled mat-button style="outline: none;">
-                            Sent for review
-                        </button>
-
-                        <span style="color: #438C9F;">>>>></span>
-
-                        <button *ngIf="article.workflow=='published'" mat-button style="outline: none; color: #438C9F">
-                            Published
-                        </button>
-                        <button *ngIf="article.workflow!='published'" disabled mat-button style="outline: none;">
-                            Published
-                        </button>
- -->
-
-                                <!-- <a href="path/article/{{article.id}}" mat-button style="outline: none;float: right;">
-                        <mat-icon>
-                            edit
-                        </mat-icon>
-                    </a> -->
                             </mat-card-actions>
                         </mat-card>
                         <br>
@@ -141,12 +114,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
-
-    <!-- <pre>
-{{articles_data | json}}
-</pre> -->
-
 </div>

@@ -117,15 +117,29 @@ export class ArticleListComponent implements OnInit {
   navigate(article_id) {
     // console.log("navigation called -----------------------");
 
+    var article_url = this.articleUrlFromArticleId(article_id)?  this.articleUrlFromArticleId(article_id): article_id;
 
-    var url = `path/${this.course}/${article_id}`
+    var url = `path/${this.course}/${article_id}/${article_url}`
     this.markViewed(article_id)
     if (this.course_for_modal.category) {
       window.open(url);
     } else {
-      this.router.navigate(['path', this.course, article_id])
+      this.router.navigate(['path', this.course, article_id, article_url])
     }
   }
+
+
+  articleUrlFromArticleId(id){
+    var article_url;
+    this.sections.forEach(element => {
+      element.articles.forEach(element => {
+        if (element.id == id)
+          article_url = element.article_url;
+      });
+    });
+    return article_url
+  }
+
 
   openLoginPrompt() {
     const dialogRef = this.dialog.open(LoginpromptComponent);
