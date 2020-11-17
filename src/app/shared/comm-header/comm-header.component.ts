@@ -35,7 +35,7 @@ export class CommHeaderComponent implements OnInit {
       if (event instanceof NavigationStart) {
         if (!event.url.startsWith("/community")) {
           // console.log("starts with community");
-          (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+          // (document.querySelector('app-header') as HTMLElement).style.display = 'block';
           (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
         }
       }

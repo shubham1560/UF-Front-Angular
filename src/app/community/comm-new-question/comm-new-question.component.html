@@ -3,32 +3,54 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <button mat-button routerLink="/community" class="primary-button-inverted" style="margin-top: 10px;">
                 <mat-icon>keyboard_backspace</mat-icon>
                 Back
             </button>
             <br><br>
         </div>
-        <div class="col-md-8">
-            <mat-form-field appearance="legacy" style="width: 100%;">
-                <mat-label>Question</mat-label>
-                <input matInput placeholder="Placeholder" [(ngModel)]="question">
-                <mat-hint>Summary of what you wanna ask</mat-hint>
-            </mat-form-field>
-            {{question}}
-            <br><br>
-            <div>
-                Please add some detail so the person can get the context and setting 
-                <div id="editorjs">
+        <div class="col-lg-9 col-md-8">
+            <div class="st-border" style="padding: 15px; background-color: white;">
+                <mat-form-field appearance="legacy" style="width: 100%;">
+                    <mat-label>Question</mat-label>
+                    <input matInput placeholder="Placeholder" [(ngModel)]="question">
+                    <mat-hint>Summary of what you wanna ask</mat-hint>
+                </mat-form-field>
+                <!-- {{question}} -->
+                <br><br>
+                <app-select-ques-path></app-select-ques-path>
+                <br>
+                <div>
+                    <span style="font-size: 12px; color: #3c869a;">
+                        Please add some detail so the person can get the context and setting
+                    </span>
+                    <div id="editorjs">
+                    </div>
                 </div>
             </div>
-            <div style="height: 60px; width: 100%;">
-                <button mat-button class="primary-button-inverted" (click)="save()" style="float: right;">Submit</button>
-            </div>
         </div>
-        <div class="col-md-4">
-            <app-select-ques-path></app-select-ques-path>
+        <div class="col-lg-3 col-md-4">
+            <!-- <div style="width: 100%;" class="st-border" style="padding: 20px 20px; background-color: white;">
+            </div> -->
+            <div class="st-border" style="text-align: center; padding: 20px 5px; background-color: white; ">
+                <button mat-button class="primary-button-inverted" (click)="save()" style="width: 100%;">Submit</button>
+                <hr>
+                <span style="color: #3c869a;"><strong> Instructions</strong></span> <br>
+
+                <span style="font-size: 12px; color: #3c869a;">
+                    <span style="font-size: 12px; color: indianred;">* </span>Please select a root to ask question in so
+                    it can into
+                    attention of concerned community
+                </span>
+                <br>
+                <span style="font-size: 12px; color: #3c869a;">
+                    Please select a path to ask question in, so it can be
+                    further sourced
+                </span>
+
+            </div>
+            <br><br>
         </div>
     </div>
 </div>
