@@ -1,1 +1,45 @@
-<p>select-ques-path works!</p>
+<div id="st-ques-select">
+    <br><br><br>
+    <div class="row">
+        <div class="col-md-5">
+            <button mat-button style="width: 100%;" class="primary-button-inverted" [matMenuTriggerFor]="rootmenu">
+                Select root for question <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #rootmenu="matMenu">
+                <button *ngFor="let root of roots" class="menu-item" (click)="selectRoot(root.id)" mat-menu-item>
+                    {{root.title}}
+                </button>
+            </mat-menu>
+        </div>
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-5">
+            <button mat-button style="width: 100%;" class="primary-button-inverted" [matMenuTriggerFor]="menu">
+                Select path for question <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button *ngFor="let path of paths" class="menu-item" mat-menu-item>
+                    {{path.label}}
+                </button>
+            </mat-menu>
+            <!-- <div class="form-group">
+                <label for="sel1">Select list:</label>
+                <select class="form-control" id="sel1">
+                    <option> - </option>
+                    <option *ngFor="let path of paths">{{path.label}}</option>
+                </select>
+            </div> -->
+        </div>
+    </div>
+
+    <pre>
+{{paths | json}}
+</pre>
+
+    <pre>
+    {{roots | json}}
+</pre>
+
+
+
+</div>

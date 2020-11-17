@@ -21,11 +21,13 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatSelectModule} from '@angular/material/select';
 // import { DateAgoPipe } from './pipes/date-ago.pipe';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 @NgModule({
   declarations: [  ],
   imports: [
+    MatAutocompleteModule,
     MatSelectModule,
     DragDropModule,
     MatTreeModule,
@@ -51,6 +53,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
   ],
   exports:[
+    MatAutocompleteModule,
     MatSelectModule,
     DragDropModule,
     MatCheckboxModule,
