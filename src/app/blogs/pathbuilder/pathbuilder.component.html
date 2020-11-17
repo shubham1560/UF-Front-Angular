@@ -27,7 +27,7 @@
                     <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
                 </mat-form-field>
                 <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
-                <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
+                <h5 style="color: #3c869a;">Note: Contributed Articles is always gonna be the last section</h5>
             </div>
 
             <!-- <div class="col-md-6">
@@ -38,7 +38,7 @@
                 <input matInput [(ngModel)]="newSection" #ctrl="ngModel" placeholder="Getting Started">
             </mat-form-field>
             <button mat-flat-button color="accent" (click)="addSection()">Add section</button>
-            <h5 style="color: #3c869a;">Note: Individual articles is always gonna be the last section</h5>
+            <h5 style="color: #3c869a;">Note: Contributed Articles is always gonna be the last section</h5>
         </div> -->
             <div class="col-md-6">
                 <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
@@ -52,7 +52,7 @@
                             {{element.label}}
                         </div>
                         <div style="color: #3c869a;" *ngIf="element.type=='section'">
-                            <button *ngIf="element.label != 'Individual Articles'" mat-icon-button
+                            <button *ngIf="element.label != 'Contributed Articles'" mat-icon-button
                                 (click)="deleteSection(element, i)" style="color: #EC407F">
                                 <mat-icon>
                                     delete

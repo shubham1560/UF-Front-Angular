@@ -24,10 +24,10 @@
             alt="selectedFeature?.heading">
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button mat-button class="primary-button" [disabled]="selectFeature?.id==1" (click)="selectFeature(selectedFeature?.id-1)" style="float: left;">
+        <button mat-button class="primary-button" (click)="selectFeature(selectedFeature?.id-1)" style="float: left;">
             <mat-icon>arrow_left</mat-icon> Previous
         </button>
-        <button mat-button class="primary-button" [disabled]="selectFeature?.id==editorFeatures" (click)="selectFeature(selectedFeature?.id+1)" style="margin-left: auto;">
+        <button mat-button class="primary-button" (click)="selectFeature(selectedFeature?.id+1)" style="margin-left: auto;">
             Next <mat-icon>arrow_right</mat-icon>
         </button>
     </mat-dialog-actions>
