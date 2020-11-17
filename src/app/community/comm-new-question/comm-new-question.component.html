@@ -4,10 +4,6 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <app-select-ques-path></app-select-ques-path>
-        </div>
-        <br><br>
-        <div class="col-md-12">
             <button mat-button routerLink="/community" class="primary-button-inverted" style="margin-top: 10px;">
                 <mat-icon>keyboard_backspace</mat-icon>
                 Back
@@ -18,7 +14,6 @@
             <mat-form-field appearance="legacy" style="width: 100%;">
                 <mat-label>Question</mat-label>
                 <input matInput placeholder="Placeholder" [(ngModel)]="question">
-                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                 <mat-hint>Summary of what you wanna ask</mat-hint>
             </mat-form-field>
             {{question}}
@@ -33,7 +28,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            Instructions
+            <app-select-ques-path></app-select-ques-path>
         </div>
     </div>
 </div>

@@ -64,10 +64,10 @@ export class SelectQuesPathComponent implements OnInit {
 
   selectRoot(root_id){
     // this.route.
-    console.log("yolo");
-    
     this.router.navigate(['/community', 'new_question'], { queryParams: { root: root_id } });
   }
 
-
+  selectedPath(path_id){
+    this.router.navigate(['/community', 'new_question'], { queryParams: { path: path_id }, queryParamsHandling: "merge" });
+  }
 }
