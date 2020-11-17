@@ -1,5 +1,5 @@
 <!-- <p>browse-by-roots works!</p> -->
-<div class="container">
+<div class="container" id="st-comm-select">
     <div class="row">
         <div class="col-lg-1"></div>
         <div class="col-lg-10">
@@ -21,7 +21,7 @@
                                 <div class="row">
                                     <a routerLink="/community" [queryParams]="{root: root.id}"
                                         *ngFor="let root of roots?.bases" class="col-md-3 col-6">
-                                        <div class="st-border card" matTooltip="{{root?.title}}">
+                                        <div class="st-border card" [ngClass]="{'selected' : root.id == selected_root}" matTooltip="{{root?.title}}">
                                             <div class="title">{{root?.title}}</div>
                                         </div>
                                     </a>
@@ -50,7 +50,7 @@
                                         <a routerLink="/community" [queryParams]="{path: path.id}"
                                             queryParamsHandling='merge' *ngFor="let path of paths"
                                             class="col-md-3 col-6">
-                                            <div class="st-border card" matTooltip="{{path?.label}}">
+                                            <div class="st-border card"  [ngClass]="{'selected' : path.id == selected_path}" matTooltip="{{path?.label}}">
                                                 <div class="title">{{path?.label}}</div>
                                             </div>
                                         </a>
@@ -74,3 +74,6 @@
         <div class="col-lg-1"></div>
     </div>
 </div>
+
+
+
