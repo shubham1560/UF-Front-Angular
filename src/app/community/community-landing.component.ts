@@ -14,7 +14,8 @@ export class CommunityLandingComponent implements OnInit {
   constructor(
     private title: Title,
     private breakpointObserver: BreakpointObserver,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: Router
   ) { }
 
   routeSub;
@@ -24,6 +25,13 @@ export class CommunityLandingComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.title.setTitle("Community - SortedTree");
+
+    this.routeSub = this.route.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // (document.querySelector('app-header') as HTMLElement).style.display = 'block';
+        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+      }
+    });
 
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
       result => {

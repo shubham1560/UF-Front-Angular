@@ -65,7 +65,6 @@ export class ArticleNewComponent implements OnInit {
   private routeSub: any;
 
   ngOnInit() {
-    // console.log(ArticleNewComponent.prototype);
     this.breakpointObserver.observe('(min-width: 768px)').subscribe(
       result => {
         // console.log(result);
