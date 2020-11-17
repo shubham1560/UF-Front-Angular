@@ -15,6 +15,7 @@ export class ArticleTagComponent implements OnInit {
     private knowledge: DataService,
     private _snackBar: MatSnackBar,
     private route: ActivatedRoute,
+
     public dialogRef: MatDialogRef<ArticleTagComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
@@ -26,9 +27,17 @@ export class ArticleTagComponent implements OnInit {
   fetchingRelatedTags = true;
 
   ngOnInit(): void {
-    this.article_id = this.data.article_id;
-    this.fetchAllTags();
-    this.fetchRelatedTags(this.article_id);
+
+    this.route.paramMap.subscribe(
+      params => {
+        this.article_id = params.get("id");
+        this.fetchAllTags();
+        this.fetchRelatedTags(this.article_id);
+    
+       }
+      )
+    // this.article_id = this.data.article_id;
+    
 
     // request to fetch all the tags from tag table
     // getting all tags

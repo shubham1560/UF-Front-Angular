@@ -1,27 +1,29 @@
 <!-- {{article_id}} <br> -->
-<h5 mat-dialog-title>
+<!-- <h5 mat-dialog-title>
     Article Tags
-</h5>
+</h5> -->
 
 <mat-dialog-content class="mat-typography">
     <div style="min-height: 100px;">
         <span style="color: #4f9aab; font-size: 12px;">
-            You can set how relevanct is the tag to article!
+            You can set how relevant is the tag to article!
         </span> <br>
         <span *ngFor="let tag of articleTags">
             <a mat-button class="primary-button-inverted" style="margin: 5px; padding-left:5px; padding-right:5px;">
-                <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
                 <mat-menu #menu="matMenu">
-                    <!-- <button mat-menu-item class="tag-menu" style="color: #3c869a;" >Relevance</button> -->
-                    <button mat-menu-item class="tag-menu" (click)="changeRelevance('1', tag.id)">High relevance</button>
-                    <button mat-menu-item class="tag-menu" (click)="changeRelevance('2', tag.id)">Moderate relevance</button>
+                    <button mat-menu-item class="tag-menu" (click)="changeRelevance('1', tag.id)">High
+                        relevance</button>
+                    <button mat-menu-item class="tag-menu" (click)="changeRelevance('2', tag.id)">Moderate
+                        relevance</button>
                     <button mat-menu-item class="tag-menu" (click)="changeRelevance('3', tag.id)">Low relevance</button>
-
                 </mat-menu>
-                <mat-icon [matMenuTriggerFor]="menu">
-                    arrow_drop_down
-                </mat-icon>
-                {{tag.label}}
+                <span  [matMenuTriggerFor]="menu">
+                    <mat-icon>
+                        arrow_drop_down
+                    </mat-icon>
+                    {{tag.label}}
+                </span>
+
                 <mat-icon style="font-size: 20px; cursor: pointer;" (click)="deleteFromTags(tag.id)">
                     close
                 </mat-icon>
