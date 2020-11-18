@@ -6,16 +6,16 @@
                 {{question | json}}
             </pre>
 
-            <pre>
+            <!-- <pre>
                 {{myObj | json}}
-            </pre>
+            </pre> -->
             <pre>
                 {{data | json}}
             </pre>
             <!-- question -->
-            {{question.question}}
+            <!-- {{question.question}} -->
             <br> <br>
-            <div *ngFor="let block of myObj.blocks">
+            <!-- <div *ngFor="let block of myObj.blocks">
                 <div *ngIf="block.type=='list'" style="padding-left: 0px;">
                     <div *ngIf="block.data.style=='ordered'">
                         <ol *ngFor="let item of block.data.items ; let i = index">
@@ -41,7 +41,7 @@
                 <div *ngIf="block.type=='paragraph'" style="padding: 5px 0px;">
                     <p [innerHTML]="block.data.text" class="text"></p>
                 </div>
-            </div>
+            </div> -->
 
             
 

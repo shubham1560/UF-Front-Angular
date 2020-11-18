@@ -19,14 +19,14 @@ export class QuesAnswerComponent implements OnInit {
   question;
   myObj;
   data
-  
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
         this.community.getQuestionAndAnswers(params.get('question_id')).subscribe(
           result => {
             this.question = result;
-            this.myObj = JSON.parse(this.question.question_details);
+            // this.myObj = JSON.parse(this.question.question_details);
             // console.log(typeof(this.question.question_details));
             
 
@@ -68,7 +68,9 @@ export class QuesAnswerComponent implements OnInit {
       }
       if (b.length == 0) {
         if (a[i] == ',') {
+          console.log(a.substring(j, i));
           c.push(JSON.parse(a.substring(j, i)));
+
           j = i + 1
         }
       }

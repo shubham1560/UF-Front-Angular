@@ -122,7 +122,7 @@ export class CommNewQuestionComponent implements OnInit {
       //   }
       // )
       var question_detail = {
-        description: outputData.blocks,
+        description: JSON.stringify(outputData.blocks),
         question: this.question,
         root: this.root,
         path: this.path
