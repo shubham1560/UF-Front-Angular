@@ -1,1 +1,75 @@
-<p>ques-answer works!</p>
+<div class="container" id="sqa">
+    <div class="row">
+        <div class="col-md-12">
+            <br> <br>
+            <pre>
+                {{question | json}}
+            </pre>
+
+            <pre>
+                {{myObj | json}}
+            </pre>
+            <pre>
+                {{data | json}}
+            </pre>
+            <!-- question -->
+            {{question.question}}
+            <br> <br>
+            <div *ngFor="let block of myObj.blocks">
+                <div *ngIf="block.type=='list'" style="padding-left: 0px;">
+                    <div *ngIf="block.data.style=='ordered'">
+                        <ol *ngFor="let item of block.data.items ; let i = index">
+                            <li [innerHTML]="item" class="text"></li>
+                        </ol>
+                        <br>
+                    </div>
+                    <div *ngIf="block.data.style=='unordered'">
+                        <ul *ngFor="let item of block.data.items">
+                            <li [innerHTML]="item" class="text"></li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
+                <div *ngIf="block.type=='code'">
+                    <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                        <pre style="color: #41314E;" class="text">{{block.data.code}}</pre>
+                    </div>
+                </div>
+
+                <div *ngIf="block.type=='paragraph'" style="padding: 5px 0px;">
+                    <p [innerHTML]="block.data.text" class="text"></p>
+                </div>
+            </div>
+
+            
+
+            <!-- <div *ngIf="block.type=='list'" style="padding-left: 0px;">
+                <div *ngIf="block.data.style=='ordered'">
+                    <ol *ngFor="let item of block.data.items ; let i = index">
+                        <li [innerHTML]="item" class="text"></li>
+                    </ol>
+                    <br>
+                </div>
+                <div *ngIf="block.data.style=='unordered'">
+                    <ul *ngFor="let item of block.data.items">
+                        <li [innerHTML]="item" class="text" ></li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+            <div *ngIf="block.type=='code'">
+                <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                    <pre style="color: #41314E;" class="text">{{block.data.code}}</pre>
+                </div>
+            </div>
+
+            <div *ngIf="block.type=='paragraph'" style="padding: 5px 0px;">
+                <p [innerHTML]="block.data.text" class="text"></p>
+            </div> -->
+        </div>
+    </div>
+</div>

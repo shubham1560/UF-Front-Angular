@@ -20,6 +20,7 @@ export class BrowseQuestionsComponent implements OnInit {
 
   questions;
   hidesmallscreen;
+  data
 
   ngOnInit(): void {
 
@@ -38,11 +39,12 @@ export class BrowseQuestionsComponent implements OnInit {
         this.commService.getQuestions(root, path, article, 0, 50).subscribe(
           result=>{
             this.questions = result;
+            
+
           }
         )
       }
     )
     this.loggerService.logData("st-question", this);
   }
-
 }

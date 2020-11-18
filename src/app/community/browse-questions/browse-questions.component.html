@@ -10,7 +10,8 @@
 <div class="container flex-wrapper">
     <div class="row">
         <div class="col-md-3" *ngIf="!hidesmallscreen">
-            <a routerLink="/community/new_question" mat-button class="primary-button-inverted" style="width: 100%;">Ask a question</a>
+            <a routerLink="/community/new_question" mat-button class="primary-button-inverted" style="width: 100%;">Ask
+                a question</a>
         </div>
         <div class="col-md-9">
             <div *ngIf="questions?.length==0"></div>
@@ -18,7 +19,11 @@
                 <div *ngFor="let question of questions">
                     <div class="card">
                         <div class="card-body" style="padding: 10px !important;">
-                            <h6 class="card-title" style="font-size: 16px;">{{question.question}}</h6>
+                            <h6 class="card-title" style="font-size: 16px;">
+                                <a routerLink="sq_qa/{{question.id}}/{{question.question_url}}">
+                                    {{question.question}}
+                                </a>
+                            </h6>
                             <h6 class="card-subtitle mb-2 text-muted" style="font-size: 14px;">
                                 {{question.get_kb_base.label}} > {{question.get_kb_category?.label}}
                             </h6>
@@ -40,7 +45,8 @@
             </div>
         </div>
         <div class="col-md-3" *ngIf="hidesmallscreen">
-            <a routerLink="/community/new_question" mat-button class="primary-button-inverted" style="width: 100%;">Ask a question</a>
+            <a routerLink="/community/new_question" mat-button class="primary-button-inverted" style="width: 100%;">Ask
+                a question</a>
         </div>
     </div>
 </div>

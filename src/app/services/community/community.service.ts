@@ -38,6 +38,6 @@ export class CommunityService {
 
   getQuestionAndAnswers(question_id){
     this.called_url = `${this.base_community_url}question/${question_id}`;
-    this.httpService.get(this.called_url, {headers: this.getHeader()});
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
 }
