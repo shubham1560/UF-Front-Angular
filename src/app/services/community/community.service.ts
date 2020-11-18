@@ -35,4 +35,9 @@ export class CommunityService {
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
 
   }
+
+  getQuestionAndAnswers(question_id){
+    this.called_url = `${this.base_community_url}question/${question_id}`;
+    this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

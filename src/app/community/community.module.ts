@@ -9,10 +9,11 @@ import { DateAgoQuesPipe } from './pipes/date-ago-ques.pipe';
 import { CommNewQuestionComponent } from './comm-new-question/comm-new-question.component';
 import { FormsModule } from '@angular/forms';
 import { SelectQuesPathComponent } from './select-ques-path/select-ques-path.component';
+import { QuesAnswerComponent } from './ques-answer/ques-answer.component';
 
 
 @NgModule({
-  declarations: [CommunityLandingComponent, BrowseQuestionsComponent, BrowseByRootsComponent, DateAgoQuesPipe, CommNewQuestionComponent, SelectQuesPathComponent],
+  declarations: [CommunityLandingComponent, BrowseQuestionsComponent, BrowseByRootsComponent, DateAgoQuesPipe, CommNewQuestionComponent, SelectQuesPathComponent, QuesAnswerComponent],
   imports: [
     CommonModule,
     CommunityRoutingModule,

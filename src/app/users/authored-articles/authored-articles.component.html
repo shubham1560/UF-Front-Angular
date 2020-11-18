@@ -7,7 +7,7 @@
         Authored Articles:
 
         <div *ngFor="let article of articles">
-            <a routerLink="/path/{{article.get_category.id}}/{{article.id}}">{{article?.title}} <br></a>
+            <a routerLink="/path/{{article?.get_category.id}}/{{article?.id}}/{{article?.article_url}}">{{article?.title}} <br></a>
             {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
 
         </div>
