@@ -41,6 +41,8 @@ export class SelectQuesPathComponent implements OnInit {
               this.paths = result.categories;
               if (this.selected_path) {
                 this.fetchPathLabelFromId(this.selected_path);
+              }else{
+                this.selected_path_label = undefined
               }
             }
           )

@@ -35,7 +35,7 @@ export class BrowseQuestionsComponent implements OnInit {
         var root = params.get('root')
         var path = params.get('path');
         var article = params.get('article');
-        this.commService.getQuestions(root, path, article, 0, 5).subscribe(
+        this.commService.getQuestions(root, path, article, 0, 50).subscribe(
           result=>{
             this.questions = result;
           }

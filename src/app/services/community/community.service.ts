@@ -25,7 +25,14 @@ export class CommunityService {
   }
 
   getQuestions(root, path, article, start, end) {
-    this.called_url = `${this.base_community_url}question/get?root=${root}&path=${path}&article=${article}&start=${start}&end=${end}`;
+    this.called_url = `${this.base_community_url}question?root=${root}&path=${path}&article=${article}&start=${start}&end=${end}`;
     return this.httpService.get(this.called_url, { headers : this.getHeader()});
+  }
+
+  postQuestion(root, path, data){
+    this.called_url = `${this.base_community_url}question/`;
+    const body = data;
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+
   }
 }

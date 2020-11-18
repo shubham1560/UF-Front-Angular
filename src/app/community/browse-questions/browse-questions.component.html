@@ -4,7 +4,9 @@
     <br>
 </div>
 <br><br>
-
+<pre>
+    {{questions | json}}
+</pre>
 <div class="container flex-wrapper">
     <div class="row">
         <div class="col-md-3" *ngIf="!hidesmallscreen">
@@ -23,7 +25,7 @@
                             <span style="font-size: 12px;">
                                 asked by:
                                 <a routerLink="/user/{{question?.get_created_by.id}}">
-                                    {{question?.get_created_by.name.length>0 ? question?.get_created_by.name : "anonymous"}}
+                                    {{question?.get_created_by.name}}
                                 </a>
                                 updated by:
                                 <a routerLink="/user/{{question?.get_updated_by.id}}">

@@ -17,7 +17,12 @@
         </div>
         <div class="col-md-6">
 
-            <button mat-button style="width: 100%;" class="primary-button" [matMenuTriggerFor]="menu">
+            <button disabled mat-button *ngIf="paths?.length==0" style="width: 100%;" class="primary-button" [matMenuTriggerFor]="menu">
+                No path in this root
+            </button>
+            
+
+            <button *ngIf="paths?.length!=0" mat-button style="width: 100%;" class="primary-button" [matMenuTriggerFor]="menu">
                 {{selected_path_label? "Path: "+selected_path_label : "Select path for question"}} <mat-icon>
                     arrow_drop_down</mat-icon>
             </button>
