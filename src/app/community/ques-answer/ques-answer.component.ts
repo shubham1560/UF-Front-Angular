@@ -25,11 +25,13 @@ export class QuesAnswerComponent implements OnInit {
   myObj;
   data;
   input_comment;
+  question_id;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
-        this.community.getQuestionAndAnswers(params.get('question_id')).subscribe(
+        this.question_id = params.get('question_id');
+        this.community.getQuestionAndAnswers(this.question_id).subscribe(
           (result:any) => {
             this.question = result.question;
             this.comments = result.comments;
@@ -97,15 +99,12 @@ export class QuesAnswerComponent implements OnInit {
   }
 
   saveComment(){
-    this.comments.push({
-      "id": 'a2fqsadf',
-      "comment": this.input_comment,
-      "get_created_by": {
-        "name": "you",
-        "id_name": "yolo",
-      },
-      "sys_created_on": "2020-11-19T23:27:59.609197+05:30",
-      "sys_updated_on": "2020-11-19T23:27:59.609218+05:30"
-    })
+    this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
+      result=>{
+        this.comments.unshift(
+          result
+        )
+      }
+    )
   }
 }

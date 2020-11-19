@@ -40,4 +40,14 @@ export class CommunityService {
     this.called_url = `${this.base_community_url}question/${question_id}`;
     return this.httpService.get(this.called_url, {headers: this.getHeader()});
   }
+
+  postComment(table_id, table_name, comment){
+    this.called_url = `${this.base_community_url}comment/`;
+    const body = {
+      table_id: table_id,
+      table_name: table_name,
+      comment: comment
+    }
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }
