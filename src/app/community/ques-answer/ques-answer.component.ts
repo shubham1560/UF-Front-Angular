@@ -46,7 +46,7 @@ export class QuesAnswerComponent implements OnInit {
               version: "2.11.10"
             };
 
-            this.initializeEditor();
+            // this.initializeEditor();
           }
         )
       }
@@ -80,27 +80,27 @@ export class QuesAnswerComponent implements OnInit {
 
   editor: EditorJS;
 
-  initializeEditor() {
-    this.editor = new EditorJS({
+  // initializeEditor() {
+  //   this.editor = new EditorJS({
 
-      holder: 'editorjs',
+  //     holder: 'editorjs',
 
-      data: this.data,
+  //     data: this.data,
 
-      placeholder: 'start typing here to add question details!',
+  //     placeholder: 'start typing here to add question details!',
 
-      tools: {
-        list: {
-          class: List,
-          inlineToolbar: true,
-        },
-        code: {
-          class: CodeTool,
-        },
+  //     tools: {
+  //       list: {
+  //         class: List,
+  //         inlineToolbar: true,
+  //       },
+  //       code: {
+  //         class: CodeTool,
+  //       },
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 
   saveComment(){
     this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
