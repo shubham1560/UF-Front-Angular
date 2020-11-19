@@ -24,6 +24,10 @@ export class EditorEditComponent implements OnInit {
   }
 
   initializeEditor() {
+    console.log("editor initialization");
+    console.log(this.data);
+    
+    
     this.editor = new EditorJS({
 
       holder: 'editorjs',
@@ -43,6 +47,9 @@ export class EditorEditComponent implements OnInit {
 
       }
     })
+
+    console.log(this.editor);
+    
   }
 
 }
