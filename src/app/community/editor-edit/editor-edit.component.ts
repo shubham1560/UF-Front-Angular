@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import EditorJS from '@editorjs/editorjs';
+import CodeTool from '@editorjs/code';
+import List from '@editorjs/list';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-editor-edit',
@@ -6,10 +10,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editor-edit.component.scss']
 })
 export class EditorEditComponent implements OnInit {
+  editor: EditorJS;
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<EditorEditComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit(): void {
+    this.initializeEditor();
+  }
+
+  initializeEditor() {
+    this.editor = new EditorJS({
+
+      holder: 'editorjs',
+
+      data: this.data,
+
+      placeholder: 'start typing here to add question details!',
+
+      tools: {
+        list: {
+          class: List,
+          inlineToolbar: true,
+        },
+        code: {
+          class: CodeTool,
+        },
+
+      }
+    })
   }
 
 }

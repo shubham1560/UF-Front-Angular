@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommunityService } from 'src/app/services/community/community.service';
 import { ActivatedRoute } from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
-import ImageTool from '@editorjs/image';
 import List from '@editorjs/list';
 import CodeTool from '@editorjs/code';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
+import { MatDialog } from '@angular/material/dialog';
+import { EditorEditComponent } from '../editor-edit/editor-edit.component'
 
 @Component({
   selector: 'app-ques-answer',
@@ -17,7 +18,8 @@ export class QuesAnswerComponent implements OnInit {
   constructor(
     private community: CommunityService,
     private route: ActivatedRoute,
-    private logger: LoggerService
+    private logger: LoggerService,
+    public dialog: MatDialog
   ) { }
 
   question;
@@ -26,6 +28,7 @@ export class QuesAnswerComponent implements OnInit {
   data;
   input_comment;
   question_id;
+  owner;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -35,6 +38,7 @@ export class QuesAnswerComponent implements OnInit {
           (result:any) => {
             this.question = result.question;
             this.comments = result.comments;
+            this.owner = result.question_owner;
             var len = this.question.question_details.length - 1;
             this.data = {
               time: 1552744582955,
@@ -106,5 +110,17 @@ export class QuesAnswerComponent implements OnInit {
         )
       }
     )
+  }
+
+  editQuestion(){
+    const dialogRef = this.dialog.open(EditorEditComponent, {
+      // width: '250px',
+      data: this.data
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // this.animal = result;
+    });
   }
 }

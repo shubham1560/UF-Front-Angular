@@ -1,5 +1,5 @@
 <div class="container" id="sqa">
-    <br><br>
+    <br>
     <div class="row">
         <div class="col-md-9">
             <div class="row">
@@ -13,19 +13,24 @@
                         {{question?.get_kb_base.label}}
                         {{question.get_kb_category.label? " / "+question.get_kb_category.label: ""}}
                     </span>
-
-                    <span style="float: right; border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
-                        <b> {{question.sys_created_on | dateAgoQues}} </b> 
+                    <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                        <b> {{question.sys_created_on | dateAgoQues}} </b>
                         <a routerLink="/user/{{question.get_created_by.id}}" style="color: #1F8476;">
                             {{question.get_created_by.name}}
                         </a>
                     </span>
+
+                    <span class="edit-question" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                        <a (click)="editQuestion()">
+                            Edit question
+                        </a>
+                    </span>
+
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col-md-1">
-
                 </div>
                 <div class="col-md-11">
                     <div *ngFor="let block of data.blocks">
@@ -82,16 +87,9 @@
 
             <br>
         </div>
-
-
-
         <div class="col-md-3">
-            <!-- <pre>
-                {{comments | json}}
-                {{question | json}}
-            </pre> -->
             <div id="editorjs">
-            </div>            
+            </div>
         </div>
     </div>
 </div>
