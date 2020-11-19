@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommunityService } from 'src/app/services/community/community.service';
 import { ActivatedRoute } from '@angular/router';
+import EditorJS from '@editorjs/editorjs';
+import ImageTool from '@editorjs/image';
+import List from '@editorjs/list';
+import CodeTool from '@editorjs/code';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
@@ -17,38 +21,28 @@ export class QuesAnswerComponent implements OnInit {
   ) { }
 
   question;
+  comments;
   myObj;
-  data
+  data;
+  input_comment;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
         this.community.getQuestionAndAnswers(params.get('question_id')).subscribe(
-          result => {
-            this.question = result;
-            // this.myObj = JSON.parse(this.question.question_details);
-            // console.log(typeof(this.question.question_details));
-            
-
-            // var s = this.question.question_details.replace(/\\n/g, "\\n")
-            //   .replace(/\\'/g, "\\'")
-            //   .replace(/\\"/g, '\\"')
-            //   .replace(/\\&/g, "\\&")
-            //   .replace(/\\r/g, "\\r")
-            //   .replace(/\\t/g, "\\t")
-            //   .replace(/\\b/g, "\\b")
-            //   .replace(/\\f/g, "\\f");
-            // this.myObj = JSON.parse(s);
-
+          (result:any) => {
+            this.question = result.question;
+            this.comments = result.comments;
             var len = this.question.question_details.length - 1;
             this.data = {
               time: 1552744582955,
               blocks: this.replacement(this.question.question_details.substring(1, len)),  //changing the data of string into array of objects
               version: "2.11.10"
             };
+
+            this.initializeEditor();
           }
         )
-
       }
     )
     this.logger.logData("sqa", this);
@@ -70,7 +64,6 @@ export class QuesAnswerComponent implements OnInit {
         if (a[i] == ',') {
           console.log(a.substring(j, i));
           c.push(JSON.parse(a.substring(j, i)));
-
           j = i + 1
         }
       }
@@ -79,5 +72,40 @@ export class QuesAnswerComponent implements OnInit {
     return c;
   }
 
+  editor: EditorJS;
 
+  initializeEditor() {
+    this.editor = new EditorJS({
+
+      holder: 'editorjs',
+
+      data: this.data,
+
+      placeholder: 'start typing here to add question details!',
+
+      tools: {
+        list: {
+          class: List,
+          inlineToolbar: true,
+        },
+        code: {
+          class: CodeTool,
+        },
+
+      }
+    })
+  }
+
+  saveComment(){
+    this.comments.push({
+      "id": 'a2fqsadf',
+      "comment": this.input_comment,
+      "get_created_by": {
+        "name": "you",
+        "id_name": "yolo",
+      },
+      "sys_created_on": "2020-11-19T23:27:59.609197+05:30",
+      "sys_updated_on": "2020-11-19T23:27:59.609218+05:30"
+    })
+  }
 }
