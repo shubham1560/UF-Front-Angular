@@ -18,9 +18,7 @@ export class EditorEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
       this.initializeEditor();
-    }, 2000)
   }
 
   initializeEditor() {
