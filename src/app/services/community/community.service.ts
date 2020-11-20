@@ -29,7 +29,7 @@ export class CommunityService {
     return this.httpService.get(this.called_url, { headers : this.getHeader()});
   }
 
-  postQuestion(root, path, data){
+  postQuestion(data){
     this.called_url = `${this.base_community_url}question/`;
     const body = data;
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
@@ -47,6 +47,16 @@ export class CommunityService {
       table_id: table_id,
       table_name: table_name,
       comment: comment
+    }
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  postEditorData(table_id, table_name, editor_data){
+    this.called_url = `${this.base_community_url}editor/`;
+    const body = {
+      table_id: table_id,
+      table_name: table_name,
+      editor_data: editor_data
     }
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }

@@ -4,19 +4,19 @@
         <div class="col-md-9">
             <div class="row">
                 <h5>
-                    {{question.question}}
+                    {{question?.question}}
 
                 </h5>
                 <br>
                 <div style="font-size: 14px; padding: 10px 0px;">
                     <span style="color: #1F8476;">
                         {{question?.get_kb_base.label}}
-                        {{question.get_kb_category.label? " / "+question.get_kb_category.label: ""}}
+                        {{question?.get_kb_category.label? " / "+question?.get_kb_category.label: ""}}
                     </span>
                     <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
-                        <b> {{question.sys_created_on | dateAgoQues}} </b>
-                        <a routerLink="/user/{{question.get_created_by.id}}" style="color: #1F8476;">
-                            {{question.get_created_by.name}}
+                        <b> {{question?.sys_created_on | dateAgoQues}} </b>
+                        <a routerLink="/user/{{question?.get_created_by.id}}" style="color: #1F8476;">
+                            {{question?.get_created_by.name}}
                         </a>
                     </span>
 
@@ -33,11 +33,11 @@
                 <div class="col-md-1">
                 </div>
                 <div class="col-md-11">
-                    <div *ngFor="let block of data.blocks">
+                    <div *ngFor="let block of data?.blocks">
                         <div *ngIf="block.type=='list'" style="padding-left: 0px; font-size: 15px;">
                             <div *ngIf="block.data.style=='ordered'">
-                                <ol *ngFor="let item of block.data.items ; let i = index" style="margin-bottom: 2px;">
-                                    <li [innerHTML]="item" class="text"></li>
+                                <ol  style="margin-bottom: 2px;">
+                                    <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item" class="text"></li>
                                 </ol>
                             </div>
                             <div *ngIf="block.data.style=='unordered'">
@@ -78,13 +78,9 @@
                             </a>
                             {{comment.sys_created_on | dateAgoQues}}
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
-
             <br>
         </div>
         <div class="col-md-3">

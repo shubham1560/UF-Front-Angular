@@ -2,10 +2,14 @@
 
 <h4 mat-dialog-title>Edit question details</h4>
 <mat-dialog-content class="mat-typography">
+    <pre>
+        {{data | json}}
+    </pre>
+
     <div id="editorjs">
     </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+    <button mat-button (click)="save()" cdkFocusInitial>Save</button>
 </mat-dialog-actions>

@@ -128,10 +128,9 @@ export class CommNewQuestionComponent implements OnInit {
         path: this.path
       }
 
-      this.community.postQuestion(this.root, this.path, question_detail).subscribe(
+      this.community.postQuestion(question_detail).subscribe(
         result => {
           console.log(result);
-
         }
       )
 

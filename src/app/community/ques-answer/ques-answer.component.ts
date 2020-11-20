@@ -78,30 +78,6 @@ export class QuesAnswerComponent implements OnInit {
     return c;
   }
 
-  editor: EditorJS;
-
-  // initializeEditor() {
-  //   this.editor = new EditorJS({
-
-  //     holder: 'editorjs',
-
-  //     data: this.data,
-
-  //     placeholder: 'start typing here to add question details!',
-
-  //     tools: {
-  //       list: {
-  //         class: List,
-  //         inlineToolbar: true,
-  //       },
-  //       code: {
-  //         class: CodeTool,
-  //       },
-
-  //     }
-  //   })
-  // }
-
   saveComment(){
     this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
       result=>{
@@ -114,13 +90,22 @@ export class QuesAnswerComponent implements OnInit {
 
   editQuestion(){
     const dialogRef = this.dialog.open(EditorEditComponent, {
-      // width: '250px',
-      data: this.data
+      data: {
+        editor_data: this.data, 
+        table_id: this.question_id, 
+        table_name: 'question'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
+      console.log(result);
+      var len = result.block_data.length - 1;
+      this.data = {
+        time: 1552744582955,
+        blocks: this.replacement(result.block_data.substring(1, len)),  //changing the data of string into array of objects
+        version: "2.11.10"
+      };
     });
   }
 }
