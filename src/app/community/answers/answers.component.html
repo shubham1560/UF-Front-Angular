@@ -2,9 +2,9 @@
     <div class="row">
         <div class="col-md-9">
 
-            <pre>
+            <!-- <pre>
                 {{json_answers | json}}
-            </pre>
+            </pre> -->
             <h5>
                 {{answers?.length}} Answer(s)
             </h5>
@@ -12,7 +12,7 @@
             <div *ngFor="let answer of json_answers">
                 <div style="font-size: 14px;">
                     <span> Answered  </span>
-                    <span style="color: #1F8476;"> {{answer.sys_created_on | dateAgoQues}} </span>
+                    
                     <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
                         <a routerLink="/user/{{answer?.sys_created_by.id}}" style="color: #1F8476;">
                             {{answer?.sys_created_by.name}}
@@ -24,10 +24,15 @@
                     </span> -->
                     <span class="edit-question" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
                         <a (click)="editAnswer(answer.answer, answer.id)">
-                            Edit answer
+                            Edit
                         </a>
                     </span>
-
+                    <br>
+                    <span *ngIf="answer.update_count>0" style="color: #1F8476; border-left: 1px solid #ddd;"> 
+                        <b> updated </b> {{answer.update_count}} time(s) | Last updated
+                        {{answer.sys_updated_on | dateAgoQues}} |  
+                    </span>
+                    <span style="color: #1F8476;"> <b> created </b>{{answer.sys_created_on | dateAgoQues}} </span>
                     <!-- <span (click)="editAnswer(answer.answer, answer.id)" *ngIf="answer.owner" style="padding-left: 10px; margin-left: 10px; border-left: 1px solid #ddd;">
                         Edit answer
                     </span> -->

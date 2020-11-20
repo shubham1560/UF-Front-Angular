@@ -87,19 +87,20 @@ export class AnswersComponent implements OnInit {
   changeToJsonAnswer(){
     this.json_answers = [];
     this.answers.forEach(element => {
-      console.log(element);
+      // console.log(element);
       this.json_answers.push({
         "id": element.id,
         "owner": element.owner,
         "answer": this.replacement(element.answer.substring(1, element.answer.length-1)),
         "sys_created_by": element.sys_created_by,
         "comments": element.comments,
-        "sys_created_on": element.sys_created_on
+        "sys_created_on": element.sys_created_on,
+        "update_count": element.update_count,
+        "sys_updated_on": element.sys_updated_on,
       })
     });
 
   }
-
 
   editAnswer(block_data, answer_id) {
     const dialogRef = this.dialog.open(EditorEditComponent, {
@@ -117,19 +118,13 @@ export class AnswersComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result?.block_data) {
-        console.log(result);
+        // console.log(result);
         this.answers.forEach(element => {
           if(element.id == result.table_id){
             element.answer = result.block_data;
           }
         });
         this.changeToJsonAnswer();
-        // var len = result?.block_data.length - 1;
-        // this.data = {
-        //   time: 1552744582955,
-        //   blocks: this.replacement(result?.block_data.substring(1, len)),  //changing the data of string into array of objects
-        //   version: "2.11.10"
-        // };
       }
     });
   }
@@ -147,7 +142,6 @@ export class AnswersComponent implements OnInit {
       }
       if (b.length == 0) {
         if (a[i] == ',') {
-          // console.log(a.substring(j, i));
           c.push(JSON.parse(a.substring(j, i)));
           j = i + 1
         }

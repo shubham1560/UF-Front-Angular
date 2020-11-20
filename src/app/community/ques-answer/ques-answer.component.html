@@ -21,7 +21,6 @@
                         {{question?.get_kb_category.label? " / "+question?.get_kb_category.label: ""}}
                     </span>
                     <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
-                        <b> {{question?.sys_created_on | dateAgoQues}} </b>
                         <a routerLink="/user/{{question?.get_created_by.id}}" style="color: #1F8476;">
                             {{question?.get_created_by.name}}
                         </a>
@@ -29,8 +28,16 @@
 
                     <span class="edit-question" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
                         <a (click)="editQuestion()">
-                            Edit question
+                            Edit
                         </a>
+                    </span> 
+                    <br>
+                    <span style=" color: #1F8476;">
+                        updated {{question?.update_count}} time(s) | last updated {{question?.sys_updated_on | dateAgoQues}} |
+                    </span>
+
+                    <span style=" color: #1F8476;">
+                        created {{question?.sys_created_on | dateAgoQues}} 
                     </span>
 
                 </div>
