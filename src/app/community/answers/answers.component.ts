@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
 import List from '@editorjs/list';
 import CodeTool from '@editorjs/code';
+import { EditorEditComponent } from '../editor-edit/editor-edit.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -15,25 +17,32 @@ export class AnswersComponent implements OnInit {
 
   constructor(
     private community: CommunityService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   @Input() answers;
-  // data =[]
   question_id;
+
+  json_answers = [];
+
+
   ngOnInit(): void {
-    console.log(this.answers);
+    // console.log(this.answers);
     this.initializeEditor();
     this.route.paramMap.subscribe(
       params=>{
         this.question_id = params.get("question_id");
-        
+        this.changeToJsonAnswer();
+        // this.changeToJsonAnswer();
       }
     )
     
   }
 
   editor : EditorJS;
+
+
 
   initializeEditor() {
     this.editor = new EditorJS({
@@ -66,8 +75,8 @@ export class AnswersComponent implements OnInit {
       }
       this.community.postAnswer(question_detail).subscribe(
         result => {
-          // console.log(result);
           this.answers.unshift(result);
+          this.changeToJsonAnswer()
         }
       )
 
@@ -75,5 +84,70 @@ export class AnswersComponent implements OnInit {
   }
 
 
+  changeToJsonAnswer(){
+    this.json_answers = [];
+    this.answers.forEach(element => {
+      console.log(element);
+      this.json_answers.push({
+        "id": element.id,
+        "owner": element.owner,
+        "answer": this.replacement(element.answer.substring(1, element.answer.length-1)),
+        "sys_created_by": element.sys_created_by,
+        "comments": element.comments,
+        "sys_created_on": element.sys_created_on
+      })
+    });
+
+  }
+
+
+  editAnswer(block_data, answer_id) {
+    const dialogRef = this.dialog.open(EditorEditComponent, {
+      data: {
+        editor_data:{
+          "time": '1232qads', 
+          'blocks': block_data, 
+          "version": '1.19'
+        },
+        table_id: answer_id,
+        table_name: 'answer'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.block_data) {
+        console.log(result);
+        var len = result?.block_data.length - 1;
+        // this.data = {
+        //   time: 1552744582955,
+        //   blocks: this.replacement(result?.block_data.substring(1, len)),  //changing the data of string into array of objects
+        //   version: "2.11.10"
+        // };
+      }
+    });
+  }
+
+  replacement = function (a) {
+    let b = []
+    let c = []
+    let j = 0
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] == "{") {
+        b.push("{");
+      }
+      if (a[i] == "}") {
+        b.pop();
+      }
+      if (b.length == 0) {
+        if (a[i] == ',') {
+          // console.log(a.substring(j, i));
+          c.push(JSON.parse(a.substring(j, i)));
+          j = i + 1
+        }
+      }
+    }
+    c.push(JSON.parse(a.substring(j, a.length)));
+    return c;
+  }
 
 }

@@ -1,15 +1,86 @@
-<h5>
-    {{answers.length}} Answer(s)
-</h5>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
 
-<pre>
-    {{answers | json}}
-</pre>
-<br><br>
-<div>
-    <h5>Your answer</h5>
-    <div style="margin: auto;" id="editorjsanswer">
+            <pre>
+                {{json_answers | json}}
+            </pre>
+            <h5>
+                {{answers?.length}} Answer(s)
+            </h5>
 
+            <div *ngFor="let answer of json_answers">
+                <div style="font-size: 14px;">
+                    <span> Answered  </span>
+                    <span style="color: #1F8476;"> {{answer.sys_created_on | dateAgoQues}} </span>
+                    <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                        <a routerLink="/user/{{answer?.sys_created_by.id}}" style="color: #1F8476;">
+                            {{answer?.sys_created_by.name}}
+                        </a>
+                    </span>
+
+                    <!-- <span style="padding-left: 10px; margin-left: 10px; border-left: 1px solid #ddd;">
+                        <a routerLink="/user/{{answer.sys_created_by.id}}"> {{answer?.sys_created_by.name}}</a>
+                    </span> -->
+                    <span class="edit-question" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                        <a (click)="editAnswer(answer.answer, answer.id)">
+                            Edit answer
+                        </a>
+                    </span>
+
+                    <!-- <span (click)="editAnswer(answer.answer, answer.id)" *ngIf="answer.owner" style="padding-left: 10px; margin-left: 10px; border-left: 1px solid #ddd;">
+                        Edit answer
+                    </span> -->
+                </div>
+                <!-- <pre> {{answer | json}} </pre> -->
+                <div *ngFor="let block of answer.answer">
+
+                    <div *ngIf="block.type=='list'" style="padding-left: 0px; font-size: 15px;">
+                        <div *ngIf="block.data.style=='ordered'">
+                            <ol style="margin-bottom: 2px;">
+                                <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item"
+                                    class="text"></li>
+                            </ol>
+                        </div>
+                        <div *ngIf="block.data.style=='unordered'">
+                            <ul *ngFor="let item of block.data.items" style="margin-bottom: 2px;">
+                                <li [innerHTML]="item" class="text"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div *ngIf="block.type=='code'">
+                        <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                            <pre style="color: #41314E;" style="font-size: 12px;" class="text">{{block.data.code}}</pre>
+                        </div>
+                    </div>
+
+                    <div *ngIf="block.type=='paragraph'">
+                        <p style="margin-bottom: 2px; font-size: 15px;" [innerHTML]="block.data.text" class="text">
+                        </p>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div>
+                <h5>Your answer</h5>
+                <div style="margin: auto; padding: 15px;margin-bottom: 20px;" class="st-border" id="editorjsanswer">
+            
+                </div>
+                <button mat-button class="primary-button-inverted" (click)="save()" style="float: right;">Post your answer</button>
+            </div>
+        </div>
     </div>
-    <button mat-button class="primary-button-inverted" (click)="save()" style="float: right;">Post your answer</button>
 </div>
+
+<!-- <pre>
+        {{json_answers | json}}
+    </pre> -->
+
+
+<!-- <pre>
+    {{answers | json}}
+</pre> -->
+<br><br>

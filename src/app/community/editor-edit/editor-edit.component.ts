@@ -41,7 +41,7 @@ export class EditorEditComponent implements OnInit {
 
       data: this.data.editor_data,
 
-      placeholder: 'start typing here to add question details!',
+      placeholder: 'start typing here to add details!',
 
       tools: {
         list: {

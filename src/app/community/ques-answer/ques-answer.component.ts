@@ -30,6 +30,7 @@ export class QuesAnswerComponent implements OnInit {
   question_id;
   owner;
   response;
+  gotResponse = false;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -47,6 +48,7 @@ export class QuesAnswerComponent implements OnInit {
               blocks: this.replacement(this.question.question_details.substring(1, len)),  //changing the data of string into array of objects
               version: "2.11.10"
             };
+            this.gotResponse = true;
 
             // this.initializeEditor();
           }
