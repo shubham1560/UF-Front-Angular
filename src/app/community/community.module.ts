@@ -11,10 +11,11 @@ import { FormsModule } from '@angular/forms';
 import { SelectQuesPathComponent } from './select-ques-path/select-ques-path.component';
 import { QuesAnswerComponent } from './ques-answer/ques-answer.component';
 import { EditorEditComponent } from './editor-edit/editor-edit.component';
+import { AnswersComponent } from './answers/answers.component';
 
 
 @NgModule({
-  declarations: [CommunityLandingComponent, BrowseQuestionsComponent, BrowseByRootsComponent, DateAgoQuesPipe, CommNewQuestionComponent, SelectQuesPathComponent, QuesAnswerComponent, EditorEditComponent],
+  declarations: [CommunityLandingComponent, BrowseQuestionsComponent, BrowseByRootsComponent, DateAgoQuesPipe, CommNewQuestionComponent, SelectQuesPathComponent, QuesAnswerComponent, EditorEditComponent, AnswersComponent],
   imports: [
     CommonModule,
     CommunityRoutingModule,
