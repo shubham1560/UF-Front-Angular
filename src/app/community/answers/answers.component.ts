@@ -103,6 +103,7 @@ export class AnswersComponent implements OnInit {
 
   editAnswer(block_data, answer_id) {
     const dialogRef = this.dialog.open(EditorEditComponent, {
+      minWidth: '280px',
       data: {
         editor_data:{
           "time": '1232qads', 
@@ -117,7 +118,13 @@ export class AnswersComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result?.block_data) {
         console.log(result);
-        var len = result?.block_data.length - 1;
+        this.answers.forEach(element => {
+          if(element.id == result.table_id){
+            element.answer = result.block_data;
+          }
+        });
+        this.changeToJsonAnswer();
+        // var len = result?.block_data.length - 1;
         // this.data = {
         //   time: 1552744582955,
         //   blocks: this.replacement(result?.block_data.substring(1, len)),  //changing the data of string into array of objects

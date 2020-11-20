@@ -66,8 +66,7 @@ export class EditorEditComponent implements OnInit {
       var editor_data = JSON.stringify(outputData.blocks);
       this.community.postEditorData(this.table_id, this.table_name, editor_data).subscribe(
         result=>{
-          // console.log(result);
-          this.dialogRef.close({block_data: editor_data});
+          this.dialogRef.close({block_data: editor_data, table_id: this.table_id, table_name: this.table_name});
         }, error =>{
 
         }
