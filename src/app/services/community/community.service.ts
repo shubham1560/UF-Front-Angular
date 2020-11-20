@@ -60,4 +60,10 @@ export class CommunityService {
     }
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
+
+  postAnswer(data){
+    this.called_url = `${this.base_community_url}answer/`;
+    const body = data;
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
 }

@@ -29,13 +29,15 @@ export class QuesAnswerComponent implements OnInit {
   input_comment;
   question_id;
   owner;
+  response;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
         this.question_id = params.get('question_id');
         this.community.getQuestionAndAnswers(this.question_id).subscribe(
-          (result:any) => {
+          (result: any) => {
+            this.response = result;
             this.question = result.question;
             this.comments = result.comments;
             this.owner = result.question_owner;
@@ -68,7 +70,7 @@ export class QuesAnswerComponent implements OnInit {
       }
       if (b.length == 0) {
         if (a[i] == ',') {
-          console.log(a.substring(j, i));
+          // console.log(a.substring(j, i));
           c.push(JSON.parse(a.substring(j, i)));
           j = i + 1
         }
@@ -78,9 +80,9 @@ export class QuesAnswerComponent implements OnInit {
     return c;
   }
 
-  saveComment(){
+  saveComment() {
     this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
-      result=>{
+      result => {
         this.comments.unshift(
           result
         )
@@ -88,24 +90,24 @@ export class QuesAnswerComponent implements OnInit {
     )
   }
 
-  editQuestion(){
+  editQuestion() {
     const dialogRef = this.dialog.open(EditorEditComponent, {
       data: {
-        editor_data: this.data, 
-        table_id: this.question_id, 
+        editor_data: this.data,
+        table_id: this.question_id,
         table_name: 'question'
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      var len = result.block_data.length - 1;
-      this.data = {
-        time: 1552744582955,
-        blocks: this.replacement(result.block_data.substring(1, len)),  //changing the data of string into array of objects
-        version: "2.11.10"
-      };
+      if (result?.block_data) {
+        var len = result?.block_data.length - 1;
+        this.data = {
+          time: 1552744582955,
+          blocks: this.replacement(result?.block_data.substring(1, len)),  //changing the data of string into array of objects
+          version: "2.11.10"
+        };
+      }
     });
   }
 }
