@@ -24,19 +24,17 @@ export class CommNewQuestionComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private knowledgeService: DataService,
+    // private knowledgeService: DataService,
     private _snackBar: MatSnackBar,
-    private dialog: MatDialog,
+    private router: Router,
+    // private dialog: MatDialog,
     private community: CommunityService,
     private nsfw: NsfwJsService,
     private route: ActivatedRoute
   ) { }
 
   data = {
-    blocks: [
-      { type: "paragraph", data: { text: "Hello" } },
-      { type: "paragraph", data: { text: "yello" } }
-    ],
+    blocks: [],
     time: 1605713362408,
     version: "2.18.0"
   };
@@ -106,21 +104,6 @@ export class CommNewQuestionComponent implements OnInit {
 
   save() {
     this.editor.save().then((outputData: any) => {
-      // var stripped_data = this.htmlStrip(outputData);
-      // console.log(outputData, this.question);
-      // this.knowledgeService.checkProfanity(stripped_data).subscribe(
-      //   (result: any) => {
-      //     if (result.profane) {
-      //       this.dialog.open(ProfanityComponent, {
-      //         data: { data: result }
-      //       })
-      //       this.openSnackBar("This question couldn't pass the profanity check", '');
-      //     }
-      //     else {
-      //     }
-      //   }, error => {
-      //   }
-      // )
       var question_detail = {
         description: JSON.stringify(outputData.blocks),
         question: this.question,
@@ -129,8 +112,12 @@ export class CommNewQuestionComponent implements OnInit {
       }
 
       this.community.postQuestion(question_detail).subscribe(
-        result => {
-          console.log(result);
+        (result:any) => {
+          // console.l/og(result);
+          this.router.navigate(['community', 'sq_qa', result.question_id, result.title]);
+        }, 
+        error=>{
+
         }
       )
 
@@ -144,53 +131,4 @@ export class CommNewQuestionComponent implements OnInit {
       verticalPosition: "top",
     });
   }
-
-
-  // htmlStrip(data) {
-  //   var data_to_check = {};
-  //   var changedData = []
-  //   // console.log(data);
-  //   changedData.push({
-  //     "data": { "level": 2, "text": this.question },
-  //     "type": "header"
-  //   })
-  //   data.blocks.forEach(element => {
-  //     // console.log(element);
-  //     if (element.type == 'header') {
-  //       changedData.push(
-  //         {
-  //           "data": { "level": element.data.level, "text": element.data.text.replace(/<[^>]*>?/gm, '').replace("nbsp", " ") },
-  //           "type": element.type
-  //         }
-  //       )
-  //     }
-  //     else if (element.type == 'paragraph') {
-  //       changedData.push(
-  //         {
-  //           "data": { "text": element.data.text.replace(/<[^>]*>?/gm, ' ').replace("nbsp", " ") },
-  //           "type": element.type
-  //         }
-  //       )
-  //     }
-  //     else if (element.type == 'list') {
-  //       changedData.push(
-  //         {
-  //           "data": { "items": [element.data.items[0].replace(/<[^>]*>?/gm, ' ').replace("nbsp", " ")], "style": element.style },
-  //           "type": element.type
-  //         }
-  //       )
-  //     }
-  //     else {
-  //       changedData.push(element);
-  //     }
-  //   });
-
-  //   data_to_check = {
-  //     "time": "1604520019453",
-  //     "blocks": changedData,
-  //     "version": "2.18.0"
-  //   }
-  //   // console.log(changedData);
-  //   return data_to_check;
-  // }
 }

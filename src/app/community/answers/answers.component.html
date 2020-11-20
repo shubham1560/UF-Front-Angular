@@ -10,8 +10,9 @@
             </h5>
 
             <div *ngFor="let answer of json_answers">
+                <div class="st-border" style="padding: 15px; margin: 15px 0px;">
                 <div style="font-size: 14px;">
-                    <span> Answered  </span>
+                    <!-- <span> Answered  </span> -->
                     
                     <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
                         <a routerLink="/user/{{answer?.sys_created_by.id}}" style="color: #1F8476;">
@@ -22,7 +23,7 @@
                     <!-- <span style="padding-left: 10px; margin-left: 10px; border-left: 1px solid #ddd;">
                         <a routerLink="/user/{{answer.sys_created_by.id}}"> {{answer?.sys_created_by.name}}</a>
                     </span> -->
-                    <span class="edit-question" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                    <span class="edit-question" *ngIf="answer?.owner" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
                         <a (click)="editAnswer(answer.answer, answer.id)">
                             Edit
                         </a>
@@ -65,7 +66,7 @@
                         </p>
                     </div>
                 </div>
-                <hr>
+            </div>
             </div>
         </div>
         <div class="col-md-9">
@@ -74,7 +75,7 @@
                 <div style="margin: auto; padding: 15px;margin-bottom: 20px;" class="st-border" id="editorjsanswer">
             
                 </div>
-                <button mat-button class="primary-button-inverted" (click)="save()" style="float: right;">Post your answer</button>
+                <button mat-button [disabled]="post_answer_disabled" class="primary-button-inverted" (click)="save()" style="float: right;">Post your answer</button>
             </div>
         </div>
     </div>

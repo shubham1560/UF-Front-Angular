@@ -26,18 +26,18 @@
                         </a>
                     </span>
 
-                    <span class="edit-question" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                    <span class="edit-question" *ngIf="question?.question_owner" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
                         <a (click)="editQuestion()">
                             Edit
                         </a>
                     </span> 
                     <br>
-                    <span style=" color: #1F8476;">
+                    <span style=" color: #1F8476;" *ngIf="question?.update_count>0">
                         updated {{question?.update_count}} time(s) | last updated {{question?.sys_updated_on | dateAgoQues}} |
                     </span>
 
                     <span style=" color: #1F8476;">
-                        created {{question?.sys_created_on | dateAgoQues}} 
+                        asked {{question?.sys_created_on | dateAgoQues}} 
                     </span>
 
                 </div>

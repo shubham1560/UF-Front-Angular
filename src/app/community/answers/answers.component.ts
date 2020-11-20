@@ -23,6 +23,7 @@ export class AnswersComponent implements OnInit {
 
   @Input() answers;
   question_id;
+  post_answer_disabled;
 
   json_answers = [];
 
@@ -31,17 +32,16 @@ export class AnswersComponent implements OnInit {
     // console.log(this.answers);
     this.initializeEditor();
     this.route.paramMap.subscribe(
-      params=>{
+      params => {
         this.question_id = params.get("question_id");
         this.changeToJsonAnswer();
         // this.changeToJsonAnswer();
       }
     )
-    
+
   }
 
-  editor : EditorJS;
-
+  editor: EditorJS;
 
 
   initializeEditor() {
@@ -68,30 +68,43 @@ export class AnswersComponent implements OnInit {
 
 
   save() {
+    this.post_answer_disabled = true;
     this.editor.save().then((outputData: any) => {
-      var question_detail = {
-        description: JSON.stringify(outputData.blocks),
-        question: this.question_id,
-      }
-      this.community.postAnswer(question_detail).subscribe(
-        result => {
-          this.answers.unshift(result);
-          this.changeToJsonAnswer()
+      if (outputData.blocks.length > 0) {
+        var question_detail = {
+          description: JSON.stringify(outputData.blocks),
+          question: this.question_id,
         }
-      )
-
+        this.community.postAnswer(question_detail).subscribe(
+          result => {
+            this.answers.unshift(result);
+            this.changeToJsonAnswer();
+            this.post_answer_disabled = false;
+            outputData.blocks = []; 
+          },
+          error => {
+            this.post_answer_disabled = false;
+          }
+        )
+      }
+      else {
+        console.log("insert something");
+        this.post_answer_disabled = false;
+      }
     })
+
+
   }
 
 
-  changeToJsonAnswer(){
+  changeToJsonAnswer() {
     this.json_answers = [];
     this.answers.forEach(element => {
       // console.log(element);
       this.json_answers.push({
         "id": element.id,
         "owner": element.owner,
-        "answer": this.replacement(element.answer.substring(1, element.answer.length-1)),
+        "answer": this.replacement(element.answer.substring(1, element.answer.length - 1)),
         "sys_created_by": element.sys_created_by,
         "comments": element.comments,
         "sys_created_on": element.sys_created_on,
@@ -106,9 +119,9 @@ export class AnswersComponent implements OnInit {
     const dialogRef = this.dialog.open(EditorEditComponent, {
       minWidth: '280px',
       data: {
-        editor_data:{
-          "time": '1232qads', 
-          'blocks': block_data, 
+        editor_data: {
+          "time": '1232qads',
+          'blocks': block_data,
           "version": '1.19'
         },
         table_id: answer_id,
@@ -120,7 +133,7 @@ export class AnswersComponent implements OnInit {
       if (result?.block_data) {
         // console.log(result);
         this.answers.forEach(element => {
-          if(element.id == result.table_id){
+          if (element.id == result.table_id) {
             element.answer = result.block_data;
           }
         });
