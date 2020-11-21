@@ -1,7 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
-            <h5>
+            <hr>
+            <h5 style="color: #1F8476;">
                 {{answers?.length}} Answer(s)
             </h5>
 
@@ -34,47 +35,38 @@
                     </div>
                     <br>
                     <div class="row">
-                    <div class="col-md-4" style="font-size: 14px; ">
-                        <span class="edit-question" *ngIf="answer?.owner">
-                            <a (click)="editAnswer(answer.answer, answer.id)">
-                                Edit
-                            </a>
-                        </span>
-                    </div>
+                        <div class="col-md-4" style="font-size: 14px; ">
+                            <span class="edit-question" *ngIf="answer?.owner">
+                                <a (click)="editAnswer(answer.answer, answer.id)">
+                                    Edit
+                                </a>
+                            </span>
+                        </div>
 
-                    <div style="font-size: 14px;" class="col-md-8">
-                        <span *ngIf="answer.update_count>0" style="color: #1F8476;">
-                            <b> updated </b> {{answer.update_count}} time(s)
-                            {{answer.sys_updated_on | dateAgoQues}}
-                            •
-                        </span>
-                        <span style="color: #1F8476;">{{answer.sys_created_on | dateAgoQues}} </span>
-                        <span>
-                            •
-                            by
-                            <a routerLink="/user/{{answer?.sys_created_by.id}}" style="color: #1F8476;">
-                                {{answer?.sys_created_by.name}}
-                            </a>
-                        </span>
-                        <!-- <span class="edit-question" *ngIf="answer?.owner">
-                    •
-
-                        <a (click)="editAnswer(answer.answer, answer.id)">
-                            Edit
-                        </a>
-                    </span> -->
-                        <br>
-                        <!-- <span (click)="editAnswer(answer.answer, answer.id)" *ngIf="answer.owner" style="padding-left: 10px; margin-left: 10px; border-left: 1px solid #ddd;">
-                        Edit answer
-                    </span> -->
+                        <div style="font-size: 14px;" class="col-md-8">
+                            <span *ngIf="answer.update_count>0" style="color: #1F8476;">
+                                <b> updated </b> {{answer.update_count}} time(s)
+                                {{answer.sys_updated_on | dateAgoQues}}
+                                •
+                            </span>
+                            <span style="color: #1F8476;">{{answer.sys_created_on | dateAgoQues}} </span>
+                            <span>
+                                •
+                                by
+                                <a routerLink="/user/{{answer?.sys_created_by.id}}" style="color: #1F8476;">
+                                    {{answer?.sys_created_by.name}}
+                                </a>
+                            </span>
+                            <br>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
             <div>
-                <h5>Your answer</h5>
+                <br><br>
+                <h5 style="color: #1F8476;">Your answer</h5>
                 <div style="margin: auto; padding: 15px;margin-bottom: 20px;" class="st-border" id="editorjsanswer">
 
                 </div>
@@ -84,13 +76,4 @@
         </div>
     </div>
 </div>
-
-<!-- <pre>
-        {{json_answers | json}}
-    </pre> -->
-
-
-<!-- <pre>
-    {{answers | json}}
-</pre> -->
 <br><br>
