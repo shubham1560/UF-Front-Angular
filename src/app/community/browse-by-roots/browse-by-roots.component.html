@@ -11,7 +11,7 @@
                                 Roots
                             </mat-panel-title>
                             <mat-panel-description>
-                                Browse questions by root
+                                {{selected_root_label? selected_root_label:"Browse questions by root" }}
                             </mat-panel-description>
                         </mat-expansion-panel-header>
                         <ng-template matExpansionPanelContent>
@@ -40,7 +40,7 @@
                                     Paths
                                 </mat-panel-title>
                                 <mat-panel-description>
-                                    Browse further by paths
+                                    {{selected_path_label? selected_path_label :"Browse further by paths"}}
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
                             <ng-template matExpansionPanelContent>

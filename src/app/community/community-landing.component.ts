@@ -29,7 +29,7 @@ export class CommunityLandingComponent implements OnInit {
     this.routeSub = this.route.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         // (document.querySelector('app-header') as HTMLElement).style.display = 'block';
-        (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+        // (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
       }
     });
 

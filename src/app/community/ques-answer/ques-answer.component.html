@@ -1,114 +1,117 @@
 <mat-progress-bar mode="determinate" color="accent" value="100"></mat-progress-bar>
+<br>
+<div style="background-color: white;">
 
-
-<div class="container" id="sqa" style="margin-top: 15px;">
-    <div class="row">
-        <div class="col-md-9">
-            <h5>
-                {{question?.question}}
-            </h5>
-            <div style="font-size: 14px; padding: 10px 0px;" class="row">
-                <div class="col-md-6">
-                    <span style="color: #1F8476;">
-                        {{question?.get_kb_base.label}}
-                        {{question?.get_kb_category.label? " / "+question?.get_kb_category.label: ""}}
-                    </span>
-                    •
-                    <span>
-                        <a routerLink="/user/{{question?.get_created_by.id}}" style="color: #1F8476;">
-                            {{question?.get_created_by.name}}
-                        </a>
-                    </span>
-
-                    <span class="edit-question" *ngIf="owner">
+    <div class="container" id="sqa">
+        <div class="row">
+            <div class="col-md-9">
+                <h5>
+                    {{question?.question}}
+                </h5>
+                <div style="font-size: 14px; padding: 10px 0px;" class="row">
+                    <div class="col-md-6">
+                        <span style="color: #1F8476;">
+                            {{question?.get_kb_base.label}}
+                            {{question?.get_kb_category.label? " / "+question?.get_kb_category.label: ""}}
+                        </span>
                         •
-                        <a (click)="editQuestion()">
-                            Edit
+                        <span>
+                            <a routerLink="/user/{{question?.get_created_by.id}}" style="color: #1F8476;">
+                                {{question?.get_created_by.name}}
+                            </a>
+                        </span>
+
+                        <span class="edit-question" *ngIf="owner">
+                            •
+                            <a (click)="editQuestion()">
+                                Edit
+                            </a>
+                        </span>
+                    </div>
+                    <div class="col-md-6">
+                        <span style=" color: #1F8476;" *ngIf="question?.update_count>0">
+                            updated {{question?.update_count}} time(s) • last updated
+                            {{question?.sys_updated_on | dateAgoQues}} •
+                        </span>
+
+                        <span style=" color: #1F8476;">
+                            asked {{question?.sys_created_on | dateAgoQues}}
+                        </span>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-8">
+
+                <div *ngFor="let block of data?.blocks">
+                    <div *ngIf="block.type=='list'" style="padding-left: 0px; font-size: 15px;">
+                        <div *ngIf="block.data.style=='ordered'">
+                            <ol style="margin-bottom: 2px;">
+                                <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item"
+                                    class="text">
+                                </li>
+                            </ol>
+                        </div>
+                        <div *ngIf="block.data.style=='unordered'">
+                            <ul *ngFor="let item of block.data.items" style="margin-bottom: 2px;">
+                                <li [innerHTML]="item" class="text"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div *ngIf="block.type=='code'">
+                        <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                            <pre style="color: #41314E;" style="font-size: 12px;" class="text">{{block.data.code}}</pre>
+                        </div>
+                    </div>
+
+                    <div *ngIf="block.type=='paragraph'">
+                        <p style="margin-bottom: 2px; font-size: 15px;" [innerHTML]="block.data.text" class="text">
+                        </p>
+                    </div>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
+                <div style="font-size: 14px; text-align: right;">
+                    <br>
+                    <mat-form-field style="width: 100%;" appearance="legacy">
+                        <mat-label>Add comment </mat-label>
+                        <input matInput placeholder="comments..." [(ngModel)]="input_comment">
+                    </mat-form-field>
+                    <!-- <input type="text"  style="width: 80%; outline: #1F8476;" [(ngModel)]="input_comment"> -->
+                    <div style="text-align: right;">
+                        <button mat-button class="primary-button" style="margin-right: 10px;">Cancel</button>
+                        <button mat-button class="primary-button-inverted" (click)="saveComment()">Save</button>
+                    </div>
+                    <br>
+                </div>
+                <div style="font-size: 12px;" *ngIf="comments?.length>0">
+                    <div *ngFor="let comment of comments" style="border-top: 1px dotted #ddd; padding: 5px 0px;">
+                        {{comment.comment}} -
+                        <a routerLink="/user/{{comment.get_created_by.id}}" style="color: #1F8476;">
+                            {{comment.get_created_by.name}}
                         </a>
-                    </span>
-                </div>
-                <div class="col-md-6">
-                    <span style=" color: #1F8476;" *ngIf="question?.update_count>0">
-                        updated {{question?.update_count}} time(s) • last updated
-                        {{question?.sys_updated_on | dateAgoQues}} •
-                    </span>
-
-                    <span style=" color: #1F8476;">
-                        asked {{question?.sys_created_on | dateAgoQues}}
-                    </span>
-                </div>
-            </div>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-1">
-        </div>
-        <div class="col-md-8">
-
-            <div *ngFor="let block of data?.blocks">
-                <div *ngIf="block.type=='list'" style="padding-left: 0px; font-size: 15px;">
-                    <div *ngIf="block.data.style=='ordered'">
-                        <ol style="margin-bottom: 2px;">
-                            <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item" class="text">
-                            </li>
-                        </ol>
-                    </div>
-                    <div *ngIf="block.data.style=='unordered'">
-                        <ul *ngFor="let item of block.data.items" style="margin-bottom: 2px;">
-                            <li [innerHTML]="item" class="text"></li>
-                        </ul>
+                        •
+                        {{comment.sys_created_on | dateAgoQues}}
                     </div>
                 </div>
-
-                <div *ngIf="block.type=='code'">
-                    <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
-                        <pre style="color: #41314E;" style="font-size: 12px;" class="text">{{block.data.code}}</pre>
-                    </div>
-                </div>
-
-                <div *ngIf="block.type=='paragraph'">
-                    <p style="margin-bottom: 2px; font-size: 15px;" [innerHTML]="block.data.text" class="text">
-                    </p>
-                </div>
-            </div>
-            <br>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-7">
-            <div style="font-size: 14px; text-align: right;">
-                <br>
-                <mat-form-field style="width: 100%;" appearance="legacy">
-                    <mat-label>Add comment </mat-label>
-                    <input matInput placeholder="comments..." [(ngModel)]="input_comment">
-                </mat-form-field>
-                <!-- <input type="text"  style="width: 80%; outline: #1F8476;" [(ngModel)]="input_comment"> -->
-                <div style="text-align: right;">
-                    <button mat-button class="primary-button" style="margin-right: 10px;">Cancel</button>
-                    <button mat-button class="primary-button-inverted" (click)="saveComment()">Save</button>
-                </div>
-                <br>
-            </div>
-            <div style="font-size: 12px;" *ngIf="comments?.length>0">
-                <div *ngFor="let comment of comments" style="border-top: 1px dotted #ddd; padding: 5px 0px;">
-                    {{comment.comment}} -
-                    <a routerLink="/user/{{comment.get_created_by.id}}" style="color: #1F8476;">
-                        {{comment.get_created_by.name}}
-                    </a>
-                    •
-                    {{comment.sys_created_on | dateAgoQues}}
-                </div>
             </div>
         </div>
+        <br>
     </div>
-    <br>
+    <div class="col-md-3">
+    </div>
+
+
+    <app-answers *ngIf="gotResponse" [answers]="response?.answers"></app-answers>
+
+    <br><br>
 </div>
-<div class="col-md-3">
-</div>
-
-
-<app-answers *ngIf="gotResponse" [answers]="response?.answers"></app-answers>
-
-<br><br>

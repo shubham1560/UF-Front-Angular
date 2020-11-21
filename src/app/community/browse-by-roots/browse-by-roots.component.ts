@@ -24,6 +24,8 @@ export class BrowseByRootsComponent implements OnInit {
   articles
   selected_root;
   selected_path;
+  selected_root_label;
+  selected_path_label;
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(
       params => {
@@ -33,6 +35,7 @@ export class BrowseByRootsComponent implements OnInit {
           this.knowledge.getRelatedCategories(params.get('root'), 'root', 'course').subscribe(
             (result:any) => {
               this.paths = result.categories;
+              this.getSelectedLabel()
             }
           )
         }
@@ -55,11 +58,29 @@ export class BrowseByRootsComponent implements OnInit {
       result => {
         this.loading = false;
         this.roots = result;
+        this.getSelectedLabel()
       },
       error => {
         this.loading = false;
       }
     )
+  }
+
+  getSelectedLabel(){
+    if(this.roots){
+      this.roots.bases.forEach(element => {
+        if(element.id == this.selected_root){
+          this.selected_root_label = element.title;
+        }
+      });
+    }
+    if(this.paths){
+      this.paths.forEach(element => {
+        if(element.id == this.selected_path){
+          this.selected_path_label = element.label;
+        }
+      });
+    }
   }
 
 }
