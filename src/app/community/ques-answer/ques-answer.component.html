@@ -1,108 +1,102 @@
 <mat-progress-bar mode="determinate" color="accent" value="100"></mat-progress-bar>
 
 
-<div class="container" id="sqa">
-    <br>
+<div class="container" id="sqa" style="margin-top: 10px;">
     <div class="row">
         <div class="col-md-9">
-            <div class="row">
-                <!-- <pre>
-                    {{response | json}}
-                </pre> -->
+            <h5>
+                {{question?.question}}
+            </h5>
+            <div style="font-size: 14px; padding: 10px 0px;">
+                <span style="color: #1F8476;">
+                    {{question?.get_kb_base.label}}
+                    {{question?.get_kb_category.label? " / "+question?.get_kb_category.label: ""}}
+                </span>
+                 • 
+                <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                    <a routerLink="/user/{{question?.get_created_by.id}}" style="color: #1F8476;">
+                        {{question?.get_created_by.name}}
+                    </a>
+                </span>
 
-                <h5>
-                    {{question?.question}}
-
-                </h5>
+                <span class="edit-question" *ngIf="owner"
+                    style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
+                    <a (click)="editQuestion()">
+                        Edit
+                    </a>
+                </span>
                 <br>
-                <div style="font-size: 14px; padding: 10px 0px;">
-                    <span style="color: #1F8476;">
-                        {{question?.get_kb_base.label}}
-                        {{question?.get_kb_category.label? " / "+question?.get_kb_category.label: ""}}
-                    </span>
-                    <span style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
-                        <a routerLink="/user/{{question?.get_created_by.id}}" style="color: #1F8476;">
-                            {{question?.get_created_by.name}}
-                        </a>
-                    </span>
+                <span style=" color: #1F8476;" *ngIf="question?.update_count>0">
+                    updated {{question?.update_count}} time(s) | last updated
+                    {{question?.sys_updated_on | dateAgoQues}} |
+                </span>
 
-                    <span class="edit-question" *ngIf="question?.question_owner" style="border-left: 2px solid #ddd; padding-left: 10px; margin-left: 10px;">
-                        <a (click)="editQuestion()">
-                            Edit
-                        </a>
-                    </span> 
-                    <br>
-                    <span style=" color: #1F8476;" *ngIf="question?.update_count>0">
-                        updated {{question?.update_count}} time(s) | last updated {{question?.sys_updated_on | dateAgoQues}} |
-                    </span>
-
-                    <span style=" color: #1F8476;">
-                        asked {{question?.sys_created_on | dateAgoQues}} 
-                    </span>
-
-                </div>
+                <span style=" color: #1F8476;">
+                    asked {{question?.sys_created_on | dateAgoQues}}
+                </span>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-1">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-8">
+            
+            <div *ngFor="let block of data?.blocks">
+                <div *ngIf="block.type=='list'" style="padding-left: 0px; font-size: 15px;">
+                    <div *ngIf="block.data.style=='ordered'">
+                        <ol style="margin-bottom: 2px;">
+                            <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item" class="text">
+                            </li>
+                        </ol>
+                    </div>
+                    <div *ngIf="block.data.style=='unordered'">
+                        <ul *ngFor="let item of block.data.items" style="margin-bottom: 2px;">
+                            <li [innerHTML]="item" class="text"></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-11">
-                    <div *ngFor="let block of data?.blocks">
-                        <div *ngIf="block.type=='list'" style="padding-left: 0px; font-size: 15px;">
-                            <div *ngIf="block.data.style=='ordered'">
-                                <ol  style="margin-bottom: 2px;">
-                                    <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item" class="text"></li>
-                                </ol>
-                            </div>
-                            <div *ngIf="block.data.style=='unordered'">
-                                <ul *ngFor="let item of block.data.items" style="margin-bottom: 2px;">
-                                    <li [innerHTML]="item" class="text"></li>
-                                </ul>
-                            </div>
-                        </div>
 
-                        <div *ngIf="block.type=='code'">
-                            <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
-                                <pre style="color: #41314E;" style="font-size: 12px;"
-                                    class="text">{{block.data.code}}</pre>
-                            </div>
-                        </div>
+                <div *ngIf="block.type=='code'">
+                    <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
+                        <pre style="color: #41314E;" style="font-size: 12px;" class="text">{{block.data.code}}</pre>
+                    </div>
+                </div>
 
-                        <div *ngIf="block.type=='paragraph'">
-                            <p style="margin-bottom: 2px; font-size: 15px;" [innerHTML]="block.data.text" class="text">
-                            </p>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="font-size: 12px; text-align: right;">
-                        add comment <br>
-                        <input type="text" style="width: 80%; outline: #1F8476;" [(ngModel)]="input_comment">
-                        <div style="padding: 10px; text-align: right;">
-                            <button class="primary-button" style="margin-right: 10px;">Cancel</button>
-                            <button class="primary-button-inverted" (click)="saveComment()">Save</button>
-                        </div>
-                    </div>
-                    <div style="font-size: 14px; padding-left: 140px;" *ngIf="comments?.length>0">
-
-                        <hr>
-                        <div *ngFor="let comment of comments">
-                            -- {{comment.comment}} -
-                            <a routerLink="/user/{{comment.get_created_by.id}}" style="color: #1F8476;">
-                                {{comment.get_created_by.name}}
-                            </a>
-                            {{comment.sys_created_on | dateAgoQues}}
-                        </div>
-                    </div>
+                <div *ngIf="block.type=='paragraph'">
+                    <p style="margin-bottom: 2px; font-size: 15px;" [innerHTML]="block.data.text" class="text">
+                    </p>
                 </div>
             </div>
             <br>
-        </div>
-        <div class="col-md-3">
+            <div style="font-size: 12px; text-align: right;">
+                add comment <br>
+                <input type="text" style="width: 80%; outline: #1F8476;" [(ngModel)]="input_comment">
+                <div style="padding: 10px; text-align: right;">
+                    <button class="primary-button" style="margin-right: 10px;">Cancel</button>
+                    <button class="primary-button-inverted" (click)="saveComment()">Save</button>
+                </div>
+            </div>
+            <div style="font-size: 14px; padding-left: 140px;" *ngIf="comments?.length>0">
+
+                <hr>
+                <div *ngFor="let comment of comments">
+                    -- {{comment.comment}} -
+                    <a routerLink="/user/{{comment.get_created_by.id}}" style="color: #1F8476;">
+                        {{comment.get_created_by.name}}
+                    </a>
+                    {{comment.sys_created_on | dateAgoQues}}
+                </div>
+            </div>
         </div>
     </div>
+    <br>
+</div>
+<div class="col-md-3">
 </div>
 
 
-<app-answers *ngIf="gotResponse" [answers] = "response?.answers" ></app-answers>
+<app-answers *ngIf="gotResponse" [answers]="response?.answers"></app-answers>
 
 <br><br>

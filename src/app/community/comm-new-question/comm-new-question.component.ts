@@ -113,7 +113,6 @@ export class CommNewQuestionComponent implements OnInit {
 
       this.community.postQuestion(question_detail).subscribe(
         (result:any) => {
-          // console.l/og(result);
           this.router.navigate(['community', 'sq_qa', result.question_id, result.title]);
         }, 
         error=>{

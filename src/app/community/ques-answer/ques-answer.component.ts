@@ -42,12 +42,14 @@ export class QuesAnswerComponent implements OnInit {
             this.question = result.question;
             this.comments = result.comments;
             this.owner = result.question_owner;
-            var len = this.question.question_details.length - 1;
-            this.data = {
-              time: 1552744582955,
-              blocks: this.replacement(this.question.question_details.substring(1, len)),  //changing the data of string into array of objects
-              version: "2.11.10"
-            };
+            if (this.question.question_details.length != 2) {
+              var len = this.question.question_details.length - 1;
+              this.data = {
+                time: 1552744582955,
+                blocks: this.replacement(this.question.question_details.substring(1, len)),  //changing the data of string into array of objects
+                version: "2.11.10"
+              };
+            }
             this.gotResponse = true;
 
             // this.initializeEditor();
