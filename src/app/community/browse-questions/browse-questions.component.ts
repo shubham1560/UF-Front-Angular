@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommunityService } from '../../services/community/community.service'
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { AuthService } from 'src/app/services/authservice/auth.service';
+import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-browse-questions',
@@ -15,7 +18,11 @@ export class BrowseQuestionsComponent implements OnInit {
     private route: ActivatedRoute,
     private commService: CommunityService,
     private loggerService: LoggerService,
-    private breakpointObserver: BreakpointObserver
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService,
+    private router: Router,
+    private dialog: MatDialog,
+
   ) { }
 
   questions;
@@ -47,4 +54,19 @@ export class BrowseQuestionsComponent implements OnInit {
     )
     this.loggerService.logData("st-question", this);
   }
+
+
+  askQuestion(){
+    if(this.authService.isLoggedIn()){
+      this.router.navigateByUrl('/community/new_question');
+    }
+    else{
+      this.openLoginPrompt()
+    }
+  }
+
+  openLoginPrompt() {
+    const dialogRef = this.dialog.open(LoginpromptComponent);
+  }
+
 }

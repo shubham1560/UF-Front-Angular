@@ -10,7 +10,8 @@
 <div class="container flex-wrapper">
     <div class="row">
         <div class="col-md-3" *ngIf="!hidesmallscreen">
-            <a routerLink="/community/new_question" mat-button class="primary-button-inverted" style="width: 100%;">Ask
+            <a (click)="askQuestion()"  mat-button class="primary-button-inverted" style="width: 100%; margin-bottom: 15px;">
+                Ask
                 a question</a>
         </div>
         <div class="col-md-9">
@@ -51,8 +52,8 @@
         </div>
 
         <div class="col-md-3" *ngIf="hidesmallscreen">
-            <a routerLink="/community/new_question" mat-button class="primary-button-inverted" style="width: 100%;">Ask
-                a question</a>
+            <a (click)="askQuestion()" mat-button class="primary-button-inverted" style="width: 100%; color: black;">
+                Ask a question</a>
         </div>
     </div>
 </div>

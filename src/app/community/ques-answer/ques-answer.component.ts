@@ -7,6 +7,8 @@ import CodeTool from '@editorjs/code';
 import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 import { MatDialog } from '@angular/material/dialog';
 import { EditorEditComponent } from '../editor-edit/editor-edit.component'
+import { AuthService } from 'src/app/services/authservice/auth.service';
+import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.component';
 
 @Component({
   selector: 'app-ques-answer',
@@ -19,7 +21,8 @@ export class QuesAnswerComponent implements OnInit {
     private community: CommunityService,
     private route: ActivatedRoute,
     private logger: LoggerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService,
   ) { }
 
   question;
@@ -31,6 +34,7 @@ export class QuesAnswerComponent implements OnInit {
   owner;
   response;
   gotResponse = false;
+  isLoggedIn;
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(
@@ -51,8 +55,6 @@ export class QuesAnswerComponent implements OnInit {
               };
             }
             this.gotResponse = true;
-
-            // this.initializeEditor();
           }
         )
       }
@@ -86,17 +88,21 @@ export class QuesAnswerComponent implements OnInit {
 
   commenting;
   saveComment() {
-    this.commenting = true
-    if (this.input_comment) {
-      this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
-        result => {
-          this.input_comment = "";
-          this.commenting = false;
-          this.comments.unshift(result)
-        }, error => {
-          this.commenting = false;
-        }
-      )
+    if (this.authService.isLoggedIn()) {
+      this.commenting = true
+      if (this.input_comment) {
+        this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
+          result => {
+            this.input_comment = "";
+            this.commenting = false;
+            this.comments.unshift(result)
+          }, error => {
+            this.commenting = false;
+          }
+        )
+      }
+    } else {
+      this.openLoginPrompt();
     }
   }
 
@@ -120,4 +126,10 @@ export class QuesAnswerComponent implements OnInit {
       }
     });
   }
+
+
+  openLoginPrompt() {
+    const dialogRef = this.dialog.open(LoginpromptComponent);
+  }
+
 }

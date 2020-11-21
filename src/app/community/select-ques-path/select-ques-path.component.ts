@@ -89,7 +89,7 @@ export class SelectQuesPathComponent implements OnInit {
     this.selected_path_label = undefined
     this.paths.forEach(element => {
       if (element.id == path_id) {
-        console.log(element.id, path_id)
+        // console.log(element.id, path_id)
         this.selected_path_label = element.label;
       }
     });
@@ -99,7 +99,7 @@ export class SelectQuesPathComponent implements OnInit {
     this.selected_root_label = undefined
     this.roots.forEach(element => {
       if (element.id == root_id) {
-        console.log(element.id, root_id)
+        // console.log(element.id, root_id)
         this.selected_root_label = element.title;
       }
     });

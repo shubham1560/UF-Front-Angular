@@ -4,6 +4,7 @@ import CodeTool from '@editorjs/code';
 import List from '@editorjs/list';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommunityService } from 'src/app/services/community/community.service';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 @Component({
   selector: 'app-editor-edit',
@@ -16,7 +17,8 @@ export class EditorEditComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<EditorEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private community: CommunityService
+    private community: CommunityService,
+    private authService: AuthService,
   ) { 
   }
 
@@ -25,9 +27,14 @@ export class EditorEditComponent implements OnInit {
   editor_data;
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
       this.initializeEditor();
       this.table_id = this.data.table_id;
       this.table_name = this.data.table_name;
+    }
+    else{
+      this.dialogRef.close()
+    }
   }
 
   initializeEditor() {
@@ -55,14 +62,14 @@ export class EditorEditComponent implements OnInit {
       }
     })
 
-    console.log(this.editor);
+    // console.log(this.editor);
     
   }
 
 
   save() {
     this.editor.save().then((outputData: any) => {
-      console.log(outputData);
+      // console.log(outputData);
       var editor_data = JSON.stringify(outputData.blocks);
       this.community.postEditorData(this.table_id, this.table_name, editor_data).subscribe(
         result=>{

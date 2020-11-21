@@ -6,6 +6,8 @@ import List from '@editorjs/list';
 import CodeTool from '@editorjs/code';
 import { EditorEditComponent } from '../editor-edit/editor-edit.component';
 import { MatDialog } from '@angular/material/dialog';
+import { LoginpromptComponent } from 'src/app/auth/loginprompt/loginprompt.component';
+import { AuthService } from 'src/app/services/authservice/auth.service';
 
 
 @Component({
@@ -18,7 +20,8 @@ export class AnswersComponent implements OnInit {
   constructor(
     private community: CommunityService,
     private route: ActivatedRoute,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private authService: AuthService
   ) { }
 
   @Input() answers;
@@ -26,9 +29,14 @@ export class AnswersComponent implements OnInit {
   post_answer_disabled;
 
   json_answers = [];
-
+  logged_in = false;
 
   ngOnInit(): void {
+
+    if (this.authService.isLoggedIn()) {
+      this.logged_in = true;
+    }
+
     // console.log(this.answers);
     this.initializeEditor();
     this.route.paramMap.subscribe(
@@ -68,34 +76,40 @@ export class AnswersComponent implements OnInit {
 
 
   save() {
-    this.post_answer_disabled = true;
-    this.editor.save().then((outputData: any) => {
-      if (outputData.blocks.length > 0) {
-        var question_detail = {
-          description: JSON.stringify(outputData.blocks),
-          question: this.question_id,
-        }
-        this.community.postAnswer(question_detail).subscribe(
-          result => {
-            this.answers.unshift(result);
-            this.changeToJsonAnswer();
-            this.post_answer_disabled = false;
-            outputData.blocks = []; 
-          },
-          error => {
-            this.post_answer_disabled = false;
+    if (this.logged_in) {
+      this.post_answer_disabled = true;
+      this.editor.save().then((outputData: any) => {
+        if (outputData.blocks.length > 0) {
+          var question_detail = {
+            description: JSON.stringify(outputData.blocks),
+            question: this.question_id,
           }
-        )
-      }
-      else {
-        console.log("insert something");
-        this.post_answer_disabled = false;
-      }
-    })
-
-
+          this.community.postAnswer(question_detail).subscribe(
+            result => {
+              this.answers.unshift(result);
+              this.changeToJsonAnswer();
+              this.post_answer_disabled = false;
+              outputData.blocks = [];
+            },
+            error => {
+              this.post_answer_disabled = false;
+            }
+          )
+        }
+        else {
+          // console.log("insert something");
+          this.post_answer_disabled = false;
+        }
+      })
+    }
+    else {
+      this.openLoginPrompt()
+    }
   }
 
+  openLoginPrompt() {
+    const dialogRef = this.dialog.open(LoginpromptComponent);
+  }
 
   changeToJsonAnswer() {
     this.json_answers = [];
@@ -116,30 +130,36 @@ export class AnswersComponent implements OnInit {
   }
 
   editAnswer(block_data, answer_id) {
-    const dialogRef = this.dialog.open(EditorEditComponent, {
-      minWidth: '280px',
-      data: {
-        editor_data: {
-          "time": '1232qads',
-          'blocks': block_data,
-          "version": '1.19'
-        },
-        table_id: answer_id,
-        table_name: 'answer'
-      }
-    });
+    if (this.logged_in) {
+      const dialogRef = this.dialog.open(EditorEditComponent, {
+        minWidth: '280px',
+        data: {
+          editor_data: {
+            "time": '1232qads',
+            'blocks': block_data,
+            "version": '1.19'
+          },
+          table_id: answer_id,
+          table_name: 'answer'
+        }
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result?.block_data) {
-        // console.log(result);
-        this.answers.forEach(element => {
-          if (element.id == result.table_id) {
-            element.answer = result.block_data;
-          }
-        });
-        this.changeToJsonAnswer();
-      }
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result?.block_data) {
+          // console.log(result);
+          this.answers.forEach(element => {
+            if (element.id == result.table_id) {
+              element.answer = result.block_data;
+            }
+          });
+          this.changeToJsonAnswer();
+        }
+      });
+    }
+    else {
+      this.openLoginPrompt()
+    }
+
   }
 
   replacement = function (a) {
