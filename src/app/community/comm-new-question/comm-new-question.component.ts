@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationStart, Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import EditorJS from '@editorjs/editorjs';
-import ImageTool from '@editorjs/image';
 import List from '@editorjs/list';
 import CodeTool from '@editorjs/code';
-import { UrlconfigService } from 'src/app/services/urlconfig.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
-import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
-import { MatDialog } from '@angular/material';
 import { NsfwJsService } from 'src/app/services/nsfw/nsfw-js.service'
 import { CommunityService } from 'src/app/services/community/community.service';
 
@@ -24,10 +19,8 @@ export class CommNewQuestionComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    // private knowledgeService: DataService,
     private _snackBar: MatSnackBar,
     private router: Router,
-    // private dialog: MatDialog,
     private community: CommunityService,
     private nsfw: NsfwJsService,
     private route: ActivatedRoute
@@ -113,13 +106,14 @@ export class CommNewQuestionComponent implements OnInit {
 
       this.community.postQuestion(question_detail).subscribe(
         (result:any) => {
-          this.router.navigate(['community', 'sq_qa', result.question_id, result.title]);
+          console.log(result);
+          var url = "community/sq_qa/" + result.question_id +"/" + result.question_title;
+          this.router.navigateByUrl(url);
         }, 
         error=>{
 
         }
       )
-
     })
   }
 

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthService } from '../authservice/auth.service';
 import { UrlconfigService } from '../urlconfig.service';
 import { HttpClient } from '@angular/common/http';
+import { CacheserviceService } from '../cacheservice/cacheservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class CommunityService {
   constructor(
     private auth: AuthService,
     private urlService: UrlconfigService,
-    private httpService: HttpClient
+    private httpService: HttpClient,
+    private cache: CacheserviceService,
   ) { }
 
   base_url = this.urlService.getUrl();
@@ -32,8 +34,8 @@ export class CommunityService {
   postQuestion(data){
     this.called_url = `${this.base_community_url}question/`;
     const body = data;
+    this.cache.deleteContaining("question?root=");
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
-
   }
 
   getQuestionAndAnswers(question_id){
