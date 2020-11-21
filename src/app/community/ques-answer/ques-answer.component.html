@@ -85,10 +85,9 @@
                         <mat-label>Add comment </mat-label>
                         <input matInput placeholder="comments..." [(ngModel)]="input_comment">
                     </mat-form-field>
-                    <!-- <input type="text"  style="width: 80%; outline: #1F8476;" [(ngModel)]="input_comment"> -->
                     <div style="text-align: right;">
-                        <button mat-button class="primary-button" style="margin-right: 10px;">Cancel</button>
-                        <button mat-button class="primary-button-inverted" (click)="saveComment()">Save</button>
+                        <!-- <button mat-button class="primary-button" style="margin-right: 10px;">Cancel</button> -->
+                        <button mat-button class="primary-button-inverted" [disabled]="commenting || !input_comment" (click)="saveComment()">Add comment</button>
                     </div>
                     <br>
                 </div>

@@ -84,14 +84,20 @@ export class QuesAnswerComponent implements OnInit {
     return c;
   }
 
+  commenting;
   saveComment() {
-    this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
-      result => {
-        this.comments.unshift(
-          result
-        )
-      }
-    )
+    this.commenting = true
+    if (this.input_comment) {
+      this.community.postComment(this.question_id, 'question', this.input_comment).subscribe(
+        result => {
+          this.input_comment = "";
+          this.commenting = false;
+          this.comments.unshift(result)
+        }, error => {
+          this.commenting = false;
+        }
+      )
+    }
   }
 
   editQuestion() {
