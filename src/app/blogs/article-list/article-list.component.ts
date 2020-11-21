@@ -71,7 +71,6 @@ export class ArticleListComponent implements OnInit {
           if (this.authService.isLoggedIn()) {
             this.knowledgeService.ifCourseOwner(this.course).subscribe(
               (result: any) => {
-                // console.log(result);
                 this.owner = result.owner;
               }
             )
@@ -89,12 +88,16 @@ export class ArticleListComponent implements OnInit {
   }
 
 
+  root;
   changeTheCourse() {
     // console.log('change the course called------------------');
     // this.isLoading = true;
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
         // console.log("running");
+        console.log(response);
+        this.root = response.course.root;
+        
         this.articlesList.emit(response);
         this.courseName = response.course.label;
         this.courseDescription = response.course.description;

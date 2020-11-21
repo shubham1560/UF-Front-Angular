@@ -121,7 +121,13 @@
             </mat-progress-bar>
             <br>
             <div style="width: 100%;text-align: center;">
-                <mat-accordion>
+                <a mat-button class="primary-button-inverted"
+                [routerLink]="['/community', 'new_question']" [queryParams]="{root: root, path: course}">
+                 <!-- routerLink = "/community/new_question?root={{root}}&path={{course}}" -->
+                    Ask a question regarding the path
+                </a>
+
+                <!-- <mat-accordion>
                     <mat-expansion-panel hideToggle>
                         <mat-expansion-panel-header class="primary-button">
                             <mat-panel-title style="text-align: center;">
@@ -133,7 +139,7 @@
                         <p>Coming Soon</p>
                     </mat-expansion-panel>
 
-                </mat-accordion>
+                </mat-accordion> -->
                 <!-- <button mat-button class="primary-button-inverted"> Ask a question </button> -->
             </div>
             <!-- <div *ngIf="owner" style="padding-left: 20px; color: #3c869a;">
