@@ -66,12 +66,22 @@
         <div class="col-md-9">
             <div>
                 <br><br>
+                <hr>
                 <h5 style="color: #1F8476;">Your answer</h5>
-                <div style="margin: auto; padding: 15px;margin-bottom: 20px;" class="st-border" id="editorjsanswer">
+                <h6 *ngIf="!logged_in">Please 
+                    <a (click)="openLoginPrompt()" style="color: #1F8476; cursor: pointer;"> 
+                        sign in 
+                    </a> 
+                    to post an answer
+                </h6>
+
+                <div *ngIf="logged_in" style="margin: auto; padding: 15px;margin-bottom: 20px;" class="st-border" id="editorjsanswer">
 
                 </div>
-                <button mat-button [disabled]="post_answer_disabled" class="primary-button-inverted" (click)="save()"
-                    style="float: right;">Post your answer</button>
+                <button mat-button *ngIf="logged_in" [disabled]="post_answer_disabled" class="primary-button-inverted" (click)="save()"
+                    style="float: right;">
+                    Post your answer
+                </button>
             </div>
         </div>
     </div>
