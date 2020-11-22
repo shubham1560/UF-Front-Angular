@@ -46,7 +46,6 @@ export class CommNewQuestionComponent implements OnInit {
         this.path = param.get('path');
         if (this.authService.isLoggedIn()) {
           this.initializeEditor();
-
         }
         else {
           var url = '/community?root=' + this.root + "&path=" + this.path;

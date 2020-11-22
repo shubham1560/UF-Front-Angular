@@ -73,6 +73,29 @@
         </div>
         <div class="col-lg-1"></div>
     </div>
+    <br><br>
+    <span style="color: #1F8476; outline: none;"> 
+        <button mat-button style="outline: none;" routerLink="/community">
+            All
+        </button> 
+        
+        <button mat-button *ngIf="selected_root" routerLink="/community" [queryParams]="{root: selected_root}" style="outline: none;">
+            <mat-icon>
+                arrow_right
+            </mat-icon>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {{selected_root_label}}
+        </button>
+        <button *ngIf="selected_path"  mat-button style="outline: none;">
+            <mat-icon>
+                arrow_right
+            </mat-icon>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            {{selected_path_label}}
+        </button> 
+    </span>
+
 </div>
 
 
