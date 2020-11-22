@@ -40,19 +40,21 @@ export class CommNewQuestionComponent implements OnInit {
   path;
 
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()){
-    this.initializeEditor();
     this.route.queryParamMap.subscribe(
       param => {
         this.root = param.get('root');
         this.path = param.get('path');
+        if (this.authService.isLoggedIn()) {
+          this.initializeEditor();
+
+        }
+        else {
+          var url = '/community?root=' + this.root + "&path=" + this.path;
+          this.router.navigateByUrl(url);
+        }
       }
     )
     this.nsfw.loadModel();
-    }
-    else{
-      this.router.navigateByUrl('/community');
-    }
   }
 
 
