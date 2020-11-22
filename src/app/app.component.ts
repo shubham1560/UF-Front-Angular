@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
           this.mainHeader = true;
           this.commHeader = false;
           // (document.querySelector('app-header') as HTMLElement).style.display = 'block';
-          (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
+          // (document.querySelector('app-footer') as HTMLElement).style.display = 'block';
         }
         else{
           this.commHeader = true;
@@ -54,7 +54,7 @@ export class AppComponent implements OnInit {
     this.routerService.paramMap.subscribe(
       params => {
         // (document.querySelector('app-header') as HTMLElement).style.display = 'none';
-        (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
+        // (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
       }
     );
 
