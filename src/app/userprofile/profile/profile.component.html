@@ -1,4 +1,5 @@
-<mat-progress-bar mode="determinate" value="100" color="accent"></mat-progress-bar>
+<mat-progress-bar mode="determinate" value="100" *ngIf="!imageUploading" color="accent"></mat-progress-bar>
+<mat-progress-bar mode="query" *ngIf="imageUploading" color="accent"></mat-progress-bar>
 <div class="flex-wrapper">
     <div id="uf_user_profile">
         <div class="container uf-border" *ngIf="isLoading" id="uf_user_profile_ghost" style="margin-top: 20px;">
@@ -46,14 +47,15 @@
                         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
                             style="width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
                             class="border">
-                            <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;">
+                            <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto; ">
                             </mat-spinner>
+                            <!-- <mat-spinner style="margin-top:20px !important;margin: auto; ">
+                            </mat-spinner> -->
                         </div>
                         <div *ngIf="!image" [ngStyle]="{background: 'url('+image+')'}"
                             style="background-color: #8dbcaa; color: white;text-align:center; font-size: 45px; padding-top:40px; width: 150px; height: 150px; margin:auto; border-radius:100px; background-size: 100% 100%;"
                             class="border">
                             {{display_name}}
-                            <!-- <mat-spinner *ngIf="imageUploading" style="margin-top:20px !important;margin: auto;"></mat-spinner> -->
                         </div>
                     </div>
 
