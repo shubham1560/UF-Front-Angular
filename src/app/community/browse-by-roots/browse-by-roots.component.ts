@@ -42,7 +42,7 @@ export class BrowseByRootsComponent implements OnInit {
         else {
           this.paths = [];
         }
-
+        this.getBases();
       }
     )
     this.loggerService.logData("st-comm-select", this);

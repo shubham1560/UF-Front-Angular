@@ -21,7 +21,8 @@
                                 <div class="row">
                                     <a routerLink="/community" [queryParams]="{root: root.id}"
                                         *ngFor="let root of roots?.bases" class="col-md-3 col-6">
-                                        <div class="st-border card" [ngClass]="{'selected' : root.id == selected_root}" matTooltip="{{root?.title}}">
+                                        <div class="st-border card" [ngClass]="{'selected' : root.id == selected_root}"
+                                            matTooltip="{{root?.title}}">
                                             <div class="title">{{root?.title}}</div>
                                         </div>
                                     </a>
@@ -50,7 +51,9 @@
                                         <a routerLink="/community" [queryParams]="{path: path.id}"
                                             queryParamsHandling='merge' *ngFor="let path of paths"
                                             class="col-md-3 col-6">
-                                            <div class="st-border card"  [ngClass]="{'selected' : path.id == selected_path}" matTooltip="{{path?.label}}">
+                                            <div class="st-border card"
+                                                [ngClass]="{'selected' : path.id == selected_path}"
+                                                matTooltip="{{path?.label}}">
                                                 <div class="title">{{path?.label}}</div>
                                             </div>
                                         </a>
@@ -74,29 +77,51 @@
         <div class="col-lg-1"></div>
     </div>
     <br><br>
-    <span style="color: #1F8476; outline: none;"> 
+    <span style="color: #1F8476; outline: none;">
         <button mat-button style="outline: none;" routerLink="/community">
             All
-        </button> 
-        
-        <button mat-button *ngIf="selected_root" routerLink="/community" [queryParams]="{root: selected_root}" style="outline: none;">
-            <mat-icon>
-                arrow_right
-            </mat-icon>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            {{selected_root_label}}
         </button>
-        <button *ngIf="selected_path"  mat-button style="outline: none;">
-            <mat-icon>
-                arrow_right
-            </mat-icon>
-            &nbsp;&nbsp;&nbsp;&nbsp;
-            {{selected_path_label}}
-        </button> 
+
+        <span *ngIf="selected_root && roots">
+            <button mat-icon-button>
+                <mat-icon>
+                    arrow_right
+                </mat-icon>
+            </button>
+
+            <button mat-button [matMenuTriggerFor]="root" routerLink="/community" [queryParams]="{root: selected_root}"
+                style="outline: none;">
+                {{selected_root_label}}
+                <!-- <mat-icon>
+                    arrow_drop_down
+                </mat-icon> -->
+            </button>
+            <mat-menu #root="matMenu">
+                <button mat-menu-item class="menu-item-header" *ngFor="let root of roots?.bases" routerLink="/community"
+                    [queryParams]="{root: root.id}">
+                    {{root?.title}}
+                </button>
+            </mat-menu>
+        </span>
+        <span *ngIf="selected_path">
+            <button mat-icon-button>
+                <mat-icon>
+                    arrow_right
+                </mat-icon>
+            </button>
+            <button mat-button style="outline: none;" [matMenuTriggerFor]="path">
+                {{selected_path_label}}
+                <!-- <mat-icon>
+                    arrow_drop_down
+                </mat-icon> -->
+            </button>
+            <mat-menu #path="matMenu">
+                <button mat-menu-item class="menu-item-header" *ngFor="let path of paths" routerLink="/community" queryParamsHandling='merge'
+                    [queryParams]="{path: path.id}">
+                    {{path?.label}}
+                </button>
+            </mat-menu>
+        </span>
     </span>
 
 </div>
-
-
-
