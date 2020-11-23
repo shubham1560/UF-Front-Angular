@@ -125,6 +125,11 @@
                 [routerLink]="['/community', 'new_question']" [queryParams]="{root: root, path: course}">
                     Ask a question regarding the path
                 </a>
+                <br><br>
+                <a mat-button class="primary-button" *ngIf="questions>0" [matBadge]="questions" matBadgeColor="accent"
+                [routerLink]="['/community']" [queryParams]="{root: root, path: course}">
+                    Explore community 
+                </a>
             </div>
             <br>
             <div class="left-widget-wrapper">
