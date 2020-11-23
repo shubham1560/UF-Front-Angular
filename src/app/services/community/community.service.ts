@@ -66,6 +66,7 @@ export class CommunityService {
   postAnswer(data){
     this.called_url = `${this.base_community_url}answer/`;
     const body = data;
+    this.cache.deleteContaining("question?root=");
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 }

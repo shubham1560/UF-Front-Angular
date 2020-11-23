@@ -21,7 +21,7 @@
                                 <div class="row">
                                     <a routerLink="/community" [queryParams]="{root: root.id}"
                                         *ngFor="let root of roots?.bases" class="col-md-3 col-6">
-                                        <div class="st-border card" [ngClass]="{'selected' : root.id == selected_root}"
+                                        <div class="st-border card" matBadgeColor="warn" [matBadge]="root.question_count" [ngClass]="{'selected' : root.id == selected_root}"
                                             matTooltip="{{root?.title}}">
                                             <div class="title">{{root?.title}}</div>
                                         </div>
@@ -50,8 +50,8 @@
                                     <div class="row">
                                         <a routerLink="/community" [queryParams]="{path: path.id}"
                                             queryParamsHandling='merge' *ngFor="let path of paths"
-                                            class="col-md-3 col-6">
-                                            <div class="st-border card"
+                                            class="col-md-3 col-6" >
+                                            <div class="st-border card" matBadgeColor="warn" [matBadge]="path.question_count"
                                                 [ngClass]="{'selected' : path.id == selected_path}"
                                                 matTooltip="{{path?.label}}">
                                                 <div class="title">{{path?.label}}</div>

@@ -33,16 +33,27 @@
                                     {{question.get_kb_category?.label}}</span>
                             </div>
                             <span style="font-size: 12px;">
+                                Answer count: {{question.answer_count}}
+                            </span>
+                            <br>
+                            <span style="font-size: 12px;">
                                 <a class="edit-question" routerLink="/user/{{question?.get_created_by.id}}">
                                     {{question?.get_created_by.name}}
                                 </a>
                                 asked {{question?.sys_created_on | dateAgoQues}}
 
-                                <span *ngIf="question?.update_count>0">
-                                    • updated {{question?.sys_updated_on | dateAgoQues}}
+                                <span *ngIf="question?.get_updated_by.name">
+                                    • updated by 
+                                    <a class='edit-question' routerLink='/user/{{question?.get_updated_by.id}}'>
+                                        {{question?.get_updated_by.name}}
+                                    </a>
                                 </span>
-
-
+                                <span *ngIf="question?.update_count>0">
+                                    •  updated {{question?.sys_updated_on | dateAgoQues}}
+                                </span>
+                                <!-- <span *ngIf="question?.get_created_by>0">
+                                    {{question?.sys_updated_on | dateAgoQues}}
+                                </span> -->
                             </span>
 
                         </div>
