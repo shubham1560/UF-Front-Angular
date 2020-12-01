@@ -1,0 +1,18 @@
+.list-article{
+    font-size: 12px;
+    color: #3c869a;
+    line-height: 1;
+    cursor: pointer;
+    padding-left: 10px;
+    width: 100%;
+    &:hover{
+        text-decoration: none;
+
+    }
+}
+
+.active{
+    // background-color: #ddd;
+    // color: indianred;
+    background-color: #f7f7f7;
+}

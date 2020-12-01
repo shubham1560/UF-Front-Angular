@@ -96,8 +96,16 @@ export class ArticleNewComponent implements OnInit {
             this.data = {};
             this.owner = true;
             this.isLoading = true;
-            this.initializeEditor();
-            this.editorInitilized = true;
+            if (this.editorInitilized) {
+              this.editor.destroy()
+              this.editorInitilized = false;
+            }
+            if (!this.editorInitilized) {
+              this.initializeEditor();
+              this.editorInitilized = true;
+            }
+            // this.initializeEditor();
+            // this.editorInitilized = true;
           }
           else {
             this.knowledgeService.getArticleById(article_id).subscribe(
