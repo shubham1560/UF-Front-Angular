@@ -21,12 +21,15 @@ export class ArticlesNavComponent implements OnInit {
   review = [];
   draft = [];
   selected_article_id;
+  loading = true;
 
   ngOnInit(): void {
+    // this.loading = true;
     this.userProfile.getUserAuthoredArticles(this.sort_by, this.state).subscribe(
       (response: any) => {
         this.articles_data = response;
         this.mapToCategory();
+        this.loading = false;
       }
     )
 
