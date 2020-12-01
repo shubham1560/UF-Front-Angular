@@ -1,1 +1,9 @@
-<p>articles-nav works!</p>
+<!-- <p>articles-nav works!</p> -->
+<div *ngFor="let article of articles_data?.articles">
+    <span routerLink="/path/article/{{article.id}}">
+        {{article.title}}
+    </span>
+</div>
+<pre>
+    {{articles_data | json}}
+</pre>

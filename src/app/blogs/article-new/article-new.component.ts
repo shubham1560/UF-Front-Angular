@@ -87,7 +87,7 @@ export class ArticleNewComponent implements OnInit {
         (document.querySelector('app-header') as HTMLElement).style.display = 'none';
         (document.querySelector('app-footer') as HTMLElement).style.display = 'none';
 
-
+        // this.ngOnInit();
         var article_id = params.get("id");
         this.param_article = article_id;
         if (this.authService.isLoggedIn()) {
@@ -102,6 +102,11 @@ export class ArticleNewComponent implements OnInit {
           else {
             this.knowledgeService.getArticleById(article_id).subscribe(
               (response: any) => {
+
+                // this.initializeEditor();
+                // if(this.editorInitilized){
+                //   this.editor.destroy();
+                // }
                 this.showArticleTags = true;
                 this.article = response;
                 this.description = this.article.data.description;
@@ -121,8 +126,13 @@ export class ArticleNewComponent implements OnInit {
                   blocks: this.replacement(response.data.article_body.substring(1, len)),  //changing the data of string into array of objects
                   version: "2.11.10"
                 };
+                if (this.editorInitilized) {
+                  this.editor.destroy()
+                  this.editorInitilized = false;
+                }
                 if (!this.editorInitilized) {
                   this.initializeEditor();
+                  this.editorInitilized = true;
                 }
               }, error => {
                 this.route.navigateByUrl('path/article/1');
@@ -507,25 +517,25 @@ export class ArticleNewComponent implements OnInit {
 
 
   checkForAuthor() {
-    if(this.authService.isLoggedIn()){
-    this.userService.inGroup("Authors").subscribe(
-      (response: Boolean) => {
-        if (response) {
-          this.knowledgeService.wakeUpCall().subscribe(
-            result => { }
-          )
-          return true;
-        }
-        else {
-          this.route.navigate(["welcome"]);
+    if (this.authService.isLoggedIn()) {
+      this.userService.inGroup("Authors").subscribe(
+        (response: Boolean) => {
+          if (response) {
+            this.knowledgeService.wakeUpCall().subscribe(
+              result => { }
+            )
+            return true;
+          }
+          else {
+            this.route.navigate(["welcome"]);
+            return false;
+          }
+        }, error => {
           return false;
         }
-      }, error => {
-        return false;
-      }
-    )
+      )
     }
-    else{
+    else {
       this.route.navigate['auth']
     }
   }
@@ -547,10 +557,10 @@ export class ArticleNewComponent implements OnInit {
     }
   }
 
-  openEditorTutorial(){
+  openEditorTutorial() {
     const dialogRef = this.dialog.open(UsingTheEditorComponent)
-      // minWidth: 280,
-      // data: { article_id: this.id }
+    // minWidth: 280,
+    // data: { article_id: this.id }
   }
-  
+
 }
