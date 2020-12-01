@@ -52,11 +52,17 @@
 
     </span>
 
+    <span class="sign-in">
+        <a mat-flat-button class="uf-dashboard" routerLink="/community/"
+            routerLinkActive="active">Community</a>
+
+    </span>
+
     <a mat-button class="add-article-button" target="_blank" rel="noopener noreferrer"  href="/path/article/1"
         *ngIf="isAuthor && userDetailFetched" style="line-height: 30px; outline: none; height: auto;">
         <mat-icon>
             add
-        </mat-icon> new article
+        </mat-icon>article
     </a>
 
     <a mat-button class="add-article-button" (click)="becomeAuthor()"

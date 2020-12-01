@@ -22,6 +22,7 @@ import { PathbuilderComponent } from './pathbuilder/pathbuilder.component';
 import { ArticleTagComponent } from './article-tag/article-tag.component';
 import { StriphtmlPipe } from './pipes/strip/striphtml.pipe';
 import { UsingTheEditorComponent } from './using-the-editor/using-the-editor.component';
+import { ArticlesNavComponent } from './articles-nav/articles-nav.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { UsingTheEditorComponent } from './using-the-editor/using-the-editor.com
     ArticleTagComponent,
     StriphtmlPipe,
     UsingTheEditorComponent,
+    ArticlesNavComponent,
     ],
   imports: [
     CommonModule,
