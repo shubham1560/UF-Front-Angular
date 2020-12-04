@@ -96,7 +96,7 @@ export class ArticleListComponent implements OnInit {
     this.knowledgeService.getRelatedSectionAndArticles(this.course).subscribe(
       (response: any) => {
         // console.log("running");
-        console.log(response);
+        // console.log(response);
         this.questions = response.course.question_count;
         this.root = response.course.root;
         

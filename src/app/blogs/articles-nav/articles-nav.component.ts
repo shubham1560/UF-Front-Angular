@@ -39,7 +39,7 @@ export class ArticlesNavComponent implements OnInit {
 
     this.route.paramMap.subscribe(
       params=>{
-        console.log(params);
+        // console.log(params);
         this.selected_article_id = params.get('id');
 
       }

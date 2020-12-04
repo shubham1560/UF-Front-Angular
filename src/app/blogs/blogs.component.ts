@@ -50,7 +50,7 @@ export class BlogsComponent implements OnInit {
 
   onGettingList(list){
     this.well = list
-    console.log(list);
+    // console.log(list);
   }
 
   // callback(entries) {
