@@ -1,55 +1,57 @@
-<div *ngIf="loading">
-    <br>
-    Fetching all articles...
+<div id="article-nav">
+    <div *ngIf="loading">
+        <br>
+        Fetching all articles...
 
-    <div class="loader"></div>
+        <div class="loader"></div>
 
-</div>
-
-<div *ngIf="!loading">
-    <br>
-    All Articles
-    <div *ngIf="draft.length>0">
-        <hr>
-        Draft
-        <div *ngFor="let article of draft" [ngClass]="{'active' : article.id==selected_article_id}">
-            <button mat-icon-button class="del-button">
-                <mat-icon style="font-size: 18px;">
-                    delete
-                </mat-icon>
-            </button>
-            <a routerLink="/path/article/{{article.id}}" class="list-article">
-                 {{article.title}}
-            </a>
-            
-        </div>
     </div>
-    <div *ngIf="published.length>0">
-        <hr>
-        Published
-        <div *ngFor="let article of published" [ngClass]="{'active' : article.id==selected_article_id}">
-            <button mat-icon-button class="del-button">
-                <mat-icon style="font-size: 18px;">
-                    delete
-                </mat-icon>
-            </button>
-            <a routerLink="/path/article/{{article.id}}" class="list-article">
-                 {{article.title}}
-            </a>
+
+    <div *ngIf="!loading">
+        <br>
+        All Articles
+        <div *ngIf="draft.length>0">
+            <hr>
+            Draft
+            <div *ngFor="let article of draft" [ngClass]="{'active' : article.id==selected_article_id}">
+                <button mat-icon-button class="del-button" (click)="openDialog(article.id, article.title)">
+                    <mat-icon style="font-size: 18px;">
+                        delete
+                    </mat-icon>
+                </button>
+                <a routerLink="/path/article/{{article.id}}" class="list-article">
+                    {{article.title}}
+                </a>
+
+            </div>
         </div>
-    </div>
-    <div *ngIf="review.length>0">
-        <hr>
-        Review
-        <div *ngFor="let article of review" [ngClass]="{'active' : article.id==selected_article_id}">
-            <button mat-icon-button class="del-button">
-                <mat-icon style="font-size: 18px;">
-                    delete
-                </mat-icon>
-            </button>
-            <a routerLink="/path/article/{{article.id}}" class="list-article">
-                {{article.title}}
-            </a>
+        <div *ngIf="published.length>0">
+            <hr>
+            Published
+            <div *ngFor="let article of published" [ngClass]="{'active' : article.id==selected_article_id}">
+                <button mat-icon-button class="del-button" (click)="openDialog(article.id, article.title)">
+                    <mat-icon style="font-size: 18px;">
+                        delete
+                    </mat-icon>
+                </button>
+                <a routerLink="/path/article/{{article.id}}" class="list-article">
+                    {{article.title}}
+                </a>
+            </div>
+        </div>
+        <div *ngIf="review.length>0">
+            <hr>
+            Review
+            <div *ngFor="let article of review" [ngClass]="{'active' : article.id==selected_article_id}">
+                <button mat-icon-button class="del-button" (click)="openDialog(article.id, article.title)">
+                    <mat-icon style="font-size: 18px;">
+                        delete
+                    </mat-icon>
+                </button>
+                <a routerLink="/path/article/{{article.id}}" class="list-article">
+                    {{article.title}}
+                </a>
+            </div>
         </div>
     </div>
 </div>

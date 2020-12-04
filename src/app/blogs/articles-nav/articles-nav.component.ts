@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { ActivatedRoute } from '@angular/router';
+import { DeleteArticleComponent } from '../delete-article/delete-article.component';
+import { MatDialog } from '@angular/material/dialog';
+import { LoggerService } from 'src/app/services/cx-menu/realtimelogger.service';
 
 @Component({
   selector: 'app-articles-nav',
@@ -11,7 +14,9 @@ export class ArticlesNavComponent implements OnInit {
 
   constructor(
     private userProfile: UserprofileService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private log : LoggerService
   ) { }
 
   sort_by = "sys_created_on";
@@ -24,7 +29,6 @@ export class ArticlesNavComponent implements OnInit {
   loading = true;
 
   ngOnInit(): void {
-    // this.loading = true;
     this.userProfile.getUserAuthoredArticles(this.sort_by, this.state).subscribe(
       (response: any) => {
         this.articles_data = response;
@@ -40,11 +44,15 @@ export class ArticlesNavComponent implements OnInit {
 
       }
     )
+    this.log.logData("article-nav", this);
   }
 
   mapToCategory(){
+    this.published = [];
+    this.draft = [];
+    this.review = [];
     this.articles_data.articles.forEach(element => {
-      console.log(element);
+      // console.log(element);
       if(element.workflow == 'published'){
         this.published.push(element)
       }
@@ -57,5 +65,28 @@ export class ArticlesNavComponent implements OnInit {
     });
   }
 
+  openDialog(id, title): void {
+    const dialogRef = this.dialog.open(DeleteArticleComponent, {
+      data: {article_id:  id, article_title: title}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.delete){
+        this.deleteArticle(id);
+      }
+    });
+  }
+
+  deleteArticle(id){
+    var afterDeletedArray = []
+    this.articles_data.articles.forEach(element => {
+      if(element.id!=id){
+        afterDeletedArray.push(element);
+      }
+    });
+
+    this.articles_data.articles = afterDeletedArray;
+    this.mapToCategory();
+  }
 
 }
