@@ -3,7 +3,7 @@
     color: #3c869a;
     line-height: 1;
     cursor: pointer;
-    padding-left: 10px;
+    padding-left: 5px;
     width: 100%;
     &:hover{
         text-decoration: none;
@@ -15,4 +15,16 @@
     // background-color: #ddd;
     // color: indianred;
     background-color: #f7f7f7;
+}
+
+.del-button{
+    padding: 0;
+    min-width: 0;
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0;
+    line-height: 24px !important;
+    border-radius: 50%;
+    outline: none;
+    color: indianred !important;
 }

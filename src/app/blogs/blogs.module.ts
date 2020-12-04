@@ -23,6 +23,7 @@ import { ArticleTagComponent } from './article-tag/article-tag.component';
 import { StriphtmlPipe } from './pipes/strip/striphtml.pipe';
 import { UsingTheEditorComponent } from './using-the-editor/using-the-editor.component';
 import { ArticlesNavComponent } from './articles-nav/articles-nav.component';
+import { DeleteArticleComponent } from './delete-article/delete-article.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { ArticlesNavComponent } from './articles-nav/articles-nav.component';
     StriphtmlPipe,
     UsingTheEditorComponent,
     ArticlesNavComponent,
+    DeleteArticleComponent,
     ],
   imports: [
     CommonModule,
