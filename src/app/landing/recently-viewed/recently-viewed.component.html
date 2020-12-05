@@ -1,8 +1,5 @@
 <div id="uf-recently-viewed">
   <div *ngIf="articles?.length>0">
-
-    <!-- <p class="comp-heading" *ngIf="articles">Recently viewed articles</p> -->
-
     <div class="row">
       <div class="col-12" *ngFor="let article of articles">
         <a href="path/{{article.article.course_id}}/{{article.article.id}}/{{article.article.article_url}}" class="landing-title-color">
@@ -13,15 +10,6 @@
         </div>
       </div>
     </div>
-    <!-- <div style="text-align: right;" *ngIf="articles.length>4">
-      <button mat-button class="recently-viewed-all-button" (click)="openAllReadArticles()">
-        View all
-        <mat-icon style="font-size: 20px;">
-          call_made
-        </mat-icon>
-      </button>
-
-    </div> -->
   </div>
   <div *ngIf="articles?.length == 0">
     Start going through some articles!
