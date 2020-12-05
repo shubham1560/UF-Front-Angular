@@ -3,15 +3,15 @@
     <div *ngIf="!isLoading" class="uf-kbuse">
         <!-- <div *ngIf="!found_useful"> -->
         <div>
-            <span style="color: #435152"> Did You find this article useful?</span>
+            <span style="color: #435152; font-size: 14px;"> Did You find this article useful?</span>
             <br>
-            <button mat-raised-button class="primary-button" (click)="markUseful(true)" [ngClass]="{'selected' : found_useful}">
-                <mat-icon matSuffix>
+            <button mat-button class="primary-button" (click)="markUseful(true)" [ngClass]="{'selected' : found_useful}">
+                <mat-icon matSuffix style="font-size: 16px;">
                     thumb_up
                 </mat-icon>
             </button>
-            <button mat-raised-button class="primary-button" (click)="markUseful(false)" [ngClass]="{'selected' : found_useful == false}">
-                <mat-icon matSuffix>
+            <button mat-button class="primary-button" (click)="markUseful(false)" [ngClass]="{'selected' : found_useful == false}">
+                <mat-icon matSuffix style="font-size: 16px;">
                     thumb_down
                 </mat-icon>
             </button>

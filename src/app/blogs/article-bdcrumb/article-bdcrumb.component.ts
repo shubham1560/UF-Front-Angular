@@ -28,13 +28,11 @@ export class ArticleBdcrumbComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (route:any) => {
-        console.log(route);
-        
         this.isLoading = true;
         this.breadcrumb = ["Home", ""]
         this.breadcrumbLink = ["", ""]
         this.kb_category = route.get('category');
-        this.titleService.setTitle(this.breadcrumb[1] + " - SortedTree");
+        // this.titleService.setTitle(this.breadcrumb[1] + " - SortedTree");
         this.breadcrumbLink[1] = "roots/" + this.kb_base + "/root";
         if (this.kb_category != "root") {
           this.KnowledgeService.getBreadCrumbFromCategory(this.kb_category).subscribe(
