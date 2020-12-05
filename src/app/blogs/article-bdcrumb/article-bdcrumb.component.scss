@@ -1,0 +1,28 @@
+.active{
+    color: #3e5153;
+    font-weight: bold;
+    cursor: default;
+}
+
+
+.view-button{
+    outline: none;
+    color: #2a3e40;
+
+    &hover{
+        background-color: none;
+    }
+}
+
+.selected{
+    background-color: #2a3e40;
+    color: white;
+}
+
+
+a{
+    color: black;
+    &:hover{
+        text-decoration: none;
+    }
+}

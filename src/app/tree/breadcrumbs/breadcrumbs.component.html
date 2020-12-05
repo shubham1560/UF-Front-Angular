@@ -1,8 +1,8 @@
 <div *ngIf="this.isLoading" id="uf-breadcrumbs">
     <div class="d-inline" mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
-        <mat-icon matSuffix *ngIf="b==0">
+        <!-- <mat-icon matSuffix *ngIf="b==0">
             account_tree
-        </mat-icon>
+        </mat-icon> -->
         <span style="color: lightgray; background-color: lightgray;">
             {{i}}
         </span>
@@ -10,11 +10,11 @@
 </div>
 <div *ngIf="!this.isLoading" class="uf-breadcrumbs" style="width: 100%;">
     <div class="d-inline" mat-button *ngFor="let crumb of breadcrumb; let i = index" style="cursor: pointer; color: #3e5153">
-        <mat-icon matSuffix *ngIf="i==0">
+        <!-- <mat-icon matSuffix *ngIf="i==0">
             account_tree
-        </mat-icon>
-        <span (click)="navigateCrumb(i)" style="text-transform: capitalize;"
-            [ngClass]="{'active' : i==(breadcrumb.length-1)}">
+        </mat-icon> -->
+        <span (click)="navigateCrumb(i)" style="text-transform: capitalize;font-size: 14px;"
+            [ngClass]="{'active' : i==(breadcrumb.length-1)}" >
             {{crumb}}
         </span>
         <span *ngIf="i!=(breadcrumb.length-1)">
