@@ -17,6 +17,7 @@ export class QuotesComponent implements OnInit {
   quotes =[];
   allQuotes = [];
   isLoading = true;
+  numQuotes = 3;
   ngOnInit(): void {
     this.knowledgeService.getQuotes().subscribe(
       (result:any) => {
@@ -40,7 +41,7 @@ export class QuotesComponent implements OnInit {
 
   fetchQuotes(quotes) {
     this.quotes = [];
-    for (var i = 0; i < 5; i++) {
+    for (var i = 0; i < this.numQuotes; i++) {
       let len = this.allQuotes.length
       let selected_quote = quotes[this.getRndInteger(1, len)];
       // console.log(selected_quote);

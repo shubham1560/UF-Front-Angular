@@ -21,9 +21,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <h4 style="color: #425051;padding-left: 25px;">
-                            <mat-icon matSuffix>
+                            <!-- <mat-icon matSuffix>
                                 account_tree
-                            </mat-icon>
+                            </mat-icon> -->
                             Explore roots
                         </h4>
                         <br><br><br>
@@ -63,30 +63,35 @@
                             </a>
                         </div>
                     </div>
-                    <div class="row" *ngIf="isLoggedIn">
 
-                        <!-- <div class="col-lg-4">
-                            <app-continue-courses></app-continue-courses>
-                        </div> -->
-                        <div class="col-lg-4">
-                            <app-recently-viewed></app-recently-viewed>
-                        </div>
-                        <div class="col-lg-4">
-                            <app-bookmarked></app-bookmarked>
-                        </div>
-                    </div>
                 </div>
 
 
             </div>
         </div>
-        <div class="col-md-4" *ngIf="isLoggedIn" style="padding: 20px; background-color: white;">
+        <div class="col-md-4" style="padding: 20px; background-color: white;">
+            <mat-expansion-panel *ngIf="isLoggedIn" class="st-border">
+                <mat-expansion-panel-header>
+                    Recently Viewed Articles
+                </mat-expansion-panel-header>
+
+                <ng-template matExpansionPanelContent>
+                    <app-recently-viewed></app-recently-viewed>
+
+                </ng-template>
+            </mat-expansion-panel>
+            <br>
+            <mat-expansion-panel class="st-border" *ngIf="isLoggedIn">
+                <mat-expansion-panel-header>
+                    <!-- This is the expansion title -->
+                    Recently bookmarked articles
+                </mat-expansion-panel-header>
+
+                <ng-template matExpansionPanelContent>
+                    <app-bookmarked></app-bookmarked>
+                </ng-template>
+            </mat-expansion-panel>
             <app-quotes></app-quotes>
         </div>
-
-        <div class="col-md-4" *ngIf="!isLoggedIn" style="padding: 20px; background-color: white;">
-            <app-quotes></app-quotes>
-        </div>
-
     </div>
 </div>
