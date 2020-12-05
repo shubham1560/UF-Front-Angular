@@ -6,12 +6,12 @@
             <span style="color: #435152; font-size: 14px;"> Did You find this article useful?</span>
             <br>
             <button mat-button class="primary-button" (click)="markUseful(true)" [ngClass]="{'selected' : found_useful}">
-                <mat-icon matSuffix style="font-size: 16px;">
+                <mat-icon matSuffix>
                     thumb_up
                 </mat-icon>
             </button>
             <button mat-button class="primary-button" (click)="markUseful(false)" [ngClass]="{'selected' : found_useful == false}">
-                <mat-icon matSuffix style="font-size: 16px;">
+                <mat-icon matSuffix>
                     thumb_down
                 </mat-icon>
             </button>
