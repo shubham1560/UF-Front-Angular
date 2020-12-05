@@ -24,6 +24,7 @@ import { StriphtmlPipe } from './pipes/strip/striphtml.pipe';
 import { UsingTheEditorComponent } from './using-the-editor/using-the-editor.component';
 import { ArticlesNavComponent } from './articles-nav/articles-nav.component';
 import { DeleteArticleComponent } from './delete-article/delete-article.component';
+import { ArticleBdcrumbComponent } from './article-bdcrumb/article-bdcrumb.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { DeleteArticleComponent } from './delete-article/delete-article.componen
     UsingTheEditorComponent,
     ArticlesNavComponent,
     DeleteArticleComponent,
+    ArticleBdcrumbComponent,
     ],
   imports: [
     CommonModule,
