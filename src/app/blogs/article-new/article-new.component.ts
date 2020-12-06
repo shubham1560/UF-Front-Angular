@@ -10,6 +10,7 @@ import embed from '@editorjs/embed';
 import Link from '@editorjs/link';
 import delimiter from '@editorjs/delimiter';
 import CodeTool from '@editorjs/code';
+import marker from '@editorjs/marker';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
@@ -174,6 +175,10 @@ export class ArticleNewComponent implements OnInit {
       // autofocus: true,
 
       tools: {
+        Marker: {
+          class: marker,
+          shortcut: 'CMD+SHIFT+M',
+        },
         header: {
           class: header,
           shortcut: 'CMD+SHIFT+H',
