@@ -24,6 +24,7 @@ export class ArticleBdcrumbComponent implements OnInit {
   kb_category;
   breadcrumb = ["Home", ""]
   breadcrumbLink = ["", ""]
+  show_crumb = true;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       (route:any) => {
@@ -31,7 +32,7 @@ export class ArticleBdcrumbComponent implements OnInit {
         this.breadcrumb = ["Home", ""]
         this.breadcrumbLink = ["", ""]
         this.kb_category = route.get('category');
-        if (this.kb_category != "root") {
+        if (this.kb_category != "root" && this.kb_category!="article_preview") {
           this.KnowledgeService.getBreadCrumbFromCategory(this.kb_category).subscribe(
             (result: any) => {
               console.log(result);
@@ -47,6 +48,7 @@ export class ArticleBdcrumbComponent implements OnInit {
           )
         }else{
           this.isLoading = false;
+          this.show_crumb = false;
         }
       }
     )
