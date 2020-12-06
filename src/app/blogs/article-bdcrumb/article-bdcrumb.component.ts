@@ -16,7 +16,6 @@ export class ArticleBdcrumbComponent implements OnInit {
     private router: Router,
     private loggerService: LoggerService,
     private KnowledgeService: DataService,
-    private titleService: Title
   ) { }
   
 
@@ -32,7 +31,6 @@ export class ArticleBdcrumbComponent implements OnInit {
         this.breadcrumb = ["Home", ""]
         this.breadcrumbLink = ["", ""]
         this.kb_category = route.get('category');
-        // this.titleService.setTitle(this.breadcrumb[1] + " - SortedTree");
         this.breadcrumbLink[1] = "roots/" + this.kb_base + "/root";
         if (this.kb_category != "root") {
           this.KnowledgeService.getBreadCrumbFromCategory(this.kb_category).subscribe(
@@ -44,7 +42,6 @@ export class ArticleBdcrumbComponent implements OnInit {
                 this.breadcrumb[index + 2] = element;
                 this.breadcrumbLink[index + 2] = "roots/" + this.kb_base + "/" + result.id[index];
               });
-              this.titleService.setTitle(this.breadcrumb[this.breadcrumb.length-1] +" - SortedTree" );
               this.isLoading = false;
             }
           )
