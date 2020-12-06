@@ -35,7 +35,7 @@ export class ArticleBdcrumbComponent implements OnInit {
         if (this.kb_category != "root" && this.kb_category!="article_preview") {
           this.KnowledgeService.getBreadCrumbFromCategory(this.kb_category).subscribe(
             (result: any) => {
-              console.log(result);
+              // console.log(result);
               this.kb_base = result.kb_base;
               this.breadcrumbLink[1] = "roots/" + this.kb_base + "/root";
               this.breadcrumb[1] = this.extractKnowledgeBaseName();
@@ -46,13 +46,13 @@ export class ArticleBdcrumbComponent implements OnInit {
               this.isLoading = false;
             }
           )
-          this.loggerService.logData("article-bd", this);
         }else{
           this.isLoading = false;
           this.show_crumb = false;
         }
       }
     )
+    // this.loggerService.logData("article-bd", this);
   }
 
   navigateCrumb(index) {
