@@ -31,12 +31,12 @@ export class ArticleBdcrumbComponent implements OnInit {
         this.breadcrumb = ["Home", ""]
         this.breadcrumbLink = ["", ""]
         this.kb_category = route.get('category');
-        this.breadcrumbLink[1] = "roots/" + this.kb_base + "/root";
         if (this.kb_category != "root") {
           this.KnowledgeService.getBreadCrumbFromCategory(this.kb_category).subscribe(
             (result: any) => {
               console.log(result);
               this.kb_base = result.kb_base;
+              this.breadcrumbLink[1] = "roots/" + this.kb_base + "/root";
               this.breadcrumb[1] = this.extractKnowledgeBaseName();
               result.labels.forEach((element, index, arr) => {
                 this.breadcrumb[index + 2] = element;
