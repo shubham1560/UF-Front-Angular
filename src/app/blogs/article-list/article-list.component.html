@@ -67,7 +67,7 @@
                                         {{i+1}}.
                                         {{section.label}}
                                         <br>
-                                        <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
+                                        <span *ngIf="section?.progress" style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
                                     </b>
                                 </span>
@@ -77,13 +77,13 @@
                         <div *ngFor="let article of section.articles; let j = index">
                             <div (click)="navigate(article.id)" class="uf-article" style="padding: 5px !important;">
                                 <div class="d-inline" *ngIf="!article.viewed">
-                                    <mat-icon style="vertical-align: middle;  font-size: 20px;" matSuffix>
+                                    <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px;" matSuffix>
                                         panorama_fish_eye
                                     </mat-icon>
 
                                 </div>
                                 <div class="d-inline" *ngIf="article.viewed">
-                                    <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7); font-size: 20px;"
+                                    <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px; color: #4f9aab;"
                                         matSuffix>
                                         check_circle</mat-icon>
                                 </div>
@@ -144,7 +144,7 @@
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
-                                    <span style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
+                                    <span *ngIf="section?.progress" style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
                                 </b>
 
@@ -156,13 +156,13 @@
                         <div *ngFor="let article of section.articles; let j = index">
                             <div (click)="navigate(article.id)" class="uf-article">
                                 <div class="d-inline" *ngIf="!article.viewed">
-                                    <mat-icon style="vertical-align: middle;" matSuffix>
+                                    <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px;" matSuffix>
                                         panorama_fish_eye
                                     </mat-icon>
 
                                 </div>
                                 <div class="d-inline" *ngIf="article.viewed">
-                                    <mat-icon style="vertical-align: middle; color: rgb(7, 88, 7)" matSuffix>
+                                    <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px; color: #4f9aab" matSuffix>
                                         check_circle</mat-icon>
                                 </div>
                                 <div class="d-inline" [ngClass]="{'active' : article.active}">
