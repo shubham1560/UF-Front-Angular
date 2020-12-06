@@ -46,13 +46,13 @@ export class ArticleBdcrumbComponent implements OnInit {
               this.isLoading = false;
             }
           )
+          this.loggerService.logData("article-bd", this);
         }else{
           this.isLoading = false;
           this.show_crumb = false;
         }
       }
     )
-    this.loggerService.logData("article-bd", this);
   }
 
   navigateCrumb(index) {
