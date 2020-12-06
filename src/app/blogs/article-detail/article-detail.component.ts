@@ -43,7 +43,7 @@ export class ArticleDetailComponent implements OnInit {
   
 
   ngOnInit() {
-    console.log(this.list);
+    // console.log(this.list);
     
     this.imageLoaded = false;
     this.route.paramMap.subscribe(
