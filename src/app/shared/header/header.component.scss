@@ -108,7 +108,6 @@ a{
   .uf-search-icon{
     color: #3c869a;
     height: inherit;
-    // padding-top: 10px;
     // width: 40px;
     text-align: center;
 
@@ -117,6 +116,13 @@ a{
         color: #3c869a;
         cursor: pointer;
     }
+  }
+
+  @media(max-width:768px){
+      .uf-search-icon{
+        padding-top: 10px;
+
+      }
   }
 
   .uf-main-icon{
