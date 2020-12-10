@@ -1,5 +1,5 @@
 <div id="uf-bookmarked">
-    <div *ngIf="bookmarkedArticles.length==0">
+    <div *ngIf="bookmarkedArticles?.length==0">
 
         <!-- <p style="color: #425051;">{{title}}</p> -->
 
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div style="text-align: right;" *ngIf="showButton && bookmarkedArticles.length>4">
+        <div style="text-align: right;" *ngIf="showButton && bookmarkedArticles?.length>4">
             <button class="landing-view-all-button" mat-button class="recently-viewed-all-button" (click)="openAllBookmarkedArticles()">
                 View all
                 <mat-icon style="font-size: 20px;">
