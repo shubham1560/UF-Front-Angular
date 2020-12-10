@@ -1,11 +1,11 @@
 <mat-toolbar id="st-header" class="uf-header">
 
     <!-- <a mat-button routerLink="/welcome/" style="color: #8dbcaa;">SortedTree</a> -->
-    <span routerLink="/welcome/" class="logo" style="color: white; font-size: 16px;">sorted</span>
+    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;">sorted</span>
     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
-    <span routerLink="/welcome/" class="logo" style="color: white; font-size: 16px;"> ree</span>
+    <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
     <button mat-button class="d-none d-md-block d-lg-block" (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
-        style="outline: none; margin-left: 20px; height: 48px; color: white; border-radius: 0px;">
+        style="outline: none; margin-left: 20px; height: 48px; color: #8dbcaa; border-radius: 0px;">
         Roots
         <mat-icon>
             keyboard_arrow_down
@@ -33,7 +33,7 @@
 
     <form novalidate (ngSubmit)="searchResults()" class="d-none d-md-block d-lg-block" [formGroup]="searchQueryForm">
         <input type="text" class='search-button' placeholder="Search..." formControlName="query">
-        <button type="submit" mat-icon-button style="background-color: #293E40;outline: none; margin-right: 15px;">
+        <button type="submit" mat-icon-button style="outline: none; margin-right: 15px;">
             <mat-icon class="uf-search-icon">search</mat-icon>
         </button>
     </form>
@@ -41,24 +41,25 @@
 
 
     <!-- <span *ngIf="isLoggedIn" style="margin-right: 10px;">
-        <button mat-button class="uf-dashboard" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
+        <button mat-button routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
 
     </span> -->
 
     <!-- <img [src]="image" alt=""> -->
-    <span class="sign-in" *ngIf="!isLoggedIn">
-        <a mat-flat-button class="uf-dashboard" routerLink="/auth/" (click)="sendToLoginPage()"
+    
+    <span class="sign-in">
+        <a  mat-flat-button routerLink="/community/"
+            routerLinkActive="active">Community</a>
+
+    </span>
+    <span  *ngIf="!isLoggedIn">
+        <a class="primary-button-inverted" mat-flat-button routerLink="/auth/" (click)="sendToLoginPage()"
             routerLinkActive="active">Sign in</a>
 
     </span>
 
-    <span class="sign-in">
-        <a mat-flat-button class="uf-dashboard" routerLink="/community/"
-            routerLinkActive="active">Community</a>
 
-    </span>
-
-    <a mat-button class="add-article-button" target="_blank" rel="noopener noreferrer"  href="/path/article/1"
+    <a mat-flat-button class="add-article-button" target="_blank" rel="noopener noreferrer"  href="/path/article/1"
         *ngIf="isAuthor && userDetailFetched" style="line-height: 30px; outline: none; height: auto;">
         <mat-icon>
             add
@@ -162,18 +163,18 @@
             </mat-toolbar>
         </div>
         <div class="col-md-4" style="padding: 0px;">
-            <mat-toolbar class="uf-header" style="background-color: #516264;">
+            <mat-toolbar class="uf-header" style="background-color: white;">
 
                 <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" style="width: 100%;">
                     <input type="text"
-                        style="background-color: #516264; border: none;outline: none; color: white; width: 85%; font-size: 16px; font-weight: 100;"
+                        style="background-color: white; border: none;outline: none; color: #293E40; width: 85%; font-size: 16px; font-weight: 100;"
                         placeholder="Search" formControlName="query">
                     <button type="submit" class="uf-search-button">
                         <mat-icon class="uf-search-icon">search</mat-icon>
                     </button>
                 </form>
                 <button mat-button (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
-                    style="outline: none; height: 48px; color: white; border-radius: 0px;">
+                    style="border-left: 1px solid #8dbcaa; outline: none; height: 48px; color: #8dbcaa; border-radius: 0px;">
                     Roots
                     <mat-icon>
                         keyboard_arrow_down

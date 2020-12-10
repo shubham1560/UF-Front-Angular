@@ -62,12 +62,12 @@
                         <mat-expansion-panel-header style="height: 70px" [ngClass]="{'active' : section.active}">
                             <mat-panel-title [ngClass]="{'active' : section.active}">
 
-                                <span style="font-size: 14px;">
+                                <span style="font-size: 12px;">
                                     <b>
                                         {{i+1}}.
                                         {{section.label}}
                                         <br>
-                                        <span *ngIf="section?.progress" style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
+                                        <span *ngIf="section?.progress" style="font-size: 12px; color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
                                     </b>
                                 </span>
@@ -87,7 +87,7 @@
                                         matSuffix>
                                         check_circle</mat-icon>
                                 </div>
-                                <div class="d-inline" style="font-size: 14px;" [ngClass]="{'active' : article.active}">
+                                <div class="d-inline" style="font-size: 12px;" [ngClass]="{'active' : article.active}">
                                     {{article.title}}
                                 </div>
 
@@ -138,13 +138,13 @@
                         style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
                         (closed)="panelOpenState = false">
                         <mat-expansion-panel-header [ngClass]="{'active' : section.active}">
-                            <mat-panel-title [ngClass]="{'active' : section.active}">
+                            <mat-panel-title [ngClass]="{'active' : section.active}" style="font-size: 14px;">
 
                                 <b>
                                     {{i+1}}.
                                     {{section.label}}
                                     <br>
-                                    <span *ngIf="section?.progress" style="color:#3c869a;"> Section Progress: {{section.progress}} % </span>
+                                    <span *ngIf="section?.progress" style="font-size: 12px; color:#3c869a;"> Section Progress: {{section.progress}} % </span>
 
                                 </b>
 
@@ -165,7 +165,7 @@
                                     <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px; color: #4f9aab" matSuffix>
                                         check_circle</mat-icon>
                                 </div>
-                                <div class="d-inline" [ngClass]="{'active' : article.active}">
+                                <div class="d-inline" style="font-size: 14px;" [ngClass]="{'active' : article.active}">
                                     {{article.title}}
                                 </div>
 

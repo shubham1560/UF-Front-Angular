@@ -9,8 +9,8 @@
             Searching...
         </div>
 
-        <div *ngIf="!searchResults.courses.length">
-            <div *ngIf="!searchResults.articles.length">
+        <div *ngIf="!searchResults?.courses.length">
+            <div *ngIf="!searchResults?.articles.length">
                 No results found
             </div>
         </div>
@@ -18,10 +18,10 @@
         <div *ngIf="!searching">
             
             <div *ngIf="searchResults">
-                <div *ngIf="searchResults.courses.length">
+                <div *ngIf="searchResults?.courses.length">
                     <p style="color: #425051;">Path(s): </p>
                     <div class="row">
-                        <div class="col-12" *ngFor="let course of searchResults.courses">
+                        <div class="col-12" *ngFor="let course of searchResults?.courses">
 
                             <a [mat-dialog-close]="true" routerLink="path/{{course.id}}/" class="anchor">
                                 {{course.label}}
@@ -37,10 +37,10 @@
                         </div>
                     </div>
                 </div>
-                <div *ngIf="searchResults.articles.length">
+                <div *ngIf="searchResults?.articles.length">
                     <p style="color: #425051;">Article(s): </p>
                     <div class="row">
-                        <div class="col-12" *ngFor="let article of searchResults.articles"
+                        <div class="col-12" *ngFor="let article of searchResults?.articles"
                             style="padding-bottom: 10px;">
 
                             <a [mat-dialog-close]="true" routerLink="path/{{article.category}}/{{article.id}}" class="anchor">

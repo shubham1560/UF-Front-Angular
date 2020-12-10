@@ -13,20 +13,20 @@ a{
 }
 
 .add-article-button{
-    color: white;
+    color: #052418;
 
     &:hover{
-        color: white;
+        color: #3e5153;
     }
 }
 
 .search-button{
-    background-color: #293E40;
+    background-color: white;
     border: 1px solid #516264;
     outline: none;
-    color: white;
+    color: #516264;
     width: 85%;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 100;
     border-radius: 40px;
     padding: 0px 20px;
@@ -48,62 +48,65 @@ a{
 
 .uf-search-button{
     border: none;
-    background-color: #516264;
+    background-color: white;
     outline: none;
     vertical-align: sub;
     
     &:hover{
-        background-color: #3e5153;
+        // background-color: ;
         cursor: pointer;
         // color: whit
     }
 }
 
 .uf-header{
-    background-color: var(--primary-color);
+    // background-color: var(--primary-color);
+    background-color: white;
     // height: 48px;
 }
 
 @media(max-width: 768px){
     .uf-header{
-        background-color: var(--primary-color);
+        // background-color: var(--primary-color);
+        background-color: white;
         height: 48px;
+        border-bottom: 1px solid #8dbcaa;
     }
         
 }
 
 .uf-dashboard{
-    color: #f8f9f9;
+    color: #516264;
     background-color: var(--highlight-text);
     outline: none;
 
     &:hover{
-        background-color: #205542;;
+        background-color: #f7f7f7;;
     }
 }
 
 ::placeholder {
-    color: white;
+    color: #8dbcaa;
     font-weight: 100;
     opacity: 1; /* Firefox */
-    font-size: 16px;
+    font-size: 12px;
     // padding-bottom: 60px;
   }
   
   :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color: white;
    font-weight: 100;
-   font-size: 16px;
+   font-size: 14px;
   }
   
   ::-ms-input-placeholder { /* Microsoft Edge */
    color: white;
    font-weight: 100;
-   font-size: 16px;
+   font-size: 14px;
   }
 
   .uf-search-icon{
-    color: white;
+    color: #516264;
     height: inherit;
     // padding-top: 10px;
     // width: 40px;

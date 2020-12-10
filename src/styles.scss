@@ -25,7 +25,7 @@ html, body { height: 100%; }
 body { margin: 0;
      font-family: Roboto, "Helvetica Neue", sans-serif;
     // background-color: var(--tertiary-color);
-    background-color: #f9f9f97d !important;
+    // background-color: #f9f9f97d !important;
     }
 
 div:focus{
@@ -223,16 +223,16 @@ button{
 
 
 .primary-button-inverted{
-    background-color: #3c869a;
-    color: white;
+    background-color: #3c869a !important;
+    color: white !important;
     border: 1px solid #3c869a !important;
     // border-radius: 0px !important;
     outline: none !important;
     
     &:hover{
-        background-color: white;
-        color: #3c869a;
-        text-decoration: none;
+        background-color: white !important;
+        color: #3c869a !important;
+        text-decoration: none !important;
     }
 }
 
