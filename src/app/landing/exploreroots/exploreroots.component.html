@@ -80,7 +80,7 @@
 
                 </ng-template>
             </mat-expansion-panel>
-            <br>
+            <br *ngIf="isLoggedIn">
             <mat-expansion-panel class="st-border" *ngIf="isLoggedIn">
                 <mat-expansion-panel-header>
                     <!-- This is the expansion title -->
@@ -91,6 +91,7 @@
                     <app-bookmarked></app-bookmarked>
                 </ng-template>
             </mat-expansion-panel>
+            <br *ngIf="isLoggedIn">
             <app-quotes></app-quotes>
         </div>
     </div>

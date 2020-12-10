@@ -13,10 +13,10 @@ a{
 }
 
 .add-article-button{
-    color: #052418;
+    color: #3c869a;
 
     &:hover{
-        color: #3e5153;
+        color: #3c869a;
     }
 }
 
@@ -70,7 +70,7 @@ a{
         // background-color: var(--primary-color);
         background-color: white;
         height: 48px;
-        border-bottom: 1px solid #8dbcaa;
+        // border-bottom: 1px solid #8dbcaa;
     }
         
 }
@@ -86,7 +86,7 @@ a{
 }
 
 ::placeholder {
-    color: #8dbcaa;
+    color: #3c869a;
     font-weight: 100;
     opacity: 1; /* Firefox */
     font-size: 12px;
@@ -106,7 +106,7 @@ a{
   }
 
   .uf-search-icon{
-    color: #516264;
+    color: #3c869a;
     height: inherit;
     // padding-top: 10px;
     // width: 40px;
@@ -114,7 +114,7 @@ a{
 
     &:hover{
         // background-color: #3e5153;
-        color: #8dbcaa;
+        color: #3c869a;
         cursor: pointer;
     }
   }

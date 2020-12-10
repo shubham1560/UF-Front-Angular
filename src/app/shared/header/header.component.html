@@ -5,7 +5,7 @@
     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 30px;">T</span>
     <span routerLink="/welcome/" class="logo" style="color: #8dbcaa; font-size: 16px;"> ree</span>
     <button mat-button class="d-none d-md-block d-lg-block" (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
-        style="outline: none; margin-left: 20px; height: 48px; color: #8dbcaa; border-radius: 0px;">
+        style="outline: none; margin-left: 20px; height: 48px; color: #3c869a; border-radius: 0px;">
         Roots
         <mat-icon>
             keyboard_arrow_down
@@ -49,7 +49,7 @@
     
     <span class="sign-in">
         <a  mat-flat-button routerLink="/community/"
-            routerLinkActive="active">Community</a>
+            routerLinkActive="active" style="color: #3c869a;">Community</a>
 
     </span>
     <span  *ngIf="!isLoggedIn">
@@ -78,12 +78,12 @@
 
 
         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
-            style="height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(131, 137, 139);"
+            style="height: 35px; border: 1px solid #3c869a; width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(131, 137, 139);"
             [matMenuTriggerFor]="beforeMenu">
 
         </div>
         <div *ngIf="!image"
-            style="cursor: pointer; font-weight:100; font-size: 14px; padding-top: 1px; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #8dbcaa;color: white;text-align: center;"
+            style="cursor: pointer; font-weight:100; font-size: 14px; padding-top: 1px; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #3c869a;color: white;text-align: center;"
             [matMenuTriggerFor]="beforeMenu">
             <!-- {{user?.first_name[0]+user?.last_name[0]}} -->
             {{display_name}}
@@ -94,7 +94,7 @@
         
         <mat-menu #beforeMenu="matMenu" xPosition="before">
             <div routerLink="/user_profile" mat-menu-item style="line-height: initial; height: auto;cursor: default;">
-                <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #8dbcaa;
+                <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #3c869a;
                     color: white;">
                 </div>
 
@@ -174,7 +174,7 @@
                     </button>
                 </form>
                 <button mat-button (click)="getKnowledgeBases()" [matMenuTriggerFor]="menu"
-                    style="border-left: 1px solid #8dbcaa; outline: none; height: 48px; color: #8dbcaa; border-radius: 0px;">
+                    style="outline: none; height: 48px; color: #3c869a;; border-radius: 0px;">
                     Roots
                     <mat-icon>
                         keyboard_arrow_down
