@@ -31,9 +31,10 @@
     <span class="fillspace"></span>
 
 
-    <form novalidate (ngSubmit)="searchResults()" class="d-none d-md-block d-lg-block" [formGroup]="searchQueryForm">
-        <input type="text" class='search-button' placeholder="Search..." formControlName="query">
-        <button type="submit" mat-icon-button style="outline: none; margin-right: 15px;">
+    <form novalidate (ngSubmit)="searchResults()" class="d-none search-button d-md-block d-lg-block" [formGroup]="searchQueryForm">
+        
+        <input type="text" class='search-button' style="padding: 0px !important;" placeholder="Search..." formControlName="query">
+        <button type="submit" mat-icon-button style="outline: none;">
             <mat-icon class="uf-search-icon">search</mat-icon>
         </button>
     </form>
@@ -163,13 +164,13 @@
             </mat-toolbar>
         </div>
         <div class="col-md-4" style="padding: 0px;">
-            <mat-toolbar class="uf-header" style="background-color: white;">
+            <mat-toolbar class="uf-header" style="background-color: #EFEFEF;">
 
                 <form novalidate (ngSubmit)="searchResults()" [formGroup]="searchQueryForm" style="width: 100%;">
                     <input type="text"
-                        style="background-color: white; border: none;outline: none; color: #293E40; width: 85%; font-size: 16px; font-weight: 100;"
+                        style="background-color: #EFEFEF; border: none;outline: none; color: #293E40; width: 85%; font-size: 16px; font-weight: 100;"
                         placeholder="Search" formControlName="query">
-                    <button type="submit" class="uf-search-button">
+                    <button type="submit" class="uf-search-button" >
                         <mat-icon class="uf-search-icon">search</mat-icon>
                     </button>
                 </form>
