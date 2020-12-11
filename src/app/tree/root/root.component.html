@@ -15,7 +15,7 @@
                 </button>
             </nav>
             <div style="padding: 20px 20px;">
-                <div class="row" style="padding: 20px;">
+                <div class="row" style="padding: 0px 0px 20px 15px">
                     <span *ngIf="isModerator">
                         <button style="margin-right: 30px;" class="primary-button" mat-raised-button
                             [matMenuTriggerFor]="menu" aria-label="Example icon button with a home icon">
@@ -82,7 +82,6 @@
 
                     </div>
                 </div>
-                <br><br>
                 <h3 *ngIf="_categories?.length>0">Explore further</h3>
                 <div class="row" *ngIf="!isLoading">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">

@@ -35,10 +35,9 @@
         <mat-tree [dataSource]="dataSource" style="color: #4f9aab;" [treeControl]="treeControl" class="example-tree">
             <!-- This is the tree node template for leaf nodes -->
             <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-                <li class="mat-tree-node" style="border-left: 1px solid #ddd;
+                <li class="mat-tree-node" style="border-left: 4px solid #4f9aab;
                 border-bottom: 1px solid #ddd;
-                box-shadow: 0 1px 3px rgba(0,0,0, .1);
-                border-radius: 5px;" [ngClass]="{'active' : node.id==active_id}">
+                border-radius: 5px 0px 0px 5px;" [ngClass]="{'active' : node.id==active_id}">
                     <!-- use a disabled button to provide padding for tree leaf -->
                     <button mat-icon-button disabled style="outline: none;width: 25px;">
                     </button>
@@ -56,9 +55,8 @@
                 <li>
                     <div class="mat-tree-node" style="width: 100%; color: #4f9aab; text-align: right;
                     border-bottom: 1px solid #ddd;
-                    border-left: 1px solid #ddd;
-                    box-shadow: 0 1px 3px rgba(0,0,0, .1);
-                    border-radius: 5px;" [ngClass]="{'active' : node.id==active_id}">
+                    border-left: 4px solid #4f9aab;
+                    border-radius: 5px 0px 0px 5px;" [ngClass]="{'active' : node.id==active_id}">
                         <button mat-icon-button matTreeNodeToggle style="outline: none;width: fit-content;"
                             [attr.aria-label]="'toggle ' + node.name">
                             <mat-icon class="mat-icon-rtl-mirror">
