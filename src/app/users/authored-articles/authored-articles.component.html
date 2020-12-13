@@ -3,13 +3,16 @@
     {{articles | json}}
 </pre> -->
 <div id="uf-user-info">
+    <div class="loader" style="margin-top: 40px !important;" *ngIf="loading"></div>
+    <br *ngIf="loading">
+    <br *ngIf="loading">
     <div *ngIf="articles?.length > 0">
-        Authored Articles:
-
         <div *ngFor="let article of articles">
-            <a routerLink="/path/{{article?.get_category.id}}/{{article?.id}}/{{article?.article_url}}">{{article?.title}} <br></a>
-            {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
-
+            <a routerLink="/path/{{article?.get_category.id}}/{{article?.id}}/{{article?.article_url}}"
+                class="landing-title-color">{{article?.title}} <br></a>
+            <div class="landing-breadcrumb">
+                {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
+            </div>
         </div>
     </div>
     <div *ngIf="articles?.length==0">

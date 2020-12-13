@@ -17,13 +17,14 @@ export class AuthoredArticlesComponent implements OnInit {
   ) { }
 
   articles;
-
+  loading = true;
   ngOnInit(): void {
     this.route.paramMap.subscribe(
       params => {
         // console.log(params);
         this.profileService.getPublicUserAuthoredArticles('title', params.get("user_id")).subscribe(
           (result: any) => {
+            this.loading = false;
             this.articles = result.articles;
           }
         )
