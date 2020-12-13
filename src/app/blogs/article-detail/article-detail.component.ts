@@ -40,11 +40,11 @@ export class ArticleDetailComponent implements OnInit {
   owner   //variable to get if the logged in guy is owner or not
   imageLoaded;
   title
-  
+
 
   ngOnInit() {
     // console.log(this.list);
-    
+
     this.imageLoaded = false;
     this.route.paramMap.subscribe(
       params => {
@@ -73,12 +73,7 @@ export class ArticleDetailComponent implements OnInit {
               this.fetchEmbedDetails();
               this.current_url = window.location.href;
               this.titleService.setTitle(this.title + " - SortedTree");
-              if (this.article.getAuthor.google_pic) {
-                this.authorImage = this.article.getAuthor.google_pic;
-              }
-              else {
-                this.authorImage = this.article.getAuthor.header_image
-              }
+              this.authorImage = this.article.getAuthor.header_image ? this.article?.getAuthor.header_image : this.article?.getAuthor.google_pic;
             }, error => {
               this.article = {};
             }
@@ -191,6 +186,6 @@ export class ArticleDetailComponent implements OnInit {
     this.imageLoaded = true;
   }
 
-  
-  
+
+
 }
