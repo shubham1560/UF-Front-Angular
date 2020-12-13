@@ -9,6 +9,8 @@
     height: 80px;
     width: 80px;
     border-radius: 6px;
+    background-size: contain;
+    background-repeat: round;
 }
 
 .uf-article-title{
@@ -296,4 +298,14 @@ a{
 
 a{
     color: #4f9aab !important;
+}
+
+.desc-text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 60px;
+    line-height: 1.2 !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

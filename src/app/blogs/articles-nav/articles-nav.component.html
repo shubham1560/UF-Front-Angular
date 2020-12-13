@@ -1,4 +1,7 @@
 <div id="article-nav">
+
+    
+
     <div *ngIf="loading">
         <br>
         Fetching all articles...
@@ -9,6 +12,11 @@
 
     <div *ngIf="!loading">
         <br>
+        <a mat-button class="primary-button" href="/path/article/1">
+            Add new article
+        </a>
+        <br>
+        <hr>
         All Articles
         <div *ngIf="draft.length>0">
             <hr>
