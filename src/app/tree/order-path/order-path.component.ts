@@ -31,10 +31,11 @@ export class OrderPathComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParamMap.subscribe(
       params => {
+        
         if (params.get('root')) {
           this.knowledge.getRelatedCategories(params.get('root'), 'root', 'course').subscribe(
             result => {
-              this.paths = result;
+              this.paths =  result;
             }
           )
         }

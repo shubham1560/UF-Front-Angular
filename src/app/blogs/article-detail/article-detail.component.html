@@ -208,10 +208,10 @@
                                 <!-- <mat-icon>
                                     navigate_before
                                 </mat-icon> -->
-                                <button mat-button>
+                                <span mat-button>
                                     <mat-icon>arrow_left</mat-icon>
                                     {{previousArticle.title}}
-                                </button>
+                                </span>
                             </a>
                         </div>
                         <!-- <div class="col-lg-2" style="text-align: center; color: rgba(0,0,0,.87)">
@@ -224,10 +224,10 @@
                                 <!-- <mat-icon>
                                     navigate_next
                                 </mat-icon> -->
-                                <button mat-button>
+                                <span mat-button>
                                     {{nextArticle.title}}
                                     <mat-icon>arrow_right</mat-icon>
-                                </button>
+                                </span>
 
                             </a>
                         </div>
@@ -251,9 +251,7 @@
                                 profile private</mat-card-title>
 
                             <div style="color: #293e40; padding-bottom: 20px;">
-                                <!-- <pre>
-                                    {{article.getAuthor | json }}
-                                </pre> -->
+                                
                                 <a target="_blank" rel="noopener noreferrer"  href="{{article.getAuthor.facebook_link}}"
                                     *ngIf="article.getAuthor.facebook_link" class="uf-social">
                                     <i class="fa fa-facebook" aria-hidden="true"></i>

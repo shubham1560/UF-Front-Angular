@@ -29,7 +29,11 @@ a{
     font-size: 14px;
     font-weight: 100;
     border-radius: 40px;
-    padding: 0px 0px 0px 20px;
+    padding: 0px 0px 0px 15px;
+
+    // &:hover{
+        // background-color: #f7f7f7;
+    // }
 }
 
 .sign-in{
