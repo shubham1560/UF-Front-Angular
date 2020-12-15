@@ -11,6 +11,7 @@ import Link from '@editorjs/link';
 import delimiter from '@editorjs/delimiter';
 import CodeTool from '@editorjs/code';
 import marker from '@editorjs/marker';
+import Table from '@editorjs/table';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
 import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
@@ -192,6 +193,14 @@ export class ArticleNewComponent implements OnInit {
             },
             additionalRequestHeaders: this.headers
           }
+        },
+        table: {
+          class: Table,
+          inlineToolbar: true,
+          // config: {
+          //   rows: 2,
+          //   cols: 3,
+          // },
         },
         list: {
           class: List,

@@ -93,11 +93,12 @@
                             <p [innerHTML]="block.data.text" class="text"></p>
                         </div>
                         <div *ngIf="block.type=='table'">
+                            <br>
                             <table class="table">
                                 <tbody>
                                     <tr *ngFor="let row of block.data.content">
                                         <td *ngFor="let content of row">
-                                            <span [innerHTML]="content">
+                                            <span [innerHTML]="content" style="font-size: 14px;">
 
                                             </span>
                                         </td>
@@ -159,12 +160,13 @@
                                     <p [innerHTML]="block.data.text" class="text" style="line-height: 1.5;"></p>
                                 </div>
                                 <div *ngIf="block.type=='table'">
+                                    <br>
                                     <table class="table">
                                         <tbody>
                                             <tr *ngFor="let row of block.data.content">
                                                 <!-- {{row}} -->
                                                 <td *ngFor="let content of row">
-                                                    <span [innerHTML]="content">
+                                                    <span [innerHTML]="content"  style="font-size: 14px;">
                                                     </span>
                                                 </td>
                                             </tr>
