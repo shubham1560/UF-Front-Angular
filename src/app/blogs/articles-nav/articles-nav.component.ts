@@ -16,10 +16,10 @@ export class ArticlesNavComponent implements OnInit {
     private userProfile: UserprofileService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private log : LoggerService
+    private log: LoggerService
   ) { }
 
-  sort_by = "sys_created_on";
+  sort_by = "-sys_created_on";
   state = 'all';
   articles_data;
   published = [];
@@ -33,12 +33,13 @@ export class ArticlesNavComponent implements OnInit {
       (response: any) => {
         this.articles_data = response;
         this.mapToCategory();
+        this.mapToPath();
         this.loading = false;
       }
     )
 
     this.route.paramMap.subscribe(
-      params=>{
+      params => {
         // console.log(params);
         this.selected_article_id = params.get('id');
 
@@ -47,19 +48,38 @@ export class ArticlesNavComponent implements OnInit {
     this.log.logData("article-nav", this);
   }
 
-  mapToCategory(){
+  paths = [];
+
+  mapToPath() {
+    this.paths = [];
+    this.articles_data.articles.forEach(element => {
+      var category_found = false;
+      if (element.workflow == 'published') {
+        this.paths.forEach(element1 => {
+          if (element.get_category.id == element1.category_id) {
+            element1.articles.push(element);
+            category_found = true;
+          }
+        });
+        if (!category_found) {
+          this.paths.push({ "category_label": element.get_category.category_label, "category_id": element.get_category.id, "articles": [element] });
+        }
+      }
+    });
+    this.published = this.paths
+  }
+
+
+  mapToCategory() {
     this.published = [];
     this.draft = [];
     this.review = [];
     this.articles_data.articles.forEach(element => {
       // console.log(element);
-      if(element.workflow == 'published'){
-        this.published.push(element)
-      }
-      else if(element.workflow == 'draft'){
+     if (element.workflow == 'draft') {
         this.draft.push(element);
       }
-      else{
+      else if (element.workflow == 'review'){
         this.review.push(element);
       }
     });
@@ -67,26 +87,28 @@ export class ArticlesNavComponent implements OnInit {
 
   openDialog(id, title): void {
     const dialogRef = this.dialog.open(DeleteArticleComponent, {
-      data: {article_id:  id, article_title: title}
+      data: { article_id: id, article_title: title }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.delete){
+      if (result.delete) {
         this.deleteArticle(id);
       }
     });
   }
 
-  deleteArticle(id){
+  deleteArticle(id) {
     var afterDeletedArray = []
     this.articles_data.articles.forEach(element => {
-      if(element.id!=id){
+      if (element.id != id) {
         afterDeletedArray.push(element);
       }
     });
 
     this.articles_data.articles = afterDeletedArray;
     this.mapToCategory();
+    this.mapToPath();
+
   }
 
 }

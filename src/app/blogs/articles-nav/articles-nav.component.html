@@ -1,7 +1,4 @@
 <div id="article-nav">
-
-    
-
     <div *ngIf="loading">
         <br>
         Fetching all articles...
@@ -36,16 +33,56 @@
         <div *ngIf="published.length>0">
             <hr>
             Published
-            <div *ngFor="let article of published" [ngClass]="{'active' : article.id==selected_article_id}">
-                <button mat-icon-button class="del-button" (click)="openDialog(article.id, article.title)">
-                    <mat-icon style="font-size: 18px;">
-                        delete
+            <!-- <mat-accordian>
+                <mat-expansion-panel *ngFor="let path of published" class="st-border">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <a routerLink="/path/{{path.category_id}}/" target="_blank" class="list-article"
+                                style="font-size: 16px;">
+                                {{path.category_label}}
+                                <mat-icon style="font-size: 14px;">
+                                    open_in_new
+                                </mat-icon>
+                            </a>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div *ngFor="let article of path.articles" [ngClass]="{'active' : article.id==selected_article_id}">
+                        <button mat-icon-button class="del-button" (click)="openDialog(article.id, article.title)">
+                            <mat-icon style="font-size: 18px;">
+                                delete
+                            </mat-icon>
+                        </button>
+                        <a routerLink="/path/article/{{article.id}}" class="list-article">
+                            {{article.title}}
+                        </a>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordian> -->
+
+            <div *ngFor="let path of published">
+                <hr>
+                <a routerLink="/path/{{path.category_id}}/" target="_blank" class="list-article"
+                    style="font-size: 16px;">
+                    {{path.category_label}}
+                    <mat-icon style="font-size: 14px;">
+                        open_in_new
                     </mat-icon>
-                </button>
-                <a routerLink="/path/article/{{article.id}}" class="list-article">
-                    {{article.title}}
                 </a>
+                <div *ngFor="let article of path.articles" [ngClass]="{'active' : article.id==selected_article_id}">
+                    <button mat-icon-button class="del-button" (click)="openDialog(article.id, article.title)">
+                        <mat-icon style="font-size: 18px;">
+                            delete
+                        </mat-icon>
+                    </button>
+                    <a routerLink="/path/article/{{article.id}}" class="list-article">
+                        {{article.title}}
+                    </a>
+                </div>
             </div>
+            <!-- <pre>
+                {{published | json}}
+            </pre> -->
+
         </div>
         <div *ngIf="review.length>0">
             <hr>

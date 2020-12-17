@@ -15,18 +15,18 @@
                     </span>
                     <span class="fillspace"></span>
                     <div *ngIf="hidesmallscreen">
-                        <a routerLink="/path/article_preview/{{id}}/preview">
+                        <a target="_blank" routerLink="/path/article_preview/{{id}}/preview">
                             <h5 style="color: #4f9aab; " *ngIf="title" matTooltip="preview the article">
                                 {{title}}
-                                <a target="_blank" rel="noopener noreferrer" rel="noopener noreferrer"
-                                    style="color: #4f9aab; font-size: 14px; text-decoration: underline;" *ngIf="id"
-                                    routerLink="/path/article_preview/{{id}}/preview">
+                                <a style="color: #4f9aab; font-size: 14px; text-decoration: underline;" *ngIf="id">
                                     <mat-icon style="font-size: 20px;">
                                         open_in_new
                                     </mat-icon>
                                 </a>
 
+
                             </h5>
+
 
                         </a>
                     </div>
@@ -132,7 +132,7 @@
                             type="text">
                             </textarea>
                         <div *ngIf="title && state=='published'">
-                        <hr>
+                            <hr>
                             <span style="color: #4f9aab; font-size: 12px;">
                                 To unpublish this article, you can send it to review state
                             </span>
