@@ -7,11 +7,19 @@
     <br *ngIf="loading">
     <br *ngIf="loading">
     <div *ngIf="articles?.length > 0">
-        <div *ngFor="let article of articles">
-            <a routerLink="/path/{{article?.get_category.id}}/{{article?.id}}/{{article?.article_url}}"
-                class="landing-title-color">{{article?.title}} <br></a>
-            <div class="landing-breadcrumb">
-                {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
+        <div *ngFor="let path of paths">
+            <hr>
+            <span class="landing-title-color" style="padding-bottom: 10px;">
+                Path: {{path.category_label}}
+            </span>
+            <div *ngFor="let article of path.articles">
+                <div style="padding-left: 10px;">
+                    <a routerLink="/path/{{article?.get_category.id}}/{{article?.id}}/{{article?.article_url}}"
+                        class="landing-title-color">{{article?.title}} <br></a>
+                    <div class="landing-breadcrumb">
+                        {{article?.get_knowledge_base.knowledge_base}}/ {{article?.get_category.category_label}}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

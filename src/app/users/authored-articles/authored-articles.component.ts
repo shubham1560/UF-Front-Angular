@@ -26,11 +26,30 @@ export class AuthoredArticlesComponent implements OnInit {
           (result: any) => {
             this.loading = false;
             this.articles = result.articles;
+            this.mapToPath();
           }
         )
       }
     )
     this.logger.logData("uf-user-info", this);
+  }
+
+  paths = [];
+
+  mapToPath() {
+    this.paths = [];
+    this.articles.forEach(element => {
+      var category_found = false;
+      this.paths.forEach(element1 => {
+        if (element.get_category.id == element1.category_id) {
+          element1.articles.push(element);
+          category_found = true;
+        }
+      });
+      if (!category_found) {
+        this.paths.push({ "category_label": element.get_category.category_label, "category_id": element.get_category.id, "articles": [element] });
+      }
+    });
   }
 
 }

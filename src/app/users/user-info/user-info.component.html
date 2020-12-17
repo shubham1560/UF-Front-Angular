@@ -7,7 +7,7 @@
 
                 <br>
                 <div
-                    style="width:160px; height:160px;margin:auto; border-radius:130px; border: 2px solid #3f51b5; padding:3px;">
+                    style="width:160px; height:160px;margin:auto; border-radius:130px; border: 2px solid #3c869a; padding:3px;">
                     <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" class="image-user">
                     </div>
                     <div *ngIf="!image"
@@ -57,19 +57,19 @@
             </div>
             <div class="col-md-8">
                 <br><br>
+                <p *ngIf="about" style="font-weight: 300;"> {{about}} <br> <br></p>
                 <mat-expansion-panel class="st-border">
+
                     <mat-expansion-panel-header>
                         Published Articles
                     </mat-expansion-panel-header>
 
                     <ng-template matExpansionPanelContent>
                         <app-authored-articles></app-authored-articles>
-
                     </ng-template>
                 </mat-expansion-panel>
                 <br><br>
-                <p style="font-weight: 300;"> {{about}}</p>
-
+                
             </div>
         </div>
     </div>

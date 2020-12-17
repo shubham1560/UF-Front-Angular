@@ -75,7 +75,6 @@ export class ArticlesNavComponent implements OnInit {
     this.draft = [];
     this.review = [];
     this.articles_data.articles.forEach(element => {
-      // console.log(element);
      if (element.workflow == 'draft') {
         this.draft.push(element);
       }
