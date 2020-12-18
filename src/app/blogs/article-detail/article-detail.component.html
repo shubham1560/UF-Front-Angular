@@ -205,7 +205,7 @@
                     <div class="row">
                         <div class="col-lg-6" style="text-align: left;">
                             <!-- {{previousArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{previousArticle.id}}/{{previousArticle.article_url}}"
+                            <a style="color: #3c869a;font-size: 12px;" routerLink="/path/{{category}}/{{previousArticle.id}}/{{previousArticle.article_url}}"
                                 *ngIf="previousArticle">
                                 <!-- <mat-icon>
                                     navigate_before
@@ -221,7 +221,7 @@
                         </div> -->
                         <div class="col-lg-6" style="text-align: right;">
                             <!-- {{nextArticle | json}} -->
-                            <a style="color: #3c869a;" routerLink="/path/{{category}}/{{nextArticle.id}}/{{nextArticle.article_url}}"
+                            <a style="color: #3c869a; font-size: 12px;" routerLink="/path/{{category}}/{{nextArticle.id}}/{{nextArticle.article_url}}"
                                 *ngIf="nextArticle">
                                 <!-- <mat-icon>
                                     navigate_next
@@ -247,7 +247,7 @@
 
                             <mat-card-title *ngIf="article.getAuthor.first_name">
                                 <a
-                                    routerLink="/user/{{article.getAuthor?.id}}" class="text" >{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}</a>
+                                    routerLink="/user/{{article.getAuthor?.id}}" style="font-size: 13px;" class="text" >{{article.getAuthor?.first_name+" "+article.getAuthor?.last_name}}</a>
                             </mat-card-title>
                             <mat-card-title *ngIf="!article.getAuthor.first_name" class="text">The author has decided to keep the
                                 profile private</mat-card-title>
@@ -277,7 +277,7 @@
                             </div>
 
 
-                            <mat-card-subtitle style="text-align: justify;" class="text desc-text">{{article.getAuthor?.about}}
+                            <mat-card-subtitle style="text-align: justify;" style="font-size: 13px;" class="text desc-text">{{article.getAuthor?.about}}
                             </mat-card-subtitle>
                         </mat-card-header>
                         <!-- <mat-card-actions>
