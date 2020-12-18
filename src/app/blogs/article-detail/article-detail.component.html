@@ -63,8 +63,8 @@
                             <!-- yellow -->
                             <div *ngIf="block.data.style=='ordered'">
                                 <!-- yellow -->
-                                <ol *ngFor="let item of block.data.items ; let i = index">
-                                    <li [innerHTML]="item" class="text"></li>
+                                <ol >
+                                    <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item" class="text"></li>
                                 </ol>
                                 <br>
                             </div>
@@ -137,8 +137,8 @@
                                     <div *ngIf="block.data.style=='ordered'">
                                         <!-- yellow -->
                                         <!-- yellow -->
-                                        <ol *ngFor="let item of block.data.items ; let i = index">
-                                            <li [innerHTML]="item" class="text"></li>
+                                        <ol >
+                                            <li *ngFor="let item of block.data.items ; let i = index" [innerHTML]="item" class="text"></li>
                                         </ol>
                                         <br>
                                     </div>
