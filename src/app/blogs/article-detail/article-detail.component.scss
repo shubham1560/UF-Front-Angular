@@ -305,7 +305,7 @@ a{
 .desc-text{
     overflow: hidden;
     text-overflow: ellipsis;
-    height: 60px;
+    // height: 60px;
     line-height: 1.2 !important;
     display: -webkit-box;
     -webkit-line-clamp: 3;
