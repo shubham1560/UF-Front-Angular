@@ -1,1 +1,11 @@
-<p>assign-path works!</p>
+<h2 mat-dialog-title>Assign Moderator</h2>
+<mat-dialog-content class="mat-typography">
+<div class="card" style="width: 100%;">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let user of users">
+        <span class="impersonate" (click)="assignModerator(user)">{{user?.first_name + " " + user?.last_name}}<br> </span>
+        <span style="color: #666666; font-size: 12px !important;">{{user?.email}} </span>
+      </li>
+    </ul>
+  </div>
+</mat-dialog-content>

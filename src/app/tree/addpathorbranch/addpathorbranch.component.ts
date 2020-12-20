@@ -21,9 +21,11 @@ export class AddpathorbranchComponent implements OnInit {
 
   isLoading = false;
   successMessage = "";
+  action = "";
 
   ngOnInit(): void {
     if (this.data.product) {
+      this.action = "edit";
       this.addPathOrBranch = this.fb.group({
         title: [this.data.product.label, Validators.required],
         description: [this.data.product.description],
@@ -31,6 +33,7 @@ export class AddpathorbranchComponent implements OnInit {
       })
     }
     else {
+      this.action = "add";
       this.addPathOrBranch = this.fb.group({
         title: ["", Validators.required],
         description: [""],
@@ -41,7 +44,7 @@ export class AddpathorbranchComponent implements OnInit {
 
   postPathOrBranch(): void {
     this.isLoading = true;
-    this.knowledgeService.addPathOrBranch(this.addPathOrBranch.value, this.data).subscribe(
+    this.knowledgeService.addPathOrBranch(this.addPathOrBranch.value, this.data, this.action).subscribe(
       response => {
         // console.log(response);
         this.dialogRef.close({ reload: true })

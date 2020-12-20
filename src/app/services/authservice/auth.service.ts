@@ -68,6 +68,10 @@ export class AuthService {
     return this.httpService.post(url, body, { headers: this.getHeader() });
   }
 
+  get_moderators(){
+    const url = `${this.base_auth_url}sys_user/moderators/`;
+    return this.httpService.get(url, {headers: this.getHeader()});
+  }
 
   // This method authenticates the backend for the google user and gets back the token for further request with authentication
   // This method takes the access token as parameter to get the token

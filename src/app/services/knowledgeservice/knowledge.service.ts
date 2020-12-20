@@ -182,9 +182,9 @@ export class DataService {
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
-  addPathOrBranch(form_data, type) {
+  addPathOrBranch(form_data, type, action) {
     this.called_url = `${this.base_knowledge_url}kb_category/add/`;
-    const body = { "form_data": form_data, "type": type };
+    const body = { "form_data": form_data, "type": type , "action": action};
     return this.httpService.post(this.called_url, body, { headers: this.getHeader() });
   }
 
@@ -269,6 +269,12 @@ export class DataService {
   orderCoursesCategory(path){
     this.called_url = `${this.base_knowledge_url}kb_category/order/`;
     const body = path;
+    return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
+  }
+
+  changeModerator(user, course){
+    const body = {"user": user, "course": course};
+    this.called_url = `${this.base_knowledge_url}kb_category/moderator/change/`;
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 

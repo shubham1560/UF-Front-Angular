@@ -8,6 +8,8 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { AddpathorbranchComponent } from "../addpathorbranch/addpathorbranch.component"
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { AssignPathComponent } from '../assign-path/assign-path.component';
+import { CacheserviceService } from 'src/app/services/cacheservice/cacheservice.service';
 
 
 @Component({
@@ -30,6 +32,7 @@ export class RootComponent implements OnInit {
     public dialog: MatDialog,
     private userService: UserprofileService,
     private authService: AuthService,
+    private cache: CacheserviceService,
     changeDetectorRef: ChangeDetectorRef, media: MediaMatcher
   ) {
     this.mobileQuery = media.matchMedia('(max-width: 768px)');
@@ -57,9 +60,9 @@ export class RootComponent implements OnInit {
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.userService.inGroup("Moderators").subscribe(
-        (result:any) =>{
+        (result: any) => {
           this.isModerator = result;
-          if(this.isModerator){
+          if (this.isModerator) {
             this.getUserData();
           }
         }
@@ -72,12 +75,10 @@ export class RootComponent implements OnInit {
     }
     this.route.paramMap.subscribe(
       (result: any) => {
-        // console.log(result);
         this.isLoading = true;
         this.view = result.params.view;
         if (localStorage.getItem("view")) {
           this.view = localStorage.getItem("view")
-          //   // console.log("if working: "+ this.view);
         }
         this.kb_base = result.params.kb_base;
         this.kb_category = result.params.kb_category;
@@ -94,44 +95,39 @@ export class RootComponent implements OnInit {
   }
 
 
-  getTheCategoryandCourses(){
-    this._courses=[];
-    this._categories=[];
+  getTheCategoryandCourses() {
+    this._courses = [];
+    this._categories = [];
     this.categories.forEach(element => {
-      if(element.course){
+      if (element.course) {
         this._courses.push(element);
       }
-      else{
+      else {
         this._categories.push(element);
       }
     });
   }
 
   moderator_id;
-  getUserData(){
+  getUserData() {
     this.userService.getUserData().subscribe(
-      (result:any)=>{
-        // console.log(result);
-        console.log(result);
+      (result: any) => {
         this.moderator_id = result.user.id_name;
       }
     )
   }
 
-  editProduct(product, type){
+  editProduct(product, type) {
     const dialogRef = this.dialog.open(AddpathorbranchComponent, {
       minWidth: '280px',
       data: { add: type, product: product },
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      // console.log(result);
-      if(result?.reload){
-        window.location.reload();
+      if (result?.reload) {
+        this.cache.deleteAll();
+        this.ngOnInit();
       }
-      
-      // this.ngOnInit();
     });
   }
 
@@ -142,28 +138,28 @@ export class RootComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log('The dialog was closed');
-      // console.log(result);
-      if(result?.reload){
-        window.location.reload();
+      if (result?.reload) {
+        this.cache.deleteAll();
+        this.ngOnInit();
       }
-      
-      // window.location.reload();
-      // this.ngOnInit();
     });
   }
 
-  // changeView(changedView){
-  //   console.log(changedView);
-  //   if(changedView=="tree"){
-  //     this.view = "tree";
-  //   }
-  //   else if(changedView=="course"){
-  //     this.view = "course";
-  //   }
-  //   localStorage.setItem("view", this.view);
-  // }
+  changeModerator(product) {
+    console.log(product);
+    if (this.root_admin) {
+      const dialogRef = this.dialog.open(AssignPathComponent, {
+        data: { path: product }
+      })
 
+      dialogRef.afterClosed().subscribe(
+        result=>{
+          this.cache.deleteAll();
+          this.ngOnInit();
+        }
+      )
+    }
+  }
 
 
   seeDetails(course) {
