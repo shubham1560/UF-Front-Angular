@@ -29,7 +29,7 @@
                     <app-breadcrumbs></app-breadcrumbs>
                 </div>
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _courses">
+                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of _courses">
                         <mat-card *ngIf="product.course" style="margin-bottom: 20px; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
@@ -141,7 +141,7 @@
 
                 <div class="row" *ngIf="isLoading">
                     <!-- <div class="row"> -->
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of [1,2]">
+                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3,4,5]">
                         <mat-card style="margin-bottom: 20px;" class="st-border">
                             <div style="background-color: #81b5a1;
                         color: white;
@@ -152,7 +152,7 @@
                             </div>
                             <br>
                             <mat-card-header>
-                                <mat-card-title style="width: 120px; height: 24px; background-color: #f6f7f7;">
+                                <mat-card-title style="width: 90%px; height: 24px; background-color: #f6f7f7;">
                                 </mat-card-title>
                                 <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
                                 </mat-card-subtitle>

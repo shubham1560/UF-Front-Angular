@@ -32,7 +32,7 @@ export class AssignPathComponent implements OnInit {
   assignModerator(user){
     this.knowledge.changeModerator(user, this.data.path).subscribe(
       (result:any) => {
-        this.dialogRef.close();
+        this.dialogRef.close({reload: true});
       },
       error=>{
         alert('some error on server')

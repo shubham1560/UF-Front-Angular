@@ -146,16 +146,19 @@ export class RootComponent implements OnInit {
   }
 
   changeModerator(product) {
-    console.log(product);
+    // console.log(product);
     if (this.root_admin) {
       const dialogRef = this.dialog.open(AssignPathComponent, {
         data: { path: product }
       })
 
       dialogRef.afterClosed().subscribe(
-        result=>{
-          this.cache.deleteAll();
-          this.ngOnInit();
+        result => {
+          // console.log(result);
+          if (result?.reload) {
+            this.cache.deleteAll();
+            this.ngOnInit();
+          }
         }
       )
     }
