@@ -16,7 +16,7 @@
             </nav>
             <div style="padding: 20px 20px;">
                 <div class="row" style="padding: 0px 0px 20px 15px">
-                    <span *ngIf="isModerator">
+                    <span *ngIf="root_admin">
                         <button style="margin-right: 30px;" class="primary-button" mat-raised-button
                             [matMenuTriggerFor]="menu" aria-label="Example icon button with a home icon">
                             <mat-icon>add</mat-icon>
@@ -57,6 +57,7 @@
                                 </mat-card-title>
                                 
                                 <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 14px;">
+                                    <span *ngIf="root_admin"><b> Moderated By: </b> <a routerLink="/user/{{product.get_created_by?.id}}"> {{product.get_created_by?.name}} </a> <br> </span>
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
                                 <div mat-card-avatar>
@@ -66,17 +67,23 @@
                                 </div>
                             </mat-card-header>
                             <mat-card-actions align="end" *ngIf="isModerator">
-                                <button mat-icon-button class="primary-button" style="margin-right: 10px;" >
+                                <button mat-icon-button class="primary-button" style="border: none !important;"
+                                    *ngIf="root_admin"
+                                    (click)="editProduct(product, 'course')">
+                                    <mat-icon>supervisor_account</mat-icon>
+                                </button>
+                                <button mat-icon-button class="primary-button" style="margin-right: 5px; margin-left: 5px; border: none !important;" >
                                     <mat-icon *ngIf="product.active" matTooltip="Visible to public"> visibility
                                     </mat-icon>
                                     <mat-icon *ngIf="!product.active" matTooltip="Not visible to public">
                                         visibility_off </mat-icon>
                                 </button>
-                                <button mat-icon-button class="primary-button"
-                                    *ngIf="moderator_email==product.get_created_by?.author"
+                                <button mat-icon-button class="primary-button" style="border: none !important;"
+                                    *ngIf="moderator_id==product.get_created_by?.id"
                                     (click)="editProduct(product, 'course')">
                                     <mat-icon>edit</mat-icon>
                                 </button>
+                                
                               </mat-card-actions>
                         </mat-card>
 
@@ -121,7 +128,7 @@
                             </mat-card-header>
                             <mat-card-actions align="end" *ngIf="isModerator">
                                 <button mat-icon-button class="primary-button-inverted"
-                                    *ngIf="moderator_email==product.get_created_by?.author"
+                                    *ngIf="moderator_id==product.get_created_by?.id"
                                     (click)="editProduct(product, 'category')">
                                     <mat-icon>edit</mat-icon>
                                 </button>

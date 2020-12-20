@@ -9,6 +9,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
 import { AddpathorbranchComponent } from './addpathorbranch/addpathorbranch.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderPathComponent } from './order-path/order-path.component';
+import { AssignPathComponent } from './assign-path/assign-path.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { OrderPathComponent } from './order-path/order-path.component';
     SideNavComponent,
     AddpathorbranchComponent,
     OrderPathComponent,
+    AssignPathComponent,
   ],
   imports: [
     CommonModule,

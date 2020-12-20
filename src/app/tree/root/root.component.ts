@@ -51,16 +51,22 @@ export class RootComponent implements OnInit {
   isModerator = false;
   _categories = [];
   _courses = [];
+  root_admin = false;
 
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.userService.inGroup("Moderators").subscribe(
-        (result: any) => {
+        (result:any) =>{
           this.isModerator = result;
           if(this.isModerator){
             this.getUserData();
           }
+        }
+      )
+      this.userService.inGroup("Root Admin").subscribe(
+        (result: any) => {
+          this.root_admin = result;
         }
       )
     }
@@ -101,12 +107,13 @@ export class RootComponent implements OnInit {
     });
   }
 
-  moderator_email;
+  moderator_id;
   getUserData(){
     this.userService.getUserData().subscribe(
       (result:any)=>{
         // console.log(result);
-        this.moderator_email = result.user.email;
+        console.log(result);
+        this.moderator_id = result.user.id_name;
       }
     )
   }
