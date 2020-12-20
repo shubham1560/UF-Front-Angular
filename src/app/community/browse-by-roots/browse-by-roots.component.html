@@ -92,9 +92,9 @@
             <button mat-button [matMenuTriggerFor]="root" routerLink="/community" [queryParams]="{root: selected_root}"
                 style="outline: none;">
                 {{selected_root_label}}
-                <!-- <mat-icon>
+                <mat-icon *ngIf="!selected_path_label">
                     arrow_drop_down
-                </mat-icon> -->
+                </mat-icon>
             </button>
             <mat-menu #root="matMenu">
                 <button mat-menu-item class="menu-item-header" *ngFor="let root of roots?.bases" routerLink="/community"
@@ -111,9 +111,9 @@
             </button>
             <button mat-button style="outline: none;" [matMenuTriggerFor]="path">
                 {{selected_path_label}}
-                <!-- <mat-icon>
+                <mat-icon>
                     arrow_drop_down
-                </mat-icon> -->
+                </mat-icon>
             </button>
             <mat-menu #path="matMenu">
                 <button mat-menu-item class="menu-item-header" *ngFor="let path of paths" routerLink="/community" queryParamsHandling='merge'

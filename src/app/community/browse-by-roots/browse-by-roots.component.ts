@@ -71,6 +71,7 @@ export class BrowseByRootsComponent implements OnInit {
       this.roots.bases.forEach(element => {
         if(element.id == this.selected_root){
           this.selected_root_label = element.title;
+          this.selected_path_label = undefined;
         }
       });
     }
