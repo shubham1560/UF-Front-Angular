@@ -1,10 +1,10 @@
 <div id="article-bd" *ngIf="show_crumb">
-    <div *ngIf="this.isLoading">
-        <div class="d-inline" style="padding-top: 15px;" mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
+    <div *ngIf="this.isLoading" style="margin-top: 15px;">
+        <div class="d-inline" style="margin-top: 15px;padding-top: 15px;" mat-button *ngFor="let i of ['Home','category','courses', 'article', 'sub-article']; let b = index ">
             <!-- <mat-icon matSuffix *ngIf="b==0">
             account_tree
         </mat-icon> -->
-            <span style="color: lightgray; background-color: lightgray;">
+            <span style="color: #F8F7FA; background-color: #F8F7FA;">
                 {{i}}
             </span>
         </div>

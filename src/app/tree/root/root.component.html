@@ -30,16 +30,16 @@
                 </div>
                 <div class="row" *ngIf="!isLoading">
                     <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of _courses">
-                        <mat-card *ngIf="product.course" style="margin-bottom: 20px; 
+                        <mat-card *ngIf="product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
-                            border-radius: 6px;">
+                            border-radius: 4px;">
                             <div style="font-size: 12px;">
                                 <span style="background-color: #81b5a1;
                                                 color: white;
                                                 width: fit-content;
                                                 padding: 2px 10px;
-                                                margin-left: -20px;">
+                                                margin-left: -5px;">
                                     {{product.get_parent_knowledgebase.label}}
                                     <span *ngIf="product.get_parent_category.label != 'root' ">
                                         -> {{product.get_parent_category.label}}
@@ -53,6 +53,7 @@
                                         routerLink="/path/{{product.id}}/{{product.get_first_article?.first_article_id}}/{{product.get_first_article?.first_article_url}}" style="font-size: 16px;">
                                         {{product.label}}
                                     </a>
+                                    <a style="font-size: 14px; color: #3c869a;" (click)="seeDetails(product.id)">(info)</a>
                                     
                                 </mat-card-title>
                                 
@@ -60,11 +61,11 @@
                                     <span *ngIf="root_admin"><b> Moderated By: </b> <a routerLink="/user/{{product.get_created_by?.id}}"> {{product.get_created_by?.name}} </a> <br> </span>
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
-                                <div mat-card-avatar>
+                                <!-- <div mat-card-avatar>
                                     <button mat-icon-button style="outline: none;" (click)="seeDetails(product.id)">
                                         <mat-icon>info_outline</mat-icon>
                                     </button>
-                                </div>
+                                </div> -->
                             </mat-card-header>
                             <mat-card-actions align="end" *ngIf="isModerator">
                                 <button mat-icon-button class="primary-button" style="border: none !important;"
@@ -92,18 +93,18 @@
                 <h3 *ngIf="_categories?.length>0">Explore further</h3>
                 <div class="row" *ngIf="!isLoading">
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
-                        <mat-card *ngIf="!product.course" style="margin-bottom: 20px;" class="st-border">
+                        <mat-card *ngIf="!product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important;" class="st-border">
                             <div style="font-size: 12px;">
-                                <span style="background-color: #81b5a1;
+                                <!-- <span style="background-color: #81b5a1;
                                                 color: white;
                                                 width: fit-content;
-                                                padding: 0px 10px;
+                                                padding: 2px 10px;
                                                 margin-left: -20px;">
                                     {{product.get_parent_knowledgebase.label}}
                                     <span *ngIf="product.get_parent_category.label != 'root' ">
                                         -> {{product.get_parent_category.label}}
                                     </span>
-                                </span>
+                                </span> -->
                             </div>
                             <mat-card-header>
 
@@ -114,20 +115,20 @@
                                 </mat-card-title>
 
                                 
-                                <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 12px;">
+                                <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 14px;">
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
-                                <div mat-card-avatar>
+                                <!-- <div mat-card-avatar>
                                     <button mat-icon-button *ngIf="!product.course"
                                         routerLink="/roots/{{product.parent_kb_base}}/{{product.id}}">
                                         <mat-icon matSuffix>
                                             account_tree
                                         </mat-icon>
                                     </button>
-                                </div>
+                                </div> -->
                             </mat-card-header>
                             <mat-card-actions align="end" *ngIf="isModerator">
-                                <button mat-icon-button class="primary-button-inverted"
+                                <button mat-icon-button class="primary-button" style="border: none !important;"
                                     *ngIf="moderator_id==product.get_created_by?.id"
                                     (click)="editProduct(product, 'category')">
                                     <mat-icon>edit</mat-icon>
@@ -141,24 +142,24 @@
 
                 <div class="row" *ngIf="isLoading">
                     <!-- <div class="row"> -->
-                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3,4,5]">
-                        <mat-card style="margin-bottom: 20px;" class="st-border">
+                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3]">
+                        <mat-card style="margin-bottom: 20px;" class="st-border" style="padding: 10px 0px 0px 0px !important;">
                             <div style="background-color: #81b5a1;
                         color: white;
-                        width: 100px;
-                        padding: 0px 10px;
-                        margin-left: -20px;">
-                                <br>
+                        width: 150px;
+                        height: 18px;
+                        margin-left: -5px;
+                        margin-bottom: 15px;">
                             </div>
-                            <br>
-                            <mat-card-header>
+                            <mat-card-header style="width: 100% !important;">
                                 <mat-card-title style="width: 90%px; height: 24px; background-color: #f6f7f7;">
                                 </mat-card-title>
-                                <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
+                                <mat-card-subtitle style="width: 200px; height: 20px; background-color: #f6f7f7;">
                                 </mat-card-subtitle>
-                                <mat-card-subtitle style="width: 200px; height: 24px; background-color: #f6f7f7;">
+                                <mat-card-subtitle style="width: 200px; height: 20px; background-color: #f6f7f7;">
                                 </mat-card-subtitle>
-                                <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;"></div>
+                                <!-- <div mat-card-avatar style="background-size: cover; background-color: #f6f7f7;">
+                                </div> -->
                             </mat-card-header>
                         </mat-card>
                     </div>
