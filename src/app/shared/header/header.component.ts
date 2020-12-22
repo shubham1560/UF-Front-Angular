@@ -71,19 +71,16 @@ export class HeaderComponent implements OnInit {
       this.userService.inGroup('Authors').subscribe(
         response => {
           this.isAuthor = response;
-          // console.log(response);
         }
       )
     }
 
     window.addEventListener("offline", ()=>{
-      // console.log();
       this.openSnackBar("Seems like you are offline!");
 
     })
 
     window.addEventListener("online", ()=>{
-      // console.log("Seems like you are online now!");
       window.location.reload()
       this.openSnackBar("you are online now!");
 
@@ -92,7 +89,6 @@ export class HeaderComponent implements OnInit {
 
     this.searchQueryForm = this.fb.group({
       query: ['', [Validators.required, Validators.minLength(1)]],
-      // confirm_password: ['', [Validators.required, Validators.minLength(8)]]
     })
 
     this.ifImpersonated();

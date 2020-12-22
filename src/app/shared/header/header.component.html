@@ -31,9 +31,11 @@
     <span class="fillspace"></span>
 
 
-    <form novalidate (ngSubmit)="searchResults()" class="d-none search-button d-md-block d-lg-block" [formGroup]="searchQueryForm">
-        
-        <input type="text" class='search-button' style="padding: 0px !important;" placeholder="Search..." formControlName="query">
+    <form novalidate (ngSubmit)="searchResults()" class="d-none search-button d-md-block d-lg-block"
+        [formGroup]="searchQueryForm">
+
+        <input type="text" class='search-button' style="padding: 0px !important;" placeholder="Search..."
+            formControlName="query">
         <button type="submit" mat-icon-button style="outline: none;">
             <mat-icon class="uf-search-icon">search</mat-icon>
         </button>
@@ -47,30 +49,29 @@
     </span> -->
 
     <!-- <img [src]="image" alt=""> -->
-    
+
     <span class="sign-in">
-        <a  mat-flat-button routerLink="/community/"
-            routerLinkActive="active" style="color: #3c869a;">Community</a>
+        <a mat-flat-button routerLink="/community/" routerLinkActive="active" style="color: #3c869a;">Community</a>
 
     </span>
-    <span  *ngIf="!isLoggedIn">
+    <span *ngIf="!isLoggedIn">
         <a class="primary-button-inverted" mat-flat-button routerLink="/auth/" (click)="sendToLoginPage()"
             routerLinkActive="active">Sign in</a>
 
     </span>
 
 
-    <a mat-flat-button class="add-article-button" target="_blank" rel="noopener noreferrer"  href="/path/article/1"
+    <a mat-flat-button class="add-article-button" target="_blank" rel="noopener noreferrer" href="/path/article/1"
         *ngIf="isAuthor && userDetailFetched" style="line-height: 30px; outline: none; height: auto;">
         <mat-icon>
             add
         </mat-icon>article
     </a>
 
-    <a mat-button class="add-article-button" (click)="becomeAuthor()"
-        *ngIf="!isAuthor && userDetailFetched" style="line-height: 30px; outline: none; height: auto;">
+    <a mat-button class="add-article-button" (click)="becomeAuthor()" *ngIf="!isAuthor && userDetailFetched"
+        style="line-height: 30px; outline: none; height: auto;">
         <!-- <mat-icon style="font-size: 16px;"> -->
-            <!-- edit -->
+        <!-- edit -->
         <!-- </mat-icon>  -->
         Become an author
     </a>
@@ -81,8 +82,9 @@
         <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}"
             style="height: 35px; border: 1px solid #3c869a; width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: rgb(131, 137, 139);"
             [matMenuTriggerFor]="beforeMenu">
-
         </div>
+
+
         <div *ngIf="!image"
             style="cursor: pointer; font-weight:100; font-size: 14px; padding-top: 1px; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #3c869a;color: white;text-align: center;"
             [matMenuTriggerFor]="beforeMenu">
@@ -92,50 +94,50 @@
         </div>
 
 
-        
+
         <mat-menu #beforeMenu="matMenu" xPosition="before">
             <div routerLink="/user_profile" mat-menu-item style="line-height: initial; height: auto;cursor: default;">
                 <div *ngIf="image" [ngStyle]="{background: 'url('+image+')'}" style="padding-top:5px;display:inline-block; height: 35px;width: 35px;border-radius: 17px;background-size: 100% 100%;background-color: #3c869a;
                     color: white;">
                 </div>
 
-                <span style="display: inline-block;padding-left: 10px;">
+                <span style="display: inline-block;padding-left: 10px; overflow: overlay;">
                     <b>
                         {{full_name}}
                     </b>
                     <br>
-                    {{user?.email}}
+                    <span>
+                        {{user?.email}}
+                    </span>
                 </span>
             </div>
             <!-- <hr *ngIf="isAuthor"> -->
             <hr>
-            <a mat-menu-item target="_blank" rel="noopener noreferrer"  href="/path/article/1" *ngIf="isAuthor"
+            <a mat-menu-item target="_blank" rel="noopener noreferrer" href="/path/article/1" *ngIf="isAuthor"
                 class="menu-item-header">
                 Add new article
             </a>
-            <a mat-menu-item routerLink="/user_profile/authored_articles" *ngIf="isAuthor"
-                class="menu-item-header">
+            <a mat-menu-item routerLink="/user_profile/authored_articles" *ngIf="isAuthor" class="menu-item-header">
                 My Articles
             </a>
             <hr *ngIf="superUser || impersonated">
 
 
-            <a mat-menu-item (click)="endImpersonation()" *ngIf="impersonated" class="menu-item-header"> 
+            <a mat-menu-item (click)="endImpersonation()" *ngIf="impersonated" class="menu-item-header">
                 End Impersonation
             </a>
 
 
-            <a mat-menu-item (click)="openImpersonation()" *ngIf="superUser" class="menu-item-header"> 
+            <a mat-menu-item (click)="openImpersonation()" *ngIf="superUser" class="menu-item-header">
                 Impersonate User
             </a>
 
             <hr *ngIf="isAuthor">
 
-            <a mat-menu-item routerLink="/support" *ngIf="isLoggedIn"
-                class="menu-item-header">
+            <a mat-menu-item routerLink="/support" *ngIf="isLoggedIn" class="menu-item-header">
                 Support
             </a>
-            <a mat-menu-item class="menu-item-header" routerLink="/community"> 
+            <a mat-menu-item class="menu-item-header" routerLink="/community">
                 Explore community
             </a>
             <hr *ngIf="isLoggedIn">
@@ -144,12 +146,13 @@
             <a mat-menu-item routerLink="/user_profile" class="menu-item-header"> My
                 Profile
             </a>
-        
+
             <button mat-menu-item (click)="logout()" class="menu-item-header">
                 Sign out
                 <mat-icon matSuffix style="margin: 0px 2px;">login</mat-icon>
             </button>
         </mat-menu>
+
 
     </span>
 
@@ -170,7 +173,7 @@
                     <input type="text"
                         style="background-color: #EFEFEF; border: none;outline: none; color: #293E40; width: 85%; font-size: 16px; font-weight: 100;"
                         placeholder="Search" formControlName="query">
-                    <button type="submit" class="uf-search-button" >
+                    <button type="submit" class="uf-search-button">
                         <mat-icon class="uf-search-icon">search</mat-icon>
                     </button>
                 </form>
