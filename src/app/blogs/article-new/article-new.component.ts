@@ -457,7 +457,8 @@ export class ArticleNewComponent implements OnInit {
     if (this.param_article != '1') {
       this.updateArticle(true);
       const dialogRef = this.dialog.open(CoursesComponent, {
-        data: { article_id: this.id, current_course: this.article.data?.get_category.id }
+        data: { article_id: this.id, current_course: this.article.data?.get_category.id },
+        maxWidth: '460px'
       });
 
       dialogRef.afterClosed().subscribe(result => {

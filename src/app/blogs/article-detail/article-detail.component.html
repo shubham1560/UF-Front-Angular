@@ -13,9 +13,7 @@
                             </mat-icon>
                         </a>
                     </div>
-
                     <h2 style="color: #435152; font-weight: 450;" >{{title}}</h2>
-
                     <div *ngFor="let block of article_body ; let i = index">
                         <div class="uf-header" *ngIf="block.type=='header'" class="text">
                             <h1 id={{block.data.text}} *ngIf="block.data.level==1" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h1>
@@ -25,13 +23,9 @@
                             <h5 id={{block.data.text}} *ngIf="block.data.level==5" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h5>
                             <h6 id={{block.data.text}} *ngIf="block.data.level==6" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h6>
                         </div>
-
                         <div *ngIf="block.type=='raw'">
                             <div [innerHTML]="block.data.html"></div>
                         </div>
-
-                        
-
                         <div *ngIf="block.type=='embed'">
                             <!-- <iframe *ngIf="block.data.service=='youtube'" height="auto" width="auto"  -->
                             <div class="videoWrapper">
@@ -72,14 +66,10 @@
                                     <li [innerHTML]="item" class="text" ></li>
                                 </ul>
                             </div>
-
-
                         </div>
                         <div *ngIf="block.type=='delimiter'" style="text-align: center; font-size: 30px; margin: 40px;">
                             <span>* * *</span>
-
                         </div>
-
                         <div *ngIf="block.type=='code'">
                             <!-- <div></div> -->
                             <div style="background-color: #F8F7FA; border: 1px solid #f1f1f4; padding: 10px;">
@@ -87,7 +77,6 @@
                             </div>
                             <!-- <hr> -->
                         </div>
-
                         <div *ngIf="block.type=='paragraph'" style="padding: 5px 0px;">
                             <p [innerHTML]="block.data.text" class="text"></p>
                         </div>
