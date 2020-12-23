@@ -17,14 +17,13 @@
                     <h2 style="color: #435152; font-weight: 450;" >{{title}}</h2>
 
                     <div *ngFor="let block of article_body ; let i = index">
-
                         <div class="uf-header" *ngIf="block.type=='header'" class="text">
-                            <h1 id={{block.data.text}} *ngIf="block.data.level==1" style="margin-top: 40px; font-weight: 400;">{{block.data.text}}</h1>
-                            <h2 id={{block.data.text}} *ngIf="block.data.level==2" style="margin-top: 40px; font-weight: 400;">{{block.data.text}}</h2>
-                            <h3 id={{block.data.text}} *ngIf="block.data.level==3" style="margin-top: 40px; font-weight: 400;">{{block.data.text}}</h3>
-                            <h4 id={{block.data.text}} *ngIf="block.data.level==4" style="margin-top: 40px; font-weight: 400;">{{block.data.text}}</h4>
-                            <h5 id={{block.data.text}} *ngIf="block.data.level==5" style="margin-top: 40px; font-weight: 400;">{{block.data.text}}</h5>
-                            <h6 id={{block.data.text}} *ngIf="block.data.level==6" style="margin-top: 40px; font-weight: 400;">{{block.data.text}}</h6>
+                            <h1 id={{block.data.text}} *ngIf="block.data.level==1" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h1>
+                            <h2 id={{block.data.text}} *ngIf="block.data.level==2" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h2>
+                            <h3 id={{block.data.text}} *ngIf="block.data.level==3" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h3>
+                            <h4 id={{block.data.text}} *ngIf="block.data.level==4" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h4>
+                            <h5 id={{block.data.text}} *ngIf="block.data.level==5" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h5>
+                            <h6 id={{block.data.text}} *ngIf="block.data.level==6" style="margin-top: 20px; font-weight: 400;">{{block.data.text}}</h6>
                         </div>
 
                         <div *ngIf="block.type=='raw'">
