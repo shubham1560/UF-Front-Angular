@@ -29,9 +29,9 @@
                     <app-breadcrumbs></app-breadcrumbs>
                 </div>
 
-                <h4 *ngIf="isModerator">Visible to public</h4> <br>
+                <h4 style="color: #3c869a;" *ngIf="isModerator">Visible to public</h4>
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of _active_courses">
+                    <div class="col-lg-3 col-md-12 col-sm-6 col-12" *ngFor="let product of _active_courses">
                         <mat-card *ngIf="product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
@@ -54,13 +54,18 @@
                                     <a
                                         routerLink="/path/{{product.id}}/{{product.get_first_article?.first_article_id}}/{{product.get_first_article?.first_article_url}}" style="font-size: 16px;">
                                         {{product.label}}
-                                    </a>
-                                    <a style="font-size: 14px; color: #3c869a;" (click)="seeDetails(product.id)">(info)</a>
+                                    </a> <br>
+                                    
+                                    <a style="font-size: 14px; color: indianred;" *ngIf="moderator_id==product.get_created_by?.id"
+                                    (click)="editProduct(product, 'course')">Edit  <mat-icon style="font-size: 14px;">edit</mat-icon>|</a>
+                                    <a style="font-size: 14px; color: #3c869a;" (click)="seeDetails(product.id)"> Preview ( i )</a> 
+
                                     
                                 </mat-card-title>
                                 
                                 <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 14px;">
                                     <span *ngIf="root_admin"><b> Moderated By: </b> <a routerLink="/user/{{product.get_created_by?.id}}"> {{product.get_created_by?.name}} </a> <br> </span>
+                                    <span style="font-size: 14px; color: indianred;" *ngIf="moderator_id==product.get_created_by?.id">Moderated by you <br></span>
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
                                 <!-- <div mat-card-avatar>
@@ -81,11 +86,11 @@
                                     <mat-icon *ngIf="!product.active" matTooltip="Not visible to public">
                                         visibility_off </mat-icon>
                                 </button> -->
-                                <button mat-icon-button class="primary-button-inverted" style="border: none !important;"
+                                <!-- <button mat-icon-button class="primary-button-inverted" style="border: none !important;"
                                     *ngIf="moderator_id==product.get_created_by?.id"
                                     (click)="editProduct(product, 'course')">
                                     <mat-icon>edit</mat-icon>
-                                </button>
+                                </button> -->
                                 
                               </mat-card-actions>
                         </mat-card>
@@ -93,11 +98,11 @@
                     </div>
 
                 </div>
-
-                <h4 *ngIf="isModerator">Not visible to public</h4> <br>
+                <hr *ngIf="isModerator">
+                <h4 style="color: #3c869a;" *ngIf="isModerator">Not visible to public</h4>
                 
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of _inactive_courses">
+                    <div class="col-lg-3 col-md-12 col-sm-6 col-12" *ngFor="let product of _inactive_courses">
                         <mat-card *ngIf="product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
@@ -120,13 +125,16 @@
                                     <a
                                         routerLink="/path/{{product.id}}/{{product.get_first_article?.first_article_id}}/{{product.get_first_article?.first_article_url}}" style="font-size: 16px;">
                                         {{product.label}}
-                                    </a>
-                                    <a style="font-size: 14px; color: #3c869a;" (click)="seeDetails(product.id)">(info)</a>
-                                    
+                                    </a> <br>
+                                    <a style="font-size: 14px; color: indianred;" *ngIf="moderator_id==product.get_created_by?.id"
+                                    (click)="editProduct(product, 'course')">Edit <mat-icon style="font-size: 14px;">edit</mat-icon> |</a>
+                                    <a style="font-size: 14px; color: #3c869a;" (click)="seeDetails(product.id)"> Preview ( i )</a> 
+
                                 </mat-card-title>
                                 
                                 <mat-card-subtitle class="desc-text" style="color: rgba(0,0,0,.54); font-size: 14px;">
                                     <span *ngIf="root_admin"><b> Moderated By: </b> <a routerLink="/user/{{product.get_created_by?.id}}"> {{product.get_created_by?.name}} </a> <br> </span>
+                                    <span style="font-size: 14px; color: indianred;" *ngIf="moderator_id==product.get_created_by?.id">Moderated by you <br></span>
                                     {{product.description}} <br>
                                 </mat-card-subtitle>
                                 <!-- <div mat-card-avatar>
@@ -147,24 +155,22 @@
                                     <mat-icon *ngIf="!product.active" matTooltip="Not visible to public">
                                         visibility_off </mat-icon>
                                 </button> -->
-                                <button mat-icon-button class="primary-button-inverted" style="border: none !important;"
+                                <!-- <button mat-icon-button class="primary-button-inverted" style="border: none !important;"
                                     *ngIf="moderator_id==product.get_created_by?.id"
                                     (click)="editProduct(product, 'course')">
                                     <mat-icon>edit</mat-icon>
-                                </button>
-                                <button class="primary-button-inverted" style="border: none !important;"
-                                    *ngIf="moderator_id!=product.get_created_by?.id">
-                                    OG
-                                </button>
+                                </button> -->
+                                
                                 
                               </mat-card-actions>
                         </mat-card>
 
                     </div>
                 </div>
-                <h3 *ngIf="_categories?.length>0">Explore further</h3>
+                <hr *ngIf="_categories?.length>0">
+                <h3 style="color: #3c869a;" *ngIf="_categories?.length>0">Explore further</h3>
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
                         <mat-card *ngIf="!product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important;" class="st-border">
                             <div style="font-size: 12px;">
                                 <!-- <span style="background-color: #81b5a1;
@@ -214,7 +220,7 @@
 
                 <div class="row" *ngIf="isLoading">
                     <!-- <div class="row"> -->
-                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3]">
+                    <div class="col-lg-3 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3]">
                         <mat-card style="margin-bottom: 20px;" class="st-border" style="padding: 10px 0px 0px 0px !important;">
                             <div style="background-color: #81b5a1;
                         color: white;
