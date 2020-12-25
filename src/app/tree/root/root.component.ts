@@ -106,7 +106,26 @@ export class RootComponent implements OnInit {
         this._categories.push(element);
       }
     });
+
+    this.getActiveandInactiveCourses();
   }
+
+  _active_courses = [];
+  _inactive_courses = [];
+
+  getActiveandInactiveCourses() {
+    this._active_courses = [];
+    this._inactive_courses = [];
+    this._courses.forEach(element => {
+      if (element.active) {
+        this._active_courses.push(element);
+      }
+      else {
+        this._inactive_courses.push(element);
+      }
+    })
+  }
+
 
   moderator_id;
   getUserData() {
