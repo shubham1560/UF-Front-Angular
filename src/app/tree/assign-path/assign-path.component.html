@@ -1,11 +1,18 @@
 <h3 mat-dialog-title>Assign Moderator: {{users?.length}}</h3>
 
+<input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
 
 <mat-dialog-content class="mat-typography">
-<div class="card" style="width: 100%;">
+  <div class="card" style="width: 100%;">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item" *ngFor="let user of users">
-        <span class="impersonate" (click)="assignModerator(user)">{{user?.first_name + " " + user?.last_name}}<br> </span>
+      <li class="list-group-item" *ngFor="let user of filtered_users">
+        <span class="impersonate" (click)="assignModerator(user)">{{user?.first_name + " " + user?.last_name}}<br>
+        </span>
+        <span style="color: indianred; font-size: 12px !important;">
+          <span *ngFor="let group of user?.groups">
+            {{group.name}} |
+          </span>
+        </span> <br>
         <span style="color: #666666; font-size: 12px !important;">{{user?.email}} </span>
       </li>
     </ul>

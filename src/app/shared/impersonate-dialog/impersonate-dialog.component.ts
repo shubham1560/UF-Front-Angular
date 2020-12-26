@@ -13,6 +13,7 @@ export class ImpersonateDialogComponent implements OnInit {
   ) { }
 
   users;
+  input = "";
   filtered_users = [];
   ngOnInit(): void {
     this.auth.getUsers().subscribe(

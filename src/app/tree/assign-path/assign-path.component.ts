@@ -18,21 +18,27 @@ export class AssignPathComponent implements OnInit {
     public knowledge: DataService,
   ) { }
 
+  input = '';
   users = [];
   filtered_users = [];
   ngOnInit(): void {
-    // console.log(this.path);
     this.auth.get_moderators().subscribe(
       (result:any) => {
         this.users = result;
-        this.filtered_users = [];
-        // console.log(this.users);
+        this.filtered_users = this.users;
+        console.log(this.users);
       }
     )
   }
 
   filterData(event){
-    // console.log(event);
+    this.filtered_users = [];
+    var searchText = event.toLowerCase();
+    this.users.forEach(element => {
+      if(element.email.toLowerCase().includes(searchText) || element.last_name.toLowerCase().includes(searchText) || element.first_name.toLowerCase().includes(searchText)){
+        this.filtered_users.push(element);
+      }
+    });
   }
 
 
