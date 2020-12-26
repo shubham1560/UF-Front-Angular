@@ -43,7 +43,7 @@ export class ImpersonateDialogComponent implements OnInit {
         this.filtered_users.push(element);
       }
     });
-    console.log(this.filtered_users);
+    // console.log(this.filtered_users);
   }
 
 }

@@ -6,6 +6,7 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { UserprofileService } from 'src/app/services/userprofile/userprofile.service';
+import { queue } from 'rxjs';
 
 
 interface Category {
@@ -15,40 +16,6 @@ interface Category {
   parent_kb_base: string;
   children?: Category[];
 }
-
-interface FoodNode {
-  name: string;
-  children?: FoodNode[];
-}
-
-
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Fruit',
-    children: [
-      { name: 'Apple' },
-      { name: 'Banana' },
-      { name: 'Fruit loops' },
-    ]
-  }, {
-    name: 'Vegetables',
-    children: [
-      {
-        name: 'Green',
-        children: [
-          { name: 'Broccoli' },
-          { name: 'Brussels sprouts' },
-        ]
-      }, {
-        name: 'Orange',
-        children: [
-          { name: 'Pumpkins' },
-          { name: 'Carrots' },
-        ]
-      },
-    ]
-  },
-];
 
 @Component({
   selector: 'app-side-nav',
@@ -79,18 +46,14 @@ export class SideNavComponent implements OnInit {
   // categories = [];
   tree_data: Category[];
   ngOnInit(): void {
-
     if (this.authService.isLoggedIn()) {
-      setTimeout(()=>{
+      setTimeout(() => {
         this.userService.inGroup("Moderators").subscribe(
           (result: any) => {
             this.isModerator = result;
-            // if(this.isModerator){
-              // this.getUserData();
-            // }
           }
         )
-      }, 3000)
+      }, 500)
     }
 
     this.route.paramMap.subscribe(
@@ -106,27 +69,81 @@ export class SideNavComponent implements OnInit {
         }
         if (result.params.kb_base != this.initialized_kb_base) {
           this.isLoading = true;
-          // console.log("change in base");
           this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(
             (result: any) => {
-              // this.categories = result;
               this.tree_data = result;
               this.dataSource.data = this.tree_data;
               this.isLoading = false;
+              var test = this.tree_data
+              this.categoriesSort(test);
             }
           )
         }
-
         this.initialized_kb_base = result.params.kb_base;
       }
     )
     this.loggerService.logData("uf-side-nav", this);
   }
+
   treeControl = new NestedTreeControl<Category>(node => node.children);
   dataSource = new MatTreeNestedDataSource<Category>();
 
+  categoriesSort(array_to_find_count) {
+    var finArray = [];
+    array_to_find_count.forEach(element => {
+      finArray.push(element);
+    });
+
+    var array_with_right_course_number = [];
+    var maxLevel = 0
+    while (finArray.length > 0) {
+      var a = finArray.pop()
+      array_with_right_course_number.push(a);
+      var child = this.getChildrenArray(a);
+      child.forEach(child => {
+        finArray.push(child);
+        if (child.level > maxLevel) {
+          maxLevel = child.level;
+        }
+      })
+    }
+
+    while (maxLevel >= 0) {
+      array_with_right_course_number.forEach(element => {
+        if (element.level == maxLevel) {
+          var par_index = this.findArrayIndex(array_with_right_course_number, element.parent_category);
+          // console.log(element.parent_category);
+          if (par_index != undefined) {
+            array_with_right_course_number[par_index].course_count += element.course_count;
+          }
+          // console.log(par_index);
+        }
+      })
+      maxLevel -= 1;
+    }
+    // console.log(array_with_right_course_number);
+  }
+
+  findArrayIndex(array: any, parent_id) {
+    var parent_index = undefined;
+    array.forEach(function (element, index) {
+      if (element.id == parent_id) {
+        parent_index = index;
+      }
+    })
+    return parent_index;
+  }
+
+  getChildrenArray(element) {
+    var child = [];
+    element.children.forEach(element => {
+      child.push(element);
+    });
+    // console.log(child);
+    return child
+  }
+
   changeView(changedView) {
-    // console.log(changedView);
     if (changedView == "tree") {
       this.view = "tree";
     }
@@ -136,12 +153,4 @@ export class SideNavComponent implements OnInit {
     localStorage.setItem("view", this.view);
   }
 
-
-  // openNav(){
-  //   this.icon = "menu";
-  //   document.getElementById("sidebar").classList.toggle("active")
-  //   if(document.getElementById("sidebar").classList["value"] == "active"){
-  //     this.icon = "close";
-  //   }
-  // }
 }

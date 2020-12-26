@@ -26,7 +26,7 @@ export class AssignPathComponent implements OnInit {
       (result:any) => {
         this.users = result;
         this.filtered_users = this.users;
-        console.log(this.users);
+        // console.log(this.users);
       }
     )
   }
