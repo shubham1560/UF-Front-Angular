@@ -26,13 +26,13 @@ export class AssignPathComponent implements OnInit {
       (result:any) => {
         this.users = result;
         this.filtered_users = [];
-        console.log(this.users);
+        // console.log(this.users);
       }
     )
   }
 
   filterData(event){
-    console.log(event);
+    // console.log(event);
   }
 
 
