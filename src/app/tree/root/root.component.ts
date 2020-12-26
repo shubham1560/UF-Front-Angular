@@ -77,9 +77,7 @@ export class RootComponent implements OnInit {
       (result: any) => {
         this.isLoading = true;
         this.view = result.params.view;
-        if (localStorage.getItem("view")) {
-          this.view = localStorage.getItem("view")
-        }
+        this.view = localStorage.getItem("view") || "course";
         this.kb_base = result.params.kb_base;
         this.kb_category = result.params.kb_category;
         this.knowledgeService.getRelatedCategories(result.params.kb_base, result.params.kb_category, this.view).subscribe(
@@ -122,6 +120,14 @@ export class RootComponent implements OnInit {
       }
       else {
         this._inactive_courses.push(element);
+        // if(this.root_admin) {
+         
+        // }
+        // else if (this.isModerator) {
+        //   if (element.get_created_by.id == this.moderator_id) {
+        //     this._inactive_courses.push(element);
+        //   }
+        // }
       }
     })
   }

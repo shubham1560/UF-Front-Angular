@@ -29,9 +29,9 @@
                     <app-breadcrumbs></app-breadcrumbs>
                 </div>
 
-                <h4 style="color: #3c869a;" *ngIf="isModerator">Visible to public</h4>
+                <h4 style="color: #3c869a;" *ngIf="isModerator && _active_courses?.length>0">Visible to public</h4>
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-3 col-md-12 col-sm-6 col-12" *ngFor="let product of _active_courses">
+                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of _active_courses">
                         <mat-card *ngIf="product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
@@ -98,11 +98,11 @@
                     </div>
 
                 </div>
-                <hr *ngIf="isModerator">
-                <h4 style="color: #3c869a;" *ngIf="isModerator">Not visible to public</h4>
+                <hr *ngIf="isModerator && _inactive_courses?.length>0">
+                <h4 style="color: #3c869a;" *ngIf="isModerator && _inactive_courses?.length>0">Not visible to public</h4>
                 
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-3 col-md-12 col-sm-6 col-12" *ngFor="let product of _inactive_courses">
+                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of _inactive_courses">
                         <mat-card *ngIf="product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important; 
                             border: 1px solid rgba(201, 201, 204, 0.48);
                             box-shadow: 0 1px 3px rgba(0,0,0, .1);
@@ -170,7 +170,7 @@
                 <hr *ngIf="_categories?.length>0">
                 <h3 style="color: #3c869a;" *ngIf="_categories?.length>0">Explore further</h3>
                 <div class="row" *ngIf="!isLoading">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" *ngFor="let product of _categories">
                         <mat-card *ngIf="!product.course" style="margin-bottom: 20px; padding: 10px 0px 0px 0px !important;" class="st-border">
                             <div style="font-size: 12px;">
                                 <!-- <span style="background-color: #81b5a1;
@@ -220,7 +220,7 @@
 
                 <div class="row" *ngIf="isLoading">
                     <!-- <div class="row"> -->
-                    <div class="col-lg-3 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3]">
+                    <div class="col-lg-4 col-md-12 col-sm-6 col-12" *ngFor="let product of [1,2,3]">
                         <mat-card style="margin-bottom: 20px;" class="st-border" style="padding: 10px 0px 0px 0px !important;">
                             <div style="background-color: #81b5a1;
                         color: white;

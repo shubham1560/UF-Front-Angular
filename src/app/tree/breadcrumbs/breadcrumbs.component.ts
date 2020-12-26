@@ -72,6 +72,6 @@ export class BreadcrumbsComponent implements OnInit {
         base += element + " ";
       }
     })
-    return base;
+    return base+("(All)");
   }
 }
