@@ -1,4 +1,7 @@
-<h2 mat-dialog-title>Assign Moderator</h2>
+<h3 mat-dialog-title>Assign Moderator</h3>
+<br>
+<input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
+
 <mat-dialog-content class="mat-typography">
 <div class="card" style="width: 100%;">
     <ul class="list-group list-group-flush">

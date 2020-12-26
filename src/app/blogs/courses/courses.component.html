@@ -17,6 +17,7 @@
         <span *ngIf="isLoading">Adding....</span>
 
         <input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
+        
         <br>
         <mat-dialog-content class="mat-typography">
             <div *ngFor="let course of filteredCourses">

@@ -13,11 +13,12 @@ export class ImpersonateDialogComponent implements OnInit {
   ) { }
 
   users;
-
+  filtered_users = [];
   ngOnInit(): void {
     this.auth.getUsers().subscribe(
       result=>{
         this.users = result;
+        this.filtered_users = this.users
       }
     )
   }
@@ -28,10 +29,20 @@ export class ImpersonateDialogComponent implements OnInit {
       (result:any)=>{
         localStorage.setItem("t_token", localStorage.getItem("token"));
         localStorage.setItem("token", result)
-        // localStorage.se
         window.location.reload();
-        // console.log(result);
       }
     )
   }
+
+  filterData(event){
+    this.filtered_users = [];
+    var text = event.toLocaleLowerCase()
+    this.users.forEach(element => {
+      if(element.email.toLocaleLowerCase().includes(text)|| element.username.toLocaleLowerCase().includes(text) || element.last_name.toLocaleLowerCase().includes(text) || element.first_name.toLocaleLowerCase().includes(text)){
+        this.filtered_users.push(element);
+      }
+    });
+    console.log(this.filtered_users);
+  }
+
 }

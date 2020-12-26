@@ -7,9 +7,10 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { CourseviewComponent } from './courseview/courseview.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { AddpathorbranchComponent } from './addpathorbranch/addpathorbranch.component'
-import { ReactiveFormsModule } from '@angular/forms';
+// import { ReactiveFormsModule } from '@angular/forms';
 import { OrderPathComponent } from './order-path/order-path.component';
 import { AssignPathComponent } from './assign-path/assign-path.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,11 +24,15 @@ import { AssignPathComponent } from './assign-path/assign-path.component';
     AssignPathComponent,
   ],
   imports: [
+    FormsModule,
     CommonModule,
     TreeRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
-
-  ]
+  ],
+  exports: [
+    FormsModule,
+    ReactiveFormsModule
+  ],
 })
 export class TreeModule { }

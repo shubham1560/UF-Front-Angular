@@ -152,6 +152,7 @@ export class HeaderComponent implements OnInit {
 
   openImpersonation(){
     const dialogRef = this.dialog.open(ImpersonateDialogComponent, {
+      minWidth: "320px",
       // data: {
         // query: queryParm.value
       // }

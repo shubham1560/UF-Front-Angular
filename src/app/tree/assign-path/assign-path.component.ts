@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject,Input } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/services/authservice/auth.service';
 import { DataService } from 'src/app/services/knowledgeservice/knowledge.service';
@@ -19,15 +19,22 @@ export class AssignPathComponent implements OnInit {
   ) { }
 
   users = [];
+  filtered_users = [];
   ngOnInit(): void {
     // console.log(this.path);
     this.auth.get_moderators().subscribe(
       (result:any) => {
         this.users = result;
+        this.filtered_users = [];
+        console.log(this.users);
       }
     )
-    
   }
+
+  filterData(event){
+    console.log(event);
+  }
+
 
   assignModerator(user){
     this.knowledge.changeModerator(user, this.data.path).subscribe(
