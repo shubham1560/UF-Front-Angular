@@ -72,10 +72,12 @@ export class SideNavComponent implements OnInit {
           this.knowledgeService.getCategoriesForSideNav(result.params.kb_base).subscribe(
             (result: any) => {
               this.tree_data = result;
+              // console.log(result);
               this.dataSource.data = this.tree_data;
               this.isLoading = false;
               var test = this.tree_data
               this.categoriesSort(test);
+              // console.log(this.tree_data);
             }
           )
         }
@@ -112,16 +114,13 @@ export class SideNavComponent implements OnInit {
       array_with_right_course_number.forEach(element => {
         if (element.level == maxLevel) {
           var par_index = this.findArrayIndex(array_with_right_course_number, element.parent_category);
-          // console.log(element.parent_category);
           if (par_index != undefined) {
             array_with_right_course_number[par_index].course_count += element.course_count;
           }
-          // console.log(par_index);
         }
       })
       maxLevel -= 1;
     }
-    // console.log(array_with_right_course_number);
   }
 
   findArrayIndex(array: any, parent_id) {
