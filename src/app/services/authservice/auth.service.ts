@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http"
 import { CookieService } from 'ngx-cookie-service';
 import { UrlconfigService } from '../urlconfig.service';
+import { CacheserviceService } from '../cacheservice/cacheservice.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class AuthService {
   constructor(private httpService: HttpClient,
     private cookieService: CookieService,
     private urlService: UrlconfigService,
+    private cacheService: CacheserviceService
   ) { }
 
   base_url = this.urlService.getUrl();
@@ -161,4 +163,19 @@ export class AuthService {
     return this.httpService.post(url, body, {headers: this.getHeader()});
   }
 
+  getGroups(){
+    const url = `${this.base_auth_url}sys_user/groups/user/`;
+    return this.httpService.get(url, {headers: this.getHeader()});
+  }
+
+  addGroupUser(user, groupsToAdd){
+    const url = `${this.base_auth_url}sys_user/groups/user/`;
+    this.cacheService.deleteInstant(`${this.base_auth_url}users/`);
+    this.cacheService.deleteInstant(url);
+    const body = {
+      "user": user,
+      "groupArray": groupsToAdd
+    }
+    return this.httpService.post(url, body, {headers: this.getHeader()});
+  }
 }

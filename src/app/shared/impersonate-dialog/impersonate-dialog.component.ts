@@ -58,6 +58,13 @@ export class ImpersonateDialogComponent implements OnInit {
         user: user
       }
     });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // this.updatingData = false;
+      if (result?.reload) {
+        this.ngOnInit();
+      }
+    });
   }
 
 }

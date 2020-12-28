@@ -3,30 +3,35 @@
 <!-- <pre>
     {{data.user | json}}
 </pre> -->
-
+<div id="manage-group">
 <h4>Manage group </h4>
 <span class="impersonate">{{data.user?.username}} <br> </span>
-<!-- <span style="color: indianred; font-size: 12px !important;">
+<span style="color: indianred; font-size: 12px !important;">
   <span *ngFor="let group of data.user?.groups">
     {{group.name}} <span *ngIf="data.user?.groups.length>1"> • </span>
   </span>
-</span> -->
+</span>
 <span style="color: #666666; font-size: 12px !important;">{{data.user?.first_name + " " + data.user?.last_name}} •
   {{data.user?.email}} </span>
 <mat-dialog-content class="mat-typography">
   <div cdkDropListGroup>
     <div class="example-container">
 
-      <div cdkDropList [cdkDropListData]="todo" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+      <div cdkDropList [cdkDropListData]="groupNotIn" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let group of groupNotIn" cdkDrag>{{group}}</div>
       </div>
     </div>
 
     <div class="example-container">
 
-      <div cdkDropList [cdkDropListData]="done" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+      <div cdkDropList [cdkDropListData]="groupAlreadyIn" class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let group of groupAlreadyIn" cdkDrag>{{group}}</div>
       </div>
     </div>
   </div>
 </mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button class="primary-button-inverted" (click)="addGroupsToUser()">Save</button>
+</mat-dialog-actions>
+</div>
