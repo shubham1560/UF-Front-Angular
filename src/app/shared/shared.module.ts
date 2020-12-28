@@ -7,10 +7,12 @@ import { HeaderComponent } from './header/header.component';
 import {MaterialModule} from './material.module';
 import { LoginpromptComponent } from './loginprompt/loginprompt.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddToGroupComponent } from './add-to-group/add-to-group.component';
+// import { AddToGroupComponent } from './add-to-group/add-to-group.component';
 
 @NgModule({
-  declarations: [HeaderComponent, LoginpromptComponent, AddToGroupComponent,],
+  declarations: [HeaderComponent, LoginpromptComponent, 
+    // AddToGroupComponent,
+  ],
   imports: [
     CommonModule,
     MaterialModule,

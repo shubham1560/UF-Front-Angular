@@ -27,7 +27,8 @@ import { SharedCardComponent } from './shared/shared-card/shared-card.component'
 import { ProfanityComponent } from './shared/profanity/profanity.component';
 import { ImpersonateDialogComponent } from './shared/impersonate-dialog/impersonate-dialog.component';
 import { ClearCacheComponent } from './shared/clear-cache/clear-cache.component';
-import { CommHeaderComponent } from './shared/comm-header/comm-header.component'
+import { CommHeaderComponent } from './shared/comm-header/comm-header.component';
+import { AddToGroupComponent } from './shared/add-to-group/add-to-group.component';
 // import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 // import { RootComponent } from './tree/root/root.component';
 // import { BreadcrumbsComponent} from './tree/breadcrumbs/breadcrumbs.component'
@@ -57,6 +58,7 @@ import { CommHeaderComponent } from './shared/comm-header/comm-header.component'
     ImpersonateDialogComponent,
     ClearCacheComponent,
     CommHeaderComponent,
+    AddToGroupComponent,
     // DateAgoPipe,
     // RootComponent,
     // BreadcrumbsComponent,
