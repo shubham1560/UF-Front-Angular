@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/authservice/auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddToGroupComponent } from 'src/app/shared/add-to-group/add-to-group.component'
 
 @Component({
   selector: 'app-impersonate-dialog',
@@ -9,7 +11,8 @@ import { AuthService } from 'src/app/services/authservice/auth.service';
 export class ImpersonateDialogComponent implements OnInit {
 
   constructor(
-    public auth: AuthService
+    public auth: AuthService,
+    public dialog: MatDialog,
   ) { }
 
   users;
@@ -44,6 +47,16 @@ export class ImpersonateDialogComponent implements OnInit {
       }
     });
     // console.log(this.filtered_users);
+  }
+
+  groupManage(user){
+    console.log(user);
+    const dialogRef = this.dialog.open(AddToGroupComponent, {
+      minWidth: "320px",
+      data: {
+        user: user
+      }
+    });
   }
 
 }

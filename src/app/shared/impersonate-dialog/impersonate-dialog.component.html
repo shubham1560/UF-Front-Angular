@@ -1,25 +1,37 @@
 <!-- <p>impersonate-dialog works!</p> -->
 <h2 mat-dialog-title>Impersonate User</h2>
 <mat-dialog-content class="mat-typography">
-    <!-- <pre>
+  <!-- <pre>
     {{users | json}}
 </pre> -->
-Total users :{{users?.length}}
-<br>
-<input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
-<br>
-<div class="card" style="width: 100%;">
+  Total users :{{users?.length}}
+  <br>
+  <input type="text" class="form-control" [ngModel]="input" (ngModelChange)="filterData($event)">
+  <br>
+  <div class="card" style="width: 100%;">
     <ul class="list-group list-group-flush">
       <li class="list-group-item" *ngFor="let user of filtered_users">
-        <span class="impersonate" (click)="startImpersonation(user.username)" >{{user?.username}} <br> </span>
-        <span style="color: indianred; font-size: 12px !important;">
-          <span *ngFor="let group of user?.groups">
-           {{group.name}} <span *ngIf="user?.groups.length>1"> • </span>
-          </span> 
-          <!-- {{user?.first_name + " " + user?.last_name}}  {{user?.email}}  -->
-        </span>
-        <br>
-        <span style="color: #666666; font-size: 12px !important;">{{user?.first_name + " " + user?.last_name}} • {{user?.email}} </span>
+        <div class="row">
+          <div class="col-2" style="padding-top: 10px;">
+            <button mat-icon-button class="primary-button" (click)="groupManage(user)">
+              <mat-icon>
+                supervisor_account
+              </mat-icon>
+            </button>
+          </div>
+          <div class="col-10">
+            <span class="impersonate" (click)="startImpersonation(user.username)">{{user?.username}} <br> </span>
+            <span style="color: indianred; font-size: 12px !important;">
+              <span *ngFor="let group of user?.groups">
+                {{group.name}} <span *ngIf="user?.groups.length>1"> • </span>
+              </span>
+              <!-- {{user?.first_name + " " + user?.last_name}}  {{user?.email}}  -->
+            </span>
+            <br>
+            <span style="color: #666666; font-size: 12px !important;">{{user?.first_name + " " + user?.last_name}} •
+              {{user?.email}} </span>
+          </div>
+        </div>
       </li>
     </ul>
   </div>
