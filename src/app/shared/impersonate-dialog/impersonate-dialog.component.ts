@@ -53,6 +53,7 @@ export class ImpersonateDialogComponent implements OnInit {
     console.log(user);
     const dialogRef = this.dialog.open(AddToGroupComponent, {
       minWidth: "320px",
+      // maxWidth: "400px",
       data: {
         user: user
       }
