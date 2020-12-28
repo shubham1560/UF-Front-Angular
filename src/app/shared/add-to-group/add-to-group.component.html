@@ -10,22 +10,24 @@
   <span *ngFor="let group of data.user?.groups">
     {{group.name}} <span *ngIf="data.user?.groups.length>1"> • </span>
   </span>
-</span>
+</span> 
+<br>
 <span style="color: #666666; font-size: 12px !important;">{{data.user?.first_name + " " + data.user?.last_name}} •
   {{data.user?.email}} </span>
+  <br>
 <mat-dialog-content class="mat-typography">
   <div cdkDropListGroup>
     <div class="example-container">
 
       <div cdkDropList [cdkDropListData]="groupNotIn" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let group of groupNotIn" cdkDrag>{{group}}</div>
+        <div class="example-box" style="color: indianred;" *ngFor="let group of groupNotIn" cdkDrag>{{group}}</div>
       </div>
     </div>
 
     <div class="example-container">
 
       <div cdkDropList [cdkDropListData]="groupAlreadyIn" class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let group of groupAlreadyIn" cdkDrag>{{group}}</div>
+        <div class="example-box" style="color: #1F8476;" *ngFor="let group of groupAlreadyIn" cdkDrag>{{group}}</div>
       </div>
     </div>
   </div>

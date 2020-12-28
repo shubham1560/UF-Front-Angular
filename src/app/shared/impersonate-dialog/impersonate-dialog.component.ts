@@ -46,11 +46,9 @@ export class ImpersonateDialogComponent implements OnInit {
         this.filtered_users.push(element);
       }
     });
-    // console.log(this.filtered_users);
   }
 
   groupManage(user){
-    console.log(user);
     const dialogRef = this.dialog.open(AddToGroupComponent, {
       minWidth: "320px",
       // maxWidth: "400px",
