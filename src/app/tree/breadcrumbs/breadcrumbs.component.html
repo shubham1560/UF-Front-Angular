@@ -1,9 +1,9 @@
 <div *ngIf="this.isLoading" id="uf-breadcrumbs">
-    <div class="d-inline" mat-button *ngFor="let i of ['Home','category','courses', 'article']; let b = index ">
+    <div class="d-inline" mat-button *ngFor="let i of ['Home','category','courses', 'article', 'article']; let b = index ">
         <!-- <mat-icon matSuffix *ngIf="b==0">
             account_tree
         </mat-icon> -->
-        <span style="color: lightgray; background-color: lightgray;">
+        <span style="color: #f7f7f7; background-color: #f7f7f7;">
             {{i}}
         </span>
     </div>
