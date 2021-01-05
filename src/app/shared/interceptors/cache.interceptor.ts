@@ -14,7 +14,7 @@ export class CacheInterceptor implements HttpInterceptor{
 
         const cachedResponse: HttpResponse<any> = this.cacheService.read(req.url);
 
-        var excluded_keywords = ['get_user_data', 'history/get/', 'resend_activation_link/', 'categories_kb_base'];
+        var excluded_keywords = ['get_user_data', 'history/get/', 'resend_activation_link/', 'categories_kb_base', 'fetch_url'];
 
         if(req.method != "GET"){
             return next.handle(req);
