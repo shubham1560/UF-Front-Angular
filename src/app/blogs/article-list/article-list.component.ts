@@ -45,9 +45,11 @@ export class ArticleListComponent implements OnInit {
   openInModal = false;
   courseDescription;
   owner;
+  loggedIn;
 
   ngOnInit() {
     // debugger;
+    this.loggedIn = this.authService.isLoggedIn();
 
     this.route.paramMap.subscribe(
       result => {

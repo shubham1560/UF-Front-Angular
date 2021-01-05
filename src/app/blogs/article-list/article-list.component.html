@@ -56,7 +56,7 @@
 
             <div class="left-widget-wrapper">
                 <mat-accordion color="primary">
-                    <mat-expansion-panel *ngFor="let section of sections; let i = index" [expanded]="section.active"
+                    <mat-expansion-panel *ngFor="let section of sections; let i = index" class="st-border" [expanded]="section.active"
                         style="box-shadow: none; margin-bottom: 10px;" (opened)="panelOpenState = true"
                         (closed)="panelOpenState = false">
                         <mat-expansion-panel-header style="height: 70px" [ngClass]="{'active' : section.active}">
@@ -75,8 +75,8 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div *ngFor="let article of section.articles; let j = index">
-                            <div (click)="navigate(article.id)" class="uf-article" style="padding: 5px !important;">
-                                <div class="d-inline" *ngIf="!article.viewed">
+                            <div (click)="navigate(article.id)" class="uf-article" [ngClass]="{'notlog': !loggedIn}" style="padding: 5px !important;">
+                                <div class="d-inline" *ngIf="!article.viewed && loggedIn">
                                     <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px;" matSuffix>
                                         panorama_fish_eye
                                     </mat-icon>
@@ -121,7 +121,7 @@
             </mat-progress-bar>
             <br>
             <div style="width: 100%;text-align: center;">
-                <a mat-button class="primary-button-inverted"
+                <a mat-button class="primary-button-inverted" *ngIf="!isLoading"
                 [routerLink]="['/community', 'new_question']" [queryParams]="{root: root, path: course}">
                     Ask a question regarding the path
                 </a>
@@ -154,8 +154,9 @@
 
 
                         <div *ngFor="let article of section.articles; let j = index">
-                            <div (click)="navigate(article.id)" class="uf-article">
-                                <div class="d-inline" *ngIf="!article.viewed">
+                            <div (click)="navigate(article.id)" class="uf-article" [ngClass]="{'notlog': !loggedIn}">
+                                <div class="d-inline" >
+                                <div class="d-inline" *ngIf="!article.viewed && loggedIn">
                                     <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px;" matSuffix>
                                         panorama_fish_eye
                                     </mat-icon>
@@ -165,6 +166,7 @@
                                     <mat-icon style="vertical-align: middle; padding-top: 2px; font-size: 16px; color: #4f9aab" matSuffix>
                                         check_circle</mat-icon>
                                 </div>
+                            </div>
                                 <div class="d-inline" style="font-size: 14px;" [ngClass]="{'active' : article.active}">
                                     {{article.title}}
                                 </div>
