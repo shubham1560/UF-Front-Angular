@@ -25,6 +25,7 @@ import { UsingTheEditorComponent } from './using-the-editor/using-the-editor.com
 import { ArticlesNavComponent } from './articles-nav/articles-nav.component';
 import { DeleteArticleComponent } from './delete-article/delete-article.component';
 import { ArticleBdcrumbComponent } from './article-bdcrumb/article-bdcrumb.component';
+import { ArticleAnalysisComponent } from './article-analysis/article-analysis.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { ArticleBdcrumbComponent } from './article-bdcrumb/article-bdcrumb.compo
     ArticlesNavComponent,
     DeleteArticleComponent,
     ArticleBdcrumbComponent,
+    ArticleAnalysisComponent,
     ],
   imports: [
     CommonModule,
