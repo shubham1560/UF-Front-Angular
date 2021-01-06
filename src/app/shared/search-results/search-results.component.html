@@ -43,7 +43,7 @@
                         <div class="col-12" *ngFor="let article of searchResults?.articles"
                             style="padding-bottom: 10px;">
 
-                            <a [mat-dialog-close]="true" routerLink="path/{{article.category}}/{{article.id}}" class="anchor">
+                            <a [mat-dialog-close]="true" routerLink="path/{{article.category}}/{{article.id}}/{{article.article_url}}" class="anchor">
                                 {{article.title}}
                             </a>
 
