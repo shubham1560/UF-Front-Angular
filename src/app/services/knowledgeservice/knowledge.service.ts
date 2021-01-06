@@ -278,4 +278,8 @@ export class DataService {
     return this.httpService.post(this.called_url, body, {headers: this.getHeader()});
   }
 
+  getAnalysis(article_id){
+    this.called_url = `${this.base_knowledge_url}kb_use/${article_id}`;
+    return this.httpService.get(this.called_url, {headers: this.getHeader()});
+  }
 }

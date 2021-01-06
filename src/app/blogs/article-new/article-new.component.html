@@ -175,6 +175,11 @@
                         <button mat-button (click)="openEditorTutorial()" class="primary-button-inverted">
                             Open the editor tutorial
                         </button>
+                        <br><br>
+
+                        <button mat-button *ngIf="state=='published'" (click)="openArticleAnalysis()" class="primary-button">
+                            Article stats
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,1 +1,39 @@
-<p>article-analysis works!</p>
+    <!-- <p>article-analysis works!</p> -->
+    <h2 mat-dialog-title style="color: #4f9aab;">{{data.article_title}} : Stats</h2>
+    <div *ngIf="!loading">
+        <span>{{views}} people(s) have viewed the article</span> &nbsp;&nbsp;&nbsp; <br>
+        <span class="impersonate" (click)="filter('useful')">{{found_useful}} Useful
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="impersonate" (click)="filter('not_useful')">{{not_useful}} Not
+            Useful&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="impersonate" (click)="filter('feedback')">{{feedbacks}}
+            feedback(s)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="impersonate" (click)="filter('clear')">clear</span>
+        <br> <br>
+        <h6 style="color: #4f9aab;">{{heading}} </h6>
+        <mat-dialog-content class="mat-typography">
+            <div class="card" style="width: 100%;">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let use of filtered_response">
+                        <div class="row">
+                            <!-- <pre>
+                            {{use | json}}
+                        </pre> -->
+                            <div class="col-10">
+                                <a routerLink="user/{{use.get_user?.id}}"
+                                    class="impersonate">{{use.get_user? use.get_user?.first_name+" "+ use.get_user?.last_name : "Anonymous(private profile)"}}
+                                    <br> </a>
+                                <span style="color: indianred; font-size: 12px !important;" *ngIf="use.feedback">
+                                    <!-- Useful: {{use?.useful}} • Viewed: {{use?.viewed}} <br> -->
+                                    {{use.feedback? "Feedback: " + use.feedback : ''}}
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </mat-dialog-content>
+    </div>
+
+    <div *ngIf="loading" class="loader" style="margin-bottom: 50px;"></div>

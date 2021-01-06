@@ -27,6 +27,7 @@ import { ProfanityComponent } from 'src/app/shared/profanity/profanity.component
 import { Observable, async } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { UsingTheEditorComponent } from '../using-the-editor/using-the-editor.component';
+import { ArticleAnalysisComponent } from '../article-analysis/article-analysis.component';
 
 @Component({
   selector: 'app-article-new',
@@ -474,6 +475,12 @@ export class ArticleNewComponent implements OnInit {
     }
   }
 
+  openArticleAnalysis(){
+    const dialogRef = this.dialog.open(ArticleAnalysisComponent, {
+      maxWidth: 440,
+      data: { article_id: this.id , article_title: this.title}
+    })
+  }
 
   // To create tags for the article
   //Some changes have to be made to get it running
