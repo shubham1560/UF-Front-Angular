@@ -114,6 +114,7 @@ export class PathbuilderComponent implements OnInit {
           "label": element.title,
           "section": element.section,
           "order": element.order,
+          "article_url": element.article_url,
           "type": "article"
         });
       });

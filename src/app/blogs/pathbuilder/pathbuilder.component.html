@@ -44,7 +44,7 @@
                 <div cdkDropList class="pathbuild-list" (cdkDropListDropped)="drop($event)">
                     <div class="pathbuild-box" *ngFor="let element of flatSectionAndArticles; index as i" cdkDrag>
                         <div style="padding-left: 40px;overflow: auto; " *ngIf="element.type=='article'">
-                            <a target="_blank" rel="noopener noreferrer"  routerLink="/path/article_preview/{{element.id}}" mat-icon-button>
+                            <a target="_blank" rel="noopener noreferrer"  routerLink="/path/article_preview/{{element.id}}/{{element.article_url}}" mat-icon-button>
                                 <mat-icon style="color: #3c869a;" matTooltip="See the article preview">
                                     open_in_new
                                 </mat-icon>

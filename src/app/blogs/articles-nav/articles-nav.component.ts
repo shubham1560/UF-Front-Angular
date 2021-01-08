@@ -19,7 +19,8 @@ export class ArticlesNavComponent implements OnInit {
     private log: LoggerService
   ) { }
 
-  sort_by = "-sys_created_on";
+  // sort_by = "-sys_created_on";
+  sort_by = "order";
   state = 'all';
   articles_data;
   published = [];
