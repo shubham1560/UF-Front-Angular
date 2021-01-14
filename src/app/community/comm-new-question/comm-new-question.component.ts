@@ -45,7 +45,9 @@ export class CommNewQuestionComponent implements OnInit {
         this.root = param.get('root');
         this.path = param.get('path');
         if (this.authService.isLoggedIn()) {
-          this.initializeEditor();
+          if (!this.initialized) {
+            this.initializeEditor();
+          }
         }
         else {
           var url = '/community?root=' + this.root + "&path=" + this.path;
@@ -63,7 +65,10 @@ export class CommNewQuestionComponent implements OnInit {
   }
 
 
+  initialized = false;
+
   initializeEditor() {
+    this.initialized = true;
     this.editor = new EditorJS({
 
       holder: 'editorjs',
