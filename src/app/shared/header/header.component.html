@@ -51,7 +51,7 @@
     <!-- <img [src]="image" alt=""> -->
 
     <span class="sign-in">
-        <a mat-flat-button routerLink="/community/" routerLinkActive="active" style="color: #3c869a;">Community</a>
+        <!-- <a mat-flat-button routerLink="/community/" routerLinkActive="active" style="color: #3c869a;">Community</a> -->
 
     </span>
     <span *ngIf="!isLoggedIn">
@@ -137,9 +137,9 @@
             <a mat-menu-item routerLink="/support" *ngIf="isLoggedIn" class="menu-item-header">
                 Support
             </a>
-            <a mat-menu-item class="menu-item-header" routerLink="/community">
+            <!-- <a mat-menu-item class="menu-item-header" routerLink="/community">
                 Explore community
-            </a>
+            </a> -->
             <hr *ngIf="isLoggedIn">
 
             <!-- <hr> -->
